@@ -54,6 +54,64 @@ of the `GlobalComponent` class declared in `fix_base`.
 Each module's `source:` field points at the canonical FIX Latest
 chapter URL on fixtrading.org.
 
+### Mappings
+
+Semantic alignment between FIX Protocol entities and adjacent
+vocabularies is carried out-of-band in SSSOM TSV files under
+[`src/fix_protocol/mappings/`](../src/fix_protocol/mappings/), one
+file per target vocabulary. Subject-side rows use the
+`fix_protocol:` (and, where applicable, `fix_simple_binary_encoding:`)
+CURIE prefix; predicates are the standard SKOS match types
+(`exactMatch`, `closeMatch`, `broadMatch`, `narrowMatch`,
+`relatedMatch`) which map onto the corresponding LinkML mapping
+slots.
+
+| Target vocabulary | TSV | Rows | Predicate mix |
+|---|---|---:|---|
+| FIX Orchestra | `fix-protocol-to-fix-orchestra.sssom.tsv` | 27 | exact / close / narrow / related |
+| Common Domain Model (CDM) | `fix-protocol-to-common-domain-model.sssom.tsv` | 11 | close / related |
+| FIX SBE | `fix-protocol-to-fix-sbe.sssom.tsv` | 4 | exact / close / related |
+| FIXP | `fix-protocol-to-fixp.sssom.tsv` | 3 | related |
+| Fluxnova BPM Platform | `fix-protocol-to-fluxnova-bpm-platform.sssom.tsv` | 4 | related |
+| ISO 27001 | `fix-protocol-to-iso27001.sssom.tsv` | 4 | close / related |
+
+Each TSV carries an SSSOM metadata header (`#curie_map:`,
+`#mapping_set_id:`, `#mapping_set_description:`, `#mapping_date:`,
+provenance / license) and rows with `subject_id`, `predicate_id`,
+`object_id`, `mapping_justification` (typically
+`semapv:LLMBasedMatching` for the initial pass), `confidence`, and a
+human comment. Mappings are CC BY 4.0; both source and target stay
+verifiable from any LinkML element's rendered docs page.
+
+Mappings are pushed into the schema YAMLs by
+[`scripts/apply_sssom_overlay.py`](../scripts/apply_sssom_overlay.py),
+which:
+
+1. Loads every `*.sssom.tsv` in `--mappings-dir` (default
+   `src/fix_protocol/mappings/`) and indexes rows by subject
+   local-name.
+2. For each YAML in `--schema-dir`, merges the predicate-mapped
+   object CURIEs into the matching LinkML mapping slot
+   (`exact_mappings`, `close_mappings`, `broad_mappings`,
+   `narrow_mappings`, `related_mappings`) on the matching class,
+   slot, enum, or type. Existing entries are preserved; duplicates
+   are dropped.
+3. Adds any newly referenced object-side prefixes to the YAML's
+   `prefixes:` block (URIs come from the TSV's `#curie_map:`
+   metadata).
+4. Writes each schema back through the canonical hand-rolled
+   formatter in [`schema_to_linkml.py`](../schema_to_linkml.py) (the
+   four helpers — `yaml_quote`, `yaml_key`, `scalar`, `dump_yaml`,
+   plus `SEPARATED_DICT_KEYS` — are inlined in the overlay script
+   so it has no runtime dependency on `schema_to_linkml.py`).
+
+The overlay is idempotent: running it on an already-overlaid tree
+produces no further changes. Schemas under
+`src/fix_protocol/schema/` (and the private prose overlay at
+`../fix-protocol-private/fix-content/`) are kept in the canonical
+dumper-shape so any overlay run produces a diff containing only the
+new mapping links, not whole-file cosmetic reformatting.
+
 ## Status
 
 ### Coverage
