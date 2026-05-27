@@ -1,0 +1,24 @@
+# metamodel_version: 1.11.0id: TradeMessageGroup
+schema_generating: true
+description: Purpose-grouped sub-section inside a category's Messages sub-section
+  (e.g. "New Order Single", "Execution Reports", "Order Cancel Requests" under Single/General
+  Order Handling).
+display_name: TradeMessageGroup
+document_category: TradeMessageGroup
+weight: 20
+fields:
+- id: trade_group_title
+  description: Purpose-group heading inside a category's Messages sub-section.
+  display_name: TradeMessageGroup_trade_group_title
+- id: description
+  description: Description of the purpose-group's role within the category.
+  display_name: TradeMessageGroup_description
+- id: messages
+  description: Messages bundled under the purpose-group heading.
+  display_name: TradeMessageGroup_messages
+  cardinality: multi
+- id: trade_ord_status_precedence_entries
+  description: Rows of the OrdStatus(39) precedence table that appears inside the
+    Execution Reports purpose-group of the Single/General Order Handling category.
+  display_name: trade_ord_status_precedence_entries
+  cardinality: multi

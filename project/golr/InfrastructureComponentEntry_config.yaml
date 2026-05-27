@@ -1,0 +1,20 @@
+# metamodel_version: 1.11.0id: InfrastructureComponentEntry
+schema_generating: true
+description: One row of the area-wide "Components for Infrastructure Business Area"
+  table.
+display_name: InfrastructureComponentEntry
+document_category: InfrastructureComponentEntry
+weight: 20
+fields:
+- id: component_name
+  description: PascalCase name of the component.
+  display_name: InfrastructureComponentEntry_component_name
+- id: repetition
+  description: REPEATING or NON_REPEATING.
+  display_name: InfrastructureComponentEntry_repetition
+- id: category
+  description: Message category.
+  display_name: InfrastructureComponentEntry_category
+- id: footnote_number
+  description: Footnote indicator on a component-table row.
+  display_name: footnote_number

@@ -1,0 +1,14 @@
+#curie_map:
+#  fix_protocol: https://w3id.org/lmodel/fix-protocol/
+#  fix_sbe: https://w3id.org/lmodel/fix-sbe/
+#  semapv: https://w3id.org/semapv/vocab/
+#  skos: http://www.w3.org/2004/02/skos/core#
+#mapping_set_id: https://w3id.org/lmodel/fix-protocol/mappings/fix-protocol-to-fix-sbe.sssom.tsv
+#mapping_set_description: LLM-generated mappings from the FIX Protocol LinkML schema to the FIX Simple Binary Encoding (SBE) LinkML schema. Coverage is intentionally narrow because SBE is an encoding metamodel; mappings target the encoding-level metaclasses in fix_sbe_common.
+#mapping_set_version: 0.1.0
+#license: https://creativecommons.org/licenses/by/4.0/
+#mapping_date: 2026-05-27
+subject_id	subject_label	predicate_id	object_id	object_label	mapping_justification	confidence	comment
+fix_protocol:FIXDatatype	FIXDatatype	skos:closeMatch	fix_sbe:SemanticAttributes	SemanticAttributes	semapv:LLMBasedMatching	0.7	SBE SemanticAttributes carries the FIX datatype semantics of an encoded SBE type.
+fix_protocol:Field	Field	skos:relatedMatch	fix_sbe:SemanticAttributes	SemanticAttributes	semapv:LLMBasedMatching	0.5	SBE field-level semantic attributes carry the FIX field info onto an SBE encoded field.
+fix_protocol:FieldRequirement	FieldRequirement	skos:exactMatch	fix_sbe:Presence	Presence	semapv:LLMBasedMatching	0.95	Same Presence enum (required, optional, constant) shared between FIX and SBE metamodels.

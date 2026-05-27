@@ -1,0 +1,686 @@
+// DBML generated from LinkML schema
+
+Project {
+  name: 'fix-protocol'
+}
+
+Table FIXIntroduction {
+published_version varchar
+published_date date
+publisher varchar
+preface varchar
+introduction_text varchar
+utc_leap_seconds_note varchar
+about_fpl varchar
+standards varchar
+extension_packs varchar
+datatypes varchar
+business_areas varchar
+global_components varchar
+udf_ranges varchar
+product_coverage varchar
+}
+
+Table FIXProtocolLimited {
+FIXProtocolLimited_brand_name varchar
+FIXProtocolLimited_legal_name varchar
+FIXProtocolLimited_website varchar
+member_firms_url varchar
+working_groups_url varchar
+committees_url varchar
+member_types varchar
+governance_bodies varchar
+product_committees varchar
+regional_committees varchar
+}
+
+Table FIXFamilyStandard {
+id varchar [not null, primary key]
+name varchar [not null]
+description varchar
+FIXFamilyStandard_acronym varchar
+see_also varchar
+FIXFamilyStandard_layer varchar [not null]
+version varchar
+session_profile varchar
+encoding_name varchar
+}
+
+Table ExtensionPack {
+ExtensionPack_number varchar [not null, primary key]
+ExtensionPack_title varchar [not null]
+size varchar
+enhancement_summary varchar
+applies_to_session_layer_only boolean
+applies_to_fixml_only boolean
+}
+
+Table FIXDatatype {
+FIXDatatype_datatype_name varchar [not null, primary key]
+FIXDatatype_definition varchar [not null]
+value_space varchar
+value_space_notes varchar
+deprecated_for_new_designs boolean
+external_code_set varchar
+time_unit varchar
+radix int
+repertoire varchar
+index_lower_bound int
+index_upper_bound int
+minimum_value int
+maximum_value int
+footnote_numbers int
+}
+
+Table BusinessArea {
+BusinessArea_area varchar [not null, primary key]
+BusinessArea_title varchar
+BusinessArea_description varchar
+categories varchar
+}
+
+Table MessageCategory {
+MessageCategory_category varchar [not null, primary key]
+MessageCategory_title varchar
+MessageCategory_description varchar
+MessageCategory_business_area varchar [not null]
+messages varchar
+}
+
+Table Field {
+Field_tag varchar [not null, primary key]
+Field_field_name varchar [not null]
+Field_datatype varchar [not null]
+Field_description varchar
+requirement varchar
+is_user_defined boolean
+}
+
+Table Component {
+Component_component_name varchar [not null, primary key]
+Component_description varchar
+Component_scope varchar [not null]
+is_repeating_group boolean
+fields varchar
+nested_components varchar
+}
+
+Table GlobalComponent {
+Component_component_name varchar [not null, primary key]
+Component_description varchar
+is_repeating_group boolean
+fields varchar
+nested_components varchar
+GlobalComponent_component_group varchar [not null]
+applies_to_instrument boolean
+applies_to_leg boolean
+applies_to_underlying boolean
+conceptually_identical_to varchar
+gc_id int
+gc_referenced_in varchar
+GlobalComponent_scope varchar [not null]
+Component_scope varchar [not null]
+}
+
+Table CommonComponent {
+Component_component_name varchar [not null, primary key]
+Component_description varchar
+is_repeating_group boolean
+fields varchar
+nested_components varchar
+CommonComponent_business_area varchar [not null]
+CommonComponent_scope varchar [not null]
+Component_scope varchar [not null]
+}
+
+Table SpecificComponent {
+Component_component_name varchar [not null, primary key]
+Component_description varchar
+is_repeating_group boolean
+fields varchar
+nested_components varchar
+SpecificComponent_business_area varchar [not null]
+SpecificComponent_category varchar [not null]
+SpecificComponent_scope varchar [not null]
+Component_scope varchar [not null]
+}
+
+Table Message {
+Message_msg_type varchar [not null, primary key]
+Message_message_name varchar [not null]
+Message_description varchar
+category varchar
+fields varchar
+components varchar
+}
+
+Table UDFTagRange {
+UDFTagRange_range_id varchar [not null, primary key]
+UDFTagRange_low_tag varchar [not null]
+UDFTagRange_high_tag varchar
+UDFTagRange_usage varchar [not null]
+UDFTagRange_description varchar
+requires_registration boolean
+}
+
+Table PreTradeBusinessArea {
+PreTradeBusinessArea_area varchar [not null]
+PreTradeBusinessArea_title varchar
+published_version varchar
+PreTradeBusinessArea_publisher varchar
+introduction varchar
+diagram_conventions varchar
+messages_overview_note varchar
+PreTradeBusinessArea_messages varchar
+components_overview_note varchar
+PreTradeBusinessArea_components varchar
+common_components varchar
+common_component_details varchar
+footnotes varchar
+category_sections varchar
+referenced_global_components varchar
+}
+
+Table PreTradeMessageEntry {
+PreTradeMessageEntry_msg_type varchar [not null, primary key]
+PreTradeMessageEntry_message_name varchar [not null]
+PreTradeMessageEntry_category varchar [not null]
+}
+
+Table PreTradeComponentEntry {
+PreTradeComponentEntry_component_name varchar [not null, primary key]
+PreTradeComponentEntry_repetition varchar [not null]
+PreTradeComponentEntry_category varchar [not null]
+PreTradeComponentEntry_is_common boolean
+footnote_number int
+}
+
+Table ComponentTableFootnote {
+ComponentTableFootnote_footnote_number int [not null, primary key]
+ComponentTableFootnote_component_name varchar [not null]
+ComponentTableFootnote_introduced_in varchar [not null]
+ComponentTableFootnote_sole_category varchar [not null]
+text varchar
+}
+
+Table PreTradeCategorySection {
+PreTradeCategorySection_category varchar [not null, primary key]
+title varchar
+description varchar
+quote_models varchar
+message_groups varchar
+PreTradeCategorySection_messages varchar
+category_components_note varchar
+category_specific_components varchar
+}
+
+Table PreTradeMessageDetail {
+PreTradeMessageDetail_msg_type varchar [not null, primary key]
+PreTradeMessageDetail_message_name varchar [not null]
+PreTradeMessageDetail_description varchar
+layout_url varchar
+pre_layout_rows varchar
+}
+
+Table PreTradeComponentDetail {
+PreTradeComponentDetail_component_name varchar [not null, primary key]
+repetition varchar
+PreTradeComponentDetail_description varchar
+layout_url varchar
+pre_layout_rows varchar
+}
+
+Table MessageGroup {
+MessageGroup_group_title varchar [not null, primary key]
+MessageGroup_description varchar
+MessageGroup_messages varchar [not null]
+}
+
+Table CommonComponentDetail {
+CommonComponentDetail_component_name varchar [not null, primary key]
+repetition varchar
+CommonComponentDetail_description varchar
+layout_url varchar
+pre_layout_rows varchar
+}
+
+Table PreTradeLayoutRow {
+PreTradeLayoutRow_pre_layout_kind varchar [not null]
+pre_layout_field_tag int
+PreTradeLayoutRow_pre_layout_element_name varchar [not null]
+pre_layout_required boolean
+pre_layout_description varchar
+pre_layout_nested boolean
+}
+
+Table TradeBusinessArea {
+TradeBusinessArea_trade_area varchar [not null]
+TradeBusinessArea_title varchar
+published_version varchar
+TradeBusinessArea_publisher varchar
+trade_introduction varchar
+trade_diagram_conventions varchar
+trade_message_diagram_template_url varchar
+trade_messages_overview_note varchar
+TradeBusinessArea_messages varchar
+trade_components_overview_note varchar
+TradeBusinessArea_components varchar
+trade_common_components varchar
+trade_common_component_details varchar
+trade_footnotes varchar
+trade_category_sections varchar
+referenced_global_components varchar
+}
+
+Table TradeMessageEntry {
+TradeMessageEntry_msg_type varchar [not null, primary key]
+TradeMessageEntry_message_name varchar [not null]
+TradeMessageEntry_category varchar [not null]
+}
+
+Table TradeComponentEntry {
+TradeComponentEntry_component_name varchar [not null, primary key]
+TradeComponentEntry_trade_repetition varchar [not null]
+TradeComponentEntry_category varchar [not null]
+TradeComponentEntry_trade_is_common boolean
+trade_footnote_number int
+}
+
+Table TradeComponentTableFootnote {
+TradeComponentTableFootnote_trade_footnote_number int [not null, primary key]
+TradeComponentTableFootnote_component_name varchar [not null]
+TradeComponentTableFootnote_trade_introduced_in varchar [not null]
+TradeComponentTableFootnote_trade_sole_category varchar [not null]
+trade_footnote_text varchar
+}
+
+Table TradeCategorySection {
+TradeCategorySection_category varchar [not null, primary key]
+title varchar
+description varchar
+trade_category_background varchar
+trade_message_groups varchar
+TradeCategorySection_messages varchar
+trade_category_components_note varchar
+trade_category_specific_components varchar
+trade_fragmentation_entries varchar
+}
+
+Table TradeMessageDetail {
+TradeMessageDetail_msg_type varchar [not null, primary key]
+TradeMessageDetail_message_name varchar [not null]
+TradeMessageDetail_description varchar
+trade_layout_url varchar
+trade_layout_rows varchar
+}
+
+Table TradeComponentDetail {
+TradeComponentDetail_component_name varchar [not null, primary key]
+trade_repetition varchar
+TradeComponentDetail_description varchar
+trade_layout_url varchar
+trade_layout_rows varchar
+}
+
+Table TradeMessageGroup {
+TradeMessageGroup_trade_group_title varchar [not null, primary key]
+TradeMessageGroup_description varchar
+TradeMessageGroup_messages varchar [not null]
+trade_ord_status_precedence_entries varchar
+}
+
+Table TradeCommonComponentDetail {
+TradeCommonComponentDetail_component_name varchar [not null, primary key]
+trade_repetition varchar
+TradeCommonComponentDetail_description varchar
+trade_layout_url varchar
+trade_layout_rows varchar
+}
+
+Table TradeLayoutRow {
+TradeLayoutRow_trade_layout_kind varchar [not null]
+trade_layout_field_tag int
+TradeLayoutRow_trade_layout_element_name varchar [not null]
+trade_layout_required boolean
+trade_layout_description varchar
+trade_layout_nested boolean
+}
+
+Table TradeOrdStatusPrecedenceEntry {
+TradeOrdStatusPrecedenceEntry_trade_ord_status_precedence int [not null]
+TradeOrdStatusPrecedenceEntry_trade_ord_status_label varchar [not null, primary key]
+TradeOrdStatusPrecedenceEntry_description varchar
+}
+
+Table TradeFragmentationEntry {
+TradeFragmentationEntry_trade_fragmentation_message varchar [not null, primary key]
+TradeFragmentationEntry_trade_fragmentation_total_entries_field varchar [not null]
+TradeFragmentationEntry_trade_fragmentation_repeating_group varchar [not null]
+}
+
+Table TradeAppendix {
+TradeAppendix_title varchar
+published_version varchar
+TradeAppendix_publisher varchar
+TradeAppendix_description varchar
+trade_appendix_sections varchar
+}
+
+Table TradeAppendixSection {
+TradeAppendixSection_trade_appendix_category varchar [not null, primary key]
+TradeAppendixSection_title varchar
+description varchar
+TradeAppendixSection_messages varchar
+TradeAppendixSection_components varchar
+}
+
+Table PostTradeBusinessArea {
+PostTradeBusinessArea_area varchar [not null]
+PostTradeBusinessArea_title varchar
+published_version varchar
+PostTradeBusinessArea_publisher varchar
+post_introduction varchar
+diagram_conventions varchar
+post_common_components varchar
+PostTradeBusinessArea_messages varchar [not null]
+PostTradeBusinessArea_components varchar [not null]
+post_footnotes varchar
+post_category_sections varchar
+post_common_component_details varchar
+messages_overview_note varchar
+components_overview_note varchar
+referenced_global_components varchar
+}
+
+Table PostTradeMessageEntry {
+PostTradeMessageEntry_msg_type varchar [not null, primary key]
+PostTradeMessageEntry_message_name varchar [not null]
+PostTradeMessageEntry_category varchar [not null]
+}
+
+Table PostTradeComponentEntry {
+PostTradeComponentEntry_component_name varchar [not null, primary key]
+PostTradeComponentEntry_repetition varchar [not null]
+PostTradeComponentEntry_category varchar [not null]
+PostTradeComponentEntry_is_common boolean
+footnote_number int
+}
+
+Table PostTradeComponentTableFootnote {
+PostTradeComponentTableFootnote_footnote_number int [not null, primary key]
+PostTradeComponentTableFootnote_component_name varchar [not null]
+PostTradeComponentTableFootnote_introduced_in varchar [not null]
+PostTradeComponentTableFootnote_post_sole_category varchar [not null]
+text varchar
+}
+
+Table PostTradeCategorySection {
+PostTradeCategorySection_category varchar [not null, primary key]
+title varchar
+description varchar
+category_components_note varchar
+post_message_groups varchar
+PostTradeCategorySection_messages varchar
+post_category_specific_components varchar
+allocation_scenarios varchar
+allocation_roles varchar
+post_trade_allocation_pricing_methods varchar
+allocation_status_descriptions varchar
+fragmentation_field_map varchar
+trade_capture_report_usages varchar
+trade_capture_report_identifier_rules varchar
+registration_status_descriptions varchar
+clearing_services_for_position_management varchar
+clearing_services_for_post_trade_processing varchar
+collateral_management_usages varchar
+collateral_assignment_purposes varchar
+}
+
+Table PostTradeMessageGroup {
+PostTradeMessageGroup_group_title varchar [not null, primary key]
+PostTradeMessageGroup_messages varchar [not null]
+}
+
+Table PostTradeMessageDetail {
+PostTradeMessageDetail_msg_type varchar [not null, primary key]
+PostTradeMessageDetail_message_name varchar [not null]
+description varchar
+layout_url varchar
+post_layout_rows varchar
+}
+
+Table PostTradeComponentDetail {
+PostTradeComponentDetail_component_name varchar [not null, primary key]
+repetition varchar
+description varchar
+layout_url varchar
+post_layout_rows varchar
+}
+
+Table PostTradeCommonComponentDetail {
+PostTradeCommonComponentDetail_component_name varchar [not null, primary key]
+repetition varchar
+description varchar
+layout_url varchar
+post_layout_rows varchar
+}
+
+Table AllocationStatusDescription {
+AllocationStatusDescription_status_code varchar [not null, primary key]
+AllocationStatusDescription_status_label varchar [not null]
+description varchar
+}
+
+Table AllocationFragmentationFieldMap {
+AllocationFragmentationFieldMap_msg_type varchar [not null, primary key]
+AllocationFragmentationFieldMap_message_name varchar [not null]
+AllocationFragmentationFieldMap_total_count_field varchar [not null]
+AllocationFragmentationFieldMap_fragment_count_field varchar [not null]
+AllocationFragmentationFieldMap_principal_message_reference varchar [not null]
+}
+
+Table TradeCaptureReportUsage {
+TradeCaptureReportUsage_status_label varchar [not null, primary key]
+description varchar
+identifier_role varchar
+}
+
+Table TradeCaptureReportIdentifierRule {
+TradeCaptureReportIdentifierRule_identifier_role varchar [not null, primary key]
+description varchar
+}
+
+Table RegistrationStatusDescription {
+RegistrationStatusDescription_status_code varchar [not null, primary key]
+RegistrationStatusDescription_status_label varchar [not null]
+description varchar
+}
+
+Table ClearingServicePostTradeProcessingFormat {
+ClearingServicePostTradeProcessingFormat_message_format varchar [not null, primary key]
+ClearingServicePostTradeProcessingFormat_supported_actions varchar [not null]
+}
+
+Table PostTradeLayoutRow {
+PostTradeLayoutRow_post_layout_kind varchar [not null]
+post_layout_field_tag int
+PostTradeLayoutRow_post_layout_element_name varchar [not null]
+post_layout_required boolean
+post_layout_description varchar
+post_layout_nested boolean
+}
+
+Table InfrastructureBusinessArea {
+InfrastructureBusinessArea_area varchar [not null]
+InfrastructureBusinessArea_title varchar
+published_version varchar
+InfrastructureBusinessArea_publisher varchar
+infra_introduction varchar
+diagram_conventions varchar
+infra_common_components varchar
+InfrastructureBusinessArea_messages varchar [not null]
+messages_overview_note varchar
+InfrastructureBusinessArea_components varchar [not null]
+components_overview_note varchar
+infra_footnotes varchar
+infra_category_sections varchar
+standard_responses_pre_trade varchar
+standard_responses_trade varchar
+standard_responses_post_trade varchar
+key_fields_pre_trade varchar
+key_fields_trade varchar
+key_fields_post_trade varchar
+business_reject_reason_descriptions varchar
+infra_global_components varchar
+referenced_global_components varchar
+}
+
+Table InfrastructureMessageEntry {
+InfrastructureMessageEntry_msg_type varchar [not null, primary key]
+InfrastructureMessageEntry_message_name varchar [not null]
+InfrastructureMessageEntry_category varchar [not null]
+}
+
+Table InfrastructureComponentEntry {
+InfrastructureComponentEntry_component_name varchar [not null, primary key]
+InfrastructureComponentEntry_repetition varchar [not null]
+InfrastructureComponentEntry_category varchar [not null]
+footnote_number int
+}
+
+Table InfrastructureComponentTableFootnote {
+InfrastructureComponentTableFootnote_footnote_number int [not null, primary key]
+InfrastructureComponentTableFootnote_component_name varchar [not null]
+InfrastructureComponentTableFootnote_introduced_in varchar [not null]
+InfrastructureComponentTableFootnote_infra_sole_category varchar [not null]
+text varchar
+}
+
+Table InfrastructureCategorySection {
+InfrastructureCategorySection_category varchar [not null]
+title varchar
+description varchar
+category_components_note varchar
+InfrastructureCategorySection_messages varchar
+infra_category_specific_components varchar
+network_status_scenarios varchar
+network_request_types_referenced varchar
+application_message_report_uses varchar
+}
+
+Table InfrastructureMessageDetail {
+InfrastructureMessageDetail_msg_type varchar [not null]
+InfrastructureMessageDetail_message_name varchar [not null]
+description varchar
+layout_url varchar
+infra_layout_rows varchar
+}
+
+Table InfrastructureComponentDetail {
+InfrastructureComponentDetail_component_name varchar [not null]
+repetition varchar
+description varchar
+layout_url varchar
+infra_layout_rows varchar
+}
+
+Table InfrastructureLayoutRow {
+InfrastructureLayoutRow_infra_layout_kind varchar [not null]
+infra_layout_field_tag int
+InfrastructureLayoutRow_infra_layout_element_name varchar [not null]
+infra_layout_required boolean
+infra_layout_description varchar
+infra_layout_nested boolean
+}
+
+Table StandardResponseMapping {
+StandardResponseMapping_category_label varchar [not null]
+StandardResponseMapping_fix_message varchar [not null]
+StandardResponseMapping_appropriate_responses varchar [not null]
+}
+
+Table ApplicationMessageReferenceKey {
+ApplicationMessageReferenceKey_category_label varchar [not null]
+ApplicationMessageReferenceKey_fix_message varchar [not null]
+ApplicationMessageReferenceKey_business_reject_ref_id_value varchar [not null]
+}
+
+Table BusinessRejectReasonDescription {
+BusinessRejectReasonDescription_reject_reason_code int [not null, primary key]
+BusinessRejectReasonDescription_reject_reason_label varchar [not null]
+}
+
+Table InfrastructureGlobalComponentReference {
+InfrastructureGlobalComponentReference_infra_global_component_name varchar [not null, primary key]
+infra_global_component_repetition varchar
+infra_global_component_field_tags int
+infra_global_component_field_names varchar
+InfrastructureGlobalComponentReference_infra_global_component_used_in varchar [not null]
+infra_global_component_msg_types varchar
+}
+
+Ref: FIXIntroduction.standards > FIXFamilyStandard.id
+Ref: FIXIntroduction.extension_packs > ExtensionPack.ExtensionPack_number
+Ref: FIXIntroduction.datatypes > FIXDatatype.FIXDatatype_datatype_name
+Ref: FIXIntroduction.business_areas > BusinessArea.BusinessArea_area
+Ref: FIXIntroduction.global_components > GlobalComponent.Component_component_name
+Ref: FIXIntroduction.udf_ranges > UDFTagRange.UDFTagRange_range_id
+Ref: BusinessArea.categories > MessageCategory.MessageCategory_category
+Ref: MessageCategory.messages > Message.Message_msg_type
+Ref: Component.fields > Field.Field_tag
+Ref: Component.nested_components > Component.Component_component_name
+Ref: GlobalComponent.fields > Field.Field_tag
+Ref: GlobalComponent.nested_components > Component.Component_component_name
+Ref: CommonComponent.fields > Field.Field_tag
+Ref: CommonComponent.nested_components > Component.Component_component_name
+Ref: SpecificComponent.fields > Field.Field_tag
+Ref: SpecificComponent.nested_components > Component.Component_component_name
+Ref: Message.fields > Field.Field_tag
+Ref: Message.components > Component.Component_component_name
+Ref: PreTradeBusinessArea.PreTradeBusinessArea_messages > PreTradeMessageEntry.PreTradeMessageEntry_msg_type
+Ref: PreTradeBusinessArea.PreTradeBusinessArea_components > PreTradeComponentEntry.PreTradeComponentEntry_component_name
+Ref: PreTradeBusinessArea.common_component_details > CommonComponentDetail.CommonComponentDetail_component_name
+Ref: PreTradeBusinessArea.footnotes > ComponentTableFootnote.ComponentTableFootnote_footnote_number
+Ref: PreTradeBusinessArea.category_sections > PreTradeCategorySection.PreTradeCategorySection_category
+Ref: PreTradeBusinessArea.referenced_global_components > GlobalComponent.Component_component_name
+Ref: PreTradeCategorySection.message_groups > MessageGroup.MessageGroup_group_title
+Ref: PreTradeCategorySection.PreTradeCategorySection_messages > PreTradeMessageDetail.PreTradeMessageDetail_msg_type
+Ref: PreTradeCategorySection.category_specific_components > PreTradeComponentDetail.PreTradeComponentDetail_component_name
+Ref: MessageGroup.MessageGroup_messages > PreTradeMessageDetail.PreTradeMessageDetail_msg_type
+Ref: TradeBusinessArea.TradeBusinessArea_messages > TradeMessageEntry.TradeMessageEntry_msg_type
+Ref: TradeBusinessArea.TradeBusinessArea_components > TradeComponentEntry.TradeComponentEntry_component_name
+Ref: TradeBusinessArea.trade_common_component_details > TradeCommonComponentDetail.TradeCommonComponentDetail_component_name
+Ref: TradeBusinessArea.trade_footnotes > TradeComponentTableFootnote.TradeComponentTableFootnote_trade_footnote_number
+Ref: TradeBusinessArea.trade_category_sections > TradeCategorySection.TradeCategorySection_category
+Ref: TradeBusinessArea.referenced_global_components > GlobalComponent.Component_component_name
+Ref: TradeCategorySection.trade_message_groups > TradeMessageGroup.TradeMessageGroup_trade_group_title
+Ref: TradeCategorySection.TradeCategorySection_messages > TradeMessageDetail.TradeMessageDetail_msg_type
+Ref: TradeCategorySection.trade_category_specific_components > TradeComponentDetail.TradeComponentDetail_component_name
+Ref: TradeCategorySection.trade_fragmentation_entries > TradeFragmentationEntry.TradeFragmentationEntry_trade_fragmentation_message
+Ref: TradeMessageGroup.TradeMessageGroup_messages > TradeMessageDetail.TradeMessageDetail_msg_type
+Ref: TradeMessageGroup.trade_ord_status_precedence_entries > TradeOrdStatusPrecedenceEntry.TradeOrdStatusPrecedenceEntry_trade_ord_status_label
+Ref: TradeAppendix.trade_appendix_sections > TradeAppendixSection.TradeAppendixSection_trade_appendix_category
+Ref: TradeAppendixSection.TradeAppendixSection_messages > TradeMessageDetail.TradeMessageDetail_msg_type
+Ref: TradeAppendixSection.TradeAppendixSection_components > TradeComponentDetail.TradeComponentDetail_component_name
+Ref: PostTradeBusinessArea.PostTradeBusinessArea_messages > PostTradeMessageEntry.PostTradeMessageEntry_msg_type
+Ref: PostTradeBusinessArea.PostTradeBusinessArea_components > PostTradeComponentEntry.PostTradeComponentEntry_component_name
+Ref: PostTradeBusinessArea.post_footnotes > PostTradeComponentTableFootnote.PostTradeComponentTableFootnote_footnote_number
+Ref: PostTradeBusinessArea.post_category_sections > PostTradeCategorySection.PostTradeCategorySection_category
+Ref: PostTradeBusinessArea.post_common_component_details > PostTradeCommonComponentDetail.PostTradeCommonComponentDetail_component_name
+Ref: PostTradeBusinessArea.referenced_global_components > GlobalComponent.Component_component_name
+Ref: PostTradeCategorySection.post_message_groups > PostTradeMessageGroup.PostTradeMessageGroup_group_title
+Ref: PostTradeCategorySection.PostTradeCategorySection_messages > PostTradeMessageDetail.PostTradeMessageDetail_msg_type
+Ref: PostTradeCategorySection.post_category_specific_components > PostTradeComponentDetail.PostTradeComponentDetail_component_name
+Ref: PostTradeCategorySection.allocation_status_descriptions > AllocationStatusDescription.AllocationStatusDescription_status_code
+Ref: PostTradeCategorySection.fragmentation_field_map > AllocationFragmentationFieldMap.AllocationFragmentationFieldMap_msg_type
+Ref: PostTradeCategorySection.trade_capture_report_usages > TradeCaptureReportUsage.TradeCaptureReportUsage_status_label
+Ref: PostTradeCategorySection.trade_capture_report_identifier_rules > TradeCaptureReportIdentifierRule.TradeCaptureReportIdentifierRule_identifier_role
+Ref: PostTradeCategorySection.registration_status_descriptions > RegistrationStatusDescription.RegistrationStatusDescription_status_code
+Ref: PostTradeCategorySection.clearing_services_for_post_trade_processing > ClearingServicePostTradeProcessingFormat.ClearingServicePostTradeProcessingFormat_message_format
+Ref: PostTradeMessageGroup.PostTradeMessageGroup_messages > PostTradeMessageDetail.PostTradeMessageDetail_msg_type
+Ref: InfrastructureBusinessArea.InfrastructureBusinessArea_messages > InfrastructureMessageEntry.InfrastructureMessageEntry_msg_type
+Ref: InfrastructureBusinessArea.InfrastructureBusinessArea_components > InfrastructureComponentEntry.InfrastructureComponentEntry_component_name
+Ref: InfrastructureBusinessArea.infra_footnotes > InfrastructureComponentTableFootnote.InfrastructureComponentTableFootnote_footnote_number
+Ref: InfrastructureBusinessArea.business_reject_reason_descriptions > BusinessRejectReasonDescription.BusinessRejectReasonDescription_reject_reason_code
+Ref: InfrastructureBusinessArea.infra_global_components > InfrastructureGlobalComponentReference.InfrastructureGlobalComponentReference_infra_global_component_name
+Ref: InfrastructureBusinessArea.referenced_global_components > GlobalComponent.Component_component_name

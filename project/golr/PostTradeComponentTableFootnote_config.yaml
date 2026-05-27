@@ -1,0 +1,22 @@
+# metamodel_version: 1.11.0id: PostTradeComponentTableFootnote
+schema_generating: true
+description: A footnote attached to a row of the area-wide Post-Trade components table.
+display_name: PostTradeComponentTableFootnote
+document_category: PostTradeComponentTableFootnote
+weight: 20
+fields:
+- id: footnote_number
+  description: Footnote indicator on a component-table row.
+  display_name: PostTradeComponentTableFootnote_footnote_number
+- id: component_name
+  description: PascalCase name of the component.
+  display_name: PostTradeComponentTableFootnote_component_name
+- id: introduced_in
+  description: FIX version or Extension Pack that introduced the component.
+  display_name: PostTradeComponentTableFootnote_introduced_in
+- id: post_sole_category
+  description: Single Post-Trade category that actually uses the component (per footnote).
+  display_name: PostTradeComponentTableFootnote_post_sole_category
+- id: text
+  description: Footnote text.
+  display_name: text

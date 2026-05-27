@@ -1,0 +1,57 @@
+# metamodel_version: 1.11.0id: FIXIntroduction
+schema_generating: true
+description: Container for the structural elements of the FIX Latest Introduction
+  section. Tree root for instance data.
+display_name: FIXIntroduction
+document_category: FIXIntroduction
+weight: 20
+fields:
+- id: published_version
+  description: Version stamp from the document header.
+  display_name: published_version
+- id: published_date
+  description: Publication date of the document.
+  display_name: published_date
+- id: publisher
+  description: Publishing body of the FIX Latest specification.
+  display_name: publisher
+- id: preface
+  description: The Preface text of the specification.
+  display_name: preface
+- id: introduction_text
+  description: The Introduction prose section.
+  display_name: introduction_text
+- id: utc_leap_seconds_note
+  description: Prose note on UTC leap-second handling for UTCTimestamp.
+  display_name: utc_leap_seconds_note
+- id: about_fpl
+  description: Information about FIX Protocol Limited.
+  display_name: about_fpl
+- id: standards
+  description: The FIX Family of Standards.
+  display_name: standards
+  cardinality: multi
+- id: extension_packs
+  description: The list of Extension Packs.
+  display_name: extension_packs
+  cardinality: multi
+- id: datatypes
+  description: FIX Protocol datatype definitions and value spaces.
+  display_name: datatypes
+  cardinality: multi
+- id: business_areas
+  description: Top-level business areas of FIX Latest.
+  display_name: business_areas
+  cardinality: multi
+- id: global_components
+  description: Global Components defined in the Introduction.
+  display_name: global_components
+  cardinality: multi
+- id: udf_ranges
+  description: Reserved ranges of user-defined-field tag numbers.
+  display_name: udf_ranges
+  cardinality: multi
+- id: product_coverage
+  description: Product/asset classes covered by FIX at the application layer.
+  display_name: product_coverage
+  cardinality: multi

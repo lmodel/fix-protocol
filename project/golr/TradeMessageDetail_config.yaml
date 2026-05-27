@@ -1,0 +1,24 @@
+# metamodel_version: 1.11.0id: TradeMessageDetail
+schema_generating: true
+description: Per-category message description.
+display_name: TradeMessageDetail
+document_category: TradeMessageDetail
+weight: 20
+fields:
+- id: msg_type
+  description: MsgType(35) wire value identifying the message.
+  display_name: TradeMessageDetail_msg_type
+- id: message_name
+  description: PascalCase name of the message.
+  display_name: TradeMessageDetail_message_name
+- id: description
+  description: Description of the message's purpose and usage.
+  display_name: TradeMessageDetail_description
+- id: trade_layout_url
+  description: URL of the detailed message- or component-layout in the Trade Appendix.
+  display_name: trade_layout_url
+- id: trade_layout_rows
+  description: Ordered rows of the layout table published for the message or component
+    in the Trade Appendix.
+  display_name: trade_layout_rows
+  cardinality: multi

@@ -1,0 +1,37 @@
+#curie_map:
+#  fix_orchestra: https://w3id.org/lmodel/fix-orchestra/
+#  fix_protocol: https://w3id.org/lmodel/fix-protocol/
+#  semapv: https://w3id.org/semapv/vocab/
+#  skos: http://www.w3.org/2004/02/skos/core#
+#mapping_set_id: https://w3id.org/lmodel/fix-protocol/mappings/fix-protocol-to-fix-orchestra.sssom.tsv
+#mapping_set_description: LLM-generated semantic alignment between the FIX Protocol LinkML schema (structural metamodel of FIX Latest chapters) and the FIX Orchestra LinkML schema (the FIX Trading Community machine-readable companion). Covers metamodel-to-metamodel correspondences for messages, components, fields, datatypes, categories, presence, layers, and scenarios.
+#mapping_set_version: 0.1.0
+#license: https://creativecommons.org/licenses/by/4.0/
+#mapping_date: 2026-05-27
+subject_id	subject_label	predicate_id	object_id	object_label	mapping_justification	confidence	comment
+fix_protocol:AllocationScenarioEnum	AllocationScenarioEnum	skos:relatedMatch	fix_orchestra:ScenarioType	ScenarioType	semapv:LLMBasedMatching	0.6	Allocation communication scenarios correspond to Orchestra workflow ScenarioType.
+fix_protocol:BusinessArea	BusinessArea	skos:closeMatch	fix_orchestra:CategoryType	CategoryType	semapv:LLMBasedMatching	0.7	Both classify message/field groupings; FIX Latest BusinessArea is a top-level grouping equivalent to an Orchestra CategoryType.
+fix_protocol:BusinessAreaEnum	BusinessAreaEnum	skos:relatedMatch	fix_orchestra:CategoryType	CategoryType	semapv:LLMBasedMatching	0.6	Permissible values name the top-level FIX categories represented by Orchestra CategoryType instances.
+fix_protocol:CommonComponent	CommonComponent	skos:closeMatch	fix_orchestra:ComponentType	ComponentType	semapv:LLMBasedMatching	0.85	CommonComponent is a business-area-scoped instance of the Orchestra ComponentType metamodel.
+fix_protocol:Component	Component	skos:closeMatch	fix_orchestra:ComponentType	ComponentType	semapv:LLMBasedMatching	0.9	Both describe a named reusable group of FIX fields at the metamodel level.
+fix_protocol:ExtensionPack	ExtensionPack	skos:relatedMatch	fix_orchestra:Repository	Repository	semapv:LLMBasedMatching	0.4	An Extension Pack is a versioned unit of change applied to a Repository; loose relation.
+fix_protocol:FIXDatatype	FIXDatatype	skos:exactMatch	fix_orchestra:Datatype	Datatype	semapv:LLMBasedMatching	0.95	Both are the metamodel description of a FIX Protocol datatype.
+fix_protocol:FIXDatatypeName	FIXDatatypeName	skos:relatedMatch	fix_orchestra:Datatype	Datatype	semapv:LLMBasedMatching	0.6	Permissible values enumerate the names of Orchestra Datatype instances.
+fix_protocol:FIXFamilyStandard	FIXFamilyStandard	skos:relatedMatch	fix_orchestra:ProtocolEnum	ProtocolEnum	semapv:LLMBasedMatching	0.65	FIX Family Standard names overlap with Orchestra ProtocolEnum permissible values (FIX4, FIXT, FIXP, FIXML, FAST, SBE, ...).
+fix_protocol:FIXIntroduction	FIXIntroduction	skos:relatedMatch	fix_orchestra:Repository	Repository	semapv:LLMBasedMatching	0.55	Both serve as a top-level container root for the FIX specification; Orchestra Repository is broader.
+fix_protocol:Field	Field	skos:exactMatch	fix_orchestra:FieldType	FieldType	semapv:LLMBasedMatching	0.95	Both define a FIX field with tag number, name, and datatype.
+fix_protocol:FieldRequirement	FieldRequirement	skos:exactMatch	fix_orchestra:Presence	Presence	semapv:LLMBasedMatching	0.95	Required-status enum aligns with Orchestra Presence (required, optional, forbidden, ignored, constant).
+fix_protocol:GlobalComponent	GlobalComponent	skos:closeMatch	fix_orchestra:ComponentType	ComponentType	semapv:LLMBasedMatching	0.85	GlobalComponent is a cross-area-scoped instance of the Orchestra ComponentType metamodel.
+fix_protocol:InfrastructureCategoryEnum	InfrastructureCategoryEnum	skos:narrowMatch	fix_orchestra:CategoryType	CategoryType	semapv:LLMBasedMatching	0.55	Infrastructure-specific category names are narrower than the generic Orchestra CategoryType.
+fix_protocol:Message	Message	skos:exactMatch	fix_orchestra:MessageType	MessageType	semapv:LLMBasedMatching	0.95	Both define a FIX application message at the metamodel level.
+fix_protocol:MessageCategory	MessageCategory	skos:closeMatch	fix_orchestra:CategoryType	CategoryType	semapv:LLMBasedMatching	0.85	Both express a category grouping of messages.
+fix_protocol:MessageCategoryEnum	MessageCategoryEnum	skos:relatedMatch	fix_orchestra:CategoryType	CategoryType	semapv:LLMBasedMatching	0.6	Permissible values name the message categories represented by CategoryType instances.
+fix_protocol:PostTradeCategoryEnum	PostTradeCategoryEnum	skos:narrowMatch	fix_orchestra:CategoryType	CategoryType	semapv:LLMBasedMatching	0.55	Post-Trade-specific category names are narrower than the generic Orchestra CategoryType.
+fix_protocol:PostTradeMessageDetail	PostTradeMessageDetail	skos:closeMatch	fix_orchestra:MessageType	MessageType	semapv:LLMBasedMatching	0.6	Per-category Post-Trade message description block; instance-of MessageType in Orchestra terms.
+fix_protocol:PreTradeCategoryEnum	PreTradeCategoryEnum	skos:narrowMatch	fix_orchestra:CategoryType	CategoryType	semapv:LLMBasedMatching	0.55	Pre-Trade-specific category names are narrower than the generic Orchestra CategoryType.
+fix_protocol:ProductCoverage	ProductCoverage	skos:relatedMatch	fix_orchestra:CategoryType	CategoryType	semapv:LLMBasedMatching	0.4	FIX product/asset-class coverage loosely aligns with Orchestra CategoryType classification.
+fix_protocol:SessionProtocolName	SessionProtocolName	skos:relatedMatch	fix_orchestra:Layer	Layer	semapv:LLMBasedMatching	0.55	FIX session-layer protocol names align with the Orchestra Layer.session permissible value.
+fix_protocol:SpecificComponent	SpecificComponent	skos:closeMatch	fix_orchestra:ComponentType	ComponentType	semapv:LLMBasedMatching	0.85	SpecificComponent is a category-scoped instance of the Orchestra ComponentType metamodel.
+fix_protocol:StandardLayer	StandardLayer	skos:closeMatch	fix_orchestra:Layer	Layer	semapv:LLMBasedMatching	0.85	Layer of the FIX Technical Standard Stack corresponds directly to Orchestra Layer.
+fix_protocol:TradeCaptureReportUsage	TradeCaptureReportUsage	skos:relatedMatch	fix_orchestra:ScenarioType	ScenarioType	semapv:LLMBasedMatching	0.6	Documented usages of TradeCaptureReport(35=AE) correspond to Orchestra ScenarioType.
+fix_protocol:TradeCategoryEnum	TradeCategoryEnum	skos:narrowMatch	fix_orchestra:CategoryType	CategoryType	semapv:LLMBasedMatching	0.55	Trade-specific category names are narrower than the generic Orchestra CategoryType.

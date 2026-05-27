@@ -1,0 +1,20 @@
+# metamodel_version: 1.11.0id: BusinessArea
+schema_generating: true
+description: A top-level business area of the FIX Latest specification.
+display_name: BusinessArea
+document_category: BusinessArea
+weight: 20
+fields:
+- id: area
+  description: Identity of the business area.
+  display_name: BusinessArea_area
+- id: title
+  description: Display title of the area.
+  display_name: BusinessArea_title
+- id: description
+  description: Description of the area.
+  display_name: BusinessArea_description
+- id: categories
+  description: Message categories defined within a business area.
+  display_name: categories
+  cardinality: multi

@@ -1,0 +1,92 @@
+# metamodel_version: 1.11.0id: InfrastructureBusinessArea
+schema_generating: true
+description: Tree-root container for the Infrastructure business area of FIX Latest.
+display_name: InfrastructureBusinessArea
+document_category: InfrastructureBusinessArea
+weight: 20
+fields:
+- id: area
+  description: Identity of the business area.
+  display_name: InfrastructureBusinessArea_area
+- id: title
+  description: Display title.
+  display_name: InfrastructureBusinessArea_title
+- id: published_version
+  description: Version stamp from the document header.
+  display_name: published_version
+- id: publisher
+  description: Publishing body of the FIX Latest specification.
+  display_name: InfrastructureBusinessArea_publisher
+- id: infra_introduction
+  description: Prose introduction of the Infrastructure chapter.
+  display_name: infra_introduction
+- id: diagram_conventions
+  description: Sentence describing diagram conventions used in the chapter.
+  display_name: diagram_conventions
+- id: infra_common_components
+  description: Component names declared in the area-wide components listing. Per the
+    chapter prose, none of these are shared across categories within the area.
+  display_name: infra_common_components
+  cardinality: multi
+- id: messages
+  description: Messages defined within the enclosing element.
+  display_name: InfrastructureBusinessArea_messages
+  cardinality: multi
+- id: messages_overview_note
+  description: Intro prose of the area-wide Messages sub-section.
+  display_name: messages_overview_note
+- id: components
+  description: Components referenced by the enclosing element.
+  display_name: InfrastructureBusinessArea_components
+  cardinality: multi
+- id: components_overview_note
+  description: Intro prose of the area-wide Components sub-section.
+  display_name: components_overview_note
+- id: infra_footnotes
+  description: Footnotes attached to the area-wide Infrastructure components table.
+  display_name: infra_footnotes
+  cardinality: multi
+- id: infra_category_sections
+  description: Per-category sub-sections of the Infrastructure chapter.
+  display_name: infra_category_sections
+  cardinality: multi
+- id: standard_responses_pre_trade
+  description: '"Standard Responses for Pre-Trade Messages" table rows.'
+  display_name: standard_responses_pre_trade
+  cardinality: multi
+- id: standard_responses_trade
+  description: '"Standard Responses for Trade Messages" table rows.'
+  display_name: standard_responses_trade
+  cardinality: multi
+- id: standard_responses_post_trade
+  description: '"Standard Responses for Post-Trade Messages" table rows.'
+  display_name: standard_responses_post_trade
+  cardinality: multi
+- id: key_fields_pre_trade
+  description: '"Key Fields for Pre-Trade Application Message References" table rows.'
+  display_name: key_fields_pre_trade
+  cardinality: multi
+- id: key_fields_trade
+  description: '"Key Fields for Trade Application Message References" table rows.'
+  display_name: key_fields_trade
+  cardinality: multi
+- id: key_fields_post_trade
+  description: '"Key Fields for Post-Trade Application Message References" table rows.'
+  display_name: key_fields_post_trade
+  cardinality: multi
+- id: business_reject_reason_descriptions
+  description: Descriptions tied to BusinessRejectReason(380) values.
+  display_name: business_reject_reason_descriptions
+  cardinality: multi
+- id: infra_global_components
+  description: Global Components (from the FIX Latest "Global Components" page) that
+    are explicitly referenced by messages in the Infrastructure business area, together
+    with their tag set and usage scope.
+  display_name: infra_global_components
+  cardinality: multi
+- id: referenced_global_components
+  description: Names of Global Components from the FIX Latest "Global Components"
+    page that are referenced by messages in the containing business area. References
+    instances of the :class:`GlobalComponent` class (declared in fix_base) by name.
+  display_name: referenced_global_components
+  cardinality: multi

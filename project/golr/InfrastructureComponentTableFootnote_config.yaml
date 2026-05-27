@@ -1,0 +1,23 @@
+# metamodel_version: 1.11.0id: InfrastructureComponentTableFootnote
+schema_generating: true
+description: A footnote attached to a row of the area-wide Infrastructure components
+  table.
+display_name: InfrastructureComponentTableFootnote
+document_category: InfrastructureComponentTableFootnote
+weight: 20
+fields:
+- id: footnote_number
+  description: Footnote indicator on a component-table row.
+  display_name: InfrastructureComponentTableFootnote_footnote_number
+- id: component_name
+  description: PascalCase name of the component.
+  display_name: InfrastructureComponentTableFootnote_component_name
+- id: introduced_in
+  description: FIX version or Extension Pack that introduced the component.
+  display_name: InfrastructureComponentTableFootnote_introduced_in
+- id: infra_sole_category
+  description: Single Infrastructure category that actually uses the footnoted component.
+  display_name: InfrastructureComponentTableFootnote_infra_sole_category
+- id: text
+  description: Footnote text.
+  display_name: text

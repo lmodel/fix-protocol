@@ -1,0 +1,37 @@
+# metamodel_version: 1.11.0id: InfrastructureGlobalComponentReference
+schema_generating: true
+description: A reference from the Infrastructure business area to a Global Component
+  declared on the FIX Latest "Global Components" page. Records the component name,
+  the FIX tags it contributes, and the Infrastructure categories and messages that
+  embed it.
+display_name: InfrastructureGlobalComponentReference
+document_category: InfrastructureGlobalComponentReference
+weight: 20
+fields:
+- id: infra_global_component_name
+  description: Name of a Global Component referenced from within the Infrastructure
+    business area.
+  display_name: InfrastructureGlobalComponentReference_infra_global_component_name
+- id: infra_global_component_repetition
+  description: Repetition indicator for the Global Component as it appears in the
+    referenced Infrastructure messages.
+  display_name: infra_global_component_repetition
+- id: infra_global_component_field_tags
+  description: FIX tag numbers contributed by the referenced Global Component (as
+    listed on the Global Components page).
+  display_name: infra_global_component_field_tags
+  cardinality: multi
+- id: infra_global_component_field_names
+  description: Human-readable field names of the tags contributed by the referenced
+    Global Component.
+  display_name: infra_global_component_field_names
+  cardinality: multi
+- id: infra_global_component_used_in
+  description: Infrastructure categories that reference the Global Component.
+  display_name: InfrastructureGlobalComponentReference_infra_global_component_used_in
+  cardinality: multi
+- id: infra_global_component_msg_types
+  description: MsgType values within the Infrastructure business area that embed the
+    referenced Global Component.
+  display_name: infra_global_component_msg_types
+  cardinality: multi

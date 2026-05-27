@@ -1,0 +1,1280 @@
+# metamodel_version: 1.11.0
+enum AllocationRoleEnum
+  {
+    INITIATOR
+    RESPONDENT
+  }
+
+enum AllocationScenarioEnum
+  {
+    PRE_ALLOCATED_ORDER
+    PRE_TRADE_ALLOCATION
+    POST_TRADE_ALLOCATION
+    READY_TO_BOOK
+  }
+
+enum AllocationStatusEnum
+  {
+    ACCEPTED
+    BLOCK_LEVEL_REJECT
+    ACCOUNT_LEVEL_REJECT
+    RECEIVED_NOT_YET_PROCESSED
+  }
+
+enum AllocationTransactionTypeEnum
+  {
+    NEW
+    REPLACE
+    CANCEL
+  }
+
+enum ApplicationMessageReportTypeEnum
+  {
+    RESET
+    LAST_MESSAGE
+    KEEP_ALIVE
+    RESEND_COMPLETED
+  }
+
+enum ApplicationSequenceControlFieldName
+  {
+    ApplID
+    ApplSeqNum
+    ApplLastSeqNum
+    ApplResendFlag
+  }
+
+enum BusinessAreaEnum
+  {
+    INTRODUCTION
+    PRE_TRADE
+    TRADE
+    POST_TRADE
+    INFRASTRUCTURE
+  }
+
+enum BusinessMessageReferenceDirectionEnum
+  {
+    PRE_TRADE
+    TRADE
+    POST_TRADE
+  }
+
+enum BusinessRejectReasonEnum
+  {
+    OTHER
+    UNKNOWN_ID
+    UNKNOWN_SECURITY
+    UNSUPPORTED_MESSAGE_TYPE
+    APPLICATION_NOT_AVAILABLE
+    CONDITIONALLY_REQUIRED_FIELD_MISSING
+    NOT_AUTHORISED
+    DELIVER_TO_FIRM_NOT_AVAILABLE
+    THROTTLE_LIMIT_EXCEEDED
+    THROTTLE_LIMIT_EXCEEDED_SESSION_DISCONNECT
+    THROTTLED_MESSAGES_REJECTED_ON_REQUEST
+    INVALID_PRICE_INCREMENT
+  }
+
+enum ClearingServiceForPositionManagementEnum
+  {
+    POSITION_CHANGE_SUBMISSION
+    POSITION_ADJUSTMENT
+    EXERCISE_NOTICE
+    ABANDONMENT_NOTICE
+    MARGIN_DISPOSITION
+    POSITION_PLEDGE
+    REQUEST_FOR_POSITION
+  }
+
+enum ClearingServiceForPostTradeProcessingEnum
+  {
+    ETP
+    GIVE_UP
+    EXCHANGE_FOR_PHYSICAL
+    AVERAGE_PRICE_SYSTEM
+    MUTUAL_OFFSET_SYSTEM
+    TRADE_ENTRY_EDIT
+  }
+
+enum CollateralAssignmentPurposeEnum
+  {
+    ASSIGN_INITIAL_COLLATERAL
+    REPLENISH_COLLATERAL
+    REPLACE_OR_SUBSTITUTE_COLLATERAL
+  }
+
+enum CollateralManagementUsageEnum
+  {
+    SECURITIES_FINANCING_COLLATERALIZATION
+    CLEARING_HOUSE_COLLATERALIZATION
+  }
+
+enum ComponentGroup
+  {
+    SECURITIES
+    LEG_SECURITIES
+    UNDERLYING_SECURITIES
+    PARTIES
+    ORDERS_AND_QUOTES
+    TRADES
+    COMMISSIONS_AND_FEES
+    FINANCING
+    PAYMENTS
+    STIPULATIONS
+    HEADER_AND_TRAILER
+    MISCELLANEOUS
+  }
+
+enum ComponentRepetition
+  {
+    REPEATING
+    NON_REPEATING
+  }
+
+enum ComponentScope
+  {
+    GLOBAL
+    COMMON
+    SPECIFIC
+  }
+
+enum ExtensionPackSize
+  {
+    XXS
+    XS
+    S
+    M
+    L
+    XL
+    XXL
+  }
+
+enum FieldRequirement
+  {
+    REQUIRED
+    OPTIONAL
+    CONDITIONALLY_REQUIRED
+  }
+
+enum FIXDatatypeName
+  {
+    int
+    TagNum
+    SeqNum
+    NumInGroup
+    DayOfMonth
+    float
+    Qty
+    Price
+    PriceOffset
+    Amt
+    Percentage
+    char
+    Boolean
+    String
+    MultipleCharValue
+    MultipleStringValue
+    Country
+    Currency
+    Exchange
+    MonthYear
+    UTCTimestamp
+    UTCTimeOnly
+    UTCDateOnly
+    LocalMktDate
+    TZTimeOnly
+    TZTimestamp
+    Length
+    data
+    Tenor
+    Reserved100Plus
+    Reserved1000Plus
+    Reserved4000Plus
+    XMLData
+    Language
+    LocalMktTime
+  }
+
+enum FPLCommitteeRole
+  {
+    GLOBAL_STEERING_COMMITTEE
+    GLOBAL_TECHNICAL_COMMITTEE
+    GLOBAL_PRODUCT_COMMITTEE
+    GLOBAL_BUY_SIDE_COMMITTEE
+    GLOBAL_MEMBER_SERVICES_COMMITTEE
+    REGIONAL_COMMITTEE
+  }
+
+enum FPLMemberType
+  {
+    BUY_SIDE_FIRM
+    SELL_SIDE_FIRM
+    EXCHANGE
+    ECN_ATS
+    UTILITY
+    VENDOR
+    OTHER_ASSOCIATION
+  }
+
+enum FPLProductGroup
+  {
+    FIXED_INCOME_AND_CURRENCIES
+    LISTED_PRODUCTS_AND_EXCHANGES
+  }
+
+enum FPLRegion
+  {
+    AMERICAS
+    ASIA_PACIFIC
+    EMEA
+    JAPAN
+  }
+
+enum GlobalComponentBusinessAreaEnum
+  {
+    PRE_TRADE
+    TRADE
+    POST_TRADE
+    INFRASTRUCTURE
+  }
+
+enum InfrastructureCategoryEnum
+  {
+    BUSINESS_MESSAGE_REJECTS
+    NETWORK_STATUS_COMMUNICATION
+    USER_MANAGEMENT
+    APPLICATION_SEQUENCING
+  }
+
+enum InfrastructureComponentName
+  {
+    ApplIDReportGrp
+    ApplIDRequestAckGrp
+    ApplIDRequestGrp
+    CompIDReqGrp
+    CompIDStatGrp
+    ThrottleMsgTypeGrp
+    ThrottleParamsGrp
+    UsernameGrp
+  }
+
+enum InfrastructureGlobalComponentName
+  {
+    ApplicationSequenceControl
+  }
+
+enum InfrastructureLayoutRowKindEnum
+  {
+    FIELD
+    COMPONENT
+  }
+
+enum ISO11404ValueSpace
+  {
+    integer
+    ordinal
+    size
+    real
+    scaled
+    character
+    characterstring
+    boolean
+    set
+    array
+    time
+    union
+  }
+
+enum MatchStatusEnum
+  {
+    COMPARED_MATCHED_OR_AFFIRMED
+    UNCOMPARED_UNMATCHED_OR_UNAFFIRMED
+  }
+
+enum MessageCategoryEnum
+  {
+    INDICATION
+    EVENT_COMMUNICATION
+    QUOTATION_NEGOTIATION
+    MARKET_DATA
+    MARKET_STRUCTURE_REFERENCE_DATA
+    SECURITIES_REFERENCE_DATA
+    PARTIES_REFERENCE_DATA
+    PARTIES_ACTION
+    SINGLE_GENERAL_ORDER_HANDLING
+    ORDER_MASS_HANDLING
+    CROSS_ORDERS
+    MULTILEG_ORDERS
+    LIST_PROGRAM_BASKET_TRADING
+    ALLOCATION_AND_READY_TO_BOOK
+    CONFIRMATION
+    SETTLEMENT_INSTRUCTIONS
+    TRADE_CAPTURE_REPORTING
+    REGISTRATION_INSTRUCTIONS
+    POSITIONS_MAINTENANCE
+    COLLATERAL_MANAGEMENT
+    MARGIN_REQUIREMENT_MANAGEMENT
+    ACCOUNT_REPORTING
+    TRADE_MANAGEMENT
+    PAY_MANAGEMENT
+    SETTLEMENT_STATUS_MANAGEMENT
+    BUSINESS_MESSAGE_REJECTS
+    NETWORK_STATUS_COMMUNICATION
+    USER_MANAGEMENT
+    APPLICATION_SEQUENCING
+  }
+
+enum NetworkRequestTypeEnum
+  {
+    SNAPSHOT
+    STOP_SUBSCRIBING
+  }
+
+enum NetworkStatusScenarioEnum
+  {
+    SCENARIO_A
+    SCENARIO_B
+  }
+
+enum PositionMaintenanceActionEnum
+  {
+    NEW
+    REPLACE
+    CANCEL
+    REVERSE
+  }
+
+enum PostTradeAllocationPricingMethodEnum
+  {
+    AVERAGE_PRICE
+    EXECUTED_PRICE
+  }
+
+enum PostTradeCategoryEnum
+  {
+    ALLOCATION
+    CONFIRMATION
+    SETTLEMENT_INSTRUCTION
+    TRADE_CAPTURE_REPORTING
+    REGISTRATION_INSTRUCTION
+    POSITION_MAINTENANCE
+    COLLATERAL_MANAGEMENT
+    MARGIN_REQUIREMENT_MANAGEMENT
+    ACCOUNT_REPORTING
+    TRADE_MANAGEMENT
+    PAY_MANAGEMENT
+    SETTLEMENT_STATUS_MANAGEMENT
+  }
+
+enum PostTradeCommonComponentName
+  {
+    AllocCommissionDataGrp
+    AllocRegulatoryTradeIDGrp
+    ClrInstGrp
+    CollateralAmountGrp
+    CollateralReinvestmentGrp
+    DlvyInstGrp
+    ExecAllocGrp
+    MarginAmount
+    OrdAllocGrp
+    PositionAmountData
+    SettlDetails
+    SettlInstructionsData
+    SettlParties
+    SettlPtysSubGrp
+    TradeAllocAmtGrp
+    TransactionAttributeGrp
+  }
+
+enum PostTradeLayoutRowKindEnum
+  {
+    FIELD
+    COMPONENT
+  }
+
+enum PreTradeCategoryEnum
+  {
+    INDICATION
+    EVENT_COMMUNICATION
+    QUOTATION_NEGOTIATION
+    MARKET_DATA
+    MARKET_STRUCTURE_REFERENCE_DATA
+    SECURITIES_REFERENCE_DATA
+    PARTIES_REFERENCE_DATA
+    PARTIES_ACTION
+  }
+
+enum PreTradeCommonComponentName
+  {
+    AuctionTypeRuleGrp
+    BaseTradingRules
+    ExecInstRules
+    InstrumentScope
+    InstrumentScopeGrp
+    InstrumentScopeSecurityAltIDGrp
+    LotTypeRules
+    MarketDataFeedTypes
+    MarketSegmentScopeGrp
+    MatchRules
+    OrdTypeRules
+    PriceLimits
+    PriceRangeRuleGrp
+    QuoteSizeRuleGrp
+    RequestedPartyRoleGrp
+    RequestingPartyGrp
+    RequestingPartySubGrp
+    RoutingGrp
+    TickRules
+    TimeInForceRules
+    TradingSessionRules
+  }
+
+enum PreTradeLayoutRowKindEnum
+  {
+    FIELD
+    COMPONENT
+  }
+
+enum ProductCoverage
+  {
+    EQUITIES
+    CIV
+    DERIVATIVES
+    FIXED_INCOME
+    FOREIGN_EXCHANGE
+  }
+
+enum QuoteModelEnum
+  {
+    INDICATIVE
+    TRADEABLE
+    RESTRICTED_TRADEABLE
+    NEGOTIATION
+  }
+
+enum RegistrationStatusEnum
+  {
+    ACCEPTED
+    REJECTED
+    HELD
+    REMINDER
+  }
+
+enum RegistrationTransactionTypeEnum
+  {
+    NEW
+    REPLACE
+    CANCEL
+  }
+
+enum SessionProtocolName
+  {
+    FIX_4_2
+    FIX4
+    FIXT
+    LFIXT
+    FIXP
+    SOFH
+    FIXS
+    AMQP
+  }
+
+enum SettlementInstructionModeEnum
+  {
+    STANDING_INSTRUCTIONS
+    SPECIFIC_ORDER
+    REQUEST_REJECT
+  }
+
+enum SettlementObligationModeEnum
+  {
+    PRELIMINARY
+    FINAL
+  }
+
+enum StandardEncodingName
+  {
+    TAGVALUE
+    FIXML
+    FAST
+    SBE
+    GPB
+    JSON
+    ASN_1
+  }
+
+enum StandardLayer
+  {
+    APPLICATION
+    ENCODING
+    SESSION
+  }
+
+enum StandardResponseDirectionEnum
+  {
+    PRE_TRADE
+    TRADE
+    POST_TRADE
+  }
+
+enum TenorUnit
+  {
+    D
+    W
+    M
+    Y
+  }
+
+enum TimePrecision
+  {
+    SECOND
+    MILLISECOND
+    MICROSECOND
+    NANOSECOND
+    PICOSECOND
+    DAY
+  }
+
+enum TradeCaptureReportDirectionEnum
+  {
+    INBOUND
+    OUTBOUND
+  }
+
+enum TradeCaptureReportIdentifierRoleEnum
+  {
+    TRADE_REPORT_ID
+    TRADE_ID
+    TRADE_REPORT_REF_ID
+    SECONDARY_TRADE_ID
+  }
+
+enum TradeCaptureReportUsageEnum
+  {
+    RELAY_CONFIRMED_TRADES_TO_NON_PARTICIPANTS
+    RELAY_CONFIRMED_TRADES_TO_COUNTERPARTIES
+    REPORTING_PRIVATELY_NEGOTIATED_TRADES
+    REPORTING_FLOOR_OR_ROUTED_EXECUTIONS
+    REQUEST_TRADE_CANCEL_OR_AMENDMENT
+  }
+
+enum TradeCategoryEnum
+  {
+    SINGLE_GENERAL_ORDER_HANDLING
+    ORDER_MASS_HANDLING
+    CROSS_ORDER_HANDLING
+    MULTILEG_ORDER_HANDLING
+    LIST_PROGRAM_BASKET_TRADING
+  }
+
+enum TradeCommonComponentName
+  {
+    DisclosureInstructionGrp
+    DiscretionInstructions
+    PegInstructions
+    PreAllocGrp
+    StrategyParametersGrp
+    TriggeringInstruction
+  }
+
+enum TradeComponentRepetition
+  {
+    REPEATING
+    NON_REPEATING
+  }
+
+enum TradeLayoutRowKindEnum
+  {
+    FIELD
+    COMPONENT
+  }
+
+enum UDFTagRangeUsage
+  {
+    INTER_FIRM_REGISTERED
+    INTER_FIRM_BILATERAL
+    GTC_REGULATORY_LEGACY
+    WIP_CHINA
+    INTERNAL_FIRM
+    GTC_OTC_DERIVATIVES
+    GTC_RESERVED
+  }
+
+type AllocationFragmentationFieldMap
+  {
+    msgType: String!
+    messageName: String!
+    totalCountField: String!
+    fragmentCountField: String!
+    principalMessageReference: String!
+  }
+
+type AllocationStatusDescription
+  {
+    statusCode: String!
+    statusLabel: String!
+    description: String
+  }
+
+type ApplicationMessageReferenceKey
+  {
+    categoryLabel: String!
+    fixMessage: String!
+    businessRejectRefIdValue: String!
+  }
+
+type BusinessArea
+  {
+    area: BusinessAreaEnum!
+    title: String
+    description: String
+    categories: [MessageCategory]
+  }
+
+type BusinessRejectReasonDescription
+  {
+    rejectReasonCode: Int!
+    rejectReasonLabel: String!
+  }
+
+type ClearingServicePostTradeProcessingFormat
+  {
+    messageFormat: ClearingServiceForPostTradeProcessingEnum!
+    supportedActions: [String]!
+  }
+
+type CommonComponent
+  {
+    componentName: String!
+    description: String
+    isRepeatingGroup: Boolean
+    fields: [Field]
+    nestedComponents: [Component]
+    businessArea: BusinessAreaEnum!
+    scope: ComponentScope!
+  }
+
+type CommonComponentDetail
+  {
+    componentName: PreTradeCommonComponentName!
+    repetition: ComponentRepetition
+    description: String
+    layoutUrl: String
+    preLayoutRows: [PreTradeLayoutRow]
+  }
+
+interface Component
+  {
+    componentName: String!
+    description: String
+    scope: ComponentScope!
+    isRepeatingGroup: Boolean
+    fields: [Field]
+    nestedComponents: [Component]
+  }
+
+type ComponentTableFootnote
+  {
+    footnoteNumber: Int!
+    componentName: String!
+    introducedIn: String!
+    soleCategory: PreTradeCategoryEnum!
+    text: String
+  }
+
+type ExtensionPack
+  {
+    number: ExtensionPackNumber!
+    title: String!
+    size: ExtensionPackSize
+    enhancementSummary: String
+    appliesToSessionLayerOnly: Boolean
+    appliesToFixmlOnly: Boolean
+  }
+
+type Field
+  {
+    tag: TagNumber!
+    fieldName: String!
+    datatype: FIXDatatypeName!
+    description: String
+    requirement: FieldRequirement
+    isUserDefined: Boolean
+  }
+
+type FIXDatatype
+  {
+    datatypeName: FIXDatatypeName!
+    definition: String!
+    valueSpace: [ISO11404ValueSpace]
+    valueSpaceNotes: String
+    deprecatedForNewDesigns: Boolean
+    externalCodeSet: String
+    timeUnit: [TimePrecision]
+    radix: Int
+    repertoire: String
+    indexLowerBound: Int
+    indexUpperBound: Int
+    minimumValue: Int
+    maximumValue: Int
+    footnoteNumbers: [Int]
+  }
+
+type FIXFamilyStandard
+  {
+    id: String!
+    name: String!
+    description: String
+    acronym: String
+    seeAlso: [String]
+    layer: StandardLayer!
+    version: String
+    sessionProfile: SessionProtocolName
+    encodingName: StandardEncodingName
+  }
+
+type FIXIntroduction
+  {
+    publishedVersion: String
+    publishedDate: String
+    publisher: String
+    preface: String
+    introductionText: String
+    utcLeapSecondsNote: String
+    aboutFpl: FIXProtocolLimited
+    standards: [FIXFamilyStandard]
+    extensionPacks: [ExtensionPack]
+    datatypes: [FIXDatatype]
+    businessAreas: [BusinessArea]
+    globalComponents: [GlobalComponent]
+    udfRanges: [UDFTagRange]
+    productCoverage: [ProductCoverage]
+  }
+
+type FIXProtocolLimited
+  {
+    brandName: String
+    legalName: String
+    website: String
+    memberFirmsUrl: String
+    workingGroupsUrl: String
+    committeesUrl: String
+    memberTypes: [FPLMemberType]
+    governanceBodies: [FPLCommitteeRole]
+    productCommittees: [FPLProductGroup]
+    regionalCommittees: [FPLRegion]
+  }
+
+type GlobalComponent
+  {
+    componentName: String!
+    description: String
+    isRepeatingGroup: Boolean
+    fields: [Field]
+    nestedComponents: [Component]
+    componentGroup: ComponentGroup!
+    appliesToInstrument: Boolean
+    appliesToLeg: Boolean
+    appliesToUnderlying: Boolean
+    conceptuallyIdenticalTo: [String]
+    gcId: Int
+    gcReferencedIn: [GlobalComponentBusinessAreaEnum]
+    scope: ComponentScope!
+  }
+
+type InfrastructureBusinessArea
+  {
+    area: BusinessAreaEnum!
+    title: String
+    publishedVersion: String
+    publisher: String
+    infraIntroduction: String
+    diagramConventions: String
+    infraCommonComponents: [InfrastructureComponentName]
+    messages: [InfrastructureMessageEntry]!
+    messagesOverviewNote: String
+    components: [InfrastructureComponentEntry]!
+    componentsOverviewNote: String
+    infraFootnotes: [InfrastructureComponentTableFootnote]
+    infraCategorySections: [InfrastructureCategorySection]
+    standardResponsesPreTrade: [StandardResponseMapping]
+    standardResponsesTrade: [StandardResponseMapping]
+    standardResponsesPostTrade: [StandardResponseMapping]
+    keyFieldsPreTrade: [ApplicationMessageReferenceKey]
+    keyFieldsTrade: [ApplicationMessageReferenceKey]
+    keyFieldsPostTrade: [ApplicationMessageReferenceKey]
+    businessRejectReasonDescriptions: [BusinessRejectReasonDescription]
+    infraGlobalComponents: [InfrastructureGlobalComponentReference]
+    referencedGlobalComponents: [GlobalComponent]
+  }
+
+type InfrastructureCategorySection
+  {
+    category: InfrastructureCategoryEnum!
+    title: String
+    description: String
+    categoryComponentsNote: String
+    messages: [InfrastructureMessageDetail]
+    infraCategorySpecificComponents: [InfrastructureComponentDetail]
+    networkStatusScenarios: [NetworkStatusScenarioEnum]
+    networkRequestTypesReferenced: [NetworkRequestTypeEnum]
+    applicationMessageReportUses: [ApplicationMessageReportTypeEnum]
+  }
+
+type InfrastructureComponentDetail
+  {
+    componentName: String!
+    repetition: ComponentRepetition
+    description: String
+    layoutUrl: String
+    infraLayoutRows: [InfrastructureLayoutRow]
+  }
+
+type InfrastructureComponentEntry
+  {
+    componentName: String!
+    repetition: ComponentRepetition!
+    category: InfrastructureCategoryEnum!
+    footnoteNumber: Int
+  }
+
+type InfrastructureComponentTableFootnote
+  {
+    footnoteNumber: Int!
+    componentName: String!
+    introducedIn: String!
+    infraSoleCategory: InfrastructureCategoryEnum!
+    text: String
+  }
+
+type InfrastructureGlobalComponentReference
+  {
+    infraGlobalComponentName: InfrastructureGlobalComponentName!
+    infraGlobalComponentRepetition: String
+    infraGlobalComponentFieldTags: [Int]
+    infraGlobalComponentFieldNames: [String]
+    infraGlobalComponentUsedIn: [InfrastructureCategoryEnum]!
+    infraGlobalComponentMsgTypes: [String]
+  }
+
+type InfrastructureLayoutRow
+  {
+    infraLayoutKind: InfrastructureLayoutRowKindEnum!
+    infraLayoutFieldTag: Int
+    infraLayoutElementName: String!
+    infraLayoutRequired: Boolean
+    infraLayoutDescription: String
+    infraLayoutNested: Boolean
+  }
+
+type InfrastructureMessageDetail
+  {
+    msgType: String!
+    messageName: String!
+    description: String
+    layoutUrl: String
+    infraLayoutRows: [InfrastructureLayoutRow]
+  }
+
+type InfrastructureMessageEntry
+  {
+    msgType: String!
+    messageName: String!
+    category: InfrastructureCategoryEnum!
+  }
+
+type Message
+  {
+    msgType: String!
+    messageName: String!
+    description: String
+    category: MessageCategoryEnum
+    fields: [Field]
+    components: [Component]
+  }
+
+type MessageCategory
+  {
+    category: MessageCategoryEnum!
+    title: String
+    description: String
+    businessArea: BusinessAreaEnum!
+    messages: [Message]
+  }
+
+type MessageGroup
+  {
+    groupTitle: String!
+    description: String
+    messages: [PreTradeMessageDetail]!
+  }
+
+type PostTradeBusinessArea
+  {
+    area: BusinessAreaEnum!
+    title: String
+    publishedVersion: String
+    publisher: String
+    postIntroduction: String
+    diagramConventions: String
+    postCommonComponents: [PostTradeCommonComponentName]
+    messages: [PostTradeMessageEntry]!
+    components: [PostTradeComponentEntry]!
+    postFootnotes: [PostTradeComponentTableFootnote]
+    postCategorySections: [PostTradeCategorySection]
+    postCommonComponentDetails: [PostTradeCommonComponentDetail]
+    messagesOverviewNote: String
+    componentsOverviewNote: String
+    referencedGlobalComponents: [GlobalComponent]
+  }
+
+type PostTradeCategorySection
+  {
+    category: PostTradeCategoryEnum!
+    title: String
+    description: String
+    categoryComponentsNote: String
+    postMessageGroups: [PostTradeMessageGroup]
+    messages: [PostTradeMessageDetail]
+    postCategorySpecificComponents: [PostTradeComponentDetail]
+    allocationScenarios: [AllocationScenarioEnum]
+    allocationRoles: [AllocationRoleEnum]
+    postTradeAllocationPricingMethods: [PostTradeAllocationPricingMethodEnum]
+    allocationStatusDescriptions: [AllocationStatusDescription]
+    fragmentationFieldMap: [AllocationFragmentationFieldMap]
+    tradeCaptureReportUsages: [TradeCaptureReportUsage]
+    tradeCaptureReportIdentifierRules: [TradeCaptureReportIdentifierRule]
+    registrationStatusDescriptions: [RegistrationStatusDescription]
+    clearingServicesForPositionManagement: [ClearingServiceForPositionManagementEnum]
+    clearingServicesForPostTradeProcessing: [ClearingServicePostTradeProcessingFormat]
+    collateralManagementUsages: [CollateralManagementUsageEnum]
+    collateralAssignmentPurposes: [CollateralAssignmentPurposeEnum]
+  }
+
+type PostTradeCommonComponentDetail
+  {
+    componentName: PostTradeCommonComponentName!
+    repetition: ComponentRepetition
+    description: String
+    layoutUrl: String
+    postLayoutRows: [PostTradeLayoutRow]
+  }
+
+type PostTradeComponentDetail
+  {
+    componentName: String!
+    repetition: ComponentRepetition
+    description: String
+    layoutUrl: String
+    postLayoutRows: [PostTradeLayoutRow]
+  }
+
+type PostTradeComponentEntry
+  {
+    componentName: String!
+    repetition: ComponentRepetition!
+    category: String!
+    isCommon: Boolean
+    footnoteNumber: Int
+  }
+
+type PostTradeComponentTableFootnote
+  {
+    footnoteNumber: Int!
+    componentName: String!
+    introducedIn: String!
+    postSoleCategory: PostTradeCategoryEnum!
+    text: String
+  }
+
+type PostTradeLayoutRow
+  {
+    postLayoutKind: PostTradeLayoutRowKindEnum!
+    postLayoutFieldTag: Int
+    postLayoutElementName: String!
+    postLayoutRequired: Boolean
+    postLayoutDescription: String
+    postLayoutNested: Boolean
+  }
+
+type PostTradeMessageDetail
+  {
+    msgType: String!
+    messageName: String!
+    description: String
+    layoutUrl: String
+    postLayoutRows: [PostTradeLayoutRow]
+  }
+
+type PostTradeMessageEntry
+  {
+    msgType: String!
+    messageName: String!
+    category: PostTradeCategoryEnum!
+  }
+
+type PostTradeMessageGroup
+  {
+    groupTitle: String!
+    messages: [PostTradeMessageDetail]!
+  }
+
+type PreTradeBusinessArea
+  {
+    area: BusinessAreaEnum!
+    title: String
+    publishedVersion: String
+    publisher: String
+    introduction: String
+    diagramConventions: String
+    messagesOverviewNote: String
+    messages: [PreTradeMessageEntry]
+    componentsOverviewNote: String
+    components: [PreTradeComponentEntry]
+    commonComponents: [PreTradeCommonComponentName]
+    commonComponentDetails: [CommonComponentDetail]
+    footnotes: [ComponentTableFootnote]
+    categorySections: [PreTradeCategorySection]
+    referencedGlobalComponents: [GlobalComponent]
+  }
+
+type PreTradeCategorySection
+  {
+    category: PreTradeCategoryEnum!
+    title: String
+    description: String
+    quoteModels: [QuoteModelEnum]
+    messageGroups: [MessageGroup]
+    messages: [PreTradeMessageDetail]
+    categoryComponentsNote: String
+    categorySpecificComponents: [PreTradeComponentDetail]
+  }
+
+type PreTradeComponentDetail
+  {
+    componentName: String!
+    repetition: ComponentRepetition
+    description: String
+    layoutUrl: String
+    preLayoutRows: [PreTradeLayoutRow]
+  }
+
+type PreTradeComponentEntry
+  {
+    componentName: String!
+    repetition: ComponentRepetition!
+    category: String!
+    isCommon: Boolean
+    footnoteNumber: Int
+  }
+
+type PreTradeLayoutRow
+  {
+    preLayoutKind: PreTradeLayoutRowKindEnum!
+    preLayoutFieldTag: Int
+    preLayoutElementName: String!
+    preLayoutRequired: Boolean
+    preLayoutDescription: String
+    preLayoutNested: Boolean
+  }
+
+type PreTradeMessageDetail
+  {
+    msgType: String!
+    messageName: String!
+    description: String
+    layoutUrl: String
+    preLayoutRows: [PreTradeLayoutRow]
+  }
+
+type PreTradeMessageEntry
+  {
+    msgType: String!
+    messageName: String!
+    category: PreTradeCategoryEnum!
+  }
+
+type RegistrationStatusDescription
+  {
+    statusCode: String!
+    statusLabel: String!
+    description: String
+  }
+
+type SpecificComponent
+  {
+    componentName: String!
+    description: String
+    isRepeatingGroup: Boolean
+    fields: [Field]
+    nestedComponents: [Component]
+    businessArea: BusinessAreaEnum!
+    category: MessageCategoryEnum!
+    scope: ComponentScope!
+  }
+
+type StandardResponseMapping
+  {
+    categoryLabel: String!
+    fixMessage: String!
+    appropriateResponses: String!
+  }
+
+type TradeAppendix
+  {
+    title: String
+    publishedVersion: String
+    publisher: String
+    description: String
+    tradeAppendixSections: [TradeAppendixSection]
+  }
+
+type TradeAppendixSection
+  {
+    tradeAppendixCategory: String!
+    title: String
+    description: String
+    messages: [TradeMessageDetail]
+    components: [TradeComponentDetail]
+  }
+
+type TradeBusinessArea
+  {
+    tradeArea: BusinessAreaEnum!
+    title: String
+    publishedVersion: String
+    publisher: String
+    tradeIntroduction: String
+    tradeDiagramConventions: String
+    tradeMessageDiagramTemplateUrl: String
+    tradeMessagesOverviewNote: String
+    messages: [TradeMessageEntry]
+    tradeComponentsOverviewNote: String
+    components: [TradeComponentEntry]
+    tradeCommonComponents: [TradeCommonComponentName]
+    tradeCommonComponentDetails: [TradeCommonComponentDetail]
+    tradeFootnotes: [TradeComponentTableFootnote]
+    tradeCategorySections: [TradeCategorySection]
+    referencedGlobalComponents: [GlobalComponent]
+  }
+
+type TradeCaptureReportIdentifierRule
+  {
+    identifierRole: TradeCaptureReportIdentifierRoleEnum!
+    description: String
+  }
+
+type TradeCaptureReportUsage
+  {
+    statusLabel: String!
+    description: String
+    identifierRole: TradeCaptureReportIdentifierRoleEnum
+  }
+
+type TradeCategorySection
+  {
+    category: TradeCategoryEnum!
+    title: String
+    description: String
+    tradeCategoryBackground: String
+    tradeMessageGroups: [TradeMessageGroup]
+    messages: [TradeMessageDetail]
+    tradeCategoryComponentsNote: String
+    tradeCategorySpecificComponents: [TradeComponentDetail]
+    tradeFragmentationEntries: [TradeFragmentationEntry]
+  }
+
+type TradeCommonComponentDetail
+  {
+    componentName: TradeCommonComponentName!
+    tradeRepetition: TradeComponentRepetition
+    description: String
+    tradeLayoutUrl: String
+    tradeLayoutRows: [TradeLayoutRow]
+  }
+
+type TradeComponentDetail
+  {
+    componentName: String!
+    tradeRepetition: TradeComponentRepetition
+    description: String
+    tradeLayoutUrl: String
+    tradeLayoutRows: [TradeLayoutRow]
+  }
+
+type TradeComponentEntry
+  {
+    componentName: String!
+    tradeRepetition: TradeComponentRepetition!
+    category: String!
+    tradeIsCommon: Boolean
+    tradeFootnoteNumber: Int
+  }
+
+type TradeComponentTableFootnote
+  {
+    tradeFootnoteNumber: Int!
+    componentName: String!
+    tradeIntroducedIn: String!
+    tradeSoleCategory: TradeCategoryEnum!
+    tradeFootnoteText: String
+  }
+
+type TradeFragmentationEntry
+  {
+    tradeFragmentationMessage: String!
+    tradeFragmentationTotalEntriesField: String!
+    tradeFragmentationRepeatingGroup: String!
+  }
+
+type TradeLayoutRow
+  {
+    tradeLayoutKind: TradeLayoutRowKindEnum!
+    tradeLayoutFieldTag: Int
+    tradeLayoutElementName: String!
+    tradeLayoutRequired: Boolean
+    tradeLayoutDescription: String
+    tradeLayoutNested: Boolean
+  }
+
+type TradeMessageDetail
+  {
+    msgType: String!
+    messageName: String!
+    description: String
+    tradeLayoutUrl: String
+    tradeLayoutRows: [TradeLayoutRow]
+  }
+
+type TradeMessageEntry
+  {
+    msgType: String!
+    messageName: String!
+    category: TradeCategoryEnum!
+  }
+
+type TradeMessageGroup
+  {
+    tradeGroupTitle: String!
+    description: String
+    messages: [TradeMessageDetail]!
+    tradeOrdStatusPrecedenceEntries: [TradeOrdStatusPrecedenceEntry]
+  }
+
+type TradeOrdStatusPrecedenceEntry
+  {
+    tradeOrdStatusPrecedence: Int!
+    tradeOrdStatusLabel: String!
+    description: String
+  }
+
+type UDFTagRange
+  {
+    rangeId: String!
+    lowTag: TagNumber!
+    highTag: TagNumber
+    usage: UDFTagRangeUsage!
+    description: String
+    requiresRegistration: Boolean
+  }

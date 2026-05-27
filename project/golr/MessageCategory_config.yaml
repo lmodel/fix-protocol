@@ -1,0 +1,23 @@
+# metamodel_version: 1.11.0id: MessageCategory
+schema_generating: true
+description: A message category within a business area.
+display_name: MessageCategory
+document_category: MessageCategory
+weight: 20
+fields:
+- id: category
+  description: Identity of the message category.
+  display_name: MessageCategory_category
+- id: title
+  description: Display title of the category.
+  display_name: MessageCategory_title
+- id: description
+  description: Description of the category.
+  display_name: MessageCategory_description
+- id: business_area
+  description: Business area the element belongs to.
+  display_name: MessageCategory_business_area
+- id: messages
+  description: Messages defined within the enclosing element.
+  display_name: messages
+  cardinality: multi

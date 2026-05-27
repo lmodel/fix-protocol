@@ -1,0 +1,2824 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix iso10383: <https://www.iso.org/standard/61067.html#> .
+@prefix iso3166: <https://www.iso.org/iso-3166-country-codes.html#> .
+@prefix iso4217: <https://www.iso.org/iso-4217-currency-codes.html#> .
+@prefix iso639: <https://www.iso.org/iso-639-language-codes.html#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema1: <http://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-base/CommonComponent> a sh:NodeShape ;
+    rdfs:comment "A component used only by messages within a single business area." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-base/Component> ;
+            sh:description "Components nested within this component." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 6 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/nested_components> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description "True when the component is a repeating group." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/is_repeating_group> ],
+        [ sh:datatype xsd:string ;
+            sh:description "PascalCase name of the component." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:name ],
+        [ sh:datatype xsd:string ;
+            sh:description "Description of the component." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path dcterms:description ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-base/Field> ;
+            sh:description "Fields directly contained by the enclosing element." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 5 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/fields> ],
+        [ sh:defaultValue "COMMON" ;
+            sh:description "Sharing scope of the component." ;
+            sh:in ( "GLOBAL" "COMMON" "SPECIFIC" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 3 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/scope> ],
+        [ sh:description "Business area the element belongs to." ;
+            sh:in ( "INTRODUCTION" "PRE_TRADE" "TRADE" "POST_TRADE" "INFRASTRUCTURE" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/business_area> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-base/CommonComponent> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-base/FIXIntroduction> a sh:NodeShape ;
+    rdfs:comment "Container for the structural elements of the FIX Latest Introduction section. Tree root for instance data." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-base/BusinessArea> ;
+            sh:description "Top-level business areas of FIX Latest." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 10 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/business_areas> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-base/UDFTagRange> ;
+            sh:description "Reserved ranges of user-defined-field tag numbers." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 12 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/udf_ranges> ],
+        [ sh:description "Product/asset classes covered by FIX at the application layer." ;
+            sh:in ( "EQUITIES" "CIV" "DERIVATIVES" "FIXED_INCOME" "FOREIGN_EXCHANGE" ) ;
+            sh:order 13 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/product_coverage> ],
+        [ sh:datatype xsd:string ;
+            sh:description "The Preface text of the specification." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/preface> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Prose note on UTC leap-second handling for UTCTimestamp." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/utc_leap_seconds_note> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-base/FIXProtocolLimited> ;
+            sh:description "Information about FIX Protocol Limited." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 6 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/about_fpl> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-base/ExtensionPack> ;
+            sh:description "The list of Extension Packs." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 8 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/extension_packs> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Version stamp from the document header." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path schema1:version ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-base/FIXDatatype> ;
+            sh:description "FIX Protocol datatype definitions and value spaces." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 9 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/datatypes> ],
+        [ sh:datatype xsd:string ;
+            sh:defaultValue "FIX Global Technical Committee"^^xsd:string ;
+            sh:description "Publishing body of the FIX Latest specification." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path dcterms:publisher ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-base/FIXFamilyStandard> ;
+            sh:description "The FIX Family of Standards." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 7 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/standards> ],
+        [ sh:datatype xsd:string ;
+            sh:description "The Introduction prose section." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/introduction_text> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-base/GlobalComponent> ;
+            sh:description "Global Components defined in the Introduction." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 11 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/global_components> ],
+        [ sh:datatype xsd:date ;
+            sh:description "Publication date of the document." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path dcterms:issued ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-base/FIXIntroduction> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-base/SpecificComponent> a sh:NodeShape ;
+    rdfs:comment "A component used only by messages within a single category." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-base/Field> ;
+            sh:description "Fields directly contained by the enclosing element." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 6 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/fields> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description "True when the component is a repeating group." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/is_repeating_group> ],
+        [ sh:description "Message category." ;
+            sh:in ( "INDICATION" "EVENT_COMMUNICATION" "QUOTATION_NEGOTIATION" "MARKET_DATA" "MARKET_STRUCTURE_REFERENCE_DATA" "SECURITIES_REFERENCE_DATA" "PARTIES_REFERENCE_DATA" "PARTIES_ACTION" "SINGLE_GENERAL_ORDER_HANDLING" "ORDER_MASS_HANDLING" "CROSS_ORDERS" "MULTILEG_ORDERS" "LIST_PROGRAM_BASKET_TRADING" "ALLOCATION_AND_READY_TO_BOOK" "CONFIRMATION" "SETTLEMENT_INSTRUCTIONS" "TRADE_CAPTURE_REPORTING" "REGISTRATION_INSTRUCTIONS" "POSITIONS_MAINTENANCE" "COLLATERAL_MANAGEMENT" "MARGIN_REQUIREMENT_MANAGEMENT" "ACCOUNT_REPORTING" "TRADE_MANAGEMENT" "PAY_MANAGEMENT" "SETTLEMENT_STATUS_MANAGEMENT" "BUSINESS_MESSAGE_REJECTS" "NETWORK_STATUS_COMMUNICATION" "USER_MANAGEMENT" "APPLICATION_SEQUENCING" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 1 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/category> ],
+        [ sh:datatype xsd:string ;
+            sh:description "PascalCase name of the component." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path schema1:name ],
+        [ sh:datatype xsd:string ;
+            sh:description "Description of the component." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path dcterms:description ],
+        [ sh:description "Business area the element belongs to." ;
+            sh:in ( "INTRODUCTION" "PRE_TRADE" "TRADE" "POST_TRADE" "INFRASTRUCTURE" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/business_area> ],
+        [ sh:defaultValue "SPECIFIC" ;
+            sh:description "Sharing scope of the component." ;
+            sh:in ( "GLOBAL" "COMMON" "SPECIFIC" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/scope> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-base/Component> ;
+            sh:description "Components nested within this component." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 7 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/nested_components> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-base/SpecificComponent> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureBusinessArea> a sh:NodeShape ;
+    rdfs:comment "Tree-root container for the Infrastructure business area of FIX Latest." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/StandardResponseMapping> ;
+            sh:description "\"Standard Responses for Pre-Trade Messages\" table rows." ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 13 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/standard_responses_pre_trade> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Prose introduction of the Infrastructure chapter." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/infra_introduction> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Sentence describing diagram conventions used in the chapter." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/diagram_conventions> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/ApplicationMessageReferenceKey> ;
+            sh:description "\"Key Fields for Trade Application Message References\" table rows." ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 17 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/key_fields_trade> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureMessageEntry> ;
+            sh:description "Messages defined within the enclosing element." ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 7 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/messages> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/BusinessRejectReasonDescription> ;
+            sh:description "Descriptions tied to BusinessRejectReason(380) values." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 19 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/business_reject_reason_descriptions> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureGlobalComponentReference> ;
+            sh:description "Global Components (from the FIX Latest \"Global Components\" page) that are explicitly referenced by messages in the Infrastructure business area, together with their tag set and usage scope." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 20 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/infra_global_components> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureCategorySection> ;
+            sh:description "Per-category sub-sections of the Infrastructure chapter." ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 12 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/infra_category_sections> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-base/GlobalComponent> ;
+            sh:description "Names of Global Components from the FIX Latest \"Global Components\" page that are referenced by messages in the containing business area. References instances of the :class:`GlobalComponent` class (declared in fix_base) by name." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 21 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-global-components/referenced_global_components> ],
+        [ sh:defaultValue "INFRASTRUCTURE" ;
+            sh:description "Identity of the business area." ;
+            sh:in ( "INTRODUCTION" "PRE_TRADE" "TRADE" "POST_TRADE" "INFRASTRUCTURE" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 0 ;
+            sh:path schema1:identifier ],
+        [ sh:datatype xsd:string ;
+            sh:description "Version stamp from the document header." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path schema1:version ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/ApplicationMessageReferenceKey> ;
+            sh:description "\"Key Fields for Pre-Trade Application Message References\" table rows." ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 16 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/key_fields_pre_trade> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureComponentEntry> ;
+            sh:description "Components referenced by the enclosing element." ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 9 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/components> ],
+        [ sh:datatype xsd:string ;
+            sh:defaultValue "Business Area Infrastructure"^^xsd:string ;
+            sh:description "Display title." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path dcterms:title ],
+        [ sh:datatype xsd:string ;
+            sh:description "Intro prose of the area-wide Components sub-section." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/components_overview_note> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/StandardResponseMapping> ;
+            sh:description "\"Standard Responses for Post-Trade Messages\" table rows." ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 15 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/standard_responses_post_trade> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/StandardResponseMapping> ;
+            sh:description "\"Standard Responses for Trade Messages\" table rows." ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 14 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/standard_responses_trade> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Intro prose of the area-wide Messages sub-section." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/messages_overview_note> ],
+        [ sh:description "Component names declared in the area-wide components listing. Per the chapter prose, none of these are shared across categories within the area." ;
+            sh:in ( "ApplIDReportGrp" "ApplIDRequestAckGrp" "ApplIDRequestGrp" "CompIDReqGrp" "CompIDStatGrp" "ThrottleMsgTypeGrp" "ThrottleParamsGrp" "UsernameGrp" ) ;
+            sh:order 6 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/infra_common_components> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/ApplicationMessageReferenceKey> ;
+            sh:description "\"Key Fields for Post-Trade Application Message References\" table rows." ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 18 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/key_fields_post_trade> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureComponentTableFootnote> ;
+            sh:description "Footnotes attached to the area-wide Infrastructure components table." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 11 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/infra_footnotes> ],
+        [ sh:datatype xsd:string ;
+            sh:defaultValue "FIX Global Technical Committee"^^xsd:string ;
+            sh:description "Publishing body of the FIX Latest specification." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path dcterms:publisher ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureBusinessArea> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeBusinessArea> a sh:NodeShape ;
+    rdfs:comment "Tree-root container for the Post-Trade business area of FIX Latest." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeComponentEntry> ;
+            sh:description "Components referenced by the enclosing element." ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 8 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/components> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Intro prose of the area-wide Messages sub-section." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/messages_overview_note> ],
+        [ sh:description "Common Components declared at the top of the Post-Trade chapter." ;
+            sh:in ( "AllocCommissionDataGrp" "AllocRegulatoryTradeIDGrp" "ClrInstGrp" "CollateralAmountGrp" "CollateralReinvestmentGrp" "DlvyInstGrp" "ExecAllocGrp" "MarginAmount" "OrdAllocGrp" "PositionAmountData" "SettlDetails" "SettlInstructionsData" "SettlParties" "SettlPtysSubGrp" "TradeAllocAmtGrp" "TransactionAttributeGrp" ) ;
+            sh:order 6 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-post-trade/post_common_components> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Prose introduction of the Post-Trade chapter." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-post-trade/post_introduction> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Sentence describing diagram conventions used in the chapter." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/diagram_conventions> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeMessageEntry> ;
+            sh:description "Messages defined within the enclosing element." ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 7 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/messages> ],
+        [ sh:defaultValue "POST_TRADE" ;
+            sh:description "Identity of the business area." ;
+            sh:in ( "INTRODUCTION" "PRE_TRADE" "TRADE" "POST_TRADE" "INFRASTRUCTURE" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 0 ;
+            sh:path schema1:identifier ],
+        [ sh:datatype xsd:string ;
+            sh:defaultValue "Business Area Post-Trade"^^xsd:string ;
+            sh:description "Display title." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path dcterms:title ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeComponentTableFootnote> ;
+            sh:description "Footnotes attached to the area-wide components table." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 9 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-post-trade/post_footnotes> ],
+        [ sh:datatype xsd:string ;
+            sh:defaultValue "FIX Global Technical Committee"^^xsd:string ;
+            sh:description "Publishing body of the FIX Latest specification." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path dcterms:publisher ],
+        [ sh:datatype xsd:string ;
+            sh:description "Intro prose of the area-wide Components sub-section." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 13 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/components_overview_note> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-base/GlobalComponent> ;
+            sh:description "Names of Global Components from the FIX Latest \"Global Components\" page that are referenced by messages in the containing business area. References instances of the :class:`GlobalComponent` class (declared in fix_base) by name." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 14 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-global-components/referenced_global_components> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCommonComponentDetail> ;
+            sh:description "Per-common-component descriptions from the chapter's final Common Components section." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 11 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-post-trade/post_common_component_details> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Version stamp from the document header." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path schema1:version ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCategorySection> ;
+            sh:description "Per-category sub-sections of the Post-Trade chapter." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 10 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-post-trade/post_category_sections> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeBusinessArea> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeBusinessArea> a sh:NodeShape ;
+    rdfs:comment "Tree-root container for the Pre-Trade business area of FIX Latest." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Intro prose of the area-wide Components sub-section." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/components_overview_note> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-base/GlobalComponent> ;
+            sh:description "Names of Global Components from the FIX Latest \"Global Components\" page that are referenced by messages in the containing business area. References instances of the :class:`GlobalComponent` class (declared in fix_base) by name." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 14 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-global-components/referenced_global_components> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Sentence describing diagram conventions used in the chapter." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/diagram_conventions> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeCategorySection> ;
+            sh:description "Per-category sub-sections of the chapter." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 13 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/category_sections> ],
+        [ sh:description "Common Components declared at the top of the chapter." ;
+            sh:in ( "AuctionTypeRuleGrp" "BaseTradingRules" "ExecInstRules" "InstrumentScope" "InstrumentScopeGrp" "InstrumentScopeSecurityAltIDGrp" "LotTypeRules" "MarketDataFeedTypes" "MarketSegmentScopeGrp" "MatchRules" "OrdTypeRules" "PriceLimits" "PriceRangeRuleGrp" "QuoteSizeRuleGrp" "RequestedPartyRoleGrp" "RequestingPartyGrp" "RequestingPartySubGrp" "RoutingGrp" "TickRules" "TimeInForceRules" "TradingSessionRules" ) ;
+            sh:order 10 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/common_components> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/CommonComponentDetail> ;
+            sh:description "Per-common-component descriptions from the chapter's final section." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 11 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/common_component_details> ],
+        [ sh:datatype xsd:string ;
+            sh:defaultValue "FIX Global Technical Committee"^^xsd:string ;
+            sh:description "Publishing body of the FIX Latest specification." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path dcterms:publisher ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeComponentEntry> ;
+            sh:description "Area-wide pre-trade components table." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 9 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/components> ],
+        [ sh:datatype xsd:string ;
+            sh:defaultValue "Business Area Pre-Trade"^^xsd:string ;
+            sh:description "Display title." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path dcterms:title ],
+        [ sh:datatype xsd:string ;
+            sh:description "Intro prose of the area-wide Messages sub-section." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/messages_overview_note> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeMessageEntry> ;
+            sh:description "Area-wide pre-trade messages table." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 7 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/messages> ],
+        [ sh:defaultValue "PRE_TRADE" ;
+            sh:description "Identity of the business area." ;
+            sh:in ( "INTRODUCTION" "PRE_TRADE" "TRADE" "POST_TRADE" "INFRASTRUCTURE" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 0 ;
+            sh:path schema1:identifier ],
+        [ sh:datatype xsd:string ;
+            sh:description "Version stamp from the document header." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path schema1:version ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/ComponentTableFootnote> ;
+            sh:description "Footnotes attached to the area-wide components table." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 12 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/footnotes> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Prose introduction of the chapter." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/introduction> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeBusinessArea> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-trade/TradeAppendix> a sh:NodeShape ;
+    rdfs:comment "Tree-root container for the Trade Appendix — the spec companion document that publishes the full message- and component-layout tables for every message and component used in the Trade business area, organized into one \"Appendix – <X> Category\" sub-section per Trade category plus a final \"Appendix – Common Category\" sub-section covering the layouts of the chapter's common components." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Optional preface prose for the Trade Appendix as a whole." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path dcterms:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "Version stamp from the document header." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:version ],
+        [ sh:datatype xsd:string ;
+            sh:defaultValue "Trade Appendix"^^xsd:string ;
+            sh:description "Display title." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path dcterms:title ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeAppendixSection> ;
+            sh:description "Per-category sub-sections of the Trade Appendix — one \"Appendix – <X> Category\" section per Trade category, plus a synthetic \"Common Category\" section that lists layouts of the chapter's common components." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-trade/trade_appendix_sections> ],
+        [ sh:datatype xsd:string ;
+            sh:defaultValue "FIX Global Technical Committee"^^xsd:string ;
+            sh:description "Publishing body of the FIX Latest specification." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path dcterms:publisher ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeAppendix> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-trade/TradeBusinessArea> a sh:NodeShape ;
+    rdfs:comment "Tree-root container for the Trade (Orders and Executions) business area of FIX Latest." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Prose introduction of the chapter." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-trade/trade_introduction> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Intro prose of the area-wide Components sub-section." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-trade/trade_components_overview_note> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeMessageEntry> ;
+            sh:description "Area-wide trade messages table." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 8 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/messages> ],
+        [ sh:datatype xsd:string ;
+            sh:defaultValue "Business Area Trade"^^xsd:string ;
+            sh:description "Display title." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path dcterms:title ],
+        [ sh:datatype xsd:string ;
+            sh:description "Intro prose of the area-wide Messages sub-section." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-trade/trade_messages_overview_note> ],
+        [ sh:datatype xsd:string ;
+            sh:defaultValue "FIX Global Technical Committee"^^xsd:string ;
+            sh:description "Publishing body of the FIX Latest specification." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path dcterms:publisher ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeComponentTableFootnote> ;
+            sh:description "Footnotes attached to the area-wide components table." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 13 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-trade/trade_footnotes> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeComponentEntry> ;
+            sh:description "Area-wide trade components table." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 10 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/components> ],
+        [ sh:description "Common Components declared at the bottom of the chapter." ;
+            sh:in ( "DisclosureInstructionGrp" "DiscretionInstructions" "PegInstructions" "PreAllocGrp" "StrategyParametersGrp" "TriggeringInstruction" ) ;
+            sh:order 11 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-trade/trade_common_components> ],
+        [ sh:defaultValue "TRADE" ;
+            sh:description "Identity of the business area the chapter describes." ;
+            sh:in ( "INTRODUCTION" "PRE_TRADE" "TRADE" "POST_TRADE" "INFRASTRUCTURE" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 0 ;
+            sh:path schema1:identifier ],
+        [ sh:datatype xsd:string ;
+            sh:description "Sentence describing diagram conventions used in the chapter." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-trade/trade_diagram_conventions> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeCommonComponentDetail> ;
+            sh:description "Per-common-component descriptions from the chapter's final section." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 12 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-trade/trade_common_component_details> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeCategorySection> ;
+            sh:description "Per-category sub-sections of the chapter." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 14 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-trade/trade_category_sections> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-base/GlobalComponent> ;
+            sh:description "Names of Global Components from the FIX Latest \"Global Components\" page that are referenced by messages in the containing business area. References instances of the :class:`GlobalComponent` class (declared in fix_base) by name." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 15 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-global-components/referenced_global_components> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Version stamp from the document header." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path schema1:version ],
+        [ sh:description "URL of the \"Message Diagram Templates\" page referenced by the chapter introduction." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 6 ;
+            sh:path schema1:url ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeBusinessArea> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-base/BusinessArea> a sh:NodeShape ;
+    rdfs:comment "A top-level business area of the FIX Latest specification." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategory> ;
+            sh:description "Message categories defined within a business area." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 3 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/categories> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Display title of the area." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path dcterms:title ],
+        [ sh:description "Identity of the business area." ;
+            sh:in ( "INTRODUCTION" "PRE_TRADE" "TRADE" "POST_TRADE" "INFRASTRUCTURE" ) ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path schema1:identifier ],
+        [ sh:datatype xsd:string ;
+            sh:description "Description of the area." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path dcterms:description ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-base/BusinessArea> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-base/ExtensionPack> a sh:NodeShape ;
+    rdfs:comment "A unit of change to FIX Latest." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "Qualitative size indicator (XXS..XXL)." ;
+            sh:in ( "XXS" "XS" "S" "M" "L" "XL" "XXL" ) ;
+            sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/size> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Short descriptive title." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path dcterms:title ],
+        [ sh:datatype xsd:boolean ;
+            sh:description "True when the EP applies only to the FIX Session Layer." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/applies_to_session_layer_only> ],
+        [ sh:datatype xsd:integer ;
+            sh:description "Sequential identifier of the Extension Pack." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/number> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Narrative summary of what the EP introduces." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/enhancement_summary> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description "True when the EP applies only to the FIXML encoding." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/applies_to_fixml_only> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-base/ExtensionPack> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-base/FIXDatatype> a sh:NodeShape ;
+    rdfs:comment "A FIX Protocol datatype." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Reference standard for datatypes backed by an external code set." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path dcterms:conformsTo ],
+        [ sh:datatype xsd:integer ;
+            sh:description "Footnote indicators attached to a datatype row." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 13 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/footnote_numbers> ],
+        [ sh:datatype xsd:integer ;
+            sh:description "Inclusive upper bound of a bounded-array index." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/index_upper_bound> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Prose definition of the datatype." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/definition> ],
+        [ sh:description "ISO/IEC 11404:2007 GPD value space assigned to the datatype." ;
+            sh:in ( "integer" "ordinal" "size" "real" "scaled" "character" "characterstring" "boolean" "set" "array" "time" "union" ) ;
+            sh:order 2 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/value_space> ],
+        [ sh:datatype xsd:integer ;
+            sh:description "Numeric radix for scaled value-space datatypes." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/radix> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description "True for datatypes not permitted in new designs." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/deprecated_for_new_designs> ],
+        [ sh:description "Canonical FIX datatype name." ;
+            sh:in ( "int" "TagNum" "SeqNum" "NumInGroup" "DayOfMonth" "float" "Qty" "Price" "PriceOffset" "Amt" "Percentage" "char" "Boolean" "String" "MultipleCharValue" "MultipleStringValue" iso3166: iso4217: iso10383: "MonthYear" "UTCTimestamp" "UTCTimeOnly" "UTCDateOnly" "LocalMktDate" "TZTimeOnly" "TZTimestamp" "Length" "data" "Tenor" "Reserved100Plus" "Reserved1000Plus" "Reserved4000Plus" "XMLData" iso639: "LocalMktTime" ) ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/datatype_name> ],
+        [ sh:datatype xsd:integer ;
+            sh:description "Inclusive lower bound of a bounded-array index." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/index_lower_bound> ],
+        [ sh:datatype xsd:integer ;
+            sh:description "Inclusive upper bound on the integer value space." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/maximum_value> ],
+        [ sh:datatype xsd:integer ;
+            sh:description "Inclusive lower bound on the integer value space." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/minimum_value> ],
+        [ sh:description "Time-unit precision for time-bearing datatypes." ;
+            sh:in ( "SECOND" "MILLISECOND" "MICROSECOND" "NANOSECOND" "PICOSECOND" "DAY" ) ;
+            sh:order 6 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/time_unit> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Character repertoire for character/string datatypes." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/repertoire> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Additional value-space constraints." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/value_space_notes> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-base/FIXDatatype> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-base/FIXFamilyStandard> a sh:NodeShape ;
+    rdfs:comment "A member standard of the FIX Family of Standards." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Display name of the element." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:name ],
+        [ sh:description "Name of the session profile for session-layer variants." ;
+            sh:in ( "FIX_4_2" "FIX4" "FIXT" "LFIXT" "FIXP" "SOFH" "FIXS" "AMQP" ) ;
+            sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/session_profile> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Version of the standard, if applicable." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path schema1:version ],
+        [ sh:description "Named encoding, when layer is ENCODING." ;
+            sh:in ( "TAGVALUE" "FIXML" "FAST" "SBE" "GPB" "JSON" "ASN_1" ) ;
+            sh:maxCount 1 ;
+            sh:order 8 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/encoding_name> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Short acronym used to refer to the standard." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path schema1:alternateName ],
+        [ sh:description "Related external resources." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path <rdfs:seeAlso> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Unique identifier (CURIE or local name) of the element." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/id> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Free-text description." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path dcterms:description ],
+        [ sh:description "The layer the standard belongs to." ;
+            sh:in ( "APPLICATION" "ENCODING" "SESSION" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 5 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/layer> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-base/FIXFamilyStandard> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-base/FIXProtocolLimited> a sh:NodeShape ;
+    rdfs:comment "The organization that maintains the FIX Protocol specification." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "High-level governance bodies that represent FPL." ;
+            sh:in ( "GLOBAL_STEERING_COMMITTEE" "GLOBAL_TECHNICAL_COMMITTEE" "GLOBAL_PRODUCT_COMMITTEE" "GLOBAL_BUY_SIDE_COMMITTEE" "GLOBAL_MEMBER_SERVICES_COMMITTEE" "REGIONAL_COMMITTEE" ) ;
+            sh:order 7 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/governance_bodies> ],
+        [ sh:description "URL listing current FPL Member firms." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 3 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/member_firms_url> ],
+        [ sh:datatype xsd:string ;
+            sh:defaultValue "FIX Trading Community"^^xsd:string ;
+            sh:description "Brand name used by the organization." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/brand_name> ],
+        [ sh:description "Organization categories represented in FPL membership." ;
+            sh:in ( "BUY_SIDE_FIRM" "SELL_SIDE_FIRM" "EXCHANGE" "ECN_ATS" "UTILITY" "VENDOR" "OTHER_ASSOCIATION" ) ;
+            sh:order 6 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/member_types> ],
+        [ sh:description "URL listing currently active FPL Working Groups." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/working_groups_url> ],
+        [ sh:description "Regional Committees maintained by FPL." ;
+            sh:in ( "AMERICAS" "ASIA_PACIFIC" "EMEA" "JAPAN" ) ;
+            sh:order 9 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/regional_committees> ],
+        [ sh:description "Global Product Committees maintained by FPL." ;
+            sh:in ( "FIXED_INCOME_AND_CURRENCIES" "LISTED_PRODUCTS_AND_EXCHANGES" ) ;
+            sh:order 8 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/product_committees> ],
+        [ sh:description "URL listing Product and Regional Committees." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 5 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/committees_url> ],
+        [ sh:datatype xsd:string ;
+            sh:defaultValue "FIX Protocol Limited"^^xsd:string ;
+            sh:description "Legal name of the organization." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:legalName ],
+        [ sh:defaultValue "https://www.fixtrading.org"^^xsd:anyURI ;
+            sh:description "Main website URL of the organization." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 2 ;
+            sh:path schema1:url ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-base/FIXProtocolLimited> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-base/Message> a sh:NodeShape ;
+    rdfs:comment "A FIX application message." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "Message category." ;
+            sh:in ( "INDICATION" "EVENT_COMMUNICATION" "QUOTATION_NEGOTIATION" "MARKET_DATA" "MARKET_STRUCTURE_REFERENCE_DATA" "SECURITIES_REFERENCE_DATA" "PARTIES_REFERENCE_DATA" "PARTIES_ACTION" "SINGLE_GENERAL_ORDER_HANDLING" "ORDER_MASS_HANDLING" "CROSS_ORDERS" "MULTILEG_ORDERS" "LIST_PROGRAM_BASKET_TRADING" "ALLOCATION_AND_READY_TO_BOOK" "CONFIRMATION" "SETTLEMENT_INSTRUCTIONS" "TRADE_CAPTURE_REPORTING" "REGISTRATION_INSTRUCTIONS" "POSITIONS_MAINTENANCE" "COLLATERAL_MANAGEMENT" "MARGIN_REQUIREMENT_MANAGEMENT" "ACCOUNT_REPORTING" "TRADE_MANAGEMENT" "PAY_MANAGEMENT" "SETTLEMENT_STATUS_MANAGEMENT" "BUSINESS_MESSAGE_REJECTS" "NETWORK_STATUS_COMMUNICATION" "USER_MANAGEMENT" "APPLICATION_SEQUENCING" ) ;
+            sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/category> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-base/Field> ;
+            sh:description "Fields directly contained by the enclosing element." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/fields> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-base/Component> ;
+            sh:description "Components referenced by the enclosing element." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 5 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/components> ],
+        [ sh:datatype xsd:string ;
+            sh:description "MsgType(35) wire value identifying the message." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/msg_type> ;
+            sh:pattern "^[A-Za-z0-9]{1,3}$" ],
+        [ sh:datatype xsd:string ;
+            sh:description "PascalCase name of the message." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:name ],
+        [ sh:datatype xsd:string ;
+            sh:description "Description of the message's purpose." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path dcterms:description ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-base/Message> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategory> a sh:NodeShape ;
+    rdfs:comment "A message category within a business area." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Description of the category." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path dcterms:description ],
+        [ sh:description "Business area the element belongs to." ;
+            sh:in ( "INTRODUCTION" "PRE_TRADE" "TRADE" "POST_TRADE" "INFRASTRUCTURE" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 3 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/business_area> ],
+        [ sh:description "Identity of the message category." ;
+            sh:in ( "INDICATION" "EVENT_COMMUNICATION" "QUOTATION_NEGOTIATION" "MARKET_DATA" "MARKET_STRUCTURE_REFERENCE_DATA" "SECURITIES_REFERENCE_DATA" "PARTIES_REFERENCE_DATA" "PARTIES_ACTION" "SINGLE_GENERAL_ORDER_HANDLING" "ORDER_MASS_HANDLING" "CROSS_ORDERS" "MULTILEG_ORDERS" "LIST_PROGRAM_BASKET_TRADING" "ALLOCATION_AND_READY_TO_BOOK" "CONFIRMATION" "SETTLEMENT_INSTRUCTIONS" "TRADE_CAPTURE_REPORTING" "REGISTRATION_INSTRUCTIONS" "POSITIONS_MAINTENANCE" "COLLATERAL_MANAGEMENT" "MARGIN_REQUIREMENT_MANAGEMENT" "ACCOUNT_REPORTING" "TRADE_MANAGEMENT" "PAY_MANAGEMENT" "SETTLEMENT_STATUS_MANAGEMENT" "BUSINESS_MESSAGE_REJECTS" "NETWORK_STATUS_COMMUNICATION" "USER_MANAGEMENT" "APPLICATION_SEQUENCING" ) ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/category> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Display title of the category." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path dcterms:title ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-base/Message> ;
+            sh:description "Messages defined within the enclosing element." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/messages> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategory> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-base/UDFTagRange> a sh:NodeShape ;
+    rdfs:comment "A reserved range of tag numbers for User Defined Fields." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "Usage policy assigned to the range." ;
+            sh:in ( "INTER_FIRM_REGISTERED" "INTER_FIRM_BILATERAL" "GTC_REGULATORY_LEGACY" "WIP_CHINA" "INTERNAL_FIRM" "GTC_OTC_DERIVATIVES" "GTC_RESERVED" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 3 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/usage> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Identifier of the range." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/range_id> ],
+        [ sh:datatype xsd:integer ;
+            sh:description "Upper bound of the tag range. Required for all ``usage`` values except ``GTC_RESERVED`` (which is open-ended, 50000+). Downstream validators should enforce this; the constraint cannot be expressed here because LinkML's ``equals_string`` operator only accepts string-ranged slots and ``usage`` is an enum." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/high_tag> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description "True when tags in the range must be registered." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/requires_registration> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Notes on the range's intended use." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path dcterms:description ],
+        [ sh:datatype xsd:integer ;
+            sh:description "Inclusive lower bound of the range." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/low_tag> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-base/UDFTagRange> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-infrastructure/BusinessRejectReasonDescription> a sh:NodeShape ;
+    rdfs:comment "One entry of the BusinessRejectReason(380) code table." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Human-readable label of a BusinessRejectReason(380) code." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/reject_reason_label> ],
+        [ sh:datatype xsd:integer ;
+            sh:description "Numeric code value of BusinessRejectReason(380)." ;
+            sh:maxCount 1 ;
+            sh:maxInclusive 999 ;
+            sh:minInclusive 0 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/reject_reason_code> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/BusinessRejectReasonDescription> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureCategorySection> a sh:NodeShape ;
+    rdfs:comment "A \"Category – <name>\" sub-section of the Infrastructure chapter." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "Documented uses of ApplicationMessageReport(35=BY)." ;
+            sh:in ( <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/ApplReportType_0> <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/ApplReportType_1> "KEEP_ALIVE" <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/ApplReportType_3> ) ;
+            sh:order 8 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/application_message_report_uses> ],
+        [ sh:description "NetworkRequestType(935) values explicitly cited in the Network Status Communication category prose." ;
+            sh:in ( <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/NetworkRequestType_1> <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/NetworkRequestType_4> ) ;
+            sh:order 7 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/network_request_types_referenced> ],
+        [ sh:description "Message category." ;
+            sh:in ( "BUSINESS_MESSAGE_REJECTS" "NETWORK_STATUS_COMMUNICATION" "USER_MANAGEMENT" "APPLICATION_SEQUENCING" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/category> ],
+        [ sh:description "Network Status Communication usage scenarios." ;
+            sh:in ( "SCENARIO_A" "SCENARIO_B" ) ;
+            sh:order 6 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/network_status_scenarios> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Intro prose of a category's Components sub-section." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/category_components_note> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Free-text description." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path dcterms:description ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureMessageDetail> ;
+            sh:description "Messages defined within the enclosing element." ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/messages> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Display title." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path dcterms:title ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureComponentDetail> ;
+            sh:description "Per-component descriptions appearing in a category's Components sub-section." ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 5 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/infra_category_specific_components> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureCategorySection> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureComponentDetail> a sh:NodeShape ;
+    rdfs:comment "Per-component description appearing in a category's Components sub-section." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "PascalCase name of the component." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path schema1:name ],
+        [ sh:datatype xsd:string ;
+            sh:description "Free-text description." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path dcterms:description ],
+        [ sh:description "REPEATING or NON_REPEATING." ;
+            sh:in ( "REPEATING" "NON_REPEATING" ) ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/repetition> ],
+        [ sh:description "URL of the detailed message- or component-layout." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 3 ;
+            sh:path schema1:url ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureLayoutRow> ;
+            sh:description "Ordered rows of the layout table published for the message or component in the Infrastructure Appendix." ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/infra_layout_rows> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureComponentDetail> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureComponentEntry> a sh:NodeShape ;
+    rdfs:comment "One row of the area-wide \"Components for Infrastructure Business Area\" table." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "PascalCase name of the component." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path schema1:name ],
+        [ sh:datatype xsd:integer ;
+            sh:description "Footnote indicator on a component-table row." ;
+            sh:maxCount 1 ;
+            sh:maxInclusive 25 ;
+            sh:minInclusive 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/footnote_number> ],
+        [ sh:description "REPEATING or NON_REPEATING." ;
+            sh:in ( "REPEATING" "NON_REPEATING" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 1 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/repetition> ],
+        [ sh:description "Message category." ;
+            sh:in ( "BUSINESS_MESSAGE_REJECTS" "NETWORK_STATUS_COMMUNICATION" "USER_MANAGEMENT" "APPLICATION_SEQUENCING" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 2 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/category> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureComponentEntry> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureComponentTableFootnote> a sh:NodeShape ;
+    rdfs:comment "A footnote attached to a row of the area-wide Infrastructure components table." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "PascalCase name of the component." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:name ],
+        [ sh:datatype xsd:integer ;
+            sh:description "Footnote indicator on a component-table row." ;
+            sh:maxCount 1 ;
+            sh:maxInclusive 25 ;
+            sh:minInclusive 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/footnote_number> ],
+        [ sh:datatype xsd:string ;
+            sh:description "FIX version or Extension Pack that introduced the component." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/introduced_in> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Footnote text." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/text> ],
+        [ sh:description "Single Infrastructure category that actually uses the footnoted component." ;
+            sh:in ( "BUSINESS_MESSAGE_REJECTS" "NETWORK_STATUS_COMMUNICATION" "USER_MANAGEMENT" "APPLICATION_SEQUENCING" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 3 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/infra_sole_category> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureComponentTableFootnote> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureGlobalComponentReference> a sh:NodeShape ;
+    rdfs:comment "A reference from the Infrastructure business area to a Global Component declared on the FIX Latest \"Global Components\" page. Records the component name, the FIX tags it contributes, and the Infrastructure categories and messages that embed it." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Human-readable field names of the tags contributed by the referenced Global Component." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/infra_global_component_field_names> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Repetition indicator for the Global Component as it appears in the referenced Infrastructure messages." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/infra_global_component_repetition> ],
+        [ sh:description "Name of a Global Component referenced from within the Infrastructure business area." ;
+            sh:in ( "ApplicationSequenceControl" ) ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/infra_global_component_name> ],
+        [ sh:description "Infrastructure categories that reference the Global Component." ;
+            sh:in ( "BUSINESS_MESSAGE_REJECTS" "NETWORK_STATUS_COMMUNICATION" "USER_MANAGEMENT" "APPLICATION_SEQUENCING" ) ;
+            sh:minCount 1 ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/infra_global_component_used_in> ],
+        [ sh:datatype xsd:string ;
+            sh:description "MsgType values within the Infrastructure business area that embed the referenced Global Component." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/infra_global_component_msg_types> ],
+        [ sh:datatype xsd:integer ;
+            sh:description "FIX tag numbers contributed by the referenced Global Component (as listed on the Global Components page)." ;
+            sh:minInclusive 0 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/infra_global_component_field_tags> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureGlobalComponentReference> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureMessageDetail> a sh:NodeShape ;
+    rdfs:comment "Per-message description appearing in a category's Messages sub-section." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "PascalCase name of the message." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:name ],
+        [ sh:datatype xsd:string ;
+            sh:description "Free-text description." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path dcterms:description ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureLayoutRow> ;
+            sh:description "Ordered rows of the layout table published for the message or component in the Infrastructure Appendix." ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/infra_layout_rows> ],
+        [ sh:description "URL of the detailed message- or component-layout." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 3 ;
+            sh:path schema1:url ],
+        [ sh:datatype xsd:string ;
+            sh:description "MsgType(35) wire value identifying the message." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/msg_type> ;
+            sh:pattern "^[A-Za-z0-9]{1,3}$" ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureMessageDetail> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureMessageEntry> a sh:NodeShape ;
+    rdfs:comment "One row of the area-wide \"Messages for Infrastructure Business Area\" table." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "MsgType(35) wire value identifying the message." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/msg_type> ;
+            sh:pattern "^[A-Za-z0-9]{1,3}$" ],
+        [ sh:description "Message category." ;
+            sh:in ( "BUSINESS_MESSAGE_REJECTS" "NETWORK_STATUS_COMMUNICATION" "USER_MANAGEMENT" "APPLICATION_SEQUENCING" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 2 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/category> ],
+        [ sh:datatype xsd:string ;
+            sh:description "PascalCase name of the message." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:name ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureMessageEntry> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-post-trade/AllocationFragmentationFieldMap> a sh:NodeShape ;
+    rdfs:comment "One row of the table mapping an allocation message to its fragmentation-related fields." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "MsgType(35) wire value identifying the message." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/msg_type> ;
+            sh:pattern "^[A-Za-z0-9]{1,3}$" ],
+        [ sh:datatype xsd:string ;
+            sh:description "Field carrying the number of entries in the current message fragment (e.g. NoAllocs)." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-post-trade/fragment_count_field> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Principal message reference field used to bind allocation message fragments together (e.g. AllocID, AllocReportID)." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-post-trade/principal_message_reference> ],
+        [ sh:datatype xsd:string ;
+            sh:description "PascalCase name of the message." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:name ],
+        [ sh:datatype xsd:string ;
+            sh:description "Field carrying the total number of repeating-group entries across all fragments (e.g. TotNoAllocs)." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-post-trade/total_count_field> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-post-trade/AllocationFragmentationFieldMap> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-post-trade/AllocationStatusDescription> a sh:NodeShape ;
+    rdfs:comment "One row of the AllocStatus(87) value/description table." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Free-text description." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path dcterms:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "Human-readable label of the status code." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-post-trade/status_label> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Wire status code as referenced in the chapter." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-post-trade/status_code> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-post-trade/AllocationStatusDescription> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-post-trade/ClearingServicePostTradeProcessingFormat> a sh:NodeShape ;
+    rdfs:comment "One message-format row from the Post-Trade Processing Clearing Services section, with its supported actions." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Action labels (e.g. Allocation, Accept, Reject, Release, Change, Delete) supported by a clearing-service message format." ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-post-trade/supported_actions> ],
+        [ sh:description "Clearing-service message format family referenced in the chapter." ;
+            sh:in ( "ETP" "GIVE_UP" "EXCHANGE_FOR_PHYSICAL" "AVERAGE_PRICE_SYSTEM" "MUTUAL_OFFSET_SYSTEM" "TRADE_ENTRY_EDIT" ) ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-post-trade/message_format> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-post-trade/ClearingServicePostTradeProcessingFormat> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCategorySection> a sh:NodeShape ;
+    rdfs:comment "A \"Category – <name>\" sub-section of the Post-Trade chapter." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeMessageDetail> ;
+            sh:description "Messages defined within the enclosing element." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 5 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/messages> ],
+        [ sh:description "Message category." ;
+            sh:in ( "ALLOCATION" "CONFIRMATION" "SETTLEMENT_INSTRUCTION" "TRADE_CAPTURE_REPORTING" "REGISTRATION_INSTRUCTION" "POSITION_MAINTENANCE" "COLLATERAL_MANAGEMENT" "MARGIN_REQUIREMENT_MANAGEMENT" "ACCOUNT_REPORTING" "TRADE_MANAGEMENT" "PAY_MANAGEMENT" "SETTLEMENT_STATUS_MANAGEMENT" ) ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/category> ],
+        [ sh:description "Methods supported for computing post-trade allocations." ;
+            sh:in ( "AVERAGE_PRICE" "EXECUTED_PRICE" ) ;
+            sh:order 9 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-post-trade/post_trade_allocation_pricing_methods> ],
+        [ sh:description "Role labels used throughout the Allocation category prose." ;
+            sh:in ( "INITIATOR" "RESPONDENT" ) ;
+            sh:order 8 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-post-trade/allocation_roles> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-post-trade/AllocationFragmentationFieldMap> ;
+            sh:description "Per-message mapping of fragmentation-related fields used by the Allocation messages." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 11 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-post-trade/fragmentation_field_map> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Free-text description." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path dcterms:description ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeComponentDetail> ;
+            sh:description "Components used exclusively by messages within a category." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 6 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-post-trade/post_category_specific_components> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-post-trade/RegistrationStatusDescription> ;
+            sh:description "Descriptions tied to RegistStatus(506) values." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 14 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-post-trade/registration_status_descriptions> ],
+        [ sh:description "Business functions exposed by the Position Management Clearing Services." ;
+            sh:in ( "POSITION_CHANGE_SUBMISSION" "POSITION_ADJUSTMENT" "EXERCISE_NOTICE" "ABANDONMENT_NOTICE" "MARGIN_DISPOSITION" "POSITION_PLEDGE" "REQUEST_FOR_POSITION" ) ;
+            sh:order 15 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-post-trade/clearing_services_for_position_management> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-post-trade/TradeCaptureReportIdentifierRule> ;
+            sh:description "Rules governing TradeCaptureReport(35=AE) identifier fields." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 13 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-post-trade/trade_capture_report_identifier_rules> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeMessageGroup> ;
+            sh:description "Purpose-grouped message descriptions inside a Post-Trade category." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-post-trade/post_message_groups> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-post-trade/TradeCaptureReportUsage> ;
+            sh:description "Usages described in the \"Trade Capture Report Usages\" sub-section of the Trade Capture Reporting category." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 12 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-post-trade/trade_capture_report_usages> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Intro prose of a category's Components sub-section." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/category_components_note> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-post-trade/AllocationStatusDescription> ;
+            sh:description "Descriptions tied to AllocStatus(87) values as listed in the Allocation Instruction Acknowledgements section." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 10 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-post-trade/allocation_status_descriptions> ],
+        [ sh:description "Communication options supported by the Allocation category for conveying allocation instructions." ;
+            sh:in ( "PRE_ALLOCATED_ORDER" "PRE_TRADE_ALLOCATION" "POST_TRADE_ALLOCATION" "READY_TO_BOOK" ) ;
+            sh:order 7 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-post-trade/allocation_scenarios> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-post-trade/ClearingServicePostTradeProcessingFormat> ;
+            sh:description "Per-format action sets exposed by the Post-Trade Processing Clearing Services." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 16 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-post-trade/clearing_services_for_post_trade_processing> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Display title." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path dcterms:title ],
+        [ sh:description "Documented usages for the Collateral Management messages." ;
+            sh:in ( "SECURITIES_FINANCING_COLLATERALIZATION" "CLEARING_HOUSE_COLLATERALIZATION" ) ;
+            sh:order 17 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-post-trade/collateral_management_usages> ],
+        [ sh:description "Documented purposes for the CollateralAssignment(35=AY) message." ;
+            sh:in ( "ASSIGN_INITIAL_COLLATERAL" "REPLENISH_COLLATERAL" "REPLACE_OR_SUBSTITUTE_COLLATERAL" ) ;
+            sh:order 18 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-post-trade/collateral_assignment_purposes> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCategorySection> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCommonComponentDetail> a sh:NodeShape ;
+    rdfs:comment "Per-common-component description block from the chapter's final \"Common Components\" section." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Free-text description." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path dcterms:description ],
+        [ sh:description "REPEATING or NON_REPEATING." ;
+            sh:in ( "REPEATING" "NON_REPEATING" ) ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/repetition> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeLayoutRow> ;
+            sh:description "Ordered rows of the layout table published for the message or component in the Post-Trade Appendix." ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-post-trade/post_layout_rows> ],
+        [ sh:description "URL of the detailed message- or component-layout." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 3 ;
+            sh:path schema1:url ],
+        [ sh:description "PascalCase name of the component." ;
+            sh:in ( "AllocCommissionDataGrp" "AllocRegulatoryTradeIDGrp" "ClrInstGrp" "CollateralAmountGrp" "CollateralReinvestmentGrp" "DlvyInstGrp" "ExecAllocGrp" "MarginAmount" "OrdAllocGrp" "PositionAmountData" "SettlDetails" "SettlInstructionsData" "SettlParties" "SettlPtysSubGrp" "TradeAllocAmtGrp" "TransactionAttributeGrp" ) ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path schema1:name ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCommonComponentDetail> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeComponentDetail> a sh:NodeShape ;
+    rdfs:comment "Per-component description block from a Post-Trade category section's Components sub-section." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Free-text description." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path dcterms:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "PascalCase name of the component." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path schema1:name ],
+        [ sh:description "URL of the detailed message- or component-layout." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 3 ;
+            sh:path schema1:url ],
+        [ sh:description "REPEATING or NON_REPEATING." ;
+            sh:in ( "REPEATING" "NON_REPEATING" ) ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/repetition> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeLayoutRow> ;
+            sh:description "Ordered rows of the layout table published for the message or component in the Post-Trade Appendix." ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-post-trade/post_layout_rows> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeComponentDetail> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeComponentEntry> a sh:NodeShape ;
+    rdfs:comment "One row of the area-wide \"Components for Post-Trade Business Area\" table." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Category label as printed in the component table; the token \"Common Components\" is allowed in addition to the PostTradeCategoryEnum values." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/category> ],
+        [ sh:description "REPEATING or NON_REPEATING." ;
+            sh:in ( "REPEATING" "NON_REPEATING" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 1 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/repetition> ],
+        [ sh:datatype xsd:integer ;
+            sh:description "Footnote indicator on a component-table row." ;
+            sh:maxCount 1 ;
+            sh:maxInclusive 25 ;
+            sh:minInclusive 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/footnote_number> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description "True when the component is declared as a Common Component." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/is_common> ],
+        [ sh:datatype xsd:string ;
+            sh:description "PascalCase name of the component." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path schema1:name ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeComponentEntry> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeComponentTableFootnote> a sh:NodeShape ;
+    rdfs:comment "A footnote attached to a row of the area-wide Post-Trade components table." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "Single Post-Trade category that actually uses the component (per footnote)." ;
+            sh:in ( "ALLOCATION" "CONFIRMATION" "SETTLEMENT_INSTRUCTION" "TRADE_CAPTURE_REPORTING" "REGISTRATION_INSTRUCTION" "POSITION_MAINTENANCE" "COLLATERAL_MANAGEMENT" "MARGIN_REQUIREMENT_MANAGEMENT" "ACCOUNT_REPORTING" "TRADE_MANAGEMENT" "PAY_MANAGEMENT" "SETTLEMENT_STATUS_MANAGEMENT" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 3 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-post-trade/post_sole_category> ],
+        [ sh:datatype xsd:string ;
+            sh:description "FIX version or Extension Pack that introduced the component." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/introduced_in> ],
+        [ sh:datatype xsd:integer ;
+            sh:description "Footnote indicator on a component-table row." ;
+            sh:maxCount 1 ;
+            sh:maxInclusive 25 ;
+            sh:minInclusive 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/footnote_number> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Footnote text." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/text> ],
+        [ sh:datatype xsd:string ;
+            sh:description "PascalCase name of the component." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:name ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeComponentTableFootnote> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeMessageEntry> a sh:NodeShape ;
+    rdfs:comment "One row of the area-wide \"Messages for Post-Trade Business Area\" table." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "MsgType(35) wire value identifying the message." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/msg_type> ;
+            sh:pattern "^[A-Za-z0-9]{1,3}$" ],
+        [ sh:description "Message category." ;
+            sh:in ( "ALLOCATION" "CONFIRMATION" "SETTLEMENT_INSTRUCTION" "TRADE_CAPTURE_REPORTING" "REGISTRATION_INSTRUCTION" "POSITION_MAINTENANCE" "COLLATERAL_MANAGEMENT" "MARGIN_REQUIREMENT_MANAGEMENT" "ACCOUNT_REPORTING" "TRADE_MANAGEMENT" "PAY_MANAGEMENT" "SETTLEMENT_STATUS_MANAGEMENT" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 2 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/category> ],
+        [ sh:datatype xsd:string ;
+            sh:description "PascalCase name of the message." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:name ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeMessageEntry> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeMessageGroup> a sh:NodeShape ;
+    rdfs:comment "A purpose-themed grouping of messages within a Post-Trade category (e.g. \"Allocation Instructions\")." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Purpose-group heading inside a category's Messages sub-section." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path schema1:name ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeMessageDetail> ;
+            sh:description "Messages defined within the enclosing element." ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 1 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/messages> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeMessageGroup> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-post-trade/RegistrationStatusDescription> a sh:NodeShape ;
+    rdfs:comment "One row of the RegistStatus(506) value/description table." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Free-text description." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path dcterms:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "Wire status code as referenced in the chapter." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-post-trade/status_code> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Human-readable label of the status code." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-post-trade/status_label> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-post-trade/RegistrationStatusDescription> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-post-trade/TradeCaptureReportIdentifierRule> a sh:NodeShape ;
+    rdfs:comment "A rule governing one of the TradeCaptureReport(35=AE) identifier fields." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Free-text description." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path dcterms:description ],
+        [ sh:description "Role of the trade-capture-report identifier field." ;
+            sh:in ( "TRADE_REPORT_ID" "TRADE_ID" "TRADE_REPORT_REF_ID" "SECONDARY_TRADE_ID" ) ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-post-trade/identifier_role> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-post-trade/TradeCaptureReportIdentifierRule> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-post-trade/TradeCaptureReportUsage> a sh:NodeShape ;
+    rdfs:comment "One documented usage of the TradeCaptureReport(35=AE) message." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Short label for the usage." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-post-trade/status_label> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Free-text description." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path dcterms:description ],
+        [ sh:description "Role of the trade-capture-report identifier field." ;
+            sh:in ( "TRADE_REPORT_ID" "TRADE_ID" "TRADE_REPORT_REF_ID" "SECONDARY_TRADE_ID" ) ;
+            sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-post-trade/identifier_role> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-post-trade/TradeCaptureReportUsage> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-pre-trade/CommonComponentDetail> a sh:NodeShape ;
+    rdfs:comment "Per-common-component description." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "URL of the detailed message- or component-layout." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 3 ;
+            sh:path schema1:url ],
+        [ sh:description "REPEATING or NON_REPEATING." ;
+            sh:in ( "REPEATING" "NON_REPEATING" ) ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/repetition> ],
+        [ sh:description "PascalCase name of the component." ;
+            sh:in ( "AuctionTypeRuleGrp" "BaseTradingRules" "ExecInstRules" "InstrumentScope" "InstrumentScopeGrp" "InstrumentScopeSecurityAltIDGrp" "LotTypeRules" "MarketDataFeedTypes" "MarketSegmentScopeGrp" "MatchRules" "OrdTypeRules" "PriceLimits" "PriceRangeRuleGrp" "QuoteSizeRuleGrp" "RequestedPartyRoleGrp" "RequestingPartyGrp" "RequestingPartySubGrp" "RoutingGrp" "TickRules" "TimeInForceRules" "TradingSessionRules" ) ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path schema1:name ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeLayoutRow> ;
+            sh:description "Ordered rows of the layout table published for the message or component in the Pre-Trade Appendix." ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/pre_layout_rows> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Description of the common component's purpose." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path dcterms:description ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/CommonComponentDetail> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-pre-trade/ComponentTableFootnote> a sh:NodeShape ;
+    rdfs:comment "A footnote on the area-wide components table." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Footnote text." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/text> ],
+        [ sh:datatype xsd:string ;
+            sh:description "PascalCase name of the component." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:name ],
+        [ sh:description "Single category that actually uses the component." ;
+            sh:in ( "INDICATION" "EVENT_COMMUNICATION" "QUOTATION_NEGOTIATION" "MARKET_DATA" "MARKET_STRUCTURE_REFERENCE_DATA" "SECURITIES_REFERENCE_DATA" "PARTIES_REFERENCE_DATA" "PARTIES_ACTION" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 3 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/sole_category> ],
+        [ sh:datatype xsd:string ;
+            sh:description "FIX version or Extension Pack that introduced the component." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/introduced_in> ],
+        [ sh:datatype xsd:integer ;
+            sh:description "Footnote indicator on a component-table row." ;
+            sh:maxCount 1 ;
+            sh:maxInclusive 25 ;
+            sh:minInclusive 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/footnote_number> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/ComponentTableFootnote> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-pre-trade/MessageGroup> a sh:NodeShape ;
+    rdfs:comment "Purpose-grouped sub-section inside a category's Messages section." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Purpose-group heading inside a category's Messages sub-section." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path schema1:name ],
+        [ sh:datatype xsd:string ;
+            sh:description "Description of the purpose-group's role within the category." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path dcterms:description ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeMessageDetail> ;
+            sh:description "Messages bundled under the purpose-group heading." ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 2 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/messages> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/MessageGroup> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeCategorySection> a sh:NodeShape ;
+    rdfs:comment "A per-category sub-section of the Pre-Trade chapter." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "Quoting business models referenced in the Quotation / Negotiation category." ;
+            sh:in ( "INDICATIVE" "TRADEABLE" "RESTRICTED_TRADEABLE" "NEGOTIATION" ) ;
+            sh:order 3 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/quote_models> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeComponentDetail> ;
+            sh:description "Components used exclusively by messages within a category." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 7 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/category_specific_components> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Display title." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path dcterms:title ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeMessageDetail> ;
+            sh:description "Messages defined in this category." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 5 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/messages> ],
+        [ sh:description "Message category." ;
+            sh:in ( "INDICATION" "EVENT_COMMUNICATION" "QUOTATION_NEGOTIATION" "MARKET_DATA" "MARKET_STRUCTURE_REFERENCE_DATA" "SECURITIES_REFERENCE_DATA" "PARTIES_REFERENCE_DATA" "PARTIES_ACTION" ) ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/category> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/MessageGroup> ;
+            sh:description "Purpose-grouped message descriptions inside a category." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/message_groups> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Intro prose of a category's Components sub-section." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/category_components_note> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Free-text description." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path dcterms:description ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeCategorySection> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeComponentDetail> a sh:NodeShape ;
+    rdfs:comment "Per-category component description." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "REPEATING or NON_REPEATING." ;
+            sh:in ( "REPEATING" "NON_REPEATING" ) ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/repetition> ],
+        [ sh:description "URL of the detailed message- or component-layout." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 3 ;
+            sh:path schema1:url ],
+        [ sh:datatype xsd:string ;
+            sh:description "Description of the component's purpose." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path dcterms:description ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeLayoutRow> ;
+            sh:description "Ordered rows of the layout table published for the message or component in the Pre-Trade Appendix." ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/pre_layout_rows> ],
+        [ sh:datatype xsd:string ;
+            sh:description "PascalCase name of the component." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path schema1:name ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeComponentDetail> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeComponentEntry> a sh:NodeShape ;
+    rdfs:comment "One row of the area-wide pre-trade components table." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "PascalCase name of the component." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path schema1:name ],
+        [ sh:datatype xsd:string ;
+            sh:description "Category the component is listed under. Common Components are listed under the synthetic \"Common Components\" value." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/category> ],
+        [ sh:description "REPEATING or NON_REPEATING." ;
+            sh:in ( "REPEATING" "NON_REPEATING" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 1 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/repetition> ],
+        [ sh:datatype xsd:integer ;
+            sh:description "Footnote indicator on a component-table row." ;
+            sh:maxCount 1 ;
+            sh:maxInclusive 25 ;
+            sh:minInclusive 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/footnote_number> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description "True when the component is declared as a Common Component." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/is_common> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeComponentEntry> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeMessageEntry> a sh:NodeShape ;
+    rdfs:comment "One row of the area-wide pre-trade messages table." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "PascalCase name of the message." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:name ],
+        [ sh:description "Message category." ;
+            sh:in ( "INDICATION" "EVENT_COMMUNICATION" "QUOTATION_NEGOTIATION" "MARKET_DATA" "MARKET_STRUCTURE_REFERENCE_DATA" "SECURITIES_REFERENCE_DATA" "PARTIES_REFERENCE_DATA" "PARTIES_ACTION" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 2 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/category> ],
+        [ sh:datatype xsd:string ;
+            sh:description "MsgType(35) wire value identifying the message." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/msg_type> ;
+            sh:pattern "^[A-Za-z0-9]{1,3}$" ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeMessageEntry> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-trade/TradeAppendixSection> a sh:NodeShape ;
+    rdfs:comment "One \"Appendix – <X> Category\" sub-section of the Trade Appendix. Bundles the per-message layout tables (TradeMessageDetail) and per-component layout tables (TradeComponentDetail) for messages and components that belong to one Trade category — or, for the synthetic \"Common\" section, the layouts of the chapter's common components." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Section heading exactly as printed in the Trade Appendix (e.g. \"Appendix – CrossOrders Category\")." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path dcterms:title ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeComponentDetail> ;
+            sh:description "Layout tables for the components that belong to the appendix section." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/components> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Identifier for an appendix section — either the Trade category name as printed in the heading (e.g. \"CrossOrders\", \"MultilegOrders\", \"OrderMassHandling\", \"ProgramTrading\", \"SingleGeneralOrderHandling\") or the literal \"Common\" for the common-components appendix." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-trade/trade_appendix_category> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeMessageDetail> ;
+            sh:description "Layout tables for the messages that belong to the appendix section. Empty for the \"Common\" section." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 3 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/messages> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Free-text description." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path dcterms:description ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeAppendixSection> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-trade/TradeCategorySection> a sh:NodeShape ;
+    rdfs:comment "A per-category sub-section of the Trade chapter." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Display title." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path dcterms:title ],
+        [ sh:datatype xsd:string ;
+            sh:description "Free-text description." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path dcterms:description ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeComponentDetail> ;
+            sh:description "Components used exclusively by messages within a single category." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 7 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-trade/trade_category_specific_components> ],
+        [ sh:description "Message category." ;
+            sh:in ( "SINGLE_GENERAL_ORDER_HANDLING" "ORDER_MASS_HANDLING" "CROSS_ORDER_HANDLING" "MULTILEG_ORDER_HANDLING" "LIST_PROGRAM_BASKET_TRADING" ) ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/category> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeMessageGroup> ;
+            sh:description "Purpose-grouped message descriptions inside a category." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-trade/trade_message_groups> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeMessageDetail> ;
+            sh:description "Messages defined in this category." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 5 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/messages> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeFragmentationEntry> ;
+            sh:description "Rows of the fragmentation table listed in a Trade category that documents which messages may be fragmented and which repeating group is fragmentable (currently published only for List/Program/Basket Trading)." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 8 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-trade/trade_fragmentation_entries> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Intro prose of a category's Components sub-section." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-trade/trade_category_components_note> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Optional \"Background\" prose preceding a category's message descriptions (e.g. the Cross Order Handling chapter's cross-trade overview)." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-trade/trade_category_background> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeCategorySection> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-trade/TradeCommonComponentDetail> a sh:NodeShape ;
+    rdfs:comment "Per-common-component description from the chapter's final \"Common Components\" section." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Description of the common component's purpose." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path dcterms:description ],
+        [ sh:description "PascalCase name of the component." ;
+            sh:in ( "DisclosureInstructionGrp" "DiscretionInstructions" "PegInstructions" "PreAllocGrp" "StrategyParametersGrp" "TriggeringInstruction" ) ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path schema1:name ],
+        [ sh:description "REPEATING or NON_REPEATING." ;
+            sh:in ( "REPEATING" "NON_REPEATING" ) ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-trade/trade_repetition> ],
+        [ sh:description "URL of the detailed message- or component-layout in the Trade Appendix." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 3 ;
+            sh:path schema1:url ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeLayoutRow> ;
+            sh:description "Ordered rows of the layout table published for the message or component in the Trade Appendix." ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-trade/trade_layout_rows> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeCommonComponentDetail> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-trade/TradeComponentEntry> a sh:NodeShape ;
+    rdfs:comment "One row of the area-wide trade components table." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Category the component is listed under. Common Components are listed under the synthetic \"Common Components\" value." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/category> ],
+        [ sh:description "REPEATING or NON_REPEATING." ;
+            sh:in ( "REPEATING" "NON_REPEATING" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 1 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-trade/trade_repetition> ],
+        [ sh:datatype xsd:integer ;
+            sh:description "Footnote indicator on a component-table row." ;
+            sh:maxCount 1 ;
+            sh:maxInclusive 25 ;
+            sh:minInclusive 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-trade/trade_footnote_number> ],
+        [ sh:datatype xsd:string ;
+            sh:description "PascalCase name of the component." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path schema1:name ],
+        [ sh:datatype xsd:boolean ;
+            sh:description "True when the component is declared as a Common Component." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-trade/trade_is_common> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeComponentEntry> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-trade/TradeComponentTableFootnote> a sh:NodeShape ;
+    rdfs:comment "A footnote on the area-wide components table." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "Single category that actually uses the component." ;
+            sh:in ( "SINGLE_GENERAL_ORDER_HANDLING" "ORDER_MASS_HANDLING" "CROSS_ORDER_HANDLING" "MULTILEG_ORDER_HANDLING" "LIST_PROGRAM_BASKET_TRADING" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 3 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-trade/trade_sole_category> ],
+        [ sh:datatype xsd:integer ;
+            sh:description "Footnote indicator on a component-table row." ;
+            sh:maxCount 1 ;
+            sh:maxInclusive 25 ;
+            sh:minInclusive 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-trade/trade_footnote_number> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Footnote text." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-trade/trade_footnote_text> ],
+        [ sh:datatype xsd:string ;
+            sh:description "FIX version or Extension Pack that introduced the component." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-trade/trade_introduced_in> ],
+        [ sh:datatype xsd:string ;
+            sh:description "PascalCase name of the component." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:name ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeComponentTableFootnote> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-trade/TradeFragmentationEntry> a sh:NodeShape ;
+    rdfs:comment "One row of a fragmentation table published in a Trade category (currently only List/Program/Basket Trading) identifying a message that may be fragmented, the \"Total Entries\" field used to indicate the total count across all fragments of the batch, and the verbatim description of the repeating group that may be fragmented." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Verbatim description of the repeating group that may be fragmented — from the table's third column." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-trade/trade_fragmentation_repeating_group> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Name and tag of the \"Total Entries\" field used to indicate the total count across all fragments of the batch (e.g. \"TotNoOrders(68)\")." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-trade/trade_fragmentation_total_entries_field> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Message that may be fragmented — verbatim text from the Message column of the fragmentation table (e.g. \"NewOrderList(35=E)\")." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-trade/trade_fragmentation_message> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeFragmentationEntry> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-trade/TradeMessageEntry> a sh:NodeShape ;
+    rdfs:comment "One row of the area-wide trade messages table." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "Message category." ;
+            sh:in ( "SINGLE_GENERAL_ORDER_HANDLING" "ORDER_MASS_HANDLING" "CROSS_ORDER_HANDLING" "MULTILEG_ORDER_HANDLING" "LIST_PROGRAM_BASKET_TRADING" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 2 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/category> ],
+        [ sh:datatype xsd:string ;
+            sh:description "PascalCase name of the message." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:name ],
+        [ sh:datatype xsd:string ;
+            sh:description "MsgType(35) wire value identifying the message." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/msg_type> ;
+            sh:pattern "^[A-Za-z0-9]{1,3}$" ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeMessageEntry> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-trade/TradeMessageGroup> a sh:NodeShape ;
+    rdfs:comment "Purpose-grouped sub-section inside a category's Messages sub-section (e.g. \"New Order Single\", \"Execution Reports\", \"Order Cancel Requests\" under Single/General Order Handling)." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Purpose-group heading inside a category's Messages sub-section." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path schema1:name ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeOrdStatusPrecedenceEntry> ;
+            sh:description "Rows of the OrdStatus(39) precedence table that appears inside the Execution Reports purpose-group of the Single/General Order Handling category." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 3 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-trade/trade_ord_status_precedence_entries> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeMessageDetail> ;
+            sh:description "Messages bundled under the purpose-group heading." ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 2 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/messages> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Description of the purpose-group's role within the category." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path dcterms:description ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeMessageGroup> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-trade/TradeOrdStatusPrecedenceEntry> a sh:NodeShape ;
+    rdfs:comment "One row of the OrdStatus(39) precedence table published in the Execution Reports purpose-group of the Single/General Order Handling category. Defines the precedence ranking used to resolve simultaneous state transitions on an order, paired with the human-readable OrdStatus label and its descriptive prose." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Human-readable OrdStatus(39) label as printed in the Execution Reports precedence table (e.g. \"Pending Cancel\", \"Done for Day\", \"Filled\")." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-trade/trade_ord_status_label> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Verbatim OrdStatus description from the table." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path dcterms:description ],
+        [ sh:datatype xsd:integer ;
+            sh:description "Precedence rank (1 = lowest, higher numbers take precedence) of an OrdStatus(39) value used to resolve simultaneous state transitions on an order." ;
+            sh:maxCount 1 ;
+            sh:maxInclusive 11 ;
+            sh:minCount 1 ;
+            sh:minInclusive 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-trade/trade_ord_status_precedence> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeOrdStatusPrecedenceEntry> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureLayoutRow> a sh:NodeShape ;
+    rdfs:comment "One row of the layout table published in the Infrastructure Appendix for a message or component. Each row identifies either a FIX field (by tag number + name) or an embedded component (by name), records whether it is required, carries the Description-column text, and flags whether it appears as a nested child of a repeating-group counter." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:boolean ;
+            sh:description "Whether the row appears nested under a repeating-group counter (i.e. its Tag column is prefixed with the \"→\" arrow in the source table)." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/infra_layout_nested> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Free-text content of the Description column of the row (may be empty)." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/infra_layout_description> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Element name as printed in the Name column — either the FIX field name (e.g. ApplReqID) or the component name (e.g. StandardHeader, ApplIDRequestGrp)." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/infra_layout_element_name> ],
+        [ sh:datatype xsd:integer ;
+            sh:description "FIX tag number drawn from the Tag column when the row is a field (i.e. layout_kind = FIELD). Absent for COMPONENT rows." ;
+            sh:maxCount 1 ;
+            sh:minInclusive 0 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/infra_layout_field_tag> ],
+        [ sh:description "Row kind — either a FIX field (numeric Tag) or an embedded component (literal \"Component\" in the Tag column of the source table)." ;
+            sh:in ( "FIELD" "COMPONENT" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/infra_layout_kind> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description "Whether the field or component is required, as printed in the Req’d column of the source layout table (\"Y\" / \"N\")." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/infra_layout_required> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureLayoutRow> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeMessageDetail> a sh:NodeShape ;
+    rdfs:comment "Per-message description block from a Post-Trade category section." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Free-text description." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path dcterms:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "PascalCase name of the message." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:name ],
+        [ sh:description "URL of the detailed message- or component-layout." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 3 ;
+            sh:path schema1:url ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeLayoutRow> ;
+            sh:description "Ordered rows of the layout table published for the message or component in the Post-Trade Appendix." ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-post-trade/post_layout_rows> ],
+        [ sh:datatype xsd:string ;
+            sh:description "MsgType(35) wire value identifying the message." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/msg_type> ;
+            sh:pattern "^[A-Za-z0-9]{1,3}$" ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeMessageDetail> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeMessageDetail> a sh:NodeShape ;
+    rdfs:comment "Per-category message description." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "MsgType(35) wire value identifying the message." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/msg_type> ;
+            sh:pattern "^[A-Za-z0-9]{1,3}$" ],
+        [ sh:datatype xsd:string ;
+            sh:description "Description of the message's purpose and usage." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path dcterms:description ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeLayoutRow> ;
+            sh:description "Ordered rows of the layout table published for the message or component in the Pre-Trade Appendix." ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/pre_layout_rows> ],
+        [ sh:description "URL of the detailed message- or component-layout." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 3 ;
+            sh:path schema1:url ],
+        [ sh:datatype xsd:string ;
+            sh:description "PascalCase name of the message." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:name ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeMessageDetail> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-trade/TradeComponentDetail> a sh:NodeShape ;
+    rdfs:comment "Per-category component description." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "REPEATING or NON_REPEATING." ;
+            sh:in ( "REPEATING" "NON_REPEATING" ) ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-trade/trade_repetition> ],
+        [ sh:datatype xsd:string ;
+            sh:description "PascalCase name of the component." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path schema1:name ],
+        [ sh:description "URL of the detailed message- or component-layout in the Trade Appendix." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 3 ;
+            sh:path schema1:url ],
+        [ sh:datatype xsd:string ;
+            sh:description "Description of the component's purpose." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path dcterms:description ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeLayoutRow> ;
+            sh:description "Ordered rows of the layout table published for the message or component in the Trade Appendix." ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-trade/trade_layout_rows> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeComponentDetail> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-infrastructure/ApplicationMessageReferenceKey> a sh:NodeShape ;
+    rdfs:comment "One row of a \"Key Fields for <area> Application Message References\" table identifying the field whose value is copied into BusinessRejectRefID(379)." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Category label as printed in the source table (free text; may include parenthesised sub-categories such as \"Single General Order Handling\")." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/category_label> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Source field copied into BusinessRejectRefID(379) when the target message lacks its own reject. May enumerate several alternatives joined by \"or\"." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/business_reject_ref_id_value> ],
+        [ sh:datatype xsd:string ;
+            sh:description "FIX message name with MsgType in parentheses, e.g. AllocationInstruction(35=J)." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/fix_message> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/ApplicationMessageReferenceKey> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-infrastructure/StandardResponseMapping> a sh:NodeShape ;
+    rdfs:comment "One row of a \"Standard Responses for <area> Messages\" table mapping a request message to its appropriate response(s)." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "FIX message name with MsgType in parentheses, e.g. AllocationInstruction(35=J)." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/fix_message> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Category label as printed in the source table (free text; may include parenthesised sub-categories such as \"Single General Order Handling\")." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/category_label> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Free-text appropriate-response cell from the Standard Responses tables." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/appropriate_responses> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/StandardResponseMapping> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeLayoutRow> a sh:NodeShape ;
+    rdfs:comment "One row of the layout table published in the Post-Trade Appendix for a message or component. Each row identifies either a FIX field (by tag number + name) or an embedded component (by name), records whether it is required, carries the Description-column text, and flags whether it appears as a nested child of a repeating-group counter." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:integer ;
+            sh:description "FIX tag number drawn from the Tag column when the row is a field (i.e. layout_kind = FIELD). Absent for COMPONENT rows." ;
+            sh:maxCount 1 ;
+            sh:minInclusive 0 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-post-trade/post_layout_field_tag> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description "Whether the field or component is required, as printed in the Req’d column of the source layout table (\"Y\" / \"N\")." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-post-trade/post_layout_required> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Element name as printed in the Name column — either the FIX field name or the component name." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-post-trade/post_layout_element_name> ],
+        [ sh:description "Row kind — either a FIX field (numeric Tag) or an embedded component (literal \"Component\" in the Tag column of the source table)." ;
+            sh:in ( "FIELD" "COMPONENT" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-post-trade/post_layout_kind> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Free-text content of the Description column of the row (may be empty)." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-post-trade/post_layout_description> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description "Whether the row appears nested under a repeating-group counter (i.e. its Tag column is prefixed with the \"→\" arrow in the source table)." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-post-trade/post_layout_nested> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeLayoutRow> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeLayoutRow> a sh:NodeShape ;
+    rdfs:comment "One row of the layout table published in the Pre-Trade Appendix for a message or component. Each row identifies either a FIX field (by tag number + name) or an embedded component (by name), records whether it is required, carries the Description-column text, and flags whether it appears as a nested child of a repeating-group counter." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:boolean ;
+            sh:description "Whether the row appears nested under a repeating-group counter (i.e. its Tag column is prefixed with the \"→\" arrow in the source table)." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/pre_layout_nested> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Element name as printed in the Name column — either the FIX field name or the component name." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/pre_layout_element_name> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Free-text content of the Description column of the row (may be empty)." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/pre_layout_description> ],
+        [ sh:description "Row kind — either a FIX field (numeric Tag) or an embedded component (literal \"Component\" in the Tag column of the source table)." ;
+            sh:in ( "FIELD" "COMPONENT" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/pre_layout_kind> ],
+        [ sh:datatype xsd:integer ;
+            sh:description "FIX tag number drawn from the Tag column when the row is a field (i.e. layout_kind = FIELD). Absent for COMPONENT rows." ;
+            sh:maxCount 1 ;
+            sh:minInclusive 0 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/pre_layout_field_tag> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description "Whether the field or component is required, as printed in the Req’d column of the source layout table (\"Y\" / \"N\")." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/pre_layout_required> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeLayoutRow> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-trade/TradeLayoutRow> a sh:NodeShape ;
+    rdfs:comment "One row of the layout table published in the Trade Appendix for a message or component. Each row identifies either a FIX field (by tag number + name) or an embedded component (by name), records whether it is required, carries the Description-column text, and flags whether it appears as a nested child of a repeating-group counter." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "Row kind — either a FIX field (numeric Tag) or an embedded component (literal \"Component\" in the Tag column of the source table)." ;
+            sh:in ( "FIELD" "COMPONENT" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-trade/trade_layout_kind> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Free-text content of the Description column of the row (may be empty)." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-trade/trade_layout_description> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description "Whether the row appears nested under a repeating-group counter (i.e. its Tag column is prefixed with the \"→\" arrow in the source table)." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-trade/trade_layout_nested> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Element name as printed in the Name column — either the FIX field name or the component name." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-trade/trade_layout_element_name> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description "Whether the field or component is required, as printed in the Req'd column of the source layout table (\"Y\" / \"N\")." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-trade/trade_layout_required> ],
+        [ sh:datatype xsd:integer ;
+            sh:description "FIX tag number drawn from the Tag column when the row is a field (i.e. layout_kind = FIELD). Absent for COMPONENT rows." ;
+            sh:maxCount 1 ;
+            sh:minInclusive 0 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-trade/trade_layout_field_tag> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeLayoutRow> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-trade/TradeMessageDetail> a sh:NodeShape ;
+    rdfs:comment "Per-category message description." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "MsgType(35) wire value identifying the message." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/msg_type> ;
+            sh:pattern "^[A-Za-z0-9]{1,3}$" ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeLayoutRow> ;
+            sh:description "Ordered rows of the layout table published for the message or component in the Trade Appendix." ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-trade/trade_layout_rows> ],
+        [ sh:datatype xsd:string ;
+            sh:description "PascalCase name of the message." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:name ],
+        [ sh:datatype xsd:string ;
+            sh:description "Description of the message's purpose and usage." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path dcterms:description ],
+        [ sh:description "URL of the detailed message- or component-layout in the Trade Appendix." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 3 ;
+            sh:path schema1:url ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeMessageDetail> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-base/Component> a sh:NodeShape ;
+    rdfs:comment "A FIX component — a named set of related fields." ;
+    sh:closed false ;
+    sh:ignoredProperties ( <https://w3id.org/lmodel/fix-protocol/fix-base/gc_id> <https://w3id.org/lmodel/fix-protocol/fix-base/business_area> <https://w3id.org/lmodel/fix-protocol/fix-base/category> <https://w3id.org/lmodel/fix-protocol/fix-base/component_group> <https://w3id.org/lmodel/fix-protocol/fix-base/applies_to_underlying> <https://w3id.org/lmodel/fix-protocol/fix-base/gc_referenced_in> <https://w3id.org/lmodel/fix-protocol/fix-base/conceptually_identical_to> <https://w3id.org/lmodel/fix-protocol/fix-base/applies_to_leg> <https://w3id.org/lmodel/fix-protocol/fix-base/applies_to_instrument> rdf:type ) ;
+    sh:property [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-base/Field> ;
+            sh:description "Fields directly contained by the enclosing element." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/fields> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-base/Component> ;
+            sh:description "Components nested within this component." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 5 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/nested_components> ],
+        [ sh:datatype xsd:string ;
+            sh:description "PascalCase name of the component." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path schema1:name ],
+        [ sh:datatype xsd:string ;
+            sh:description "Description of the component." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path dcterms:description ],
+        [ sh:datatype xsd:boolean ;
+            sh:description "True when the component is a repeating group." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/is_repeating_group> ],
+        [ sh:description "Sharing scope of the component." ;
+            sh:in ( "GLOBAL" "COMMON" "SPECIFIC" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 2 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/scope> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-base/Component> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-base/Field> a sh:NodeShape ;
+    rdfs:comment "A FIX field — a uniquely tagged data element with a FIX datatype." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "FIX datatype of the field." ;
+            sh:in ( "int" "TagNum" "SeqNum" "NumInGroup" "DayOfMonth" "float" "Qty" "Price" "PriceOffset" "Amt" "Percentage" "char" "Boolean" "String" "MultipleCharValue" "MultipleStringValue" iso3166: iso4217: iso10383: "MonthYear" "UTCTimestamp" "UTCTimeOnly" "UTCDateOnly" "LocalMktDate" "TZTimeOnly" "TZTimestamp" "Length" "data" "Tenor" "Reserved100Plus" "Reserved1000Plus" "Reserved4000Plus" "XMLData" iso639: "LocalMktTime" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 2 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/datatype> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description "True when the field is a User Defined Field." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/is_user_defined> ],
+        [ sh:datatype xsd:integer ;
+            sh:description "Numeric tag of the field." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/tag> ],
+        [ sh:datatype xsd:string ;
+            sh:description "PascalCase name of the field." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:name ],
+        [ sh:datatype xsd:string ;
+            sh:description "Description of the field's purpose." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path dcterms:description ],
+        [ sh:description "Required-status of the field within the enclosing context." ;
+            sh:in ( "REQUIRED" "OPTIONAL" "CONDITIONALLY_REQUIRED" ) ;
+            sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/requirement> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-base/Field> .
+
+<https://w3id.org/lmodel/fix-protocol/fix-base/GlobalComponent> a sh:NodeShape ;
+    rdfs:comment "A component shared by messages of two or more business areas." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "PascalCase name of the component." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path schema1:name ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-base/Component> ;
+            sh:description "Components nested within this component." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 12 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/nested_components> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description "Applicable at the UnderlyingInstrument level." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/applies_to_underlying> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description "Applicable at the InstrumentLeg level." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/applies_to_leg> ],
+        [ sh:datatype xsd:integer ;
+            sh:description "Numeric component identifier extracted from the FIX Latest \"Global Components\" page anchor ID (e.g. \"comp1057-1\" → 1057). Stable across Extension Packs and shared with the FIX Orchestra repository." ;
+            sh:maxCount 1 ;
+            sh:minInclusive 0 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/gc_id> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Description of the component." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path dcterms:description ],
+        [ sh:description "Thematic group under which the component is presented." ;
+            sh:in ( "SECURITIES" "LEG_SECURITIES" "UNDERLYING_SECURITIES" "PARTIES" "ORDERS_AND_QUOTES" "TRADES" "COMMISSIONS_AND_FEES" "FINANCING" "PAYMENTS" "STIPULATIONS" "HEADER_AND_TRAILER" "MISCELLANEOUS" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/component_group> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description "True when the component is a repeating group." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/is_repeating_group> ],
+        [ sh:class <https://w3id.org/lmodel/fix-protocol/fix-base/Field> ;
+            sh:description "Fields directly contained by the enclosing element." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 11 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/fields> ],
+        [ sh:defaultValue "GLOBAL" ;
+            sh:description "Sharing scope of the component." ;
+            sh:in ( "GLOBAL" "COMMON" "SPECIFIC" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 9 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/scope> ],
+        [ sh:description "FIX business areas whose messages embed the Global Component." ;
+            sh:in ( "PRE_TRADE" "TRADE" "POST_TRADE" "INFRASTRUCTURE" ) ;
+            sh:order 6 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/gc_referenced_in> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Names of other components conceptually identical to this one." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/conceptually_identical_to> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description "Applicable at the Instrument level." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path <https://w3id.org/lmodel/fix-protocol/fix-base/applies_to_instrument> ] ;
+    sh:targetClass <https://w3id.org/lmodel/fix-protocol/fix-base/GlobalComponent> .
+

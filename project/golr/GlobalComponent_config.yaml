@@ -1,0 +1,52 @@
+# metamodel_version: 1.11.0id: GlobalComponent
+schema_generating: true
+description: A component shared by messages of two or more business areas.
+display_name: GlobalComponent
+document_category: GlobalComponent
+weight: 20
+fields:
+- id: component_name
+  description: PascalCase name of the component.
+  display_name: Component_component_name
+- id: description
+  description: Description of the component.
+  display_name: Component_description
+- id: is_repeating_group
+  description: True when the component is a repeating group.
+  display_name: is_repeating_group
+- id: fields
+  description: Fields directly contained by the enclosing element.
+  display_name: fields
+  cardinality: multi
+- id: nested_components
+  description: Components nested within this component.
+  display_name: nested_components
+  cardinality: multi
+- id: component_group
+  description: Thematic group under which the component is presented.
+  display_name: GlobalComponent_component_group
+- id: applies_to_instrument
+  description: Applicable at the Instrument level.
+  display_name: applies_to_instrument
+- id: applies_to_leg
+  description: Applicable at the InstrumentLeg level.
+  display_name: applies_to_leg
+- id: applies_to_underlying
+  description: Applicable at the UnderlyingInstrument level.
+  display_name: applies_to_underlying
+- id: conceptually_identical_to
+  description: Names of other components conceptually identical to this one.
+  display_name: conceptually_identical_to
+  cardinality: multi
+- id: gc_id
+  description: "Numeric component identifier extracted from the FIX Latest \"Global\
+    \ Components\" page anchor ID (e.g. \"comp1057-1\" \u2192 1057). Stable across\
+    \ Extension Packs and shared with the FIX Orchestra repository."
+  display_name: gc_id
+- id: gc_referenced_in
+  description: FIX business areas whose messages embed the Global Component.
+  display_name: gc_referenced_in
+  cardinality: multi
+- id: scope
+  description: Sharing scope of the component.
+  display_name: GlobalComponent_scope

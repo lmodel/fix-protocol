@@ -1,0 +1,14 @@
+#curie_map:
+#  fix_protocol: https://w3id.org/lmodel/fix-protocol/
+#  iso27001: https://w3id.org/lmodel/iso27001/
+#  semapv: https://w3id.org/semapv/vocab/
+#  skos: http://www.w3.org/2004/02/skos/core#
+#mapping_set_id: https://w3id.org/lmodel/fix-protocol/mappings/fix-protocol-to-iso27001.sssom.tsv
+#mapping_set_description: LLM-generated mappings from the FIX Protocol LinkML schema to the ISO/IEC 27001 ISMS LinkML schema. Coverage is intentionally minimal because the schemas have very weak semantic overlap; mappings are speculative relatedMatch entries except for the Organization correspondence.
+#mapping_set_version: 0.1.0
+#license: https://creativecommons.org/licenses/by/4.0/
+#mapping_date: 2026-05-27
+subject_id	subject_label	predicate_id	object_id	object_label	mapping_justification	confidence	comment
+fix_protocol:BusinessRejectReasonDescription	BusinessRejectReasonDescription	skos:relatedMatch	iso27001:AuditFindingType	AuditFindingType	semapv:LLMBasedMatching	0.3	Business reject-reason codes loosely map to audit-finding classification.
+fix_protocol:ExtensionPack	ExtensionPack	skos:relatedMatch	iso27001:DocumentedInformation	DocumentedInformation	semapv:LLMBasedMatching	0.3	An Extension Pack is documented change information per ISO 27001 Clause 7.5.
+fix_protocol:FIXProtocolLimited	FIXProtocolLimited	skos:closeMatch	iso27001:Organization	Organization	semapv:LLMBasedMatching	0.7	Both denote an Organization entity in their respective contexts.

@@ -4,6 +4,8 @@
 
 FIX Protocol - LinkML Schema
 
+See [solution description](./docs/about.md) and [NOTICE](./NOTICE).
+
 ## Documentation Website
 
 [https://lmodel.github.io/fix-protocol](https://lmodel.github.io/fix-protocol)

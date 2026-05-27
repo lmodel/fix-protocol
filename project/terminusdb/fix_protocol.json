@@ -1,0 +1,3017 @@
+[
+  {
+    "@type": "@context",
+    "@documentation": {
+      "@title": "fix-protocol",
+      "@description": "FIX Protocol - LinkML Schema"
+    },
+    "@schema": "https://w3id.org/lmodel/fix-protocol#",
+    "@base": "https://w3id.org/lmodel/data/"
+  },
+  {
+    "@type": "Class",
+    "@id": "AllocationFragmentationFieldMap",
+    "@documentation": {
+      "@comment": "One row of the table mapping an allocation message to its fragmentation-related fields.",
+      "@properties": {
+        "msg_type": "MsgType(35) wire value identifying the message.",
+        "message_name": "PascalCase name of the message.",
+        "total_count_field": "Field carrying the total number of repeating-group entries across all fragments (e.g. TotNoAllocs).",
+        "fragment_count_field": "Field carrying the number of entries in the current message fragment (e.g. NoAllocs).",
+        "principal_message_reference": "Principal message reference field used to bind allocation message fragments together (e.g. AllocID, AllocReportID)."
+      }
+    },
+    "msg_type": "xsd:string",
+    "message_name": "xsd:string",
+    "total_count_field": "xsd:string",
+    "fragment_count_field": "xsd:string",
+    "principal_message_reference": "xsd:string"
+  },
+  {
+    "@type": "Class",
+    "@id": "AllocationStatusDescription",
+    "@documentation": {
+      "@comment": "One row of the AllocStatus(87) value/description table.",
+      "@properties": {
+        "status_code": "Wire status code as referenced in the chapter.",
+        "status_label": "Human-readable label of the status code.",
+        "description": "Free-text description."
+      }
+    },
+    "status_code": "xsd:string",
+    "status_label": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "ApplicationMessageReferenceKey",
+    "@documentation": {
+      "@comment": "One row of a \"Key Fields for <area> Application Message References\" table identifying the field whose value is copied into BusinessRejectRefID(379).",
+      "@properties": {
+        "category_label": "Category label as printed in the source table (free text; may include parenthesised sub-categories such as \"Single General Order Handling\").",
+        "fix_message": "FIX message name with MsgType in parentheses, e.g. AllocationInstruction(35=J).",
+        "business_reject_ref_id_value": "Source field copied into BusinessRejectRefID(379) when the target message lacks its own reject. May enumerate several alternatives joined by \"or\"."
+      }
+    },
+    "category_label": "xsd:string",
+    "fix_message": "xsd:string",
+    "business_reject_ref_id_value": "xsd:string"
+  },
+  {
+    "@type": "Class",
+    "@id": "BusinessArea",
+    "@documentation": {
+      "@comment": "A top-level business area of the FIX Latest specification.",
+      "@properties": {
+        "area": "Identity of the business area.",
+        "title": "Display title of the area.",
+        "description": "Description of the area.",
+        "categories": "Message categories defined within a business area."
+      }
+    },
+    "area": "BusinessAreaEnum",
+    "title": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "categories": {
+      "@type": "List",
+      "@class": "MessageCategory"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "BusinessRejectReasonDescription",
+    "@documentation": {
+      "@comment": "One entry of the BusinessRejectReason(380) code table.",
+      "@properties": {
+        "reject_reason_code": "Numeric code value of BusinessRejectReason(380).",
+        "reject_reason_label": "Human-readable label of a BusinessRejectReason(380) code."
+      }
+    },
+    "reject_reason_code": "xsd:integer",
+    "reject_reason_label": "xsd:string"
+  },
+  {
+    "@type": "Class",
+    "@id": "ClearingServicePostTradeProcessingFormat",
+    "@documentation": {
+      "@comment": "One message-format row from the Post-Trade Processing Clearing Services section, with its supported actions.",
+      "@properties": {
+        "message_format": "Clearing-service message format family referenced in the chapter.",
+        "supported_actions": "Action labels (e.g. Allocation, Accept, Reject, Release, Change, Delete) supported by a clearing-service message format."
+      }
+    },
+    "message_format": "ClearingServiceForPostTradeProcessingEnum",
+    "supported_actions": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "CommonComponent",
+    "@documentation": {
+      "@comment": "A component used only by messages within a single business area.",
+      "@properties": {
+        "component_name": "PascalCase name of the component.",
+        "description": "Description of the component.",
+        "is_repeating_group": "True when the component is a repeating group.",
+        "fields": "Fields directly contained by the enclosing element.",
+        "nested_components": "Components nested within this component.",
+        "business_area": "Business area the element belongs to.",
+        "scope": "Sharing scope of the component."
+      }
+    },
+    "@inherits": [
+      "Component"
+    ],
+    "component_name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "is_repeating_group": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    },
+    "fields": {
+      "@type": "List",
+      "@class": "Field"
+    },
+    "nested_components": {
+      "@type": "Set",
+      "@class": "Component"
+    },
+    "business_area": "BusinessAreaEnum",
+    "scope": "ComponentScope"
+  },
+  {
+    "@type": "Class",
+    "@id": "CommonComponentDetail",
+    "@documentation": {
+      "@comment": "Per-common-component description.",
+      "@properties": {
+        "component_name": "PascalCase name of the component.",
+        "repetition": "REPEATING or NON_REPEATING.",
+        "description": "Description of the common component's purpose.",
+        "layout_url": "URL of the detailed message- or component-layout.",
+        "pre_layout_rows": "Ordered rows of the layout table published for the message or component in the Pre-Trade Appendix."
+      }
+    },
+    "component_name": "PreTradeCommonComponentName",
+    "repetition": {
+      "@type": "Optional",
+      "@class": "ComponentRepetition"
+    },
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "layout_url": {
+      "@type": "Optional",
+      "@class": "xsd:anyURI"
+    },
+    "pre_layout_rows": {
+      "@type": "List",
+      "@class": "PreTradeLayoutRow"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "Component",
+    "@documentation": {
+      "@comment": "A FIX component \u2014 a named set of related fields.",
+      "@properties": {
+        "component_name": "PascalCase name of the component.",
+        "description": "Description of the component.",
+        "scope": "Sharing scope of the component.",
+        "is_repeating_group": "True when the component is a repeating group.",
+        "fields": "Fields directly contained by the enclosing element.",
+        "nested_components": "Components nested within this component."
+      }
+    },
+    "@abstract": [],
+    "component_name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "scope": "ComponentScope",
+    "is_repeating_group": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    },
+    "fields": {
+      "@type": "List",
+      "@class": "Field"
+    },
+    "nested_components": {
+      "@type": "Set",
+      "@class": "Component"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "ComponentTableFootnote",
+    "@documentation": {
+      "@comment": "A footnote on the area-wide components table.",
+      "@properties": {
+        "footnote_number": "Footnote indicator on a component-table row.",
+        "component_name": "PascalCase name of the component.",
+        "introduced_in": "FIX version or Extension Pack that introduced the component.",
+        "sole_category": "Single category that actually uses the component.",
+        "text": "Footnote text."
+      }
+    },
+    "footnote_number": "xsd:integer",
+    "component_name": "xsd:string",
+    "introduced_in": "xsd:string",
+    "sole_category": "PreTradeCategoryEnum",
+    "text": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "ExtensionPack",
+    "@documentation": {
+      "@comment": "A unit of change to FIX Latest.",
+      "@properties": {
+        "number": "Sequential identifier of the Extension Pack.",
+        "title": "Short descriptive title.",
+        "size": "Qualitative size indicator (XXS..XXL).",
+        "enhancement_summary": "Narrative summary of what the EP introduces.",
+        "applies_to_session_layer_only": "True when the EP applies only to the FIX Session Layer.",
+        "applies_to_fixml_only": "True when the EP applies only to the FIXML encoding."
+      }
+    },
+    "number": "xsd:integer",
+    "title": "xsd:string",
+    "size": {
+      "@type": "Optional",
+      "@class": "ExtensionPackSize"
+    },
+    "enhancement_summary": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "applies_to_session_layer_only": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    },
+    "applies_to_fixml_only": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "Field",
+    "@documentation": {
+      "@comment": "A FIX field \u2014 a uniquely tagged data element with a FIX datatype.",
+      "@properties": {
+        "tag": "Numeric tag of the field.",
+        "field_name": "PascalCase name of the field.",
+        "datatype": "FIX datatype of the field.",
+        "description": "Description of the field's purpose.",
+        "requirement": "Required-status of the field within the enclosing context.",
+        "is_user_defined": "True when the field is a User Defined Field."
+      }
+    },
+    "tag": "xsd:integer",
+    "field_name": "xsd:string",
+    "datatype": "FIXDatatypeName",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "requirement": {
+      "@type": "Optional",
+      "@class": "FieldRequirement"
+    },
+    "is_user_defined": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "FIXDatatype",
+    "@documentation": {
+      "@comment": "A FIX Protocol datatype.",
+      "@properties": {
+        "datatype_name": "Canonical FIX datatype name.",
+        "definition": "Prose definition of the datatype.",
+        "value_space": "ISO/IEC 11404:2007 GPD value space assigned to the datatype.",
+        "value_space_notes": "Additional value-space constraints.",
+        "deprecated_for_new_designs": "True for datatypes not permitted in new designs.",
+        "external_code_set": "Reference standard for datatypes backed by an external code set.",
+        "time_unit": "Time-unit precision for time-bearing datatypes.",
+        "radix": "Numeric radix for scaled value-space datatypes.",
+        "repertoire": "Character repertoire for character/string datatypes.",
+        "index_lower_bound": "Inclusive lower bound of a bounded-array index.",
+        "index_upper_bound": "Inclusive upper bound of a bounded-array index.",
+        "minimum_value": "Inclusive lower bound on the integer value space.",
+        "maximum_value": "Inclusive upper bound on the integer value space.",
+        "footnote_numbers": "Footnote indicators attached to a datatype row."
+      }
+    },
+    "datatype_name": "FIXDatatypeName",
+    "definition": "xsd:string",
+    "value_space": {
+      "@type": "Set",
+      "@class": "ISO11404ValueSpace"
+    },
+    "value_space_notes": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "deprecated_for_new_designs": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    },
+    "external_code_set": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "time_unit": {
+      "@type": "Set",
+      "@class": "TimePrecision"
+    },
+    "radix": {
+      "@type": "Optional",
+      "@class": "xsd:integer"
+    },
+    "repertoire": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "index_lower_bound": {
+      "@type": "Optional",
+      "@class": "xsd:integer"
+    },
+    "index_upper_bound": {
+      "@type": "Optional",
+      "@class": "xsd:integer"
+    },
+    "minimum_value": {
+      "@type": "Optional",
+      "@class": "xsd:integer"
+    },
+    "maximum_value": {
+      "@type": "Optional",
+      "@class": "xsd:integer"
+    },
+    "footnote_numbers": {
+      "@type": "Set",
+      "@class": "xsd:integer"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "FIXFamilyStandard",
+    "@documentation": {
+      "@comment": "A member standard of the FIX Family of Standards.",
+      "@properties": {
+        "id": "Unique identifier (CURIE or local name) of the element.",
+        "name": "Display name of the element.",
+        "description": "Free-text description.",
+        "acronym": "Short acronym used to refer to the standard.",
+        "see_also": "Related external resources.",
+        "layer": "The layer the standard belongs to.",
+        "version": "Version of the standard, if applicable.",
+        "session_profile": "Name of the session profile for session-layer variants.",
+        "encoding_name": "Named encoding, when layer is ENCODING."
+      }
+    },
+    "id": "xsd:string",
+    "name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "acronym": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "see_also": {
+      "@type": "Set",
+      "@class": "xsd:anyURI"
+    },
+    "layer": "StandardLayer",
+    "version": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "session_profile": {
+      "@type": "Optional",
+      "@class": "SessionProtocolName"
+    },
+    "encoding_name": {
+      "@type": "Optional",
+      "@class": "StandardEncodingName"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "FIXIntroduction",
+    "@documentation": {
+      "@comment": "Container for the structural elements of the FIX Latest Introduction section. Tree root for instance data.",
+      "@properties": {
+        "published_version": "Version stamp from the document header.",
+        "published_date": "Publication date of the document.",
+        "publisher": "Publishing body of the FIX Latest specification.",
+        "preface": "The Preface text of the specification.",
+        "introduction_text": "The Introduction prose section.",
+        "utc_leap_seconds_note": "Prose note on UTC leap-second handling for UTCTimestamp.",
+        "about_fpl": "Information about FIX Protocol Limited.",
+        "standards": "The FIX Family of Standards.",
+        "extension_packs": "The list of Extension Packs.",
+        "datatypes": "FIX Protocol datatype definitions and value spaces.",
+        "business_areas": "Top-level business areas of FIX Latest.",
+        "global_components": "Global Components defined in the Introduction.",
+        "udf_ranges": "Reserved ranges of user-defined-field tag numbers.",
+        "product_coverage": "Product/asset classes covered by FIX at the application layer."
+      }
+    },
+    "published_version": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "published_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "publisher": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "preface": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "introduction_text": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "utc_leap_seconds_note": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "about_fpl": {
+      "@type": "Optional",
+      "@class": "FIXProtocolLimited"
+    },
+    "standards": {
+      "@type": "List",
+      "@class": "FIXFamilyStandard"
+    },
+    "extension_packs": {
+      "@type": "List",
+      "@class": "ExtensionPack"
+    },
+    "datatypes": {
+      "@type": "List",
+      "@class": "FIXDatatype"
+    },
+    "business_areas": {
+      "@type": "List",
+      "@class": "BusinessArea"
+    },
+    "global_components": {
+      "@type": "List",
+      "@class": "GlobalComponent"
+    },
+    "udf_ranges": {
+      "@type": "List",
+      "@class": "UDFTagRange"
+    },
+    "product_coverage": {
+      "@type": "Set",
+      "@class": "ProductCoverage"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "FIXProtocolLimited",
+    "@documentation": {
+      "@comment": "The organization that maintains the FIX Protocol specification.",
+      "@properties": {
+        "brand_name": "Brand name used by the organization.",
+        "legal_name": "Legal name of the organization.",
+        "website": "Main website URL of the organization.",
+        "member_firms_url": "URL listing current FPL Member firms.",
+        "working_groups_url": "URL listing currently active FPL Working Groups.",
+        "committees_url": "URL listing Product and Regional Committees.",
+        "member_types": "Organization categories represented in FPL membership.",
+        "governance_bodies": "High-level governance bodies that represent FPL.",
+        "product_committees": "Global Product Committees maintained by FPL.",
+        "regional_committees": "Regional Committees maintained by FPL."
+      }
+    },
+    "brand_name": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "legal_name": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "website": {
+      "@type": "Optional",
+      "@class": "xsd:anyURI"
+    },
+    "member_firms_url": {
+      "@type": "Optional",
+      "@class": "xsd:anyURI"
+    },
+    "working_groups_url": {
+      "@type": "Optional",
+      "@class": "xsd:anyURI"
+    },
+    "committees_url": {
+      "@type": "Optional",
+      "@class": "xsd:anyURI"
+    },
+    "member_types": {
+      "@type": "Set",
+      "@class": "FPLMemberType"
+    },
+    "governance_bodies": {
+      "@type": "Set",
+      "@class": "FPLCommitteeRole"
+    },
+    "product_committees": {
+      "@type": "Set",
+      "@class": "FPLProductGroup"
+    },
+    "regional_committees": {
+      "@type": "Set",
+      "@class": "FPLRegion"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "GlobalComponent",
+    "@documentation": {
+      "@comment": "A component shared by messages of two or more business areas.",
+      "@properties": {
+        "component_name": "PascalCase name of the component.",
+        "description": "Description of the component.",
+        "is_repeating_group": "True when the component is a repeating group.",
+        "fields": "Fields directly contained by the enclosing element.",
+        "nested_components": "Components nested within this component.",
+        "component_group": "Thematic group under which the component is presented.",
+        "applies_to_instrument": "Applicable at the Instrument level.",
+        "applies_to_leg": "Applicable at the InstrumentLeg level.",
+        "applies_to_underlying": "Applicable at the UnderlyingInstrument level.",
+        "conceptually_identical_to": "Names of other components conceptually identical to this one.",
+        "gc_id": "Numeric component identifier extracted from the FIX Latest \"Global Components\" page anchor ID (e.g. \"comp1057-1\" \u2192 1057). Stable across Extension Packs and shared with the FIX Orchestra repository.",
+        "gc_referenced_in": "FIX business areas whose messages embed the Global Component.",
+        "scope": "Sharing scope of the component."
+      }
+    },
+    "@inherits": [
+      "Component"
+    ],
+    "component_name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "is_repeating_group": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    },
+    "fields": {
+      "@type": "List",
+      "@class": "Field"
+    },
+    "nested_components": {
+      "@type": "Set",
+      "@class": "Component"
+    },
+    "component_group": "ComponentGroup",
+    "applies_to_instrument": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    },
+    "applies_to_leg": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    },
+    "applies_to_underlying": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    },
+    "conceptually_identical_to": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "gc_id": {
+      "@type": "Optional",
+      "@class": "xsd:integer"
+    },
+    "gc_referenced_in": {
+      "@type": "Set",
+      "@class": "GlobalComponentBusinessAreaEnum"
+    },
+    "scope": "ComponentScope"
+  },
+  {
+    "@type": "Class",
+    "@id": "InfrastructureBusinessArea",
+    "@documentation": {
+      "@comment": "Tree-root container for the Infrastructure business area of FIX Latest.",
+      "@properties": {
+        "area": "Identity of the business area.",
+        "title": "Display title.",
+        "published_version": "Version stamp from the document header.",
+        "publisher": "Publishing body of the FIX Latest specification.",
+        "infra_introduction": "Prose introduction of the Infrastructure chapter.",
+        "diagram_conventions": "Sentence describing diagram conventions used in the chapter.",
+        "infra_common_components": "Component names declared in the area-wide components listing. Per the chapter prose, none of these are shared across categories within the area.",
+        "messages": "Messages defined within the enclosing element.",
+        "messages_overview_note": "Intro prose of the area-wide Messages sub-section.",
+        "components": "Components referenced by the enclosing element.",
+        "components_overview_note": "Intro prose of the area-wide Components sub-section.",
+        "infra_footnotes": "Footnotes attached to the area-wide Infrastructure components table.",
+        "infra_category_sections": "Per-category sub-sections of the Infrastructure chapter.",
+        "standard_responses_pre_trade": "\"Standard Responses for Pre-Trade Messages\" table rows.",
+        "standard_responses_trade": "\"Standard Responses for Trade Messages\" table rows.",
+        "standard_responses_post_trade": "\"Standard Responses for Post-Trade Messages\" table rows.",
+        "key_fields_pre_trade": "\"Key Fields for Pre-Trade Application Message References\" table rows.",
+        "key_fields_trade": "\"Key Fields for Trade Application Message References\" table rows.",
+        "key_fields_post_trade": "\"Key Fields for Post-Trade Application Message References\" table rows.",
+        "business_reject_reason_descriptions": "Descriptions tied to BusinessRejectReason(380) values.",
+        "infra_global_components": "Global Components (from the FIX Latest \"Global Components\" page) that are explicitly referenced by messages in the Infrastructure business area, together with their tag set and usage scope.",
+        "referenced_global_components": "Names of Global Components from the FIX Latest \"Global Components\" page that are referenced by messages in the containing business area. References instances of the :class:`GlobalComponent` class (declared in fix_base) by name."
+      }
+    },
+    "area": "BusinessAreaEnum",
+    "title": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "published_version": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "publisher": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "infra_introduction": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "diagram_conventions": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "infra_common_components": {
+      "@type": "Set",
+      "@class": "InfrastructureComponentName"
+    },
+    "messages": {
+      "@type": "List",
+      "@class": "InfrastructureMessageEntry"
+    },
+    "messages_overview_note": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "components": {
+      "@type": "List",
+      "@class": "InfrastructureComponentEntry"
+    },
+    "components_overview_note": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "infra_footnotes": {
+      "@type": "List",
+      "@class": "InfrastructureComponentTableFootnote"
+    },
+    "infra_category_sections": {
+      "@type": "List",
+      "@class": "InfrastructureCategorySection"
+    },
+    "standard_responses_pre_trade": {
+      "@type": "List",
+      "@class": "StandardResponseMapping"
+    },
+    "standard_responses_trade": {
+      "@type": "List",
+      "@class": "StandardResponseMapping"
+    },
+    "standard_responses_post_trade": {
+      "@type": "List",
+      "@class": "StandardResponseMapping"
+    },
+    "key_fields_pre_trade": {
+      "@type": "List",
+      "@class": "ApplicationMessageReferenceKey"
+    },
+    "key_fields_trade": {
+      "@type": "List",
+      "@class": "ApplicationMessageReferenceKey"
+    },
+    "key_fields_post_trade": {
+      "@type": "List",
+      "@class": "ApplicationMessageReferenceKey"
+    },
+    "business_reject_reason_descriptions": {
+      "@type": "List",
+      "@class": "BusinessRejectReasonDescription"
+    },
+    "infra_global_components": {
+      "@type": "List",
+      "@class": "InfrastructureGlobalComponentReference"
+    },
+    "referenced_global_components": {
+      "@type": "Set",
+      "@class": "GlobalComponent"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "InfrastructureCategorySection",
+    "@documentation": {
+      "@comment": "A \"Category \u2013 <name>\" sub-section of the Infrastructure chapter.",
+      "@properties": {
+        "category": "Message category.",
+        "title": "Display title.",
+        "description": "Free-text description.",
+        "category_components_note": "Intro prose of a category's Components sub-section.",
+        "messages": "Messages defined within the enclosing element.",
+        "infra_category_specific_components": "Per-component descriptions appearing in a category's Components sub-section.",
+        "network_status_scenarios": "Network Status Communication usage scenarios.",
+        "network_request_types_referenced": "NetworkRequestType(935) values explicitly cited in the Network Status Communication category prose.",
+        "application_message_report_uses": "Documented uses of ApplicationMessageReport(35=BY)."
+      }
+    },
+    "category": "InfrastructureCategoryEnum",
+    "title": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "category_components_note": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "messages": {
+      "@type": "List",
+      "@class": "InfrastructureMessageDetail"
+    },
+    "infra_category_specific_components": {
+      "@type": "List",
+      "@class": "InfrastructureComponentDetail"
+    },
+    "network_status_scenarios": {
+      "@type": "Set",
+      "@class": "NetworkStatusScenarioEnum"
+    },
+    "network_request_types_referenced": {
+      "@type": "Set",
+      "@class": "NetworkRequestTypeEnum"
+    },
+    "application_message_report_uses": {
+      "@type": "Set",
+      "@class": "ApplicationMessageReportTypeEnum"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "InfrastructureComponentDetail",
+    "@documentation": {
+      "@comment": "Per-component description appearing in a category's Components sub-section.",
+      "@properties": {
+        "component_name": "PascalCase name of the component.",
+        "repetition": "REPEATING or NON_REPEATING.",
+        "description": "Free-text description.",
+        "layout_url": "URL of the detailed message- or component-layout.",
+        "infra_layout_rows": "Ordered rows of the layout table published for the message or component in the Infrastructure Appendix."
+      }
+    },
+    "component_name": "xsd:string",
+    "repetition": {
+      "@type": "Optional",
+      "@class": "ComponentRepetition"
+    },
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "layout_url": {
+      "@type": "Optional",
+      "@class": "xsd:anyURI"
+    },
+    "infra_layout_rows": {
+      "@type": "List",
+      "@class": "InfrastructureLayoutRow"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "InfrastructureComponentEntry",
+    "@documentation": {
+      "@comment": "One row of the area-wide \"Components for Infrastructure Business Area\" table.",
+      "@properties": {
+        "component_name": "PascalCase name of the component.",
+        "repetition": "REPEATING or NON_REPEATING.",
+        "category": "Message category.",
+        "footnote_number": "Footnote indicator on a component-table row."
+      }
+    },
+    "component_name": "xsd:string",
+    "repetition": "ComponentRepetition",
+    "category": "InfrastructureCategoryEnum",
+    "footnote_number": {
+      "@type": "Optional",
+      "@class": "xsd:integer"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "InfrastructureComponentTableFootnote",
+    "@documentation": {
+      "@comment": "A footnote attached to a row of the area-wide Infrastructure components table.",
+      "@properties": {
+        "footnote_number": "Footnote indicator on a component-table row.",
+        "component_name": "PascalCase name of the component.",
+        "introduced_in": "FIX version or Extension Pack that introduced the component.",
+        "infra_sole_category": "Single Infrastructure category that actually uses the footnoted component.",
+        "text": "Footnote text."
+      }
+    },
+    "footnote_number": "xsd:integer",
+    "component_name": "xsd:string",
+    "introduced_in": "xsd:string",
+    "infra_sole_category": "InfrastructureCategoryEnum",
+    "text": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "InfrastructureGlobalComponentReference",
+    "@documentation": {
+      "@comment": "A reference from the Infrastructure business area to a Global Component declared on the FIX Latest \"Global Components\" page. Records the component name, the FIX tags it contributes, and the Infrastructure categories and messages that embed it.",
+      "@properties": {
+        "infra_global_component_name": "Name of a Global Component referenced from within the Infrastructure business area.",
+        "infra_global_component_repetition": "Repetition indicator for the Global Component as it appears in the referenced Infrastructure messages.",
+        "infra_global_component_field_tags": "FIX tag numbers contributed by the referenced Global Component (as listed on the Global Components page).",
+        "infra_global_component_field_names": "Human-readable field names of the tags contributed by the referenced Global Component.",
+        "infra_global_component_used_in": "Infrastructure categories that reference the Global Component.",
+        "infra_global_component_msg_types": "MsgType values within the Infrastructure business area that embed the referenced Global Component."
+      }
+    },
+    "infra_global_component_name": "InfrastructureGlobalComponentName",
+    "infra_global_component_repetition": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "infra_global_component_field_tags": {
+      "@type": "Set",
+      "@class": "xsd:integer"
+    },
+    "infra_global_component_field_names": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "infra_global_component_used_in": {
+      "@type": "Set",
+      "@class": "InfrastructureCategoryEnum"
+    },
+    "infra_global_component_msg_types": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "InfrastructureLayoutRow",
+    "@documentation": {
+      "@comment": "One row of the layout table published in the Infrastructure Appendix for a message or component. Each row identifies either a FIX field (by tag number + name) or an embedded component (by name), records whether it is required, carries the Description-column text, and flags whether it appears as a nested child of a repeating-group counter.",
+      "@properties": {
+        "infra_layout_kind": "Row kind \u2014 either a FIX field (numeric Tag) or an embedded component (literal \"Component\" in the Tag column of the source table).",
+        "infra_layout_field_tag": "FIX tag number drawn from the Tag column when the row is a field (i.e. layout_kind = FIELD). Absent for COMPONENT rows.",
+        "infra_layout_element_name": "Element name as printed in the Name column \u2014 either the FIX field name (e.g. ApplReqID) or the component name (e.g. StandardHeader, ApplIDRequestGrp).",
+        "infra_layout_required": "Whether the field or component is required, as printed in the Req\u2019d column of the source layout table (\"Y\" / \"N\").",
+        "infra_layout_description": "Free-text content of the Description column of the row (may be empty).",
+        "infra_layout_nested": "Whether the row appears nested under a repeating-group counter (i.e. its Tag column is prefixed with the \"\u2192\" arrow in the source table)."
+      }
+    },
+    "infra_layout_kind": "InfrastructureLayoutRowKindEnum",
+    "infra_layout_field_tag": {
+      "@type": "Optional",
+      "@class": "xsd:integer"
+    },
+    "infra_layout_element_name": "xsd:string",
+    "infra_layout_required": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    },
+    "infra_layout_description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "infra_layout_nested": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "InfrastructureMessageDetail",
+    "@documentation": {
+      "@comment": "Per-message description appearing in a category's Messages sub-section.",
+      "@properties": {
+        "msg_type": "MsgType(35) wire value identifying the message.",
+        "message_name": "PascalCase name of the message.",
+        "description": "Free-text description.",
+        "layout_url": "URL of the detailed message- or component-layout.",
+        "infra_layout_rows": "Ordered rows of the layout table published for the message or component in the Infrastructure Appendix."
+      }
+    },
+    "msg_type": "xsd:string",
+    "message_name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "layout_url": {
+      "@type": "Optional",
+      "@class": "xsd:anyURI"
+    },
+    "infra_layout_rows": {
+      "@type": "List",
+      "@class": "InfrastructureLayoutRow"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "InfrastructureMessageEntry",
+    "@documentation": {
+      "@comment": "One row of the area-wide \"Messages for Infrastructure Business Area\" table.",
+      "@properties": {
+        "msg_type": "MsgType(35) wire value identifying the message.",
+        "message_name": "PascalCase name of the message.",
+        "category": "Message category."
+      }
+    },
+    "msg_type": "xsd:string",
+    "message_name": "xsd:string",
+    "category": "InfrastructureCategoryEnum"
+  },
+  {
+    "@type": "Class",
+    "@id": "Message",
+    "@documentation": {
+      "@comment": "A FIX application message.",
+      "@properties": {
+        "msg_type": "MsgType(35) wire value identifying the message.",
+        "message_name": "PascalCase name of the message.",
+        "description": "Description of the message's purpose.",
+        "category": "Message category.",
+        "fields": "Fields directly contained by the enclosing element.",
+        "components": "Components referenced by the enclosing element."
+      }
+    },
+    "msg_type": "xsd:string",
+    "message_name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "category": {
+      "@type": "Optional",
+      "@class": "MessageCategoryEnum"
+    },
+    "fields": {
+      "@type": "List",
+      "@class": "Field"
+    },
+    "components": {
+      "@type": "Set",
+      "@class": "Component"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "MessageCategory",
+    "@documentation": {
+      "@comment": "A message category within a business area.",
+      "@properties": {
+        "category": "Identity of the message category.",
+        "title": "Display title of the category.",
+        "description": "Description of the category.",
+        "business_area": "Business area the element belongs to.",
+        "messages": "Messages defined within the enclosing element."
+      }
+    },
+    "category": "MessageCategoryEnum",
+    "title": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "business_area": "BusinessAreaEnum",
+    "messages": {
+      "@type": "List",
+      "@class": "Message"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "MessageGroup",
+    "@documentation": {
+      "@comment": "Purpose-grouped sub-section inside a category's Messages section.",
+      "@properties": {
+        "group_title": "Purpose-group heading inside a category's Messages sub-section.",
+        "description": "Description of the purpose-group's role within the category.",
+        "messages": "Messages bundled under the purpose-group heading."
+      }
+    },
+    "group_title": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "messages": {
+      "@type": "List",
+      "@class": "PreTradeMessageDetail"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "PostTradeBusinessArea",
+    "@documentation": {
+      "@comment": "Tree-root container for the Post-Trade business area of FIX Latest.",
+      "@properties": {
+        "area": "Identity of the business area.",
+        "title": "Display title.",
+        "published_version": "Version stamp from the document header.",
+        "publisher": "Publishing body of the FIX Latest specification.",
+        "post_introduction": "Prose introduction of the Post-Trade chapter.",
+        "diagram_conventions": "Sentence describing diagram conventions used in the chapter.",
+        "post_common_components": "Common Components declared at the top of the Post-Trade chapter.",
+        "messages": "Messages defined within the enclosing element.",
+        "components": "Components referenced by the enclosing element.",
+        "post_footnotes": "Footnotes attached to the area-wide components table.",
+        "post_category_sections": "Per-category sub-sections of the Post-Trade chapter.",
+        "post_common_component_details": "Per-common-component descriptions from the chapter's final Common Components section.",
+        "messages_overview_note": "Intro prose of the area-wide Messages sub-section.",
+        "components_overview_note": "Intro prose of the area-wide Components sub-section.",
+        "referenced_global_components": "Names of Global Components from the FIX Latest \"Global Components\" page that are referenced by messages in the containing business area. References instances of the :class:`GlobalComponent` class (declared in fix_base) by name."
+      }
+    },
+    "area": "BusinessAreaEnum",
+    "title": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "published_version": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "publisher": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "post_introduction": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "diagram_conventions": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "post_common_components": {
+      "@type": "Set",
+      "@class": "PostTradeCommonComponentName"
+    },
+    "messages": {
+      "@type": "List",
+      "@class": "PostTradeMessageEntry"
+    },
+    "components": {
+      "@type": "List",
+      "@class": "PostTradeComponentEntry"
+    },
+    "post_footnotes": {
+      "@type": "List",
+      "@class": "PostTradeComponentTableFootnote"
+    },
+    "post_category_sections": {
+      "@type": "List",
+      "@class": "PostTradeCategorySection"
+    },
+    "post_common_component_details": {
+      "@type": "List",
+      "@class": "PostTradeCommonComponentDetail"
+    },
+    "messages_overview_note": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "components_overview_note": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "referenced_global_components": {
+      "@type": "Set",
+      "@class": "GlobalComponent"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "PostTradeCategorySection",
+    "@documentation": {
+      "@comment": "A \"Category \u2013 <name>\" sub-section of the Post-Trade chapter.",
+      "@properties": {
+        "category": "Message category.",
+        "title": "Display title.",
+        "description": "Free-text description.",
+        "category_components_note": "Intro prose of a category's Components sub-section.",
+        "post_message_groups": "Purpose-grouped message descriptions inside a Post-Trade category.",
+        "messages": "Messages defined within the enclosing element.",
+        "post_category_specific_components": "Components used exclusively by messages within a category.",
+        "allocation_scenarios": "Communication options supported by the Allocation category for conveying allocation instructions.",
+        "allocation_roles": "Role labels used throughout the Allocation category prose.",
+        "post_trade_allocation_pricing_methods": "Methods supported for computing post-trade allocations.",
+        "allocation_status_descriptions": "Descriptions tied to AllocStatus(87) values as listed in the Allocation Instruction Acknowledgements section.",
+        "fragmentation_field_map": "Per-message mapping of fragmentation-related fields used by the Allocation messages.",
+        "trade_capture_report_usages": "Usages described in the \"Trade Capture Report Usages\" sub-section of the Trade Capture Reporting category.",
+        "trade_capture_report_identifier_rules": "Rules governing TradeCaptureReport(35=AE) identifier fields.",
+        "registration_status_descriptions": "Descriptions tied to RegistStatus(506) values.",
+        "clearing_services_for_position_management": "Business functions exposed by the Position Management Clearing Services.",
+        "clearing_services_for_post_trade_processing": "Per-format action sets exposed by the Post-Trade Processing Clearing Services.",
+        "collateral_management_usages": "Documented usages for the Collateral Management messages.",
+        "collateral_assignment_purposes": "Documented purposes for the CollateralAssignment(35=AY) message."
+      }
+    },
+    "category": "PostTradeCategoryEnum",
+    "title": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "category_components_note": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "post_message_groups": {
+      "@type": "List",
+      "@class": "PostTradeMessageGroup"
+    },
+    "messages": {
+      "@type": "List",
+      "@class": "PostTradeMessageDetail"
+    },
+    "post_category_specific_components": {
+      "@type": "List",
+      "@class": "PostTradeComponentDetail"
+    },
+    "allocation_scenarios": {
+      "@type": "Set",
+      "@class": "AllocationScenarioEnum"
+    },
+    "allocation_roles": {
+      "@type": "Set",
+      "@class": "AllocationRoleEnum"
+    },
+    "post_trade_allocation_pricing_methods": {
+      "@type": "Set",
+      "@class": "PostTradeAllocationPricingMethodEnum"
+    },
+    "allocation_status_descriptions": {
+      "@type": "List",
+      "@class": "AllocationStatusDescription"
+    },
+    "fragmentation_field_map": {
+      "@type": "List",
+      "@class": "AllocationFragmentationFieldMap"
+    },
+    "trade_capture_report_usages": {
+      "@type": "List",
+      "@class": "TradeCaptureReportUsage"
+    },
+    "trade_capture_report_identifier_rules": {
+      "@type": "List",
+      "@class": "TradeCaptureReportIdentifierRule"
+    },
+    "registration_status_descriptions": {
+      "@type": "List",
+      "@class": "RegistrationStatusDescription"
+    },
+    "clearing_services_for_position_management": {
+      "@type": "Set",
+      "@class": "ClearingServiceForPositionManagementEnum"
+    },
+    "clearing_services_for_post_trade_processing": {
+      "@type": "List",
+      "@class": "ClearingServicePostTradeProcessingFormat"
+    },
+    "collateral_management_usages": {
+      "@type": "Set",
+      "@class": "CollateralManagementUsageEnum"
+    },
+    "collateral_assignment_purposes": {
+      "@type": "Set",
+      "@class": "CollateralAssignmentPurposeEnum"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "PostTradeCommonComponentDetail",
+    "@documentation": {
+      "@comment": "Per-common-component description block from the chapter's final \"Common Components\" section.",
+      "@properties": {
+        "component_name": "PascalCase name of the component.",
+        "repetition": "REPEATING or NON_REPEATING.",
+        "description": "Free-text description.",
+        "layout_url": "URL of the detailed message- or component-layout.",
+        "post_layout_rows": "Ordered rows of the layout table published for the message or component in the Post-Trade Appendix."
+      }
+    },
+    "component_name": "PostTradeCommonComponentName",
+    "repetition": {
+      "@type": "Optional",
+      "@class": "ComponentRepetition"
+    },
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "layout_url": {
+      "@type": "Optional",
+      "@class": "xsd:anyURI"
+    },
+    "post_layout_rows": {
+      "@type": "List",
+      "@class": "PostTradeLayoutRow"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "PostTradeComponentDetail",
+    "@documentation": {
+      "@comment": "Per-component description block from a Post-Trade category section's Components sub-section.",
+      "@properties": {
+        "component_name": "PascalCase name of the component.",
+        "repetition": "REPEATING or NON_REPEATING.",
+        "description": "Free-text description.",
+        "layout_url": "URL of the detailed message- or component-layout.",
+        "post_layout_rows": "Ordered rows of the layout table published for the message or component in the Post-Trade Appendix."
+      }
+    },
+    "component_name": "xsd:string",
+    "repetition": {
+      "@type": "Optional",
+      "@class": "ComponentRepetition"
+    },
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "layout_url": {
+      "@type": "Optional",
+      "@class": "xsd:anyURI"
+    },
+    "post_layout_rows": {
+      "@type": "List",
+      "@class": "PostTradeLayoutRow"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "PostTradeComponentEntry",
+    "@documentation": {
+      "@comment": "One row of the area-wide \"Components for Post-Trade Business Area\" table.",
+      "@properties": {
+        "component_name": "PascalCase name of the component.",
+        "repetition": "REPEATING or NON_REPEATING.",
+        "category": "Category label as printed in the component table; the token \"Common Components\" is allowed in addition to the PostTradeCategoryEnum values.",
+        "is_common": "True when the component is declared as a Common Component.",
+        "footnote_number": "Footnote indicator on a component-table row."
+      }
+    },
+    "component_name": "xsd:string",
+    "repetition": "ComponentRepetition",
+    "category": "xsd:string",
+    "is_common": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    },
+    "footnote_number": {
+      "@type": "Optional",
+      "@class": "xsd:integer"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "PostTradeComponentTableFootnote",
+    "@documentation": {
+      "@comment": "A footnote attached to a row of the area-wide Post-Trade components table.",
+      "@properties": {
+        "footnote_number": "Footnote indicator on a component-table row.",
+        "component_name": "PascalCase name of the component.",
+        "introduced_in": "FIX version or Extension Pack that introduced the component.",
+        "post_sole_category": "Single Post-Trade category that actually uses the component (per footnote).",
+        "text": "Footnote text."
+      }
+    },
+    "footnote_number": "xsd:integer",
+    "component_name": "xsd:string",
+    "introduced_in": "xsd:string",
+    "post_sole_category": "PostTradeCategoryEnum",
+    "text": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "PostTradeLayoutRow",
+    "@documentation": {
+      "@comment": "One row of the layout table published in the Post-Trade Appendix for a message or component. Each row identifies either a FIX field (by tag number + name) or an embedded component (by name), records whether it is required, carries the Description-column text, and flags whether it appears as a nested child of a repeating-group counter.",
+      "@properties": {
+        "post_layout_kind": "Row kind \u2014 either a FIX field (numeric Tag) or an embedded component (literal \"Component\" in the Tag column of the source table).",
+        "post_layout_field_tag": "FIX tag number drawn from the Tag column when the row is a field (i.e. layout_kind = FIELD). Absent for COMPONENT rows.",
+        "post_layout_element_name": "Element name as printed in the Name column \u2014 either the FIX field name or the component name.",
+        "post_layout_required": "Whether the field or component is required, as printed in the Req\u2019d column of the source layout table (\"Y\" / \"N\").",
+        "post_layout_description": "Free-text content of the Description column of the row (may be empty).",
+        "post_layout_nested": "Whether the row appears nested under a repeating-group counter (i.e. its Tag column is prefixed with the \"\u2192\" arrow in the source table)."
+      }
+    },
+    "post_layout_kind": "PostTradeLayoutRowKindEnum",
+    "post_layout_field_tag": {
+      "@type": "Optional",
+      "@class": "xsd:integer"
+    },
+    "post_layout_element_name": "xsd:string",
+    "post_layout_required": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    },
+    "post_layout_description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "post_layout_nested": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "PostTradeMessageDetail",
+    "@documentation": {
+      "@comment": "Per-message description block from a Post-Trade category section.",
+      "@properties": {
+        "msg_type": "MsgType(35) wire value identifying the message.",
+        "message_name": "PascalCase name of the message.",
+        "description": "Free-text description.",
+        "layout_url": "URL of the detailed message- or component-layout.",
+        "post_layout_rows": "Ordered rows of the layout table published for the message or component in the Post-Trade Appendix."
+      }
+    },
+    "msg_type": "xsd:string",
+    "message_name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "layout_url": {
+      "@type": "Optional",
+      "@class": "xsd:anyURI"
+    },
+    "post_layout_rows": {
+      "@type": "List",
+      "@class": "PostTradeLayoutRow"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "PostTradeMessageEntry",
+    "@documentation": {
+      "@comment": "One row of the area-wide \"Messages for Post-Trade Business Area\" table.",
+      "@properties": {
+        "msg_type": "MsgType(35) wire value identifying the message.",
+        "message_name": "PascalCase name of the message.",
+        "category": "Message category."
+      }
+    },
+    "msg_type": "xsd:string",
+    "message_name": "xsd:string",
+    "category": "PostTradeCategoryEnum"
+  },
+  {
+    "@type": "Class",
+    "@id": "PostTradeMessageGroup",
+    "@documentation": {
+      "@comment": "A purpose-themed grouping of messages within a Post-Trade category (e.g. \"Allocation Instructions\").",
+      "@properties": {
+        "group_title": "Purpose-group heading inside a category's Messages sub-section.",
+        "messages": "Messages defined within the enclosing element."
+      }
+    },
+    "group_title": "xsd:string",
+    "messages": {
+      "@type": "List",
+      "@class": "PostTradeMessageDetail"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "PreTradeBusinessArea",
+    "@documentation": {
+      "@comment": "Tree-root container for the Pre-Trade business area of FIX Latest.",
+      "@properties": {
+        "area": "Identity of the business area.",
+        "title": "Display title.",
+        "published_version": "Version stamp from the document header.",
+        "publisher": "Publishing body of the FIX Latest specification.",
+        "introduction": "Prose introduction of the chapter.",
+        "diagram_conventions": "Sentence describing diagram conventions used in the chapter.",
+        "messages_overview_note": "Intro prose of the area-wide Messages sub-section.",
+        "messages": "Area-wide pre-trade messages table.",
+        "components_overview_note": "Intro prose of the area-wide Components sub-section.",
+        "components": "Area-wide pre-trade components table.",
+        "common_components": "Common Components declared at the top of the chapter.",
+        "common_component_details": "Per-common-component descriptions from the chapter's final section.",
+        "footnotes": "Footnotes attached to the area-wide components table.",
+        "category_sections": "Per-category sub-sections of the chapter.",
+        "referenced_global_components": "Names of Global Components from the FIX Latest \"Global Components\" page that are referenced by messages in the containing business area. References instances of the :class:`GlobalComponent` class (declared in fix_base) by name."
+      }
+    },
+    "area": "BusinessAreaEnum",
+    "title": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "published_version": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "publisher": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "introduction": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "diagram_conventions": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "messages_overview_note": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "messages": {
+      "@type": "List",
+      "@class": "PreTradeMessageEntry"
+    },
+    "components_overview_note": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "components": {
+      "@type": "List",
+      "@class": "PreTradeComponentEntry"
+    },
+    "common_components": {
+      "@type": "Set",
+      "@class": "PreTradeCommonComponentName"
+    },
+    "common_component_details": {
+      "@type": "List",
+      "@class": "CommonComponentDetail"
+    },
+    "footnotes": {
+      "@type": "List",
+      "@class": "ComponentTableFootnote"
+    },
+    "category_sections": {
+      "@type": "List",
+      "@class": "PreTradeCategorySection"
+    },
+    "referenced_global_components": {
+      "@type": "Set",
+      "@class": "GlobalComponent"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "PreTradeCategorySection",
+    "@documentation": {
+      "@comment": "A per-category sub-section of the Pre-Trade chapter.",
+      "@properties": {
+        "category": "Message category.",
+        "title": "Display title.",
+        "description": "Free-text description.",
+        "quote_models": "Quoting business models referenced in the Quotation / Negotiation category.",
+        "message_groups": "Purpose-grouped message descriptions inside a category.",
+        "messages": "Messages defined in this category.",
+        "category_components_note": "Intro prose of a category's Components sub-section.",
+        "category_specific_components": "Components used exclusively by messages within a category."
+      }
+    },
+    "category": "PreTradeCategoryEnum",
+    "title": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "quote_models": {
+      "@type": "Set",
+      "@class": "QuoteModelEnum"
+    },
+    "message_groups": {
+      "@type": "List",
+      "@class": "MessageGroup"
+    },
+    "messages": {
+      "@type": "List",
+      "@class": "PreTradeMessageDetail"
+    },
+    "category_components_note": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "category_specific_components": {
+      "@type": "List",
+      "@class": "PreTradeComponentDetail"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "PreTradeComponentDetail",
+    "@documentation": {
+      "@comment": "Per-category component description.",
+      "@properties": {
+        "component_name": "PascalCase name of the component.",
+        "repetition": "REPEATING or NON_REPEATING.",
+        "description": "Description of the component's purpose.",
+        "layout_url": "URL of the detailed message- or component-layout.",
+        "pre_layout_rows": "Ordered rows of the layout table published for the message or component in the Pre-Trade Appendix."
+      }
+    },
+    "component_name": "xsd:string",
+    "repetition": {
+      "@type": "Optional",
+      "@class": "ComponentRepetition"
+    },
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "layout_url": {
+      "@type": "Optional",
+      "@class": "xsd:anyURI"
+    },
+    "pre_layout_rows": {
+      "@type": "List",
+      "@class": "PreTradeLayoutRow"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "PreTradeComponentEntry",
+    "@documentation": {
+      "@comment": "One row of the area-wide pre-trade components table.",
+      "@properties": {
+        "component_name": "PascalCase name of the component.",
+        "repetition": "REPEATING or NON_REPEATING.",
+        "category": "Category the component is listed under. Common Components are listed under the synthetic \"Common Components\" value.",
+        "is_common": "True when the component is declared as a Common Component.",
+        "footnote_number": "Footnote indicator on a component-table row."
+      }
+    },
+    "component_name": "xsd:string",
+    "repetition": "ComponentRepetition",
+    "category": "xsd:string",
+    "is_common": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    },
+    "footnote_number": {
+      "@type": "Optional",
+      "@class": "xsd:integer"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "PreTradeLayoutRow",
+    "@documentation": {
+      "@comment": "One row of the layout table published in the Pre-Trade Appendix for a message or component. Each row identifies either a FIX field (by tag number + name) or an embedded component (by name), records whether it is required, carries the Description-column text, and flags whether it appears as a nested child of a repeating-group counter.",
+      "@properties": {
+        "pre_layout_kind": "Row kind \u2014 either a FIX field (numeric Tag) or an embedded component (literal \"Component\" in the Tag column of the source table).",
+        "pre_layout_field_tag": "FIX tag number drawn from the Tag column when the row is a field (i.e. layout_kind = FIELD). Absent for COMPONENT rows.",
+        "pre_layout_element_name": "Element name as printed in the Name column \u2014 either the FIX field name or the component name.",
+        "pre_layout_required": "Whether the field or component is required, as printed in the Req\u2019d column of the source layout table (\"Y\" / \"N\").",
+        "pre_layout_description": "Free-text content of the Description column of the row (may be empty).",
+        "pre_layout_nested": "Whether the row appears nested under a repeating-group counter (i.e. its Tag column is prefixed with the \"\u2192\" arrow in the source table)."
+      }
+    },
+    "pre_layout_kind": "PreTradeLayoutRowKindEnum",
+    "pre_layout_field_tag": {
+      "@type": "Optional",
+      "@class": "xsd:integer"
+    },
+    "pre_layout_element_name": "xsd:string",
+    "pre_layout_required": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    },
+    "pre_layout_description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "pre_layout_nested": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "PreTradeMessageDetail",
+    "@documentation": {
+      "@comment": "Per-category message description.",
+      "@properties": {
+        "msg_type": "MsgType(35) wire value identifying the message.",
+        "message_name": "PascalCase name of the message.",
+        "description": "Description of the message's purpose and usage.",
+        "layout_url": "URL of the detailed message- or component-layout.",
+        "pre_layout_rows": "Ordered rows of the layout table published for the message or component in the Pre-Trade Appendix."
+      }
+    },
+    "msg_type": "xsd:string",
+    "message_name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "layout_url": {
+      "@type": "Optional",
+      "@class": "xsd:anyURI"
+    },
+    "pre_layout_rows": {
+      "@type": "List",
+      "@class": "PreTradeLayoutRow"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "PreTradeMessageEntry",
+    "@documentation": {
+      "@comment": "One row of the area-wide pre-trade messages table.",
+      "@properties": {
+        "msg_type": "MsgType(35) wire value identifying the message.",
+        "message_name": "PascalCase name of the message.",
+        "category": "Message category."
+      }
+    },
+    "msg_type": "xsd:string",
+    "message_name": "xsd:string",
+    "category": "PreTradeCategoryEnum"
+  },
+  {
+    "@type": "Class",
+    "@id": "RegistrationStatusDescription",
+    "@documentation": {
+      "@comment": "One row of the RegistStatus(506) value/description table.",
+      "@properties": {
+        "status_code": "Wire status code as referenced in the chapter.",
+        "status_label": "Human-readable label of the status code.",
+        "description": "Free-text description."
+      }
+    },
+    "status_code": "xsd:string",
+    "status_label": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "SpecificComponent",
+    "@documentation": {
+      "@comment": "A component used only by messages within a single category.",
+      "@properties": {
+        "component_name": "PascalCase name of the component.",
+        "description": "Description of the component.",
+        "is_repeating_group": "True when the component is a repeating group.",
+        "fields": "Fields directly contained by the enclosing element.",
+        "nested_components": "Components nested within this component.",
+        "business_area": "Business area the element belongs to.",
+        "category": "Message category.",
+        "scope": "Sharing scope of the component."
+      }
+    },
+    "@inherits": [
+      "Component"
+    ],
+    "component_name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "is_repeating_group": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    },
+    "fields": {
+      "@type": "List",
+      "@class": "Field"
+    },
+    "nested_components": {
+      "@type": "Set",
+      "@class": "Component"
+    },
+    "business_area": "BusinessAreaEnum",
+    "category": "MessageCategoryEnum",
+    "scope": "ComponentScope"
+  },
+  {
+    "@type": "Class",
+    "@id": "StandardResponseMapping",
+    "@documentation": {
+      "@comment": "One row of a \"Standard Responses for <area> Messages\" table mapping a request message to its appropriate response(s).",
+      "@properties": {
+        "category_label": "Category label as printed in the source table (free text; may include parenthesised sub-categories such as \"Single General Order Handling\").",
+        "fix_message": "FIX message name with MsgType in parentheses, e.g. AllocationInstruction(35=J).",
+        "appropriate_responses": "Free-text appropriate-response cell from the Standard Responses tables."
+      }
+    },
+    "category_label": "xsd:string",
+    "fix_message": "xsd:string",
+    "appropriate_responses": "xsd:string"
+  },
+  {
+    "@type": "Class",
+    "@id": "TradeAppendix",
+    "@documentation": {
+      "@comment": "Tree-root container for the Trade Appendix \u2014 the spec companion document that publishes the full message- and component-layout tables for every message and component used in the Trade business area, organized into one \"Appendix \u2013 <X> Category\" sub-section per Trade category plus a final \"Appendix \u2013 Common Category\" sub-section covering the layouts of the chapter's common components.",
+      "@properties": {
+        "title": "Display title.",
+        "published_version": "Version stamp from the document header.",
+        "publisher": "Publishing body of the FIX Latest specification.",
+        "description": "Optional preface prose for the Trade Appendix as a whole.",
+        "trade_appendix_sections": "Per-category sub-sections of the Trade Appendix \u2014 one \"Appendix \u2013 <X> Category\" section per Trade category, plus a synthetic \"Common Category\" section that lists layouts of the chapter's common components."
+      }
+    },
+    "title": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "published_version": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "publisher": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "trade_appendix_sections": {
+      "@type": "List",
+      "@class": "TradeAppendixSection"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "TradeAppendixSection",
+    "@documentation": {
+      "@comment": "One \"Appendix \u2013 <X> Category\" sub-section of the Trade Appendix. Bundles the per-message layout tables (TradeMessageDetail) and per-component layout tables (TradeComponentDetail) for messages and components that belong to one Trade category \u2014 or, for the synthetic \"Common\" section, the layouts of the chapter's common components.",
+      "@properties": {
+        "trade_appendix_category": "Identifier for an appendix section \u2014 either the Trade category name as printed in the heading (e.g. \"CrossOrders\", \"MultilegOrders\", \"OrderMassHandling\", \"ProgramTrading\", \"SingleGeneralOrderHandling\") or the literal \"Common\" for the common-components appendix.",
+        "title": "Section heading exactly as printed in the Trade Appendix (e.g. \"Appendix \u2013 CrossOrders Category\").",
+        "description": "Free-text description.",
+        "messages": "Layout tables for the messages that belong to the appendix section. Empty for the \"Common\" section.",
+        "components": "Layout tables for the components that belong to the appendix section."
+      }
+    },
+    "trade_appendix_category": "xsd:string",
+    "title": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "messages": {
+      "@type": "List",
+      "@class": "TradeMessageDetail"
+    },
+    "components": {
+      "@type": "Set",
+      "@class": "TradeComponentDetail"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "TradeBusinessArea",
+    "@documentation": {
+      "@comment": "Tree-root container for the Trade (Orders and Executions) business area of FIX Latest.",
+      "@properties": {
+        "trade_area": "Identity of the business area the chapter describes.",
+        "title": "Display title.",
+        "published_version": "Version stamp from the document header.",
+        "publisher": "Publishing body of the FIX Latest specification.",
+        "trade_introduction": "Prose introduction of the chapter.",
+        "trade_diagram_conventions": "Sentence describing diagram conventions used in the chapter.",
+        "trade_message_diagram_template_url": "URL of the \"Message Diagram Templates\" page referenced by the chapter introduction.",
+        "trade_messages_overview_note": "Intro prose of the area-wide Messages sub-section.",
+        "messages": "Area-wide trade messages table.",
+        "trade_components_overview_note": "Intro prose of the area-wide Components sub-section.",
+        "components": "Area-wide trade components table.",
+        "trade_common_components": "Common Components declared at the bottom of the chapter.",
+        "trade_common_component_details": "Per-common-component descriptions from the chapter's final section.",
+        "trade_footnotes": "Footnotes attached to the area-wide components table.",
+        "trade_category_sections": "Per-category sub-sections of the chapter.",
+        "referenced_global_components": "Names of Global Components from the FIX Latest \"Global Components\" page that are referenced by messages in the containing business area. References instances of the :class:`GlobalComponent` class (declared in fix_base) by name."
+      }
+    },
+    "trade_area": "BusinessAreaEnum",
+    "title": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "published_version": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "publisher": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "trade_introduction": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "trade_diagram_conventions": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "trade_message_diagram_template_url": {
+      "@type": "Optional",
+      "@class": "xsd:anyURI"
+    },
+    "trade_messages_overview_note": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "messages": {
+      "@type": "List",
+      "@class": "TradeMessageEntry"
+    },
+    "trade_components_overview_note": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "components": {
+      "@type": "List",
+      "@class": "TradeComponentEntry"
+    },
+    "trade_common_components": {
+      "@type": "Set",
+      "@class": "TradeCommonComponentName"
+    },
+    "trade_common_component_details": {
+      "@type": "List",
+      "@class": "TradeCommonComponentDetail"
+    },
+    "trade_footnotes": {
+      "@type": "List",
+      "@class": "TradeComponentTableFootnote"
+    },
+    "trade_category_sections": {
+      "@type": "List",
+      "@class": "TradeCategorySection"
+    },
+    "referenced_global_components": {
+      "@type": "Set",
+      "@class": "GlobalComponent"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "TradeCaptureReportIdentifierRule",
+    "@documentation": {
+      "@comment": "A rule governing one of the TradeCaptureReport(35=AE) identifier fields.",
+      "@properties": {
+        "identifier_role": "Role of the trade-capture-report identifier field.",
+        "description": "Free-text description."
+      }
+    },
+    "identifier_role": "TradeCaptureReportIdentifierRoleEnum",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "TradeCaptureReportUsage",
+    "@documentation": {
+      "@comment": "One documented usage of the TradeCaptureReport(35=AE) message.",
+      "@properties": {
+        "status_label": "Short label for the usage.",
+        "description": "Free-text description.",
+        "identifier_role": "Role of the trade-capture-report identifier field."
+      }
+    },
+    "status_label": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "identifier_role": {
+      "@type": "Optional",
+      "@class": "TradeCaptureReportIdentifierRoleEnum"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "TradeCategorySection",
+    "@documentation": {
+      "@comment": "A per-category sub-section of the Trade chapter.",
+      "@properties": {
+        "category": "Message category.",
+        "title": "Display title.",
+        "description": "Free-text description.",
+        "trade_category_background": "Optional \"Background\" prose preceding a category's message descriptions (e.g. the Cross Order Handling chapter's cross-trade overview).",
+        "trade_message_groups": "Purpose-grouped message descriptions inside a category.",
+        "messages": "Messages defined in this category.",
+        "trade_category_components_note": "Intro prose of a category's Components sub-section.",
+        "trade_category_specific_components": "Components used exclusively by messages within a single category.",
+        "trade_fragmentation_entries": "Rows of the fragmentation table listed in a Trade category that documents which messages may be fragmented and which repeating group is fragmentable (currently published only for List/Program/Basket Trading)."
+      }
+    },
+    "category": "TradeCategoryEnum",
+    "title": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "trade_category_background": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "trade_message_groups": {
+      "@type": "List",
+      "@class": "TradeMessageGroup"
+    },
+    "messages": {
+      "@type": "List",
+      "@class": "TradeMessageDetail"
+    },
+    "trade_category_components_note": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "trade_category_specific_components": {
+      "@type": "List",
+      "@class": "TradeComponentDetail"
+    },
+    "trade_fragmentation_entries": {
+      "@type": "List",
+      "@class": "TradeFragmentationEntry"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "TradeCommonComponentDetail",
+    "@documentation": {
+      "@comment": "Per-common-component description from the chapter's final \"Common Components\" section.",
+      "@properties": {
+        "component_name": "PascalCase name of the component.",
+        "trade_repetition": "REPEATING or NON_REPEATING.",
+        "description": "Description of the common component's purpose.",
+        "trade_layout_url": "URL of the detailed message- or component-layout in the Trade Appendix.",
+        "trade_layout_rows": "Ordered rows of the layout table published for the message or component in the Trade Appendix."
+      }
+    },
+    "component_name": "TradeCommonComponentName",
+    "trade_repetition": {
+      "@type": "Optional",
+      "@class": "TradeComponentRepetition"
+    },
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "trade_layout_url": {
+      "@type": "Optional",
+      "@class": "xsd:anyURI"
+    },
+    "trade_layout_rows": {
+      "@type": "List",
+      "@class": "TradeLayoutRow"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "TradeComponentDetail",
+    "@documentation": {
+      "@comment": "Per-category component description.",
+      "@properties": {
+        "component_name": "PascalCase name of the component.",
+        "trade_repetition": "REPEATING or NON_REPEATING.",
+        "description": "Description of the component's purpose.",
+        "trade_layout_url": "URL of the detailed message- or component-layout in the Trade Appendix.",
+        "trade_layout_rows": "Ordered rows of the layout table published for the message or component in the Trade Appendix."
+      }
+    },
+    "component_name": "xsd:string",
+    "trade_repetition": {
+      "@type": "Optional",
+      "@class": "TradeComponentRepetition"
+    },
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "trade_layout_url": {
+      "@type": "Optional",
+      "@class": "xsd:anyURI"
+    },
+    "trade_layout_rows": {
+      "@type": "List",
+      "@class": "TradeLayoutRow"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "TradeComponentEntry",
+    "@documentation": {
+      "@comment": "One row of the area-wide trade components table.",
+      "@properties": {
+        "component_name": "PascalCase name of the component.",
+        "trade_repetition": "REPEATING or NON_REPEATING.",
+        "category": "Category the component is listed under. Common Components are listed under the synthetic \"Common Components\" value.",
+        "trade_is_common": "True when the component is declared as a Common Component.",
+        "trade_footnote_number": "Footnote indicator on a component-table row."
+      }
+    },
+    "component_name": "xsd:string",
+    "trade_repetition": "TradeComponentRepetition",
+    "category": "xsd:string",
+    "trade_is_common": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    },
+    "trade_footnote_number": {
+      "@type": "Optional",
+      "@class": "xsd:integer"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "TradeComponentTableFootnote",
+    "@documentation": {
+      "@comment": "A footnote on the area-wide components table.",
+      "@properties": {
+        "trade_footnote_number": "Footnote indicator on a component-table row.",
+        "component_name": "PascalCase name of the component.",
+        "trade_introduced_in": "FIX version or Extension Pack that introduced the component.",
+        "trade_sole_category": "Single category that actually uses the component.",
+        "trade_footnote_text": "Footnote text."
+      }
+    },
+    "trade_footnote_number": "xsd:integer",
+    "component_name": "xsd:string",
+    "trade_introduced_in": "xsd:string",
+    "trade_sole_category": "TradeCategoryEnum",
+    "trade_footnote_text": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "TradeFragmentationEntry",
+    "@documentation": {
+      "@comment": "One row of a fragmentation table published in a Trade category (currently only List/Program/Basket Trading) identifying a message that may be fragmented, the \"Total Entries\" field used to indicate the total count across all fragments of the batch, and the verbatim description of the repeating group that may be fragmented.",
+      "@properties": {
+        "trade_fragmentation_message": "Message that may be fragmented \u2014 verbatim text from the Message column of the fragmentation table (e.g. \"NewOrderList(35=E)\").",
+        "trade_fragmentation_total_entries_field": "Name and tag of the \"Total Entries\" field used to indicate the total count across all fragments of the batch (e.g. \"TotNoOrders(68)\").",
+        "trade_fragmentation_repeating_group": "Verbatim description of the repeating group that may be fragmented \u2014 from the table's third column."
+      }
+    },
+    "trade_fragmentation_message": "xsd:string",
+    "trade_fragmentation_total_entries_field": "xsd:string",
+    "trade_fragmentation_repeating_group": "xsd:string"
+  },
+  {
+    "@type": "Class",
+    "@id": "TradeLayoutRow",
+    "@documentation": {
+      "@comment": "One row of the layout table published in the Trade Appendix for a message or component. Each row identifies either a FIX field (by tag number + name) or an embedded component (by name), records whether it is required, carries the Description-column text, and flags whether it appears as a nested child of a repeating-group counter.",
+      "@properties": {
+        "trade_layout_kind": "Row kind \u2014 either a FIX field (numeric Tag) or an embedded component (literal \"Component\" in the Tag column of the source table).",
+        "trade_layout_field_tag": "FIX tag number drawn from the Tag column when the row is a field (i.e. layout_kind = FIELD). Absent for COMPONENT rows.",
+        "trade_layout_element_name": "Element name as printed in the Name column \u2014 either the FIX field name or the component name.",
+        "trade_layout_required": "Whether the field or component is required, as printed in the Req'd column of the source layout table (\"Y\" / \"N\").",
+        "trade_layout_description": "Free-text content of the Description column of the row (may be empty).",
+        "trade_layout_nested": "Whether the row appears nested under a repeating-group counter (i.e. its Tag column is prefixed with the \"\u2192\" arrow in the source table)."
+      }
+    },
+    "trade_layout_kind": "TradeLayoutRowKindEnum",
+    "trade_layout_field_tag": {
+      "@type": "Optional",
+      "@class": "xsd:integer"
+    },
+    "trade_layout_element_name": "xsd:string",
+    "trade_layout_required": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    },
+    "trade_layout_description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "trade_layout_nested": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "TradeMessageDetail",
+    "@documentation": {
+      "@comment": "Per-category message description.",
+      "@properties": {
+        "msg_type": "MsgType(35) wire value identifying the message.",
+        "message_name": "PascalCase name of the message.",
+        "description": "Description of the message's purpose and usage.",
+        "trade_layout_url": "URL of the detailed message- or component-layout in the Trade Appendix.",
+        "trade_layout_rows": "Ordered rows of the layout table published for the message or component in the Trade Appendix."
+      }
+    },
+    "msg_type": "xsd:string",
+    "message_name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "trade_layout_url": {
+      "@type": "Optional",
+      "@class": "xsd:anyURI"
+    },
+    "trade_layout_rows": {
+      "@type": "List",
+      "@class": "TradeLayoutRow"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "TradeMessageEntry",
+    "@documentation": {
+      "@comment": "One row of the area-wide trade messages table.",
+      "@properties": {
+        "msg_type": "MsgType(35) wire value identifying the message.",
+        "message_name": "PascalCase name of the message.",
+        "category": "Message category."
+      }
+    },
+    "msg_type": "xsd:string",
+    "message_name": "xsd:string",
+    "category": "TradeCategoryEnum"
+  },
+  {
+    "@type": "Class",
+    "@id": "TradeMessageGroup",
+    "@documentation": {
+      "@comment": "Purpose-grouped sub-section inside a category's Messages sub-section (e.g. \"New Order Single\", \"Execution Reports\", \"Order Cancel Requests\" under Single/General Order Handling).",
+      "@properties": {
+        "trade_group_title": "Purpose-group heading inside a category's Messages sub-section.",
+        "description": "Description of the purpose-group's role within the category.",
+        "messages": "Messages bundled under the purpose-group heading.",
+        "trade_ord_status_precedence_entries": "Rows of the OrdStatus(39) precedence table that appears inside the Execution Reports purpose-group of the Single/General Order Handling category."
+      }
+    },
+    "trade_group_title": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "messages": {
+      "@type": "List",
+      "@class": "TradeMessageDetail"
+    },
+    "trade_ord_status_precedence_entries": {
+      "@type": "List",
+      "@class": "TradeOrdStatusPrecedenceEntry"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "TradeOrdStatusPrecedenceEntry",
+    "@documentation": {
+      "@comment": "One row of the OrdStatus(39) precedence table published in the Execution Reports purpose-group of the Single/General Order Handling category. Defines the precedence ranking used to resolve simultaneous state transitions on an order, paired with the human-readable OrdStatus label and its descriptive prose.",
+      "@properties": {
+        "trade_ord_status_precedence": "Precedence rank (1 = lowest, higher numbers take precedence) of an OrdStatus(39) value used to resolve simultaneous state transitions on an order.",
+        "trade_ord_status_label": "Human-readable OrdStatus(39) label as printed in the Execution Reports precedence table (e.g. \"Pending Cancel\", \"Done for Day\", \"Filled\").",
+        "description": "Verbatim OrdStatus description from the table."
+      }
+    },
+    "trade_ord_status_precedence": "xsd:integer",
+    "trade_ord_status_label": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "UDFTagRange",
+    "@documentation": {
+      "@comment": "A reserved range of tag numbers for User Defined Fields.",
+      "@properties": {
+        "range_id": "Identifier of the range.",
+        "low_tag": "Inclusive lower bound of the range.",
+        "high_tag": "Upper bound of the tag range. Required for all ``usage`` values except ``GTC_RESERVED`` (which is open-ended, 50000+). Downstream validators should enforce this; the constraint cannot be expressed here because LinkML's ``equals_string`` operator only accepts string-ranged slots and ``usage`` is an enum.",
+        "usage": "Usage policy assigned to the range.",
+        "description": "Notes on the range's intended use.",
+        "requires_registration": "True when tags in the range must be registered."
+      }
+    },
+    "range_id": "xsd:string",
+    "low_tag": "xsd:integer",
+    "high_tag": {
+      "@type": "Optional",
+      "@class": "xsd:integer"
+    },
+    "usage": "UDFTagRangeUsage",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "requires_registration": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    }
+  },
+  {
+    "@type": "Enum",
+    "@id": "StandardLayer",
+    "@value": [
+      "APPLICATION",
+      "ENCODING",
+      "SESSION"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "ExtensionPackSize",
+    "@value": [
+      "XXS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "GlobalComponentBusinessAreaEnum",
+    "@value": [
+      "PRE_TRADE",
+      "TRADE",
+      "POST_TRADE",
+      "INFRASTRUCTURE"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "BusinessAreaEnum",
+    "@value": [
+      "INTRODUCTION",
+      "PRE_TRADE",
+      "TRADE",
+      "POST_TRADE",
+      "INFRASTRUCTURE"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "MessageCategoryEnum",
+    "@value": [
+      "INDICATION",
+      "EVENT_COMMUNICATION",
+      "QUOTATION_NEGOTIATION",
+      "MARKET_DATA",
+      "MARKET_STRUCTURE_REFERENCE_DATA",
+      "SECURITIES_REFERENCE_DATA",
+      "PARTIES_REFERENCE_DATA",
+      "PARTIES_ACTION",
+      "SINGLE_GENERAL_ORDER_HANDLING",
+      "ORDER_MASS_HANDLING",
+      "CROSS_ORDERS",
+      "MULTILEG_ORDERS",
+      "LIST_PROGRAM_BASKET_TRADING",
+      "ALLOCATION_AND_READY_TO_BOOK",
+      "CONFIRMATION",
+      "SETTLEMENT_INSTRUCTIONS",
+      "TRADE_CAPTURE_REPORTING",
+      "REGISTRATION_INSTRUCTIONS",
+      "POSITIONS_MAINTENANCE",
+      "COLLATERAL_MANAGEMENT",
+      "MARGIN_REQUIREMENT_MANAGEMENT",
+      "ACCOUNT_REPORTING",
+      "TRADE_MANAGEMENT",
+      "PAY_MANAGEMENT",
+      "SETTLEMENT_STATUS_MANAGEMENT",
+      "BUSINESS_MESSAGE_REJECTS",
+      "NETWORK_STATUS_COMMUNICATION",
+      "USER_MANAGEMENT",
+      "APPLICATION_SEQUENCING"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "ComponentScope",
+    "@value": [
+      "GLOBAL",
+      "COMMON",
+      "SPECIFIC"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "ComponentGroup",
+    "@value": [
+      "SECURITIES",
+      "LEG_SECURITIES",
+      "UNDERLYING_SECURITIES",
+      "PARTIES",
+      "ORDERS_AND_QUOTES",
+      "TRADES",
+      "COMMISSIONS_AND_FEES",
+      "FINANCING",
+      "PAYMENTS",
+      "STIPULATIONS",
+      "HEADER_AND_TRAILER",
+      "MISCELLANEOUS"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "FieldRequirement",
+    "@value": [
+      "REQUIRED",
+      "OPTIONAL",
+      "CONDITIONALLY_REQUIRED"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "ProductCoverage",
+    "@value": [
+      "EQUITIES",
+      "CIV",
+      "DERIVATIVES",
+      "FIXED_INCOME",
+      "FOREIGN_EXCHANGE"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "FIXDatatypeName",
+    "@value": [
+      "int",
+      "TagNum",
+      "SeqNum",
+      "NumInGroup",
+      "DayOfMonth",
+      "float",
+      "Qty",
+      "Price",
+      "PriceOffset",
+      "Amt",
+      "Percentage",
+      "char",
+      "Boolean",
+      "String",
+      "MultipleCharValue",
+      "MultipleStringValue",
+      "Country",
+      "Currency",
+      "Exchange",
+      "MonthYear",
+      "UTCTimestamp",
+      "UTCTimeOnly",
+      "UTCDateOnly",
+      "LocalMktDate",
+      "TZTimeOnly",
+      "TZTimestamp",
+      "Length",
+      "data",
+      "Tenor",
+      "Reserved100Plus",
+      "Reserved1000Plus",
+      "Reserved4000Plus",
+      "XMLData",
+      "Language",
+      "LocalMktTime"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "ISO11404ValueSpace",
+    "@value": [
+      "integer",
+      "ordinal",
+      "size",
+      "real",
+      "scaled",
+      "character",
+      "characterstring",
+      "boolean",
+      "set",
+      "array",
+      "time",
+      "union"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "TenorUnit",
+    "@value": [
+      "D",
+      "W",
+      "M",
+      "Y"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "StandardEncodingName",
+    "@value": [
+      "TAGVALUE",
+      "FIXML",
+      "FAST",
+      "SBE",
+      "GPB",
+      "JSON",
+      "ASN_1"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "SessionProtocolName",
+    "@value": [
+      "FIX_4_2",
+      "FIX4",
+      "FIXT",
+      "LFIXT",
+      "FIXP",
+      "SOFH",
+      "FIXS",
+      "AMQP"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "TimePrecision",
+    "@value": [
+      "SECOND",
+      "MILLISECOND",
+      "MICROSECOND",
+      "NANOSECOND",
+      "PICOSECOND",
+      "DAY"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "FPLCommitteeRole",
+    "@value": [
+      "GLOBAL_STEERING_COMMITTEE",
+      "GLOBAL_TECHNICAL_COMMITTEE",
+      "GLOBAL_PRODUCT_COMMITTEE",
+      "GLOBAL_BUY_SIDE_COMMITTEE",
+      "GLOBAL_MEMBER_SERVICES_COMMITTEE",
+      "REGIONAL_COMMITTEE"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "FPLRegion",
+    "@value": [
+      "AMERICAS",
+      "ASIA_PACIFIC",
+      "EMEA",
+      "JAPAN"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "FPLProductGroup",
+    "@value": [
+      "FIXED_INCOME_AND_CURRENCIES",
+      "LISTED_PRODUCTS_AND_EXCHANGES"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "FPLMemberType",
+    "@value": [
+      "BUY_SIDE_FIRM",
+      "SELL_SIDE_FIRM",
+      "EXCHANGE",
+      "ECN_ATS",
+      "UTILITY",
+      "VENDOR",
+      "OTHER_ASSOCIATION"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "UDFTagRangeUsage",
+    "@value": [
+      "INTER_FIRM_REGISTERED",
+      "INTER_FIRM_BILATERAL",
+      "GTC_REGULATORY_LEGACY",
+      "WIP_CHINA",
+      "INTERNAL_FIRM",
+      "GTC_OTC_DERIVATIVES",
+      "GTC_RESERVED"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "PreTradeCategoryEnum",
+    "@value": [
+      "INDICATION",
+      "EVENT_COMMUNICATION",
+      "QUOTATION_NEGOTIATION",
+      "MARKET_DATA",
+      "MARKET_STRUCTURE_REFERENCE_DATA",
+      "SECURITIES_REFERENCE_DATA",
+      "PARTIES_REFERENCE_DATA",
+      "PARTIES_ACTION"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "ComponentRepetition",
+    "@value": [
+      "REPEATING",
+      "NON_REPEATING"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "PreTradeCommonComponentName",
+    "@value": [
+      "AuctionTypeRuleGrp",
+      "BaseTradingRules",
+      "ExecInstRules",
+      "InstrumentScope",
+      "InstrumentScopeGrp",
+      "InstrumentScopeSecurityAltIDGrp",
+      "LotTypeRules",
+      "MarketDataFeedTypes",
+      "MarketSegmentScopeGrp",
+      "MatchRules",
+      "OrdTypeRules",
+      "PriceLimits",
+      "PriceRangeRuleGrp",
+      "QuoteSizeRuleGrp",
+      "RequestedPartyRoleGrp",
+      "RequestingPartyGrp",
+      "RequestingPartySubGrp",
+      "RoutingGrp",
+      "TickRules",
+      "TimeInForceRules",
+      "TradingSessionRules"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "QuoteModelEnum",
+    "@value": [
+      "INDICATIVE",
+      "TRADEABLE",
+      "RESTRICTED_TRADEABLE",
+      "NEGOTIATION"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "PreTradeLayoutRowKindEnum",
+    "@value": [
+      "FIELD",
+      "COMPONENT"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "TradeCategoryEnum",
+    "@value": [
+      "SINGLE_GENERAL_ORDER_HANDLING",
+      "ORDER_MASS_HANDLING",
+      "CROSS_ORDER_HANDLING",
+      "MULTILEG_ORDER_HANDLING",
+      "LIST_PROGRAM_BASKET_TRADING"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "TradeComponentRepetition",
+    "@value": [
+      "REPEATING",
+      "NON_REPEATING"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "TradeCommonComponentName",
+    "@value": [
+      "DisclosureInstructionGrp",
+      "DiscretionInstructions",
+      "PegInstructions",
+      "PreAllocGrp",
+      "StrategyParametersGrp",
+      "TriggeringInstruction"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "TradeLayoutRowKindEnum",
+    "@value": [
+      "FIELD",
+      "COMPONENT"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "PostTradeCategoryEnum",
+    "@value": [
+      "ALLOCATION",
+      "CONFIRMATION",
+      "SETTLEMENT_INSTRUCTION",
+      "TRADE_CAPTURE_REPORTING",
+      "REGISTRATION_INSTRUCTION",
+      "POSITION_MAINTENANCE",
+      "COLLATERAL_MANAGEMENT",
+      "MARGIN_REQUIREMENT_MANAGEMENT",
+      "ACCOUNT_REPORTING",
+      "TRADE_MANAGEMENT",
+      "PAY_MANAGEMENT",
+      "SETTLEMENT_STATUS_MANAGEMENT"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "PostTradeCommonComponentName",
+    "@value": [
+      "AllocCommissionDataGrp",
+      "AllocRegulatoryTradeIDGrp",
+      "ClrInstGrp",
+      "CollateralAmountGrp",
+      "CollateralReinvestmentGrp",
+      "DlvyInstGrp",
+      "ExecAllocGrp",
+      "MarginAmount",
+      "OrdAllocGrp",
+      "PositionAmountData",
+      "SettlDetails",
+      "SettlInstructionsData",
+      "SettlParties",
+      "SettlPtysSubGrp",
+      "TradeAllocAmtGrp",
+      "TransactionAttributeGrp"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "AllocationScenarioEnum",
+    "@value": [
+      "PRE_ALLOCATED_ORDER",
+      "PRE_TRADE_ALLOCATION",
+      "POST_TRADE_ALLOCATION",
+      "READY_TO_BOOK"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "AllocationStatusEnum",
+    "@value": [
+      "ACCEPTED",
+      "BLOCK_LEVEL_REJECT",
+      "ACCOUNT_LEVEL_REJECT",
+      "RECEIVED_NOT_YET_PROCESSED"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "AllocationTransactionTypeEnum",
+    "@value": [
+      "NEW",
+      "REPLACE",
+      "CANCEL"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "PostTradeAllocationPricingMethodEnum",
+    "@value": [
+      "AVERAGE_PRICE",
+      "EXECUTED_PRICE"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "TradeCaptureReportDirectionEnum",
+    "@value": [
+      "INBOUND",
+      "OUTBOUND"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "TradeCaptureReportUsageEnum",
+    "@value": [
+      "RELAY_CONFIRMED_TRADES_TO_NON_PARTICIPANTS",
+      "RELAY_CONFIRMED_TRADES_TO_COUNTERPARTIES",
+      "REPORTING_PRIVATELY_NEGOTIATED_TRADES",
+      "REPORTING_FLOOR_OR_ROUTED_EXECUTIONS",
+      "REQUEST_TRADE_CANCEL_OR_AMENDMENT"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "TradeCaptureReportIdentifierRoleEnum",
+    "@value": [
+      "TRADE_REPORT_ID",
+      "TRADE_ID",
+      "TRADE_REPORT_REF_ID",
+      "SECONDARY_TRADE_ID"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "RegistrationTransactionTypeEnum",
+    "@value": [
+      "NEW",
+      "REPLACE",
+      "CANCEL"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "RegistrationStatusEnum",
+    "@value": [
+      "ACCEPTED",
+      "REJECTED",
+      "HELD",
+      "REMINDER"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "SettlementInstructionModeEnum",
+    "@value": [
+      "STANDING_INSTRUCTIONS",
+      "SPECIFIC_ORDER",
+      "REQUEST_REJECT"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "SettlementObligationModeEnum",
+    "@value": [
+      "PRELIMINARY",
+      "FINAL"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "PositionMaintenanceActionEnum",
+    "@value": [
+      "NEW",
+      "REPLACE",
+      "CANCEL",
+      "REVERSE"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "ClearingServiceForPositionManagementEnum",
+    "@value": [
+      "POSITION_CHANGE_SUBMISSION",
+      "POSITION_ADJUSTMENT",
+      "EXERCISE_NOTICE",
+      "ABANDONMENT_NOTICE",
+      "MARGIN_DISPOSITION",
+      "POSITION_PLEDGE",
+      "REQUEST_FOR_POSITION"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "ClearingServiceForPostTradeProcessingEnum",
+    "@value": [
+      "ETP",
+      "GIVE_UP",
+      "EXCHANGE_FOR_PHYSICAL",
+      "AVERAGE_PRICE_SYSTEM",
+      "MUTUAL_OFFSET_SYSTEM",
+      "TRADE_ENTRY_EDIT"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "CollateralManagementUsageEnum",
+    "@value": [
+      "SECURITIES_FINANCING_COLLATERALIZATION",
+      "CLEARING_HOUSE_COLLATERALIZATION"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "CollateralAssignmentPurposeEnum",
+    "@value": [
+      "ASSIGN_INITIAL_COLLATERAL",
+      "REPLENISH_COLLATERAL",
+      "REPLACE_OR_SUBSTITUTE_COLLATERAL"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "AllocationRoleEnum",
+    "@value": [
+      "INITIATOR",
+      "RESPONDENT"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "MatchStatusEnum",
+    "@value": [
+      "COMPARED_MATCHED_OR_AFFIRMED",
+      "UNCOMPARED_UNMATCHED_OR_UNAFFIRMED"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "PostTradeLayoutRowKindEnum",
+    "@value": [
+      "FIELD",
+      "COMPONENT"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "InfrastructureCategoryEnum",
+    "@value": [
+      "BUSINESS_MESSAGE_REJECTS",
+      "NETWORK_STATUS_COMMUNICATION",
+      "USER_MANAGEMENT",
+      "APPLICATION_SEQUENCING"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "InfrastructureComponentName",
+    "@value": [
+      "ApplIDReportGrp",
+      "ApplIDRequestAckGrp",
+      "ApplIDRequestGrp",
+      "CompIDReqGrp",
+      "CompIDStatGrp",
+      "ThrottleMsgTypeGrp",
+      "ThrottleParamsGrp",
+      "UsernameGrp"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "BusinessRejectReasonEnum",
+    "@value": [
+      "OTHER",
+      "UNKNOWN_ID",
+      "UNKNOWN_SECURITY",
+      "UNSUPPORTED_MESSAGE_TYPE",
+      "APPLICATION_NOT_AVAILABLE",
+      "CONDITIONALLY_REQUIRED_FIELD_MISSING",
+      "NOT_AUTHORISED",
+      "DELIVER_TO_FIRM_NOT_AVAILABLE",
+      "THROTTLE_LIMIT_EXCEEDED",
+      "THROTTLE_LIMIT_EXCEEDED_SESSION_DISCONNECT",
+      "THROTTLED_MESSAGES_REJECTED_ON_REQUEST",
+      "INVALID_PRICE_INCREMENT"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "NetworkStatusScenarioEnum",
+    "@value": [
+      "SCENARIO_A",
+      "SCENARIO_B"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "ApplicationMessageReportTypeEnum",
+    "@value": [
+      "RESET",
+      "LAST_MESSAGE",
+      "KEEP_ALIVE",
+      "RESEND_COMPLETED"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "NetworkRequestTypeEnum",
+    "@value": [
+      "SNAPSHOT",
+      "STOP_SUBSCRIBING"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "StandardResponseDirectionEnum",
+    "@value": [
+      "PRE_TRADE",
+      "TRADE",
+      "POST_TRADE"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "BusinessMessageReferenceDirectionEnum",
+    "@value": [
+      "PRE_TRADE",
+      "TRADE",
+      "POST_TRADE"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "InfrastructureGlobalComponentName",
+    "@value": [
+      "ApplicationSequenceControl"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "ApplicationSequenceControlFieldName",
+    "@value": [
+      "ApplID",
+      "ApplSeqNum",
+      "ApplLastSeqNum",
+      "ApplResendFlag"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "InfrastructureLayoutRowKindEnum",
+    "@value": [
+      "FIELD",
+      "COMPONENT"
+    ]
+  }
+]
+

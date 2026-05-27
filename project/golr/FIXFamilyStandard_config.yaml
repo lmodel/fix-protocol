@@ -1,0 +1,35 @@
+# metamodel_version: 1.11.0id: FIXFamilyStandard
+schema_generating: true
+description: A member standard of the FIX Family of Standards.
+display_name: FIXFamilyStandard
+document_category: FIXFamilyStandard
+weight: 20
+fields:
+- id: id
+  description: Unique identifier (CURIE or local name) of the element.
+  display_name: id
+- id: name
+  description: Display name of the element.
+  display_name: name
+- id: description
+  description: Free-text description.
+  display_name: description
+- id: acronym
+  description: Short acronym used to refer to the standard.
+  display_name: FIXFamilyStandard_acronym
+- id: see_also
+  description: Related external resources.
+  display_name: see_also
+  cardinality: multi
+- id: layer
+  description: The layer the standard belongs to.
+  display_name: FIXFamilyStandard_layer
+- id: version
+  description: Version of the standard, if applicable.
+  display_name: version
+- id: session_profile
+  description: Name of the session profile for session-layer variants.
+  display_name: session_profile
+- id: encoding_name
+  description: Named encoding, when layer is ENCODING.
+  display_name: encoding_name

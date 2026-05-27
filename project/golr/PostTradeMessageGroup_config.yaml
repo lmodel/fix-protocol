@@ -1,0 +1,15 @@
+# metamodel_version: 1.11.0id: PostTradeMessageGroup
+schema_generating: true
+description: A purpose-themed grouping of messages within a Post-Trade category (e.g.
+  "Allocation Instructions").
+display_name: PostTradeMessageGroup
+document_category: PostTradeMessageGroup
+weight: 20
+fields:
+- id: group_title
+  description: Purpose-group heading inside a category's Messages sub-section.
+  display_name: PostTradeMessageGroup_group_title
+- id: messages
+  description: Messages defined within the enclosing element.
+  display_name: PostTradeMessageGroup_messages
+  cardinality: multi

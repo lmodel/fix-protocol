@@ -1,0 +1,22 @@
+# metamodel_version: 1.11.0id: ComponentTableFootnote
+schema_generating: true
+description: A footnote on the area-wide components table.
+display_name: ComponentTableFootnote
+document_category: ComponentTableFootnote
+weight: 20
+fields:
+- id: footnote_number
+  description: Footnote indicator on a component-table row.
+  display_name: ComponentTableFootnote_footnote_number
+- id: component_name
+  description: PascalCase name of the component.
+  display_name: ComponentTableFootnote_component_name
+- id: introduced_in
+  description: FIX version or Extension Pack that introduced the component.
+  display_name: ComponentTableFootnote_introduced_in
+- id: sole_category
+  description: Single category that actually uses the component.
+  display_name: ComponentTableFootnote_sole_category
+- id: text
+  description: Footnote text.
+  display_name: text

@@ -1,21 +1,19 @@
 ---
 id: https://w3id.org/lmodel/fix-protocol/fix-infrastructure
+
 name: fix-infrastructure
+
 title: FIX Protocol Infrastructure Business Area
-description: |-
-  LinkML metamodel for the structural elements of the FIX Latest
-  Infrastructure business area: its four message categories,
-  area-wide message and component listings, per-category sections,
-  footnotes, standard-response tables (pre-trade, trade,
-  post-trade), key-field-for-business-message-reject tables,
-  BusinessRejectReason(380) code table, network-status scenarios,
-  and application-sequencing report types. Original (non-normative)
-  authored content only; for spec-derived prose see the private
-  overlay (see NOTICE).
+
+description: 'LinkML metamodel for the structural elements of the FIX Latest Infrastructure business area: its four message categories, area-wide message and component listings, per-category sections, footnotes, standard-response tables (pre-trade, trade, post-trade), key-field-for-business-message-reject tables, BusinessRejectReason(380) code table, network-status scenarios, and application-sequencing report types. Original (non-normative) authored content only; for spec-derived prose see the private overlay (see NOTICE).'
+
 license: Apache-2.0
+
 see_also:
   - https://www.fixtrading.org/standards/fix-latest-online/business-area-infrastructure/
+
 source: https://www.fixtrading.org/standards/fix-latest-online/business-area-infrastructure/
+
 version: EP284
 
 prefixes:
@@ -28,161 +26,169 @@ prefixes:
   dcterms: http://purl.org/dc/terms/
   skos: http://www.w3.org/2004/02/skos/core#
   xsd: http://www.w3.org/2001/XMLSchema#
+  fix_orchestra: https://w3id.org/lmodel/fix-orchestra/
+  fixp: https://w3id.org/lmodel/fixp/
+  fluxnova_bpm_platform: https://w3id.org/lmodel/fluxnova-bpm-platform/
+  iso27001: https://w3id.org/lmodel/iso27001/
 
 default_prefix: fix_infrastructure
+
 default_range: string
 
-imports:
-  - linkml:types
-  - ./fix_base
-  - ./fix_pre_trade
-  - ./fix_global_components
+imports: [linkml:types, ./fix_base, ./fix_pre_trade, ./fix_global_components]
 
 subsets:
   infrastructure:
     description: Elements drawn from the FIX Latest Infrastructure chapter.
+
   infrastructure_organization:
     description: Tabular/organizational elements (message/component tables).
+
   infrastructure_workflow:
     description: Workflow scenarios and code tables.
 
 enums:
   InfrastructureCategoryEnum:
-    description: |-
-      The four message categories of the FIX Latest Infrastructure
-      business area. Subset of MessageCategoryEnum.
+    description: The four message categories of the FIX Latest Infrastructure business area. Subset of MessageCategoryEnum.
+    narrow_mappings: [fix_orchestra:CategoryType]
     permissible_values:
-      BUSINESS_MESSAGE_REJECTS:
-      NETWORK_STATUS_COMMUNICATION:
-      USER_MANAGEMENT:
-      APPLICATION_SEQUENCING:
+      BUSINESS_MESSAGE_REJECTS: null
+
+      NETWORK_STATUS_COMMUNICATION: null
+
+      USER_MANAGEMENT: null
+
+      APPLICATION_SEQUENCING: null
 
   InfrastructureComponentName:
-    description: |-
-      Names of the components defined in the Infrastructure
-      business-area chapter. None of these are shared across
-      categories within the area; footnotes 1–4 record that four
-      of them were historically declared as common components.
+    description: Names of the components defined in the Infrastructure business-area chapter. None of these are shared across categories within the area; footnotes 1–4 record that four of them were historically declared as common components.
     permissible_values:
-      ApplIDReportGrp:
-      ApplIDRequestAckGrp:
-      ApplIDRequestGrp:
-      CompIDReqGrp:
-      CompIDStatGrp:
-      ThrottleMsgTypeGrp:
-      ThrottleParamsGrp:
-      UsernameGrp:
+      ApplIDReportGrp: null
+
+      ApplIDRequestAckGrp: null
+
+      ApplIDRequestGrp: null
+
+      CompIDReqGrp: null
+
+      CompIDStatGrp: null
+
+      ThrottleMsgTypeGrp: null
+
+      ThrottleParamsGrp: null
+
+      UsernameGrp: null
 
   BusinessRejectReasonEnum:
-    description: |-
-      Permissible values of BusinessRejectReason(380) on the
-      BusinessMessageReject(35=j) message.
+    description: Permissible values of BusinessRejectReason(380) on the BusinessMessageReject(35=j) message.
     permissible_values:
       OTHER:
         meaning: fix_infrastructure:BusinessRejectReason_0
+
       UNKNOWN_ID:
         meaning: fix_infrastructure:BusinessRejectReason_1
+
       UNKNOWN_SECURITY:
         meaning: fix_infrastructure:BusinessRejectReason_2
+
       UNSUPPORTED_MESSAGE_TYPE:
         meaning: fix_infrastructure:BusinessRejectReason_3
+
       APPLICATION_NOT_AVAILABLE:
         meaning: fix_infrastructure:BusinessRejectReason_4
+
       CONDITIONALLY_REQUIRED_FIELD_MISSING:
         meaning: fix_infrastructure:BusinessRejectReason_5
+
       NOT_AUTHORISED:
         meaning: fix_infrastructure:BusinessRejectReason_6
+
       DELIVER_TO_FIRM_NOT_AVAILABLE:
         meaning: fix_infrastructure:BusinessRejectReason_7
+
       THROTTLE_LIMIT_EXCEEDED:
         meaning: fix_infrastructure:BusinessRejectReason_8
+
       THROTTLE_LIMIT_EXCEEDED_SESSION_DISCONNECT:
         meaning: fix_infrastructure:BusinessRejectReason_9
+
       THROTTLED_MESSAGES_REJECTED_ON_REQUEST:
         meaning: fix_infrastructure:BusinessRejectReason_10
+
       INVALID_PRICE_INCREMENT:
         meaning: fix_infrastructure:BusinessRejectReason_18
 
   NetworkStatusScenarioEnum:
-    description: |-
-      Network Status Communication usage scenarios documented in
-      the chapter (Scenario A: hub-and-spoke; Scenario B: global
-      brokerage region availability).
+    description: 'Network Status Communication usage scenarios documented in the chapter (Scenario A: hub-and-spoke; Scenario B: global brokerage region availability).'
+    related_mappings: [fluxnova_bpm_platform:ProcessDefinition]
     permissible_values:
-      SCENARIO_A:
-      SCENARIO_B:
+      SCENARIO_A: null
+
+      SCENARIO_B: null
 
   ApplicationMessageReportTypeEnum:
-    description: |-
-      Documented uses of ApplicationMessageReport(35=BY) selected
-      via ApplReportType(1426).
+    description: Documented uses of ApplicationMessageReport(35=BY) selected via ApplReportType(1426).
     permissible_values:
       RESET:
         meaning: fix_infrastructure:ApplReportType_0
+
       LAST_MESSAGE:
         meaning: fix_infrastructure:ApplReportType_1
-      KEEP_ALIVE:
+
+      KEEP_ALIVE: null
+
       RESEND_COMPLETED:
         meaning: fix_infrastructure:ApplReportType_3
 
   NetworkRequestTypeEnum:
-    description: |-
-      Values of NetworkRequestType(935) explicitly cited in the
-      NetworkCounterpartySystemStatusRequest(35=BC) prose.
+    description: Values of NetworkRequestType(935) explicitly cited in the NetworkCounterpartySystemStatusRequest(35=BC) prose.
     permissible_values:
       SNAPSHOT:
         meaning: fix_infrastructure:NetworkRequestType_1
+
       STOP_SUBSCRIBING:
         meaning: fix_infrastructure:NetworkRequestType_4
 
   StandardResponseDirectionEnum:
-    description: |-
-      Direction of a "Standard Response" mapping — which area the
-      requesting message belongs to.
+    description: Direction of a "Standard Response" mapping — which area the requesting message belongs to.
     permissible_values:
-      PRE_TRADE:
-      TRADE:
-      POST_TRADE:
+      PRE_TRADE: null
+
+      TRADE: null
+
+      POST_TRADE: null
 
   BusinessMessageReferenceDirectionEnum:
-    description: |-
-      Direction of an "application message reference" key-field
-      mapping — which area the referenced message belongs to.
+    description: Direction of an "application message reference" key-field mapping — which area the referenced message belongs to.
     permissible_values:
-      PRE_TRADE:
-      TRADE:
-      POST_TRADE:
+      PRE_TRADE: null
+
+      TRADE: null
+
+      POST_TRADE: null
 
   InfrastructureGlobalComponentName:
-    description: |-
-      Names of the Global Components (declared in the FIX Latest
-      "Global Components" page) that the Infrastructure
-      business-area messages explicitly reference. Global
-      Components are reusable component blocks used across two
-      or more business areas.
+    description: Names of the Global Components (declared in the FIX Latest "Global Components" page) that the Infrastructure business-area messages explicitly reference. Global Components are reusable component blocks used across two or more business areas.
     permissible_values:
-      ApplicationSequenceControl:
+      ApplicationSequenceControl: null
 
   ApplicationSequenceControlFieldName:
-    description: |-
-      Tags contributed by the ApplicationSequenceControl global
-      component (used by Application Sequencing messages and by
-      all FIX messages representing reports).
+    description: Tags contributed by the ApplicationSequenceControl global component (used by Application Sequencing messages and by all FIX messages representing reports).
     permissible_values:
-      ApplID:
-      ApplSeqNum:
-      ApplLastSeqNum:
-      ApplResendFlag:
+      ApplID: null
+
+      ApplSeqNum: null
+
+      ApplLastSeqNum: null
+
+      ApplResendFlag: null
 
   InfrastructureLayoutRowKindEnum:
-    description: |-
-      Discriminator for a row in an Infrastructure message- or
-      component-layout table: either a FIX field (numeric Tag
-      column) or an embedded component (literal "Component" in
-      the Tag column).
+    description: 'Discriminator for a row in an Infrastructure message- or component-layout table: either a FIX field (numeric Tag column) or an embedded component (literal "Component" in the Tag column).'
     permissible_values:
-      FIELD:
-      COMPONENT:
+      FIELD: null
+
+      COMPONENT: null
 
 slots:
   infra_introduction:
@@ -190,275 +196,202 @@ slots:
     range: string
 
   infra_common_components:
-    description: |-
-      Component names declared in the area-wide components
-      listing. Per the chapter prose, none of these are shared
-      across categories within the area.
+    description: Component names declared in the area-wide components listing. Per the chapter prose, none of these are shared across categories within the area.
     range: InfrastructureComponentName
     multivalued: true
 
   infra_footnotes:
-    description: |-
-      Footnotes attached to the area-wide Infrastructure
-      components table.
+    description: Footnotes attached to the area-wide Infrastructure components table.
     range: InfrastructureComponentTableFootnote
     multivalued: true
     inlined: true
     inlined_as_list: true
 
   infra_category_sections:
-    description: |-
-      Per-category sub-sections of the Infrastructure chapter.
+    description: Per-category sub-sections of the Infrastructure chapter.
     range: InfrastructureCategorySection
     multivalued: true
     inlined: true
     inlined_as_list: true
 
   infra_category_specific_components:
-    description: |-
-      Per-component descriptions appearing in a category's
-      Components sub-section.
+    description: Per-component descriptions appearing in a category's Components sub-section.
     range: InfrastructureComponentDetail
     multivalued: true
     inlined: true
     inlined_as_list: true
 
   infra_sole_category:
-    description: |-
-      Single Infrastructure category that actually uses the
-      footnoted component.
+    description: Single Infrastructure category that actually uses the footnoted component.
     range: InfrastructureCategoryEnum
 
   standard_responses_pre_trade:
-    description: |-
-      "Standard Responses for Pre-Trade Messages" table rows.
+    description: '"Standard Responses for Pre-Trade Messages" table rows.'
     range: StandardResponseMapping
     multivalued: true
     inlined: true
     inlined_as_list: true
 
   standard_responses_trade:
-    description: |-
-      "Standard Responses for Trade Messages" table rows.
+    description: '"Standard Responses for Trade Messages" table rows.'
     range: StandardResponseMapping
     multivalued: true
     inlined: true
     inlined_as_list: true
 
   standard_responses_post_trade:
-    description: |-
-      "Standard Responses for Post-Trade Messages" table rows.
+    description: '"Standard Responses for Post-Trade Messages" table rows.'
     range: StandardResponseMapping
     multivalued: true
     inlined: true
     inlined_as_list: true
 
   key_fields_pre_trade:
-    description: |-
-      "Key Fields for Pre-Trade Application Message References"
-      table rows.
+    description: '"Key Fields for Pre-Trade Application Message References" table rows.'
     range: ApplicationMessageReferenceKey
     multivalued: true
     inlined: true
     inlined_as_list: true
 
   key_fields_trade:
-    description: |-
-      "Key Fields for Trade Application Message References"
-      table rows.
+    description: '"Key Fields for Trade Application Message References" table rows.'
     range: ApplicationMessageReferenceKey
     multivalued: true
     inlined: true
     inlined_as_list: true
 
   key_fields_post_trade:
-    description: |-
-      "Key Fields for Post-Trade Application Message References"
-      table rows.
+    description: '"Key Fields for Post-Trade Application Message References" table rows.'
     range: ApplicationMessageReferenceKey
     multivalued: true
     inlined: true
     inlined_as_list: true
 
   business_reject_reason_descriptions:
-    description: |-
-      Descriptions tied to BusinessRejectReason(380) values.
+    description: Descriptions tied to BusinessRejectReason(380) values.
     range: BusinessRejectReasonDescription
     multivalued: true
     inlined: true
     inlined_as_list: true
 
   network_status_scenarios:
-    description: |-
-      Network Status Communication usage scenarios.
+    description: Network Status Communication usage scenarios.
     range: NetworkStatusScenarioEnum
     multivalued: true
 
   network_request_types_referenced:
-    description: |-
-      NetworkRequestType(935) values explicitly cited in the
-      Network Status Communication category prose.
+    description: NetworkRequestType(935) values explicitly cited in the Network Status Communication category prose.
     range: NetworkRequestTypeEnum
     multivalued: true
 
   application_message_report_uses:
-    description: |-
-      Documented uses of ApplicationMessageReport(35=BY).
+    description: Documented uses of ApplicationMessageReport(35=BY).
     range: ApplicationMessageReportTypeEnum
     multivalued: true
 
   category_label:
-    description: |-
-      Category label as printed in the source table (free text;
-      may include parenthesised sub-categories such as "Single
-      General Order Handling").
+    description: Category label as printed in the source table (free text; may include parenthesised sub-categories such as "Single General Order Handling").
     range: string
 
   fix_message:
-    description: |-
-      FIX message name with MsgType in parentheses, e.g.
-      AllocationInstruction(35=J).
+    description: FIX message name with MsgType in parentheses, e.g. AllocationInstruction(35=J).
     range: string
 
   appropriate_responses:
-    description: |-
-      Free-text appropriate-response cell from the Standard
-      Responses tables.
+    description: Free-text appropriate-response cell from the Standard Responses tables.
     range: string
 
   business_reject_ref_id_value:
-    description: |-
-      Source field copied into BusinessRejectRefID(379) when the
-      target message lacks its own reject. May enumerate several
-      alternatives joined by "or".
+    description: Source field copied into BusinessRejectRefID(379) when the target message lacks its own reject. May enumerate several alternatives joined by "or".
     range: string
 
   reject_reason_code:
-    description: |-
-      Numeric code value of BusinessRejectReason(380).
+    description: Numeric code value of BusinessRejectReason(380).
     range: integer
     minimum_value: 0
     maximum_value: 999
 
   reject_reason_label:
-    description: |-
-      Human-readable label of a BusinessRejectReason(380) code.
+    description: Human-readable label of a BusinessRejectReason(380) code.
     range: string
 
   infra_global_components:
-    description: |-
-      Global Components (from the FIX Latest "Global Components"
-      page) that are explicitly referenced by messages in the
-      Infrastructure business area, together with their tag set
-      and usage scope.
+    description: Global Components (from the FIX Latest "Global Components" page) that are explicitly referenced by messages in the Infrastructure business area, together with their tag set and usage scope.
     range: InfrastructureGlobalComponentReference
     multivalued: true
     inlined: true
     inlined_as_list: true
 
   infra_global_component_name:
-    description: |-
-      Name of a Global Component referenced from within the
-      Infrastructure business area.
+    description: Name of a Global Component referenced from within the Infrastructure business area.
     range: InfrastructureGlobalComponentName
 
   infra_global_component_field_tags:
-    description: |-
-      FIX tag numbers contributed by the referenced Global
-      Component (as listed on the Global Components page).
+    description: FIX tag numbers contributed by the referenced Global Component (as listed on the Global Components page).
     range: integer
     multivalued: true
     minimum_value: 0
 
   infra_global_component_field_names:
-    description: |-
-      Human-readable field names of the tags contributed by the
-      referenced Global Component.
+    description: Human-readable field names of the tags contributed by the referenced Global Component.
     range: string
     multivalued: true
 
   infra_global_component_used_in:
-    description: |-
-      Infrastructure categories that reference the Global
-      Component.
+    description: Infrastructure categories that reference the Global Component.
     range: InfrastructureCategoryEnum
     multivalued: true
 
   infra_global_component_msg_types:
-    description: |-
-      MsgType values within the Infrastructure business area
-      that embed the referenced Global Component.
+    description: MsgType values within the Infrastructure business area that embed the referenced Global Component.
     range: string
     multivalued: true
 
   infra_global_component_repetition:
-    description: |-
-      Repetition indicator for the Global Component as it
-      appears in the referenced Infrastructure messages.
+    description: Repetition indicator for the Global Component as it appears in the referenced Infrastructure messages.
     range: string
 
   infra_layout_rows:
-    description: |-
-      Ordered rows of the layout table published for the
-      message or component in the Infrastructure Appendix.
+    description: Ordered rows of the layout table published for the message or component in the Infrastructure Appendix.
     range: InfrastructureLayoutRow
     multivalued: true
     inlined: true
     inlined_as_list: true
 
   infra_layout_kind:
-    description: |-
-      Row kind — either a FIX field (numeric Tag) or an
-      embedded component (literal "Component" in the Tag
-      column of the source table).
+    description: Row kind — either a FIX field (numeric Tag) or an embedded component (literal "Component" in the Tag column of the source table).
     range: InfrastructureLayoutRowKindEnum
 
   infra_layout_field_tag:
-    description: |-
-      FIX tag number drawn from the Tag column when the row is
-      a field (i.e. layout_kind = FIELD). Absent for COMPONENT
-      rows.
+    description: FIX tag number drawn from the Tag column when the row is a field (i.e. layout_kind = FIELD). Absent for COMPONENT rows.
     range: integer
     minimum_value: 0
 
   infra_layout_element_name:
-    description: |-
-      Element name as printed in the Name column — either the
-      FIX field name (e.g. ApplReqID) or the component name
-      (e.g. StandardHeader, ApplIDRequestGrp).
+    description: Element name as printed in the Name column — either the FIX field name (e.g. ApplReqID) or the component name (e.g. StandardHeader, ApplIDRequestGrp).
     range: string
 
   infra_layout_required:
-    description: |-
-      Whether the field or component is required, as printed in
-      the Req’d column of the source layout table ("Y" / "N").
+    description: Whether the field or component is required, as printed in the Req’d column of the source layout table ("Y" / "N").
     range: boolean
 
   infra_layout_description:
-    description: |-
-      Free-text content of the Description column of the row
-      (may be empty).
+    description: Free-text content of the Description column of the row (may be empty).
     range: string
 
   infra_layout_nested:
-    description: |-
-      Whether the row appears nested under a repeating-group
-      counter (i.e. its Tag column is prefixed with the
-      "→" arrow in the source table).
+    description: Whether the row appears nested under a repeating-group counter (i.e. its Tag column is prefixed with the "→" arrow in the source table).
     range: boolean
-    ifabsent: "False"
+    ifabsent: 'False'
 
 classes:
   InfrastructureBusinessArea:
-    description: |-
-      Tree-root container for the Infrastructure business area of
-      FIX Latest.
+    description: Tree-root container for the Infrastructure business area of FIX Latest.
     tree_root: true
-    in_subset:
-      - infrastructure
+    in_subset: [infrastructure]
     class_uri: fix_infrastructure:InfrastructureBusinessArea
-    aliases:
-      - Infrastructure
+    related_mappings: [fixp:FixpSessionExchange]
+    aliases: [Infrastructure]
     see_also:
       - https://www.fixtrading.org/standards/fix-latest-online/business-area-infrastructure/
     slots:
@@ -504,16 +437,10 @@ classes:
         required: true
 
   InfrastructureMessageEntry:
-    description: |-
-      One row of the area-wide "Messages for Infrastructure
-      Business Area" table.
-    in_subset:
-      - infrastructure_organization
+    description: One row of the area-wide "Messages for Infrastructure Business Area" table.
+    in_subset: [infrastructure_organization]
     class_uri: fix_infrastructure:InfrastructureMessageEntry
-    slots:
-      - msg_type
-      - message_name
-      - category
+    slots: [msg_type, message_name, category]
     slot_usage:
       msg_type:
         identifier: true
@@ -525,17 +452,10 @@ classes:
         required: true
 
   InfrastructureComponentEntry:
-    description: |-
-      One row of the area-wide "Components for Infrastructure
-      Business Area" table.
-    in_subset:
-      - infrastructure_organization
+    description: One row of the area-wide "Components for Infrastructure Business Area" table.
+    in_subset: [infrastructure_organization]
     class_uri: fix_infrastructure:InfrastructureComponentEntry
-    slots:
-      - component_name
-      - repetition
-      - category
-      - footnote_number
+    slots: [component_name, repetition, category, footnote_number]
     slot_usage:
       component_name:
         identifier: true
@@ -547,18 +467,10 @@ classes:
         required: true
 
   InfrastructureComponentTableFootnote:
-    description: |-
-      A footnote attached to a row of the area-wide
-      Infrastructure components table.
-    in_subset:
-      - infrastructure_organization
+    description: A footnote attached to a row of the area-wide Infrastructure components table.
+    in_subset: [infrastructure_organization]
     class_uri: fix_infrastructure:InfrastructureComponentTableFootnote
-    slots:
-      - footnote_number
-      - component_name
-      - introduced_in
-      - infra_sole_category
-      - text
+    slots: [footnote_number, component_name, introduced_in, infra_sole_category, text]
     slot_usage:
       footnote_number:
         identifier: true
@@ -571,11 +483,8 @@ classes:
         required: true
 
   InfrastructureCategorySection:
-    description: |-
-      A "Category – <name>" sub-section of the Infrastructure
-      chapter.
-    in_subset:
-      - infrastructure
+    description: A "Category – <name>" sub-section of the Infrastructure chapter.
+    in_subset: [infrastructure]
     class_uri: fix_infrastructure:InfrastructureCategorySection
     slots:
       - category
@@ -597,18 +506,10 @@ classes:
         inlined_as_list: true
 
   InfrastructureMessageDetail:
-    description: |-
-      Per-message description appearing in a category's Messages
-      sub-section.
-    in_subset:
-      - infrastructure
+    description: Per-message description appearing in a category's Messages sub-section.
+    in_subset: [infrastructure]
     class_uri: fix_infrastructure:InfrastructureMessageDetail
-    slots:
-      - msg_type
-      - message_name
-      - description
-      - layout_url
-      - infra_layout_rows
+    slots: [msg_type, message_name, description, layout_url, infra_layout_rows]
     slot_usage:
       msg_type:
         required: true
@@ -616,33 +517,17 @@ classes:
         required: true
 
   InfrastructureComponentDetail:
-    description: |-
-      Per-component description appearing in a category's
-      Components sub-section.
-    in_subset:
-      - infrastructure
+    description: Per-component description appearing in a category's Components sub-section.
+    in_subset: [infrastructure]
     class_uri: fix_infrastructure:InfrastructureComponentDetail
-    slots:
-      - component_name
-      - repetition
-      - description
-      - layout_url
-      - infra_layout_rows
+    slots: [component_name, repetition, description, layout_url, infra_layout_rows]
     slot_usage:
       component_name:
         required: true
 
   InfrastructureLayoutRow:
-    description: |-
-      One row of the layout table published in the
-      Infrastructure Appendix for a message or component. Each
-      row identifies either a FIX field (by tag number + name)
-      or an embedded component (by name), records whether it is
-      required, carries the Description-column text, and flags
-      whether it appears as a nested child of a
-      repeating-group counter.
-    in_subset:
-      - infrastructure
+    description: One row of the layout table published in the Infrastructure Appendix for a message or component. Each row identifies either a FIX field (by tag number + name) or an embedded component (by name), records whether it is required, carries the Description-column text, and flags whether it appears as a nested child of a repeating-group counter.
+    in_subset: [infrastructure]
     class_uri: fix_infrastructure:InfrastructureLayoutRow
     see_also:
       - https://www.fixtrading.org/standards/fix-latest-online/business-area-infrastructure-appendix/
@@ -660,17 +545,11 @@ classes:
         required: true
 
   StandardResponseMapping:
-    description: |-
-      One row of a "Standard Responses for <area> Messages"
-      table mapping a request message to its appropriate
-      response(s).
-    in_subset:
-      - infrastructure_workflow
+    description: One row of a "Standard Responses for <area> Messages" table mapping a request message to its appropriate response(s).
+    related_mappings: [fluxnova_bpm_platform:Task]
+    in_subset: [infrastructure_workflow]
     class_uri: fix_infrastructure:StandardResponseMapping
-    slots:
-      - category_label
-      - fix_message
-      - appropriate_responses
+    slots: [category_label, fix_message, appropriate_responses]
     slot_usage:
       category_label:
         required: true
@@ -680,17 +559,10 @@ classes:
         required: true
 
   ApplicationMessageReferenceKey:
-    description: |-
-      One row of a "Key Fields for <area> Application Message
-      References" table identifying the field whose value is
-      copied into BusinessRejectRefID(379).
-    in_subset:
-      - infrastructure_workflow
+    description: One row of a "Key Fields for <area> Application Message References" table identifying the field whose value is copied into BusinessRejectRefID(379).
+    in_subset: [infrastructure_workflow]
     class_uri: fix_infrastructure:ApplicationMessageReferenceKey
-    slots:
-      - category_label
-      - fix_message
-      - business_reject_ref_id_value
+    slots: [category_label, fix_message, business_reject_ref_id_value]
     slot_usage:
       category_label:
         required: true
@@ -700,14 +572,11 @@ classes:
         required: true
 
   BusinessRejectReasonDescription:
-    description: |-
-      One entry of the BusinessRejectReason(380) code table.
-    in_subset:
-      - infrastructure_workflow
+    description: One entry of the BusinessRejectReason(380) code table.
+    related_mappings: [iso27001:AuditFindingType]
+    in_subset: [infrastructure_workflow]
     class_uri: fix_infrastructure:BusinessRejectReasonDescription
-    slots:
-      - reject_reason_code
-      - reject_reason_label
+    slots: [reject_reason_code, reject_reason_label]
     slot_usage:
       reject_reason_code:
         identifier: true
@@ -716,17 +585,10 @@ classes:
         required: true
 
   InfrastructureGlobalComponentReference:
-    description: |-
-      A reference from the Infrastructure business area to a
-      Global Component declared on the FIX Latest "Global
-      Components" page. Records the component name, the FIX tags
-      it contributes, and the Infrastructure categories and
-      messages that embed it.
-    in_subset:
-      - infrastructure_organization
+    description: A reference from the Infrastructure business area to a Global Component declared on the FIX Latest "Global Components" page. Records the component name, the FIX tags it contributes, and the Infrastructure categories and messages that embed it.
+    in_subset: [infrastructure_organization]
     class_uri: fix_infrastructure:InfrastructureGlobalComponentReference
-    see_also:
-      - https://www.fixtrading.org/standards/fix-latest-online/global-components/
+    see_also: [https://www.fixtrading.org/standards/fix-latest-online/global-components/]
     slots:
       - infra_global_component_name
       - infra_global_component_repetition

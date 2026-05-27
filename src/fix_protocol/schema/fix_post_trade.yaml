@@ -1,20 +1,19 @@
 ---
 id: https://w3id.org/lmodel/fix-protocol/fix-post-trade
+
 name: fix-post-trade
+
 title: FIX Protocol Post-Trade Business Area
-description: |-
-  LinkML metamodel for the structural elements of the FIX Latest
-  Post-Trade business area: its twelve message categories,
-  area-wide message and component listings, per-category sections,
-  footnotes, common-component descriptions, allocation workflow
-  scenarios, trade-capture report usages, clearing services, and
-  related enumerations. Original (non-normative) authored content
-  only; for spec-derived prose see the private overlay
-  (see NOTICE).
+
+description: 'LinkML metamodel for the structural elements of the FIX Latest Post-Trade business area: its twelve message categories, area-wide message and component listings, per-category sections, footnotes, common-component descriptions, allocation workflow scenarios, trade-capture report usages, clearing services, and related enumerations. Original (non-normative) authored content only; for spec-derived prose see the private overlay (see NOTICE).'
+
 license: Apache-2.0
+
 see_also:
   - https://www.fixtrading.org/standards/fix-latest-online/business-area-post-trade/
+
 source: https://www.fixtrading.org/standards/fix-latest-online/business-area-post-trade/
+
 version: EP284
 
 prefixes:
@@ -27,159 +26,207 @@ prefixes:
   dcterms: http://purl.org/dc/terms/
   skos: http://www.w3.org/2004/02/skos/core#
   xsd: http://www.w3.org/2001/XMLSchema#
+  common_domain_model: https://w3id.org/lmodel/common-domain-model/
+  fix_orchestra: https://w3id.org/lmodel/fix-orchestra/
+  fluxnova_bpm_platform: https://w3id.org/lmodel/fluxnova-bpm-platform/
 
 default_prefix: fix_post_trade
+
 default_range: string
 
-imports:
-  - linkml:types
-  - ./fix_base
-  - ./fix_pre_trade
-  - ./fix_global_components
+imports: [linkml:types, ./fix_base, ./fix_pre_trade, ./fix_global_components]
 
 subsets:
   post_trade:
     description: Elements drawn from the FIX Latest Post-Trade chapter.
+
   post_trade_organization:
     description: Tabular/organizational elements (message/component tables).
+
   post_trade_workflow:
     description: Workflow scenarios and status enumerations.
 
 enums:
   PostTradeCategoryEnum:
-    description: |-
-      The twelve message categories of the FIX Latest Post-Trade
-      business area. Subset of MessageCategoryEnum.
+    description: The twelve message categories of the FIX Latest Post-Trade business area. Subset of MessageCategoryEnum.
+    narrow_mappings: [fix_orchestra:CategoryType]
     permissible_values:
-      ALLOCATION:
-      CONFIRMATION:
-      SETTLEMENT_INSTRUCTION:
-      TRADE_CAPTURE_REPORTING:
-      REGISTRATION_INSTRUCTION:
-      POSITION_MAINTENANCE:
-      COLLATERAL_MANAGEMENT:
-      MARGIN_REQUIREMENT_MANAGEMENT:
-      ACCOUNT_REPORTING:
-      TRADE_MANAGEMENT:
-      PAY_MANAGEMENT:
-      SETTLEMENT_STATUS_MANAGEMENT:
+      ALLOCATION: null
+
+      CONFIRMATION: null
+
+      SETTLEMENT_INSTRUCTION: null
+
+      TRADE_CAPTURE_REPORTING: null
+
+      REGISTRATION_INSTRUCTION: null
+
+      POSITION_MAINTENANCE: null
+
+      COLLATERAL_MANAGEMENT: null
+
+      MARGIN_REQUIREMENT_MANAGEMENT: null
+
+      ACCOUNT_REPORTING: null
+
+      TRADE_MANAGEMENT: null
+
+      PAY_MANAGEMENT: null
+
+      SETTLEMENT_STATUS_MANAGEMENT: null
 
   PostTradeCommonComponentName:
-    description: |-
-      Names of the Common Components declared at the top of the
-      Post-Trade business-area chapter.
+    description: Names of the Common Components declared at the top of the Post-Trade business-area chapter.
     permissible_values:
-      AllocCommissionDataGrp:
-      AllocRegulatoryTradeIDGrp:
-      ClrInstGrp:
-      CollateralAmountGrp:
-      CollateralReinvestmentGrp:
-      DlvyInstGrp:
-      ExecAllocGrp:
-      MarginAmount:
-      OrdAllocGrp:
-      PositionAmountData:
-      SettlDetails:
-      SettlInstructionsData:
-      SettlParties:
-      SettlPtysSubGrp:
-      TradeAllocAmtGrp:
-      TransactionAttributeGrp:
+      AllocCommissionDataGrp: null
+
+      AllocRegulatoryTradeIDGrp: null
+
+      ClrInstGrp: null
+
+      CollateralAmountGrp: null
+
+      CollateralReinvestmentGrp: null
+
+      DlvyInstGrp: null
+
+      ExecAllocGrp: null
+
+      MarginAmount: null
+
+      OrdAllocGrp: null
+
+      PositionAmountData: null
+
+      SettlDetails: null
+
+      SettlInstructionsData: null
+
+      SettlParties: null
+
+      SettlPtysSubGrp: null
+
+      TradeAllocAmtGrp: null
+
+      TransactionAttributeGrp: null
 
   AllocationScenarioEnum:
-    description: |-
-      Communication options by which an Initiator may convey
-      allocation instructions to a Respondent.
+    description: Communication options by which an Initiator may convey allocation instructions to a Respondent.
+    related_mappings: [fix_orchestra:ScenarioType, fluxnova_bpm_platform:ProcessDefinition]
     permissible_values:
-      PRE_ALLOCATED_ORDER:
-      PRE_TRADE_ALLOCATION:
-      POST_TRADE_ALLOCATION:
-      READY_TO_BOOK:
+      PRE_ALLOCATED_ORDER: null
+
+      PRE_TRADE_ALLOCATION: null
+
+      POST_TRADE_ALLOCATION: null
+
+      READY_TO_BOOK: null
 
   AllocationStatusEnum:
-    description: |-
-      AllocStatus(87) values used in allocation acknowledgement
-      messages.
+    description: AllocStatus(87) values used in allocation acknowledgement messages.
+    close_mappings: [common_domain_model:WorkflowStatusEnum]
     permissible_values:
       ACCEPTED:
         meaning: fix_post_trade:AllocStatus_0
+
       BLOCK_LEVEL_REJECT:
         meaning: fix_post_trade:AllocStatus_1
+
       ACCOUNT_LEVEL_REJECT:
         meaning: fix_post_trade:AllocStatus_2
+
       RECEIVED_NOT_YET_PROCESSED:
         meaning: fix_post_trade:AllocStatus_3
 
   AllocationTransactionTypeEnum:
     description: AllocTransType(71) values.
+    related_mappings: [common_domain_model:ActionEnum]
     permissible_values:
       NEW:
         meaning: fix_post_trade:AllocTransType_0
+
       REPLACE:
         meaning: fix_post_trade:AllocTransType_1
+
       CANCEL:
         meaning: fix_post_trade:AllocTransType_2
 
   PostTradeAllocationPricingMethodEnum:
-    description: |-
-      Methods by which post-trade allocations may be computed.
+    description: Methods by which post-trade allocations may be computed.
     permissible_values:
-      AVERAGE_PRICE:
-      EXECUTED_PRICE:
+      AVERAGE_PRICE: null
+
+      EXECUTED_PRICE: null
 
   TradeCaptureReportDirectionEnum:
     description: Direction of a TradeCaptureReport relative to the marketplace.
     permissible_values:
-      INBOUND:
-      OUTBOUND:
+      INBOUND: null
+
+      OUTBOUND: null
 
   TradeCaptureReportUsageEnum:
-    description: |-
-      Documented usages of the TradeCaptureReport(35=AE) message.
+    description: Documented usages of the TradeCaptureReport(35=AE) message.
     permissible_values:
-      RELAY_CONFIRMED_TRADES_TO_NON_PARTICIPANTS:
-      RELAY_CONFIRMED_TRADES_TO_COUNTERPARTIES:
-      REPORTING_PRIVATELY_NEGOTIATED_TRADES:
-      REPORTING_FLOOR_OR_ROUTED_EXECUTIONS:
-      REQUEST_TRADE_CANCEL_OR_AMENDMENT:
+      RELAY_CONFIRMED_TRADES_TO_NON_PARTICIPANTS: null
+
+      RELAY_CONFIRMED_TRADES_TO_COUNTERPARTIES: null
+
+      REPORTING_PRIVATELY_NEGOTIATED_TRADES: null
+
+      REPORTING_FLOOR_OR_ROUTED_EXECUTIONS: null
+
+      REQUEST_TRADE_CANCEL_OR_AMENDMENT: null
 
   TradeCaptureReportIdentifierRoleEnum:
     description: Roles played by trade-capture-report identifier fields.
     permissible_values:
-      TRADE_REPORT_ID:
-      TRADE_ID:
-      TRADE_REPORT_REF_ID:
-      SECONDARY_TRADE_ID:
+      TRADE_REPORT_ID: null
+
+      TRADE_ID: null
+
+      TRADE_REPORT_REF_ID: null
+
+      SECONDARY_TRADE_ID: null
 
   RegistrationTransactionTypeEnum:
     description: RegistTransType(514) values.
     permissible_values:
       NEW:
         meaning: fix_post_trade:RegistTransType_0
+
       REPLACE:
         meaning: fix_post_trade:RegistTransType_1
+
       CANCEL:
         meaning: fix_post_trade:RegistTransType_2
 
   RegistrationStatusEnum:
     description: RegistStatus(506) values.
+    related_mappings: [common_domain_model:WorkflowStatusEnum]
     permissible_values:
       ACCEPTED:
         meaning: fix_post_trade:RegistStatus_A
+
       REJECTED:
         meaning: fix_post_trade:RegistStatus_R
+
       HELD:
         meaning: fix_post_trade:RegistStatus_H
+
       REMINDER:
         meaning: fix_post_trade:RegistStatus_N
 
   SettlementInstructionModeEnum:
     description: SettlInstMode(160) values relevant in Post-Trade.
+    related_mappings: [common_domain_model:DeliveryMethodEnum]
     permissible_values:
       STANDING_INSTRUCTIONS:
         meaning: fix_post_trade:SettlInstMode_1
+
       SPECIFIC_ORDER:
         meaning: fix_post_trade:SettlInstMode_4
+
       REQUEST_REJECT:
         meaning: fix_post_trade:SettlInstMode_5
 
@@ -188,84 +235,98 @@ enums:
     permissible_values:
       PRELIMINARY:
         meaning: fix_post_trade:SettlObligMode_1
+
       FINAL:
         meaning: fix_post_trade:SettlObligMode_2
 
   PositionMaintenanceActionEnum:
     description: PosMaintAction(712) values.
+    related_mappings: [common_domain_model:PositionStatusEnum]
     permissible_values:
       NEW:
         meaning: fix_post_trade:PosMaintAction_1
+
       REPLACE:
         meaning: fix_post_trade:PosMaintAction_2
+
       CANCEL:
         meaning: fix_post_trade:PosMaintAction_3
+
       REVERSE:
         meaning: fix_post_trade:PosMaintAction_4
 
   ClearingServiceForPositionManagementEnum:
-    description: |-
-      Business functions invokable via the Position Management
-      Clearing Services.
+    description: Business functions invokable via the Position Management Clearing Services.
     permissible_values:
-      POSITION_CHANGE_SUBMISSION:
-      POSITION_ADJUSTMENT:
-      EXERCISE_NOTICE:
-      ABANDONMENT_NOTICE:
-      MARGIN_DISPOSITION:
-      POSITION_PLEDGE:
-      REQUEST_FOR_POSITION:
+      POSITION_CHANGE_SUBMISSION: null
+
+      POSITION_ADJUSTMENT: null
+
+      EXERCISE_NOTICE: null
+
+      ABANDONMENT_NOTICE: null
+
+      MARGIN_DISPOSITION: null
+
+      POSITION_PLEDGE: null
+
+      REQUEST_FOR_POSITION: null
 
   ClearingServiceForPostTradeProcessingEnum:
-    description: |-
-      Message-format families used by the Post-Trade Processing
-      Clearing Services.
+    description: Message-format families used by the Post-Trade Processing Clearing Services.
     permissible_values:
-      ETP:
-      GIVE_UP:
-      EXCHANGE_FOR_PHYSICAL:
-      AVERAGE_PRICE_SYSTEM:
-      MUTUAL_OFFSET_SYSTEM:
-      TRADE_ENTRY_EDIT:
+      ETP: null
+
+      GIVE_UP: null
+
+      EXCHANGE_FOR_PHYSICAL: null
+
+      AVERAGE_PRICE_SYSTEM: null
+
+      MUTUAL_OFFSET_SYSTEM: null
+
+      TRADE_ENTRY_EDIT: null
 
   CollateralManagementUsageEnum:
     description: Documented uses of the Collateral Management messages.
+    related_mappings: [common_domain_model:CollateralMarginTypeEnum]
     permissible_values:
-      SECURITIES_FINANCING_COLLATERALIZATION:
-      CLEARING_HOUSE_COLLATERALIZATION:
+      SECURITIES_FINANCING_COLLATERALIZATION: null
+
+      CLEARING_HOUSE_COLLATERALIZATION: null
 
   CollateralAssignmentPurposeEnum:
     description: Purposes for which a CollateralAssignment may be sent.
+    related_mappings: [common_domain_model:CollateralTypeEnum]
     permissible_values:
-      ASSIGN_INITIAL_COLLATERAL:
-      REPLENISH_COLLATERAL:
-      REPLACE_OR_SUBSTITUTE_COLLATERAL:
+      ASSIGN_INITIAL_COLLATERAL: null
+
+      REPLENISH_COLLATERAL: null
+
+      REPLACE_OR_SUBSTITUTE_COLLATERAL: null
 
   AllocationRoleEnum:
-    description: |-
-      Role labels used throughout the Allocation category prose to
-      designate the sender and receiver of an AllocationInstruction.
+    description: Role labels used throughout the Allocation category prose to designate the sender and receiver of an AllocationInstruction.
     permissible_values:
-      INITIATOR:
-      RESPONDENT:
+      INITIATOR: null
+
+      RESPONDENT: null
 
   MatchStatusEnum:
     description: MatchStatus(573) values referenced in Post-Trade prose.
     permissible_values:
       COMPARED_MATCHED_OR_AFFIRMED:
         meaning: fix_post_trade:MatchStatus_0
+
       UNCOMPARED_UNMATCHED_OR_UNAFFIRMED:
         meaning: fix_post_trade:MatchStatus_1
 
   PostTradeLayoutRowKindEnum:
-    description: |-
-      Discriminator for a row in a Post-Trade message- or
-      component-layout table: either a FIX field (numeric Tag
-      column) or an embedded component (literal "Component" in
-      the Tag column).
+    description: 'Discriminator for a row in a Post-Trade message- or component-layout table: either a FIX field (numeric Tag column) or an embedded component (literal "Component" in the Tag column).'
     permissible_values:
-      FIELD:
-      COMPONENT:
+      FIELD: null
+
+      COMPONENT: null
 
 slots:
   post_introduction:
@@ -273,9 +334,7 @@ slots:
     range: string
 
   post_common_components:
-    description: |-
-      Common Components declared at the top of the Post-Trade
-      chapter.
+    description: Common Components declared at the top of the Post-Trade chapter.
     range: PostTradeCommonComponentName
     multivalued: true
 
@@ -294,125 +353,99 @@ slots:
     inlined_as_list: true
 
   post_category_specific_components:
-    description: |-
-      Components used exclusively by messages within a category.
+    description: Components used exclusively by messages within a category.
     range: PostTradeComponentDetail
     multivalued: true
     inlined: true
     inlined_as_list: true
 
   post_sole_category:
-    description: |-
-      Single Post-Trade category that actually uses the component
-      (per footnote).
+    description: Single Post-Trade category that actually uses the component (per footnote).
     range: PostTradeCategoryEnum
 
   post_message_groups:
-    description: |-
-      Purpose-grouped message descriptions inside a Post-Trade
-      category.
+    description: Purpose-grouped message descriptions inside a Post-Trade category.
     range: PostTradeMessageGroup
     multivalued: true
     inlined: true
     inlined_as_list: true
 
   post_common_component_details:
-    description: |-
-      Per-common-component descriptions from the chapter's final
-      Common Components section.
+    description: Per-common-component descriptions from the chapter's final Common Components section.
     range: PostTradeCommonComponentDetail
     multivalued: true
     inlined: true
     inlined_as_list: true
 
   allocation_scenarios:
-    description: |-
-      Communication options supported by the Allocation category
-      for conveying allocation instructions.
+    description: Communication options supported by the Allocation category for conveying allocation instructions.
     range: AllocationScenarioEnum
     multivalued: true
 
   post_trade_allocation_pricing_methods:
-    description: |-
-      Methods supported for computing post-trade allocations.
+    description: Methods supported for computing post-trade allocations.
     range: PostTradeAllocationPricingMethodEnum
     multivalued: true
 
   allocation_status_descriptions:
-    description: |-
-      Descriptions tied to AllocStatus(87) values as listed in the
-      Allocation Instruction Acknowledgements section.
+    description: Descriptions tied to AllocStatus(87) values as listed in the Allocation Instruction Acknowledgements section.
     range: AllocationStatusDescription
     multivalued: true
     inlined: true
     inlined_as_list: true
 
   fragmentation_field_map:
-    description: |-
-      Per-message mapping of fragmentation-related fields used by
-      the Allocation messages.
+    description: Per-message mapping of fragmentation-related fields used by the Allocation messages.
     range: AllocationFragmentationFieldMap
     multivalued: true
     inlined: true
     inlined_as_list: true
 
   trade_capture_report_usages:
-    description: |-
-      Usages described in the "Trade Capture Report Usages"
-      sub-section of the Trade Capture Reporting category.
+    description: Usages described in the "Trade Capture Report Usages" sub-section of the Trade Capture Reporting category.
     range: TradeCaptureReportUsage
     multivalued: true
     inlined: true
     inlined_as_list: true
 
   trade_capture_report_identifier_rules:
-    description: |-
-      Rules governing TradeCaptureReport(35=AE) identifier fields.
+    description: Rules governing TradeCaptureReport(35=AE) identifier fields.
     range: TradeCaptureReportIdentifierRule
     multivalued: true
     inlined: true
     inlined_as_list: true
 
   registration_status_descriptions:
-    description: |-
-      Descriptions tied to RegistStatus(506) values.
+    description: Descriptions tied to RegistStatus(506) values.
     range: RegistrationStatusDescription
     multivalued: true
     inlined: true
     inlined_as_list: true
 
   clearing_services_for_position_management:
-    description: |-
-      Business functions exposed by the Position Management
-      Clearing Services.
+    description: Business functions exposed by the Position Management Clearing Services.
     range: ClearingServiceForPositionManagementEnum
     multivalued: true
 
   clearing_services_for_post_trade_processing:
-    description: |-
-      Per-format action sets exposed by the Post-Trade Processing
-      Clearing Services.
+    description: Per-format action sets exposed by the Post-Trade Processing Clearing Services.
     range: ClearingServicePostTradeProcessingFormat
     multivalued: true
     inlined: true
     inlined_as_list: true
 
   allocation_roles:
-    description: |-
-      Role labels used throughout the Allocation category prose.
+    description: Role labels used throughout the Allocation category prose.
     range: AllocationRoleEnum
     multivalued: true
 
   collateral_management_usages:
-    description: |-
-      Documented usages for the Collateral Management messages.
+    description: Documented usages for the Collateral Management messages.
     range: CollateralManagementUsageEnum
     multivalued: true
 
   collateral_assignment_purposes:
-    description: |-
-      Documented purposes for the CollateralAssignment(35=AY)
-      message.
+    description: Documented purposes for the CollateralAssignment(35=AY) message.
     range: CollateralAssignmentPurposeEnum
     multivalued: true
 
@@ -429,98 +462,66 @@ slots:
     range: string
 
   message_format:
-    description: |-
-      Clearing-service message format family referenced in the
-      chapter.
+    description: Clearing-service message format family referenced in the chapter.
     range: ClearingServiceForPostTradeProcessingEnum
 
   supported_actions:
-    description: |-
-      Action labels (e.g. Allocation, Accept, Reject, Release,
-      Change, Delete) supported by a clearing-service message
-      format.
+    description: Action labels (e.g. Allocation, Accept, Reject, Release, Change, Delete) supported by a clearing-service message format.
     range: string
     multivalued: true
 
   principal_message_reference:
-    description: |-
-      Principal message reference field used to bind allocation
-      message fragments together (e.g. AllocID, AllocReportID).
+    description: Principal message reference field used to bind allocation message fragments together (e.g. AllocID, AllocReportID).
     range: string
 
   total_count_field:
-    description: |-
-      Field carrying the total number of repeating-group entries
-      across all fragments (e.g. TotNoAllocs).
+    description: Field carrying the total number of repeating-group entries across all fragments (e.g. TotNoAllocs).
     range: string
 
   fragment_count_field:
-    description: |-
-      Field carrying the number of entries in the current message
-      fragment (e.g. NoAllocs).
+    description: Field carrying the number of entries in the current message fragment (e.g. NoAllocs).
     range: string
 
   post_layout_rows:
-    description: |-
-      Ordered rows of the layout table published for the
-      message or component in the Post-Trade Appendix.
+    description: Ordered rows of the layout table published for the message or component in the Post-Trade Appendix.
     range: PostTradeLayoutRow
     multivalued: true
     inlined: true
     inlined_as_list: true
 
   post_layout_kind:
-    description: |-
-      Row kind — either a FIX field (numeric Tag) or an
-      embedded component (literal "Component" in the Tag
-      column of the source table).
+    description: Row kind — either a FIX field (numeric Tag) or an embedded component (literal "Component" in the Tag column of the source table).
     range: PostTradeLayoutRowKindEnum
 
   post_layout_field_tag:
-    description: |-
-      FIX tag number drawn from the Tag column when the row is
-      a field (i.e. layout_kind = FIELD). Absent for COMPONENT
-      rows.
+    description: FIX tag number drawn from the Tag column when the row is a field (i.e. layout_kind = FIELD). Absent for COMPONENT rows.
     range: integer
     minimum_value: 0
 
   post_layout_element_name:
-    description: |-
-      Element name as printed in the Name column — either the
-      FIX field name or the component name.
+    description: Element name as printed in the Name column — either the FIX field name or the component name.
     range: string
 
   post_layout_required:
-    description: |-
-      Whether the field or component is required, as printed in
-      the Req’d column of the source layout table ("Y" / "N").
+    description: Whether the field or component is required, as printed in the Req’d column of the source layout table ("Y" / "N").
     range: boolean
 
   post_layout_description:
-    description: |-
-      Free-text content of the Description column of the row
-      (may be empty).
+    description: Free-text content of the Description column of the row (may be empty).
     range: string
 
   post_layout_nested:
-    description: |-
-      Whether the row appears nested under a repeating-group
-      counter (i.e. its Tag column is prefixed with the "→"
-      arrow in the source table).
+    description: Whether the row appears nested under a repeating-group counter (i.e. its Tag column is prefixed with the "→" arrow in the source table).
     range: boolean
-    ifabsent: "False"
+    ifabsent: 'False'
 
 classes:
   PostTradeBusinessArea:
-    description: |-
-      Tree-root container for the Post-Trade business area of FIX
-      Latest.
+    description: Tree-root container for the Post-Trade business area of FIX Latest.
     tree_root: true
-    in_subset:
-      - post_trade
+    in_subset: [post_trade]
     class_uri: fix_post_trade:PostTradeBusinessArea
-    aliases:
-      - Post-Trade
+    aliases: [Post-Trade]
     see_also:
       - https://www.fixtrading.org/standards/fix-latest-online/business-area-post-trade/
     slots:
@@ -559,16 +560,10 @@ classes:
         required: true
 
   PostTradeMessageEntry:
-    description: |-
-      One row of the area-wide "Messages for Post-Trade Business
-      Area" table.
-    in_subset:
-      - post_trade_organization
+    description: One row of the area-wide "Messages for Post-Trade Business Area" table.
+    in_subset: [post_trade_organization]
     class_uri: fix_post_trade:PostTradeMessageEntry
-    slots:
-      - msg_type
-      - message_name
-      - category
+    slots: [msg_type, message_name, category]
     slot_usage:
       msg_type:
         identifier: true
@@ -580,18 +575,10 @@ classes:
         required: true
 
   PostTradeComponentEntry:
-    description: |-
-      One row of the area-wide "Components for Post-Trade Business
-      Area" table.
-    in_subset:
-      - post_trade_organization
+    description: One row of the area-wide "Components for Post-Trade Business Area" table.
+    in_subset: [post_trade_organization]
     class_uri: fix_post_trade:PostTradeComponentEntry
-    slots:
-      - component_name
-      - repetition
-      - category
-      - is_common
-      - footnote_number
+    slots: [component_name, repetition, category, is_common, footnote_number]
     slot_usage:
       component_name:
         identifier: true
@@ -599,28 +586,17 @@ classes:
       repetition:
         required: true
       category:
-        description: |-
-          Category label as printed in the component table; the
-          token "Common Components" is allowed in addition to the
-          PostTradeCategoryEnum values.
+        description: Category label as printed in the component table; the token "Common Components" is allowed in addition to the PostTradeCategoryEnum values.
         range: string
         required: true
       is_common:
         ifabsent: string(False)
 
   PostTradeComponentTableFootnote:
-    description: |-
-      A footnote attached to a row of the area-wide Post-Trade
-      components table.
-    in_subset:
-      - post_trade_organization
+    description: A footnote attached to a row of the area-wide Post-Trade components table.
+    in_subset: [post_trade_organization]
     class_uri: fix_post_trade:PostTradeComponentTableFootnote
-    slots:
-      - footnote_number
-      - component_name
-      - introduced_in
-      - post_sole_category
-      - text
+    slots: [footnote_number, component_name, introduced_in, post_sole_category, text]
     slot_usage:
       footnote_number:
         identifier: true
@@ -633,10 +609,8 @@ classes:
         required: true
 
   PostTradeCategorySection:
-    description: |-
-      A "Category – <name>" sub-section of the Post-Trade chapter.
-    in_subset:
-      - post_trade
+    description: A "Category – <name>" sub-section of the Post-Trade chapter.
+    in_subset: [post_trade]
     class_uri: fix_post_trade:PostTradeCategorySection
     slots:
       - category
@@ -669,15 +643,10 @@ classes:
         inlined_as_list: true
 
   PostTradeMessageGroup:
-    description: |-
-      A purpose-themed grouping of messages within a Post-Trade
-      category (e.g. "Allocation Instructions").
-    in_subset:
-      - post_trade
+    description: A purpose-themed grouping of messages within a Post-Trade category (e.g. "Allocation Instructions").
+    in_subset: [post_trade]
     class_uri: fix_post_trade:PostTradeMessageGroup
-    slots:
-      - group_title
-      - messages
+    slots: [group_title, messages]
     slot_usage:
       group_title:
         identifier: true
@@ -689,18 +658,11 @@ classes:
         required: true
 
   PostTradeMessageDetail:
-    description: |-
-      Per-message description block from a Post-Trade category
-      section.
-    in_subset:
-      - post_trade
+    description: Per-message description block from a Post-Trade category section.
+    close_mappings: [fix_orchestra:MessageType]
+    in_subset: [post_trade]
     class_uri: fix_post_trade:PostTradeMessageDetail
-    slots:
-      - msg_type
-      - message_name
-      - description
-      - layout_url
-      - post_layout_rows
+    slots: [msg_type, message_name, description, layout_url, post_layout_rows]
     slot_usage:
       msg_type:
         identifier: true
@@ -709,36 +671,20 @@ classes:
         required: true
 
   PostTradeComponentDetail:
-    description: |-
-      Per-component description block from a Post-Trade category
-      section's Components sub-section.
-    in_subset:
-      - post_trade
+    description: Per-component description block from a Post-Trade category section's Components sub-section.
+    in_subset: [post_trade]
     class_uri: fix_post_trade:PostTradeComponentDetail
-    slots:
-      - component_name
-      - repetition
-      - description
-      - layout_url
-      - post_layout_rows
+    slots: [component_name, repetition, description, layout_url, post_layout_rows]
     slot_usage:
       component_name:
         identifier: true
         required: true
 
   PostTradeCommonComponentDetail:
-    description: |-
-      Per-common-component description block from the chapter's
-      final "Common Components" section.
-    in_subset:
-      - post_trade
+    description: Per-common-component description block from the chapter's final "Common Components" section.
+    in_subset: [post_trade]
     class_uri: fix_post_trade:PostTradeCommonComponentDetail
-    slots:
-      - component_name
-      - repetition
-      - description
-      - layout_url
-      - post_layout_rows
+    slots: [component_name, repetition, description, layout_url, post_layout_rows]
     slot_usage:
       component_name:
         identifier: true
@@ -746,15 +692,10 @@ classes:
         range: PostTradeCommonComponentName
 
   AllocationStatusDescription:
-    description: |-
-      One row of the AllocStatus(87) value/description table.
-    in_subset:
-      - post_trade_workflow
+    description: One row of the AllocStatus(87) value/description table.
+    in_subset: [post_trade_workflow]
     class_uri: fix_post_trade:AllocationStatusDescription
-    slots:
-      - status_code
-      - status_label
-      - description
+    slots: [status_code, status_label, description]
     slot_usage:
       status_code:
         identifier: true
@@ -763,11 +704,8 @@ classes:
         required: true
 
   AllocationFragmentationFieldMap:
-    description: |-
-      One row of the table mapping an allocation message to its
-      fragmentation-related fields.
-    in_subset:
-      - post_trade_workflow
+    description: One row of the table mapping an allocation message to its fragmentation-related fields.
+    in_subset: [post_trade_workflow]
     class_uri: fix_post_trade:AllocationFragmentationFieldMap
     slots:
       - msg_type
@@ -789,16 +727,11 @@ classes:
         required: true
 
   TradeCaptureReportUsage:
-    description: |-
-      One documented usage of the TradeCaptureReport(35=AE)
-      message.
-    in_subset:
-      - post_trade_workflow
+    description: One documented usage of the TradeCaptureReport(35=AE) message.
+    related_mappings: [common_domain_model:BusinessEvent, fix_orchestra:ScenarioType]
+    in_subset: [post_trade_workflow]
     class_uri: fix_post_trade:TradeCaptureReportUsage
-    slots:
-      - status_label
-      - description
-      - identifier_role
+    slots: [status_label, description, identifier_role]
     slot_usage:
       status_label:
         identifier: true
@@ -806,30 +739,21 @@ classes:
         description: Short label for the usage.
 
   TradeCaptureReportIdentifierRule:
-    description: |-
-      A rule governing one of the TradeCaptureReport(35=AE)
-      identifier fields.
-    in_subset:
-      - post_trade_workflow
+    description: A rule governing one of the TradeCaptureReport(35=AE) identifier fields.
+    related_mappings: [common_domain_model:Identifier]
+    in_subset: [post_trade_workflow]
     class_uri: fix_post_trade:TradeCaptureReportIdentifierRule
-    slots:
-      - identifier_role
-      - description
+    slots: [identifier_role, description]
     slot_usage:
       identifier_role:
         identifier: true
         required: true
 
   RegistrationStatusDescription:
-    description: |-
-      One row of the RegistStatus(506) value/description table.
-    in_subset:
-      - post_trade_workflow
+    description: One row of the RegistStatus(506) value/description table.
+    in_subset: [post_trade_workflow]
     class_uri: fix_post_trade:RegistrationStatusDescription
-    slots:
-      - status_code
-      - status_label
-      - description
+    slots: [status_code, status_label, description]
     slot_usage:
       status_code:
         identifier: true
@@ -838,15 +762,10 @@ classes:
         required: true
 
   ClearingServicePostTradeProcessingFormat:
-    description: |-
-      One message-format row from the Post-Trade Processing
-      Clearing Services section, with its supported actions.
-    in_subset:
-      - post_trade_workflow
+    description: One message-format row from the Post-Trade Processing Clearing Services section, with its supported actions.
+    in_subset: [post_trade_workflow]
     class_uri: fix_post_trade:ClearingServicePostTradeProcessingFormat
-    slots:
-      - message_format
-      - supported_actions
+    slots: [message_format, supported_actions]
     slot_usage:
       message_format:
         identifier: true
@@ -855,18 +774,10 @@ classes:
         required: true
 
   PostTradeLayoutRow:
-    description: |-
-      One row of the layout table published in the Post-Trade
-      Appendix for a message or component. Each row identifies
-      either a FIX field (by tag number + name) or an embedded
-      component (by name), records whether it is required,
-      carries the Description-column text, and flags whether it
-      appears as a nested child of a repeating-group counter.
-    in_subset:
-      - post_trade
+    description: One row of the layout table published in the Post-Trade Appendix for a message or component. Each row identifies either a FIX field (by tag number + name) or an embedded component (by name), records whether it is required, carries the Description-column text, and flags whether it appears as a nested child of a repeating-group counter.
+    in_subset: [post_trade]
     class_uri: fix_post_trade:PostTradeLayoutRow
-    see_also:
-      - https://www.fixtrading.org/standards/fix-latest-online/post-trade-appendix/
+    see_also: [https://www.fixtrading.org/standards/fix-latest-online/post-trade-appendix/]
     slots:
       - post_layout_kind
       - post_layout_field_tag

@@ -1,0 +1,41 @@
+# metamodel_version: 1.11.0id: FIXProtocolLimited
+schema_generating: true
+description: The organization that maintains the FIX Protocol specification.
+display_name: FIXProtocolLimited
+document_category: FIXProtocolLimited
+weight: 20
+fields:
+- id: brand_name
+  description: Brand name used by the organization.
+  display_name: FIXProtocolLimited_brand_name
+- id: legal_name
+  description: Legal name of the organization.
+  display_name: FIXProtocolLimited_legal_name
+- id: website
+  description: Main website URL of the organization.
+  display_name: FIXProtocolLimited_website
+- id: member_firms_url
+  description: URL listing current FPL Member firms.
+  display_name: member_firms_url
+- id: working_groups_url
+  description: URL listing currently active FPL Working Groups.
+  display_name: working_groups_url
+- id: committees_url
+  description: URL listing Product and Regional Committees.
+  display_name: committees_url
+- id: member_types
+  description: Organization categories represented in FPL membership.
+  display_name: member_types
+  cardinality: multi
+- id: governance_bodies
+  description: High-level governance bodies that represent FPL.
+  display_name: governance_bodies
+  cardinality: multi
+- id: product_committees
+  description: Global Product Committees maintained by FPL.
+  display_name: product_committees
+  cardinality: multi
+- id: regional_committees
+  description: Regional Committees maintained by FPL.
+  display_name: regional_committees
+  cardinality: multi

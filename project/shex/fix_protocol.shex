@@ -1,0 +1,1199 @@
+# metamodel_version: 1.11.0
+BASE <https://w3id.org/lmodel/fix-protocol/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX linkml: <https://w3id.org/linkml/>
+PREFIX schema1: <http://schema.org/>
+PREFIX fix_base: <https://w3id.org/lmodel/fix-protocol/fix-base/>
+PREFIX fix_pre_trade: <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/>
+PREFIX fix_trade: <https://w3id.org/lmodel/fix-protocol/fix-trade/>
+PREFIX fix_post_trade: <https://w3id.org/lmodel/fix-protocol/fix-post-trade/>
+PREFIX fix_infrastructure: <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/>
+PREFIX fix_global_components: <https://w3id.org/lmodel/fix-protocol/fix-global-components/>
+PREFIX rdfs1: <http://example.org/UNKNOWN/rdfs/>
+
+
+linkml:String xsd:string
+
+linkml:Integer xsd:integer
+
+linkml:Boolean xsd:boolean
+
+linkml:Float xsd:float
+
+linkml:Double xsd:double
+
+linkml:Decimal xsd:decimal
+
+linkml:Time xsd:time
+
+linkml:Date xsd:date
+
+linkml:Datetime xsd:dateTime
+
+linkml:DateOrDatetime linkml:DateOrDatetime
+
+linkml:Uriorcurie IRI
+
+linkml:Curie xsd:string
+
+linkml:Uri IRI
+
+linkml:Ncname xsd:string
+
+linkml:Objectidentifier IRI
+
+linkml:Nodeidentifier NONLITERAL
+
+linkml:Jsonpointer xsd:string
+
+linkml:Jsonpath xsd:string
+
+linkml:Sparqlpath xsd:string
+
+fix_base:TagNumber xsd:integer
+
+fix_base:ExtensionPackNumber xsd:integer
+
+fix_post_trade:AllocationFragmentationFieldMap CLOSED {
+    (  $fix_post_trade:AllocationFragmentationFieldMap_tes (  schema1:name @linkml:String ;
+          fix_post_trade:total_count_field @linkml:String ;
+          fix_post_trade:fragment_count_field @linkml:String ;
+          fix_post_trade:principal_message_reference @linkml:String
+       ) ;
+       rdf:type [ fix_post_trade:AllocationFragmentationFieldMap ]
+    )
+}
+
+fix_post_trade:AllocationStatusDescription CLOSED {
+    (  $fix_post_trade:AllocationStatusDescription_tes (  fix_post_trade:status_label @linkml:String ;
+          dcterms:description @linkml:String ?
+       ) ;
+       rdf:type [ fix_post_trade:AllocationStatusDescription ]
+    )
+}
+
+fix_infrastructure:ApplicationMessageReferenceKey CLOSED {
+    (  $fix_infrastructure:ApplicationMessageReferenceKey_tes (  fix_infrastructure:category_label @linkml:String ;
+          fix_infrastructure:fix_message @linkml:String ;
+          fix_infrastructure:business_reject_ref_id_value @linkml:String
+       ) ;
+       rdf:type [ fix_infrastructure:ApplicationMessageReferenceKey ] ?
+    )
+}
+
+fix_base:BusinessArea CLOSED {
+    (  $fix_base:BusinessArea_tes (  dcterms:title @linkml:String ? ;
+          dcterms:description @linkml:String ? ;
+          fix_base:categories @fix_base:MessageCategory *
+       ) ;
+       rdf:type [ fix_base:BusinessArea ]
+    )
+}
+
+fix_infrastructure:BusinessRejectReasonDescription CLOSED {
+    (  $fix_infrastructure:BusinessRejectReasonDescription_tes fix_infrastructure:reject_reason_label @linkml:String ;
+       rdf:type [ fix_infrastructure:BusinessRejectReasonDescription ]
+    )
+}
+
+fix_post_trade:ClearingServicePostTradeProcessingFormat CLOSED {
+    (  $fix_post_trade:ClearingServicePostTradeProcessingFormat_tes fix_post_trade:supported_actions @linkml:String + ;
+       rdf:type [ fix_post_trade:ClearingServicePostTradeProcessingFormat ]
+    )
+}
+
+fix_base:CommonComponent CLOSED {
+    (  $fix_base:CommonComponent_tes (  &fix_base:Component_tes ;
+          rdf:type [ fix_base:Component ] ? ;
+          fix_base:business_area [ <https://w3id.org/lmodel/fix-protocol/fix-base/BusinessAreaEnum#INTRODUCTION>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/BusinessAreaEnum#PRE_TRADE>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/BusinessAreaEnum#TRADE>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/BusinessAreaEnum#POST_TRADE>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/BusinessAreaEnum#INFRASTRUCTURE> ] ;
+          fix_base:scope [ <https://w3id.org/lmodel/fix-protocol/fix-base/ComponentScope#GLOBAL>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/ComponentScope#COMMON>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/ComponentScope#SPECIFIC> ]
+       ) ;
+       rdf:type [ fix_base:CommonComponent ]
+    )
+}
+
+fix_pre_trade:CommonComponentDetail CLOSED {
+    (  $fix_pre_trade:CommonComponentDetail_tes (  fix_pre_trade:repetition [
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/ComponentRepetition#REPEATING>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/ComponentRepetition#NON_REPEATING> ] ? ;
+          dcterms:description @linkml:String ? ;
+          schema1:url @linkml:Uri ? ;
+          fix_pre_trade:pre_layout_rows @fix_pre_trade:PreTradeLayoutRow *
+       ) ;
+       rdf:type [ fix_pre_trade:CommonComponentDetail ]
+    )
+}
+
+fix_base:Component  (
+    @fix_base:CommonComponent OR @fix_base:GlobalComponent OR @fix_base:SpecificComponent
+)
+
+fix_base:Component_struct {
+    (  $fix_base:Component_tes (  dcterms:description @linkml:String ? ;
+          fix_base:scope [ <https://w3id.org/lmodel/fix-protocol/fix-base/ComponentScope#GLOBAL>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/ComponentScope#COMMON>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/ComponentScope#SPECIFIC> ] ;
+          fix_base:is_repeating_group @linkml:Boolean ? ;
+          fix_base:fields @fix_base:Field * ;
+          fix_base:nested_components @fix_base:Component *
+       ) ;
+       rdf:type [ fix_base:Component ]
+    )
+}
+
+fix_pre_trade:ComponentTableFootnote CLOSED {
+    (  $fix_pre_trade:ComponentTableFootnote_tes (  schema1:name @linkml:String ;
+          fix_pre_trade:introduced_in @linkml:String ;
+          fix_pre_trade:sole_category [ <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeCategoryEnum#INDICATION>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeCategoryEnum#EVENT_COMMUNICATION>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeCategoryEnum#QUOTATION_NEGOTIATION>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeCategoryEnum#MARKET_DATA>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeCategoryEnum#MARKET_STRUCTURE_REFERENCE_DATA>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeCategoryEnum#SECURITIES_REFERENCE_DATA>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeCategoryEnum#PARTIES_REFERENCE_DATA>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeCategoryEnum#PARTIES_ACTION> ] ;
+          fix_pre_trade:text @linkml:String ?
+       ) ;
+       rdf:type [ fix_pre_trade:ComponentTableFootnote ]
+    )
+}
+
+fix_base:ExtensionPack CLOSED {
+    (  $fix_base:ExtensionPack_tes (  dcterms:title @linkml:String ;
+          fix_base:size [ <https://w3id.org/lmodel/fix-protocol/fix-base/ExtensionPackSize#XXS>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/ExtensionPackSize#XS>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/ExtensionPackSize#S>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/ExtensionPackSize#M>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/ExtensionPackSize#L>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/ExtensionPackSize#XL>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/ExtensionPackSize#XXL> ] ? ;
+          fix_base:enhancement_summary @linkml:String ? ;
+          fix_base:applies_to_session_layer_only @linkml:Boolean ? ;
+          fix_base:applies_to_fixml_only @linkml:Boolean ?
+       ) ;
+       rdf:type [ fix_base:ExtensionPack ]
+    )
+}
+
+fix_base:Field CLOSED {
+    (  $fix_base:Field_tes (  schema1:name @linkml:String ;
+          fix_base:datatype [ <https://w3id.org/lmodel/fix-protocol/fix-base/FIXDatatypeName#int>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FIXDatatypeName#TagNum>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FIXDatatypeName#SeqNum>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FIXDatatypeName#NumInGroup>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FIXDatatypeName#DayOfMonth>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FIXDatatypeName#float>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FIXDatatypeName#Qty>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FIXDatatypeName#Price>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FIXDatatypeName#PriceOffset>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FIXDatatypeName#Amt>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FIXDatatypeName#Percentage>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FIXDatatypeName#char>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FIXDatatypeName#Boolean>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FIXDatatypeName#String>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FIXDatatypeName#MultipleCharValue>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FIXDatatypeName#MultipleStringValue>
+             <https://www.iso.org/iso-3166-country-codes.html#> <https://www.iso.org/iso-4217-currency-codes.html#>
+             <https://www.iso.org/standard/61067.html#> <https://w3id.org/lmodel/fix-protocol/fix-base/FIXDatatypeName#MonthYear>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FIXDatatypeName#UTCTimestamp>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FIXDatatypeName#UTCTimeOnly>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FIXDatatypeName#UTCDateOnly>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FIXDatatypeName#LocalMktDate>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FIXDatatypeName#TZTimeOnly>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FIXDatatypeName#TZTimestamp>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FIXDatatypeName#Length>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FIXDatatypeName#data>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FIXDatatypeName#Tenor>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FIXDatatypeName#Reserved100Plus>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FIXDatatypeName#Reserved1000Plus>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FIXDatatypeName#Reserved4000Plus>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FIXDatatypeName#XMLData>
+             <https://www.iso.org/iso-639-language-codes.html#>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FIXDatatypeName#LocalMktTime> ] ;
+          dcterms:description @linkml:String ? ;
+          fix_base:requirement [ <https://w3id.org/lmodel/fix-protocol/fix-base/FieldRequirement#REQUIRED>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FieldRequirement#OPTIONAL>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FieldRequirement#CONDITIONALLY_REQUIRED> ] ? ;
+          fix_base:is_user_defined @linkml:Boolean ?
+       ) ;
+       rdf:type [ fix_base:Field ]
+    )
+}
+
+fix_base:FIXDatatype CLOSED {
+    (  $fix_base:FIXDatatype_tes (  fix_base:definition @linkml:String ;
+          fix_base:value_space [ <https://w3id.org/lmodel/fix-protocol/fix-base/ISO11404ValueSpace#integer>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/ISO11404ValueSpace#ordinal>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/ISO11404ValueSpace#size>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/ISO11404ValueSpace#real>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/ISO11404ValueSpace#scaled>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/ISO11404ValueSpace#character>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/ISO11404ValueSpace#characterstring>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/ISO11404ValueSpace#boolean>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/ISO11404ValueSpace#set>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/ISO11404ValueSpace#array>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/ISO11404ValueSpace#time>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/ISO11404ValueSpace#union> ] * ;
+          fix_base:value_space_notes @linkml:String ? ;
+          fix_base:deprecated_for_new_designs @linkml:Boolean ? ;
+          dcterms:conformsTo @linkml:String ? ;
+          fix_base:time_unit [ <https://w3id.org/lmodel/fix-protocol/fix-base/TimePrecision#SECOND>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/TimePrecision#MILLISECOND>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/TimePrecision#MICROSECOND>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/TimePrecision#NANOSECOND>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/TimePrecision#PICOSECOND>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/TimePrecision#DAY> ] * ;
+          fix_base:radix @linkml:Integer ? ;
+          fix_base:repertoire @linkml:String ? ;
+          fix_base:index_lower_bound @linkml:Integer ? ;
+          fix_base:index_upper_bound @linkml:Integer ? ;
+          fix_base:minimum_value @linkml:Integer ? ;
+          fix_base:maximum_value @linkml:Integer ? ;
+          fix_base:footnote_numbers @linkml:Integer *
+       ) ;
+       rdf:type [ fix_base:FIXDatatype ]
+    )
+}
+
+fix_base:FIXFamilyStandard CLOSED {
+    (  $fix_base:FIXFamilyStandard_tes (  schema1:name @linkml:String ;
+          dcterms:description @linkml:String ? ;
+          schema1:alternateName @linkml:String ? ;
+          rdfs1:seeAlso @linkml:Uri * ;
+          fix_base:layer [ <https://w3id.org/lmodel/fix-protocol/fix-base/StandardLayer#APPLICATION>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/StandardLayer#ENCODING>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/StandardLayer#SESSION> ] ;
+          schema1:version @linkml:String ? ;
+          fix_base:session_profile [ <https://w3id.org/lmodel/fix-protocol/fix-base/SessionProtocolName#FIX_4_2>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/SessionProtocolName#FIX4>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/SessionProtocolName#FIXT>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/SessionProtocolName#LFIXT>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/SessionProtocolName#FIXP>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/SessionProtocolName#SOFH>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/SessionProtocolName#FIXS>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/SessionProtocolName#AMQP> ] ? ;
+          fix_base:encoding_name [ <https://w3id.org/lmodel/fix-protocol/fix-base/StandardEncodingName#TAGVALUE>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/StandardEncodingName#FIXML>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/StandardEncodingName#FAST>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/StandardEncodingName#SBE>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/StandardEncodingName#GPB>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/StandardEncodingName#JSON>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/StandardEncodingName#ASN_1> ] ?
+       ) ;
+       rdf:type [ fix_base:FIXFamilyStandard ]
+    )
+}
+
+fix_base:FIXIntroduction CLOSED {
+    (  $fix_base:FIXIntroduction_tes (  schema1:version @linkml:String ? ;
+          dcterms:issued @linkml:Date ? ;
+          dcterms:publisher @linkml:String ? ;
+          fix_base:preface @linkml:String ? ;
+          fix_base:introduction_text @linkml:String ? ;
+          fix_base:utc_leap_seconds_note @linkml:String ? ;
+          fix_base:about_fpl @fix_base:FIXProtocolLimited ? ;
+          fix_base:standards @fix_base:FIXFamilyStandard * ;
+          fix_base:extension_packs @fix_base:ExtensionPack * ;
+          fix_base:datatypes @fix_base:FIXDatatype * ;
+          fix_base:business_areas @fix_base:BusinessArea * ;
+          fix_base:global_components @fix_base:GlobalComponent * ;
+          fix_base:udf_ranges @fix_base:UDFTagRange * ;
+          fix_base:product_coverage [ <https://w3id.org/lmodel/fix-protocol/fix-base/ProductCoverage#EQUITIES>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/ProductCoverage#CIV>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/ProductCoverage#DERIVATIVES>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/ProductCoverage#FIXED_INCOME>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/ProductCoverage#FOREIGN_EXCHANGE> ] *
+       ) ;
+       rdf:type [ fix_base:FIXIntroduction ] ?
+    )
+}
+
+fix_base:FIXProtocolLimited CLOSED {
+    (  $fix_base:FIXProtocolLimited_tes (  fix_base:brand_name @linkml:String ? ;
+          schema1:legalName @linkml:String ? ;
+          schema1:url @linkml:Uri ? ;
+          fix_base:member_firms_url @linkml:Uri ? ;
+          fix_base:working_groups_url @linkml:Uri ? ;
+          fix_base:committees_url @linkml:Uri ? ;
+          fix_base:member_types [ <https://w3id.org/lmodel/fix-protocol/fix-base/FPLMemberType#BUY_SIDE_FIRM>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FPLMemberType#SELL_SIDE_FIRM>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FPLMemberType#EXCHANGE>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FPLMemberType#ECN_ATS>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FPLMemberType#UTILITY>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FPLMemberType#VENDOR>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FPLMemberType#OTHER_ASSOCIATION> ] * ;
+          fix_base:governance_bodies [ <https://w3id.org/lmodel/fix-protocol/fix-base/FPLCommitteeRole#GLOBAL_STEERING_COMMITTEE>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FPLCommitteeRole#GLOBAL_TECHNICAL_COMMITTEE>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FPLCommitteeRole#GLOBAL_PRODUCT_COMMITTEE>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FPLCommitteeRole#GLOBAL_BUY_SIDE_COMMITTEE>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FPLCommitteeRole#GLOBAL_MEMBER_SERVICES_COMMITTEE>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FPLCommitteeRole#REGIONAL_COMMITTEE> ] * ;
+          fix_base:product_committees [ <https://w3id.org/lmodel/fix-protocol/fix-base/FPLProductGroup#FIXED_INCOME_AND_CURRENCIES>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FPLProductGroup#LISTED_PRODUCTS_AND_EXCHANGES> ] * ;
+          fix_base:regional_committees [ <https://w3id.org/lmodel/fix-protocol/fix-base/FPLRegion#AMERICAS>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FPLRegion#ASIA_PACIFIC>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FPLRegion#EMEA>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/FPLRegion#JAPAN> ] *
+       ) ;
+       rdf:type [ fix_base:FIXProtocolLimited ] ?
+    )
+}
+
+fix_base:GlobalComponent CLOSED {
+    (  $fix_base:GlobalComponent_tes (  &fix_base:Component_tes ;
+          rdf:type [ fix_base:Component ] ? ;
+          fix_base:component_group [ <https://w3id.org/lmodel/fix-protocol/fix-base/ComponentGroup#SECURITIES>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/ComponentGroup#LEG_SECURITIES>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/ComponentGroup#UNDERLYING_SECURITIES>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/ComponentGroup#PARTIES>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/ComponentGroup#ORDERS_AND_QUOTES>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/ComponentGroup#TRADES>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/ComponentGroup#COMMISSIONS_AND_FEES>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/ComponentGroup#FINANCING>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/ComponentGroup#PAYMENTS>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/ComponentGroup#STIPULATIONS>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/ComponentGroup#HEADER_AND_TRAILER>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/ComponentGroup#MISCELLANEOUS> ] ;
+          fix_base:applies_to_instrument @linkml:Boolean ? ;
+          fix_base:applies_to_leg @linkml:Boolean ? ;
+          fix_base:applies_to_underlying @linkml:Boolean ? ;
+          fix_base:conceptually_identical_to @linkml:String * ;
+          fix_base:gc_id @linkml:Integer ? ;
+          fix_base:gc_referenced_in [ <https://w3id.org/lmodel/fix-protocol/fix-base/GlobalComponentBusinessAreaEnum#PRE_TRADE>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/GlobalComponentBusinessAreaEnum#TRADE>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/GlobalComponentBusinessAreaEnum#POST_TRADE>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/GlobalComponentBusinessAreaEnum#INFRASTRUCTURE> ] * ;
+          fix_base:scope [ <https://w3id.org/lmodel/fix-protocol/fix-base/ComponentScope#GLOBAL>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/ComponentScope#COMMON>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/ComponentScope#SPECIFIC> ]
+       ) ;
+       rdf:type [ fix_base:GlobalComponent ]
+    )
+}
+
+fix_infrastructure:InfrastructureBusinessArea CLOSED {
+    (  $fix_infrastructure:InfrastructureBusinessArea_tes (  schema1:identifier [
+             <https://w3id.org/lmodel/fix-protocol/fix-base/BusinessAreaEnum#INTRODUCTION>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/BusinessAreaEnum#PRE_TRADE>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/BusinessAreaEnum#TRADE>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/BusinessAreaEnum#POST_TRADE>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/BusinessAreaEnum#INFRASTRUCTURE> ] ;
+          dcterms:title @linkml:String ? ;
+          schema1:version @linkml:String ? ;
+          dcterms:publisher @linkml:String ? ;
+          fix_infrastructure:infra_introduction @linkml:String ? ;
+          fix_pre_trade:diagram_conventions @linkml:String ? ;
+          fix_infrastructure:infra_common_components [
+             <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureComponentName#ApplIDReportGrp>
+             <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureComponentName#ApplIDRequestAckGrp>
+             <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureComponentName#ApplIDRequestGrp>
+             <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureComponentName#CompIDReqGrp>
+             <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureComponentName#CompIDStatGrp>
+             <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureComponentName#ThrottleMsgTypeGrp>
+             <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureComponentName#ThrottleParamsGrp>
+             <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureComponentName#UsernameGrp> ] * ;
+          fix_base:messages @fix_infrastructure:InfrastructureMessageEntry + ;
+          fix_pre_trade:messages_overview_note @linkml:String ? ;
+          fix_base:components @fix_infrastructure:InfrastructureComponentEntry + ;
+          fix_pre_trade:components_overview_note @linkml:String ? ;
+          fix_infrastructure:infra_footnotes @fix_infrastructure:InfrastructureComponentTableFootnote * ;
+          fix_infrastructure:infra_category_sections @fix_infrastructure:InfrastructureCategorySection * ;
+          fix_infrastructure:standard_responses_pre_trade @fix_infrastructure:StandardResponseMapping * ;
+          fix_infrastructure:standard_responses_trade @fix_infrastructure:StandardResponseMapping * ;
+          fix_infrastructure:standard_responses_post_trade @fix_infrastructure:StandardResponseMapping * ;
+          fix_infrastructure:key_fields_pre_trade @fix_infrastructure:ApplicationMessageReferenceKey * ;
+          fix_infrastructure:key_fields_trade @fix_infrastructure:ApplicationMessageReferenceKey * ;
+          fix_infrastructure:key_fields_post_trade @fix_infrastructure:ApplicationMessageReferenceKey * ;
+          fix_infrastructure:business_reject_reason_descriptions @fix_infrastructure:BusinessRejectReasonDescription * ;
+          fix_infrastructure:infra_global_components @fix_infrastructure:InfrastructureGlobalComponentReference * ;
+          fix_global_components:referenced_global_components @fix_base:GlobalComponent *
+       ) ;
+       rdf:type [ fix_infrastructure:InfrastructureBusinessArea ] ?
+    )
+}
+
+fix_infrastructure:InfrastructureCategorySection CLOSED {
+    (  $fix_infrastructure:InfrastructureCategorySection_tes (  fix_base:category [
+             <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureCategoryEnum#BUSINESS_MESSAGE_REJECTS>
+             <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureCategoryEnum#NETWORK_STATUS_COMMUNICATION>
+             <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureCategoryEnum#USER_MANAGEMENT>
+             <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureCategoryEnum#APPLICATION_SEQUENCING> ] ;
+          dcterms:title @linkml:String ? ;
+          dcterms:description @linkml:String ? ;
+          fix_pre_trade:category_components_note @linkml:String ? ;
+          fix_base:messages @fix_infrastructure:InfrastructureMessageDetail * ;
+          fix_infrastructure:infra_category_specific_components @fix_infrastructure:InfrastructureComponentDetail * ;
+          fix_infrastructure:network_status_scenarios [
+             <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/NetworkStatusScenarioEnum#SCENARIO_A>
+             <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/NetworkStatusScenarioEnum#SCENARIO_B> ] * ;
+          fix_infrastructure:network_request_types_referenced [ fix_infrastructure:NetworkRequestType_1
+             fix_infrastructure:NetworkRequestType_4 ] * ;
+          fix_infrastructure:application_message_report_uses [ fix_infrastructure:ApplReportType_0
+             fix_infrastructure:ApplReportType_1
+             <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/ApplicationMessageReportTypeEnum#KEEP_ALIVE>
+             fix_infrastructure:ApplReportType_3 ] *
+       ) ;
+       rdf:type [ fix_infrastructure:InfrastructureCategorySection ] ?
+    )
+}
+
+fix_infrastructure:InfrastructureComponentDetail CLOSED {
+    (  $fix_infrastructure:InfrastructureComponentDetail_tes (  schema1:name @linkml:String ;
+          fix_pre_trade:repetition [ <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/ComponentRepetition#REPEATING>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/ComponentRepetition#NON_REPEATING> ] ? ;
+          dcterms:description @linkml:String ? ;
+          schema1:url @linkml:Uri ? ;
+          fix_infrastructure:infra_layout_rows @fix_infrastructure:InfrastructureLayoutRow *
+       ) ;
+       rdf:type [ fix_infrastructure:InfrastructureComponentDetail ] ?
+    )
+}
+
+fix_infrastructure:InfrastructureComponentEntry CLOSED {
+    (  $fix_infrastructure:InfrastructureComponentEntry_tes (  fix_pre_trade:repetition [
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/ComponentRepetition#REPEATING>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/ComponentRepetition#NON_REPEATING> ] ;
+          fix_base:category [
+             <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureCategoryEnum#BUSINESS_MESSAGE_REJECTS>
+             <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureCategoryEnum#NETWORK_STATUS_COMMUNICATION>
+             <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureCategoryEnum#USER_MANAGEMENT>
+             <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureCategoryEnum#APPLICATION_SEQUENCING> ] ;
+          fix_pre_trade:footnote_number @linkml:Integer ?
+       ) ;
+       rdf:type [ fix_infrastructure:InfrastructureComponentEntry ]
+    )
+}
+
+fix_infrastructure:InfrastructureComponentTableFootnote CLOSED {
+    (  $fix_infrastructure:InfrastructureComponentTableFootnote_tes (  schema1:name @linkml:String ;
+          fix_pre_trade:introduced_in @linkml:String ;
+          fix_infrastructure:infra_sole_category [
+             <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureCategoryEnum#BUSINESS_MESSAGE_REJECTS>
+             <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureCategoryEnum#NETWORK_STATUS_COMMUNICATION>
+             <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureCategoryEnum#USER_MANAGEMENT>
+             <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureCategoryEnum#APPLICATION_SEQUENCING> ] ;
+          fix_pre_trade:text @linkml:String ?
+       ) ;
+       rdf:type [ fix_infrastructure:InfrastructureComponentTableFootnote ]
+    )
+}
+
+fix_infrastructure:InfrastructureGlobalComponentReference CLOSED {
+    (  $fix_infrastructure:InfrastructureGlobalComponentReference_tes (  fix_infrastructure:infra_global_component_repetition
+          @linkml:String ? ;
+          fix_infrastructure:infra_global_component_field_tags @linkml:Integer * ;
+          fix_infrastructure:infra_global_component_field_names @linkml:String * ;
+          fix_infrastructure:infra_global_component_used_in [
+             <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureCategoryEnum#BUSINESS_MESSAGE_REJECTS>
+             <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureCategoryEnum#NETWORK_STATUS_COMMUNICATION>
+             <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureCategoryEnum#USER_MANAGEMENT>
+             <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureCategoryEnum#APPLICATION_SEQUENCING> ] + ;
+          fix_infrastructure:infra_global_component_msg_types @linkml:String *
+       ) ;
+       rdf:type [ fix_infrastructure:InfrastructureGlobalComponentReference ]
+    )
+}
+
+fix_infrastructure:InfrastructureLayoutRow CLOSED {
+    (  $fix_infrastructure:InfrastructureLayoutRow_tes (  fix_infrastructure:infra_layout_kind [
+             <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureLayoutRowKindEnum#FIELD>
+             <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureLayoutRowKindEnum#COMPONENT> ] ;
+          fix_infrastructure:infra_layout_field_tag @linkml:Integer ? ;
+          fix_infrastructure:infra_layout_element_name @linkml:String ;
+          fix_infrastructure:infra_layout_required @linkml:Boolean ? ;
+          fix_infrastructure:infra_layout_description @linkml:String ? ;
+          fix_infrastructure:infra_layout_nested @linkml:Boolean ?
+       ) ;
+       rdf:type [ fix_infrastructure:InfrastructureLayoutRow ] ?
+    )
+}
+
+fix_infrastructure:InfrastructureMessageDetail CLOSED {
+    (  $fix_infrastructure:InfrastructureMessageDetail_tes (  fix_base:msg_type @linkml:String ;
+          schema1:name @linkml:String ;
+          dcterms:description @linkml:String ? ;
+          schema1:url @linkml:Uri ? ;
+          fix_infrastructure:infra_layout_rows @fix_infrastructure:InfrastructureLayoutRow *
+       ) ;
+       rdf:type [ fix_infrastructure:InfrastructureMessageDetail ] ?
+    )
+}
+
+fix_infrastructure:InfrastructureMessageEntry CLOSED {
+    (  $fix_infrastructure:InfrastructureMessageEntry_tes (  schema1:name @linkml:String ;
+          fix_base:category [
+             <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureCategoryEnum#BUSINESS_MESSAGE_REJECTS>
+             <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureCategoryEnum#NETWORK_STATUS_COMMUNICATION>
+             <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureCategoryEnum#USER_MANAGEMENT>
+             <https://w3id.org/lmodel/fix-protocol/fix-infrastructure/InfrastructureCategoryEnum#APPLICATION_SEQUENCING> ]
+       ) ;
+       rdf:type [ fix_infrastructure:InfrastructureMessageEntry ]
+    )
+}
+
+fix_base:Message CLOSED {
+    (  $fix_base:Message_tes (  schema1:name @linkml:String ;
+          dcterms:description @linkml:String ? ;
+          fix_base:category [ <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#INDICATION>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#EVENT_COMMUNICATION>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#QUOTATION_NEGOTIATION>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#MARKET_DATA>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#MARKET_STRUCTURE_REFERENCE_DATA>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#SECURITIES_REFERENCE_DATA>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#PARTIES_REFERENCE_DATA>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#PARTIES_ACTION>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#SINGLE_GENERAL_ORDER_HANDLING>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#ORDER_MASS_HANDLING>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#CROSS_ORDERS>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#MULTILEG_ORDERS>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#LIST_PROGRAM_BASKET_TRADING>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#ALLOCATION_AND_READY_TO_BOOK>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#CONFIRMATION>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#SETTLEMENT_INSTRUCTIONS>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#TRADE_CAPTURE_REPORTING>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#REGISTRATION_INSTRUCTIONS>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#POSITIONS_MAINTENANCE>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#COLLATERAL_MANAGEMENT>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#MARGIN_REQUIREMENT_MANAGEMENT>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#ACCOUNT_REPORTING>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#TRADE_MANAGEMENT>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#PAY_MANAGEMENT>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#SETTLEMENT_STATUS_MANAGEMENT>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#BUSINESS_MESSAGE_REJECTS>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#NETWORK_STATUS_COMMUNICATION>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#USER_MANAGEMENT>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#APPLICATION_SEQUENCING> ] ? ;
+          fix_base:fields @fix_base:Field * ;
+          fix_base:components @fix_base:Component *
+       ) ;
+       rdf:type [ fix_base:Message ]
+    )
+}
+
+fix_base:MessageCategory CLOSED {
+    (  $fix_base:MessageCategory_tes (  dcterms:title @linkml:String ? ;
+          dcterms:description @linkml:String ? ;
+          fix_base:business_area [ <https://w3id.org/lmodel/fix-protocol/fix-base/BusinessAreaEnum#INTRODUCTION>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/BusinessAreaEnum#PRE_TRADE>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/BusinessAreaEnum#TRADE>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/BusinessAreaEnum#POST_TRADE>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/BusinessAreaEnum#INFRASTRUCTURE> ] ;
+          fix_base:messages @fix_base:Message *
+       ) ;
+       rdf:type [ fix_base:MessageCategory ]
+    )
+}
+
+fix_pre_trade:MessageGroup CLOSED {
+    (  $fix_pre_trade:MessageGroup_tes (  dcterms:description @linkml:String ? ;
+          fix_base:messages @fix_pre_trade:PreTradeMessageDetail +
+       ) ;
+       rdf:type [ fix_pre_trade:MessageGroup ]
+    )
+}
+
+fix_post_trade:PostTradeBusinessArea CLOSED {
+    (  $fix_post_trade:PostTradeBusinessArea_tes (  schema1:identifier [
+             <https://w3id.org/lmodel/fix-protocol/fix-base/BusinessAreaEnum#INTRODUCTION>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/BusinessAreaEnum#PRE_TRADE>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/BusinessAreaEnum#TRADE>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/BusinessAreaEnum#POST_TRADE>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/BusinessAreaEnum#INFRASTRUCTURE> ] ;
+          dcterms:title @linkml:String ? ;
+          schema1:version @linkml:String ? ;
+          dcterms:publisher @linkml:String ? ;
+          fix_post_trade:post_introduction @linkml:String ? ;
+          fix_pre_trade:diagram_conventions @linkml:String ? ;
+          fix_post_trade:post_common_components [
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCommonComponentName#AllocCommissionDataGrp>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCommonComponentName#AllocRegulatoryTradeIDGrp>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCommonComponentName#ClrInstGrp>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCommonComponentName#CollateralAmountGrp>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCommonComponentName#CollateralReinvestmentGrp>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCommonComponentName#DlvyInstGrp>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCommonComponentName#ExecAllocGrp>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCommonComponentName#MarginAmount>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCommonComponentName#OrdAllocGrp>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCommonComponentName#PositionAmountData>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCommonComponentName#SettlDetails>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCommonComponentName#SettlInstructionsData>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCommonComponentName#SettlParties>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCommonComponentName#SettlPtysSubGrp>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCommonComponentName#TradeAllocAmtGrp>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCommonComponentName#TransactionAttributeGrp> ] * ;
+          fix_base:messages @fix_post_trade:PostTradeMessageEntry + ;
+          fix_base:components @fix_post_trade:PostTradeComponentEntry + ;
+          fix_post_trade:post_footnotes @fix_post_trade:PostTradeComponentTableFootnote * ;
+          fix_post_trade:post_category_sections @fix_post_trade:PostTradeCategorySection * ;
+          fix_post_trade:post_common_component_details @fix_post_trade:PostTradeCommonComponentDetail * ;
+          fix_pre_trade:messages_overview_note @linkml:String ? ;
+          fix_pre_trade:components_overview_note @linkml:String ? ;
+          fix_global_components:referenced_global_components @fix_base:GlobalComponent *
+       ) ;
+       rdf:type [ fix_post_trade:PostTradeBusinessArea ] ?
+    )
+}
+
+fix_post_trade:PostTradeCategorySection CLOSED {
+    (  $fix_post_trade:PostTradeCategorySection_tes (  dcterms:title @linkml:String ? ;
+          dcterms:description @linkml:String ? ;
+          fix_pre_trade:category_components_note @linkml:String ? ;
+          fix_post_trade:post_message_groups @fix_post_trade:PostTradeMessageGroup * ;
+          fix_base:messages @fix_post_trade:PostTradeMessageDetail * ;
+          fix_post_trade:post_category_specific_components @fix_post_trade:PostTradeComponentDetail * ;
+          fix_post_trade:allocation_scenarios [
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/AllocationScenarioEnum#PRE_ALLOCATED_ORDER>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/AllocationScenarioEnum#PRE_TRADE_ALLOCATION>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/AllocationScenarioEnum#POST_TRADE_ALLOCATION>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/AllocationScenarioEnum#READY_TO_BOOK> ] * ;
+          fix_post_trade:allocation_roles [ <https://w3id.org/lmodel/fix-protocol/fix-post-trade/AllocationRoleEnum#INITIATOR>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/AllocationRoleEnum#RESPONDENT> ] * ;
+          fix_post_trade:post_trade_allocation_pricing_methods [
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeAllocationPricingMethodEnum#AVERAGE_PRICE>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeAllocationPricingMethodEnum#EXECUTED_PRICE> ] * ;
+          fix_post_trade:allocation_status_descriptions @fix_post_trade:AllocationStatusDescription * ;
+          fix_post_trade:fragmentation_field_map @fix_post_trade:AllocationFragmentationFieldMap * ;
+          fix_post_trade:trade_capture_report_usages @fix_post_trade:TradeCaptureReportUsage * ;
+          fix_post_trade:trade_capture_report_identifier_rules @fix_post_trade:TradeCaptureReportIdentifierRule * ;
+          fix_post_trade:registration_status_descriptions @fix_post_trade:RegistrationStatusDescription * ;
+          fix_post_trade:clearing_services_for_position_management [
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/ClearingServiceForPositionManagementEnum#POSITION_CHANGE_SUBMISSION>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/ClearingServiceForPositionManagementEnum#POSITION_ADJUSTMENT>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/ClearingServiceForPositionManagementEnum#EXERCISE_NOTICE>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/ClearingServiceForPositionManagementEnum#ABANDONMENT_NOTICE>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/ClearingServiceForPositionManagementEnum#MARGIN_DISPOSITION>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/ClearingServiceForPositionManagementEnum#POSITION_PLEDGE>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/ClearingServiceForPositionManagementEnum#REQUEST_FOR_POSITION> ]
+          * ;
+          fix_post_trade:clearing_services_for_post_trade_processing @fix_post_trade:ClearingServicePostTradeProcessingFormat * ;
+          fix_post_trade:collateral_management_usages [
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/CollateralManagementUsageEnum#SECURITIES_FINANCING_COLLATERALIZATION>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/CollateralManagementUsageEnum#CLEARING_HOUSE_COLLATERALIZATION> ]
+          * ;
+          fix_post_trade:collateral_assignment_purposes [
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/CollateralAssignmentPurposeEnum#ASSIGN_INITIAL_COLLATERAL>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/CollateralAssignmentPurposeEnum#REPLENISH_COLLATERAL>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/CollateralAssignmentPurposeEnum#REPLACE_OR_SUBSTITUTE_COLLATERAL>
+             ] *
+       ) ;
+       rdf:type [ fix_post_trade:PostTradeCategorySection ]
+    )
+}
+
+fix_post_trade:PostTradeCommonComponentDetail CLOSED {
+    (  $fix_post_trade:PostTradeCommonComponentDetail_tes (  fix_pre_trade:repetition [
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/ComponentRepetition#REPEATING>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/ComponentRepetition#NON_REPEATING> ] ? ;
+          dcterms:description @linkml:String ? ;
+          schema1:url @linkml:Uri ? ;
+          fix_post_trade:post_layout_rows @fix_post_trade:PostTradeLayoutRow *
+       ) ;
+       rdf:type [ fix_post_trade:PostTradeCommonComponentDetail ]
+    )
+}
+
+fix_post_trade:PostTradeComponentDetail CLOSED {
+    (  $fix_post_trade:PostTradeComponentDetail_tes (  fix_pre_trade:repetition [
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/ComponentRepetition#REPEATING>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/ComponentRepetition#NON_REPEATING> ] ? ;
+          dcterms:description @linkml:String ? ;
+          schema1:url @linkml:Uri ? ;
+          fix_post_trade:post_layout_rows @fix_post_trade:PostTradeLayoutRow *
+       ) ;
+       rdf:type [ fix_post_trade:PostTradeComponentDetail ]
+    )
+}
+
+fix_post_trade:PostTradeComponentEntry CLOSED {
+    (  $fix_post_trade:PostTradeComponentEntry_tes (  fix_pre_trade:repetition [
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/ComponentRepetition#REPEATING>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/ComponentRepetition#NON_REPEATING> ] ;
+          fix_base:category @linkml:String ;
+          fix_pre_trade:is_common @linkml:Boolean ? ;
+          fix_pre_trade:footnote_number @linkml:Integer ?
+       ) ;
+       rdf:type [ fix_post_trade:PostTradeComponentEntry ]
+    )
+}
+
+fix_post_trade:PostTradeComponentTableFootnote CLOSED {
+    (  $fix_post_trade:PostTradeComponentTableFootnote_tes (  schema1:name @linkml:String ;
+          fix_pre_trade:introduced_in @linkml:String ;
+          fix_post_trade:post_sole_category [
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCategoryEnum#ALLOCATION>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCategoryEnum#CONFIRMATION>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCategoryEnum#SETTLEMENT_INSTRUCTION>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCategoryEnum#TRADE_CAPTURE_REPORTING>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCategoryEnum#REGISTRATION_INSTRUCTION>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCategoryEnum#POSITION_MAINTENANCE>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCategoryEnum#COLLATERAL_MANAGEMENT>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCategoryEnum#MARGIN_REQUIREMENT_MANAGEMENT>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCategoryEnum#ACCOUNT_REPORTING>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCategoryEnum#TRADE_MANAGEMENT>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCategoryEnum#PAY_MANAGEMENT>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCategoryEnum#SETTLEMENT_STATUS_MANAGEMENT> ] ;
+          fix_pre_trade:text @linkml:String ?
+       ) ;
+       rdf:type [ fix_post_trade:PostTradeComponentTableFootnote ]
+    )
+}
+
+fix_post_trade:PostTradeLayoutRow CLOSED {
+    (  $fix_post_trade:PostTradeLayoutRow_tes (  fix_post_trade:post_layout_kind [
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeLayoutRowKindEnum#FIELD>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeLayoutRowKindEnum#COMPONENT> ] ;
+          fix_post_trade:post_layout_field_tag @linkml:Integer ? ;
+          fix_post_trade:post_layout_element_name @linkml:String ;
+          fix_post_trade:post_layout_required @linkml:Boolean ? ;
+          fix_post_trade:post_layout_description @linkml:String ? ;
+          fix_post_trade:post_layout_nested @linkml:Boolean ?
+       ) ;
+       rdf:type [ fix_post_trade:PostTradeLayoutRow ] ?
+    )
+}
+
+fix_post_trade:PostTradeMessageDetail CLOSED {
+    (  $fix_post_trade:PostTradeMessageDetail_tes (  schema1:name @linkml:String ;
+          dcterms:description @linkml:String ? ;
+          schema1:url @linkml:Uri ? ;
+          fix_post_trade:post_layout_rows @fix_post_trade:PostTradeLayoutRow *
+       ) ;
+       rdf:type [ fix_post_trade:PostTradeMessageDetail ]
+    )
+}
+
+fix_post_trade:PostTradeMessageEntry CLOSED {
+    (  $fix_post_trade:PostTradeMessageEntry_tes (  schema1:name @linkml:String ;
+          fix_base:category [ <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCategoryEnum#ALLOCATION>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCategoryEnum#CONFIRMATION>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCategoryEnum#SETTLEMENT_INSTRUCTION>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCategoryEnum#TRADE_CAPTURE_REPORTING>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCategoryEnum#REGISTRATION_INSTRUCTION>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCategoryEnum#POSITION_MAINTENANCE>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCategoryEnum#COLLATERAL_MANAGEMENT>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCategoryEnum#MARGIN_REQUIREMENT_MANAGEMENT>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCategoryEnum#ACCOUNT_REPORTING>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCategoryEnum#TRADE_MANAGEMENT>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCategoryEnum#PAY_MANAGEMENT>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/PostTradeCategoryEnum#SETTLEMENT_STATUS_MANAGEMENT> ]
+       ) ;
+       rdf:type [ fix_post_trade:PostTradeMessageEntry ]
+    )
+}
+
+fix_post_trade:PostTradeMessageGroup CLOSED {
+    (  $fix_post_trade:PostTradeMessageGroup_tes fix_base:messages @fix_post_trade:PostTradeMessageDetail + ;
+       rdf:type [ fix_post_trade:PostTradeMessageGroup ]
+    )
+}
+
+fix_pre_trade:PreTradeBusinessArea CLOSED {
+    (  $fix_pre_trade:PreTradeBusinessArea_tes (  schema1:identifier [
+             <https://w3id.org/lmodel/fix-protocol/fix-base/BusinessAreaEnum#INTRODUCTION>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/BusinessAreaEnum#PRE_TRADE>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/BusinessAreaEnum#TRADE>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/BusinessAreaEnum#POST_TRADE>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/BusinessAreaEnum#INFRASTRUCTURE> ] ;
+          dcterms:title @linkml:String ? ;
+          schema1:version @linkml:String ? ;
+          dcterms:publisher @linkml:String ? ;
+          fix_pre_trade:introduction @linkml:String ? ;
+          fix_pre_trade:diagram_conventions @linkml:String ? ;
+          fix_pre_trade:messages_overview_note @linkml:String ? ;
+          fix_base:messages @fix_pre_trade:PreTradeMessageEntry * ;
+          fix_pre_trade:components_overview_note @linkml:String ? ;
+          fix_base:components @fix_pre_trade:PreTradeComponentEntry * ;
+          fix_pre_trade:common_components [
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeCommonComponentName#AuctionTypeRuleGrp>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeCommonComponentName#BaseTradingRules>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeCommonComponentName#ExecInstRules>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeCommonComponentName#InstrumentScope>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeCommonComponentName#InstrumentScopeGrp>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeCommonComponentName#InstrumentScopeSecurityAltIDGrp>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeCommonComponentName#LotTypeRules>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeCommonComponentName#MarketDataFeedTypes>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeCommonComponentName#MarketSegmentScopeGrp>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeCommonComponentName#MatchRules>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeCommonComponentName#OrdTypeRules>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeCommonComponentName#PriceLimits>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeCommonComponentName#PriceRangeRuleGrp>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeCommonComponentName#QuoteSizeRuleGrp>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeCommonComponentName#RequestedPartyRoleGrp>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeCommonComponentName#RequestingPartyGrp>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeCommonComponentName#RequestingPartySubGrp>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeCommonComponentName#RoutingGrp>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeCommonComponentName#TickRules>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeCommonComponentName#TimeInForceRules>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeCommonComponentName#TradingSessionRules> ] * ;
+          fix_pre_trade:common_component_details @fix_pre_trade:CommonComponentDetail * ;
+          fix_pre_trade:footnotes @fix_pre_trade:ComponentTableFootnote * ;
+          fix_pre_trade:category_sections @fix_pre_trade:PreTradeCategorySection * ;
+          fix_global_components:referenced_global_components @fix_base:GlobalComponent *
+       ) ;
+       rdf:type [ fix_pre_trade:PreTradeBusinessArea ] ?
+    )
+}
+
+fix_pre_trade:PreTradeCategorySection CLOSED {
+    (  $fix_pre_trade:PreTradeCategorySection_tes (  dcterms:title @linkml:String ? ;
+          dcterms:description @linkml:String ? ;
+          fix_pre_trade:quote_models [ <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/QuoteModelEnum#INDICATIVE>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/QuoteModelEnum#TRADEABLE>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/QuoteModelEnum#RESTRICTED_TRADEABLE>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/QuoteModelEnum#NEGOTIATION> ] * ;
+          fix_pre_trade:message_groups @fix_pre_trade:MessageGroup * ;
+          fix_base:messages @fix_pre_trade:PreTradeMessageDetail * ;
+          fix_pre_trade:category_components_note @linkml:String ? ;
+          fix_pre_trade:category_specific_components @fix_pre_trade:PreTradeComponentDetail *
+       ) ;
+       rdf:type [ fix_pre_trade:PreTradeCategorySection ]
+    )
+}
+
+fix_pre_trade:PreTradeComponentDetail CLOSED {
+    (  $fix_pre_trade:PreTradeComponentDetail_tes (  fix_pre_trade:repetition [
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/ComponentRepetition#REPEATING>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/ComponentRepetition#NON_REPEATING> ] ? ;
+          dcterms:description @linkml:String ? ;
+          schema1:url @linkml:Uri ? ;
+          fix_pre_trade:pre_layout_rows @fix_pre_trade:PreTradeLayoutRow *
+       ) ;
+       rdf:type [ fix_pre_trade:PreTradeComponentDetail ]
+    )
+}
+
+fix_pre_trade:PreTradeComponentEntry CLOSED {
+    (  $fix_pre_trade:PreTradeComponentEntry_tes (  fix_pre_trade:repetition [
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/ComponentRepetition#REPEATING>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/ComponentRepetition#NON_REPEATING> ] ;
+          fix_base:category @linkml:String ;
+          fix_pre_trade:is_common @linkml:Boolean ? ;
+          fix_pre_trade:footnote_number @linkml:Integer ?
+       ) ;
+       rdf:type [ fix_pre_trade:PreTradeComponentEntry ]
+    )
+}
+
+fix_pre_trade:PreTradeLayoutRow CLOSED {
+    (  $fix_pre_trade:PreTradeLayoutRow_tes (  fix_pre_trade:pre_layout_kind [
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeLayoutRowKindEnum#FIELD>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeLayoutRowKindEnum#COMPONENT> ] ;
+          fix_pre_trade:pre_layout_field_tag @linkml:Integer ? ;
+          fix_pre_trade:pre_layout_element_name @linkml:String ;
+          fix_pre_trade:pre_layout_required @linkml:Boolean ? ;
+          fix_pre_trade:pre_layout_description @linkml:String ? ;
+          fix_pre_trade:pre_layout_nested @linkml:Boolean ?
+       ) ;
+       rdf:type [ fix_pre_trade:PreTradeLayoutRow ] ?
+    )
+}
+
+fix_pre_trade:PreTradeMessageDetail CLOSED {
+    (  $fix_pre_trade:PreTradeMessageDetail_tes (  schema1:name @linkml:String ;
+          dcterms:description @linkml:String ? ;
+          schema1:url @linkml:Uri ? ;
+          fix_pre_trade:pre_layout_rows @fix_pre_trade:PreTradeLayoutRow *
+       ) ;
+       rdf:type [ fix_pre_trade:PreTradeMessageDetail ]
+    )
+}
+
+fix_pre_trade:PreTradeMessageEntry CLOSED {
+    (  $fix_pre_trade:PreTradeMessageEntry_tes (  schema1:name @linkml:String ;
+          fix_base:category [ <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeCategoryEnum#INDICATION>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeCategoryEnum#EVENT_COMMUNICATION>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeCategoryEnum#QUOTATION_NEGOTIATION>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeCategoryEnum#MARKET_DATA>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeCategoryEnum#MARKET_STRUCTURE_REFERENCE_DATA>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeCategoryEnum#SECURITIES_REFERENCE_DATA>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeCategoryEnum#PARTIES_REFERENCE_DATA>
+             <https://w3id.org/lmodel/fix-protocol/fix-pre-trade/PreTradeCategoryEnum#PARTIES_ACTION> ]
+       ) ;
+       rdf:type [ fix_pre_trade:PreTradeMessageEntry ]
+    )
+}
+
+fix_post_trade:RegistrationStatusDescription CLOSED {
+    (  $fix_post_trade:RegistrationStatusDescription_tes (  fix_post_trade:status_label @linkml:String ;
+          dcterms:description @linkml:String ?
+       ) ;
+       rdf:type [ fix_post_trade:RegistrationStatusDescription ]
+    )
+}
+
+fix_base:SpecificComponent CLOSED {
+    (  $fix_base:SpecificComponent_tes (  &fix_base:Component_tes ;
+          rdf:type [ fix_base:Component ] ? ;
+          fix_base:business_area [ <https://w3id.org/lmodel/fix-protocol/fix-base/BusinessAreaEnum#INTRODUCTION>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/BusinessAreaEnum#PRE_TRADE>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/BusinessAreaEnum#TRADE>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/BusinessAreaEnum#POST_TRADE>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/BusinessAreaEnum#INFRASTRUCTURE> ] ;
+          fix_base:category [ <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#INDICATION>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#EVENT_COMMUNICATION>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#QUOTATION_NEGOTIATION>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#MARKET_DATA>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#MARKET_STRUCTURE_REFERENCE_DATA>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#SECURITIES_REFERENCE_DATA>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#PARTIES_REFERENCE_DATA>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#PARTIES_ACTION>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#SINGLE_GENERAL_ORDER_HANDLING>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#ORDER_MASS_HANDLING>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#CROSS_ORDERS>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#MULTILEG_ORDERS>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#LIST_PROGRAM_BASKET_TRADING>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#ALLOCATION_AND_READY_TO_BOOK>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#CONFIRMATION>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#SETTLEMENT_INSTRUCTIONS>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#TRADE_CAPTURE_REPORTING>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#REGISTRATION_INSTRUCTIONS>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#POSITIONS_MAINTENANCE>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#COLLATERAL_MANAGEMENT>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#MARGIN_REQUIREMENT_MANAGEMENT>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#ACCOUNT_REPORTING>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#TRADE_MANAGEMENT>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#PAY_MANAGEMENT>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#SETTLEMENT_STATUS_MANAGEMENT>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#BUSINESS_MESSAGE_REJECTS>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#NETWORK_STATUS_COMMUNICATION>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#USER_MANAGEMENT>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/MessageCategoryEnum#APPLICATION_SEQUENCING> ] ;
+          fix_base:scope [ <https://w3id.org/lmodel/fix-protocol/fix-base/ComponentScope#GLOBAL>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/ComponentScope#COMMON>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/ComponentScope#SPECIFIC> ]
+       ) ;
+       rdf:type [ fix_base:SpecificComponent ]
+    )
+}
+
+fix_infrastructure:StandardResponseMapping CLOSED {
+    (  $fix_infrastructure:StandardResponseMapping_tes (  fix_infrastructure:category_label @linkml:String ;
+          fix_infrastructure:fix_message @linkml:String ;
+          fix_infrastructure:appropriate_responses @linkml:String
+       ) ;
+       rdf:type [ fix_infrastructure:StandardResponseMapping ] ?
+    )
+}
+
+fix_trade:TradeAppendix CLOSED {
+    (  $fix_trade:TradeAppendix_tes (  dcterms:title @linkml:String ? ;
+          schema1:version @linkml:String ? ;
+          dcterms:publisher @linkml:String ? ;
+          dcterms:description @linkml:String ? ;
+          fix_trade:trade_appendix_sections @fix_trade:TradeAppendixSection *
+       ) ;
+       rdf:type [ fix_trade:TradeAppendix ] ?
+    )
+}
+
+fix_trade:TradeAppendixSection CLOSED {
+    (  $fix_trade:TradeAppendixSection_tes (  dcterms:title @linkml:String ? ;
+          dcterms:description @linkml:String ? ;
+          fix_base:messages @fix_trade:TradeMessageDetail * ;
+          fix_base:components @fix_trade:TradeComponentDetail *
+       ) ;
+       rdf:type [ fix_trade:TradeAppendixSection ]
+    )
+}
+
+fix_trade:TradeBusinessArea CLOSED {
+    (  $fix_trade:TradeBusinessArea_tes (  schema1:identifier [
+             <https://w3id.org/lmodel/fix-protocol/fix-base/BusinessAreaEnum#INTRODUCTION>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/BusinessAreaEnum#PRE_TRADE>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/BusinessAreaEnum#TRADE>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/BusinessAreaEnum#POST_TRADE>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/BusinessAreaEnum#INFRASTRUCTURE> ] ;
+          dcterms:title @linkml:String ? ;
+          schema1:version @linkml:String ? ;
+          dcterms:publisher @linkml:String ? ;
+          fix_trade:trade_introduction @linkml:String ? ;
+          fix_trade:trade_diagram_conventions @linkml:String ? ;
+          schema1:url @linkml:Uri ? ;
+          fix_trade:trade_messages_overview_note @linkml:String ? ;
+          fix_base:messages @fix_trade:TradeMessageEntry * ;
+          fix_trade:trade_components_overview_note @linkml:String ? ;
+          fix_base:components @fix_trade:TradeComponentEntry * ;
+          fix_trade:trade_common_components [
+             <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeCommonComponentName#DisclosureInstructionGrp>
+             <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeCommonComponentName#DiscretionInstructions>
+             <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeCommonComponentName#PegInstructions>
+             <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeCommonComponentName#PreAllocGrp>
+             <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeCommonComponentName#StrategyParametersGrp>
+             <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeCommonComponentName#TriggeringInstruction> ] * ;
+          fix_trade:trade_common_component_details @fix_trade:TradeCommonComponentDetail * ;
+          fix_trade:trade_footnotes @fix_trade:TradeComponentTableFootnote * ;
+          fix_trade:trade_category_sections @fix_trade:TradeCategorySection * ;
+          fix_global_components:referenced_global_components @fix_base:GlobalComponent *
+       ) ;
+       rdf:type [ fix_trade:TradeBusinessArea ] ?
+    )
+}
+
+fix_post_trade:TradeCaptureReportIdentifierRule CLOSED {
+    (  $fix_post_trade:TradeCaptureReportIdentifierRule_tes dcterms:description @linkml:String ? ;
+       rdf:type [ fix_post_trade:TradeCaptureReportIdentifierRule ]
+    )
+}
+
+fix_post_trade:TradeCaptureReportUsage CLOSED {
+    (  $fix_post_trade:TradeCaptureReportUsage_tes (  dcterms:description @linkml:String ? ;
+          fix_post_trade:identifier_role [
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/TradeCaptureReportIdentifierRoleEnum#TRADE_REPORT_ID>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/TradeCaptureReportIdentifierRoleEnum#TRADE_ID>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/TradeCaptureReportIdentifierRoleEnum#TRADE_REPORT_REF_ID>
+             <https://w3id.org/lmodel/fix-protocol/fix-post-trade/TradeCaptureReportIdentifierRoleEnum#SECONDARY_TRADE_ID> ] ?
+       ) ;
+       rdf:type [ fix_post_trade:TradeCaptureReportUsage ]
+    )
+}
+
+fix_trade:TradeCategorySection CLOSED {
+    (  $fix_trade:TradeCategorySection_tes (  dcterms:title @linkml:String ? ;
+          dcterms:description @linkml:String ? ;
+          fix_trade:trade_category_background @linkml:String ? ;
+          fix_trade:trade_message_groups @fix_trade:TradeMessageGroup * ;
+          fix_base:messages @fix_trade:TradeMessageDetail * ;
+          fix_trade:trade_category_components_note @linkml:String ? ;
+          fix_trade:trade_category_specific_components @fix_trade:TradeComponentDetail * ;
+          fix_trade:trade_fragmentation_entries @fix_trade:TradeFragmentationEntry *
+       ) ;
+       rdf:type [ fix_trade:TradeCategorySection ]
+    )
+}
+
+fix_trade:TradeCommonComponentDetail CLOSED {
+    (  $fix_trade:TradeCommonComponentDetail_tes (  fix_trade:trade_repetition [
+             <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeComponentRepetition#REPEATING>
+             <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeComponentRepetition#NON_REPEATING> ] ? ;
+          dcterms:description @linkml:String ? ;
+          schema1:url @linkml:Uri ? ;
+          fix_trade:trade_layout_rows @fix_trade:TradeLayoutRow *
+       ) ;
+       rdf:type [ fix_trade:TradeCommonComponentDetail ]
+    )
+}
+
+fix_trade:TradeComponentDetail CLOSED {
+    (  $fix_trade:TradeComponentDetail_tes (  fix_trade:trade_repetition [
+             <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeComponentRepetition#REPEATING>
+             <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeComponentRepetition#NON_REPEATING> ] ? ;
+          dcterms:description @linkml:String ? ;
+          schema1:url @linkml:Uri ? ;
+          fix_trade:trade_layout_rows @fix_trade:TradeLayoutRow *
+       ) ;
+       rdf:type [ fix_trade:TradeComponentDetail ]
+    )
+}
+
+fix_trade:TradeComponentEntry CLOSED {
+    (  $fix_trade:TradeComponentEntry_tes (  fix_trade:trade_repetition [
+             <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeComponentRepetition#REPEATING>
+             <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeComponentRepetition#NON_REPEATING> ] ;
+          fix_base:category @linkml:String ;
+          fix_trade:trade_is_common @linkml:Boolean ? ;
+          fix_trade:trade_footnote_number @linkml:Integer ?
+       ) ;
+       rdf:type [ fix_trade:TradeComponentEntry ]
+    )
+}
+
+fix_trade:TradeComponentTableFootnote CLOSED {
+    (  $fix_trade:TradeComponentTableFootnote_tes (  schema1:name @linkml:String ;
+          fix_trade:trade_introduced_in @linkml:String ;
+          fix_trade:trade_sole_category [
+             <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeCategoryEnum#SINGLE_GENERAL_ORDER_HANDLING>
+             <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeCategoryEnum#ORDER_MASS_HANDLING>
+             <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeCategoryEnum#CROSS_ORDER_HANDLING>
+             <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeCategoryEnum#MULTILEG_ORDER_HANDLING>
+             <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeCategoryEnum#LIST_PROGRAM_BASKET_TRADING> ] ;
+          fix_trade:trade_footnote_text @linkml:String ?
+       ) ;
+       rdf:type [ fix_trade:TradeComponentTableFootnote ]
+    )
+}
+
+fix_trade:TradeFragmentationEntry CLOSED {
+    (  $fix_trade:TradeFragmentationEntry_tes (  fix_trade:trade_fragmentation_total_entries_field @linkml:String ;
+          fix_trade:trade_fragmentation_repeating_group @linkml:String
+       ) ;
+       rdf:type [ fix_trade:TradeFragmentationEntry ]
+    )
+}
+
+fix_trade:TradeLayoutRow CLOSED {
+    (  $fix_trade:TradeLayoutRow_tes (  fix_trade:trade_layout_kind [
+             <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeLayoutRowKindEnum#FIELD>
+             <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeLayoutRowKindEnum#COMPONENT> ] ;
+          fix_trade:trade_layout_field_tag @linkml:Integer ? ;
+          fix_trade:trade_layout_element_name @linkml:String ;
+          fix_trade:trade_layout_required @linkml:Boolean ? ;
+          fix_trade:trade_layout_description @linkml:String ? ;
+          fix_trade:trade_layout_nested @linkml:Boolean ?
+       ) ;
+       rdf:type [ fix_trade:TradeLayoutRow ] ?
+    )
+}
+
+fix_trade:TradeMessageDetail CLOSED {
+    (  $fix_trade:TradeMessageDetail_tes (  schema1:name @linkml:String ;
+          dcterms:description @linkml:String ? ;
+          schema1:url @linkml:Uri ? ;
+          fix_trade:trade_layout_rows @fix_trade:TradeLayoutRow *
+       ) ;
+       rdf:type [ fix_trade:TradeMessageDetail ]
+    )
+}
+
+fix_trade:TradeMessageEntry CLOSED {
+    (  $fix_trade:TradeMessageEntry_tes (  schema1:name @linkml:String ;
+          fix_base:category [ <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeCategoryEnum#SINGLE_GENERAL_ORDER_HANDLING>
+             <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeCategoryEnum#ORDER_MASS_HANDLING>
+             <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeCategoryEnum#CROSS_ORDER_HANDLING>
+             <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeCategoryEnum#MULTILEG_ORDER_HANDLING>
+             <https://w3id.org/lmodel/fix-protocol/fix-trade/TradeCategoryEnum#LIST_PROGRAM_BASKET_TRADING> ]
+       ) ;
+       rdf:type [ fix_trade:TradeMessageEntry ]
+    )
+}
+
+fix_trade:TradeMessageGroup CLOSED {
+    (  $fix_trade:TradeMessageGroup_tes (  dcterms:description @linkml:String ? ;
+          fix_base:messages @fix_trade:TradeMessageDetail + ;
+          fix_trade:trade_ord_status_precedence_entries @fix_trade:TradeOrdStatusPrecedenceEntry *
+       ) ;
+       rdf:type [ fix_trade:TradeMessageGroup ]
+    )
+}
+
+fix_trade:TradeOrdStatusPrecedenceEntry CLOSED {
+    (  $fix_trade:TradeOrdStatusPrecedenceEntry_tes (  fix_trade:trade_ord_status_precedence @linkml:Integer ;
+          dcterms:description @linkml:String ?
+       ) ;
+       rdf:type [ fix_trade:TradeOrdStatusPrecedenceEntry ]
+    )
+}
+
+fix_base:UDFTagRange CLOSED {
+    (  $fix_base:UDFTagRange_tes (  fix_base:low_tag @fix_base:TagNumber ;
+          fix_base:high_tag @fix_base:TagNumber ? ;
+          fix_base:usage [ <https://w3id.org/lmodel/fix-protocol/fix-base/UDFTagRangeUsage#INTER_FIRM_REGISTERED>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/UDFTagRangeUsage#INTER_FIRM_BILATERAL>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/UDFTagRangeUsage#GTC_REGULATORY_LEGACY>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/UDFTagRangeUsage#WIP_CHINA>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/UDFTagRangeUsage#INTERNAL_FIRM>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/UDFTagRangeUsage#GTC_OTC_DERIVATIVES>
+             <https://w3id.org/lmodel/fix-protocol/fix-base/UDFTagRangeUsage#GTC_RESERVED> ] ;
+          dcterms:description @linkml:String ? ;
+          fix_base:requires_registration @linkml:Boolean ?
+       ) ;
+       rdf:type [ fix_base:UDFTagRange ]
+    )
+}

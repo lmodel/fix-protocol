@@ -1,0 +1,22 @@
+# metamodel_version: 1.11.0id: TradeFragmentationEntry
+schema_generating: true
+description: One row of a fragmentation table published in a Trade category (currently
+  only List/Program/Basket Trading) identifying a message that may be fragmented,
+  the "Total Entries" field used to indicate the total count across all fragments
+  of the batch, and the verbatim description of the repeating group that may be fragmented.
+display_name: TradeFragmentationEntry
+document_category: TradeFragmentationEntry
+weight: 20
+fields:
+- id: trade_fragmentation_message
+  description: "Message that may be fragmented \u2014 verbatim text from the Message\
+    \ column of the fragmentation table (e.g. \"NewOrderList(35=E)\")."
+  display_name: TradeFragmentationEntry_trade_fragmentation_message
+- id: trade_fragmentation_total_entries_field
+  description: Name and tag of the "Total Entries" field used to indicate the total
+    count across all fragments of the batch (e.g. "TotNoOrders(68)").
+  display_name: TradeFragmentationEntry_trade_fragmentation_total_entries_field
+- id: trade_fragmentation_repeating_group
+  description: "Verbatim description of the repeating group that may be fragmented\
+    \ \u2014 from the table's third column."
+  display_name: TradeFragmentationEntry_trade_fragmentation_repeating_group

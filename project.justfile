@@ -4,6 +4,17 @@
 # name in this file is not possible until a known issue in just is fixed,
 # https://github.com/casey/just/issues/2540
 
+# Apply curated SSSOM mapping TSVs to the generated LinkML schema YAMLs.
+# Merges SKOS exact/close/broad/narrow/related matches into the matching
+# class / enum / type bodies and declares any referenced object-side prefixes.
+# Idempotent: re-running on a clean tree produces no further changes. Run
+# after `schema_to_linkml.py` regenerates the YAMLs and before `gen-project`.
+[group('model development')]
+apply-sssom-overlay:
+  uv run python scripts/apply_sssom_overlay.py \
+    --schema-dir src/fix_protocol/schema \
+    --mappings-dir src/fix_protocol/mappings
+
 # ============== Supplemental generator recipes (beyond gen-project defaults) ==============
 # gen-project already covers: graphql, jsonldcontext, jsonld, jsonschema, owl,
 # prefixmap, proto, python, shex, shacl, sqlddl, excel, typescript.

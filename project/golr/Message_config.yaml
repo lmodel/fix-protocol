@@ -1,0 +1,27 @@
+# metamodel_version: 1.11.0id: Message
+schema_generating: true
+description: A FIX application message.
+display_name: Message
+document_category: Message
+weight: 20
+fields:
+- id: msg_type
+  description: MsgType(35) wire value identifying the message.
+  display_name: Message_msg_type
+- id: message_name
+  description: PascalCase name of the message.
+  display_name: Message_message_name
+- id: description
+  description: Description of the message's purpose.
+  display_name: Message_description
+- id: category
+  description: Message category.
+  display_name: category
+- id: fields
+  description: Fields directly contained by the enclosing element.
+  display_name: fields
+  cardinality: multi
+- id: components
+  description: Components referenced by the enclosing element.
+  display_name: components
+  cardinality: multi

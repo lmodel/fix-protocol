@@ -1,0 +1,13 @@
+# metamodel_version: 1.11.0id: BusinessRejectReasonDescription
+schema_generating: true
+description: One entry of the BusinessRejectReason(380) code table.
+display_name: BusinessRejectReasonDescription
+document_category: BusinessRejectReasonDescription
+weight: 20
+fields:
+- id: reject_reason_code
+  description: Numeric code value of BusinessRejectReason(380).
+  display_name: BusinessRejectReasonDescription_reject_reason_code
+- id: reject_reason_label
+  description: Human-readable label of a BusinessRejectReason(380) code.
+  display_name: BusinessRejectReasonDescription_reject_reason_label

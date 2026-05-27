@@ -1,0 +1,18 @@
+# metamodel_version: 1.11.0id: StandardResponseMapping
+schema_generating: true
+description: One row of a "Standard Responses for <area> Messages" table mapping a
+  request message to its appropriate response(s).
+display_name: StandardResponseMapping
+document_category: StandardResponseMapping
+weight: 20
+fields:
+- id: category_label
+  description: Category label as printed in the source table (free text; may include
+    parenthesised sub-categories such as "Single General Order Handling").
+  display_name: StandardResponseMapping_category_label
+- id: fix_message
+  description: FIX message name with MsgType in parentheses, e.g. AllocationInstruction(35=J).
+  display_name: StandardResponseMapping_fix_message
+- id: appropriate_responses
+  description: Free-text appropriate-response cell from the Standard Responses tables.
+  display_name: StandardResponseMapping_appropriate_responses

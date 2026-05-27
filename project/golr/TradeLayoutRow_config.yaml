@@ -1,0 +1,33 @@
+# metamodel_version: 1.11.0id: TradeLayoutRow
+schema_generating: true
+description: One row of the layout table published in the Trade Appendix for a message
+  or component. Each row identifies either a FIX field (by tag number + name) or an
+  embedded component (by name), records whether it is required, carries the Description-column
+  text, and flags whether it appears as a nested child of a repeating-group counter.
+display_name: TradeLayoutRow
+document_category: TradeLayoutRow
+weight: 20
+fields:
+- id: trade_layout_kind
+  description: "Row kind \u2014 either a FIX field (numeric Tag) or an embedded component\
+    \ (literal \"Component\" in the Tag column of the source table)."
+  display_name: TradeLayoutRow_trade_layout_kind
+- id: trade_layout_field_tag
+  description: FIX tag number drawn from the Tag column when the row is a field (i.e.
+    layout_kind = FIELD). Absent for COMPONENT rows.
+  display_name: trade_layout_field_tag
+- id: trade_layout_element_name
+  description: "Element name as printed in the Name column \u2014 either the FIX field\
+    \ name or the component name."
+  display_name: TradeLayoutRow_trade_layout_element_name
+- id: trade_layout_required
+  description: Whether the field or component is required, as printed in the Req'd
+    column of the source layout table ("Y" / "N").
+  display_name: trade_layout_required
+- id: trade_layout_description
+  description: Free-text content of the Description column of the row (may be empty).
+  display_name: trade_layout_description
+- id: trade_layout_nested
+  description: "Whether the row appears nested under a repeating-group counter (i.e.\
+    \ its Tag column is prefixed with the \"\u2192\" arrow in the source table)."
+  display_name: trade_layout_nested

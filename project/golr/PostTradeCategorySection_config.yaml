@@ -1,0 +1,84 @@
+# metamodel_version: 1.11.0id: PostTradeCategorySection
+schema_generating: true
+description: "A \"Category \u2013 <name>\" sub-section of the Post-Trade chapter."
+display_name: PostTradeCategorySection
+document_category: PostTradeCategorySection
+weight: 20
+fields:
+- id: category
+  description: Message category.
+  display_name: PostTradeCategorySection_category
+- id: title
+  description: Display title.
+  display_name: title
+- id: description
+  description: Free-text description.
+  display_name: description
+- id: category_components_note
+  description: Intro prose of a category's Components sub-section.
+  display_name: category_components_note
+- id: post_message_groups
+  description: Purpose-grouped message descriptions inside a Post-Trade category.
+  display_name: post_message_groups
+  cardinality: multi
+- id: messages
+  description: Messages defined within the enclosing element.
+  display_name: PostTradeCategorySection_messages
+  cardinality: multi
+- id: post_category_specific_components
+  description: Components used exclusively by messages within a category.
+  display_name: post_category_specific_components
+  cardinality: multi
+- id: allocation_scenarios
+  description: Communication options supported by the Allocation category for conveying
+    allocation instructions.
+  display_name: allocation_scenarios
+  cardinality: multi
+- id: allocation_roles
+  description: Role labels used throughout the Allocation category prose.
+  display_name: allocation_roles
+  cardinality: multi
+- id: post_trade_allocation_pricing_methods
+  description: Methods supported for computing post-trade allocations.
+  display_name: post_trade_allocation_pricing_methods
+  cardinality: multi
+- id: allocation_status_descriptions
+  description: Descriptions tied to AllocStatus(87) values as listed in the Allocation
+    Instruction Acknowledgements section.
+  display_name: allocation_status_descriptions
+  cardinality: multi
+- id: fragmentation_field_map
+  description: Per-message mapping of fragmentation-related fields used by the Allocation
+    messages.
+  display_name: fragmentation_field_map
+  cardinality: multi
+- id: trade_capture_report_usages
+  description: Usages described in the "Trade Capture Report Usages" sub-section of
+    the Trade Capture Reporting category.
+  display_name: trade_capture_report_usages
+  cardinality: multi
+- id: trade_capture_report_identifier_rules
+  description: Rules governing TradeCaptureReport(35=AE) identifier fields.
+  display_name: trade_capture_report_identifier_rules
+  cardinality: multi
+- id: registration_status_descriptions
+  description: Descriptions tied to RegistStatus(506) values.
+  display_name: registration_status_descriptions
+  cardinality: multi
+- id: clearing_services_for_position_management
+  description: Business functions exposed by the Position Management Clearing Services.
+  display_name: clearing_services_for_position_management
+  cardinality: multi
+- id: clearing_services_for_post_trade_processing
+  description: Per-format action sets exposed by the Post-Trade Processing Clearing
+    Services.
+  display_name: clearing_services_for_post_trade_processing
+  cardinality: multi
+- id: collateral_management_usages
+  description: Documented usages for the Collateral Management messages.
+  display_name: collateral_management_usages
+  cardinality: multi
+- id: collateral_assignment_purposes
+  description: Documented purposes for the CollateralAssignment(35=AY) message.
+  display_name: collateral_assignment_purposes
+  cardinality: multi

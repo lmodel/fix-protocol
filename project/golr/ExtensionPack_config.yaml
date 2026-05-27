@@ -1,0 +1,25 @@
+# metamodel_version: 1.11.0id: ExtensionPack
+schema_generating: true
+description: A unit of change to FIX Latest.
+display_name: ExtensionPack
+document_category: ExtensionPack
+weight: 20
+fields:
+- id: number
+  description: Sequential identifier of the Extension Pack.
+  display_name: ExtensionPack_number
+- id: title
+  description: Short descriptive title.
+  display_name: ExtensionPack_title
+- id: size
+  description: Qualitative size indicator (XXS..XXL).
+  display_name: size
+- id: enhancement_summary
+  description: Narrative summary of what the EP introduces.
+  display_name: enhancement_summary
+- id: applies_to_session_layer_only
+  description: True when the EP applies only to the FIX Session Layer.
+  display_name: applies_to_session_layer_only
+- id: applies_to_fixml_only
+  description: True when the EP applies only to the FIXML encoding.
+  display_name: applies_to_fixml_only

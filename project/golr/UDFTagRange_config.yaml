@@ -1,0 +1,28 @@
+# metamodel_version: 1.11.0id: UDFTagRange
+schema_generating: true
+description: A reserved range of tag numbers for User Defined Fields.
+display_name: UDFTagRange
+document_category: UDFTagRange
+weight: 20
+fields:
+- id: range_id
+  description: Identifier of the range.
+  display_name: UDFTagRange_range_id
+- id: low_tag
+  description: Inclusive lower bound of the range.
+  display_name: UDFTagRange_low_tag
+- id: high_tag
+  description: Upper bound of the tag range. Required for all ``usage`` values except
+    ``GTC_RESERVED`` (which is open-ended, 50000+). Downstream validators should enforce
+    this; the constraint cannot be expressed here because LinkML's ``equals_string``
+    operator only accepts string-ranged slots and ``usage`` is an enum.
+  display_name: UDFTagRange_high_tag
+- id: usage
+  description: Usage policy assigned to the range.
+  display_name: UDFTagRange_usage
+- id: description
+  description: Notes on the range's intended use.
+  display_name: UDFTagRange_description
+- id: requires_registration
+  description: True when tags in the range must be registered.
+  display_name: requires_registration

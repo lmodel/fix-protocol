@@ -1,0 +1,14 @@
+#curie_map:
+#  fix_protocol: https://w3id.org/lmodel/fix-protocol/
+#  fluxnova_bpm_platform: https://w3id.org/lmodel/fluxnova-bpm-platform/
+#  semapv: https://w3id.org/semapv/vocab/
+#  skos: http://www.w3.org/2004/02/skos/core#
+#mapping_set_id: https://w3id.org/lmodel/fix-protocol/mappings/fix-protocol-to-fluxnova-bpm-platform.sssom.tsv
+#mapping_set_description: LLM-generated mappings from the FIX Protocol LinkML schema to the Fluxnova BPM Platform LinkML schema. Coverage focuses on workflow/scenario analogues; FIX communication scenarios and request/response patterns map loosely to BPM process/task elements.
+#mapping_set_version: 0.1.0
+#license: https://creativecommons.org/licenses/by/4.0/
+#mapping_date: 2026-05-27
+subject_id	subject_label	predicate_id	object_id	object_label	mapping_justification	confidence	comment
+fix_protocol:AllocationScenarioEnum	AllocationScenarioEnum	skos:relatedMatch	fluxnova_bpm_platform:ProcessDefinition	ProcessDefinition	semapv:LLMBasedMatching	0.4	Allocation communication scenarios resemble BPM process definitions.
+fix_protocol:NetworkStatusScenarioEnum	NetworkStatusScenarioEnum	skos:relatedMatch	fluxnova_bpm_platform:ProcessDefinition	ProcessDefinition	semapv:LLMBasedMatching	0.4	Network status communication scenarios resemble BPM process definitions.
+fix_protocol:StandardResponseMapping	StandardResponseMapping	skos:relatedMatch	fluxnova_bpm_platform:Task	Task	semapv:LLMBasedMatching	0.4	Request-to-response mapping resembles the BPM task / message-flow pattern.

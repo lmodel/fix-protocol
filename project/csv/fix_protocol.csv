@@ -1,0 +1,68 @@
+id,mappings,description
+AllocationFragmentationFieldMap,,One row of the table mapping an allocation message to its fragmentation-related fields.
+AllocationStatusDescription,,One row of the AllocStatus(87) value/description table.
+ApplicationMessageReferenceKey,,"One row of a ""Key Fields for <area> Application Message References"" table identifying the field whose value is copied into BusinessRejectRefID(379)."
+BusinessArea,,A top-level business area of the FIX Latest specification.
+BusinessRejectReasonDescription,,One entry of the BusinessRejectReason(380) code table.
+ClearingServicePostTradeProcessingFormat,,"One message-format row from the Post-Trade Processing Clearing Services section, with its supported actions."
+CommonComponent,,A component used only by messages within a single business area.
+CommonComponentDetail,,Per-common-component description.
+Component,,A FIX component — a named set of related fields.
+ComponentTableFootnote,,A footnote on the area-wide components table.
+ExtensionPack,,A unit of change to FIX Latest.
+Field,,A FIX field — a uniquely tagged data element with a FIX datatype.
+FIXDatatype,,A FIX Protocol datatype.
+FIXFamilyStandard,,A member standard of the FIX Family of Standards.
+FIXIntroduction,,Container for the structural elements of the FIX Latest Introduction section. Tree root for instance data.
+FIXProtocolLimited,,The organization that maintains the FIX Protocol specification.
+GlobalComponent,,A component shared by messages of two or more business areas.
+InfrastructureBusinessArea,,Tree-root container for the Infrastructure business area of FIX Latest.
+InfrastructureCategorySection,,"A ""Category – <name>"" sub-section of the Infrastructure chapter."
+InfrastructureComponentDetail,,Per-component description appearing in a category's Components sub-section.
+InfrastructureComponentEntry,,"One row of the area-wide ""Components for Infrastructure Business Area"" table."
+InfrastructureComponentTableFootnote,,A footnote attached to a row of the area-wide Infrastructure components table.
+InfrastructureGlobalComponentReference,,"A reference from the Infrastructure business area to a Global Component declared on the FIX Latest ""Global Components"" page. Records the component name, the FIX tags it contributes, and the Infrastructure categories and messages that embed it."
+InfrastructureLayoutRow,,"One row of the layout table published in the Infrastructure Appendix for a message or component. Each row identifies either a FIX field (by tag number + name) or an embedded component (by name), records whether it is required, carries the Description-column text, and flags whether it appears as a nested child of a repeating-group counter."
+InfrastructureMessageDetail,,Per-message description appearing in a category's Messages sub-section.
+InfrastructureMessageEntry,,"One row of the area-wide ""Messages for Infrastructure Business Area"" table."
+Message,,A FIX application message.
+MessageCategory,,A message category within a business area.
+MessageGroup,,Purpose-grouped sub-section inside a category's Messages section.
+PostTradeBusinessArea,,Tree-root container for the Post-Trade business area of FIX Latest.
+PostTradeCategorySection,,"A ""Category – <name>"" sub-section of the Post-Trade chapter."
+PostTradeCommonComponentDetail,,"Per-common-component description block from the chapter's final ""Common Components"" section."
+PostTradeComponentDetail,,Per-component description block from a Post-Trade category section's Components sub-section.
+PostTradeComponentEntry,,"One row of the area-wide ""Components for Post-Trade Business Area"" table."
+PostTradeComponentTableFootnote,,A footnote attached to a row of the area-wide Post-Trade components table.
+PostTradeLayoutRow,,"One row of the layout table published in the Post-Trade Appendix for a message or component. Each row identifies either a FIX field (by tag number + name) or an embedded component (by name), records whether it is required, carries the Description-column text, and flags whether it appears as a nested child of a repeating-group counter."
+PostTradeMessageDetail,,Per-message description block from a Post-Trade category section.
+PostTradeMessageEntry,,"One row of the area-wide ""Messages for Post-Trade Business Area"" table."
+PostTradeMessageGroup,,"A purpose-themed grouping of messages within a Post-Trade category (e.g. ""Allocation Instructions"")."
+PreTradeBusinessArea,,Tree-root container for the Pre-Trade business area of FIX Latest.
+PreTradeCategorySection,,A per-category sub-section of the Pre-Trade chapter.
+PreTradeComponentDetail,,Per-category component description.
+PreTradeComponentEntry,,One row of the area-wide pre-trade components table.
+PreTradeLayoutRow,,"One row of the layout table published in the Pre-Trade Appendix for a message or component. Each row identifies either a FIX field (by tag number + name) or an embedded component (by name), records whether it is required, carries the Description-column text, and flags whether it appears as a nested child of a repeating-group counter."
+PreTradeMessageDetail,,Per-category message description.
+PreTradeMessageEntry,,One row of the area-wide pre-trade messages table.
+RegistrationStatusDescription,,One row of the RegistStatus(506) value/description table.
+SpecificComponent,,A component used only by messages within a single category.
+StandardResponseMapping,,"One row of a ""Standard Responses for <area> Messages"" table mapping a request message to its appropriate response(s)."
+TradeAppendix,,"Tree-root container for the Trade Appendix — the spec companion document that publishes the full message- and component-layout tables for every message and component used in the Trade business area, organized into one ""Appendix – <X> Category"" sub-section per Trade category plus a final ""Appendix – Common Category"" sub-section covering the layouts of the chapter's common components."
+TradeAppendixSection,,"One ""Appendix – <X> Category"" sub-section of the Trade Appendix. Bundles the per-message layout tables (TradeMessageDetail) and per-component layout tables (TradeComponentDetail) for messages and components that belong to one Trade category — or, for the synthetic ""Common"" section, the layouts of the chapter's common components."
+TradeBusinessArea,,Tree-root container for the Trade (Orders and Executions) business area of FIX Latest.
+TradeCaptureReportIdentifierRule,,A rule governing one of the TradeCaptureReport(35=AE) identifier fields.
+TradeCaptureReportUsage,,One documented usage of the TradeCaptureReport(35=AE) message.
+TradeCategorySection,,A per-category sub-section of the Trade chapter.
+TradeCommonComponentDetail,,"Per-common-component description from the chapter's final ""Common Components"" section."
+TradeComponentDetail,,Per-category component description.
+TradeComponentEntry,,One row of the area-wide trade components table.
+TradeComponentTableFootnote,,A footnote on the area-wide components table.
+TradeFragmentationEntry,,"One row of a fragmentation table published in a Trade category (currently only List/Program/Basket Trading) identifying a message that may be fragmented, the ""Total Entries"" field used to indicate the total count across all fragments of the batch, and the verbatim description of the repeating group that may be fragmented."
+TradeLayoutRow,,"One row of the layout table published in the Trade Appendix for a message or component. Each row identifies either a FIX field (by tag number + name) or an embedded component (by name), records whether it is required, carries the Description-column text, and flags whether it appears as a nested child of a repeating-group counter."
+TradeMessageDetail,,Per-category message description.
+TradeMessageEntry,,One row of the area-wide trade messages table.
+TradeMessageGroup,,"Purpose-grouped sub-section inside a category's Messages sub-section (e.g. ""New Order Single"", ""Execution Reports"", ""Order Cancel Requests"" under Single/General Order Handling)."
+TradeOrdStatusPrecedenceEntry,,"One row of the OrdStatus(39) precedence table published in the Execution Reports purpose-group of the Single/General Order Handling category. Defines the precedence ranking used to resolve simultaneous state transitions on an order, paired with the human-readable OrdStatus label and its descriptive prose."
+UDFTagRange,,A reserved range of tag numbers for User Defined Fields.
+

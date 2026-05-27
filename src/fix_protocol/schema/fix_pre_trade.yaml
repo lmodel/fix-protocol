@@ -1,18 +1,18 @@
 ---
 id: https://w3id.org/lmodel/fix-protocol/fix-pre-trade
+
 name: fix-pre-trade
+
 title: FIX Protocol Pre-Trade Business Area
-description: |-
-  LinkML metamodel for the structural elements of the FIX Latest
-  Pre-Trade business area: its message categories, area-wide
-  message and component listings, per-category sections, footnotes,
-  and quoting business models. Original (non-normative) authored
-  content only; for spec-derived prose see the private overlay
-  (see NOTICE).
+
+description: 'LinkML metamodel for the structural elements of the FIX Latest Pre-Trade business area: its message categories, area-wide message and component listings, per-category sections, footnotes, and quoting business models. Original (non-normative) authored content only; for spec-derived prose see the private overlay (see NOTICE).'
+
 license: Apache-2.0
-see_also:
-  - https://www.fixtrading.org/standards/fix-latest-online/business-area-pre-trade/
+
+see_also: [https://www.fixtrading.org/standards/fix-latest-online/business-area-pre-trade/]
+
 source: https://www.fixtrading.org/standards/fix-latest-online/business-area-pre-trade/
+
 version: EP284
 
 prefixes:
@@ -24,88 +24,111 @@ prefixes:
   dcterms: http://purl.org/dc/terms/
   skos: http://www.w3.org/2004/02/skos/core#
   xsd: http://www.w3.org/2001/XMLSchema#
+  fix_orchestra: https://w3id.org/lmodel/fix-orchestra/
 
 default_prefix: fix_pre_trade
+
 default_range: string
 
-imports:
-  - linkml:types
-  - ./fix_base
-  - ./fix_global_components
+imports: [linkml:types, ./fix_base, ./fix_global_components]
 
 subsets:
   pre_trade:
     description: Elements drawn from the FIX Latest Pre-Trade chapter.
+
   pre_trade_organization:
     description: Tabular/organizational elements (message/component tables).
 
 enums:
   PreTradeCategoryEnum:
-    description: |-
-      The eight message categories of the FIX Latest Pre-Trade business
-      area. Subset of MessageCategoryEnum.
+    description: The eight message categories of the FIX Latest Pre-Trade business area. Subset of MessageCategoryEnum.
+    narrow_mappings: [fix_orchestra:CategoryType]
     permissible_values:
-      INDICATION:
-      EVENT_COMMUNICATION:
-      QUOTATION_NEGOTIATION:
-      MARKET_DATA:
-      MARKET_STRUCTURE_REFERENCE_DATA:
-      SECURITIES_REFERENCE_DATA:
-      PARTIES_REFERENCE_DATA:
-      PARTIES_ACTION:
+      INDICATION: null
+
+      EVENT_COMMUNICATION: null
+
+      QUOTATION_NEGOTIATION: null
+
+      MARKET_DATA: null
+
+      MARKET_STRUCTURE_REFERENCE_DATA: null
+
+      SECURITIES_REFERENCE_DATA: null
+
+      PARTIES_REFERENCE_DATA: null
+
+      PARTIES_ACTION: null
 
   ComponentRepetition:
     description: Whether a FIX component is repeating or non-repeating.
     permissible_values:
-      REPEATING:
-      NON_REPEATING:
+      REPEATING: null
+
+      NON_REPEATING: null
 
   PreTradeCommonComponentName:
-    description: |-
-      Names of the Common Components declared at the top of the Pre-Trade
-      business-area chapter.
+    description: Names of the Common Components declared at the top of the Pre-Trade business-area chapter.
     permissible_values:
-      AuctionTypeRuleGrp:
-      BaseTradingRules:
-      ExecInstRules:
-      InstrumentScope:
-      InstrumentScopeGrp:
-      InstrumentScopeSecurityAltIDGrp:
-      LotTypeRules:
-      MarketDataFeedTypes:
-      MarketSegmentScopeGrp:
-      MatchRules:
-      OrdTypeRules:
-      PriceLimits:
-      PriceRangeRuleGrp:
-      QuoteSizeRuleGrp:
-      RequestedPartyRoleGrp:
-      RequestingPartyGrp:
-      RequestingPartySubGrp:
-      RoutingGrp:
-      TickRules:
-      TimeInForceRules:
-      TradingSessionRules:
+      AuctionTypeRuleGrp: null
+
+      BaseTradingRules: null
+
+      ExecInstRules: null
+
+      InstrumentScope: null
+
+      InstrumentScopeGrp: null
+
+      InstrumentScopeSecurityAltIDGrp: null
+
+      LotTypeRules: null
+
+      MarketDataFeedTypes: null
+
+      MarketSegmentScopeGrp: null
+
+      MatchRules: null
+
+      OrdTypeRules: null
+
+      PriceLimits: null
+
+      PriceRangeRuleGrp: null
+
+      QuoteSizeRuleGrp: null
+
+      RequestedPartyRoleGrp: null
+
+      RequestingPartyGrp: null
+
+      RequestingPartySubGrp: null
+
+      RoutingGrp: null
+
+      TickRules: null
+
+      TimeInForceRules: null
+
+      TradingSessionRules: null
 
   QuoteModelEnum:
-    description: |-
-      Quoting business models referenced in the Quotation / Negotiation
-      category.
+    description: Quoting business models referenced in the Quotation / Negotiation category.
     permissible_values:
-      INDICATIVE:
-      TRADEABLE:
-      RESTRICTED_TRADEABLE:
-      NEGOTIATION:
+      INDICATIVE: null
+
+      TRADEABLE: null
+
+      RESTRICTED_TRADEABLE: null
+
+      NEGOTIATION: null
 
   PreTradeLayoutRowKindEnum:
-    description: |-
-      Discriminator for a row in a Pre-Trade message- or
-      component-layout table: either a FIX field (numeric Tag
-      column) or an embedded component (literal "Component" in
-      the Tag column).
+    description: 'Discriminator for a row in a Pre-Trade message- or component-layout table: either a FIX field (numeric Tag column) or an embedded component (literal "Component" in the Tag column).'
     permissible_values:
-      FIELD:
-      COMPONENT:
+      FIELD: null
+
+      COMPONENT: null
 
 slots:
   introduction:
@@ -210,67 +233,46 @@ slots:
     multivalued: true
 
   pre_layout_rows:
-    description: |-
-      Ordered rows of the layout table published for the
-      message or component in the Pre-Trade Appendix.
+    description: Ordered rows of the layout table published for the message or component in the Pre-Trade Appendix.
     range: PreTradeLayoutRow
     multivalued: true
     inlined: true
     inlined_as_list: true
 
   pre_layout_kind:
-    description: |-
-      Row kind — either a FIX field (numeric Tag) or an
-      embedded component (literal "Component" in the Tag
-      column of the source table).
+    description: Row kind — either a FIX field (numeric Tag) or an embedded component (literal "Component" in the Tag column of the source table).
     range: PreTradeLayoutRowKindEnum
 
   pre_layout_field_tag:
-    description: |-
-      FIX tag number drawn from the Tag column when the row is
-      a field (i.e. layout_kind = FIELD). Absent for COMPONENT
-      rows.
+    description: FIX tag number drawn from the Tag column when the row is a field (i.e. layout_kind = FIELD). Absent for COMPONENT rows.
     range: integer
     minimum_value: 0
 
   pre_layout_element_name:
-    description: |-
-      Element name as printed in the Name column — either the
-      FIX field name or the component name.
+    description: Element name as printed in the Name column — either the FIX field name or the component name.
     range: string
 
   pre_layout_required:
-    description: |-
-      Whether the field or component is required, as printed in
-      the Req’d column of the source layout table ("Y" / "N").
+    description: Whether the field or component is required, as printed in the Req’d column of the source layout table ("Y" / "N").
     range: boolean
 
   pre_layout_description:
-    description: |-
-      Free-text content of the Description column of the row
-      (may be empty).
+    description: Free-text content of the Description column of the row (may be empty).
     range: string
 
   pre_layout_nested:
-    description: |-
-      Whether the row appears nested under a repeating-group
-      counter (i.e. its Tag column is prefixed with the "→"
-      arrow in the source table).
+    description: Whether the row appears nested under a repeating-group counter (i.e. its Tag column is prefixed with the "→" arrow in the source table).
     range: boolean
-    ifabsent: "False"
+    ifabsent: 'False'
 
 classes:
   PreTradeBusinessArea:
-    description: |-
-      Tree-root container for the Pre-Trade business area of FIX Latest.
+    description: Tree-root container for the Pre-Trade business area of FIX Latest.
     tree_root: true
-    in_subset:
-      - pre_trade
+    in_subset: [pre_trade]
     class_uri: fix_pre_trade:PreTradeBusinessArea
-    aliases:
-      - Pre-Trade
-    see_also:
-      - https://www.fixtrading.org/standards/fix-latest-online/business-area-pre-trade/
+    aliases: [Pre-Trade]
+    see_also: [https://www.fixtrading.org/standards/fix-latest-online/business-area-pre-trade/]
     slots:
       - area
       - title
@@ -306,13 +308,9 @@ classes:
 
   PreTradeMessageEntry:
     description: One row of the area-wide pre-trade messages table.
-    in_subset:
-      - pre_trade_organization
+    in_subset: [pre_trade_organization]
     class_uri: fix_pre_trade:PreTradeMessageEntry
-    slots:
-      - msg_type
-      - message_name
-      - category
+    slots: [msg_type, message_name, category]
     slot_usage:
       msg_type:
         identifier: true
@@ -325,15 +323,9 @@ classes:
 
   PreTradeComponentEntry:
     description: One row of the area-wide pre-trade components table.
-    in_subset:
-      - pre_trade_organization
+    in_subset: [pre_trade_organization]
     class_uri: fix_pre_trade:PreTradeComponentEntry
-    slots:
-      - component_name
-      - repetition
-      - category
-      - is_common
-      - footnote_number
+    slots: [component_name, repetition, category, is_common, footnote_number]
     slot_usage:
       component_name:
         identifier: true
@@ -341,9 +333,7 @@ classes:
       repetition:
         required: true
       category:
-        description: |-
-          Category the component is listed under. Common Components are
-          listed under the synthetic "Common Components" value.
+        description: Category the component is listed under. Common Components are listed under the synthetic "Common Components" value.
         range: string
         required: true
       is_common:
@@ -351,15 +341,9 @@ classes:
 
   ComponentTableFootnote:
     description: A footnote on the area-wide components table.
-    in_subset:
-      - pre_trade_organization
+    in_subset: [pre_trade_organization]
     class_uri: fix_pre_trade:ComponentTableFootnote
-    slots:
-      - footnote_number
-      - component_name
-      - introduced_in
-      - sole_category
-      - text
+    slots: [footnote_number, component_name, introduced_in, sole_category, text]
     slot_usage:
       footnote_number:
         identifier: true
@@ -373,8 +357,7 @@ classes:
 
   PreTradeCategorySection:
     description: A per-category sub-section of the Pre-Trade chapter.
-    in_subset:
-      - pre_trade
+    in_subset: [pre_trade]
     class_uri: fix_pre_trade:PreTradeCategorySection
     slots:
       - category
@@ -396,15 +379,9 @@ classes:
 
   PreTradeMessageDetail:
     description: Per-category message description.
-    in_subset:
-      - pre_trade
+    in_subset: [pre_trade]
     class_uri: fix_pre_trade:PreTradeMessageDetail
-    slots:
-      - msg_type
-      - message_name
-      - description
-      - layout_url
-      - pre_layout_rows
+    slots: [msg_type, message_name, description, layout_url, pre_layout_rows]
     slot_usage:
       msg_type:
         identifier: true
@@ -416,15 +393,9 @@ classes:
 
   PreTradeComponentDetail:
     description: Per-category component description.
-    in_subset:
-      - pre_trade
+    in_subset: [pre_trade]
     class_uri: fix_pre_trade:PreTradeComponentDetail
-    slots:
-      - component_name
-      - repetition
-      - description
-      - layout_url
-      - pre_layout_rows
+    slots: [component_name, repetition, description, layout_url, pre_layout_rows]
     slot_usage:
       component_name:
         identifier: true
@@ -434,13 +405,9 @@ classes:
 
   MessageGroup:
     description: Purpose-grouped sub-section inside a category's Messages section.
-    in_subset:
-      - pre_trade
+    in_subset: [pre_trade]
     class_uri: fix_pre_trade:MessageGroup
-    slots:
-      - group_title
-      - description
-      - messages
+    slots: [group_title, description, messages]
     slot_usage:
       group_title:
         identifier: true
@@ -454,15 +421,9 @@ classes:
 
   CommonComponentDetail:
     description: Per-common-component description.
-    in_subset:
-      - pre_trade
+    in_subset: [pre_trade]
     class_uri: fix_pre_trade:CommonComponentDetail
-    slots:
-      - component_name
-      - repetition
-      - description
-      - layout_url
-      - pre_layout_rows
+    slots: [component_name, repetition, description, layout_url, pre_layout_rows]
     slot_usage:
       component_name:
         identifier: true
@@ -472,18 +433,10 @@ classes:
         description: Description of the common component's purpose.
 
   PreTradeLayoutRow:
-    description: |-
-      One row of the layout table published in the Pre-Trade
-      Appendix for a message or component. Each row identifies
-      either a FIX field (by tag number + name) or an embedded
-      component (by name), records whether it is required,
-      carries the Description-column text, and flags whether it
-      appears as a nested child of a repeating-group counter.
-    in_subset:
-      - pre_trade
+    description: One row of the layout table published in the Pre-Trade Appendix for a message or component. Each row identifies either a FIX field (by tag number + name) or an embedded component (by name), records whether it is required, carries the Description-column text, and flags whether it appears as a nested child of a repeating-group counter.
+    in_subset: [pre_trade]
     class_uri: fix_pre_trade:PreTradeLayoutRow
-    see_also:
-      - https://www.fixtrading.org/standards/fix-latest-online/pre-trade-appendix/
+    see_also: [https://www.fixtrading.org/standards/fix-latest-online/pre-trade-appendix/]
     slots:
       - pre_layout_kind
       - pre_layout_field_tag

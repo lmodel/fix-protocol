@@ -1,0 +1,16 @@
+# metamodel_version: 1.11.0id: ClearingServicePostTradeProcessingFormat
+schema_generating: true
+description: One message-format row from the Post-Trade Processing Clearing Services
+  section, with its supported actions.
+display_name: ClearingServicePostTradeProcessingFormat
+document_category: ClearingServicePostTradeProcessingFormat
+weight: 20
+fields:
+- id: message_format
+  description: Clearing-service message format family referenced in the chapter.
+  display_name: ClearingServicePostTradeProcessingFormat_message_format
+- id: supported_actions
+  description: Action labels (e.g. Allocation, Accept, Reject, Release, Change, Delete)
+    supported by a clearing-service message format.
+  display_name: ClearingServicePostTradeProcessingFormat_supported_actions
+  cardinality: multi

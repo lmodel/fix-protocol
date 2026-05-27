@@ -1,0 +1,671 @@
+ syntax="proto3";
+ package
+// metamodel_version: 1.11.0
+// One row of the table mapping an allocation message to its fragmentation-related fields.
+message AllocationFragmentationFieldMap
+ {
+  string msgType = 0
+  string messageName = 0
+  string totalCountField = 0
+  string fragmentCountField = 0
+  string principalMessageReference = 0
+ }
+// One row of the AllocStatus(87) value/description table.
+message AllocationStatusDescription
+ {
+  string statusCode = 0
+  string statusLabel = 0
+  string description = 0
+ }
+// One row of a "Key Fields for <area> Application Message References" table identifying the field whose value is copied into BusinessRejectRefID(379).
+message ApplicationMessageReferenceKey
+ {
+  string categoryLabel = 0
+  string fixMessage = 0
+  string businessRejectRefIdValue = 0
+ }
+// A top-level business area of the FIX Latest specification.
+message BusinessArea
+ {
+  businessAreaEnum area = 0
+  string title = 0
+  string description = 0
+ repeated  messageCategory categories = 0
+ }
+// One entry of the BusinessRejectReason(380) code table.
+message BusinessRejectReasonDescription
+ {
+  integer rejectReasonCode = 0
+  string rejectReasonLabel = 0
+ }
+// One message-format row from the Post-Trade Processing Clearing Services section, with its supported actions.
+message ClearingServicePostTradeProcessingFormat
+ {
+  clearingServiceForPostTradeProcessingEnum messageFormat = 0
+ repeated  string supportedActions = 0
+ }
+// A component used only by messages within a single business area.
+message CommonComponent
+ {
+  string componentName = 0
+  string description = 0
+  boolean isRepeatingGroup = 0
+ repeated  field fields = 0
+ repeated  component nestedComponents = 0
+  businessAreaEnum businessArea = 0
+  componentScope scope = 0
+ }
+// Per-common-component description.
+message CommonComponentDetail
+ {
+  preTradeCommonComponentName componentName = 0
+  componentRepetition repetition = 0
+  string description = 0
+  uri layoutUrl = 0
+ repeated  preTradeLayoutRow preLayoutRows = 0
+ }
+// A footnote on the area-wide components table.
+message ComponentTableFootnote
+ {
+  integer footnoteNumber = 0
+  string componentName = 0
+  string introducedIn = 0
+  preTradeCategoryEnum soleCategory = 0
+  string text = 0
+ }
+// A unit of change to FIX Latest.
+message ExtensionPack
+ {
+  extensionPackNumber number = 0
+  string title = 0
+  extensionPackSize size = 0
+  string enhancementSummary = 0
+  boolean appliesToSessionLayerOnly = 0
+  boolean appliesToFixmlOnly = 0
+ }
+// A FIX field — a uniquely tagged data element with a FIX datatype.
+message Field
+ {
+  tagNumber tag = 0
+  string fieldName = 0
+  fIXDatatypeName datatype = 0
+  string description = 0
+  fieldRequirement requirement = 0
+  boolean isUserDefined = 0
+ }
+// A FIX Protocol datatype.
+message FIXDatatype
+ {
+  fIXDatatypeName datatypeName = 0
+  string definition = 0
+ repeated  iSO11404ValueSpace valueSpace = 0
+  string valueSpaceNotes = 0
+  boolean deprecatedForNewDesigns = 0
+  string externalCodeSet = 0
+ repeated  timePrecision timeUnit = 0
+  integer radix = 0
+  string repertoire = 0
+  integer indexLowerBound = 0
+  integer indexUpperBound = 0
+  integer minimumValue = 0
+  integer maximumValue = 0
+ repeated  integer footnoteNumbers = 0
+ }
+// A member standard of the FIX Family of Standards.
+message FIXFamilyStandard
+ {
+  string id = 0
+  string name = 0
+  string description = 0
+  string acronym = 0
+ repeated  uri seeAlso = 0
+  standardLayer layer = 0
+  string version = 0
+  sessionProtocolName sessionProfile = 0
+  standardEncodingName encodingName = 0
+ }
+// Container for the structural elements of the FIX Latest Introduction section. Tree root for instance data.
+message FIXIntroduction
+ {
+  string publishedVersion = 0
+  date publishedDate = 0
+  string publisher = 0
+  string preface = 0
+  string introductionText = 0
+  string utcLeapSecondsNote = 0
+  fIXProtocolLimited aboutFpl = 0
+ repeated  fIXFamilyStandard standards = 0
+ repeated  extensionPack extensionPacks = 0
+ repeated  fIXDatatype datatypes = 0
+ repeated  businessArea businessAreas = 0
+ repeated  globalComponent globalComponents = 0
+ repeated  uDFTagRange udfRanges = 0
+ repeated  productCoverage productCoverage = 0
+ }
+// The organization that maintains the FIX Protocol specification.
+message FIXProtocolLimited
+ {
+  string brandName = 0
+  string legalName = 0
+  uri website = 0
+  uri memberFirmsUrl = 0
+  uri workingGroupsUrl = 0
+  uri committeesUrl = 0
+ repeated  fPLMemberType memberTypes = 0
+ repeated  fPLCommitteeRole governanceBodies = 0
+ repeated  fPLProductGroup productCommittees = 0
+ repeated  fPLRegion regionalCommittees = 0
+ }
+// A component shared by messages of two or more business areas.
+message GlobalComponent
+ {
+  string componentName = 0
+  string description = 0
+  boolean isRepeatingGroup = 0
+ repeated  field fields = 0
+ repeated  component nestedComponents = 0
+  componentGroup componentGroup = 0
+  boolean appliesToInstrument = 0
+  boolean appliesToLeg = 0
+  boolean appliesToUnderlying = 0
+ repeated  string conceptuallyIdenticalTo = 0
+  integer gcId = 0
+ repeated  globalComponentBusinessAreaEnum gcReferencedIn = 0
+  componentScope scope = 0
+ }
+// Tree-root container for the Infrastructure business area of FIX Latest.
+message InfrastructureBusinessArea
+ {
+  businessAreaEnum area = 0
+  string title = 0
+  string publishedVersion = 0
+  string publisher = 0
+  string infraIntroduction = 0
+  string diagramConventions = 0
+ repeated  infrastructureComponentName infraCommonComponents = 0
+ repeated  infrastructureMessageEntry messages = 0
+  string messagesOverviewNote = 0
+ repeated  infrastructureComponentEntry components = 0
+  string componentsOverviewNote = 0
+ repeated  infrastructureComponentTableFootnote infraFootnotes = 0
+ repeated  infrastructureCategorySection infraCategorySections = 0
+ repeated  standardResponseMapping standardResponsesPreTrade = 0
+ repeated  standardResponseMapping standardResponsesTrade = 0
+ repeated  standardResponseMapping standardResponsesPostTrade = 0
+ repeated  applicationMessageReferenceKey keyFieldsPreTrade = 0
+ repeated  applicationMessageReferenceKey keyFieldsTrade = 0
+ repeated  applicationMessageReferenceKey keyFieldsPostTrade = 0
+ repeated  businessRejectReasonDescription businessRejectReasonDescriptions = 0
+ repeated  infrastructureGlobalComponentReference infraGlobalComponents = 0
+ repeated  globalComponent referencedGlobalComponents = 0
+ }
+// A "Category – <name>" sub-section of the Infrastructure chapter.
+message InfrastructureCategorySection
+ {
+  infrastructureCategoryEnum category = 0
+  string title = 0
+  string description = 0
+  string categoryComponentsNote = 0
+ repeated  infrastructureMessageDetail messages = 0
+ repeated  infrastructureComponentDetail infraCategorySpecificComponents = 0
+ repeated  networkStatusScenarioEnum networkStatusScenarios = 0
+ repeated  networkRequestTypeEnum networkRequestTypesReferenced = 0
+ repeated  applicationMessageReportTypeEnum applicationMessageReportUses = 0
+ }
+// Per-component description appearing in a category's Components sub-section.
+message InfrastructureComponentDetail
+ {
+  string componentName = 0
+  componentRepetition repetition = 0
+  string description = 0
+  uri layoutUrl = 0
+ repeated  infrastructureLayoutRow infraLayoutRows = 0
+ }
+// One row of the area-wide "Components for Infrastructure Business Area" table.
+message InfrastructureComponentEntry
+ {
+  string componentName = 0
+  componentRepetition repetition = 0
+  infrastructureCategoryEnum category = 0
+  integer footnoteNumber = 0
+ }
+// A footnote attached to a row of the area-wide Infrastructure components table.
+message InfrastructureComponentTableFootnote
+ {
+  integer footnoteNumber = 0
+  string componentName = 0
+  string introducedIn = 0
+  infrastructureCategoryEnum infraSoleCategory = 0
+  string text = 0
+ }
+// A reference from the Infrastructure business area to a Global Component declared on the FIX Latest "Global Components" page. Records the component name, the FIX tags it contributes, and the Infrastructure categories and messages that embed it.
+message InfrastructureGlobalComponentReference
+ {
+  infrastructureGlobalComponentName infraGlobalComponentName = 0
+  string infraGlobalComponentRepetition = 0
+ repeated  integer infraGlobalComponentFieldTags = 0
+ repeated  string infraGlobalComponentFieldNames = 0
+ repeated  infrastructureCategoryEnum infraGlobalComponentUsedIn = 0
+ repeated  string infraGlobalComponentMsgTypes = 0
+ }
+// One row of the layout table published in the Infrastructure Appendix for a message or component. Each row identifies either a FIX field (by tag number + name) or an embedded component (by name), records whether it is required, carries the Description-column text, and flags whether it appears as a nested child of a repeating-group counter.
+message InfrastructureLayoutRow
+ {
+  infrastructureLayoutRowKindEnum infraLayoutKind = 0
+  integer infraLayoutFieldTag = 0
+  string infraLayoutElementName = 0
+  boolean infraLayoutRequired = 0
+  string infraLayoutDescription = 0
+  boolean infraLayoutNested = 0
+ }
+// Per-message description appearing in a category's Messages sub-section.
+message InfrastructureMessageDetail
+ {
+  string msgType = 0
+  string messageName = 0
+  string description = 0
+  uri layoutUrl = 0
+ repeated  infrastructureLayoutRow infraLayoutRows = 0
+ }
+// One row of the area-wide "Messages for Infrastructure Business Area" table.
+message InfrastructureMessageEntry
+ {
+  string msgType = 0
+  string messageName = 0
+  infrastructureCategoryEnum category = 0
+ }
+// A FIX application message.
+message Message
+ {
+  string msgType = 0
+  string messageName = 0
+  string description = 0
+  messageCategoryEnum category = 0
+ repeated  field fields = 0
+ repeated  component components = 0
+ }
+// A message category within a business area.
+message MessageCategory
+ {
+  messageCategoryEnum category = 0
+  string title = 0
+  string description = 0
+  businessAreaEnum businessArea = 0
+ repeated  message messages = 0
+ }
+// Purpose-grouped sub-section inside a category's Messages section.
+message MessageGroup
+ {
+  string groupTitle = 0
+  string description = 0
+ repeated  preTradeMessageDetail messages = 0
+ }
+// Tree-root container for the Post-Trade business area of FIX Latest.
+message PostTradeBusinessArea
+ {
+  businessAreaEnum area = 0
+  string title = 0
+  string publishedVersion = 0
+  string publisher = 0
+  string postIntroduction = 0
+  string diagramConventions = 0
+ repeated  postTradeCommonComponentName postCommonComponents = 0
+ repeated  postTradeMessageEntry messages = 0
+ repeated  postTradeComponentEntry components = 0
+ repeated  postTradeComponentTableFootnote postFootnotes = 0
+ repeated  postTradeCategorySection postCategorySections = 0
+ repeated  postTradeCommonComponentDetail postCommonComponentDetails = 0
+  string messagesOverviewNote = 0
+  string componentsOverviewNote = 0
+ repeated  globalComponent referencedGlobalComponents = 0
+ }
+// A "Category – <name>" sub-section of the Post-Trade chapter.
+message PostTradeCategorySection
+ {
+  postTradeCategoryEnum category = 0
+  string title = 0
+  string description = 0
+  string categoryComponentsNote = 0
+ repeated  postTradeMessageGroup postMessageGroups = 0
+ repeated  postTradeMessageDetail messages = 0
+ repeated  postTradeComponentDetail postCategorySpecificComponents = 0
+ repeated  allocationScenarioEnum allocationScenarios = 0
+ repeated  allocationRoleEnum allocationRoles = 0
+ repeated  postTradeAllocationPricingMethodEnum postTradeAllocationPricingMethods = 0
+ repeated  allocationStatusDescription allocationStatusDescriptions = 0
+ repeated  allocationFragmentationFieldMap fragmentationFieldMap = 0
+ repeated  tradeCaptureReportUsage tradeCaptureReportUsages = 0
+ repeated  tradeCaptureReportIdentifierRule tradeCaptureReportIdentifierRules = 0
+ repeated  registrationStatusDescription registrationStatusDescriptions = 0
+ repeated  clearingServiceForPositionManagementEnum clearingServicesForPositionManagement = 0
+ repeated  clearingServicePostTradeProcessingFormat clearingServicesForPostTradeProcessing = 0
+ repeated  collateralManagementUsageEnum collateralManagementUsages = 0
+ repeated  collateralAssignmentPurposeEnum collateralAssignmentPurposes = 0
+ }
+// Per-common-component description block from the chapter's final "Common Components" section.
+message PostTradeCommonComponentDetail
+ {
+  postTradeCommonComponentName componentName = 0
+  componentRepetition repetition = 0
+  string description = 0
+  uri layoutUrl = 0
+ repeated  postTradeLayoutRow postLayoutRows = 0
+ }
+// Per-component description block from a Post-Trade category section's Components sub-section.
+message PostTradeComponentDetail
+ {
+  string componentName = 0
+  componentRepetition repetition = 0
+  string description = 0
+  uri layoutUrl = 0
+ repeated  postTradeLayoutRow postLayoutRows = 0
+ }
+// One row of the area-wide "Components for Post-Trade Business Area" table.
+message PostTradeComponentEntry
+ {
+  string componentName = 0
+  componentRepetition repetition = 0
+  string category = 0
+  boolean isCommon = 0
+  integer footnoteNumber = 0
+ }
+// A footnote attached to a row of the area-wide Post-Trade components table.
+message PostTradeComponentTableFootnote
+ {
+  integer footnoteNumber = 0
+  string componentName = 0
+  string introducedIn = 0
+  postTradeCategoryEnum postSoleCategory = 0
+  string text = 0
+ }
+// One row of the layout table published in the Post-Trade Appendix for a message or component. Each row identifies either a FIX field (by tag number + name) or an embedded component (by name), records whether it is required, carries the Description-column text, and flags whether it appears as a nested child of a repeating-group counter.
+message PostTradeLayoutRow
+ {
+  postTradeLayoutRowKindEnum postLayoutKind = 0
+  integer postLayoutFieldTag = 0
+  string postLayoutElementName = 0
+  boolean postLayoutRequired = 0
+  string postLayoutDescription = 0
+  boolean postLayoutNested = 0
+ }
+// Per-message description block from a Post-Trade category section.
+message PostTradeMessageDetail
+ {
+  string msgType = 0
+  string messageName = 0
+  string description = 0
+  uri layoutUrl = 0
+ repeated  postTradeLayoutRow postLayoutRows = 0
+ }
+// One row of the area-wide "Messages for Post-Trade Business Area" table.
+message PostTradeMessageEntry
+ {
+  string msgType = 0
+  string messageName = 0
+  postTradeCategoryEnum category = 0
+ }
+// A purpose-themed grouping of messages within a Post-Trade category (e.g. "Allocation Instructions").
+message PostTradeMessageGroup
+ {
+  string groupTitle = 0
+ repeated  postTradeMessageDetail messages = 0
+ }
+// Tree-root container for the Pre-Trade business area of FIX Latest.
+message PreTradeBusinessArea
+ {
+  businessAreaEnum area = 0
+  string title = 0
+  string publishedVersion = 0
+  string publisher = 0
+  string introduction = 0
+  string diagramConventions = 0
+  string messagesOverviewNote = 0
+ repeated  preTradeMessageEntry messages = 0
+  string componentsOverviewNote = 0
+ repeated  preTradeComponentEntry components = 0
+ repeated  preTradeCommonComponentName commonComponents = 0
+ repeated  commonComponentDetail commonComponentDetails = 0
+ repeated  componentTableFootnote footnotes = 0
+ repeated  preTradeCategorySection categorySections = 0
+ repeated  globalComponent referencedGlobalComponents = 0
+ }
+// A per-category sub-section of the Pre-Trade chapter.
+message PreTradeCategorySection
+ {
+  preTradeCategoryEnum category = 0
+  string title = 0
+  string description = 0
+ repeated  quoteModelEnum quoteModels = 0
+ repeated  messageGroup messageGroups = 0
+ repeated  preTradeMessageDetail messages = 0
+  string categoryComponentsNote = 0
+ repeated  preTradeComponentDetail categorySpecificComponents = 0
+ }
+// Per-category component description.
+message PreTradeComponentDetail
+ {
+  string componentName = 0
+  componentRepetition repetition = 0
+  string description = 0
+  uri layoutUrl = 0
+ repeated  preTradeLayoutRow preLayoutRows = 0
+ }
+// One row of the area-wide pre-trade components table.
+message PreTradeComponentEntry
+ {
+  string componentName = 0
+  componentRepetition repetition = 0
+  string category = 0
+  boolean isCommon = 0
+  integer footnoteNumber = 0
+ }
+// One row of the layout table published in the Pre-Trade Appendix for a message or component. Each row identifies either a FIX field (by tag number + name) or an embedded component (by name), records whether it is required, carries the Description-column text, and flags whether it appears as a nested child of a repeating-group counter.
+message PreTradeLayoutRow
+ {
+  preTradeLayoutRowKindEnum preLayoutKind = 0
+  integer preLayoutFieldTag = 0
+  string preLayoutElementName = 0
+  boolean preLayoutRequired = 0
+  string preLayoutDescription = 0
+  boolean preLayoutNested = 0
+ }
+// Per-category message description.
+message PreTradeMessageDetail
+ {
+  string msgType = 0
+  string messageName = 0
+  string description = 0
+  uri layoutUrl = 0
+ repeated  preTradeLayoutRow preLayoutRows = 0
+ }
+// One row of the area-wide pre-trade messages table.
+message PreTradeMessageEntry
+ {
+  string msgType = 0
+  string messageName = 0
+  preTradeCategoryEnum category = 0
+ }
+// One row of the RegistStatus(506) value/description table.
+message RegistrationStatusDescription
+ {
+  string statusCode = 0
+  string statusLabel = 0
+  string description = 0
+ }
+// A component used only by messages within a single category.
+message SpecificComponent
+ {
+  string componentName = 0
+  string description = 0
+  boolean isRepeatingGroup = 0
+ repeated  field fields = 0
+ repeated  component nestedComponents = 0
+  businessAreaEnum businessArea = 0
+  messageCategoryEnum category = 0
+  componentScope scope = 0
+ }
+// One row of a "Standard Responses for <area> Messages" table mapping a request message to its appropriate response(s).
+message StandardResponseMapping
+ {
+  string categoryLabel = 0
+  string fixMessage = 0
+  string appropriateResponses = 0
+ }
+// Tree-root container for the Trade Appendix — the spec companion document that publishes the full message- and component-layout tables for every message and component used in the Trade business area, organized into one "Appendix – <X> Category" sub-section per Trade category plus a final "Appendix – Common Category" sub-section covering the layouts of the chapter's common components.
+message TradeAppendix
+ {
+  string title = 0
+  string publishedVersion = 0
+  string publisher = 0
+  string description = 0
+ repeated  tradeAppendixSection tradeAppendixSections = 0
+ }
+// One "Appendix – <X> Category" sub-section of the Trade Appendix. Bundles the per-message layout tables (TradeMessageDetail) and per-component layout tables (TradeComponentDetail) for messages and components that belong to one Trade category — or, for the synthetic "Common" section, the layouts of the chapter's common components.
+message TradeAppendixSection
+ {
+  string tradeAppendixCategory = 0
+  string title = 0
+  string description = 0
+ repeated  tradeMessageDetail messages = 0
+ repeated  tradeComponentDetail components = 0
+ }
+// Tree-root container for the Trade (Orders and Executions) business area of FIX Latest.
+message TradeBusinessArea
+ {
+  businessAreaEnum tradeArea = 0
+  string title = 0
+  string publishedVersion = 0
+  string publisher = 0
+  string tradeIntroduction = 0
+  string tradeDiagramConventions = 0
+  uri tradeMessageDiagramTemplateUrl = 0
+  string tradeMessagesOverviewNote = 0
+ repeated  tradeMessageEntry messages = 0
+  string tradeComponentsOverviewNote = 0
+ repeated  tradeComponentEntry components = 0
+ repeated  tradeCommonComponentName tradeCommonComponents = 0
+ repeated  tradeCommonComponentDetail tradeCommonComponentDetails = 0
+ repeated  tradeComponentTableFootnote tradeFootnotes = 0
+ repeated  tradeCategorySection tradeCategorySections = 0
+ repeated  globalComponent referencedGlobalComponents = 0
+ }
+// A rule governing one of the TradeCaptureReport(35=AE) identifier fields.
+message TradeCaptureReportIdentifierRule
+ {
+  tradeCaptureReportIdentifierRoleEnum identifierRole = 0
+  string description = 0
+ }
+// One documented usage of the TradeCaptureReport(35=AE) message.
+message TradeCaptureReportUsage
+ {
+  string statusLabel = 0
+  string description = 0
+  tradeCaptureReportIdentifierRoleEnum identifierRole = 0
+ }
+// A per-category sub-section of the Trade chapter.
+message TradeCategorySection
+ {
+  tradeCategoryEnum category = 0
+  string title = 0
+  string description = 0
+  string tradeCategoryBackground = 0
+ repeated  tradeMessageGroup tradeMessageGroups = 0
+ repeated  tradeMessageDetail messages = 0
+  string tradeCategoryComponentsNote = 0
+ repeated  tradeComponentDetail tradeCategorySpecificComponents = 0
+ repeated  tradeFragmentationEntry tradeFragmentationEntries = 0
+ }
+// Per-common-component description from the chapter's final "Common Components" section.
+message TradeCommonComponentDetail
+ {
+  tradeCommonComponentName componentName = 0
+  tradeComponentRepetition tradeRepetition = 0
+  string description = 0
+  uri tradeLayoutUrl = 0
+ repeated  tradeLayoutRow tradeLayoutRows = 0
+ }
+// Per-category component description.
+message TradeComponentDetail
+ {
+  string componentName = 0
+  tradeComponentRepetition tradeRepetition = 0
+  string description = 0
+  uri tradeLayoutUrl = 0
+ repeated  tradeLayoutRow tradeLayoutRows = 0
+ }
+// One row of the area-wide trade components table.
+message TradeComponentEntry
+ {
+  string componentName = 0
+  tradeComponentRepetition tradeRepetition = 0
+  string category = 0
+  boolean tradeIsCommon = 0
+  integer tradeFootnoteNumber = 0
+ }
+// A footnote on the area-wide components table.
+message TradeComponentTableFootnote
+ {
+  integer tradeFootnoteNumber = 0
+  string componentName = 0
+  string tradeIntroducedIn = 0
+  tradeCategoryEnum tradeSoleCategory = 0
+  string tradeFootnoteText = 0
+ }
+// One row of a fragmentation table published in a Trade category (currently only List/Program/Basket Trading) identifying a message that may be fragmented, the "Total Entries" field used to indicate the total count across all fragments of the batch, and the verbatim description of the repeating group that may be fragmented.
+message TradeFragmentationEntry
+ {
+  string tradeFragmentationMessage = 0
+  string tradeFragmentationTotalEntriesField = 0
+  string tradeFragmentationRepeatingGroup = 0
+ }
+// One row of the layout table published in the Trade Appendix for a message or component. Each row identifies either a FIX field (by tag number + name) or an embedded component (by name), records whether it is required, carries the Description-column text, and flags whether it appears as a nested child of a repeating-group counter.
+message TradeLayoutRow
+ {
+  tradeLayoutRowKindEnum tradeLayoutKind = 0
+  integer tradeLayoutFieldTag = 0
+  string tradeLayoutElementName = 0
+  boolean tradeLayoutRequired = 0
+  string tradeLayoutDescription = 0
+  boolean tradeLayoutNested = 0
+ }
+// Per-category message description.
+message TradeMessageDetail
+ {
+  string msgType = 0
+  string messageName = 0
+  string description = 0
+  uri tradeLayoutUrl = 0
+ repeated  tradeLayoutRow tradeLayoutRows = 0
+ }
+// One row of the area-wide trade messages table.
+message TradeMessageEntry
+ {
+  string msgType = 0
+  string messageName = 0
+  tradeCategoryEnum category = 0
+ }
+// Purpose-grouped sub-section inside a category's Messages sub-section (e.g. "New Order Single", "Execution Reports", "Order Cancel Requests" under Single/General Order Handling).
+message TradeMessageGroup
+ {
+  string tradeGroupTitle = 0
+  string description = 0
+ repeated  tradeMessageDetail messages = 0
+ repeated  tradeOrdStatusPrecedenceEntry tradeOrdStatusPrecedenceEntries = 0
+ }
+// One row of the OrdStatus(39) precedence table published in the Execution Reports purpose-group of the Single/General Order Handling category. Defines the precedence ranking used to resolve simultaneous state transitions on an order, paired with the human-readable OrdStatus label and its descriptive prose.
+message TradeOrdStatusPrecedenceEntry
+ {
+  integer tradeOrdStatusPrecedence = 0
+  string tradeOrdStatusLabel = 0
+  string description = 0
+ }
+// A reserved range of tag numbers for User Defined Fields.
+message UDFTagRange
+ {
+  string rangeId = 0
+  tagNumber lowTag = 0
+  tagNumber highTag = 0
+  uDFTagRangeUsage usage = 0
+  string description = 0
+  boolean requiresRegistration = 0
+ }

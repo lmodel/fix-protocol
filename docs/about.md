@@ -103,7 +103,7 @@ pytest harness (against the generated Python dataclasses) and with
 - **56 valid fixtures** (`tests/data/valid/`) — at least one per
   concrete class, plus rich tree-root fixtures for each business area
   populated from the corresponding source chapter.
-- **24 invalid fixtures** (`tests/data/invalid/`) — each exercises a
+- **26 invalid fixtures** (`tests/data/invalid/`) — each exercises a
   distinct constraint that LinkML actually enforces (enum
   membership, required-slot omission, pattern violation, numeric
   range). Four earlier fixtures that asserted constraints LinkML
@@ -146,6 +146,10 @@ Meanwhile we done local workarounds:
 | F. `panderagen.map_type` crashes on a type whose `uri` is not in its built-in `TYPE_MAP` and that has no `typeof:` | Custom types (e.g. `TagNumber`) declare `uri: xsd:integer` and record the tighter XSD type via `exact_mappings:` |
 | G. `pythongen` raises `Cyclic wrapper inheritance` when `camelcase(class)+camelcase(slot) == range-type-name` | Avoided by not declaring `typeof:` on the affected custom types (see F) |
 | [linkml/linkml#3572](https://github.com/linkml/linkml/issues/3572) — `pythongen` emits class-reference wrappers before referenced enum bodies | `scripts/patch_pythongen.py` reorders the sections; [`scripts/run_examples_patched.py`](../scripts/run_examples_patched.py) applies the same patch in-process so `linkml-run-examples` can compile the module |
+| H. `gen-rdf` embeds relative `./<module>.context.jsonld` refs in the merged `@context` array; rdflib resolves them against the schema's `@base` URI and 404s because the files are not published there | [`scripts/gen_rdf_patched.py`](../scripts/gen_rdf_patched.py) subclasses `RDFGenerator` and strips the unresolvable relative refs (plus the redundant `w3id.org/linkml/types.context.jsonld` remote ref) from the JSON-LD before handing it to rdflib |
+| I. `gen-pandera` doesn't actually merge imports — `DataframeGenerator` builds its `SchemaView` without calling `merge_imports()`, so classes/enums in imported sub-modules are invisible and the emitted Pandera code only covers the umbrella schema's local entities | [`scripts/gen_pandera_patched.py`](../scripts/gen_pandera_patched.py) monkey-patches `DataframeGenerator.__post_init__` to call `self.schemaview.merge_imports()` after super setup |
+| J. `gen-pandera`'s `DependencySorter._visit` raises `ValueError: Cyclic dependency detected` on any back-edge, aborting generation for schemas with legitimate cycles (self-referential slots, mutual references) | Same script replaces `_visit` with a cycle-tolerant variant that skips back-edges silently |
+| K. `gen-markdown-datadict._generate_class_diagram` constructs a fresh `ERDiagramGenerator` (re-parsing the whole schema from disk) for every class, making the generator O(n²) and effectively hanging on large schemas | [`scripts/gen_markdown_datadict_patched.py`](../scripts/gen_markdown_datadict_patched.py) subclasses `MarkdownDataDictGen`, lazily creates a single `ERDiagramGenerator` on `self._erd_gen` and reuses it across all per-class diagrams |
 
 In addition to the upstream defects above, two FIX-Latest invariants
 cannot be expressed in LinkML and are therefore enforced only by

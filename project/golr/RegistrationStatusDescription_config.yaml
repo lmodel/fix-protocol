@@ -1,0 +1,16 @@
+# metamodel_version: 1.11.0id: RegistrationStatusDescription
+schema_generating: true
+description: One row of the RegistStatus(506) value/description table.
+display_name: RegistrationStatusDescription
+document_category: RegistrationStatusDescription
+weight: 20
+fields:
+- id: status_code
+  description: Wire status code as referenced in the chapter.
+  display_name: RegistrationStatusDescription_status_code
+- id: status_label
+  description: Human-readable label of the status code.
+  display_name: RegistrationStatusDescription_status_label
+- id: description
+  description: Free-text description.
+  display_name: description

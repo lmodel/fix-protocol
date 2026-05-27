@@ -1,0 +1,24 @@
+# metamodel_version: 1.11.0id: PreTradeMessageDetail
+schema_generating: true
+description: Per-category message description.
+display_name: PreTradeMessageDetail
+document_category: PreTradeMessageDetail
+weight: 20
+fields:
+- id: msg_type
+  description: MsgType(35) wire value identifying the message.
+  display_name: PreTradeMessageDetail_msg_type
+- id: message_name
+  description: PascalCase name of the message.
+  display_name: PreTradeMessageDetail_message_name
+- id: description
+  description: Description of the message's purpose and usage.
+  display_name: PreTradeMessageDetail_description
+- id: layout_url
+  description: URL of the detailed message- or component-layout.
+  display_name: layout_url
+- id: pre_layout_rows
+  description: Ordered rows of the layout table published for the message or component
+    in the Pre-Trade Appendix.
+  display_name: pre_layout_rows
+  cardinality: multi

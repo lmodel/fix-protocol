@@ -1,0 +1,61 @@
+# metamodel_version: 1.11.0id: PreTradeBusinessArea
+schema_generating: true
+description: Tree-root container for the Pre-Trade business area of FIX Latest.
+display_name: PreTradeBusinessArea
+document_category: PreTradeBusinessArea
+weight: 20
+fields:
+- id: area
+  description: Identity of the business area.
+  display_name: PreTradeBusinessArea_area
+- id: title
+  description: Display title.
+  display_name: PreTradeBusinessArea_title
+- id: published_version
+  description: Version stamp from the document header.
+  display_name: published_version
+- id: publisher
+  description: Publishing body of the FIX Latest specification.
+  display_name: PreTradeBusinessArea_publisher
+- id: introduction
+  description: Prose introduction of the chapter.
+  display_name: introduction
+- id: diagram_conventions
+  description: Sentence describing diagram conventions used in the chapter.
+  display_name: diagram_conventions
+- id: messages_overview_note
+  description: Intro prose of the area-wide Messages sub-section.
+  display_name: messages_overview_note
+- id: messages
+  description: Area-wide pre-trade messages table.
+  display_name: PreTradeBusinessArea_messages
+  cardinality: multi
+- id: components_overview_note
+  description: Intro prose of the area-wide Components sub-section.
+  display_name: components_overview_note
+- id: components
+  description: Area-wide pre-trade components table.
+  display_name: PreTradeBusinessArea_components
+  cardinality: multi
+- id: common_components
+  description: Common Components declared at the top of the chapter.
+  display_name: common_components
+  cardinality: multi
+- id: common_component_details
+  description: Per-common-component descriptions from the chapter's final section.
+  display_name: common_component_details
+  cardinality: multi
+- id: footnotes
+  description: Footnotes attached to the area-wide components table.
+  display_name: footnotes
+  cardinality: multi
+- id: category_sections
+  description: Per-category sub-sections of the chapter.
+  display_name: category_sections
+  cardinality: multi
+- id: referenced_global_components
+  description: Names of Global Components from the FIX Latest "Global Components"
+    page that are referenced by messages in the containing business area. References
+    instances of the :class:`GlobalComponent` class (declared in fix_base) by name.
+  display_name: referenced_global_components
+  cardinality: multi

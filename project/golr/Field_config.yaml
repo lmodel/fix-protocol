@@ -1,0 +1,25 @@
+# metamodel_version: 1.11.0id: Field
+schema_generating: true
+description: "A FIX field \u2014 a uniquely tagged data element with a FIX datatype."
+display_name: Field
+document_category: Field
+weight: 20
+fields:
+- id: tag
+  description: Numeric tag of the field.
+  display_name: Field_tag
+- id: field_name
+  description: PascalCase name of the field.
+  display_name: Field_field_name
+- id: datatype
+  description: FIX datatype of the field.
+  display_name: Field_datatype
+- id: description
+  description: Description of the field's purpose.
+  display_name: Field_description
+- id: requirement
+  description: Required-status of the field within the enclosing context.
+  display_name: requirement
+- id: is_user_defined
+  description: True when the field is a User Defined Field.
+  display_name: is_user_defined

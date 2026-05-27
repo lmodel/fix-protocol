@@ -1,0 +1,4566 @@
+{
+    "$defs": {
+        "AllocationFragmentationFieldMap": {
+            "additionalProperties": false,
+            "description": "One row of the table mapping an allocation message to its fragmentation-related fields.",
+            "properties": {
+                "fragment_count_field": {
+                    "description": "Field carrying the number of entries in the current message fragment (e.g. NoAllocs).",
+                    "type": "string"
+                },
+                "message_name": {
+                    "description": "PascalCase name of the message.",
+                    "type": "string"
+                },
+                "msg_type": {
+                    "description": "MsgType(35) wire value identifying the message.",
+                    "pattern": "^[A-Za-z0-9]{1,3}$",
+                    "type": "string"
+                },
+                "principal_message_reference": {
+                    "description": "Principal message reference field used to bind allocation message fragments together (e.g. AllocID, AllocReportID).",
+                    "type": "string"
+                },
+                "total_count_field": {
+                    "description": "Field carrying the total number of repeating-group entries across all fragments (e.g. TotNoAllocs).",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "msg_type",
+                "message_name",
+                "total_count_field",
+                "fragment_count_field",
+                "principal_message_reference"
+            ],
+            "title": "AllocationFragmentationFieldMap",
+            "type": "object"
+        },
+        "AllocationRoleEnum": {
+            "description": "Role labels used throughout the Allocation category prose to designate the sender and receiver of an AllocationInstruction.",
+            "enum": [
+                "INITIATOR",
+                "RESPONDENT"
+            ],
+            "title": "AllocationRoleEnum",
+            "type": "string"
+        },
+        "AllocationScenarioEnum": {
+            "description": "Communication options by which an Initiator may convey allocation instructions to a Respondent.",
+            "enum": [
+                "PRE_ALLOCATED_ORDER",
+                "PRE_TRADE_ALLOCATION",
+                "POST_TRADE_ALLOCATION",
+                "READY_TO_BOOK"
+            ],
+            "title": "AllocationScenarioEnum",
+            "type": "string"
+        },
+        "AllocationStatusDescription": {
+            "additionalProperties": false,
+            "description": "One row of the AllocStatus(87) value/description table.",
+            "properties": {
+                "description": {
+                    "description": "Free-text description.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "status_code": {
+                    "description": "Wire status code as referenced in the chapter.",
+                    "type": "string"
+                },
+                "status_label": {
+                    "description": "Human-readable label of the status code.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "status_code",
+                "status_label"
+            ],
+            "title": "AllocationStatusDescription",
+            "type": "object"
+        },
+        "AllocationStatusEnum": {
+            "description": "AllocStatus(87) values used in allocation acknowledgement messages.",
+            "enum": [
+                "ACCEPTED",
+                "BLOCK_LEVEL_REJECT",
+                "ACCOUNT_LEVEL_REJECT",
+                "RECEIVED_NOT_YET_PROCESSED"
+            ],
+            "title": "AllocationStatusEnum",
+            "type": "string"
+        },
+        "AllocationTransactionTypeEnum": {
+            "description": "AllocTransType(71) values.",
+            "enum": [
+                "NEW",
+                "REPLACE",
+                "CANCEL"
+            ],
+            "title": "AllocationTransactionTypeEnum",
+            "type": "string"
+        },
+        "ApplicationMessageReferenceKey": {
+            "additionalProperties": false,
+            "description": "One row of a \"Key Fields for <area> Application Message References\" table identifying the field whose value is copied into BusinessRejectRefID(379).",
+            "properties": {
+                "business_reject_ref_id_value": {
+                    "description": "Source field copied into BusinessRejectRefID(379) when the target message lacks its own reject. May enumerate several alternatives joined by \"or\".",
+                    "type": "string"
+                },
+                "category_label": {
+                    "description": "Category label as printed in the source table (free text; may include parenthesised sub-categories such as \"Single General Order Handling\").",
+                    "type": "string"
+                },
+                "fix_message": {
+                    "description": "FIX message name with MsgType in parentheses, e.g. AllocationInstruction(35=J).",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "category_label",
+                "fix_message",
+                "business_reject_ref_id_value"
+            ],
+            "title": "ApplicationMessageReferenceKey",
+            "type": "object"
+        },
+        "ApplicationMessageReportTypeEnum": {
+            "description": "Documented uses of ApplicationMessageReport(35=BY) selected via ApplReportType(1426).",
+            "enum": [
+                "RESET",
+                "LAST_MESSAGE",
+                "KEEP_ALIVE",
+                "RESEND_COMPLETED"
+            ],
+            "title": "ApplicationMessageReportTypeEnum",
+            "type": "string"
+        },
+        "ApplicationSequenceControlFieldName": {
+            "description": "Tags contributed by the ApplicationSequenceControl global component (used by Application Sequencing messages and by all FIX messages representing reports).",
+            "enum": [
+                "ApplID",
+                "ApplSeqNum",
+                "ApplLastSeqNum",
+                "ApplResendFlag"
+            ],
+            "title": "ApplicationSequenceControlFieldName",
+            "type": "string"
+        },
+        "BusinessArea": {
+            "additionalProperties": false,
+            "description": "A top-level business area of the FIX Latest specification.",
+            "properties": {
+                "area": {
+                    "$ref": "#/$defs/BusinessAreaEnum",
+                    "description": "Identity of the business area."
+                },
+                "categories": {
+                    "description": "Message categories defined within a business area.",
+                    "items": {
+                        "$ref": "#/$defs/MessageCategory"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Description of the area.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "title": {
+                    "description": "Display title of the area.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "area"
+            ],
+            "title": "BusinessArea",
+            "type": "object"
+        },
+        "BusinessAreaEnum": {
+            "description": "Top-level business areas of the FIX Latest specification.",
+            "enum": [
+                "INTRODUCTION",
+                "PRE_TRADE",
+                "TRADE",
+                "POST_TRADE",
+                "INFRASTRUCTURE"
+            ],
+            "title": "BusinessAreaEnum",
+            "type": "string"
+        },
+        "BusinessMessageReferenceDirectionEnum": {
+            "description": "Direction of an \"application message reference\" key-field mapping \u2014 which area the referenced message belongs to.",
+            "enum": [
+                "PRE_TRADE",
+                "TRADE",
+                "POST_TRADE"
+            ],
+            "title": "BusinessMessageReferenceDirectionEnum",
+            "type": "string"
+        },
+        "BusinessRejectReasonDescription": {
+            "additionalProperties": false,
+            "description": "One entry of the BusinessRejectReason(380) code table.",
+            "properties": {
+                "reject_reason_code": {
+                    "description": "Numeric code value of BusinessRejectReason(380).",
+                    "maximum": 999,
+                    "minimum": 0,
+                    "type": "integer"
+                },
+                "reject_reason_label": {
+                    "description": "Human-readable label of a BusinessRejectReason(380) code.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "reject_reason_code",
+                "reject_reason_label"
+            ],
+            "title": "BusinessRejectReasonDescription",
+            "type": "object"
+        },
+        "BusinessRejectReasonEnum": {
+            "description": "Permissible values of BusinessRejectReason(380) on the BusinessMessageReject(35=j) message.",
+            "enum": [
+                "OTHER",
+                "UNKNOWN_ID",
+                "UNKNOWN_SECURITY",
+                "UNSUPPORTED_MESSAGE_TYPE",
+                "APPLICATION_NOT_AVAILABLE",
+                "CONDITIONALLY_REQUIRED_FIELD_MISSING",
+                "NOT_AUTHORISED",
+                "DELIVER_TO_FIRM_NOT_AVAILABLE",
+                "THROTTLE_LIMIT_EXCEEDED",
+                "THROTTLE_LIMIT_EXCEEDED_SESSION_DISCONNECT",
+                "THROTTLED_MESSAGES_REJECTED_ON_REQUEST",
+                "INVALID_PRICE_INCREMENT"
+            ],
+            "title": "BusinessRejectReasonEnum",
+            "type": "string"
+        },
+        "ClearingServiceForPositionManagementEnum": {
+            "description": "Business functions invokable via the Position Management Clearing Services.",
+            "enum": [
+                "POSITION_CHANGE_SUBMISSION",
+                "POSITION_ADJUSTMENT",
+                "EXERCISE_NOTICE",
+                "ABANDONMENT_NOTICE",
+                "MARGIN_DISPOSITION",
+                "POSITION_PLEDGE",
+                "REQUEST_FOR_POSITION"
+            ],
+            "title": "ClearingServiceForPositionManagementEnum",
+            "type": "string"
+        },
+        "ClearingServiceForPostTradeProcessingEnum": {
+            "description": "Message-format families used by the Post-Trade Processing Clearing Services.",
+            "enum": [
+                "ETP",
+                "GIVE_UP",
+                "EXCHANGE_FOR_PHYSICAL",
+                "AVERAGE_PRICE_SYSTEM",
+                "MUTUAL_OFFSET_SYSTEM",
+                "TRADE_ENTRY_EDIT"
+            ],
+            "title": "ClearingServiceForPostTradeProcessingEnum",
+            "type": "string"
+        },
+        "ClearingServicePostTradeProcessingFormat": {
+            "additionalProperties": false,
+            "description": "One message-format row from the Post-Trade Processing Clearing Services section, with its supported actions.",
+            "properties": {
+                "message_format": {
+                    "$ref": "#/$defs/ClearingServiceForPostTradeProcessingEnum",
+                    "description": "Clearing-service message format family referenced in the chapter."
+                },
+                "supported_actions": {
+                    "description": "Action labels (e.g. Allocation, Accept, Reject, Release, Change, Delete) supported by a clearing-service message format.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "message_format",
+                "supported_actions"
+            ],
+            "title": "ClearingServicePostTradeProcessingFormat",
+            "type": "object"
+        },
+        "CollateralAssignmentPurposeEnum": {
+            "description": "Purposes for which a CollateralAssignment may be sent.",
+            "enum": [
+                "ASSIGN_INITIAL_COLLATERAL",
+                "REPLENISH_COLLATERAL",
+                "REPLACE_OR_SUBSTITUTE_COLLATERAL"
+            ],
+            "title": "CollateralAssignmentPurposeEnum",
+            "type": "string"
+        },
+        "CollateralManagementUsageEnum": {
+            "description": "Documented uses of the Collateral Management messages.",
+            "enum": [
+                "SECURITIES_FINANCING_COLLATERALIZATION",
+                "CLEARING_HOUSE_COLLATERALIZATION"
+            ],
+            "title": "CollateralManagementUsageEnum",
+            "type": "string"
+        },
+        "CommonComponent": {
+            "additionalProperties": false,
+            "description": "A component used only by messages within a single business area.",
+            "properties": {
+                "business_area": {
+                    "$ref": "#/$defs/BusinessAreaEnum",
+                    "description": "Business area the element belongs to."
+                },
+                "component_name": {
+                    "description": "PascalCase name of the component.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Description of the component.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "fields": {
+                    "description": "Fields directly contained by the enclosing element.",
+                    "items": {
+                        "$ref": "#/$defs/Field"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "is_repeating_group": {
+                    "description": "True when the component is a repeating group.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "nested_components": {
+                    "description": "Components nested within this component.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "scope": {
+                    "$ref": "#/$defs/ComponentScope",
+                    "description": "Sharing scope of the component."
+                }
+            },
+            "required": [
+                "business_area",
+                "component_name",
+                "scope"
+            ],
+            "title": "CommonComponent",
+            "type": "object"
+        },
+        "CommonComponentDetail": {
+            "additionalProperties": false,
+            "description": "Per-common-component description.",
+            "properties": {
+                "component_name": {
+                    "$ref": "#/$defs/PreTradeCommonComponentName",
+                    "description": "PascalCase name of the component."
+                },
+                "description": {
+                    "description": "Description of the common component's purpose.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "layout_url": {
+                    "description": "URL of the detailed message- or component-layout.",
+                    "format": "uri",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "pre_layout_rows": {
+                    "description": "Ordered rows of the layout table published for the message or component in the Pre-Trade Appendix.",
+                    "items": {
+                        "$ref": "#/$defs/PreTradeLayoutRow"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "repetition": {
+                    "$ref": "#/$defs/ComponentRepetition",
+                    "description": "REPEATING or NON_REPEATING."
+                }
+            },
+            "required": [
+                "component_name"
+            ],
+            "title": "CommonComponentDetail",
+            "type": "object"
+        },
+        "Component": {
+            "additionalProperties": false,
+            "description": "A FIX component \u2014 a named set of related fields.",
+            "properties": {
+                "component_name": {
+                    "description": "PascalCase name of the component.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Description of the component.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "fields": {
+                    "description": "Fields directly contained by the enclosing element.",
+                    "items": {
+                        "$ref": "#/$defs/Field"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "is_repeating_group": {
+                    "description": "True when the component is a repeating group.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "nested_components": {
+                    "description": "Components nested within this component.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "scope": {
+                    "$ref": "#/$defs/ComponentScope",
+                    "description": "Sharing scope of the component."
+                }
+            },
+            "required": [
+                "component_name",
+                "scope"
+            ],
+            "title": "Component",
+            "type": "object"
+        },
+        "ComponentGroup": {
+            "description": "Thematic grouping under which a Global Component is presented.",
+            "enum": [
+                "SECURITIES",
+                "LEG_SECURITIES",
+                "UNDERLYING_SECURITIES",
+                "PARTIES",
+                "ORDERS_AND_QUOTES",
+                "TRADES",
+                "COMMISSIONS_AND_FEES",
+                "FINANCING",
+                "PAYMENTS",
+                "STIPULATIONS",
+                "HEADER_AND_TRAILER",
+                "MISCELLANEOUS"
+            ],
+            "title": "ComponentGroup",
+            "type": "string"
+        },
+        "ComponentRepetition": {
+            "description": "Whether a FIX component is repeating or non-repeating.",
+            "enum": [
+                "REPEATING",
+                "NON_REPEATING"
+            ],
+            "title": "ComponentRepetition",
+            "type": "string"
+        },
+        "ComponentScope": {
+            "description": "Sharing scope of a FIX component.",
+            "enum": [
+                "GLOBAL",
+                "COMMON",
+                "SPECIFIC"
+            ],
+            "title": "ComponentScope",
+            "type": "string"
+        },
+        "ComponentTableFootnote": {
+            "additionalProperties": false,
+            "description": "A footnote on the area-wide components table.",
+            "properties": {
+                "component_name": {
+                    "description": "PascalCase name of the component.",
+                    "type": "string"
+                },
+                "footnote_number": {
+                    "description": "Footnote indicator on a component-table row.",
+                    "maximum": 25,
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "introduced_in": {
+                    "description": "FIX version or Extension Pack that introduced the component.",
+                    "type": "string"
+                },
+                "sole_category": {
+                    "$ref": "#/$defs/PreTradeCategoryEnum",
+                    "description": "Single category that actually uses the component."
+                },
+                "text": {
+                    "description": "Footnote text.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "footnote_number",
+                "component_name",
+                "introduced_in",
+                "sole_category"
+            ],
+            "title": "ComponentTableFootnote",
+            "type": "object"
+        },
+        "ExtensionPack": {
+            "additionalProperties": false,
+            "description": "A unit of change to FIX Latest.",
+            "properties": {
+                "applies_to_fixml_only": {
+                    "description": "True when the EP applies only to the FIXML encoding.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "applies_to_session_layer_only": {
+                    "description": "True when the EP applies only to the FIX Session Layer.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "enhancement_summary": {
+                    "description": "Narrative summary of what the EP introduces.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "number": {
+                    "description": "Sequential identifier of the Extension Pack.",
+                    "minimum": 0,
+                    "type": "integer"
+                },
+                "size": {
+                    "$ref": "#/$defs/ExtensionPackSize",
+                    "description": "Qualitative size indicator (XXS..XXL)."
+                },
+                "title": {
+                    "description": "Short descriptive title.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "number",
+                "title"
+            ],
+            "title": "ExtensionPack",
+            "type": "object"
+        },
+        "ExtensionPackSize": {
+            "description": "Qualitative size indicator for an Extension Pack.",
+            "enum": [
+                "XXS",
+                "XS",
+                "S",
+                "M",
+                "L",
+                "XL",
+                "XXL"
+            ],
+            "title": "ExtensionPackSize",
+            "type": "string"
+        },
+        "FIXDatatype": {
+            "additionalProperties": false,
+            "description": "A FIX Protocol datatype.",
+            "properties": {
+                "datatype_name": {
+                    "$ref": "#/$defs/FIXDatatypeName",
+                    "description": "Canonical FIX datatype name."
+                },
+                "definition": {
+                    "description": "Prose definition of the datatype.",
+                    "type": "string"
+                },
+                "deprecated_for_new_designs": {
+                    "description": "True for datatypes not permitted in new designs.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "external_code_set": {
+                    "description": "Reference standard for datatypes backed by an external code set.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "footnote_numbers": {
+                    "description": "Footnote indicators attached to a datatype row.",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "index_lower_bound": {
+                    "description": "Inclusive lower bound of a bounded-array index.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "index_upper_bound": {
+                    "description": "Inclusive upper bound of a bounded-array index.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "maximum_value": {
+                    "description": "Inclusive upper bound on the integer value space.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "minimum_value": {
+                    "description": "Inclusive lower bound on the integer value space.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "radix": {
+                    "description": "Numeric radix for scaled value-space datatypes.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "repertoire": {
+                    "description": "Character repertoire for character/string datatypes.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "time_unit": {
+                    "description": "Time-unit precision for time-bearing datatypes.",
+                    "items": {
+                        "$ref": "#/$defs/TimePrecision"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "value_space": {
+                    "description": "ISO/IEC 11404:2007 GPD value space assigned to the datatype.",
+                    "items": {
+                        "$ref": "#/$defs/ISO11404ValueSpace"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "value_space_notes": {
+                    "description": "Additional value-space constraints.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "datatype_name",
+                "definition"
+            ],
+            "title": "FIXDatatype",
+            "type": "object"
+        },
+        "FIXDatatypeName": {
+            "description": "Names of FIX Protocol datatypes.",
+            "enum": [
+                "int",
+                "TagNum",
+                "SeqNum",
+                "NumInGroup",
+                "DayOfMonth",
+                "float",
+                "Qty",
+                "Price",
+                "PriceOffset",
+                "Amt",
+                "Percentage",
+                "char",
+                "Boolean",
+                "String",
+                "MultipleCharValue",
+                "MultipleStringValue",
+                "Country",
+                "Currency",
+                "Exchange",
+                "MonthYear",
+                "UTCTimestamp",
+                "UTCTimeOnly",
+                "UTCDateOnly",
+                "LocalMktDate",
+                "TZTimeOnly",
+                "TZTimestamp",
+                "Length",
+                "data",
+                "Tenor",
+                "Reserved100Plus",
+                "Reserved1000Plus",
+                "Reserved4000Plus",
+                "XMLData",
+                "Language",
+                "LocalMktTime"
+            ],
+            "title": "FIXDatatypeName",
+            "type": "string"
+        },
+        "FIXFamilyStandard": {
+            "additionalProperties": false,
+            "description": "A member standard of the FIX Family of Standards.",
+            "properties": {
+                "acronym": {
+                    "description": "Short acronym used to refer to the standard.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Free-text description.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "encoding_name": {
+                    "$ref": "#/$defs/StandardEncodingName",
+                    "description": "Named encoding, when layer is ENCODING."
+                },
+                "id": {
+                    "description": "Unique identifier (CURIE or local name) of the element.",
+                    "type": "string"
+                },
+                "layer": {
+                    "$ref": "#/$defs/StandardLayer",
+                    "description": "The layer the standard belongs to."
+                },
+                "name": {
+                    "description": "Display name of the element.",
+                    "type": "string"
+                },
+                "see_also": {
+                    "description": "Related external resources.",
+                    "items": {
+                        "format": "uri",
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "session_profile": {
+                    "$ref": "#/$defs/SessionProtocolName",
+                    "description": "Name of the session profile for session-layer variants."
+                },
+                "version": {
+                    "description": "Version of the standard, if applicable.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "layer"
+            ],
+            "title": "FIXFamilyStandard",
+            "type": "object"
+        },
+        "FIXIntroduction": {
+            "additionalProperties": false,
+            "description": "Container for the structural elements of the FIX Latest Introduction section. Tree root for instance data.",
+            "properties": {
+                "about_fpl": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/FIXProtocolLimited"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Information about FIX Protocol Limited."
+                },
+                "business_areas": {
+                    "description": "Top-level business areas of FIX Latest.",
+                    "items": {
+                        "$ref": "#/$defs/BusinessArea"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "datatypes": {
+                    "description": "FIX Protocol datatype definitions and value spaces.",
+                    "items": {
+                        "$ref": "#/$defs/FIXDatatype"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "extension_packs": {
+                    "description": "The list of Extension Packs.",
+                    "items": {
+                        "$ref": "#/$defs/ExtensionPack"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "global_components": {
+                    "description": "Global Components defined in the Introduction.",
+                    "items": {
+                        "$ref": "#/$defs/GlobalComponent"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "introduction_text": {
+                    "description": "The Introduction prose section.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "preface": {
+                    "description": "The Preface text of the specification.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "product_coverage": {
+                    "description": "Product/asset classes covered by FIX at the application layer.",
+                    "items": {
+                        "$ref": "#/$defs/ProductCoverage"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "published_date": {
+                    "description": "Publication date of the document.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "published_version": {
+                    "description": "Version stamp from the document header.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "publisher": {
+                    "description": "Publishing body of the FIX Latest specification.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "standards": {
+                    "description": "The FIX Family of Standards.",
+                    "items": {
+                        "$ref": "#/$defs/FIXFamilyStandard"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "udf_ranges": {
+                    "description": "Reserved ranges of user-defined-field tag numbers.",
+                    "items": {
+                        "$ref": "#/$defs/UDFTagRange"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "utc_leap_seconds_note": {
+                    "description": "Prose note on UTC leap-second handling for UTCTimestamp.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "title": "FIXIntroduction",
+            "type": "object"
+        },
+        "FIXProtocolLimited": {
+            "additionalProperties": false,
+            "description": "The organization that maintains the FIX Protocol specification.",
+            "properties": {
+                "brand_name": {
+                    "description": "Brand name used by the organization.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "committees_url": {
+                    "description": "URL listing Product and Regional Committees.",
+                    "format": "uri",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "governance_bodies": {
+                    "description": "High-level governance bodies that represent FPL.",
+                    "items": {
+                        "$ref": "#/$defs/FPLCommitteeRole"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "legal_name": {
+                    "description": "Legal name of the organization.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "member_firms_url": {
+                    "description": "URL listing current FPL Member firms.",
+                    "format": "uri",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "member_types": {
+                    "description": "Organization categories represented in FPL membership.",
+                    "items": {
+                        "$ref": "#/$defs/FPLMemberType"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "product_committees": {
+                    "description": "Global Product Committees maintained by FPL.",
+                    "items": {
+                        "$ref": "#/$defs/FPLProductGroup"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "regional_committees": {
+                    "description": "Regional Committees maintained by FPL.",
+                    "items": {
+                        "$ref": "#/$defs/FPLRegion"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "website": {
+                    "description": "Main website URL of the organization.",
+                    "format": "uri",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "working_groups_url": {
+                    "description": "URL listing currently active FPL Working Groups.",
+                    "format": "uri",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "title": "FIXProtocolLimited",
+            "type": "object"
+        },
+        "FPLCommitteeRole": {
+            "description": "Organizational bodies of FIX Protocol Limited.",
+            "enum": [
+                "GLOBAL_STEERING_COMMITTEE",
+                "GLOBAL_TECHNICAL_COMMITTEE",
+                "GLOBAL_PRODUCT_COMMITTEE",
+                "GLOBAL_BUY_SIDE_COMMITTEE",
+                "GLOBAL_MEMBER_SERVICES_COMMITTEE",
+                "REGIONAL_COMMITTEE"
+            ],
+            "title": "FPLCommitteeRole",
+            "type": "string"
+        },
+        "FPLMemberType": {
+            "description": "Categories of organizations represented in FPL membership.",
+            "enum": [
+                "BUY_SIDE_FIRM",
+                "SELL_SIDE_FIRM",
+                "EXCHANGE",
+                "ECN_ATS",
+                "UTILITY",
+                "VENDOR",
+                "OTHER_ASSOCIATION"
+            ],
+            "title": "FPLMemberType",
+            "type": "string"
+        },
+        "FPLProductGroup": {
+            "description": "Global Product Committees maintained by FIX Protocol Limited.",
+            "enum": [
+                "FIXED_INCOME_AND_CURRENCIES",
+                "LISTED_PRODUCTS_AND_EXCHANGES"
+            ],
+            "title": "FPLProductGroup",
+            "type": "string"
+        },
+        "FPLRegion": {
+            "description": "Geographic regions for FPL Regional Committees.",
+            "enum": [
+                "AMERICAS",
+                "ASIA_PACIFIC",
+                "EMEA",
+                "JAPAN"
+            ],
+            "title": "FPLRegion",
+            "type": "string"
+        },
+        "Field": {
+            "additionalProperties": false,
+            "description": "A FIX field \u2014 a uniquely tagged data element with a FIX datatype.",
+            "properties": {
+                "datatype": {
+                    "$ref": "#/$defs/FIXDatatypeName",
+                    "description": "FIX datatype of the field."
+                },
+                "description": {
+                    "description": "Description of the field's purpose.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "field_name": {
+                    "description": "PascalCase name of the field.",
+                    "type": "string"
+                },
+                "is_user_defined": {
+                    "description": "True when the field is a User Defined Field.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "requirement": {
+                    "$ref": "#/$defs/FieldRequirement",
+                    "description": "Required-status of the field within the enclosing context."
+                },
+                "tag": {
+                    "description": "Numeric tag of the field.",
+                    "minimum": 1,
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "tag",
+                "field_name",
+                "datatype"
+            ],
+            "title": "Field",
+            "type": "object"
+        },
+        "FieldRequirement": {
+            "description": "Required-status of a field within a message or component.",
+            "enum": [
+                "REQUIRED",
+                "OPTIONAL",
+                "CONDITIONALLY_REQUIRED"
+            ],
+            "title": "FieldRequirement",
+            "type": "string"
+        },
+        "GlobalComponent": {
+            "additionalProperties": false,
+            "description": "A component shared by messages of two or more business areas.",
+            "properties": {
+                "applies_to_instrument": {
+                    "description": "Applicable at the Instrument level.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "applies_to_leg": {
+                    "description": "Applicable at the InstrumentLeg level.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "applies_to_underlying": {
+                    "description": "Applicable at the UnderlyingInstrument level.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "component_group": {
+                    "$ref": "#/$defs/ComponentGroup",
+                    "description": "Thematic group under which the component is presented."
+                },
+                "component_name": {
+                    "description": "PascalCase name of the component.",
+                    "type": "string"
+                },
+                "conceptually_identical_to": {
+                    "description": "Names of other components conceptually identical to this one.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Description of the component.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "fields": {
+                    "description": "Fields directly contained by the enclosing element.",
+                    "items": {
+                        "$ref": "#/$defs/Field"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "gc_id": {
+                    "description": "Numeric component identifier extracted from the FIX Latest \"Global Components\" page anchor ID (e.g. \"comp1057-1\" \u2192 1057). Stable across Extension Packs and shared with the FIX Orchestra repository.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "gc_referenced_in": {
+                    "description": "FIX business areas whose messages embed the Global Component.",
+                    "items": {
+                        "$ref": "#/$defs/GlobalComponentBusinessAreaEnum"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "is_repeating_group": {
+                    "description": "True when the component is a repeating group.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "nested_components": {
+                    "description": "Components nested within this component.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "scope": {
+                    "$ref": "#/$defs/ComponentScope",
+                    "description": "Sharing scope of the component."
+                }
+            },
+            "required": [
+                "component_group",
+                "component_name",
+                "scope"
+            ],
+            "title": "GlobalComponent",
+            "type": "object"
+        },
+        "GlobalComponentBusinessAreaEnum": {
+            "description": "FIX business areas that may reference a Global Component from the FIX Latest \"Global Components\" page.",
+            "enum": [
+                "PRE_TRADE",
+                "TRADE",
+                "POST_TRADE",
+                "INFRASTRUCTURE"
+            ],
+            "title": "GlobalComponentBusinessAreaEnum",
+            "type": "string"
+        },
+        "ISO11404ValueSpace": {
+            "description": "ISO/IEC 11404:2007 General-Purpose Datatypes value space.",
+            "enum": [
+                "integer",
+                "ordinal",
+                "size",
+                "real",
+                "scaled",
+                "character",
+                "characterstring",
+                "boolean",
+                "set",
+                "array",
+                "time",
+                "union"
+            ],
+            "title": "ISO11404ValueSpace",
+            "type": "string"
+        },
+        "InfrastructureBusinessArea": {
+            "additionalProperties": false,
+            "description": "Tree-root container for the Infrastructure business area of FIX Latest.",
+            "properties": {
+                "area": {
+                    "$ref": "#/$defs/BusinessAreaEnum",
+                    "description": "Identity of the business area."
+                },
+                "business_reject_reason_descriptions": {
+                    "description": "Descriptions tied to BusinessRejectReason(380) values.",
+                    "items": {
+                        "$ref": "#/$defs/BusinessRejectReasonDescription"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "components": {
+                    "description": "Components referenced by the enclosing element.",
+                    "items": {
+                        "$ref": "#/$defs/InfrastructureComponentEntry"
+                    },
+                    "type": "array"
+                },
+                "components_overview_note": {
+                    "description": "Intro prose of the area-wide Components sub-section.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "diagram_conventions": {
+                    "description": "Sentence describing diagram conventions used in the chapter.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "infra_category_sections": {
+                    "description": "Per-category sub-sections of the Infrastructure chapter.",
+                    "items": {
+                        "$ref": "#/$defs/InfrastructureCategorySection"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "infra_common_components": {
+                    "description": "Component names declared in the area-wide components listing. Per the chapter prose, none of these are shared across categories within the area.",
+                    "items": {
+                        "$ref": "#/$defs/InfrastructureComponentName"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "infra_footnotes": {
+                    "description": "Footnotes attached to the area-wide Infrastructure components table.",
+                    "items": {
+                        "$ref": "#/$defs/InfrastructureComponentTableFootnote"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "infra_global_components": {
+                    "description": "Global Components (from the FIX Latest \"Global Components\" page) that are explicitly referenced by messages in the Infrastructure business area, together with their tag set and usage scope.",
+                    "items": {
+                        "$ref": "#/$defs/InfrastructureGlobalComponentReference"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "infra_introduction": {
+                    "description": "Prose introduction of the Infrastructure chapter.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "key_fields_post_trade": {
+                    "description": "\"Key Fields for Post-Trade Application Message References\" table rows.",
+                    "items": {
+                        "$ref": "#/$defs/ApplicationMessageReferenceKey"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "key_fields_pre_trade": {
+                    "description": "\"Key Fields for Pre-Trade Application Message References\" table rows.",
+                    "items": {
+                        "$ref": "#/$defs/ApplicationMessageReferenceKey"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "key_fields_trade": {
+                    "description": "\"Key Fields for Trade Application Message References\" table rows.",
+                    "items": {
+                        "$ref": "#/$defs/ApplicationMessageReferenceKey"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "messages": {
+                    "description": "Messages defined within the enclosing element.",
+                    "items": {
+                        "$ref": "#/$defs/InfrastructureMessageEntry"
+                    },
+                    "type": "array"
+                },
+                "messages_overview_note": {
+                    "description": "Intro prose of the area-wide Messages sub-section.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "published_version": {
+                    "description": "Version stamp from the document header.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "publisher": {
+                    "description": "Publishing body of the FIX Latest specification.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "referenced_global_components": {
+                    "description": "Names of Global Components from the FIX Latest \"Global Components\" page that are referenced by messages in the containing business area. References instances of the :class:`GlobalComponent` class (declared in fix_base) by name.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "standard_responses_post_trade": {
+                    "description": "\"Standard Responses for Post-Trade Messages\" table rows.",
+                    "items": {
+                        "$ref": "#/$defs/StandardResponseMapping"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "standard_responses_pre_trade": {
+                    "description": "\"Standard Responses for Pre-Trade Messages\" table rows.",
+                    "items": {
+                        "$ref": "#/$defs/StandardResponseMapping"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "standard_responses_trade": {
+                    "description": "\"Standard Responses for Trade Messages\" table rows.",
+                    "items": {
+                        "$ref": "#/$defs/StandardResponseMapping"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "title": {
+                    "description": "Display title.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "area",
+                "messages",
+                "components"
+            ],
+            "title": "InfrastructureBusinessArea",
+            "type": "object"
+        },
+        "InfrastructureCategoryEnum": {
+            "description": "The four message categories of the FIX Latest Infrastructure business area. Subset of MessageCategoryEnum.",
+            "enum": [
+                "BUSINESS_MESSAGE_REJECTS",
+                "NETWORK_STATUS_COMMUNICATION",
+                "USER_MANAGEMENT",
+                "APPLICATION_SEQUENCING"
+            ],
+            "title": "InfrastructureCategoryEnum",
+            "type": "string"
+        },
+        "InfrastructureCategorySection": {
+            "additionalProperties": false,
+            "description": "A \"Category \u2013 <name>\" sub-section of the Infrastructure chapter.",
+            "properties": {
+                "application_message_report_uses": {
+                    "description": "Documented uses of ApplicationMessageReport(35=BY).",
+                    "items": {
+                        "$ref": "#/$defs/ApplicationMessageReportTypeEnum"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "category": {
+                    "$ref": "#/$defs/InfrastructureCategoryEnum",
+                    "description": "Message category."
+                },
+                "category_components_note": {
+                    "description": "Intro prose of a category's Components sub-section.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Free-text description.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "infra_category_specific_components": {
+                    "description": "Per-component descriptions appearing in a category's Components sub-section.",
+                    "items": {
+                        "$ref": "#/$defs/InfrastructureComponentDetail"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "messages": {
+                    "description": "Messages defined within the enclosing element.",
+                    "items": {
+                        "$ref": "#/$defs/InfrastructureMessageDetail"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "network_request_types_referenced": {
+                    "description": "NetworkRequestType(935) values explicitly cited in the Network Status Communication category prose.",
+                    "items": {
+                        "$ref": "#/$defs/NetworkRequestTypeEnum"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "network_status_scenarios": {
+                    "description": "Network Status Communication usage scenarios.",
+                    "items": {
+                        "$ref": "#/$defs/NetworkStatusScenarioEnum"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "title": {
+                    "description": "Display title.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "category"
+            ],
+            "title": "InfrastructureCategorySection",
+            "type": "object"
+        },
+        "InfrastructureComponentDetail": {
+            "additionalProperties": false,
+            "description": "Per-component description appearing in a category's Components sub-section.",
+            "properties": {
+                "component_name": {
+                    "description": "PascalCase name of the component.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Free-text description.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "infra_layout_rows": {
+                    "description": "Ordered rows of the layout table published for the message or component in the Infrastructure Appendix.",
+                    "items": {
+                        "$ref": "#/$defs/InfrastructureLayoutRow"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "layout_url": {
+                    "description": "URL of the detailed message- or component-layout.",
+                    "format": "uri",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "repetition": {
+                    "$ref": "#/$defs/ComponentRepetition",
+                    "description": "REPEATING or NON_REPEATING."
+                }
+            },
+            "required": [
+                "component_name"
+            ],
+            "title": "InfrastructureComponentDetail",
+            "type": "object"
+        },
+        "InfrastructureComponentEntry": {
+            "additionalProperties": false,
+            "description": "One row of the area-wide \"Components for Infrastructure Business Area\" table.",
+            "properties": {
+                "category": {
+                    "$ref": "#/$defs/InfrastructureCategoryEnum",
+                    "description": "Message category."
+                },
+                "component_name": {
+                    "description": "PascalCase name of the component.",
+                    "type": "string"
+                },
+                "footnote_number": {
+                    "description": "Footnote indicator on a component-table row.",
+                    "maximum": 25,
+                    "minimum": 1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "repetition": {
+                    "$ref": "#/$defs/ComponentRepetition",
+                    "description": "REPEATING or NON_REPEATING."
+                }
+            },
+            "required": [
+                "component_name",
+                "repetition",
+                "category"
+            ],
+            "title": "InfrastructureComponentEntry",
+            "type": "object"
+        },
+        "InfrastructureComponentName": {
+            "description": "Names of the components defined in the Infrastructure business-area chapter. None of these are shared across categories within the area; footnotes 1\u20134 record that four of them were historically declared as common components.",
+            "enum": [
+                "ApplIDReportGrp",
+                "ApplIDRequestAckGrp",
+                "ApplIDRequestGrp",
+                "CompIDReqGrp",
+                "CompIDStatGrp",
+                "ThrottleMsgTypeGrp",
+                "ThrottleParamsGrp",
+                "UsernameGrp"
+            ],
+            "title": "InfrastructureComponentName",
+            "type": "string"
+        },
+        "InfrastructureComponentTableFootnote": {
+            "additionalProperties": false,
+            "description": "A footnote attached to a row of the area-wide Infrastructure components table.",
+            "properties": {
+                "component_name": {
+                    "description": "PascalCase name of the component.",
+                    "type": "string"
+                },
+                "footnote_number": {
+                    "description": "Footnote indicator on a component-table row.",
+                    "maximum": 25,
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "infra_sole_category": {
+                    "$ref": "#/$defs/InfrastructureCategoryEnum",
+                    "description": "Single Infrastructure category that actually uses the footnoted component."
+                },
+                "introduced_in": {
+                    "description": "FIX version or Extension Pack that introduced the component.",
+                    "type": "string"
+                },
+                "text": {
+                    "description": "Footnote text.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "footnote_number",
+                "component_name",
+                "introduced_in",
+                "infra_sole_category"
+            ],
+            "title": "InfrastructureComponentTableFootnote",
+            "type": "object"
+        },
+        "InfrastructureGlobalComponentName": {
+            "description": "Names of the Global Components (declared in the FIX Latest \"Global Components\" page) that the Infrastructure business-area messages explicitly reference. Global Components are reusable component blocks used across two or more business areas.",
+            "enum": [
+                "ApplicationSequenceControl"
+            ],
+            "title": "InfrastructureGlobalComponentName",
+            "type": "string"
+        },
+        "InfrastructureGlobalComponentReference": {
+            "additionalProperties": false,
+            "description": "A reference from the Infrastructure business area to a Global Component declared on the FIX Latest \"Global Components\" page. Records the component name, the FIX tags it contributes, and the Infrastructure categories and messages that embed it.",
+            "properties": {
+                "infra_global_component_field_names": {
+                    "description": "Human-readable field names of the tags contributed by the referenced Global Component.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "infra_global_component_field_tags": {
+                    "description": "FIX tag numbers contributed by the referenced Global Component (as listed on the Global Components page).",
+                    "items": {
+                        "minimum": 0,
+                        "type": "integer"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "infra_global_component_msg_types": {
+                    "description": "MsgType values within the Infrastructure business area that embed the referenced Global Component.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "infra_global_component_name": {
+                    "$ref": "#/$defs/InfrastructureGlobalComponentName",
+                    "description": "Name of a Global Component referenced from within the Infrastructure business area."
+                },
+                "infra_global_component_repetition": {
+                    "description": "Repetition indicator for the Global Component as it appears in the referenced Infrastructure messages.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "infra_global_component_used_in": {
+                    "description": "Infrastructure categories that reference the Global Component.",
+                    "items": {
+                        "$ref": "#/$defs/InfrastructureCategoryEnum"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "infra_global_component_name",
+                "infra_global_component_used_in"
+            ],
+            "title": "InfrastructureGlobalComponentReference",
+            "type": "object"
+        },
+        "InfrastructureLayoutRow": {
+            "additionalProperties": false,
+            "description": "One row of the layout table published in the Infrastructure Appendix for a message or component. Each row identifies either a FIX field (by tag number + name) or an embedded component (by name), records whether it is required, carries the Description-column text, and flags whether it appears as a nested child of a repeating-group counter.",
+            "properties": {
+                "infra_layout_description": {
+                    "description": "Free-text content of the Description column of the row (may be empty).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "infra_layout_element_name": {
+                    "description": "Element name as printed in the Name column \u2014 either the FIX field name (e.g. ApplReqID) or the component name (e.g. StandardHeader, ApplIDRequestGrp).",
+                    "type": "string"
+                },
+                "infra_layout_field_tag": {
+                    "description": "FIX tag number drawn from the Tag column when the row is a field (i.e. layout_kind = FIELD). Absent for COMPONENT rows.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "infra_layout_kind": {
+                    "$ref": "#/$defs/InfrastructureLayoutRowKindEnum",
+                    "description": "Row kind \u2014 either a FIX field (numeric Tag) or an embedded component (literal \"Component\" in the Tag column of the source table)."
+                },
+                "infra_layout_nested": {
+                    "description": "Whether the row appears nested under a repeating-group counter (i.e. its Tag column is prefixed with the \"\u2192\" arrow in the source table).",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "infra_layout_required": {
+                    "description": "Whether the field or component is required, as printed in the Req\u2019d column of the source layout table (\"Y\" / \"N\").",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "infra_layout_kind",
+                "infra_layout_element_name"
+            ],
+            "title": "InfrastructureLayoutRow",
+            "type": "object"
+        },
+        "InfrastructureLayoutRowKindEnum": {
+            "description": "Discriminator for a row in an Infrastructure message- or component-layout table: either a FIX field (numeric Tag column) or an embedded component (literal \"Component\" in the Tag column).",
+            "enum": [
+                "FIELD",
+                "COMPONENT"
+            ],
+            "title": "InfrastructureLayoutRowKindEnum",
+            "type": "string"
+        },
+        "InfrastructureMessageDetail": {
+            "additionalProperties": false,
+            "description": "Per-message description appearing in a category's Messages sub-section.",
+            "properties": {
+                "description": {
+                    "description": "Free-text description.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "infra_layout_rows": {
+                    "description": "Ordered rows of the layout table published for the message or component in the Infrastructure Appendix.",
+                    "items": {
+                        "$ref": "#/$defs/InfrastructureLayoutRow"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "layout_url": {
+                    "description": "URL of the detailed message- or component-layout.",
+                    "format": "uri",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "message_name": {
+                    "description": "PascalCase name of the message.",
+                    "type": "string"
+                },
+                "msg_type": {
+                    "description": "MsgType(35) wire value identifying the message.",
+                    "pattern": "^[A-Za-z0-9]{1,3}$",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "msg_type",
+                "message_name"
+            ],
+            "title": "InfrastructureMessageDetail",
+            "type": "object"
+        },
+        "InfrastructureMessageEntry": {
+            "additionalProperties": false,
+            "description": "One row of the area-wide \"Messages for Infrastructure Business Area\" table.",
+            "properties": {
+                "category": {
+                    "$ref": "#/$defs/InfrastructureCategoryEnum",
+                    "description": "Message category."
+                },
+                "message_name": {
+                    "description": "PascalCase name of the message.",
+                    "type": "string"
+                },
+                "msg_type": {
+                    "description": "MsgType(35) wire value identifying the message.",
+                    "pattern": "^[A-Za-z0-9]{1,3}$",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "msg_type",
+                "message_name",
+                "category"
+            ],
+            "title": "InfrastructureMessageEntry",
+            "type": "object"
+        },
+        "MatchStatusEnum": {
+            "description": "MatchStatus(573) values referenced in Post-Trade prose.",
+            "enum": [
+                "COMPARED_MATCHED_OR_AFFIRMED",
+                "UNCOMPARED_UNMATCHED_OR_UNAFFIRMED"
+            ],
+            "title": "MatchStatusEnum",
+            "type": "string"
+        },
+        "Message": {
+            "additionalProperties": false,
+            "description": "A FIX application message.",
+            "properties": {
+                "category": {
+                    "$ref": "#/$defs/MessageCategoryEnum",
+                    "description": "Message category."
+                },
+                "components": {
+                    "description": "Components referenced by the enclosing element.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Description of the message's purpose.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "fields": {
+                    "description": "Fields directly contained by the enclosing element.",
+                    "items": {
+                        "$ref": "#/$defs/Field"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "message_name": {
+                    "description": "PascalCase name of the message.",
+                    "type": "string"
+                },
+                "msg_type": {
+                    "description": "MsgType(35) wire value identifying the message.",
+                    "pattern": "^[A-Za-z0-9]{1,3}$",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "msg_type",
+                "message_name"
+            ],
+            "title": "Message",
+            "type": "object"
+        },
+        "MessageCategory": {
+            "additionalProperties": false,
+            "description": "A message category within a business area.",
+            "properties": {
+                "business_area": {
+                    "$ref": "#/$defs/BusinessAreaEnum",
+                    "description": "Business area the element belongs to."
+                },
+                "category": {
+                    "$ref": "#/$defs/MessageCategoryEnum",
+                    "description": "Identity of the message category."
+                },
+                "description": {
+                    "description": "Description of the category.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "messages": {
+                    "description": "Messages defined within the enclosing element.",
+                    "items": {
+                        "$ref": "#/$defs/Message"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "title": {
+                    "description": "Display title of the category.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "category",
+                "business_area"
+            ],
+            "title": "MessageCategory",
+            "type": "object"
+        },
+        "MessageCategoryEnum": {
+            "description": "Message categories defined within FIX Latest business areas.",
+            "enum": [
+                "INDICATION",
+                "EVENT_COMMUNICATION",
+                "QUOTATION_NEGOTIATION",
+                "MARKET_DATA",
+                "MARKET_STRUCTURE_REFERENCE_DATA",
+                "SECURITIES_REFERENCE_DATA",
+                "PARTIES_REFERENCE_DATA",
+                "PARTIES_ACTION",
+                "SINGLE_GENERAL_ORDER_HANDLING",
+                "ORDER_MASS_HANDLING",
+                "CROSS_ORDERS",
+                "MULTILEG_ORDERS",
+                "LIST_PROGRAM_BASKET_TRADING",
+                "ALLOCATION_AND_READY_TO_BOOK",
+                "CONFIRMATION",
+                "SETTLEMENT_INSTRUCTIONS",
+                "TRADE_CAPTURE_REPORTING",
+                "REGISTRATION_INSTRUCTIONS",
+                "POSITIONS_MAINTENANCE",
+                "COLLATERAL_MANAGEMENT",
+                "MARGIN_REQUIREMENT_MANAGEMENT",
+                "ACCOUNT_REPORTING",
+                "TRADE_MANAGEMENT",
+                "PAY_MANAGEMENT",
+                "SETTLEMENT_STATUS_MANAGEMENT",
+                "BUSINESS_MESSAGE_REJECTS",
+                "NETWORK_STATUS_COMMUNICATION",
+                "USER_MANAGEMENT",
+                "APPLICATION_SEQUENCING"
+            ],
+            "title": "MessageCategoryEnum",
+            "type": "string"
+        },
+        "MessageGroup": {
+            "additionalProperties": false,
+            "description": "Purpose-grouped sub-section inside a category's Messages section.",
+            "properties": {
+                "description": {
+                    "description": "Description of the purpose-group's role within the category.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "group_title": {
+                    "description": "Purpose-group heading inside a category's Messages sub-section.",
+                    "type": "string"
+                },
+                "messages": {
+                    "description": "Messages bundled under the purpose-group heading.",
+                    "items": {
+                        "$ref": "#/$defs/PreTradeMessageDetail"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "group_title",
+                "messages"
+            ],
+            "title": "MessageGroup",
+            "type": "object"
+        },
+        "NetworkRequestTypeEnum": {
+            "description": "Values of NetworkRequestType(935) explicitly cited in the NetworkCounterpartySystemStatusRequest(35=BC) prose.",
+            "enum": [
+                "SNAPSHOT",
+                "STOP_SUBSCRIBING"
+            ],
+            "title": "NetworkRequestTypeEnum",
+            "type": "string"
+        },
+        "NetworkStatusScenarioEnum": {
+            "description": "Network Status Communication usage scenarios documented in the chapter (Scenario A: hub-and-spoke; Scenario B: global brokerage region availability).",
+            "enum": [
+                "SCENARIO_A",
+                "SCENARIO_B"
+            ],
+            "title": "NetworkStatusScenarioEnum",
+            "type": "string"
+        },
+        "PositionMaintenanceActionEnum": {
+            "description": "PosMaintAction(712) values.",
+            "enum": [
+                "NEW",
+                "REPLACE",
+                "CANCEL",
+                "REVERSE"
+            ],
+            "title": "PositionMaintenanceActionEnum",
+            "type": "string"
+        },
+        "PostTradeAllocationPricingMethodEnum": {
+            "description": "Methods by which post-trade allocations may be computed.",
+            "enum": [
+                "AVERAGE_PRICE",
+                "EXECUTED_PRICE"
+            ],
+            "title": "PostTradeAllocationPricingMethodEnum",
+            "type": "string"
+        },
+        "PostTradeBusinessArea": {
+            "additionalProperties": false,
+            "description": "Tree-root container for the Post-Trade business area of FIX Latest.",
+            "properties": {
+                "area": {
+                    "$ref": "#/$defs/BusinessAreaEnum",
+                    "description": "Identity of the business area."
+                },
+                "components": {
+                    "description": "Components referenced by the enclosing element.",
+                    "items": {
+                        "$ref": "#/$defs/PostTradeComponentEntry"
+                    },
+                    "type": "array"
+                },
+                "components_overview_note": {
+                    "description": "Intro prose of the area-wide Components sub-section.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "diagram_conventions": {
+                    "description": "Sentence describing diagram conventions used in the chapter.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "messages": {
+                    "description": "Messages defined within the enclosing element.",
+                    "items": {
+                        "$ref": "#/$defs/PostTradeMessageEntry"
+                    },
+                    "type": "array"
+                },
+                "messages_overview_note": {
+                    "description": "Intro prose of the area-wide Messages sub-section.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "post_category_sections": {
+                    "description": "Per-category sub-sections of the Post-Trade chapter.",
+                    "items": {
+                        "$ref": "#/$defs/PostTradeCategorySection"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "post_common_component_details": {
+                    "description": "Per-common-component descriptions from the chapter's final Common Components section.",
+                    "items": {
+                        "$ref": "#/$defs/PostTradeCommonComponentDetail"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "post_common_components": {
+                    "description": "Common Components declared at the top of the Post-Trade chapter.",
+                    "items": {
+                        "$ref": "#/$defs/PostTradeCommonComponentName"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "post_footnotes": {
+                    "description": "Footnotes attached to the area-wide components table.",
+                    "items": {
+                        "$ref": "#/$defs/PostTradeComponentTableFootnote"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "post_introduction": {
+                    "description": "Prose introduction of the Post-Trade chapter.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "published_version": {
+                    "description": "Version stamp from the document header.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "publisher": {
+                    "description": "Publishing body of the FIX Latest specification.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "referenced_global_components": {
+                    "description": "Names of Global Components from the FIX Latest \"Global Components\" page that are referenced by messages in the containing business area. References instances of the :class:`GlobalComponent` class (declared in fix_base) by name.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "title": {
+                    "description": "Display title.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "area",
+                "messages",
+                "components"
+            ],
+            "title": "PostTradeBusinessArea",
+            "type": "object"
+        },
+        "PostTradeCategoryEnum": {
+            "description": "The twelve message categories of the FIX Latest Post-Trade business area. Subset of MessageCategoryEnum.",
+            "enum": [
+                "ALLOCATION",
+                "CONFIRMATION",
+                "SETTLEMENT_INSTRUCTION",
+                "TRADE_CAPTURE_REPORTING",
+                "REGISTRATION_INSTRUCTION",
+                "POSITION_MAINTENANCE",
+                "COLLATERAL_MANAGEMENT",
+                "MARGIN_REQUIREMENT_MANAGEMENT",
+                "ACCOUNT_REPORTING",
+                "TRADE_MANAGEMENT",
+                "PAY_MANAGEMENT",
+                "SETTLEMENT_STATUS_MANAGEMENT"
+            ],
+            "title": "PostTradeCategoryEnum",
+            "type": "string"
+        },
+        "PostTradeCategorySection": {
+            "additionalProperties": false,
+            "description": "A \"Category \u2013 <name>\" sub-section of the Post-Trade chapter.",
+            "properties": {
+                "allocation_roles": {
+                    "description": "Role labels used throughout the Allocation category prose.",
+                    "items": {
+                        "$ref": "#/$defs/AllocationRoleEnum"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "allocation_scenarios": {
+                    "description": "Communication options supported by the Allocation category for conveying allocation instructions.",
+                    "items": {
+                        "$ref": "#/$defs/AllocationScenarioEnum"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "allocation_status_descriptions": {
+                    "description": "Descriptions tied to AllocStatus(87) values as listed in the Allocation Instruction Acknowledgements section.",
+                    "items": {
+                        "$ref": "#/$defs/AllocationStatusDescription"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "category": {
+                    "$ref": "#/$defs/PostTradeCategoryEnum",
+                    "description": "Message category."
+                },
+                "category_components_note": {
+                    "description": "Intro prose of a category's Components sub-section.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "clearing_services_for_position_management": {
+                    "description": "Business functions exposed by the Position Management Clearing Services.",
+                    "items": {
+                        "$ref": "#/$defs/ClearingServiceForPositionManagementEnum"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "clearing_services_for_post_trade_processing": {
+                    "description": "Per-format action sets exposed by the Post-Trade Processing Clearing Services.",
+                    "items": {
+                        "$ref": "#/$defs/ClearingServicePostTradeProcessingFormat"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "collateral_assignment_purposes": {
+                    "description": "Documented purposes for the CollateralAssignment(35=AY) message.",
+                    "items": {
+                        "$ref": "#/$defs/CollateralAssignmentPurposeEnum"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "collateral_management_usages": {
+                    "description": "Documented usages for the Collateral Management messages.",
+                    "items": {
+                        "$ref": "#/$defs/CollateralManagementUsageEnum"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Free-text description.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "fragmentation_field_map": {
+                    "description": "Per-message mapping of fragmentation-related fields used by the Allocation messages.",
+                    "items": {
+                        "$ref": "#/$defs/AllocationFragmentationFieldMap"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "messages": {
+                    "description": "Messages defined within the enclosing element.",
+                    "items": {
+                        "$ref": "#/$defs/PostTradeMessageDetail"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "post_category_specific_components": {
+                    "description": "Components used exclusively by messages within a category.",
+                    "items": {
+                        "$ref": "#/$defs/PostTradeComponentDetail"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "post_message_groups": {
+                    "description": "Purpose-grouped message descriptions inside a Post-Trade category.",
+                    "items": {
+                        "$ref": "#/$defs/PostTradeMessageGroup"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "post_trade_allocation_pricing_methods": {
+                    "description": "Methods supported for computing post-trade allocations.",
+                    "items": {
+                        "$ref": "#/$defs/PostTradeAllocationPricingMethodEnum"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "registration_status_descriptions": {
+                    "description": "Descriptions tied to RegistStatus(506) values.",
+                    "items": {
+                        "$ref": "#/$defs/RegistrationStatusDescription"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "title": {
+                    "description": "Display title.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "trade_capture_report_identifier_rules": {
+                    "description": "Rules governing TradeCaptureReport(35=AE) identifier fields.",
+                    "items": {
+                        "$ref": "#/$defs/TradeCaptureReportIdentifierRule"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "trade_capture_report_usages": {
+                    "description": "Usages described in the \"Trade Capture Report Usages\" sub-section of the Trade Capture Reporting category.",
+                    "items": {
+                        "$ref": "#/$defs/TradeCaptureReportUsage"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "category"
+            ],
+            "title": "PostTradeCategorySection",
+            "type": "object"
+        },
+        "PostTradeCommonComponentDetail": {
+            "additionalProperties": false,
+            "description": "Per-common-component description block from the chapter's final \"Common Components\" section.",
+            "properties": {
+                "component_name": {
+                    "$ref": "#/$defs/PostTradeCommonComponentName",
+                    "description": "PascalCase name of the component."
+                },
+                "description": {
+                    "description": "Free-text description.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "layout_url": {
+                    "description": "URL of the detailed message- or component-layout.",
+                    "format": "uri",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "post_layout_rows": {
+                    "description": "Ordered rows of the layout table published for the message or component in the Post-Trade Appendix.",
+                    "items": {
+                        "$ref": "#/$defs/PostTradeLayoutRow"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "repetition": {
+                    "$ref": "#/$defs/ComponentRepetition",
+                    "description": "REPEATING or NON_REPEATING."
+                }
+            },
+            "required": [
+                "component_name"
+            ],
+            "title": "PostTradeCommonComponentDetail",
+            "type": "object"
+        },
+        "PostTradeCommonComponentName": {
+            "description": "Names of the Common Components declared at the top of the Post-Trade business-area chapter.",
+            "enum": [
+                "AllocCommissionDataGrp",
+                "AllocRegulatoryTradeIDGrp",
+                "ClrInstGrp",
+                "CollateralAmountGrp",
+                "CollateralReinvestmentGrp",
+                "DlvyInstGrp",
+                "ExecAllocGrp",
+                "MarginAmount",
+                "OrdAllocGrp",
+                "PositionAmountData",
+                "SettlDetails",
+                "SettlInstructionsData",
+                "SettlParties",
+                "SettlPtysSubGrp",
+                "TradeAllocAmtGrp",
+                "TransactionAttributeGrp"
+            ],
+            "title": "PostTradeCommonComponentName",
+            "type": "string"
+        },
+        "PostTradeComponentDetail": {
+            "additionalProperties": false,
+            "description": "Per-component description block from a Post-Trade category section's Components sub-section.",
+            "properties": {
+                "component_name": {
+                    "description": "PascalCase name of the component.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Free-text description.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "layout_url": {
+                    "description": "URL of the detailed message- or component-layout.",
+                    "format": "uri",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "post_layout_rows": {
+                    "description": "Ordered rows of the layout table published for the message or component in the Post-Trade Appendix.",
+                    "items": {
+                        "$ref": "#/$defs/PostTradeLayoutRow"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "repetition": {
+                    "$ref": "#/$defs/ComponentRepetition",
+                    "description": "REPEATING or NON_REPEATING."
+                }
+            },
+            "required": [
+                "component_name"
+            ],
+            "title": "PostTradeComponentDetail",
+            "type": "object"
+        },
+        "PostTradeComponentEntry": {
+            "additionalProperties": false,
+            "description": "One row of the area-wide \"Components for Post-Trade Business Area\" table.",
+            "properties": {
+                "category": {
+                    "description": "Category label as printed in the component table; the token \"Common Components\" is allowed in addition to the PostTradeCategoryEnum values.",
+                    "type": "string"
+                },
+                "component_name": {
+                    "description": "PascalCase name of the component.",
+                    "type": "string"
+                },
+                "footnote_number": {
+                    "description": "Footnote indicator on a component-table row.",
+                    "maximum": 25,
+                    "minimum": 1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "is_common": {
+                    "description": "True when the component is declared as a Common Component.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "repetition": {
+                    "$ref": "#/$defs/ComponentRepetition",
+                    "description": "REPEATING or NON_REPEATING."
+                }
+            },
+            "required": [
+                "component_name",
+                "repetition",
+                "category"
+            ],
+            "title": "PostTradeComponentEntry",
+            "type": "object"
+        },
+        "PostTradeComponentTableFootnote": {
+            "additionalProperties": false,
+            "description": "A footnote attached to a row of the area-wide Post-Trade components table.",
+            "properties": {
+                "component_name": {
+                    "description": "PascalCase name of the component.",
+                    "type": "string"
+                },
+                "footnote_number": {
+                    "description": "Footnote indicator on a component-table row.",
+                    "maximum": 25,
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "introduced_in": {
+                    "description": "FIX version or Extension Pack that introduced the component.",
+                    "type": "string"
+                },
+                "post_sole_category": {
+                    "$ref": "#/$defs/PostTradeCategoryEnum",
+                    "description": "Single Post-Trade category that actually uses the component (per footnote)."
+                },
+                "text": {
+                    "description": "Footnote text.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "footnote_number",
+                "component_name",
+                "introduced_in",
+                "post_sole_category"
+            ],
+            "title": "PostTradeComponentTableFootnote",
+            "type": "object"
+        },
+        "PostTradeLayoutRow": {
+            "additionalProperties": false,
+            "description": "One row of the layout table published in the Post-Trade Appendix for a message or component. Each row identifies either a FIX field (by tag number + name) or an embedded component (by name), records whether it is required, carries the Description-column text, and flags whether it appears as a nested child of a repeating-group counter.",
+            "properties": {
+                "post_layout_description": {
+                    "description": "Free-text content of the Description column of the row (may be empty).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "post_layout_element_name": {
+                    "description": "Element name as printed in the Name column \u2014 either the FIX field name or the component name.",
+                    "type": "string"
+                },
+                "post_layout_field_tag": {
+                    "description": "FIX tag number drawn from the Tag column when the row is a field (i.e. layout_kind = FIELD). Absent for COMPONENT rows.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "post_layout_kind": {
+                    "$ref": "#/$defs/PostTradeLayoutRowKindEnum",
+                    "description": "Row kind \u2014 either a FIX field (numeric Tag) or an embedded component (literal \"Component\" in the Tag column of the source table)."
+                },
+                "post_layout_nested": {
+                    "description": "Whether the row appears nested under a repeating-group counter (i.e. its Tag column is prefixed with the \"\u2192\" arrow in the source table).",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "post_layout_required": {
+                    "description": "Whether the field or component is required, as printed in the Req\u2019d column of the source layout table (\"Y\" / \"N\").",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "post_layout_kind",
+                "post_layout_element_name"
+            ],
+            "title": "PostTradeLayoutRow",
+            "type": "object"
+        },
+        "PostTradeLayoutRowKindEnum": {
+            "description": "Discriminator for a row in a Post-Trade message- or component-layout table: either a FIX field (numeric Tag column) or an embedded component (literal \"Component\" in the Tag column).",
+            "enum": [
+                "FIELD",
+                "COMPONENT"
+            ],
+            "title": "PostTradeLayoutRowKindEnum",
+            "type": "string"
+        },
+        "PostTradeMessageDetail": {
+            "additionalProperties": false,
+            "description": "Per-message description block from a Post-Trade category section.",
+            "properties": {
+                "description": {
+                    "description": "Free-text description.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "layout_url": {
+                    "description": "URL of the detailed message- or component-layout.",
+                    "format": "uri",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "message_name": {
+                    "description": "PascalCase name of the message.",
+                    "type": "string"
+                },
+                "msg_type": {
+                    "description": "MsgType(35) wire value identifying the message.",
+                    "pattern": "^[A-Za-z0-9]{1,3}$",
+                    "type": "string"
+                },
+                "post_layout_rows": {
+                    "description": "Ordered rows of the layout table published for the message or component in the Post-Trade Appendix.",
+                    "items": {
+                        "$ref": "#/$defs/PostTradeLayoutRow"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "msg_type",
+                "message_name"
+            ],
+            "title": "PostTradeMessageDetail",
+            "type": "object"
+        },
+        "PostTradeMessageEntry": {
+            "additionalProperties": false,
+            "description": "One row of the area-wide \"Messages for Post-Trade Business Area\" table.",
+            "properties": {
+                "category": {
+                    "$ref": "#/$defs/PostTradeCategoryEnum",
+                    "description": "Message category."
+                },
+                "message_name": {
+                    "description": "PascalCase name of the message.",
+                    "type": "string"
+                },
+                "msg_type": {
+                    "description": "MsgType(35) wire value identifying the message.",
+                    "pattern": "^[A-Za-z0-9]{1,3}$",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "msg_type",
+                "message_name",
+                "category"
+            ],
+            "title": "PostTradeMessageEntry",
+            "type": "object"
+        },
+        "PostTradeMessageGroup": {
+            "additionalProperties": false,
+            "description": "A purpose-themed grouping of messages within a Post-Trade category (e.g. \"Allocation Instructions\").",
+            "properties": {
+                "group_title": {
+                    "description": "Purpose-group heading inside a category's Messages sub-section.",
+                    "type": "string"
+                },
+                "messages": {
+                    "description": "Messages defined within the enclosing element.",
+                    "items": {
+                        "$ref": "#/$defs/PostTradeMessageDetail"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "group_title",
+                "messages"
+            ],
+            "title": "PostTradeMessageGroup",
+            "type": "object"
+        },
+        "PreTradeBusinessArea": {
+            "additionalProperties": false,
+            "description": "Tree-root container for the Pre-Trade business area of FIX Latest.",
+            "properties": {
+                "area": {
+                    "$ref": "#/$defs/BusinessAreaEnum",
+                    "description": "Identity of the business area."
+                },
+                "category_sections": {
+                    "description": "Per-category sub-sections of the chapter.",
+                    "items": {
+                        "$ref": "#/$defs/PreTradeCategorySection"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "common_component_details": {
+                    "description": "Per-common-component descriptions from the chapter's final section.",
+                    "items": {
+                        "$ref": "#/$defs/CommonComponentDetail"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "common_components": {
+                    "description": "Common Components declared at the top of the chapter.",
+                    "items": {
+                        "$ref": "#/$defs/PreTradeCommonComponentName"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "components": {
+                    "description": "Area-wide pre-trade components table.",
+                    "items": {
+                        "$ref": "#/$defs/PreTradeComponentEntry"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "components_overview_note": {
+                    "description": "Intro prose of the area-wide Components sub-section.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "diagram_conventions": {
+                    "description": "Sentence describing diagram conventions used in the chapter.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "footnotes": {
+                    "description": "Footnotes attached to the area-wide components table.",
+                    "items": {
+                        "$ref": "#/$defs/ComponentTableFootnote"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "introduction": {
+                    "description": "Prose introduction of the chapter.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "messages": {
+                    "description": "Area-wide pre-trade messages table.",
+                    "items": {
+                        "$ref": "#/$defs/PreTradeMessageEntry"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "messages_overview_note": {
+                    "description": "Intro prose of the area-wide Messages sub-section.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "published_version": {
+                    "description": "Version stamp from the document header.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "publisher": {
+                    "description": "Publishing body of the FIX Latest specification.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "referenced_global_components": {
+                    "description": "Names of Global Components from the FIX Latest \"Global Components\" page that are referenced by messages in the containing business area. References instances of the :class:`GlobalComponent` class (declared in fix_base) by name.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "title": {
+                    "description": "Display title.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "area"
+            ],
+            "title": "PreTradeBusinessArea",
+            "type": "object"
+        },
+        "PreTradeCategoryEnum": {
+            "description": "The eight message categories of the FIX Latest Pre-Trade business area. Subset of MessageCategoryEnum.",
+            "enum": [
+                "INDICATION",
+                "EVENT_COMMUNICATION",
+                "QUOTATION_NEGOTIATION",
+                "MARKET_DATA",
+                "MARKET_STRUCTURE_REFERENCE_DATA",
+                "SECURITIES_REFERENCE_DATA",
+                "PARTIES_REFERENCE_DATA",
+                "PARTIES_ACTION"
+            ],
+            "title": "PreTradeCategoryEnum",
+            "type": "string"
+        },
+        "PreTradeCategorySection": {
+            "additionalProperties": false,
+            "description": "A per-category sub-section of the Pre-Trade chapter.",
+            "properties": {
+                "category": {
+                    "$ref": "#/$defs/PreTradeCategoryEnum",
+                    "description": "Message category."
+                },
+                "category_components_note": {
+                    "description": "Intro prose of a category's Components sub-section.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "category_specific_components": {
+                    "description": "Components used exclusively by messages within a category.",
+                    "items": {
+                        "$ref": "#/$defs/PreTradeComponentDetail"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Free-text description.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "message_groups": {
+                    "description": "Purpose-grouped message descriptions inside a category.",
+                    "items": {
+                        "$ref": "#/$defs/MessageGroup"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "messages": {
+                    "description": "Messages defined in this category.",
+                    "items": {
+                        "$ref": "#/$defs/PreTradeMessageDetail"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "quote_models": {
+                    "description": "Quoting business models referenced in the Quotation / Negotiation category.",
+                    "items": {
+                        "$ref": "#/$defs/QuoteModelEnum"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "title": {
+                    "description": "Display title.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "category"
+            ],
+            "title": "PreTradeCategorySection",
+            "type": "object"
+        },
+        "PreTradeCommonComponentName": {
+            "description": "Names of the Common Components declared at the top of the Pre-Trade business-area chapter.",
+            "enum": [
+                "AuctionTypeRuleGrp",
+                "BaseTradingRules",
+                "ExecInstRules",
+                "InstrumentScope",
+                "InstrumentScopeGrp",
+                "InstrumentScopeSecurityAltIDGrp",
+                "LotTypeRules",
+                "MarketDataFeedTypes",
+                "MarketSegmentScopeGrp",
+                "MatchRules",
+                "OrdTypeRules",
+                "PriceLimits",
+                "PriceRangeRuleGrp",
+                "QuoteSizeRuleGrp",
+                "RequestedPartyRoleGrp",
+                "RequestingPartyGrp",
+                "RequestingPartySubGrp",
+                "RoutingGrp",
+                "TickRules",
+                "TimeInForceRules",
+                "TradingSessionRules"
+            ],
+            "title": "PreTradeCommonComponentName",
+            "type": "string"
+        },
+        "PreTradeComponentDetail": {
+            "additionalProperties": false,
+            "description": "Per-category component description.",
+            "properties": {
+                "component_name": {
+                    "description": "PascalCase name of the component.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Description of the component's purpose.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "layout_url": {
+                    "description": "URL of the detailed message- or component-layout.",
+                    "format": "uri",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "pre_layout_rows": {
+                    "description": "Ordered rows of the layout table published for the message or component in the Pre-Trade Appendix.",
+                    "items": {
+                        "$ref": "#/$defs/PreTradeLayoutRow"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "repetition": {
+                    "$ref": "#/$defs/ComponentRepetition",
+                    "description": "REPEATING or NON_REPEATING."
+                }
+            },
+            "required": [
+                "component_name"
+            ],
+            "title": "PreTradeComponentDetail",
+            "type": "object"
+        },
+        "PreTradeComponentEntry": {
+            "additionalProperties": false,
+            "description": "One row of the area-wide pre-trade components table.",
+            "properties": {
+                "category": {
+                    "description": "Category the component is listed under. Common Components are listed under the synthetic \"Common Components\" value.",
+                    "type": "string"
+                },
+                "component_name": {
+                    "description": "PascalCase name of the component.",
+                    "type": "string"
+                },
+                "footnote_number": {
+                    "description": "Footnote indicator on a component-table row.",
+                    "maximum": 25,
+                    "minimum": 1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "is_common": {
+                    "description": "True when the component is declared as a Common Component.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "repetition": {
+                    "$ref": "#/$defs/ComponentRepetition",
+                    "description": "REPEATING or NON_REPEATING."
+                }
+            },
+            "required": [
+                "component_name",
+                "repetition",
+                "category"
+            ],
+            "title": "PreTradeComponentEntry",
+            "type": "object"
+        },
+        "PreTradeLayoutRow": {
+            "additionalProperties": false,
+            "description": "One row of the layout table published in the Pre-Trade Appendix for a message or component. Each row identifies either a FIX field (by tag number + name) or an embedded component (by name), records whether it is required, carries the Description-column text, and flags whether it appears as a nested child of a repeating-group counter.",
+            "properties": {
+                "pre_layout_description": {
+                    "description": "Free-text content of the Description column of the row (may be empty).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "pre_layout_element_name": {
+                    "description": "Element name as printed in the Name column \u2014 either the FIX field name or the component name.",
+                    "type": "string"
+                },
+                "pre_layout_field_tag": {
+                    "description": "FIX tag number drawn from the Tag column when the row is a field (i.e. layout_kind = FIELD). Absent for COMPONENT rows.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "pre_layout_kind": {
+                    "$ref": "#/$defs/PreTradeLayoutRowKindEnum",
+                    "description": "Row kind \u2014 either a FIX field (numeric Tag) or an embedded component (literal \"Component\" in the Tag column of the source table)."
+                },
+                "pre_layout_nested": {
+                    "description": "Whether the row appears nested under a repeating-group counter (i.e. its Tag column is prefixed with the \"\u2192\" arrow in the source table).",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "pre_layout_required": {
+                    "description": "Whether the field or component is required, as printed in the Req\u2019d column of the source layout table (\"Y\" / \"N\").",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "pre_layout_kind",
+                "pre_layout_element_name"
+            ],
+            "title": "PreTradeLayoutRow",
+            "type": "object"
+        },
+        "PreTradeLayoutRowKindEnum": {
+            "description": "Discriminator for a row in a Pre-Trade message- or component-layout table: either a FIX field (numeric Tag column) or an embedded component (literal \"Component\" in the Tag column).",
+            "enum": [
+                "FIELD",
+                "COMPONENT"
+            ],
+            "title": "PreTradeLayoutRowKindEnum",
+            "type": "string"
+        },
+        "PreTradeMessageDetail": {
+            "additionalProperties": false,
+            "description": "Per-category message description.",
+            "properties": {
+                "description": {
+                    "description": "Description of the message's purpose and usage.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "layout_url": {
+                    "description": "URL of the detailed message- or component-layout.",
+                    "format": "uri",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "message_name": {
+                    "description": "PascalCase name of the message.",
+                    "type": "string"
+                },
+                "msg_type": {
+                    "description": "MsgType(35) wire value identifying the message.",
+                    "pattern": "^[A-Za-z0-9]{1,3}$",
+                    "type": "string"
+                },
+                "pre_layout_rows": {
+                    "description": "Ordered rows of the layout table published for the message or component in the Pre-Trade Appendix.",
+                    "items": {
+                        "$ref": "#/$defs/PreTradeLayoutRow"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "msg_type",
+                "message_name"
+            ],
+            "title": "PreTradeMessageDetail",
+            "type": "object"
+        },
+        "PreTradeMessageEntry": {
+            "additionalProperties": false,
+            "description": "One row of the area-wide pre-trade messages table.",
+            "properties": {
+                "category": {
+                    "$ref": "#/$defs/PreTradeCategoryEnum",
+                    "description": "Message category."
+                },
+                "message_name": {
+                    "description": "PascalCase name of the message.",
+                    "type": "string"
+                },
+                "msg_type": {
+                    "description": "MsgType(35) wire value identifying the message.",
+                    "pattern": "^[A-Za-z0-9]{1,3}$",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "msg_type",
+                "message_name",
+                "category"
+            ],
+            "title": "PreTradeMessageEntry",
+            "type": "object"
+        },
+        "ProductCoverage": {
+            "description": "Product/asset classes covered by FIX at the application layer.",
+            "enum": [
+                "EQUITIES",
+                "CIV",
+                "DERIVATIVES",
+                "FIXED_INCOME",
+                "FOREIGN_EXCHANGE"
+            ],
+            "title": "ProductCoverage",
+            "type": "string"
+        },
+        "QuoteModelEnum": {
+            "description": "Quoting business models referenced in the Quotation / Negotiation category.",
+            "enum": [
+                "INDICATIVE",
+                "TRADEABLE",
+                "RESTRICTED_TRADEABLE",
+                "NEGOTIATION"
+            ],
+            "title": "QuoteModelEnum",
+            "type": "string"
+        },
+        "RegistrationStatusDescription": {
+            "additionalProperties": false,
+            "description": "One row of the RegistStatus(506) value/description table.",
+            "properties": {
+                "description": {
+                    "description": "Free-text description.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "status_code": {
+                    "description": "Wire status code as referenced in the chapter.",
+                    "type": "string"
+                },
+                "status_label": {
+                    "description": "Human-readable label of the status code.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "status_code",
+                "status_label"
+            ],
+            "title": "RegistrationStatusDescription",
+            "type": "object"
+        },
+        "RegistrationStatusEnum": {
+            "description": "RegistStatus(506) values.",
+            "enum": [
+                "ACCEPTED",
+                "REJECTED",
+                "HELD",
+                "REMINDER"
+            ],
+            "title": "RegistrationStatusEnum",
+            "type": "string"
+        },
+        "RegistrationTransactionTypeEnum": {
+            "description": "RegistTransType(514) values.",
+            "enum": [
+                "NEW",
+                "REPLACE",
+                "CANCEL"
+            ],
+            "title": "RegistrationTransactionTypeEnum",
+            "type": "string"
+        },
+        "SessionProtocolName": {
+            "description": "Named session-layer protocols in the FIX Family of Standards.",
+            "enum": [
+                "FIX_4_2",
+                "FIX4",
+                "FIXT",
+                "LFIXT",
+                "FIXP",
+                "SOFH",
+                "FIXS",
+                "AMQP"
+            ],
+            "title": "SessionProtocolName",
+            "type": "string"
+        },
+        "SettlementInstructionModeEnum": {
+            "description": "SettlInstMode(160) values relevant in Post-Trade.",
+            "enum": [
+                "STANDING_INSTRUCTIONS",
+                "SPECIFIC_ORDER",
+                "REQUEST_REJECT"
+            ],
+            "title": "SettlementInstructionModeEnum",
+            "type": "string"
+        },
+        "SettlementObligationModeEnum": {
+            "description": "SettlObligMode(1159) values.",
+            "enum": [
+                "PRELIMINARY",
+                "FINAL"
+            ],
+            "title": "SettlementObligationModeEnum",
+            "type": "string"
+        },
+        "SpecificComponent": {
+            "additionalProperties": false,
+            "description": "A component used only by messages within a single category.",
+            "properties": {
+                "business_area": {
+                    "$ref": "#/$defs/BusinessAreaEnum",
+                    "description": "Business area the element belongs to."
+                },
+                "category": {
+                    "$ref": "#/$defs/MessageCategoryEnum",
+                    "description": "Message category."
+                },
+                "component_name": {
+                    "description": "PascalCase name of the component.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Description of the component.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "fields": {
+                    "description": "Fields directly contained by the enclosing element.",
+                    "items": {
+                        "$ref": "#/$defs/Field"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "is_repeating_group": {
+                    "description": "True when the component is a repeating group.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "nested_components": {
+                    "description": "Components nested within this component.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "scope": {
+                    "$ref": "#/$defs/ComponentScope",
+                    "description": "Sharing scope of the component."
+                }
+            },
+            "required": [
+                "business_area",
+                "category",
+                "component_name",
+                "scope"
+            ],
+            "title": "SpecificComponent",
+            "type": "object"
+        },
+        "StandardEncodingName": {
+            "description": "Named encodings of the FIX Family of Standards.",
+            "enum": [
+                "TAGVALUE",
+                "FIXML",
+                "FAST",
+                "SBE",
+                "GPB",
+                "JSON",
+                "ASN_1"
+            ],
+            "title": "StandardEncodingName",
+            "type": "string"
+        },
+        "StandardLayer": {
+            "description": "Layer of the FIX Technical Standard Stack.",
+            "enum": [
+                "APPLICATION",
+                "ENCODING",
+                "SESSION"
+            ],
+            "title": "StandardLayer",
+            "type": "string"
+        },
+        "StandardResponseDirectionEnum": {
+            "description": "Direction of a \"Standard Response\" mapping \u2014 which area the requesting message belongs to.",
+            "enum": [
+                "PRE_TRADE",
+                "TRADE",
+                "POST_TRADE"
+            ],
+            "title": "StandardResponseDirectionEnum",
+            "type": "string"
+        },
+        "StandardResponseMapping": {
+            "additionalProperties": false,
+            "description": "One row of a \"Standard Responses for <area> Messages\" table mapping a request message to its appropriate response(s).",
+            "properties": {
+                "appropriate_responses": {
+                    "description": "Free-text appropriate-response cell from the Standard Responses tables.",
+                    "type": "string"
+                },
+                "category_label": {
+                    "description": "Category label as printed in the source table (free text; may include parenthesised sub-categories such as \"Single General Order Handling\").",
+                    "type": "string"
+                },
+                "fix_message": {
+                    "description": "FIX message name with MsgType in parentheses, e.g. AllocationInstruction(35=J).",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "category_label",
+                "fix_message",
+                "appropriate_responses"
+            ],
+            "title": "StandardResponseMapping",
+            "type": "object"
+        },
+        "TenorUnit": {
+            "description": "Time unit used in a FIX Tenor expression.",
+            "enum": [
+                "D",
+                "W",
+                "M",
+                "Y"
+            ],
+            "title": "TenorUnit",
+            "type": "string"
+        },
+        "TimePrecision": {
+            "description": "Time-unit precision for FIX time-bearing datatypes.",
+            "enum": [
+                "SECOND",
+                "MILLISECOND",
+                "MICROSECOND",
+                "NANOSECOND",
+                "PICOSECOND",
+                "DAY"
+            ],
+            "title": "TimePrecision",
+            "type": "string"
+        },
+        "TradeAppendix": {
+            "additionalProperties": false,
+            "description": "Tree-root container for the Trade Appendix \u2014 the spec companion document that publishes the full message- and component-layout tables for every message and component used in the Trade business area, organized into one \"Appendix \u2013 <X> Category\" sub-section per Trade category plus a final \"Appendix \u2013 Common Category\" sub-section covering the layouts of the chapter's common components.",
+            "properties": {
+                "description": {
+                    "description": "Optional preface prose for the Trade Appendix as a whole.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "published_version": {
+                    "description": "Version stamp from the document header.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "publisher": {
+                    "description": "Publishing body of the FIX Latest specification.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "title": {
+                    "description": "Display title.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "trade_appendix_sections": {
+                    "description": "Per-category sub-sections of the Trade Appendix \u2014 one \"Appendix \u2013 <X> Category\" section per Trade category, plus a synthetic \"Common Category\" section that lists layouts of the chapter's common components.",
+                    "items": {
+                        "$ref": "#/$defs/TradeAppendixSection"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "title": "TradeAppendix",
+            "type": "object"
+        },
+        "TradeAppendixSection": {
+            "additionalProperties": false,
+            "description": "One \"Appendix \u2013 <X> Category\" sub-section of the Trade Appendix. Bundles the per-message layout tables (TradeMessageDetail) and per-component layout tables (TradeComponentDetail) for messages and components that belong to one Trade category \u2014 or, for the synthetic \"Common\" section, the layouts of the chapter's common components.",
+            "properties": {
+                "components": {
+                    "description": "Layout tables for the components that belong to the appendix section.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Free-text description.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "messages": {
+                    "description": "Layout tables for the messages that belong to the appendix section. Empty for the \"Common\" section.",
+                    "items": {
+                        "$ref": "#/$defs/TradeMessageDetail"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "title": {
+                    "description": "Section heading exactly as printed in the Trade Appendix (e.g. \"Appendix \u2013 CrossOrders Category\").",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "trade_appendix_category": {
+                    "description": "Identifier for an appendix section \u2014 either the Trade category name as printed in the heading (e.g. \"CrossOrders\", \"MultilegOrders\", \"OrderMassHandling\", \"ProgramTrading\", \"SingleGeneralOrderHandling\") or the literal \"Common\" for the common-components appendix.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "trade_appendix_category"
+            ],
+            "title": "TradeAppendixSection",
+            "type": "object"
+        },
+        "TradeBusinessArea": {
+            "additionalProperties": false,
+            "description": "Tree-root container for the Trade (Orders and Executions) business area of FIX Latest.",
+            "properties": {
+                "components": {
+                    "description": "Area-wide trade components table.",
+                    "items": {
+                        "$ref": "#/$defs/TradeComponentEntry"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "messages": {
+                    "description": "Area-wide trade messages table.",
+                    "items": {
+                        "$ref": "#/$defs/TradeMessageEntry"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "published_version": {
+                    "description": "Version stamp from the document header.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "publisher": {
+                    "description": "Publishing body of the FIX Latest specification.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "referenced_global_components": {
+                    "description": "Names of Global Components from the FIX Latest \"Global Components\" page that are referenced by messages in the containing business area. References instances of the :class:`GlobalComponent` class (declared in fix_base) by name.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "title": {
+                    "description": "Display title.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "trade_area": {
+                    "$ref": "#/$defs/BusinessAreaEnum",
+                    "description": "Identity of the business area the chapter describes."
+                },
+                "trade_category_sections": {
+                    "description": "Per-category sub-sections of the chapter.",
+                    "items": {
+                        "$ref": "#/$defs/TradeCategorySection"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "trade_common_component_details": {
+                    "description": "Per-common-component descriptions from the chapter's final section.",
+                    "items": {
+                        "$ref": "#/$defs/TradeCommonComponentDetail"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "trade_common_components": {
+                    "description": "Common Components declared at the bottom of the chapter.",
+                    "items": {
+                        "$ref": "#/$defs/TradeCommonComponentName"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "trade_components_overview_note": {
+                    "description": "Intro prose of the area-wide Components sub-section.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "trade_diagram_conventions": {
+                    "description": "Sentence describing diagram conventions used in the chapter.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "trade_footnotes": {
+                    "description": "Footnotes attached to the area-wide components table.",
+                    "items": {
+                        "$ref": "#/$defs/TradeComponentTableFootnote"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "trade_introduction": {
+                    "description": "Prose introduction of the chapter.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "trade_message_diagram_template_url": {
+                    "description": "URL of the \"Message Diagram Templates\" page referenced by the chapter introduction.",
+                    "format": "uri",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "trade_messages_overview_note": {
+                    "description": "Intro prose of the area-wide Messages sub-section.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "trade_area"
+            ],
+            "title": "TradeBusinessArea",
+            "type": "object"
+        },
+        "TradeCaptureReportDirectionEnum": {
+            "description": "Direction of a TradeCaptureReport relative to the marketplace.",
+            "enum": [
+                "INBOUND",
+                "OUTBOUND"
+            ],
+            "title": "TradeCaptureReportDirectionEnum",
+            "type": "string"
+        },
+        "TradeCaptureReportIdentifierRoleEnum": {
+            "description": "Roles played by trade-capture-report identifier fields.",
+            "enum": [
+                "TRADE_REPORT_ID",
+                "TRADE_ID",
+                "TRADE_REPORT_REF_ID",
+                "SECONDARY_TRADE_ID"
+            ],
+            "title": "TradeCaptureReportIdentifierRoleEnum",
+            "type": "string"
+        },
+        "TradeCaptureReportIdentifierRule": {
+            "additionalProperties": false,
+            "description": "A rule governing one of the TradeCaptureReport(35=AE) identifier fields.",
+            "properties": {
+                "description": {
+                    "description": "Free-text description.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "identifier_role": {
+                    "$ref": "#/$defs/TradeCaptureReportIdentifierRoleEnum",
+                    "description": "Role of the trade-capture-report identifier field."
+                }
+            },
+            "required": [
+                "identifier_role"
+            ],
+            "title": "TradeCaptureReportIdentifierRule",
+            "type": "object"
+        },
+        "TradeCaptureReportUsage": {
+            "additionalProperties": false,
+            "description": "One documented usage of the TradeCaptureReport(35=AE) message.",
+            "properties": {
+                "description": {
+                    "description": "Free-text description.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "identifier_role": {
+                    "$ref": "#/$defs/TradeCaptureReportIdentifierRoleEnum",
+                    "description": "Role of the trade-capture-report identifier field."
+                },
+                "status_label": {
+                    "description": "Short label for the usage.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "status_label"
+            ],
+            "title": "TradeCaptureReportUsage",
+            "type": "object"
+        },
+        "TradeCaptureReportUsageEnum": {
+            "description": "Documented usages of the TradeCaptureReport(35=AE) message.",
+            "enum": [
+                "RELAY_CONFIRMED_TRADES_TO_NON_PARTICIPANTS",
+                "RELAY_CONFIRMED_TRADES_TO_COUNTERPARTIES",
+                "REPORTING_PRIVATELY_NEGOTIATED_TRADES",
+                "REPORTING_FLOOR_OR_ROUTED_EXECUTIONS",
+                "REQUEST_TRADE_CANCEL_OR_AMENDMENT"
+            ],
+            "title": "TradeCaptureReportUsageEnum",
+            "type": "string"
+        },
+        "TradeCategoryEnum": {
+            "description": "The five message categories of the FIX Latest Trade (Orders and Executions) business area. Subset of MessageCategoryEnum.",
+            "enum": [
+                "SINGLE_GENERAL_ORDER_HANDLING",
+                "ORDER_MASS_HANDLING",
+                "CROSS_ORDER_HANDLING",
+                "MULTILEG_ORDER_HANDLING",
+                "LIST_PROGRAM_BASKET_TRADING"
+            ],
+            "title": "TradeCategoryEnum",
+            "type": "string"
+        },
+        "TradeCategorySection": {
+            "additionalProperties": false,
+            "description": "A per-category sub-section of the Trade chapter.",
+            "properties": {
+                "category": {
+                    "$ref": "#/$defs/TradeCategoryEnum",
+                    "description": "Message category."
+                },
+                "description": {
+                    "description": "Free-text description.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "messages": {
+                    "description": "Messages defined in this category.",
+                    "items": {
+                        "$ref": "#/$defs/TradeMessageDetail"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "title": {
+                    "description": "Display title.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "trade_category_background": {
+                    "description": "Optional \"Background\" prose preceding a category's message descriptions (e.g. the Cross Order Handling chapter's cross-trade overview).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "trade_category_components_note": {
+                    "description": "Intro prose of a category's Components sub-section.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "trade_category_specific_components": {
+                    "description": "Components used exclusively by messages within a single category.",
+                    "items": {
+                        "$ref": "#/$defs/TradeComponentDetail"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "trade_fragmentation_entries": {
+                    "description": "Rows of the fragmentation table listed in a Trade category that documents which messages may be fragmented and which repeating group is fragmentable (currently published only for List/Program/Basket Trading).",
+                    "items": {
+                        "$ref": "#/$defs/TradeFragmentationEntry"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "trade_message_groups": {
+                    "description": "Purpose-grouped message descriptions inside a category.",
+                    "items": {
+                        "$ref": "#/$defs/TradeMessageGroup"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "category"
+            ],
+            "title": "TradeCategorySection",
+            "type": "object"
+        },
+        "TradeCommonComponentDetail": {
+            "additionalProperties": false,
+            "description": "Per-common-component description from the chapter's final \"Common Components\" section.",
+            "properties": {
+                "component_name": {
+                    "$ref": "#/$defs/TradeCommonComponentName",
+                    "description": "PascalCase name of the component."
+                },
+                "description": {
+                    "description": "Description of the common component's purpose.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "trade_layout_rows": {
+                    "description": "Ordered rows of the layout table published for the message or component in the Trade Appendix.",
+                    "items": {
+                        "$ref": "#/$defs/TradeLayoutRow"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "trade_layout_url": {
+                    "description": "URL of the detailed message- or component-layout in the Trade Appendix.",
+                    "format": "uri",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "trade_repetition": {
+                    "$ref": "#/$defs/TradeComponentRepetition",
+                    "description": "REPEATING or NON_REPEATING."
+                }
+            },
+            "required": [
+                "component_name"
+            ],
+            "title": "TradeCommonComponentDetail",
+            "type": "object"
+        },
+        "TradeCommonComponentName": {
+            "description": "Names of the Common Components declared at the bottom of the Trade business-area chapter \u2014 components used by messages across more than one Trade category.",
+            "enum": [
+                "DisclosureInstructionGrp",
+                "DiscretionInstructions",
+                "PegInstructions",
+                "PreAllocGrp",
+                "StrategyParametersGrp",
+                "TriggeringInstruction"
+            ],
+            "title": "TradeCommonComponentName",
+            "type": "string"
+        },
+        "TradeComponentDetail": {
+            "additionalProperties": false,
+            "description": "Per-category component description.",
+            "properties": {
+                "component_name": {
+                    "description": "PascalCase name of the component.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Description of the component's purpose.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "trade_layout_rows": {
+                    "description": "Ordered rows of the layout table published for the message or component in the Trade Appendix.",
+                    "items": {
+                        "$ref": "#/$defs/TradeLayoutRow"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "trade_layout_url": {
+                    "description": "URL of the detailed message- or component-layout in the Trade Appendix.",
+                    "format": "uri",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "trade_repetition": {
+                    "$ref": "#/$defs/TradeComponentRepetition",
+                    "description": "REPEATING or NON_REPEATING."
+                }
+            },
+            "required": [
+                "component_name"
+            ],
+            "title": "TradeComponentDetail",
+            "type": "object"
+        },
+        "TradeComponentEntry": {
+            "additionalProperties": false,
+            "description": "One row of the area-wide trade components table.",
+            "properties": {
+                "category": {
+                    "description": "Category the component is listed under. Common Components are listed under the synthetic \"Common Components\" value.",
+                    "type": "string"
+                },
+                "component_name": {
+                    "description": "PascalCase name of the component.",
+                    "type": "string"
+                },
+                "trade_footnote_number": {
+                    "description": "Footnote indicator on a component-table row.",
+                    "maximum": 25,
+                    "minimum": 1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "trade_is_common": {
+                    "description": "True when the component is declared as a Common Component.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "trade_repetition": {
+                    "$ref": "#/$defs/TradeComponentRepetition",
+                    "description": "REPEATING or NON_REPEATING."
+                }
+            },
+            "required": [
+                "component_name",
+                "trade_repetition",
+                "category"
+            ],
+            "title": "TradeComponentEntry",
+            "type": "object"
+        },
+        "TradeComponentRepetition": {
+            "description": "Whether a FIX component is repeating or non-repeating.",
+            "enum": [
+                "REPEATING",
+                "NON_REPEATING"
+            ],
+            "title": "TradeComponentRepetition",
+            "type": "string"
+        },
+        "TradeComponentTableFootnote": {
+            "additionalProperties": false,
+            "description": "A footnote on the area-wide components table.",
+            "properties": {
+                "component_name": {
+                    "description": "PascalCase name of the component.",
+                    "type": "string"
+                },
+                "trade_footnote_number": {
+                    "description": "Footnote indicator on a component-table row.",
+                    "maximum": 25,
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "trade_footnote_text": {
+                    "description": "Footnote text.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "trade_introduced_in": {
+                    "description": "FIX version or Extension Pack that introduced the component.",
+                    "type": "string"
+                },
+                "trade_sole_category": {
+                    "$ref": "#/$defs/TradeCategoryEnum",
+                    "description": "Single category that actually uses the component."
+                }
+            },
+            "required": [
+                "trade_footnote_number",
+                "component_name",
+                "trade_introduced_in",
+                "trade_sole_category"
+            ],
+            "title": "TradeComponentTableFootnote",
+            "type": "object"
+        },
+        "TradeFragmentationEntry": {
+            "additionalProperties": false,
+            "description": "One row of a fragmentation table published in a Trade category (currently only List/Program/Basket Trading) identifying a message that may be fragmented, the \"Total Entries\" field used to indicate the total count across all fragments of the batch, and the verbatim description of the repeating group that may be fragmented.",
+            "properties": {
+                "trade_fragmentation_message": {
+                    "description": "Message that may be fragmented \u2014 verbatim text from the Message column of the fragmentation table (e.g. \"NewOrderList(35=E)\").",
+                    "type": "string"
+                },
+                "trade_fragmentation_repeating_group": {
+                    "description": "Verbatim description of the repeating group that may be fragmented \u2014 from the table's third column.",
+                    "type": "string"
+                },
+                "trade_fragmentation_total_entries_field": {
+                    "description": "Name and tag of the \"Total Entries\" field used to indicate the total count across all fragments of the batch (e.g. \"TotNoOrders(68)\").",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "trade_fragmentation_message",
+                "trade_fragmentation_total_entries_field",
+                "trade_fragmentation_repeating_group"
+            ],
+            "title": "TradeFragmentationEntry",
+            "type": "object"
+        },
+        "TradeLayoutRow": {
+            "additionalProperties": false,
+            "description": "One row of the layout table published in the Trade Appendix for a message or component. Each row identifies either a FIX field (by tag number + name) or an embedded component (by name), records whether it is required, carries the Description-column text, and flags whether it appears as a nested child of a repeating-group counter.",
+            "properties": {
+                "trade_layout_description": {
+                    "description": "Free-text content of the Description column of the row (may be empty).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "trade_layout_element_name": {
+                    "description": "Element name as printed in the Name column \u2014 either the FIX field name or the component name.",
+                    "type": "string"
+                },
+                "trade_layout_field_tag": {
+                    "description": "FIX tag number drawn from the Tag column when the row is a field (i.e. layout_kind = FIELD). Absent for COMPONENT rows.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "trade_layout_kind": {
+                    "$ref": "#/$defs/TradeLayoutRowKindEnum",
+                    "description": "Row kind \u2014 either a FIX field (numeric Tag) or an embedded component (literal \"Component\" in the Tag column of the source table)."
+                },
+                "trade_layout_nested": {
+                    "description": "Whether the row appears nested under a repeating-group counter (i.e. its Tag column is prefixed with the \"\u2192\" arrow in the source table).",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "trade_layout_required": {
+                    "description": "Whether the field or component is required, as printed in the Req'd column of the source layout table (\"Y\" / \"N\").",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "trade_layout_kind",
+                "trade_layout_element_name"
+            ],
+            "title": "TradeLayoutRow",
+            "type": "object"
+        },
+        "TradeLayoutRowKindEnum": {
+            "description": "Discriminator for a row in a Trade message- or component-layout table: either a FIX field (numeric Tag column) or an embedded component (literal \"Component\" in the Tag column).",
+            "enum": [
+                "FIELD",
+                "COMPONENT"
+            ],
+            "title": "TradeLayoutRowKindEnum",
+            "type": "string"
+        },
+        "TradeMessageDetail": {
+            "additionalProperties": false,
+            "description": "Per-category message description.",
+            "properties": {
+                "description": {
+                    "description": "Description of the message's purpose and usage.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "message_name": {
+                    "description": "PascalCase name of the message.",
+                    "type": "string"
+                },
+                "msg_type": {
+                    "description": "MsgType(35) wire value identifying the message.",
+                    "pattern": "^[A-Za-z0-9]{1,3}$",
+                    "type": "string"
+                },
+                "trade_layout_rows": {
+                    "description": "Ordered rows of the layout table published for the message or component in the Trade Appendix.",
+                    "items": {
+                        "$ref": "#/$defs/TradeLayoutRow"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "trade_layout_url": {
+                    "description": "URL of the detailed message- or component-layout in the Trade Appendix.",
+                    "format": "uri",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "msg_type",
+                "message_name"
+            ],
+            "title": "TradeMessageDetail",
+            "type": "object"
+        },
+        "TradeMessageEntry": {
+            "additionalProperties": false,
+            "description": "One row of the area-wide trade messages table.",
+            "properties": {
+                "category": {
+                    "$ref": "#/$defs/TradeCategoryEnum",
+                    "description": "Message category."
+                },
+                "message_name": {
+                    "description": "PascalCase name of the message.",
+                    "type": "string"
+                },
+                "msg_type": {
+                    "description": "MsgType(35) wire value identifying the message.",
+                    "pattern": "^[A-Za-z0-9]{1,3}$",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "msg_type",
+                "message_name",
+                "category"
+            ],
+            "title": "TradeMessageEntry",
+            "type": "object"
+        },
+        "TradeMessageGroup": {
+            "additionalProperties": false,
+            "description": "Purpose-grouped sub-section inside a category's Messages sub-section (e.g. \"New Order Single\", \"Execution Reports\", \"Order Cancel Requests\" under Single/General Order Handling).",
+            "properties": {
+                "description": {
+                    "description": "Description of the purpose-group's role within the category.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "messages": {
+                    "description": "Messages bundled under the purpose-group heading.",
+                    "items": {
+                        "$ref": "#/$defs/TradeMessageDetail"
+                    },
+                    "type": "array"
+                },
+                "trade_group_title": {
+                    "description": "Purpose-group heading inside a category's Messages sub-section.",
+                    "type": "string"
+                },
+                "trade_ord_status_precedence_entries": {
+                    "description": "Rows of the OrdStatus(39) precedence table that appears inside the Execution Reports purpose-group of the Single/General Order Handling category.",
+                    "items": {
+                        "$ref": "#/$defs/TradeOrdStatusPrecedenceEntry"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "trade_group_title",
+                "messages"
+            ],
+            "title": "TradeMessageGroup",
+            "type": "object"
+        },
+        "TradeOrdStatusPrecedenceEntry": {
+            "additionalProperties": false,
+            "description": "One row of the OrdStatus(39) precedence table published in the Execution Reports purpose-group of the Single/General Order Handling category. Defines the precedence ranking used to resolve simultaneous state transitions on an order, paired with the human-readable OrdStatus label and its descriptive prose.",
+            "properties": {
+                "description": {
+                    "description": "Verbatim OrdStatus description from the table.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "trade_ord_status_label": {
+                    "description": "Human-readable OrdStatus(39) label as printed in the Execution Reports precedence table (e.g. \"Pending Cancel\", \"Done for Day\", \"Filled\").",
+                    "type": "string"
+                },
+                "trade_ord_status_precedence": {
+                    "description": "Precedence rank (1 = lowest, higher numbers take precedence) of an OrdStatus(39) value used to resolve simultaneous state transitions on an order.",
+                    "maximum": 11,
+                    "minimum": 1,
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "trade_ord_status_precedence",
+                "trade_ord_status_label"
+            ],
+            "title": "TradeOrdStatusPrecedenceEntry",
+            "type": "object"
+        },
+        "UDFTagRange": {
+            "additionalProperties": false,
+            "description": "A reserved range of tag numbers for User Defined Fields.",
+            "properties": {
+                "description": {
+                    "description": "Notes on the range's intended use.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "high_tag": {
+                    "description": "Upper bound of the tag range. Required for all ``usage`` values except ``GTC_RESERVED`` (which is open-ended, 50000+). Downstream validators should enforce this; the constraint cannot be expressed here because LinkML's ``equals_string`` operator only accepts string-ranged slots and ``usage`` is an enum.",
+                    "minimum": 1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "low_tag": {
+                    "description": "Inclusive lower bound of the range.",
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "range_id": {
+                    "description": "Identifier of the range.",
+                    "type": "string"
+                },
+                "requires_registration": {
+                    "description": "True when tags in the range must be registered.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "usage": {
+                    "$ref": "#/$defs/UDFTagRangeUsage",
+                    "description": "Usage policy assigned to the range."
+                }
+            },
+            "required": [
+                "range_id",
+                "low_tag",
+                "usage"
+            ],
+            "title": "UDFTagRange",
+            "type": "object"
+        },
+        "UDFTagRangeUsage": {
+            "description": "Usage policy assigned to a reserved range of UDF tag numbers.",
+            "enum": [
+                "INTER_FIRM_REGISTERED",
+                "INTER_FIRM_BILATERAL",
+                "GTC_REGULATORY_LEGACY",
+                "WIP_CHINA",
+                "INTERNAL_FIRM",
+                "GTC_OTC_DERIVATIVES",
+                "GTC_RESERVED"
+            ],
+            "title": "UDFTagRangeUsage",
+            "type": "string"
+        }
+    },
+    "$id": "https://w3id.org/lmodel/fix-protocol",
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": true,
+    "description": "Container for the structural elements of the FIX Latest Introduction section. Tree root for instance data.",
+    "metamodel_version": "1.11.0",
+    "properties": {
+        "about_fpl": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/FIXProtocolLimited"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "description": "Information about FIX Protocol Limited."
+        },
+        "business_areas": {
+            "description": "Top-level business areas of FIX Latest.",
+            "items": {
+                "$ref": "#/$defs/BusinessArea"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "datatypes": {
+            "description": "FIX Protocol datatype definitions and value spaces.",
+            "items": {
+                "$ref": "#/$defs/FIXDatatype"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "extension_packs": {
+            "description": "The list of Extension Packs.",
+            "items": {
+                "$ref": "#/$defs/ExtensionPack"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "global_components": {
+            "description": "Global Components defined in the Introduction.",
+            "items": {
+                "$ref": "#/$defs/GlobalComponent"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "introduction_text": {
+            "description": "The Introduction prose section.",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "preface": {
+            "description": "The Preface text of the specification.",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "product_coverage": {
+            "description": "Product/asset classes covered by FIX at the application layer.",
+            "items": {
+                "$ref": "#/$defs/ProductCoverage"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "published_date": {
+            "description": "Publication date of the document.",
+            "format": "date",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "published_version": {
+            "description": "Version stamp from the document header.",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "publisher": {
+            "description": "Publishing body of the FIX Latest specification.",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "standards": {
+            "description": "The FIX Family of Standards.",
+            "items": {
+                "$ref": "#/$defs/FIXFamilyStandard"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "udf_ranges": {
+            "description": "Reserved ranges of user-defined-field tag numbers.",
+            "items": {
+                "$ref": "#/$defs/UDFTagRange"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "utc_leap_seconds_note": {
+            "description": "Prose note on UTC leap-second handling for UTCTimestamp.",
+            "type": [
+                "string",
+                "null"
+            ]
+        }
+    },
+    "required": [
+        "area"
+    ],
+    "title": "fix-protocol",
+    "type": "object",
+    "version": null
+}

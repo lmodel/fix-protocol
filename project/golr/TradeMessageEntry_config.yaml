@@ -1,0 +1,16 @@
+# metamodel_version: 1.11.0id: TradeMessageEntry
+schema_generating: true
+description: One row of the area-wide trade messages table.
+display_name: TradeMessageEntry
+document_category: TradeMessageEntry
+weight: 20
+fields:
+- id: msg_type
+  description: MsgType(35) wire value identifying the message.
+  display_name: TradeMessageEntry_msg_type
+- id: message_name
+  description: PascalCase name of the message.
+  display_name: TradeMessageEntry_message_name
+- id: category
+  description: Message category.
+  display_name: TradeMessageEntry_category

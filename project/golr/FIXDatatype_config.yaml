@@ -1,0 +1,52 @@
+# metamodel_version: 1.11.0id: FIXDatatype
+schema_generating: true
+description: A FIX Protocol datatype.
+display_name: FIXDatatype
+document_category: FIXDatatype
+weight: 20
+fields:
+- id: datatype_name
+  description: Canonical FIX datatype name.
+  display_name: FIXDatatype_datatype_name
+- id: definition
+  description: Prose definition of the datatype.
+  display_name: FIXDatatype_definition
+- id: value_space
+  description: ISO/IEC 11404:2007 GPD value space assigned to the datatype.
+  display_name: value_space
+  cardinality: multi
+- id: value_space_notes
+  description: Additional value-space constraints.
+  display_name: value_space_notes
+- id: deprecated_for_new_designs
+  description: True for datatypes not permitted in new designs.
+  display_name: deprecated_for_new_designs
+- id: external_code_set
+  description: Reference standard for datatypes backed by an external code set.
+  display_name: external_code_set
+- id: time_unit
+  description: Time-unit precision for time-bearing datatypes.
+  display_name: time_unit
+  cardinality: multi
+- id: radix
+  description: Numeric radix for scaled value-space datatypes.
+  display_name: radix
+- id: repertoire
+  description: Character repertoire for character/string datatypes.
+  display_name: repertoire
+- id: index_lower_bound
+  description: Inclusive lower bound of a bounded-array index.
+  display_name: index_lower_bound
+- id: index_upper_bound
+  description: Inclusive upper bound of a bounded-array index.
+  display_name: index_upper_bound
+- id: minimum_value
+  description: Inclusive lower bound on the integer value space.
+  display_name: minimum_value
+- id: maximum_value
+  description: Inclusive upper bound on the integer value space.
+  display_name: maximum_value
+- id: footnote_numbers
+  description: Footnote indicators attached to a datatype row.
+  display_name: footnote_numbers
+  cardinality: multi

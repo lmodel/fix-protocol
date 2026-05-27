@@ -1,0 +1,40 @@
+# metamodel_version: 1.11.0id: InfrastructureCategorySection
+schema_generating: true
+description: "A \"Category \u2013 <name>\" sub-section of the Infrastructure chapter."
+display_name: InfrastructureCategorySection
+document_category: InfrastructureCategorySection
+weight: 20
+fields:
+- id: category
+  description: Message category.
+  display_name: InfrastructureCategorySection_category
+- id: title
+  description: Display title.
+  display_name: title
+- id: description
+  description: Free-text description.
+  display_name: description
+- id: category_components_note
+  description: Intro prose of a category's Components sub-section.
+  display_name: category_components_note
+- id: messages
+  description: Messages defined within the enclosing element.
+  display_name: InfrastructureCategorySection_messages
+  cardinality: multi
+- id: infra_category_specific_components
+  description: Per-component descriptions appearing in a category's Components sub-section.
+  display_name: infra_category_specific_components
+  cardinality: multi
+- id: network_status_scenarios
+  description: Network Status Communication usage scenarios.
+  display_name: network_status_scenarios
+  cardinality: multi
+- id: network_request_types_referenced
+  description: NetworkRequestType(935) values explicitly cited in the Network Status
+    Communication category prose.
+  display_name: network_request_types_referenced
+  cardinality: multi
+- id: application_message_report_uses
+  description: Documented uses of ApplicationMessageReport(35=BY).
+  display_name: application_message_report_uses
+  cardinality: multi

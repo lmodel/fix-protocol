@@ -1,0 +1,21 @@
+#curie_map:
+#  common_domain_model: https://w3id.org/lmodel/common-domain-model/
+#  fix_protocol: https://w3id.org/lmodel/fix-protocol/
+#  semapv: https://w3id.org/semapv/vocab/
+#  skos: http://www.w3.org/2004/02/skos/core#
+#mapping_set_id: https://w3id.org/lmodel/fix-protocol/mappings/fix-protocol-to-common-domain-model.sssom.tsv
+#mapping_set_description: LLM-generated mappings from the FIX Protocol LinkML schema to the ISDA Common Domain Model (CDM) LinkML port. Targets are largely in the Post-Trade business area covering allocations, registrations, positions, collateral, settlement, and trade-capture lifecycle.
+#mapping_set_version: 0.1.0
+#license: https://creativecommons.org/licenses/by/4.0/
+#mapping_date: 2026-05-27
+subject_id	subject_label	predicate_id	object_id	object_label	mapping_justification	confidence	comment
+fix_protocol:AllocationStatusEnum	AllocationStatusEnum	skos:closeMatch	common_domain_model:WorkflowStatusEnum	WorkflowStatusEnum	semapv:LLMBasedMatching	0.7	Allocation workflow states align with CDM workflow status values.
+fix_protocol:AllocationTransactionTypeEnum	AllocationTransactionTypeEnum	skos:relatedMatch	common_domain_model:ActionEnum	ActionEnum	semapv:LLMBasedMatching	0.6	Transaction-type discriminators (new, cancel, replace) align with CDM business-event action codes.
+fix_protocol:CollateralAssignmentPurposeEnum	CollateralAssignmentPurposeEnum	skos:relatedMatch	common_domain_model:CollateralTypeEnum	CollateralTypeEnum	semapv:LLMBasedMatching	0.5	CDM enum classifies by collateral type; FIX enum classifies by assignment purpose; partial overlap.
+fix_protocol:CollateralManagementUsageEnum	CollateralManagementUsageEnum	skos:relatedMatch	common_domain_model:CollateralMarginTypeEnum	CollateralMarginTypeEnum	semapv:LLMBasedMatching	0.5	Collateral message usages overlap with CDM margin-type purposes.
+fix_protocol:FIXProtocolLimited	FIXProtocolLimited	skos:relatedMatch	common_domain_model:Organization	Organization	semapv:LLMBasedMatching	0.65	FIX Protocol Limited is an organization in the CDM Party static-data sense.
+fix_protocol:PositionMaintenanceActionEnum	PositionMaintenanceActionEnum	skos:relatedMatch	common_domain_model:PositionStatusEnum	PositionStatusEnum	semapv:LLMBasedMatching	0.55	Position-maintenance lifecycle actions correspond to CDM position-status transitions.
+fix_protocol:RegistrationStatusEnum	RegistrationStatusEnum	skos:relatedMatch	common_domain_model:WorkflowStatusEnum	WorkflowStatusEnum	semapv:LLMBasedMatching	0.6	Registration status maps to a subset of CDM workflow-status values.
+fix_protocol:SettlementInstructionModeEnum	SettlementInstructionModeEnum	skos:relatedMatch	common_domain_model:DeliveryMethodEnum	DeliveryMethodEnum	semapv:LLMBasedMatching	0.55	Settlement delivery-vs-payment options overlap with CDM delivery methods.
+fix_protocol:TradeCaptureReportIdentifierRule	TradeCaptureReportIdentifierRule	skos:relatedMatch	common_domain_model:Identifier	Identifier	semapv:LLMBasedMatching	0.65	Both express trade-identifier semantics (UTI / USI scope).
+fix_protocol:TradeCaptureReportUsage	TradeCaptureReportUsage	skos:relatedMatch	common_domain_model:BusinessEvent	BusinessEvent	semapv:LLMBasedMatching	0.55	TradeCaptureReport usages correspond to CDM business-event types (new, correct, cancel).

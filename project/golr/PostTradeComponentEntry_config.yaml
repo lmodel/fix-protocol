@@ -1,0 +1,23 @@
+# metamodel_version: 1.11.0id: PostTradeComponentEntry
+schema_generating: true
+description: One row of the area-wide "Components for Post-Trade Business Area" table.
+display_name: PostTradeComponentEntry
+document_category: PostTradeComponentEntry
+weight: 20
+fields:
+- id: component_name
+  description: PascalCase name of the component.
+  display_name: PostTradeComponentEntry_component_name
+- id: repetition
+  description: REPEATING or NON_REPEATING.
+  display_name: PostTradeComponentEntry_repetition
+- id: category
+  description: Category label as printed in the component table; the token "Common
+    Components" is allowed in addition to the PostTradeCategoryEnum values.
+  display_name: PostTradeComponentEntry_category
+- id: is_common
+  description: True when the component is declared as a Common Component.
+  display_name: PostTradeComponentEntry_is_common
+- id: footnote_number
+  description: Footnote indicator on a component-table row.
+  display_name: footnote_number

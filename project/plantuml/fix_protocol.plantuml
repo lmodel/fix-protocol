@@ -1,0 +1,565 @@
+@startuml
+skinparam nodesep 10
+hide circle
+hide empty members
+class "FIXIntroduction" [[{Container for the structural elements of the FIX Latest Introduction section. Tree root for instance data.}]] {
+    {field} published_version : string  
+    {field} published_date : date  
+    {field} publisher : string  
+    {field} preface : string  
+    {field} introduction_text : string  
+    {field} utc_leap_seconds_note : string  
+    {field} product_coverage : ProductCoverage  [0..*]
+}
+class "UDFTagRange" [[{A reserved range of tag numbers for User Defined Fields.}]] {
+    {field} range_id : string  
+    {field} low_tag : TagNumber  
+    {field} high_tag : TagNumber  
+    {field} usage : UDFTagRangeUsage  
+    {field} description : string  
+    {field} requires_registration : boolean  
+}
+"FIXIntroduction" *--> "0..*" "UDFTagRange" : "udf_ranges"
+class "TradeMessageGroup" [[{Purpose-grouped sub-section inside a category's Messages sub-section (e.g. "New Order Single", "Execution Reports", "Order Cancel Requests" under Single/General Order Handling).}]] {
+    {field} trade_group_title : string  
+    {field} description : string  
+}
+class "TradeOrdStatusPrecedenceEntry" [[{One row of the OrdStatus(39) precedence table published in the Execution Reports purpose-group of the Single/General Order Handling category. Defines the precedence ranking used to resolve simultaneous state transitions on an order, paired with the human-readable OrdStatus label and its descriptive prose.}]] {
+    {field} trade_ord_status_precedence : integer  
+    {field} trade_ord_status_label : string  
+    {field} description : string  
+}
+"TradeMessageGroup" *--> "0..*" "TradeOrdStatusPrecedenceEntry" : "trade_ord_status_precedence_entries"
+class "TradeMessageDetail" [[{Per-category message description.}]] {
+    {field} msg_type : string  
+    {field} message_name : string  
+    {field} description : string  
+    {field} trade_layout_url : uri  
+}
+class "TradeCategorySection" [[{A per-category sub-section of the Trade chapter.}]] {
+    {field} category : TradeCategoryEnum  
+    {field} title : string  
+    {field} description : string  
+    {field} trade_category_background : string  
+    {field} trade_category_components_note : string  
+}
+"TradeMessageGroup" *--> "1..*" "TradeMessageDetail" : "messages"
+"TradeCategorySection" *--> "0..*" "TradeMessageGroup" : "trade_message_groups"
+class "TradeBusinessArea" [[{Tree-root container for the Trade (Orders and Executions) business area of FIX Latest.}]] {
+    {field} trade_area : BusinessAreaEnum  
+    {field} title : string  
+    {field} published_version : string  
+    {field} publisher : string  
+    {field} trade_introduction : string  
+    {field} trade_diagram_conventions : string  
+    {field} trade_message_diagram_template_url : uri  
+    {field} trade_messages_overview_note : string  
+    {field} trade_components_overview_note : string  
+    {field} trade_common_components : TradeCommonComponentName  [0..*]
+}
+class "TradeMessageEntry" [[{One row of the area-wide trade messages table.}]] {
+    {field} msg_type : string  
+    {field} message_name : string  
+    {field} category : TradeCategoryEnum  
+}
+"TradeBusinessArea" *--> "0..*" "TradeMessageEntry" : "messages"
+class "TradeLayoutRow" [[{One row of the layout table published in the Trade Appendix for a message or component. Each row identifies either a FIX field (by tag number + name) or an embedded component (by name), records whether it is required, carries the Description-column text, and flags whether it appears as a nested child of a repeating-group counter.}]] {
+    {field} trade_layout_kind : TradeLayoutRowKindEnum  
+    {field} trade_layout_field_tag : integer  
+    {field} trade_layout_element_name : string  
+    {field} trade_layout_required : boolean  
+    {field} trade_layout_description : string  
+    {field} trade_layout_nested : boolean  
+}
+class "TradeAppendixSection" [[{One "Appendix – <X> Category" sub-section of the Trade Appendix. Bundles the per-message layout tables (TradeMessageDetail) and per-component layout tables (TradeComponentDetail) for messages and components that belong to one Trade category — or, for the synthetic "Common" section, the layouts of the chapter's common components.}]] {
+    {field} trade_appendix_category : string  
+    {field} title : string  
+    {field} description : string  
+}
+"TradeMessageDetail" *--> "0..*" "TradeLayoutRow" : "trade_layout_rows"
+"TradeAppendixSection" *--> "0..*" "TradeMessageDetail" : "messages"
+"TradeCategorySection" *--> "0..*" "TradeMessageDetail" : "messages"
+class "TradeComponentDetail" [[{Per-category component description.}]] {
+    {field} component_name : string  
+    {field} trade_repetition : TradeComponentRepetition  
+    {field} description : string  
+    {field} trade_layout_url : uri  
+}
+class "TradeCommonComponentDetail" [[{Per-common-component description from the chapter's final "Common Components" section.}]] {
+    {field} component_name : TradeCommonComponentName  
+    {field} trade_repetition : TradeComponentRepetition  
+    {field} description : string  
+    {field} trade_layout_url : uri  
+}
+"TradeComponentDetail" *--> "0..*" "TradeLayoutRow" : "trade_layout_rows"
+"TradeCommonComponentDetail" *--> "0..*" "TradeLayoutRow" : "trade_layout_rows"
+class "TradeFragmentationEntry" [[{One row of a fragmentation table published in a Trade category (currently only List/Program/Basket Trading) identifying a message that may be fragmented, the "Total Entries" field used to indicate the total count across all fragments of the batch, and the verbatim description of the repeating group that may be fragmented.}]] {
+    {field} trade_fragmentation_message : string  
+    {field} trade_fragmentation_total_entries_field : string  
+    {field} trade_fragmentation_repeating_group : string  
+}
+"TradeCategorySection" *--> "0..*" "TradeFragmentationEntry" : "trade_fragmentation_entries"
+class "TradeComponentTableFootnote" [[{A footnote on the area-wide components table.}]] {
+    {field} trade_footnote_number : integer  
+    {field} component_name : string  
+    {field} trade_introduced_in : string  
+    {field} trade_sole_category : TradeCategoryEnum  
+    {field} trade_footnote_text : string  
+}
+"TradeBusinessArea" *--> "0..*" "TradeComponentTableFootnote" : "trade_footnotes"
+class "TradeComponentEntry" [[{One row of the area-wide trade components table.}]] {
+    {field} component_name : string  
+    {field} trade_repetition : TradeComponentRepetition  
+    {field} category : string  
+    {field} trade_is_common : boolean  
+    {field} trade_footnote_number : integer  
+}
+"TradeBusinessArea" *--> "0..*" "TradeComponentEntry" : "components"
+"TradeAppendixSection" --> "0..*" "TradeComponentDetail" : "components"
+"TradeCategorySection" *--> "0..*" "TradeComponentDetail" : "trade_category_specific_components"
+"TradeBusinessArea" *--> "0..*" "TradeCommonComponentDetail" : "trade_common_component_details"
+"TradeBusinessArea" *--> "0..*" "TradeCategorySection" : "trade_category_sections"
+class "PostTradeCategorySection" [[{A "Category – <name>" sub-section of the Post-Trade chapter.}]] {
+    {field} category : PostTradeCategoryEnum  
+    {field} title : string  
+    {field} description : string  
+    {field} category_components_note : string  
+    {field} allocation_scenarios : AllocationScenarioEnum  [0..*]
+    {field} allocation_roles : AllocationRoleEnum  [0..*]
+    {field} post_trade_allocation_pricing_methods : PostTradeAllocationPricingMethodEnum  [0..*]
+    {field} clearing_services_for_position_management : ClearingServiceForPositionManagementEnum  [0..*]
+    {field} collateral_management_usages : CollateralManagementUsageEnum  [0..*]
+    {field} collateral_assignment_purposes : CollateralAssignmentPurposeEnum  [0..*]
+}
+class "TradeCaptureReportUsage" [[{One documented usage of the TradeCaptureReport(35=AE) message.}]] {
+    {field} status_label : string  
+    {field} description : string  
+    {field} identifier_role : TradeCaptureReportIdentifierRoleEnum  
+}
+"PostTradeCategorySection" *--> "0..*" "TradeCaptureReportUsage" : "trade_capture_report_usages"
+class "TradeCaptureReportIdentifierRule" [[{A rule governing one of the TradeCaptureReport(35=AE) identifier fields.}]] {
+    {field} identifier_role : TradeCaptureReportIdentifierRoleEnum  
+    {field} description : string  
+}
+"PostTradeCategorySection" *--> "0..*" "TradeCaptureReportIdentifierRule" : "trade_capture_report_identifier_rules"
+class "GlobalComponent" [[{A component shared by messages of two or more business areas.}]] {
+    {field} component_group : ComponentGroup  
+    {field} applies_to_instrument : boolean  
+    {field} applies_to_leg : boolean  
+    {field} applies_to_underlying : boolean  
+    {field} conceptually_identical_to : string  [0..*]
+    {field} gc_id : integer  
+    {field} gc_referenced_in : GlobalComponentBusinessAreaEnum  [0..*]
+    {field} scope : ComponentScope  
+    {field} component_name(i) : string  
+    {field} description(i) : string  
+    {field} is_repeating_group(i) : boolean  
+}
+"TradeBusinessArea" --> "0..*" "GlobalComponent" : "referenced_global_components"
+class "TradeAppendix" [[{Tree-root container for the Trade Appendix — the spec companion document that publishes the full message- and component-layout tables for every message and component used in the Trade business area, organized into one "Appendix – <X> Category" sub-section per Trade category plus a final "Appendix – Common Category" sub-section covering the layouts of the chapter's common components.}]] {
+    {field} title : string  
+    {field} published_version : string  
+    {field} publisher : string  
+    {field} description : string  
+}
+"TradeAppendix" *--> "0..*" "TradeAppendixSection" : "trade_appendix_sections"
+class "InfrastructureBusinessArea" [[{Tree-root container for the Infrastructure business area of FIX Latest.}]] {
+    {field} area : BusinessAreaEnum  
+    {field} title : string  
+    {field} published_version : string  
+    {field} publisher : string  
+    {field} infra_introduction : string  
+    {field} diagram_conventions : string  
+    {field} infra_common_components : InfrastructureComponentName  [0..*]
+    {field} messages_overview_note : string  
+    {field} components_overview_note : string  
+}
+class "StandardResponseMapping" [[{One row of a "Standard Responses for <area> Messages" table mapping a request message to its appropriate response(s).}]] {
+    {field} category_label : string  
+    {field} fix_message : string  
+    {field} appropriate_responses : string  
+}
+"InfrastructureBusinessArea" *--> "0..*" "StandardResponseMapping" : "standard_responses_post_trade"
+"InfrastructureBusinessArea" *--> "0..*" "StandardResponseMapping" : "standard_responses_pre_trade"
+"InfrastructureBusinessArea" *--> "0..*" "StandardResponseMapping" : "standard_responses_trade"
+class "RegistrationStatusDescription" [[{One row of the RegistStatus(506) value/description table.}]] {
+    {field} status_code : string  
+    {field} status_label : string  
+    {field} description : string  
+}
+"PostTradeCategorySection" *--> "0..*" "RegistrationStatusDescription" : "registration_status_descriptions"
+class "PreTradeBusinessArea" [[{Tree-root container for the Pre-Trade business area of FIX Latest.}]] {
+    {field} area : BusinessAreaEnum  
+    {field} title : string  
+    {field} published_version : string  
+    {field} publisher : string  
+    {field} introduction : string  
+    {field} diagram_conventions : string  
+    {field} messages_overview_note : string  
+    {field} components_overview_note : string  
+    {field} common_components : PreTradeCommonComponentName  [0..*]
+}
+class "PreTradeMessageEntry" [[{One row of the area-wide pre-trade messages table.}]] {
+    {field} msg_type : string  
+    {field} message_name : string  
+    {field} category : PreTradeCategoryEnum  
+}
+"PreTradeBusinessArea" *--> "0..*" "PreTradeMessageEntry" : "messages"
+class "PreTradeMessageDetail" [[{Per-category message description.}]] {
+    {field} msg_type : string  
+    {field} message_name : string  
+    {field} description : string  
+    {field} layout_url : uri  
+}
+class "PreTradeLayoutRow" [[{One row of the layout table published in the Pre-Trade Appendix for a message or component. Each row identifies either a FIX field (by tag number + name) or an embedded component (by name), records whether it is required, carries the Description-column text, and flags whether it appears as a nested child of a repeating-group counter.}]] {
+    {field} pre_layout_kind : PreTradeLayoutRowKindEnum  
+    {field} pre_layout_field_tag : integer  
+    {field} pre_layout_element_name : string  
+    {field} pre_layout_required : boolean  
+    {field} pre_layout_description : string  
+    {field} pre_layout_nested : boolean  
+}
+class "MessageGroup" [[{Purpose-grouped sub-section inside a category's Messages section.}]] {
+    {field} group_title : string  
+    {field} description : string  
+}
+class "PreTradeCategorySection" [[{A per-category sub-section of the Pre-Trade chapter.}]] {
+    {field} category : PreTradeCategoryEnum  
+    {field} title : string  
+    {field} description : string  
+    {field} quote_models : QuoteModelEnum  [0..*]
+    {field} category_components_note : string  
+}
+"PreTradeMessageDetail" *--> "0..*" "PreTradeLayoutRow" : "pre_layout_rows"
+"MessageGroup" *--> "1..*" "PreTradeMessageDetail" : "messages"
+"PreTradeCategorySection" *--> "0..*" "PreTradeMessageDetail" : "messages"
+class "PreTradeComponentDetail" [[{Per-category component description.}]] {
+    {field} component_name : string  
+    {field} repetition : ComponentRepetition  
+    {field} description : string  
+    {field} layout_url : uri  
+}
+class "CommonComponentDetail" [[{Per-common-component description.}]] {
+    {field} component_name : PreTradeCommonComponentName  
+    {field} repetition : ComponentRepetition  
+    {field} description : string  
+    {field} layout_url : uri  
+}
+"PreTradeComponentDetail" *--> "0..*" "PreTradeLayoutRow" : "pre_layout_rows"
+"CommonComponentDetail" *--> "0..*" "PreTradeLayoutRow" : "pre_layout_rows"
+class "PreTradeComponentEntry" [[{One row of the area-wide pre-trade components table.}]] {
+    {field} component_name : string  
+    {field} repetition : ComponentRepetition  
+    {field} category : string  
+    {field} is_common : boolean  
+    {field} footnote_number : integer  
+}
+"PreTradeBusinessArea" *--> "0..*" "PreTradeComponentEntry" : "components"
+"PreTradeCategorySection" *--> "0..*" "PreTradeComponentDetail" : "category_specific_components"
+"PreTradeCategorySection" *--> "0..*" "MessageGroup" : "message_groups"
+"PreTradeBusinessArea" *--> "0..*" "PreTradeCategorySection" : "category_sections"
+class "ComponentTableFootnote" [[{A footnote on the area-wide components table.}]] {
+    {field} footnote_number : integer  
+    {field} component_name : string  
+    {field} introduced_in : string  
+    {field} sole_category : PreTradeCategoryEnum  
+    {field} text : string  
+}
+"PreTradeBusinessArea" --> "0..*" "GlobalComponent" : "referenced_global_components"
+"PreTradeBusinessArea" *--> "0..*" "ComponentTableFootnote" : "footnotes"
+"PreTradeBusinessArea" *--> "0..*" "CommonComponentDetail" : "common_component_details"
+class "PostTradeMessageGroup" [[{A purpose-themed grouping of messages within a Post-Trade category (e.g. "Allocation Instructions").}]] {
+    {field} group_title : string  
+}
+class "PostTradeMessageDetail" [[{Per-message description block from a Post-Trade category section.}]] {
+    {field} msg_type : string  
+    {field} message_name : string  
+    {field} description : string  
+    {field} layout_url : uri  
+}
+"PostTradeMessageGroup" *--> "1..*" "PostTradeMessageDetail" : "messages"
+"PostTradeCategorySection" *--> "0..*" "PostTradeMessageGroup" : "post_message_groups"
+class "PostTradeBusinessArea" [[{Tree-root container for the Post-Trade business area of FIX Latest.}]] {
+    {field} area : BusinessAreaEnum  
+    {field} title : string  
+    {field} published_version : string  
+    {field} publisher : string  
+    {field} post_introduction : string  
+    {field} diagram_conventions : string  
+    {field} post_common_components : PostTradeCommonComponentName  [0..*]
+    {field} messages_overview_note : string  
+    {field} components_overview_note : string  
+}
+class "PostTradeMessageEntry" [[{One row of the area-wide "Messages for Post-Trade Business Area" table.}]] {
+    {field} msg_type : string  
+    {field} message_name : string  
+    {field} category : PostTradeCategoryEnum  
+}
+"PostTradeBusinessArea" *--> "1..*" "PostTradeMessageEntry" : "messages"
+class "PostTradeLayoutRow" [[{One row of the layout table published in the Post-Trade Appendix for a message or component. Each row identifies either a FIX field (by tag number + name) or an embedded component (by name), records whether it is required, carries the Description-column text, and flags whether it appears as a nested child of a repeating-group counter.}]] {
+    {field} post_layout_kind : PostTradeLayoutRowKindEnum  
+    {field} post_layout_field_tag : integer  
+    {field} post_layout_element_name : string  
+    {field} post_layout_required : boolean  
+    {field} post_layout_description : string  
+    {field} post_layout_nested : boolean  
+}
+"PostTradeMessageDetail" *--> "0..*" "PostTradeLayoutRow" : "post_layout_rows"
+"PostTradeCategorySection" *--> "0..*" "PostTradeMessageDetail" : "messages"
+class "PostTradeComponentDetail" [[{Per-component description block from a Post-Trade category section's Components sub-section.}]] {
+    {field} component_name : string  
+    {field} repetition : ComponentRepetition  
+    {field} description : string  
+    {field} layout_url : uri  
+}
+class "PostTradeCommonComponentDetail" [[{Per-common-component description block from the chapter's final "Common Components" section.}]] {
+    {field} component_name : PostTradeCommonComponentName  
+    {field} repetition : ComponentRepetition  
+    {field} description : string  
+    {field} layout_url : uri  
+}
+"PostTradeComponentDetail" *--> "0..*" "PostTradeLayoutRow" : "post_layout_rows"
+"PostTradeCommonComponentDetail" *--> "0..*" "PostTradeLayoutRow" : "post_layout_rows"
+class "PostTradeComponentTableFootnote" [[{A footnote attached to a row of the area-wide Post-Trade components table.}]] {
+    {field} footnote_number : integer  
+    {field} component_name : string  
+    {field} introduced_in : string  
+    {field} post_sole_category : PostTradeCategoryEnum  
+    {field} text : string  
+}
+"PostTradeBusinessArea" *--> "0..*" "PostTradeComponentTableFootnote" : "post_footnotes"
+class "PostTradeComponentEntry" [[{One row of the area-wide "Components for Post-Trade Business Area" table.}]] {
+    {field} component_name : string  
+    {field} repetition : ComponentRepetition  
+    {field} category : string  
+    {field} is_common : boolean  
+    {field} footnote_number : integer  
+}
+"PostTradeBusinessArea" *--> "1..*" "PostTradeComponentEntry" : "components"
+"PostTradeCategorySection" *--> "0..*" "PostTradeComponentDetail" : "post_category_specific_components"
+"PostTradeBusinessArea" *--> "0..*" "PostTradeCommonComponentDetail" : "post_common_component_details"
+class "ClearingServicePostTradeProcessingFormat" [[{One message-format row from the Post-Trade Processing Clearing Services section, with its supported actions.}]] {
+    {field} message_format : ClearingServiceForPostTradeProcessingEnum  
+    {field} supported_actions : string  [1..*]
+}
+class "AllocationFragmentationFieldMap" [[{One row of the table mapping an allocation message to its fragmentation-related fields.}]] {
+    {field} msg_type : string  
+    {field} message_name : string  
+    {field} total_count_field : string  
+    {field} fragment_count_field : string  
+    {field} principal_message_reference : string  
+}
+class "AllocationStatusDescription" [[{One row of the AllocStatus(87) value/description table.}]] {
+    {field} status_code : string  
+    {field} status_label : string  
+    {field} description : string  
+}
+"PostTradeCategorySection" *--> "0..*" "ClearingServicePostTradeProcessingFormat" : "clearing_services_for_post_trade_processing"
+"PostTradeCategorySection" *--> "0..*" "AllocationFragmentationFieldMap" : "fragmentation_field_map"
+"PostTradeCategorySection" *--> "0..*" "AllocationStatusDescription" : "allocation_status_descriptions"
+"PostTradeBusinessArea" *--> "0..*" "PostTradeCategorySection" : "post_category_sections"
+"PostTradeBusinessArea" --> "0..*" "GlobalComponent" : "referenced_global_components"
+class "MessageCategory" [[{A message category within a business area.}]] {
+    {field} category : MessageCategoryEnum  
+    {field} title : string  
+    {field} description : string  
+    {field} business_area : BusinessAreaEnum  
+}
+class "Message" [[{A FIX application message.}]] {
+    {field} msg_type : string  
+    {field} message_name : string  
+    {field} description : string  
+    {field} category : MessageCategoryEnum  
+}
+class "BusinessArea" [[{A top-level business area of the FIX Latest specification.}]] {
+    {field} area : BusinessAreaEnum  
+    {field} title : string  
+    {field} description : string  
+}
+"MessageCategory" *--> "0..*" "Message" : "messages"
+"BusinessArea" *--> "0..*" "MessageCategory" : "categories"
+abstract "Component" [[{A FIX component — a named set of related fields.}]] {
+    {field} component_name : string  
+    {field} description : string  
+    {field} scope : ComponentScope  
+    {field} is_repeating_group : boolean  
+}
+class "Field" [[{A FIX field — a uniquely tagged data element with a FIX datatype.}]] {
+    {field} tag : TagNumber  
+    {field} field_name : string  
+    {field} datatype : FIXDatatypeName  
+    {field} description : string  
+    {field} requirement : FieldRequirement  
+    {field} is_user_defined : boolean  
+}
+class "InfrastructureCategorySection" [[{A "Category – <name>" sub-section of the Infrastructure chapter.}]] {
+    {field} category : InfrastructureCategoryEnum  
+    {field} title : string  
+    {field} description : string  
+    {field} category_components_note : string  
+    {field} network_status_scenarios : NetworkStatusScenarioEnum  [0..*]
+    {field} network_request_types_referenced : NetworkRequestTypeEnum  [0..*]
+    {field} application_message_report_uses : ApplicationMessageReportTypeEnum  [0..*]
+}
+"Message" --> "0..*" "Component" : "components"
+"Message" *--> "0..*" "Field" : "fields"
+"PreTradeBusinessArea" *--> "0..*" "Message" : "messages"(i)
+"PreTradeCategorySection" *--> "0..*" "Message" : "messages"(i)
+"MessageGroup" *--> "0..*" "Message" : "messages"(i)
+"TradeBusinessArea" *--> "0..*" "Message" : "messages"(i)
+"TradeCategorySection" *--> "0..*" "Message" : "messages"(i)
+"TradeMessageGroup" *--> "0..*" "Message" : "messages"(i)
+"TradeAppendixSection" *--> "0..*" "Message" : "messages"(i)
+"PostTradeBusinessArea" *--> "0..*" "Message" : "messages"(i)
+"PostTradeCategorySection" *--> "0..*" "Message" : "messages"(i)
+"PostTradeMessageGroup" *--> "0..*" "Message" : "messages"(i)
+"InfrastructureBusinessArea" *--> "0..*" "Message" : "messages"(i)
+"InfrastructureCategorySection" *--> "0..*" "Message" : "messages"(i)
+class "InfrastructureMessageEntry" [[{One row of the area-wide "Messages for Infrastructure Business Area" table.}]] {
+    {field} msg_type : string  
+    {field} message_name : string  
+    {field} category : InfrastructureCategoryEnum  
+}
+"InfrastructureBusinessArea" *--> "1..*" "InfrastructureMessageEntry" : "messages"
+class "InfrastructureMessageDetail" [[{Per-message description appearing in a category's Messages sub-section.}]] {
+    {field} msg_type : string  
+    {field} message_name : string  
+    {field} description : string  
+    {field} layout_url : uri  
+}
+class "InfrastructureLayoutRow" [[{One row of the layout table published in the Infrastructure Appendix for a message or component. Each row identifies either a FIX field (by tag number + name) or an embedded component (by name), records whether it is required, carries the Description-column text, and flags whether it appears as a nested child of a repeating-group counter.}]] {
+    {field} infra_layout_kind : InfrastructureLayoutRowKindEnum  
+    {field} infra_layout_field_tag : integer  
+    {field} infra_layout_element_name : string  
+    {field} infra_layout_required : boolean  
+    {field} infra_layout_description : string  
+    {field} infra_layout_nested : boolean  
+}
+"InfrastructureMessageDetail" *--> "0..*" "InfrastructureLayoutRow" : "infra_layout_rows"
+"InfrastructureCategorySection" *--> "0..*" "InfrastructureMessageDetail" : "messages"
+class "InfrastructureComponentDetail" [[{Per-component description appearing in a category's Components sub-section.}]] {
+    {field} component_name : string  
+    {field} repetition : ComponentRepetition  
+    {field} description : string  
+    {field} layout_url : uri  
+}
+"InfrastructureComponentDetail" *--> "0..*" "InfrastructureLayoutRow" : "infra_layout_rows"
+class "InfrastructureGlobalComponentReference" [[{A reference from the Infrastructure business area to a Global Component declared on the FIX Latest "Global Components" page. Records the component name, the FIX tags it contributes, and the Infrastructure categories and messages that embed it.}]] {
+    {field} infra_global_component_name : InfrastructureGlobalComponentName  
+    {field} infra_global_component_repetition : string  
+    {field} infra_global_component_field_tags : integer  [0..*]
+    {field} infra_global_component_field_names : string  [0..*]
+    {field} infra_global_component_used_in : InfrastructureCategoryEnum  [1..*]
+    {field} infra_global_component_msg_types : string  [0..*]
+}
+"InfrastructureBusinessArea" *--> "0..*" "InfrastructureGlobalComponentReference" : "infra_global_components"
+class "InfrastructureComponentTableFootnote" [[{A footnote attached to a row of the area-wide Infrastructure components table.}]] {
+    {field} footnote_number : integer  
+    {field} component_name : string  
+    {field} introduced_in : string  
+    {field} infra_sole_category : InfrastructureCategoryEnum  
+    {field} text : string  
+}
+"InfrastructureBusinessArea" *--> "0..*" "InfrastructureComponentTableFootnote" : "infra_footnotes"
+class "InfrastructureComponentEntry" [[{One row of the area-wide "Components for Infrastructure Business Area" table.}]] {
+    {field} component_name : string  
+    {field} repetition : ComponentRepetition  
+    {field} category : InfrastructureCategoryEnum  
+    {field} footnote_number : integer  
+}
+"InfrastructureBusinessArea" *--> "1..*" "InfrastructureComponentEntry" : "components"
+"InfrastructureCategorySection" *--> "0..*" "InfrastructureComponentDetail" : "infra_category_specific_components"
+"InfrastructureBusinessArea" *--> "0..*" "InfrastructureCategorySection" : "infra_category_sections"
+class "BusinessRejectReasonDescription" [[{One entry of the BusinessRejectReason(380) code table.}]] {
+    {field} reject_reason_code : integer  
+    {field} reject_reason_label : string  
+}
+class "ApplicationMessageReferenceKey" [[{One row of a "Key Fields for <area> Application Message References" table identifying the field whose value is copied into BusinessRejectRefID(379).}]] {
+    {field} category_label : string  
+    {field} fix_message : string  
+    {field} business_reject_ref_id_value : string  
+}
+"InfrastructureBusinessArea" --> "0..*" "GlobalComponent" : "referenced_global_components"
+"InfrastructureBusinessArea" *--> "0..*" "BusinessRejectReasonDescription" : "business_reject_reason_descriptions"
+"InfrastructureBusinessArea" *--> "0..*" "ApplicationMessageReferenceKey" : "key_fields_post_trade"
+"InfrastructureBusinessArea" *--> "0..*" "ApplicationMessageReferenceKey" : "key_fields_trade"
+"InfrastructureBusinessArea" *--> "0..*" "ApplicationMessageReferenceKey" : "key_fields_pre_trade"
+"FIXIntroduction" *--> "0..*" "GlobalComponent" : "global_components"
+"Component" ^-- "GlobalComponent"
+"Component" *--> "0..*" "Field" : "fields"
+class "FIXProtocolLimited" [[{The organization that maintains the FIX Protocol specification.}]] {
+    {field} brand_name : string  
+    {field} legal_name : string  
+    {field} website : uri  
+    {field} member_firms_url : uri  
+    {field} working_groups_url : uri  
+    {field} committees_url : uri  
+    {field} member_types : FPLMemberType  [0..*]
+    {field} governance_bodies : FPLCommitteeRole  [0..*]
+    {field} product_committees : FPLProductGroup  [0..*]
+    {field} regional_committees : FPLRegion  [0..*]
+}
+"FIXIntroduction" *--> "0..1" "FIXProtocolLimited" : "about_fpl"
+class "FIXDatatype" [[{A FIX Protocol datatype.}]] {
+    {field} datatype_name : FIXDatatypeName  
+    {field} definition : string  
+    {field} value_space : ISO11404ValueSpace  [0..*]
+    {field} value_space_notes : string  
+    {field} deprecated_for_new_designs : boolean  
+    {field} external_code_set : string  
+    {field} time_unit : TimePrecision  [0..*]
+    {field} radix : integer  
+    {field} repertoire : string  
+    {field} index_lower_bound : integer  
+    {field} index_upper_bound : integer  
+    {field} minimum_value : integer  
+    {field} maximum_value : integer  
+    {field} footnote_numbers : integer  [0..*]
+}
+class "ExtensionPack" [[{A unit of change to FIX Latest.}]] {
+    {field} number : ExtensionPackNumber  
+    {field} title : string  
+    {field} size : ExtensionPackSize  
+    {field} enhancement_summary : string  
+    {field} applies_to_session_layer_only : boolean  
+    {field} applies_to_fixml_only : boolean  
+}
+class "FIXFamilyStandard" [[{A member standard of the FIX Family of Standards.}]] {
+    {field} id : string  
+    {field} name : string  
+    {field} description : string  
+    {field} acronym : string  
+    {field} see_also : uri  [0..*]
+    {field} layer : StandardLayer  
+    {field} version : string  
+    {field} session_profile : SessionProtocolName  
+    {field} encoding_name : StandardEncodingName  
+}
+"FIXIntroduction" *--> "0..*" "BusinessArea" : "business_areas"
+"FIXIntroduction" *--> "0..*" "FIXDatatype" : "datatypes"
+"FIXIntroduction" *--> "0..*" "ExtensionPack" : "extension_packs"
+"FIXIntroduction" *--> "0..*" "FIXFamilyStandard" : "standards"
+class "SpecificComponent" [[{A component used only by messages within a single category.}]] {
+    {field} business_area : BusinessAreaEnum  
+    {field} category : MessageCategoryEnum  
+    {field} scope : ComponentScope  
+    {field} component_name(i) : string  
+    {field} description(i) : string  
+    {field} is_repeating_group(i) : boolean  
+}
+class "CommonComponent" [[{A component used only by messages within a single business area.}]] {
+    {field} business_area : BusinessAreaEnum  
+    {field} scope : ComponentScope  
+    {field} component_name(i) : string  
+    {field} description(i) : string  
+    {field} is_repeating_group(i) : boolean  
+}
+"Component" --> "0..*" "Component" : "nested_components"
+"PreTradeBusinessArea" --> "0..*" "Component" : "components"(i)
+"TradeBusinessArea" --> "0..*" "Component" : "components"(i)
+"TradeAppendixSection" --> "0..*" "Component" : "components"(i)
+"PostTradeBusinessArea" --> "0..*" "Component" : "components"(i)
+"InfrastructureBusinessArea" --> "0..*" "Component" : "components"(i)
+"Component" ^-- "SpecificComponent"
+"Component" ^-- "CommonComponent"
+@enduml

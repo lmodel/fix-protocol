@@ -1,0 +1,33 @@
+# metamodel_version: 1.11.0id: TradeAppendixSection
+schema_generating: true
+description: "One \"Appendix \u2013 <X> Category\" sub-section of the Trade Appendix.\
+  \ Bundles the per-message layout tables (TradeMessageDetail) and per-component layout\
+  \ tables (TradeComponentDetail) for messages and components that belong to one Trade\
+  \ category \u2014 or, for the synthetic \"Common\" section, the layouts of the chapter's\
+  \ common components."
+display_name: TradeAppendixSection
+document_category: TradeAppendixSection
+weight: 20
+fields:
+- id: trade_appendix_category
+  description: "Identifier for an appendix section \u2014 either the Trade category\
+    \ name as printed in the heading (e.g. \"CrossOrders\", \"MultilegOrders\", \"\
+    OrderMassHandling\", \"ProgramTrading\", \"SingleGeneralOrderHandling\") or the\
+    \ literal \"Common\" for the common-components appendix."
+  display_name: TradeAppendixSection_trade_appendix_category
+- id: title
+  description: "Section heading exactly as printed in the Trade Appendix (e.g. \"\
+    Appendix \u2013 CrossOrders Category\")."
+  display_name: TradeAppendixSection_title
+- id: description
+  description: Free-text description.
+  display_name: description
+- id: messages
+  description: Layout tables for the messages that belong to the appendix section.
+    Empty for the "Common" section.
+  display_name: TradeAppendixSection_messages
+  cardinality: multi
+- id: components
+  description: Layout tables for the components that belong to the appendix section.
+  display_name: TradeAppendixSection_components
+  cardinality: multi

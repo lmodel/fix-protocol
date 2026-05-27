@@ -1,19 +1,20 @@
 ---
 id: https://w3id.org/lmodel/fix-protocol/fix-trade
+
 name: fix-trade
+
 title: FIX Protocol Trade Business Area
-description: |-
-  LinkML metamodel for the structural elements of the FIX Latest
-  Trade (Orders and Executions) business area: its message
-  categories, area-wide message and component listings, per-category
-  sections, footnotes, and the layout-table model shared with the
-  Trade Appendix. Original (non-normative) authored content only;
-  for spec-derived prose see the private overlay (see NOTICE).
+
+description: 'LinkML metamodel for the structural elements of the FIX Latest Trade (Orders and Executions) business area: its message categories, area-wide message and component listings, per-category sections, footnotes, and the layout-table model shared with the Trade Appendix. Original (non-normative) authored content only; for spec-derived prose see the private overlay (see NOTICE).'
+
 license: Apache-2.0
+
 see_also:
   - https://www.fixtrading.org/standards/fix-latest-online/business-area-trade/
   - https://www.fixtrading.org/standards/fix-latest-online/trade-appendix/
+
 source: https://www.fixtrading.org/standards/fix-latest-online/business-area-trade/
+
 version: EP284
 
 prefixes:
@@ -25,74 +26,69 @@ prefixes:
   dcterms: http://purl.org/dc/terms/
   skos: http://www.w3.org/2004/02/skos/core#
   xsd: http://www.w3.org/2001/XMLSchema#
+  fix_orchestra: https://w3id.org/lmodel/fix-orchestra/
 
 default_prefix: fix_trade
+
 default_range: string
 
-imports:
-  - linkml:types
-  - ./fix_base
-  - ./fix_global_components
+imports: [linkml:types, ./fix_base, ./fix_global_components]
 
 subsets:
   trade:
     description: Elements drawn from the FIX Latest Trade chapter.
+
   trade_organization:
     description: Tabular/organizational elements (message/component tables).
 
 enums:
   TradeCategoryEnum:
-    description: |-
-      The five message categories of the FIX Latest Trade
-      (Orders and Executions) business area. Subset of
-      MessageCategoryEnum.
+    description: The five message categories of the FIX Latest Trade (Orders and Executions) business area. Subset of MessageCategoryEnum.
+    narrow_mappings: [fix_orchestra:CategoryType]
     permissible_values:
       SINGLE_GENERAL_ORDER_HANDLING:
-        aliases:
-          - Single General Order Handling
-          - Single/General Order Handling
+        aliases: [Single General Order Handling, Single/General Order Handling]
+
       ORDER_MASS_HANDLING:
-        aliases:
-          - Order Mass Handling
+        aliases: [Order Mass Handling]
+
       CROSS_ORDER_HANDLING:
-        aliases:
-          - Cross Order Handling
+        aliases: [Cross Order Handling]
+
       MULTILEG_ORDER_HANDLING:
-        aliases:
-          - Multileg Order Handling
+        aliases: [Multileg Order Handling]
+
       LIST_PROGRAM_BASKET_TRADING:
-        aliases:
-          - List/Program/Basket Trading
-          - Program Trading
+        aliases: [List/Program/Basket Trading, Program Trading]
 
   TradeComponentRepetition:
     description: Whether a FIX component is repeating or non-repeating.
     permissible_values:
-      REPEATING:
-      NON_REPEATING:
+      REPEATING: null
+
+      NON_REPEATING: null
 
   TradeCommonComponentName:
-    description: |-
-      Names of the Common Components declared at the bottom of the
-      Trade business-area chapter — components used by messages
-      across more than one Trade category.
+    description: Names of the Common Components declared at the bottom of the Trade business-area chapter — components used by messages across more than one Trade category.
     permissible_values:
-      DisclosureInstructionGrp:
-      DiscretionInstructions:
-      PegInstructions:
-      PreAllocGrp:
-      StrategyParametersGrp:
-      TriggeringInstruction:
+      DisclosureInstructionGrp: null
+
+      DiscretionInstructions: null
+
+      PegInstructions: null
+
+      PreAllocGrp: null
+
+      StrategyParametersGrp: null
+
+      TriggeringInstruction: null
 
   TradeLayoutRowKindEnum:
-    description: |-
-      Discriminator for a row in a Trade message- or
-      component-layout table: either a FIX field (numeric Tag
-      column) or an embedded component (literal "Component" in
-      the Tag column).
+    description: 'Discriminator for a row in a Trade message- or component-layout table: either a FIX field (numeric Tag column) or an embedded component (literal "Component" in the Tag column).'
     permissible_values:
-      FIELD:
-      COMPONENT:
+      FIELD: null
+
+      COMPONENT: null
 
 slots:
   trade_area:
@@ -197,160 +193,102 @@ slots:
     inlined_as_list: true
 
   trade_message_diagram_template_url:
-    description: |-
-      URL of the "Message Diagram Templates" page referenced by the
-      chapter introduction.
+    description: URL of the "Message Diagram Templates" page referenced by the chapter introduction.
     range: uri
     slot_uri: schema:url
 
   trade_category_background:
-    description: |-
-      Optional "Background" prose preceding a category's message
-      descriptions (e.g. the Cross Order Handling chapter's
-      cross-trade overview).
+    description: Optional "Background" prose preceding a category's message descriptions (e.g. the Cross Order Handling chapter's cross-trade overview).
     range: string
 
   trade_layout_rows:
-    description: |-
-      Ordered rows of the layout table published for the
-      message or component in the Trade Appendix.
+    description: Ordered rows of the layout table published for the message or component in the Trade Appendix.
     range: TradeLayoutRow
     multivalued: true
     inlined: true
     inlined_as_list: true
 
   trade_layout_kind:
-    description: |-
-      Row kind — either a FIX field (numeric Tag) or an
-      embedded component (literal "Component" in the Tag
-      column of the source table).
+    description: Row kind — either a FIX field (numeric Tag) or an embedded component (literal "Component" in the Tag column of the source table).
     range: TradeLayoutRowKindEnum
 
   trade_layout_field_tag:
-    description: |-
-      FIX tag number drawn from the Tag column when the row is
-      a field (i.e. layout_kind = FIELD). Absent for COMPONENT
-      rows.
+    description: FIX tag number drawn from the Tag column when the row is a field (i.e. layout_kind = FIELD). Absent for COMPONENT rows.
     range: integer
     minimum_value: 0
 
   trade_layout_element_name:
-    description: |-
-      Element name as printed in the Name column — either the
-      FIX field name or the component name.
+    description: Element name as printed in the Name column — either the FIX field name or the component name.
     range: string
 
   trade_layout_required:
-    description: |-
-      Whether the field or component is required, as printed in
-      the Req'd column of the source layout table ("Y" / "N").
+    description: Whether the field or component is required, as printed in the Req'd column of the source layout table ("Y" / "N").
     range: boolean
 
   trade_layout_description:
-    description: |-
-      Free-text content of the Description column of the row
-      (may be empty).
+    description: Free-text content of the Description column of the row (may be empty).
     range: string
 
   trade_layout_nested:
-    description: |-
-      Whether the row appears nested under a repeating-group
-      counter (i.e. its Tag column is prefixed with the "→"
-      arrow in the source table).
+    description: Whether the row appears nested under a repeating-group counter (i.e. its Tag column is prefixed with the "→" arrow in the source table).
     range: boolean
-    ifabsent: "False"
+    ifabsent: 'False'
 
   trade_ord_status_precedence_entries:
-    description: |-
-      Rows of the OrdStatus(39) precedence table that appears
-      inside the Execution Reports purpose-group of the
-      Single/General Order Handling category.
+    description: Rows of the OrdStatus(39) precedence table that appears inside the Execution Reports purpose-group of the Single/General Order Handling category.
     range: TradeOrdStatusPrecedenceEntry
     multivalued: true
     inlined: true
     inlined_as_list: true
 
   trade_ord_status_precedence:
-    description: |-
-      Precedence rank (1 = lowest, higher numbers take
-      precedence) of an OrdStatus(39) value used to resolve
-      simultaneous state transitions on an order.
+    description: Precedence rank (1 = lowest, higher numbers take precedence) of an OrdStatus(39) value used to resolve simultaneous state transitions on an order.
     range: integer
     minimum_value: 1
     maximum_value: 11
 
   trade_ord_status_label:
-    description: |-
-      Human-readable OrdStatus(39) label as printed in the
-      Execution Reports precedence table (e.g. "Pending Cancel",
-      "Done for Day", "Filled").
+    description: Human-readable OrdStatus(39) label as printed in the Execution Reports precedence table (e.g. "Pending Cancel", "Done for Day", "Filled").
     range: string
 
   trade_fragmentation_entries:
-    description: |-
-      Rows of the fragmentation table listed in a Trade
-      category that documents which messages may be fragmented
-      and which repeating group is fragmentable (currently
-      published only for List/Program/Basket Trading).
+    description: Rows of the fragmentation table listed in a Trade category that documents which messages may be fragmented and which repeating group is fragmentable (currently published only for List/Program/Basket Trading).
     range: TradeFragmentationEntry
     multivalued: true
     inlined: true
     inlined_as_list: true
 
   trade_fragmentation_message:
-    description: |-
-      Message that may be fragmented — verbatim text from the
-      Message column of the fragmentation table (e.g.
-      "NewOrderList(35=E)").
+    description: Message that may be fragmented — verbatim text from the Message column of the fragmentation table (e.g. "NewOrderList(35=E)").
     range: string
 
   trade_fragmentation_total_entries_field:
-    description: |-
-      Name and tag of the "Total Entries" field used to indicate
-      the total count across all fragments of the batch (e.g.
-      "TotNoOrders(68)").
+    description: Name and tag of the "Total Entries" field used to indicate the total count across all fragments of the batch (e.g. "TotNoOrders(68)").
     range: string
 
   trade_fragmentation_repeating_group:
-    description: |-
-      Verbatim description of the repeating group that may be
-      fragmented — from the table's third column.
+    description: Verbatim description of the repeating group that may be fragmented — from the table's third column.
     range: string
 
   trade_appendix_sections:
-    description: |-
-      Per-category sub-sections of the Trade Appendix — one
-      "Appendix – <X> Category" section per Trade category, plus a
-      synthetic "Common Category" section that lists layouts of
-      the chapter's common components.
+    description: Per-category sub-sections of the Trade Appendix — one "Appendix – <X> Category" section per Trade category, plus a synthetic "Common Category" section that lists layouts of the chapter's common components.
     range: TradeAppendixSection
     multivalued: true
     inlined: true
     inlined_as_list: true
 
   trade_appendix_category:
-    description: |-
-      Identifier for an appendix section — either the Trade
-      category name as printed in the heading (e.g.
-      "CrossOrders", "MultilegOrders", "OrderMassHandling",
-      "ProgramTrading", "SingleGeneralOrderHandling") or the
-      literal "Common" for the common-components appendix.
+    description: Identifier for an appendix section — either the Trade category name as printed in the heading (e.g. "CrossOrders", "MultilegOrders", "OrderMassHandling", "ProgramTrading", "SingleGeneralOrderHandling") or the literal "Common" for the common-components appendix.
     range: string
 
 classes:
   TradeBusinessArea:
-    description: |-
-      Tree-root container for the Trade (Orders and Executions)
-      business area of FIX Latest.
+    description: Tree-root container for the Trade (Orders and Executions) business area of FIX Latest.
     tree_root: true
-    in_subset:
-      - trade
+    in_subset: [trade]
     class_uri: fix_trade:TradeBusinessArea
-    aliases:
-      - Trade
-      - Orders and Executions
-    see_also:
-      - https://www.fixtrading.org/standards/fix-latest-online/business-area-trade/
+    aliases: [Trade, Orders and Executions]
+    see_also: [https://www.fixtrading.org/standards/fix-latest-online/business-area-trade/]
     slots:
       - trade_area
       - title
@@ -387,13 +325,9 @@ classes:
 
   TradeMessageEntry:
     description: One row of the area-wide trade messages table.
-    in_subset:
-      - trade_organization
+    in_subset: [trade_organization]
     class_uri: fix_trade:TradeMessageEntry
-    slots:
-      - msg_type
-      - message_name
-      - category
+    slots: [msg_type, message_name, category]
     slot_usage:
       msg_type:
         identifier: true
@@ -406,15 +340,9 @@ classes:
 
   TradeComponentEntry:
     description: One row of the area-wide trade components table.
-    in_subset:
-      - trade_organization
+    in_subset: [trade_organization]
     class_uri: fix_trade:TradeComponentEntry
-    slots:
-      - component_name
-      - trade_repetition
-      - category
-      - trade_is_common
-      - trade_footnote_number
+    slots: [component_name, trade_repetition, category, trade_is_common, trade_footnote_number]
     slot_usage:
       component_name:
         identifier: true
@@ -422,9 +350,7 @@ classes:
       trade_repetition:
         required: true
       category:
-        description: |-
-          Category the component is listed under. Common Components
-          are listed under the synthetic "Common Components" value.
+        description: Category the component is listed under. Common Components are listed under the synthetic "Common Components" value.
         range: string
         required: true
       trade_is_common:
@@ -432,8 +358,7 @@ classes:
 
   TradeComponentTableFootnote:
     description: A footnote on the area-wide components table.
-    in_subset:
-      - trade_organization
+    in_subset: [trade_organization]
     class_uri: fix_trade:TradeComponentTableFootnote
     slots:
       - trade_footnote_number
@@ -454,8 +379,7 @@ classes:
 
   TradeCategorySection:
     description: A per-category sub-section of the Trade chapter.
-    in_subset:
-      - trade
+    in_subset: [trade]
     class_uri: fix_trade:TradeCategorySection
     slots:
       - category
@@ -478,15 +402,9 @@ classes:
 
   TradeMessageDetail:
     description: Per-category message description.
-    in_subset:
-      - trade
+    in_subset: [trade]
     class_uri: fix_trade:TradeMessageDetail
-    slots:
-      - msg_type
-      - message_name
-      - description
-      - trade_layout_url
-      - trade_layout_rows
+    slots: [msg_type, message_name, description, trade_layout_url, trade_layout_rows]
     slot_usage:
       msg_type:
         identifier: true
@@ -498,15 +416,9 @@ classes:
 
   TradeComponentDetail:
     description: Per-category component description.
-    in_subset:
-      - trade
+    in_subset: [trade]
     class_uri: fix_trade:TradeComponentDetail
-    slots:
-      - component_name
-      - trade_repetition
-      - description
-      - trade_layout_url
-      - trade_layout_rows
+    slots: [component_name, trade_repetition, description, trade_layout_url, trade_layout_rows]
     slot_usage:
       component_name:
         identifier: true
@@ -515,18 +427,10 @@ classes:
         description: Description of the component's purpose.
 
   TradeMessageGroup:
-    description: |-
-      Purpose-grouped sub-section inside a category's Messages
-      sub-section (e.g. "New Order Single", "Execution Reports",
-      "Order Cancel Requests" under Single/General Order Handling).
-    in_subset:
-      - trade
+    description: Purpose-grouped sub-section inside a category's Messages sub-section (e.g. "New Order Single", "Execution Reports", "Order Cancel Requests" under Single/General Order Handling).
+    in_subset: [trade]
     class_uri: fix_trade:TradeMessageGroup
-    slots:
-      - trade_group_title
-      - description
-      - messages
-      - trade_ord_status_precedence_entries
+    slots: [trade_group_title, description, messages, trade_ord_status_precedence_entries]
     slot_usage:
       trade_group_title:
         identifier: true
@@ -539,18 +443,10 @@ classes:
         required: true
 
   TradeCommonComponentDetail:
-    description: |-
-      Per-common-component description from the chapter's final
-      "Common Components" section.
-    in_subset:
-      - trade
+    description: Per-common-component description from the chapter's final "Common Components" section.
+    in_subset: [trade]
     class_uri: fix_trade:TradeCommonComponentDetail
-    slots:
-      - component_name
-      - trade_repetition
-      - description
-      - trade_layout_url
-      - trade_layout_rows
+    slots: [component_name, trade_repetition, description, trade_layout_url, trade_layout_rows]
     slot_usage:
       component_name:
         identifier: true
@@ -560,18 +456,10 @@ classes:
         description: Description of the common component's purpose.
 
   TradeLayoutRow:
-    description: |-
-      One row of the layout table published in the Trade Appendix
-      for a message or component. Each row identifies either a FIX
-      field (by tag number + name) or an embedded component (by
-      name), records whether it is required, carries the
-      Description-column text, and flags whether it appears as a
-      nested child of a repeating-group counter.
-    in_subset:
-      - trade
+    description: One row of the layout table published in the Trade Appendix for a message or component. Each row identifies either a FIX field (by tag number + name) or an embedded component (by name), records whether it is required, carries the Description-column text, and flags whether it appears as a nested child of a repeating-group counter.
+    in_subset: [trade]
     class_uri: fix_trade:TradeLayoutRow
-    see_also:
-      - https://www.fixtrading.org/standards/fix-latest-online/trade-appendix/
+    see_also: [https://www.fixtrading.org/standards/fix-latest-online/trade-appendix/]
     slots:
       - trade_layout_kind
       - trade_layout_field_tag
@@ -586,20 +474,10 @@ classes:
         required: true
 
   TradeOrdStatusPrecedenceEntry:
-    description: |-
-      One row of the OrdStatus(39) precedence table published in
-      the Execution Reports purpose-group of the
-      Single/General Order Handling category. Defines the
-      precedence ranking used to resolve simultaneous state
-      transitions on an order, paired with the human-readable
-      OrdStatus label and its descriptive prose.
-    in_subset:
-      - trade
+    description: One row of the OrdStatus(39) precedence table published in the Execution Reports purpose-group of the Single/General Order Handling category. Defines the precedence ranking used to resolve simultaneous state transitions on an order, paired with the human-readable OrdStatus label and its descriptive prose.
+    in_subset: [trade]
     class_uri: fix_trade:TradeOrdStatusPrecedenceEntry
-    slots:
-      - trade_ord_status_precedence
-      - trade_ord_status_label
-      - description
+    slots: [trade_ord_status_precedence, trade_ord_status_label, description]
     slot_usage:
       trade_ord_status_precedence:
         required: true
@@ -610,15 +488,8 @@ classes:
         description: Verbatim OrdStatus description from the table.
 
   TradeFragmentationEntry:
-    description: |-
-      One row of a fragmentation table published in a Trade
-      category (currently only List/Program/Basket Trading)
-      identifying a message that may be fragmented, the
-      "Total Entries" field used to indicate the total count
-      across all fragments of the batch, and the verbatim
-      description of the repeating group that may be fragmented.
-    in_subset:
-      - trade
+    description: One row of a fragmentation table published in a Trade category (currently only List/Program/Basket Trading) identifying a message that may be fragmented, the "Total Entries" field used to indicate the total count across all fragments of the batch, and the verbatim description of the repeating group that may be fragmented.
+    in_subset: [trade]
     class_uri: fix_trade:TradeFragmentationEntry
     slots:
       - trade_fragmentation_message
@@ -634,28 +505,13 @@ classes:
         required: true
 
   TradeAppendix:
-    description: |-
-      Tree-root container for the Trade Appendix — the spec
-      companion document that publishes the full message- and
-      component-layout tables for every message and component
-      used in the Trade business area, organized into one
-      "Appendix – <X> Category" sub-section per Trade category
-      plus a final "Appendix – Common Category" sub-section
-      covering the layouts of the chapter's common components.
+    description: Tree-root container for the Trade Appendix — the spec companion document that publishes the full message- and component-layout tables for every message and component used in the Trade business area, organized into one "Appendix – <X> Category" sub-section per Trade category plus a final "Appendix – Common Category" sub-section covering the layouts of the chapter's common components.
     tree_root: true
-    in_subset:
-      - trade
+    in_subset: [trade]
     class_uri: fix_trade:TradeAppendix
-    aliases:
-      - Trade Appendix
-    see_also:
-      - https://www.fixtrading.org/standards/fix-latest-online/trade-appendix/
-    slots:
-      - title
-      - published_version
-      - publisher
-      - description
-      - trade_appendix_sections
+    aliases: [Trade Appendix]
+    see_also: [https://www.fixtrading.org/standards/fix-latest-online/trade-appendix/]
+    slots: [title, published_version, publisher, description, trade_appendix_sections]
     slot_usage:
       title:
         ifabsent: string(Trade Appendix)
@@ -665,38 +521,19 @@ classes:
         description: Optional preface prose for the Trade Appendix as a whole.
 
   TradeAppendixSection:
-    description: |-
-      One "Appendix – <X> Category" sub-section of the Trade
-      Appendix. Bundles the per-message layout tables
-      (TradeMessageDetail) and per-component layout tables
-      (TradeComponentDetail) for messages and components that
-      belong to one Trade category — or, for the synthetic
-      "Common" section, the layouts of the chapter's common
-      components.
-    in_subset:
-      - trade
+    description: One "Appendix – <X> Category" sub-section of the Trade Appendix. Bundles the per-message layout tables (TradeMessageDetail) and per-component layout tables (TradeComponentDetail) for messages and components that belong to one Trade category — or, for the synthetic "Common" section, the layouts of the chapter's common components.
+    in_subset: [trade]
     class_uri: fix_trade:TradeAppendixSection
-    slots:
-      - trade_appendix_category
-      - title
-      - description
-      - messages
-      - components
+    slots: [trade_appendix_category, title, description, messages, components]
     slot_usage:
       trade_appendix_category:
         identifier: true
         required: true
       title:
-        description: |-
-          Section heading exactly as printed in the Trade
-          Appendix (e.g. "Appendix – CrossOrders Category").
+        description: Section heading exactly as printed in the Trade Appendix (e.g. "Appendix – CrossOrders Category").
       messages:
-        description: |-
-          Layout tables for the messages that belong to the
-          appendix section. Empty for the "Common" section.
+        description: Layout tables for the messages that belong to the appendix section. Empty for the "Common" section.
         range: TradeMessageDetail
       components:
-        description: |-
-          Layout tables for the components that belong to the
-          appendix section.
+        description: Layout tables for the components that belong to the appendix section.
         range: TradeComponentDetail

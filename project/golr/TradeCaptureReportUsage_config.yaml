@@ -1,0 +1,16 @@
+# metamodel_version: 1.11.0id: TradeCaptureReportUsage
+schema_generating: true
+description: One documented usage of the TradeCaptureReport(35=AE) message.
+display_name: TradeCaptureReportUsage
+document_category: TradeCaptureReportUsage
+weight: 20
+fields:
+- id: status_label
+  description: Short label for the usage.
+  display_name: TradeCaptureReportUsage_status_label
+- id: description
+  description: Free-text description.
+  display_name: description
+- id: identifier_role
+  description: Role of the trade-capture-report identifier field.
+  display_name: identifier_role

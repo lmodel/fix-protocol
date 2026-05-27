@@ -1,22 +1,18 @@
 ---
 id: https://w3id.org/lmodel/fix-protocol/fix-global-components
+
 name: fix-global-components
+
 title: FIX Protocol Global Components catalog enrichment
-description: |-
-  Shape-only LinkML module for the FIX Latest "Global Components"
-  page. Provides shared slots and enums used to enrich the
-  existing :class:`GlobalComponent` class (defined in
-  fix_base) with catalog-level metadata (numeric ID,
-  repetition shape, business-area cross-references) and a
-  cross-cutting :slot:`referenced_global_components` slot that
-  each business-area tree-root can use to record which Global
-  Components its messages embed. Original (non-normative)
-  authored content only; for spec-derived prose see the private
-  overlay (see NOTICE).
+
+description: Shape-only LinkML module for the FIX Latest "Global Components" page. Provides shared slots and enums used to enrich the existing :class:`GlobalComponent` class (defined in fix_base) with catalog-level metadata (numeric ID, repetition shape, business-area cross-references) and a cross-cutting :slot:`referenced_global_components` slot that each business-area tree-root can use to record which Global Components its messages embed. Original (non-normative) authored content only; for spec-derived prose see the private overlay (see NOTICE).
+
 license: Apache-2.0
-see_also:
-  - https://www.fixtrading.org/standards/fix-latest-online/global-components/
+
+see_also: [https://www.fixtrading.org/standards/fix-latest-online/global-components/]
+
 source: https://www.fixtrading.org/standards/fix-latest-online/global-components/
+
 version: EP284
 
 prefixes:
@@ -29,11 +25,10 @@ prefixes:
   xsd: http://www.w3.org/2001/XMLSchema#
 
 default_prefix: fix_global_components
+
 default_range: string
 
-imports:
-  - linkml:types
-  - ./fix_base
+imports: [linkml:types, ./fix_base]
 
 subsets:
   global_components:
@@ -43,12 +38,7 @@ enums: {}
 
 slots:
   referenced_global_components:
-    description: |-
-      Names of Global Components from the FIX Latest "Global
-      Components" page that are referenced by messages in the
-      containing business area. References instances of the
-      :class:`GlobalComponent` class (declared in
-      fix_base) by name.
+    description: Names of Global Components from the FIX Latest "Global Components" page that are referenced by messages in the containing business area. References instances of the :class:`GlobalComponent` class (declared in fix_base) by name.
     range: GlobalComponent
     multivalued: true
     inlined: false

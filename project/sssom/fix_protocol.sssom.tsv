@@ -1,0 +1,96 @@
+#license: Apache-2.0
+#mapping_set_id: https://w3id.org/lmodel/fix-protocol
+#mapping_tool: https://w3id.org/linkml/
+#creator_id: linkml_user
+#mapping_date: 2026-05-27
+#curie_map: 
+# fix_protocol: https://w3id.org/lmodel/fix-protocol/
+# linkml: https://w3id.org/linkml/
+# biolink: https://w3id.org/biolink/vocab/
+# schema: http://schema.org/
+# PATO: http://purl.obolibrary.org/obo/PATO_
+# example: http://www.example.org/rdf#
+# dcterms: http://purl.org/dc/terms/
+# skos: http://www.w3.org/2004/02/skos/core#
+# xsd: http://www.w3.org/2001/XMLSchema#
+# iso11404: https://www.iso.org/standard/39479.html#
+# iso3166: https://www.iso.org/iso-3166-country-codes.html#
+# iso4217: https://www.iso.org/iso-4217-currency-codes.html#
+# iso10383: https://www.iso.org/standard/61067.html#
+# iso639: https://www.iso.org/iso-639-language-codes.html#
+# iso17442: https://www.iso.org/standard/78829.html#
+subject_id	subject_label	predicate_id	predicate_modifier	object_id	object_label	match_type	subject_source	object_source	mapping_tool	confidence	subject_match_field	object_match_field	subject_category	object_category	match_string	comment
+fix_post_trade:AllocationStatusEnum#ACCEPTED	ACCEPTED	skos:exactMatch		fix_post_trade:AllocStatus_0		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-post-trade						AllocationStatusEnum			
+fix_post_trade:AllocationStatusEnum#BLOCK_LEVEL_REJECT	BLOCK_LEVEL_REJECT	skos:exactMatch		fix_post_trade:AllocStatus_1		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-post-trade						AllocationStatusEnum			
+fix_post_trade:AllocationStatusEnum#ACCOUNT_LEVEL_REJECT	ACCOUNT_LEVEL_REJECT	skos:exactMatch		fix_post_trade:AllocStatus_2		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-post-trade						AllocationStatusEnum			
+fix_post_trade:AllocationStatusEnum#RECEIVED_NOT_YET_PROCESSED	RECEIVED_NOT_YET_PROCESSED	skos:exactMatch		fix_post_trade:AllocStatus_3		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-post-trade						AllocationStatusEnum			
+fix_post_trade:AllocationTransactionTypeEnum#NEW	NEW	skos:exactMatch		fix_post_trade:AllocTransType_0		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-post-trade						AllocationTransactionTypeEnum			
+fix_post_trade:AllocationTransactionTypeEnum#REPLACE	REPLACE	skos:exactMatch		fix_post_trade:AllocTransType_1		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-post-trade						AllocationTransactionTypeEnum			
+fix_post_trade:AllocationTransactionTypeEnum#CANCEL	CANCEL	skos:exactMatch		fix_post_trade:AllocTransType_2		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-post-trade						AllocationTransactionTypeEnum			
+fix_infrastructure:ApplicationMessageReportTypeEnum#RESET	RESET	skos:exactMatch		fix_infrastructure:ApplReportType_0		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-infrastructure						ApplicationMessageReportTypeEnum			
+fix_infrastructure:ApplicationMessageReportTypeEnum#LAST_MESSAGE	LAST_MESSAGE	skos:exactMatch		fix_infrastructure:ApplReportType_1		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-infrastructure						ApplicationMessageReportTypeEnum			
+fix_infrastructure:ApplicationMessageReportTypeEnum#RESEND_COMPLETED	RESEND_COMPLETED	skos:exactMatch		fix_infrastructure:ApplReportType_3		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-infrastructure						ApplicationMessageReportTypeEnum			
+fix_infrastructure:BusinessRejectReasonEnum#OTHER	OTHER	skos:exactMatch		fix_infrastructure:BusinessRejectReason_0		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-infrastructure						BusinessRejectReasonEnum			
+fix_infrastructure:BusinessRejectReasonEnum#UNKNOWN_ID	UNKNOWN_ID	skos:exactMatch		fix_infrastructure:BusinessRejectReason_1		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-infrastructure						BusinessRejectReasonEnum			
+fix_infrastructure:BusinessRejectReasonEnum#UNKNOWN_SECURITY	UNKNOWN_SECURITY	skos:exactMatch		fix_infrastructure:BusinessRejectReason_2		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-infrastructure						BusinessRejectReasonEnum			
+fix_infrastructure:BusinessRejectReasonEnum#UNSUPPORTED_MESSAGE_TYPE	UNSUPPORTED_MESSAGE_TYPE	skos:exactMatch		fix_infrastructure:BusinessRejectReason_3		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-infrastructure						BusinessRejectReasonEnum			
+fix_infrastructure:BusinessRejectReasonEnum#APPLICATION_NOT_AVAILABLE	APPLICATION_NOT_AVAILABLE	skos:exactMatch		fix_infrastructure:BusinessRejectReason_4		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-infrastructure						BusinessRejectReasonEnum			
+fix_infrastructure:BusinessRejectReasonEnum#CONDITIONALLY_REQUIRED_FIELD_MISSING	CONDITIONALLY_REQUIRED_FIELD_MISSING	skos:exactMatch		fix_infrastructure:BusinessRejectReason_5		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-infrastructure						BusinessRejectReasonEnum			
+fix_infrastructure:BusinessRejectReasonEnum#NOT_AUTHORISED	NOT_AUTHORISED	skos:exactMatch		fix_infrastructure:BusinessRejectReason_6		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-infrastructure						BusinessRejectReasonEnum			
+fix_infrastructure:BusinessRejectReasonEnum#DELIVER_TO_FIRM_NOT_AVAILABLE	DELIVER_TO_FIRM_NOT_AVAILABLE	skos:exactMatch		fix_infrastructure:BusinessRejectReason_7		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-infrastructure						BusinessRejectReasonEnum			
+fix_infrastructure:BusinessRejectReasonEnum#THROTTLE_LIMIT_EXCEEDED	THROTTLE_LIMIT_EXCEEDED	skos:exactMatch		fix_infrastructure:BusinessRejectReason_8		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-infrastructure						BusinessRejectReasonEnum			
+fix_infrastructure:BusinessRejectReasonEnum#THROTTLE_LIMIT_EXCEEDED_SESSION_DISCONNECT	THROTTLE_LIMIT_EXCEEDED_SESSION_DISCONNECT	skos:exactMatch		fix_infrastructure:BusinessRejectReason_9		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-infrastructure						BusinessRejectReasonEnum			
+fix_infrastructure:BusinessRejectReasonEnum#THROTTLED_MESSAGES_REJECTED_ON_REQUEST	THROTTLED_MESSAGES_REJECTED_ON_REQUEST	skos:exactMatch		fix_infrastructure:BusinessRejectReason_10		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-infrastructure						BusinessRejectReasonEnum			
+fix_infrastructure:BusinessRejectReasonEnum#INVALID_PRICE_INCREMENT	INVALID_PRICE_INCREMENT	skos:exactMatch		fix_infrastructure:BusinessRejectReason_18		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-infrastructure						BusinessRejectReasonEnum			
+fix_base:FIXDatatypeName#Country	Country	skos:exactMatch		iso3166:		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-base						FIXDatatypeName			
+fix_base:FIXDatatypeName#Currency	Currency	skos:exactMatch		iso4217:		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-base						FIXDatatypeName			
+fix_base:FIXDatatypeName#Exchange	Exchange	skos:exactMatch		iso10383:		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-base						FIXDatatypeName			
+fix_base:FIXDatatypeName#Language	Language	skos:exactMatch		iso639:		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-base						FIXDatatypeName			
+fix_post_trade:MatchStatusEnum#COMPARED_MATCHED_OR_AFFIRMED	COMPARED_MATCHED_OR_AFFIRMED	skos:exactMatch		fix_post_trade:MatchStatus_0		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-post-trade						MatchStatusEnum			
+fix_post_trade:MatchStatusEnum#UNCOMPARED_UNMATCHED_OR_UNAFFIRMED	UNCOMPARED_UNMATCHED_OR_UNAFFIRMED	skos:exactMatch		fix_post_trade:MatchStatus_1		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-post-trade						MatchStatusEnum			
+fix_infrastructure:NetworkRequestTypeEnum#SNAPSHOT	SNAPSHOT	skos:exactMatch		fix_infrastructure:NetworkRequestType_1		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-infrastructure						NetworkRequestTypeEnum			
+fix_infrastructure:NetworkRequestTypeEnum#STOP_SUBSCRIBING	STOP_SUBSCRIBING	skos:exactMatch		fix_infrastructure:NetworkRequestType_4		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-infrastructure						NetworkRequestTypeEnum			
+fix_post_trade:PositionMaintenanceActionEnum#NEW	NEW	skos:exactMatch		fix_post_trade:PosMaintAction_1		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-post-trade						PositionMaintenanceActionEnum			
+fix_post_trade:PositionMaintenanceActionEnum#REPLACE	REPLACE	skos:exactMatch		fix_post_trade:PosMaintAction_2		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-post-trade						PositionMaintenanceActionEnum			
+fix_post_trade:PositionMaintenanceActionEnum#CANCEL	CANCEL	skos:exactMatch		fix_post_trade:PosMaintAction_3		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-post-trade						PositionMaintenanceActionEnum			
+fix_post_trade:PositionMaintenanceActionEnum#REVERSE	REVERSE	skos:exactMatch		fix_post_trade:PosMaintAction_4		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-post-trade						PositionMaintenanceActionEnum			
+fix_post_trade:RegistrationStatusEnum#ACCEPTED	ACCEPTED	skos:exactMatch		fix_post_trade:RegistStatus_A		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-post-trade						RegistrationStatusEnum			
+fix_post_trade:RegistrationStatusEnum#REJECTED	REJECTED	skos:exactMatch		fix_post_trade:RegistStatus_R		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-post-trade						RegistrationStatusEnum			
+fix_post_trade:RegistrationStatusEnum#HELD	HELD	skos:exactMatch		fix_post_trade:RegistStatus_H		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-post-trade						RegistrationStatusEnum			
+fix_post_trade:RegistrationStatusEnum#REMINDER	REMINDER	skos:exactMatch		fix_post_trade:RegistStatus_N		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-post-trade						RegistrationStatusEnum			
+fix_post_trade:RegistrationTransactionTypeEnum#NEW	NEW	skos:exactMatch		fix_post_trade:RegistTransType_0		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-post-trade						RegistrationTransactionTypeEnum			
+fix_post_trade:RegistrationTransactionTypeEnum#REPLACE	REPLACE	skos:exactMatch		fix_post_trade:RegistTransType_1		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-post-trade						RegistrationTransactionTypeEnum			
+fix_post_trade:RegistrationTransactionTypeEnum#CANCEL	CANCEL	skos:exactMatch		fix_post_trade:RegistTransType_2		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-post-trade						RegistrationTransactionTypeEnum			
+fix_post_trade:SettlementInstructionModeEnum#STANDING_INSTRUCTIONS	STANDING_INSTRUCTIONS	skos:exactMatch		fix_post_trade:SettlInstMode_1		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-post-trade						SettlementInstructionModeEnum			
+fix_post_trade:SettlementInstructionModeEnum#SPECIFIC_ORDER	SPECIFIC_ORDER	skos:exactMatch		fix_post_trade:SettlInstMode_4		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-post-trade						SettlementInstructionModeEnum			
+fix_post_trade:SettlementInstructionModeEnum#REQUEST_REJECT	REQUEST_REJECT	skos:exactMatch		fix_post_trade:SettlInstMode_5		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-post-trade						SettlementInstructionModeEnum			
+fix_post_trade:SettlementObligationModeEnum#PRELIMINARY	PRELIMINARY	skos:exactMatch		fix_post_trade:SettlObligMode_1		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-post-trade						SettlementObligationModeEnum			
+fix_post_trade:SettlementObligationModeEnum#FINAL	FINAL	skos:exactMatch		fix_post_trade:SettlObligMode_2		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-post-trade						SettlementObligationModeEnum			
+fix_base:id	id	skos:exactMatch		schema:identifier		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-base									
+fix_base:id	id	skos:exactMatch		dcterms:identifier		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-base									
+fix_base:BusinessArea	BusinessArea	skos:closeMatch		fix_orchestra:CategoryType		skos:closeMatch	https://w3id.org/lmodel/fix-protocol/fix-base									
+fix_infrastructure:BusinessRejectReasonDescription	BusinessRejectReasonDescription	skos:relatedMatch		iso27001:AuditFindingType		skos:relatedMatch	https://w3id.org/lmodel/fix-protocol/fix-infrastructure									
+fix_base:CommonComponent	CommonComponent	skos:closeMatch		fix_orchestra:ComponentType		skos:closeMatch	https://w3id.org/lmodel/fix-protocol/fix-base									
+fix_base:Component	Component	skos:closeMatch		fix_orchestra:ComponentType		skos:closeMatch	https://w3id.org/lmodel/fix-protocol/fix-base									
+fix_base:ExtensionPack	ExtensionPack	skos:relatedMatch		fix_orchestra:Repository		skos:relatedMatch	https://w3id.org/lmodel/fix-protocol/fix-base									
+fix_base:ExtensionPack	ExtensionPack	skos:relatedMatch		iso27001:DocumentedInformation		skos:relatedMatch	https://w3id.org/lmodel/fix-protocol/fix-base									
+fix_base:Field	Field	skos:relatedMatch		fix_sbe:SemanticAttributes		skos:relatedMatch	https://w3id.org/lmodel/fix-protocol/fix-base									
+fix_base:Field	Field	skos:exactMatch		fix_orchestra:FieldType		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-base									
+fix_base:FIXDatatype	FIXDatatype	skos:closeMatch		fix_sbe:SemanticAttributes		skos:closeMatch	https://w3id.org/lmodel/fix-protocol/fix-base									
+fix_base:FIXDatatype	FIXDatatype	skos:exactMatch		fix_orchestra:Datatype		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-base									
+fix_base:FIXFamilyStandard	FIXFamilyStandard	skos:relatedMatch		fix_orchestra:ProtocolEnum		skos:relatedMatch	https://w3id.org/lmodel/fix-protocol/fix-base									
+fix_base:FIXFamilyStandard	FIXFamilyStandard	skos:exactMatch		schema:Specification		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-base									
+fix_base:FIXIntroduction	FIXIntroduction	skos:relatedMatch		fix_orchestra:Repository		skos:relatedMatch	https://w3id.org/lmodel/fix-protocol/fix-base									
+fix_base:FIXProtocolLimited	FIXProtocolLimited	skos:relatedMatch		common_domain_model:Organization		skos:relatedMatch	https://w3id.org/lmodel/fix-protocol/fix-base									
+fix_base:FIXProtocolLimited	FIXProtocolLimited	skos:closeMatch		iso27001:Organization		skos:closeMatch	https://w3id.org/lmodel/fix-protocol/fix-base									
+fix_base:FIXProtocolLimited	FIXProtocolLimited	skos:exactMatch		schema:Organization		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-base									
+fix_base:GlobalComponent	GlobalComponent	skos:closeMatch		fix_orchestra:ComponentType		skos:closeMatch	https://w3id.org/lmodel/fix-protocol/fix-base									
+fix_infrastructure:InfrastructureBusinessArea	InfrastructureBusinessArea	skos:relatedMatch		fixp:FixpSessionExchange		skos:relatedMatch	https://w3id.org/lmodel/fix-protocol/fix-infrastructure									
+fix_base:Message	Message	skos:exactMatch		fix_orchestra:MessageType		skos:exactMatch	https://w3id.org/lmodel/fix-protocol/fix-base									
+fix_base:MessageCategory	MessageCategory	skos:closeMatch		fix_orchestra:CategoryType		skos:closeMatch	https://w3id.org/lmodel/fix-protocol/fix-base									
+fix_post_trade:PostTradeMessageDetail	PostTradeMessageDetail	skos:closeMatch		fix_orchestra:MessageType		skos:closeMatch	https://w3id.org/lmodel/fix-protocol/fix-post-trade									
+fix_base:SpecificComponent	SpecificComponent	skos:closeMatch		fix_orchestra:ComponentType		skos:closeMatch	https://w3id.org/lmodel/fix-protocol/fix-base									
+fix_infrastructure:StandardResponseMapping	StandardResponseMapping	skos:relatedMatch		fluxnova_bpm_platform:Task		skos:relatedMatch	https://w3id.org/lmodel/fix-protocol/fix-infrastructure									
+fix_post_trade:TradeCaptureReportIdentifierRule	TradeCaptureReportIdentifierRule	skos:relatedMatch		common_domain_model:Identifier		skos:relatedMatch	https://w3id.org/lmodel/fix-protocol/fix-post-trade									
+fix_post_trade:TradeCaptureReportUsage	TradeCaptureReportUsage	skos:relatedMatch		common_domain_model:BusinessEvent		skos:relatedMatch	https://w3id.org/lmodel/fix-protocol/fix-post-trade									
+fix_post_trade:TradeCaptureReportUsage	TradeCaptureReportUsage	skos:relatedMatch		fix_orchestra:ScenarioType		skos:relatedMatch	https://w3id.org/lmodel/fix-protocol/fix-post-trade									

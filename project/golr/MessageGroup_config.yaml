@@ -1,0 +1,17 @@
+# metamodel_version: 1.11.0id: MessageGroup
+schema_generating: true
+description: Purpose-grouped sub-section inside a category's Messages section.
+display_name: MessageGroup
+document_category: MessageGroup
+weight: 20
+fields:
+- id: group_title
+  description: Purpose-group heading inside a category's Messages sub-section.
+  display_name: MessageGroup_group_title
+- id: description
+  description: Description of the purpose-group's role within the category.
+  display_name: MessageGroup_description
+- id: messages
+  description: Messages bundled under the purpose-group heading.
+  display_name: MessageGroup_messages
+  cardinality: multi

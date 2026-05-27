@@ -1,0 +1,35 @@
+# metamodel_version: 1.11.0id: PreTradeCategorySection
+schema_generating: true
+description: A per-category sub-section of the Pre-Trade chapter.
+display_name: PreTradeCategorySection
+document_category: PreTradeCategorySection
+weight: 20
+fields:
+- id: category
+  description: Message category.
+  display_name: PreTradeCategorySection_category
+- id: title
+  description: Display title.
+  display_name: title
+- id: description
+  description: Free-text description.
+  display_name: description
+- id: quote_models
+  description: Quoting business models referenced in the Quotation / Negotiation category.
+  display_name: quote_models
+  cardinality: multi
+- id: message_groups
+  description: Purpose-grouped message descriptions inside a category.
+  display_name: message_groups
+  cardinality: multi
+- id: messages
+  description: Messages defined in this category.
+  display_name: PreTradeCategorySection_messages
+  cardinality: multi
+- id: category_components_note
+  description: Intro prose of a category's Components sub-section.
+  display_name: category_components_note
+- id: category_specific_components
+  description: Components used exclusively by messages within a category.
+  display_name: category_specific_components
+  cardinality: multi

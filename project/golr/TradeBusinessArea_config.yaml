@@ -1,0 +1,66 @@
+# metamodel_version: 1.11.0id: TradeBusinessArea
+schema_generating: true
+description: Tree-root container for the Trade (Orders and Executions) business area
+  of FIX Latest.
+display_name: TradeBusinessArea
+document_category: TradeBusinessArea
+weight: 20
+fields:
+- id: trade_area
+  description: Identity of the business area the chapter describes.
+  display_name: TradeBusinessArea_trade_area
+- id: title
+  description: Display title.
+  display_name: TradeBusinessArea_title
+- id: published_version
+  description: Version stamp from the document header.
+  display_name: published_version
+- id: publisher
+  description: Publishing body of the FIX Latest specification.
+  display_name: TradeBusinessArea_publisher
+- id: trade_introduction
+  description: Prose introduction of the chapter.
+  display_name: trade_introduction
+- id: trade_diagram_conventions
+  description: Sentence describing diagram conventions used in the chapter.
+  display_name: trade_diagram_conventions
+- id: trade_message_diagram_template_url
+  description: URL of the "Message Diagram Templates" page referenced by the chapter
+    introduction.
+  display_name: trade_message_diagram_template_url
+- id: trade_messages_overview_note
+  description: Intro prose of the area-wide Messages sub-section.
+  display_name: trade_messages_overview_note
+- id: messages
+  description: Area-wide trade messages table.
+  display_name: TradeBusinessArea_messages
+  cardinality: multi
+- id: trade_components_overview_note
+  description: Intro prose of the area-wide Components sub-section.
+  display_name: trade_components_overview_note
+- id: components
+  description: Area-wide trade components table.
+  display_name: TradeBusinessArea_components
+  cardinality: multi
+- id: trade_common_components
+  description: Common Components declared at the bottom of the chapter.
+  display_name: trade_common_components
+  cardinality: multi
+- id: trade_common_component_details
+  description: Per-common-component descriptions from the chapter's final section.
+  display_name: trade_common_component_details
+  cardinality: multi
+- id: trade_footnotes
+  description: Footnotes attached to the area-wide components table.
+  display_name: trade_footnotes
+  cardinality: multi
+- id: trade_category_sections
+  description: Per-category sub-sections of the chapter.
+  display_name: trade_category_sections
+  cardinality: multi
+- id: referenced_global_components
+  description: Names of Global Components from the FIX Latest "Global Components"
+    page that are referenced by messages in the containing business area. References
+    instances of the :class:`GlobalComponent` class (declared in fix_base) by name.
+  display_name: referenced_global_components
+  cardinality: multi

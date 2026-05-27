@@ -1,0 +1,1183 @@
+{
+   "@context": {
+      "xsd": "http://www.w3.org/2001/XMLSchema#",
+      "PATO": {
+         "@id": "http://purl.obolibrary.org/obo/PATO_",
+         "@prefix": true
+      },
+      "biolink": "https://w3id.org/biolink/vocab/",
+      "common_domain_model": "https://w3id.org/lmodel/common-domain-model/",
+      "dcterms": "http://purl.org/dc/terms/",
+      "example": "http://www.example.org/rdf#",
+      "fix_base": "https://w3id.org/lmodel/fix-protocol/fix-base/",
+      "fix_global_components": "https://w3id.org/lmodel/fix-protocol/fix-global-components/",
+      "fix_infrastructure": "https://w3id.org/lmodel/fix-protocol/fix-infrastructure/",
+      "fix_orchestra": "https://w3id.org/lmodel/fix-orchestra/",
+      "fix_post_trade": "https://w3id.org/lmodel/fix-protocol/fix-post-trade/",
+      "fix_pre_trade": "https://w3id.org/lmodel/fix-protocol/fix-pre-trade/",
+      "fix_protocol": "https://w3id.org/lmodel/fix-protocol/",
+      "fix_sbe": "https://w3id.org/lmodel/fix-sbe/",
+      "fix_trade": "https://w3id.org/lmodel/fix-protocol/fix-trade/",
+      "fixp": "https://w3id.org/lmodel/fixp/",
+      "fluxnova_bpm_platform": "https://w3id.org/lmodel/fluxnova-bpm-platform/",
+      "iso10383": "https://www.iso.org/standard/61067.html#",
+      "iso11404": "https://www.iso.org/standard/39479.html#",
+      "iso17442": "https://www.iso.org/standard/78829.html#",
+      "iso27001": "https://w3id.org/lmodel/iso27001/",
+      "iso3166": "https://www.iso.org/iso-3166-country-codes.html#",
+      "iso4217": "https://www.iso.org/iso-4217-currency-codes.html#",
+      "iso639": "https://www.iso.org/iso-639-language-codes.html#",
+      "linkml": "https://w3id.org/linkml/",
+      "rdfs": "http://example.org/UNKNOWN/rdfs/",
+      "schema": "http://schema.org/",
+      "skos": "http://www.w3.org/2004/02/skos/core#",
+      "@vocab": "https://w3id.org/lmodel/fix-protocol/",
+      "about_fpl": {
+         "@type": "@id",
+         "@id": "fix_base:about_fpl"
+      },
+      "acronym": {
+         "@id": "schema:alternateName"
+      },
+      "allocation_roles": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_post_trade:allocation_roles"
+      },
+      "allocation_scenarios": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_post_trade:allocation_scenarios"
+      },
+      "allocation_status_descriptions": {
+         "@type": "@id",
+         "@id": "fix_post_trade:allocation_status_descriptions"
+      },
+      "msg_type": "@id",
+      "status_code": {
+         "@id": "fix_post_trade:status_code"
+      },
+      "application_message_report_uses": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_infrastructure:application_message_report_uses"
+      },
+      "applies_to_fixml_only": {
+         "@type": "xsd:boolean",
+         "@id": "fix_base:applies_to_fixml_only"
+      },
+      "applies_to_instrument": {
+         "@type": "xsd:boolean",
+         "@id": "fix_base:applies_to_instrument"
+      },
+      "applies_to_leg": {
+         "@type": "xsd:boolean",
+         "@id": "fix_base:applies_to_leg"
+      },
+      "applies_to_session_layer_only": {
+         "@type": "xsd:boolean",
+         "@id": "fix_base:applies_to_session_layer_only"
+      },
+      "applies_to_underlying": {
+         "@type": "xsd:boolean",
+         "@id": "fix_base:applies_to_underlying"
+      },
+      "appropriate_responses": {
+         "@id": "fix_infrastructure:appropriate_responses"
+      },
+      "area": "@id",
+      "brand_name": {
+         "@id": "fix_base:brand_name"
+      },
+      "business_area": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_base:business_area"
+      },
+      "business_areas": {
+         "@type": "@id",
+         "@id": "fix_base:business_areas"
+      },
+      "business_reject_reason_descriptions": {
+         "@type": "@id",
+         "@id": "fix_infrastructure:business_reject_reason_descriptions"
+      },
+      "business_reject_ref_id_value": {
+         "@id": "fix_infrastructure:business_reject_ref_id_value"
+      },
+      "reject_reason_code": {
+         "@type": "xsd:integer",
+         "@id": "fix_infrastructure:reject_reason_code"
+      },
+      "categories": {
+         "@type": "@id",
+         "@id": "fix_base:categories"
+      },
+      "category": "@id",
+      "category_components_note": {
+         "@id": "fix_pre_trade:category_components_note"
+      },
+      "category_label": {
+         "@id": "fix_infrastructure:category_label"
+      },
+      "category_sections": {
+         "@type": "@id",
+         "@id": "fix_pre_trade:category_sections"
+      },
+      "category_specific_components": {
+         "@type": "@id",
+         "@id": "fix_pre_trade:category_specific_components"
+      },
+      "clearing_services_for_position_management": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_post_trade:clearing_services_for_position_management"
+      },
+      "clearing_services_for_post_trade_processing": {
+         "@type": "@id",
+         "@id": "fix_post_trade:clearing_services_for_post_trade_processing"
+      },
+      "message_format": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_post_trade:message_format"
+      },
+      "collateral_assignment_purposes": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_post_trade:collateral_assignment_purposes"
+      },
+      "collateral_management_usages": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_post_trade:collateral_management_usages"
+      },
+      "committees_url": {
+         "@type": "xsd:anyURI",
+         "@id": "fix_base:committees_url"
+      },
+      "common_component_details": {
+         "@type": "@id",
+         "@id": "fix_pre_trade:common_component_details"
+      },
+      "common_components": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_pre_trade:common_components"
+      },
+      "component_name": "@id",
+      "component_group": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_base:component_group"
+      },
+      "components": {
+         "@type": "@id",
+         "@id": "fix_base:components"
+      },
+      "components_overview_note": {
+         "@id": "fix_pre_trade:components_overview_note"
+      },
+      "footnote_number": "@id",
+      "conceptually_identical_to": {
+         "@id": "fix_base:conceptually_identical_to"
+      },
+      "datatype": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_base:datatype"
+      },
+      "datatype_name": "@id",
+      "datatypes": {
+         "@type": "@id",
+         "@id": "fix_base:datatypes"
+      },
+      "definition": {
+         "@id": "fix_base:definition"
+      },
+      "deprecated_for_new_designs": {
+         "@type": "xsd:boolean",
+         "@id": "fix_base:deprecated_for_new_designs"
+      },
+      "description": {
+         "@id": "dcterms:description"
+      },
+      "diagram_conventions": {
+         "@id": "fix_pre_trade:diagram_conventions"
+      },
+      "encoding_name": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_base:encoding_name"
+      },
+      "enhancement_summary": {
+         "@id": "fix_base:enhancement_summary"
+      },
+      "extension_packs": {
+         "@type": "@id",
+         "@id": "fix_base:extension_packs"
+      },
+      "number": {
+         "@type": "xsd:integer",
+         "@id": "fix_base:number"
+      },
+      "external_code_set": {
+         "@id": "dcterms:conformsTo"
+      },
+      "field_name": {
+         "@id": "schema:name"
+      },
+      "tag": {
+         "@type": "xsd:integer",
+         "@id": "fix_base:tag"
+      },
+      "fields": {
+         "@type": "@id",
+         "@id": "fix_base:fields"
+      },
+      "fix_message": {
+         "@id": "fix_infrastructure:fix_message"
+      },
+      "footnote_numbers": {
+         "@type": "xsd:integer",
+         "@id": "fix_base:footnote_numbers"
+      },
+      "footnotes": {
+         "@type": "@id",
+         "@id": "fix_pre_trade:footnotes"
+      },
+      "fragment_count_field": {
+         "@id": "fix_post_trade:fragment_count_field"
+      },
+      "fragmentation_field_map": {
+         "@type": "@id",
+         "@id": "fix_post_trade:fragmentation_field_map"
+      },
+      "gc_id": {
+         "@type": "xsd:integer",
+         "@id": "fix_base:gc_id"
+      },
+      "gc_referenced_in": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_base:gc_referenced_in"
+      },
+      "global_components": {
+         "@type": "@id",
+         "@id": "fix_base:global_components"
+      },
+      "governance_bodies": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_base:governance_bodies"
+      },
+      "group_title": "@id",
+      "high_tag": {
+         "@type": "xsd:integer",
+         "@id": "fix_base:high_tag"
+      },
+      "id": "@id",
+      "identifier_role": "@id",
+      "index_lower_bound": {
+         "@type": "xsd:integer",
+         "@id": "fix_base:index_lower_bound"
+      },
+      "index_upper_bound": {
+         "@type": "xsd:integer",
+         "@id": "fix_base:index_upper_bound"
+      },
+      "infra_category_sections": {
+         "@type": "@id",
+         "@id": "fix_infrastructure:infra_category_sections"
+      },
+      "infra_category_specific_components": {
+         "@type": "@id",
+         "@id": "fix_infrastructure:infra_category_specific_components"
+      },
+      "infra_common_components": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_infrastructure:infra_common_components"
+      },
+      "infra_footnotes": {
+         "@type": "@id",
+         "@id": "fix_infrastructure:infra_footnotes"
+      },
+      "infra_global_component_field_names": {
+         "@id": "fix_infrastructure:infra_global_component_field_names"
+      },
+      "infra_global_component_field_tags": {
+         "@type": "xsd:integer",
+         "@id": "fix_infrastructure:infra_global_component_field_tags"
+      },
+      "infra_global_component_msg_types": {
+         "@id": "fix_infrastructure:infra_global_component_msg_types"
+      },
+      "infra_global_component_name": "@id",
+      "infra_global_component_repetition": {
+         "@id": "fix_infrastructure:infra_global_component_repetition"
+      },
+      "infra_global_component_used_in": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_infrastructure:infra_global_component_used_in"
+      },
+      "infra_global_components": {
+         "@type": "@id",
+         "@id": "fix_infrastructure:infra_global_components"
+      },
+      "infra_introduction": {
+         "@id": "fix_infrastructure:infra_introduction"
+      },
+      "infra_layout_description": {
+         "@id": "fix_infrastructure:infra_layout_description"
+      },
+      "infra_layout_element_name": {
+         "@id": "fix_infrastructure:infra_layout_element_name"
+      },
+      "infra_layout_field_tag": {
+         "@type": "xsd:integer",
+         "@id": "fix_infrastructure:infra_layout_field_tag"
+      },
+      "infra_layout_kind": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_infrastructure:infra_layout_kind"
+      },
+      "infra_layout_nested": {
+         "@type": "xsd:boolean",
+         "@id": "fix_infrastructure:infra_layout_nested"
+      },
+      "infra_layout_required": {
+         "@type": "xsd:boolean",
+         "@id": "fix_infrastructure:infra_layout_required"
+      },
+      "infra_layout_rows": {
+         "@type": "@id",
+         "@id": "fix_infrastructure:infra_layout_rows"
+      },
+      "infra_sole_category": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_infrastructure:infra_sole_category"
+      },
+      "introduced_in": {
+         "@id": "fix_pre_trade:introduced_in"
+      },
+      "introduction": {
+         "@id": "fix_pre_trade:introduction"
+      },
+      "introduction_text": {
+         "@id": "fix_base:introduction_text"
+      },
+      "is_common": {
+         "@type": "xsd:boolean",
+         "@id": "fix_pre_trade:is_common"
+      },
+      "is_repeating_group": {
+         "@type": "xsd:boolean",
+         "@id": "fix_base:is_repeating_group"
+      },
+      "is_user_defined": {
+         "@type": "xsd:boolean",
+         "@id": "fix_base:is_user_defined"
+      },
+      "key_fields_post_trade": {
+         "@type": "@id",
+         "@id": "fix_infrastructure:key_fields_post_trade"
+      },
+      "key_fields_pre_trade": {
+         "@type": "@id",
+         "@id": "fix_infrastructure:key_fields_pre_trade"
+      },
+      "key_fields_trade": {
+         "@type": "@id",
+         "@id": "fix_infrastructure:key_fields_trade"
+      },
+      "layer": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_base:layer"
+      },
+      "layout_url": {
+         "@type": "xsd:anyURI",
+         "@id": "schema:url"
+      },
+      "legal_name": {
+         "@id": "schema:legalName"
+      },
+      "low_tag": {
+         "@type": "xsd:integer",
+         "@id": "fix_base:low_tag"
+      },
+      "maximum_value": {
+         "@type": "xsd:integer",
+         "@id": "fix_base:maximum_value"
+      },
+      "member_firms_url": {
+         "@type": "xsd:anyURI",
+         "@id": "fix_base:member_firms_url"
+      },
+      "member_types": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_base:member_types"
+      },
+      "message_groups": {
+         "@type": "@id",
+         "@id": "fix_pre_trade:message_groups"
+      },
+      "message_name": {
+         "@id": "schema:name"
+      },
+      "messages": {
+         "@type": "@id",
+         "@id": "fix_base:messages"
+      },
+      "messages_overview_note": {
+         "@id": "fix_pre_trade:messages_overview_note"
+      },
+      "minimum_value": {
+         "@type": "xsd:integer",
+         "@id": "fix_base:minimum_value"
+      },
+      "name": {
+         "@id": "schema:name"
+      },
+      "nested_components": {
+         "@type": "@id",
+         "@id": "fix_base:nested_components"
+      },
+      "network_request_types_referenced": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_infrastructure:network_request_types_referenced"
+      },
+      "network_status_scenarios": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_infrastructure:network_status_scenarios"
+      },
+      "post_category_sections": {
+         "@type": "@id",
+         "@id": "fix_post_trade:post_category_sections"
+      },
+      "post_category_specific_components": {
+         "@type": "@id",
+         "@id": "fix_post_trade:post_category_specific_components"
+      },
+      "post_common_component_details": {
+         "@type": "@id",
+         "@id": "fix_post_trade:post_common_component_details"
+      },
+      "post_common_components": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_post_trade:post_common_components"
+      },
+      "post_footnotes": {
+         "@type": "@id",
+         "@id": "fix_post_trade:post_footnotes"
+      },
+      "post_introduction": {
+         "@id": "fix_post_trade:post_introduction"
+      },
+      "post_layout_description": {
+         "@id": "fix_post_trade:post_layout_description"
+      },
+      "post_layout_element_name": {
+         "@id": "fix_post_trade:post_layout_element_name"
+      },
+      "post_layout_field_tag": {
+         "@type": "xsd:integer",
+         "@id": "fix_post_trade:post_layout_field_tag"
+      },
+      "post_layout_kind": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_post_trade:post_layout_kind"
+      },
+      "post_layout_nested": {
+         "@type": "xsd:boolean",
+         "@id": "fix_post_trade:post_layout_nested"
+      },
+      "post_layout_required": {
+         "@type": "xsd:boolean",
+         "@id": "fix_post_trade:post_layout_required"
+      },
+      "post_layout_rows": {
+         "@type": "@id",
+         "@id": "fix_post_trade:post_layout_rows"
+      },
+      "post_message_groups": {
+         "@type": "@id",
+         "@id": "fix_post_trade:post_message_groups"
+      },
+      "post_sole_category": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_post_trade:post_sole_category"
+      },
+      "post_trade_allocation_pricing_methods": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_post_trade:post_trade_allocation_pricing_methods"
+      },
+      "pre_layout_description": {
+         "@id": "fix_pre_trade:pre_layout_description"
+      },
+      "pre_layout_element_name": {
+         "@id": "fix_pre_trade:pre_layout_element_name"
+      },
+      "pre_layout_field_tag": {
+         "@type": "xsd:integer",
+         "@id": "fix_pre_trade:pre_layout_field_tag"
+      },
+      "pre_layout_kind": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_pre_trade:pre_layout_kind"
+      },
+      "pre_layout_nested": {
+         "@type": "xsd:boolean",
+         "@id": "fix_pre_trade:pre_layout_nested"
+      },
+      "pre_layout_required": {
+         "@type": "xsd:boolean",
+         "@id": "fix_pre_trade:pre_layout_required"
+      },
+      "pre_layout_rows": {
+         "@type": "@id",
+         "@id": "fix_pre_trade:pre_layout_rows"
+      },
+      "preface": {
+         "@id": "fix_base:preface"
+      },
+      "principal_message_reference": {
+         "@id": "fix_post_trade:principal_message_reference"
+      },
+      "product_committees": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_base:product_committees"
+      },
+      "product_coverage": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_base:product_coverage"
+      },
+      "published_date": {
+         "@type": "xsd:date",
+         "@id": "dcterms:issued"
+      },
+      "published_version": {
+         "@id": "schema:version"
+      },
+      "publisher": {
+         "@id": "dcterms:publisher"
+      },
+      "quote_models": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_pre_trade:quote_models"
+      },
+      "radix": {
+         "@type": "xsd:integer",
+         "@id": "fix_base:radix"
+      },
+      "range_id": "@id",
+      "referenced_global_components": {
+         "@type": "@id",
+         "@id": "fix_global_components:referenced_global_components"
+      },
+      "regional_committees": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_base:regional_committees"
+      },
+      "registration_status_descriptions": {
+         "@type": "@id",
+         "@id": "fix_post_trade:registration_status_descriptions"
+      },
+      "reject_reason_label": {
+         "@id": "fix_infrastructure:reject_reason_label"
+      },
+      "repertoire": {
+         "@id": "fix_base:repertoire"
+      },
+      "repetition": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_pre_trade:repetition"
+      },
+      "requirement": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_base:requirement"
+      },
+      "requires_registration": {
+         "@type": "xsd:boolean",
+         "@id": "fix_base:requires_registration"
+      },
+      "scope": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_base:scope"
+      },
+      "see_also": {
+         "@type": "xsd:anyURI",
+         "@id": "rdfs:seeAlso"
+      },
+      "session_profile": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_base:session_profile"
+      },
+      "size": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_base:size"
+      },
+      "sole_category": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_pre_trade:sole_category"
+      },
+      "standard_responses_post_trade": {
+         "@type": "@id",
+         "@id": "fix_infrastructure:standard_responses_post_trade"
+      },
+      "standard_responses_pre_trade": {
+         "@type": "@id",
+         "@id": "fix_infrastructure:standard_responses_pre_trade"
+      },
+      "standard_responses_trade": {
+         "@type": "@id",
+         "@id": "fix_infrastructure:standard_responses_trade"
+      },
+      "standards": {
+         "@type": "@id",
+         "@id": "fix_base:standards"
+      },
+      "status_label": "@id",
+      "supported_actions": {
+         "@id": "fix_post_trade:supported_actions"
+      },
+      "text": {
+         "@id": "fix_pre_trade:text"
+      },
+      "time_unit": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_base:time_unit"
+      },
+      "title": {
+         "@id": "dcterms:title"
+      },
+      "total_count_field": {
+         "@id": "fix_post_trade:total_count_field"
+      },
+      "trade_appendix_category": "@id",
+      "trade_appendix_sections": {
+         "@type": "@id",
+         "@id": "fix_trade:trade_appendix_sections"
+      },
+      "trade_area": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "schema:identifier"
+      },
+      "trade_capture_report_identifier_rules": {
+         "@type": "@id",
+         "@id": "fix_post_trade:trade_capture_report_identifier_rules"
+      },
+      "trade_capture_report_usages": {
+         "@type": "@id",
+         "@id": "fix_post_trade:trade_capture_report_usages"
+      },
+      "trade_category_background": {
+         "@id": "fix_trade:trade_category_background"
+      },
+      "trade_category_components_note": {
+         "@id": "fix_trade:trade_category_components_note"
+      },
+      "trade_category_sections": {
+         "@type": "@id",
+         "@id": "fix_trade:trade_category_sections"
+      },
+      "trade_category_specific_components": {
+         "@type": "@id",
+         "@id": "fix_trade:trade_category_specific_components"
+      },
+      "trade_common_component_details": {
+         "@type": "@id",
+         "@id": "fix_trade:trade_common_component_details"
+      },
+      "trade_common_components": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_trade:trade_common_components"
+      },
+      "trade_components_overview_note": {
+         "@id": "fix_trade:trade_components_overview_note"
+      },
+      "trade_diagram_conventions": {
+         "@id": "fix_trade:trade_diagram_conventions"
+      },
+      "trade_footnote_number": "@id",
+      "trade_footnote_text": {
+         "@id": "fix_trade:trade_footnote_text"
+      },
+      "trade_footnotes": {
+         "@type": "@id",
+         "@id": "fix_trade:trade_footnotes"
+      },
+      "trade_fragmentation_entries": {
+         "@type": "@id",
+         "@id": "fix_trade:trade_fragmentation_entries"
+      },
+      "trade_fragmentation_message": "@id",
+      "trade_fragmentation_repeating_group": {
+         "@id": "fix_trade:trade_fragmentation_repeating_group"
+      },
+      "trade_fragmentation_total_entries_field": {
+         "@id": "fix_trade:trade_fragmentation_total_entries_field"
+      },
+      "trade_group_title": "@id",
+      "trade_introduced_in": {
+         "@id": "fix_trade:trade_introduced_in"
+      },
+      "trade_introduction": {
+         "@id": "fix_trade:trade_introduction"
+      },
+      "trade_is_common": {
+         "@type": "xsd:boolean",
+         "@id": "fix_trade:trade_is_common"
+      },
+      "trade_layout_description": {
+         "@id": "fix_trade:trade_layout_description"
+      },
+      "trade_layout_element_name": {
+         "@id": "fix_trade:trade_layout_element_name"
+      },
+      "trade_layout_field_tag": {
+         "@type": "xsd:integer",
+         "@id": "fix_trade:trade_layout_field_tag"
+      },
+      "trade_layout_kind": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_trade:trade_layout_kind"
+      },
+      "trade_layout_nested": {
+         "@type": "xsd:boolean",
+         "@id": "fix_trade:trade_layout_nested"
+      },
+      "trade_layout_required": {
+         "@type": "xsd:boolean",
+         "@id": "fix_trade:trade_layout_required"
+      },
+      "trade_layout_rows": {
+         "@type": "@id",
+         "@id": "fix_trade:trade_layout_rows"
+      },
+      "trade_layout_url": {
+         "@type": "xsd:anyURI",
+         "@id": "schema:url"
+      },
+      "trade_message_diagram_template_url": {
+         "@type": "xsd:anyURI",
+         "@id": "schema:url"
+      },
+      "trade_message_groups": {
+         "@type": "@id",
+         "@id": "fix_trade:trade_message_groups"
+      },
+      "trade_messages_overview_note": {
+         "@id": "fix_trade:trade_messages_overview_note"
+      },
+      "trade_ord_status_label": "@id",
+      "trade_ord_status_precedence": {
+         "@type": "xsd:integer",
+         "@id": "fix_trade:trade_ord_status_precedence"
+      },
+      "trade_ord_status_precedence_entries": {
+         "@type": "@id",
+         "@id": "fix_trade:trade_ord_status_precedence_entries"
+      },
+      "trade_repetition": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_trade:trade_repetition"
+      },
+      "trade_sole_category": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_trade:trade_sole_category"
+      },
+      "udf_ranges": {
+         "@type": "@id",
+         "@id": "fix_base:udf_ranges"
+      },
+      "usage": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_base:usage"
+      },
+      "utc_leap_seconds_note": {
+         "@id": "fix_base:utc_leap_seconds_note"
+      },
+      "value_space": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "fix_base:value_space"
+      },
+      "value_space_notes": {
+         "@id": "fix_base:value_space_notes"
+      },
+      "version": {
+         "@id": "schema:version"
+      },
+      "website": {
+         "@type": "xsd:anyURI",
+         "@id": "schema:url"
+      },
+      "working_groups_url": {
+         "@type": "xsd:anyURI",
+         "@id": "fix_base:working_groups_url"
+      },
+      "AllocationFragmentationFieldMap": {
+         "@id": "fix_post_trade:AllocationFragmentationFieldMap"
+      },
+      "AllocationStatusDescription": {
+         "@id": "fix_post_trade:AllocationStatusDescription"
+      },
+      "ApplicationMessageReferenceKey": {
+         "@id": "fix_infrastructure:ApplicationMessageReferenceKey"
+      },
+      "BusinessArea": {
+         "@id": "fix_base:BusinessArea"
+      },
+      "BusinessRejectReasonDescription": {
+         "@id": "fix_infrastructure:BusinessRejectReasonDescription"
+      },
+      "ClearingServicePostTradeProcessingFormat": {
+         "@id": "fix_post_trade:ClearingServicePostTradeProcessingFormat"
+      },
+      "CommonComponent": {
+         "@id": "fix_base:CommonComponent"
+      },
+      "CommonComponentDetail": {
+         "@id": "fix_pre_trade:CommonComponentDetail"
+      },
+      "Component": {
+         "@id": "fix_base:Component"
+      },
+      "ComponentTableFootnote": {
+         "@id": "fix_pre_trade:ComponentTableFootnote"
+      },
+      "ExtensionPack": {
+         "@id": "fix_base:ExtensionPack"
+      },
+      "Field": {
+         "@id": "fix_base:Field"
+      },
+      "FIXDatatype": {
+         "@id": "fix_base:FIXDatatype"
+      },
+      "FIXFamilyStandard": {
+         "@id": "fix_base:FIXFamilyStandard"
+      },
+      "FIXIntroduction": {
+         "@id": "fix_base:FIXIntroduction"
+      },
+      "FIXProtocolLimited": {
+         "@id": "fix_base:FIXProtocolLimited"
+      },
+      "GlobalComponent": {
+         "@id": "fix_base:GlobalComponent"
+      },
+      "InfrastructureBusinessArea": {
+         "@id": "fix_infrastructure:InfrastructureBusinessArea"
+      },
+      "InfrastructureCategorySection": {
+         "@id": "fix_infrastructure:InfrastructureCategorySection"
+      },
+      "InfrastructureComponentDetail": {
+         "@id": "fix_infrastructure:InfrastructureComponentDetail"
+      },
+      "InfrastructureComponentEntry": {
+         "@id": "fix_infrastructure:InfrastructureComponentEntry"
+      },
+      "InfrastructureComponentTableFootnote": {
+         "@id": "fix_infrastructure:InfrastructureComponentTableFootnote"
+      },
+      "InfrastructureGlobalComponentReference": {
+         "@id": "fix_infrastructure:InfrastructureGlobalComponentReference"
+      },
+      "InfrastructureLayoutRow": {
+         "@id": "fix_infrastructure:InfrastructureLayoutRow"
+      },
+      "InfrastructureMessageDetail": {
+         "@id": "fix_infrastructure:InfrastructureMessageDetail"
+      },
+      "InfrastructureMessageEntry": {
+         "@id": "fix_infrastructure:InfrastructureMessageEntry"
+      },
+      "Message": {
+         "@id": "fix_base:Message"
+      },
+      "MessageCategory": {
+         "@id": "fix_base:MessageCategory"
+      },
+      "MessageGroup": {
+         "@id": "fix_pre_trade:MessageGroup"
+      },
+      "PostTradeBusinessArea": {
+         "@id": "fix_post_trade:PostTradeBusinessArea"
+      },
+      "PostTradeCategorySection": {
+         "@id": "fix_post_trade:PostTradeCategorySection"
+      },
+      "PostTradeCommonComponentDetail": {
+         "@id": "fix_post_trade:PostTradeCommonComponentDetail"
+      },
+      "PostTradeComponentDetail": {
+         "@id": "fix_post_trade:PostTradeComponentDetail"
+      },
+      "PostTradeComponentEntry": {
+         "@id": "fix_post_trade:PostTradeComponentEntry"
+      },
+      "PostTradeComponentTableFootnote": {
+         "@id": "fix_post_trade:PostTradeComponentTableFootnote"
+      },
+      "PostTradeLayoutRow": {
+         "@id": "fix_post_trade:PostTradeLayoutRow"
+      },
+      "PostTradeMessageDetail": {
+         "@id": "fix_post_trade:PostTradeMessageDetail"
+      },
+      "PostTradeMessageEntry": {
+         "@id": "fix_post_trade:PostTradeMessageEntry"
+      },
+      "PostTradeMessageGroup": {
+         "@id": "fix_post_trade:PostTradeMessageGroup"
+      },
+      "PreTradeBusinessArea": {
+         "@id": "fix_pre_trade:PreTradeBusinessArea"
+      },
+      "PreTradeCategorySection": {
+         "@id": "fix_pre_trade:PreTradeCategorySection"
+      },
+      "PreTradeComponentDetail": {
+         "@id": "fix_pre_trade:PreTradeComponentDetail"
+      },
+      "PreTradeComponentEntry": {
+         "@id": "fix_pre_trade:PreTradeComponentEntry"
+      },
+      "PreTradeLayoutRow": {
+         "@id": "fix_pre_trade:PreTradeLayoutRow"
+      },
+      "PreTradeMessageDetail": {
+         "@id": "fix_pre_trade:PreTradeMessageDetail"
+      },
+      "PreTradeMessageEntry": {
+         "@id": "fix_pre_trade:PreTradeMessageEntry"
+      },
+      "RegistrationStatusDescription": {
+         "@id": "fix_post_trade:RegistrationStatusDescription"
+      },
+      "SpecificComponent": {
+         "@id": "fix_base:SpecificComponent"
+      },
+      "StandardResponseMapping": {
+         "@id": "fix_infrastructure:StandardResponseMapping"
+      },
+      "TradeAppendix": {
+         "@id": "fix_trade:TradeAppendix"
+      },
+      "TradeAppendixSection": {
+         "@id": "fix_trade:TradeAppendixSection"
+      },
+      "TradeBusinessArea": {
+         "@id": "fix_trade:TradeBusinessArea"
+      },
+      "TradeCaptureReportIdentifierRule": {
+         "@id": "fix_post_trade:TradeCaptureReportIdentifierRule"
+      },
+      "TradeCaptureReportUsage": {
+         "@id": "fix_post_trade:TradeCaptureReportUsage"
+      },
+      "TradeCategorySection": {
+         "@id": "fix_trade:TradeCategorySection"
+      },
+      "TradeCommonComponentDetail": {
+         "@id": "fix_trade:TradeCommonComponentDetail"
+      },
+      "TradeComponentDetail": {
+         "@id": "fix_trade:TradeComponentDetail"
+      },
+      "TradeComponentEntry": {
+         "@id": "fix_trade:TradeComponentEntry"
+      },
+      "TradeComponentTableFootnote": {
+         "@id": "fix_trade:TradeComponentTableFootnote"
+      },
+      "TradeFragmentationEntry": {
+         "@id": "fix_trade:TradeFragmentationEntry"
+      },
+      "TradeLayoutRow": {
+         "@id": "fix_trade:TradeLayoutRow"
+      },
+      "TradeMessageDetail": {
+         "@id": "fix_trade:TradeMessageDetail"
+      },
+      "TradeMessageEntry": {
+         "@id": "fix_trade:TradeMessageEntry"
+      },
+      "TradeMessageGroup": {
+         "@id": "fix_trade:TradeMessageGroup"
+      },
+      "TradeOrdStatusPrecedenceEntry": {
+         "@id": "fix_trade:TradeOrdStatusPrecedenceEntry"
+      },
+      "UDFTagRange": {
+         "@id": "fix_base:UDFTagRange"
+      }
+   }
+}

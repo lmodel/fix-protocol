@@ -1,0 +1,21 @@
+# metamodel_version: 1.11.0id: TradeOrdStatusPrecedenceEntry
+schema_generating: true
+description: One row of the OrdStatus(39) precedence table published in the Execution
+  Reports purpose-group of the Single/General Order Handling category. Defines the
+  precedence ranking used to resolve simultaneous state transitions on an order, paired
+  with the human-readable OrdStatus label and its descriptive prose.
+display_name: TradeOrdStatusPrecedenceEntry
+document_category: TradeOrdStatusPrecedenceEntry
+weight: 20
+fields:
+- id: trade_ord_status_precedence
+  description: Precedence rank (1 = lowest, higher numbers take precedence) of an
+    OrdStatus(39) value used to resolve simultaneous state transitions on an order.
+  display_name: TradeOrdStatusPrecedenceEntry_trade_ord_status_precedence
+- id: trade_ord_status_label
+  description: Human-readable OrdStatus(39) label as printed in the Execution Reports
+    precedence table (e.g. "Pending Cancel", "Done for Day", "Filled").
+  display_name: TradeOrdStatusPrecedenceEntry_trade_ord_status_label
+- id: description
+  description: Verbatim OrdStatus description from the table.
+  display_name: TradeOrdStatusPrecedenceEntry_description

@@ -1,0 +1,25 @@
+# metamodel_version: 1.11.0id: TradeCommonComponentDetail
+schema_generating: true
+description: Per-common-component description from the chapter's final "Common Components"
+  section.
+display_name: TradeCommonComponentDetail
+document_category: TradeCommonComponentDetail
+weight: 20
+fields:
+- id: component_name
+  description: PascalCase name of the component.
+  display_name: TradeCommonComponentDetail_component_name
+- id: trade_repetition
+  description: REPEATING or NON_REPEATING.
+  display_name: trade_repetition
+- id: description
+  description: Description of the common component's purpose.
+  display_name: TradeCommonComponentDetail_description
+- id: trade_layout_url
+  description: URL of the detailed message- or component-layout in the Trade Appendix.
+  display_name: trade_layout_url
+- id: trade_layout_rows
+  description: Ordered rows of the layout table published for the message or component
+    in the Trade Appendix.
+  display_name: trade_layout_rows
+  cardinality: multi

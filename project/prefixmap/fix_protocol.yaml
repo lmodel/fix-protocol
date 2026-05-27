@@ -1,0 +1,228 @@
+{
+   "PATO": "http://purl.obolibrary.org/obo/PATO_",
+   "biolink": "https://w3id.org/biolink/vocab/",
+   "common_domain_model": "https://w3id.org/lmodel/common-domain-model/",
+   "dcterms": "http://purl.org/dc/terms/",
+   "example": "http://www.example.org/rdf#",
+   "fix_base": "https://w3id.org/lmodel/fix-protocol/fix-base/",
+   "fix_global_components": "https://w3id.org/lmodel/fix-protocol/fix-global-components/",
+   "fix_infrastructure": "https://w3id.org/lmodel/fix-protocol/fix-infrastructure/",
+   "fix_orchestra": "https://w3id.org/lmodel/fix-orchestra/",
+   "fix_post_trade": "https://w3id.org/lmodel/fix-protocol/fix-post-trade/",
+   "fix_pre_trade": "https://w3id.org/lmodel/fix-protocol/fix-pre-trade/",
+   "fix_protocol": "https://w3id.org/lmodel/fix-protocol/",
+   "fix_sbe": "https://w3id.org/lmodel/fix-sbe/",
+   "fix_trade": "https://w3id.org/lmodel/fix-protocol/fix-trade/",
+   "fixp": "https://w3id.org/lmodel/fixp/",
+   "fluxnova_bpm_platform": "https://w3id.org/lmodel/fluxnova-bpm-platform/",
+   "iso10383": "https://www.iso.org/standard/61067.html#",
+   "iso11404": "https://www.iso.org/standard/39479.html#",
+   "iso17442": "https://www.iso.org/standard/78829.html#",
+   "iso27001": "https://w3id.org/lmodel/iso27001/",
+   "iso3166": "https://www.iso.org/iso-3166-country-codes.html#",
+   "iso4217": "https://www.iso.org/iso-4217-currency-codes.html#",
+   "iso639": "https://www.iso.org/iso-639-language-codes.html#",
+   "linkml": "https://w3id.org/linkml/",
+   "rdfs": "http://example.org/UNKNOWN/rdfs/",
+   "schema": "http://schema.org/",
+   "skos": "http://www.w3.org/2004/02/skos/core#",
+   "xsd": "http://www.w3.org/2001/XMLSchema#",
+   "AllocationFragmentationFieldMap": {
+      "@id": "fix_post_trade:AllocationFragmentationFieldMap"
+   },
+   "AllocationStatusDescription": {
+      "@id": "fix_post_trade:AllocationStatusDescription"
+   },
+   "ApplicationMessageReferenceKey": {
+      "@id": "fix_infrastructure:ApplicationMessageReferenceKey"
+   },
+   "BusinessArea": {
+      "@id": "fix_base:BusinessArea"
+   },
+   "BusinessRejectReasonDescription": {
+      "@id": "fix_infrastructure:BusinessRejectReasonDescription"
+   },
+   "ClearingServicePostTradeProcessingFormat": {
+      "@id": "fix_post_trade:ClearingServicePostTradeProcessingFormat"
+   },
+   "CommonComponent": {
+      "@id": "fix_base:CommonComponent"
+   },
+   "CommonComponentDetail": {
+      "@id": "fix_pre_trade:CommonComponentDetail"
+   },
+   "Component": {
+      "@id": "fix_base:Component"
+   },
+   "ComponentTableFootnote": {
+      "@id": "fix_pre_trade:ComponentTableFootnote"
+   },
+   "ExtensionPack": {
+      "@id": "fix_base:ExtensionPack"
+   },
+   "Field": {
+      "@id": "fix_base:Field"
+   },
+   "FIXDatatype": {
+      "@id": "fix_base:FIXDatatype"
+   },
+   "FIXFamilyStandard": {
+      "@id": "fix_base:FIXFamilyStandard"
+   },
+   "FIXIntroduction": {
+      "@id": "fix_base:FIXIntroduction"
+   },
+   "FIXProtocolLimited": {
+      "@id": "fix_base:FIXProtocolLimited"
+   },
+   "GlobalComponent": {
+      "@id": "fix_base:GlobalComponent"
+   },
+   "InfrastructureBusinessArea": {
+      "@id": "fix_infrastructure:InfrastructureBusinessArea"
+   },
+   "InfrastructureCategorySection": {
+      "@id": "fix_infrastructure:InfrastructureCategorySection"
+   },
+   "InfrastructureComponentDetail": {
+      "@id": "fix_infrastructure:InfrastructureComponentDetail"
+   },
+   "InfrastructureComponentEntry": {
+      "@id": "fix_infrastructure:InfrastructureComponentEntry"
+   },
+   "InfrastructureComponentTableFootnote": {
+      "@id": "fix_infrastructure:InfrastructureComponentTableFootnote"
+   },
+   "InfrastructureGlobalComponentReference": {
+      "@id": "fix_infrastructure:InfrastructureGlobalComponentReference"
+   },
+   "InfrastructureLayoutRow": {
+      "@id": "fix_infrastructure:InfrastructureLayoutRow"
+   },
+   "InfrastructureMessageDetail": {
+      "@id": "fix_infrastructure:InfrastructureMessageDetail"
+   },
+   "InfrastructureMessageEntry": {
+      "@id": "fix_infrastructure:InfrastructureMessageEntry"
+   },
+   "Message": {
+      "@id": "fix_base:Message"
+   },
+   "MessageCategory": {
+      "@id": "fix_base:MessageCategory"
+   },
+   "MessageGroup": {
+      "@id": "fix_pre_trade:MessageGroup"
+   },
+   "PostTradeBusinessArea": {
+      "@id": "fix_post_trade:PostTradeBusinessArea"
+   },
+   "PostTradeCategorySection": {
+      "@id": "fix_post_trade:PostTradeCategorySection"
+   },
+   "PostTradeCommonComponentDetail": {
+      "@id": "fix_post_trade:PostTradeCommonComponentDetail"
+   },
+   "PostTradeComponentDetail": {
+      "@id": "fix_post_trade:PostTradeComponentDetail"
+   },
+   "PostTradeComponentEntry": {
+      "@id": "fix_post_trade:PostTradeComponentEntry"
+   },
+   "PostTradeComponentTableFootnote": {
+      "@id": "fix_post_trade:PostTradeComponentTableFootnote"
+   },
+   "PostTradeLayoutRow": {
+      "@id": "fix_post_trade:PostTradeLayoutRow"
+   },
+   "PostTradeMessageDetail": {
+      "@id": "fix_post_trade:PostTradeMessageDetail"
+   },
+   "PostTradeMessageEntry": {
+      "@id": "fix_post_trade:PostTradeMessageEntry"
+   },
+   "PostTradeMessageGroup": {
+      "@id": "fix_post_trade:PostTradeMessageGroup"
+   },
+   "PreTradeBusinessArea": {
+      "@id": "fix_pre_trade:PreTradeBusinessArea"
+   },
+   "PreTradeCategorySection": {
+      "@id": "fix_pre_trade:PreTradeCategorySection"
+   },
+   "PreTradeComponentDetail": {
+      "@id": "fix_pre_trade:PreTradeComponentDetail"
+   },
+   "PreTradeComponentEntry": {
+      "@id": "fix_pre_trade:PreTradeComponentEntry"
+   },
+   "PreTradeLayoutRow": {
+      "@id": "fix_pre_trade:PreTradeLayoutRow"
+   },
+   "PreTradeMessageDetail": {
+      "@id": "fix_pre_trade:PreTradeMessageDetail"
+   },
+   "PreTradeMessageEntry": {
+      "@id": "fix_pre_trade:PreTradeMessageEntry"
+   },
+   "RegistrationStatusDescription": {
+      "@id": "fix_post_trade:RegistrationStatusDescription"
+   },
+   "SpecificComponent": {
+      "@id": "fix_base:SpecificComponent"
+   },
+   "StandardResponseMapping": {
+      "@id": "fix_infrastructure:StandardResponseMapping"
+   },
+   "TradeAppendix": {
+      "@id": "fix_trade:TradeAppendix"
+   },
+   "TradeAppendixSection": {
+      "@id": "fix_trade:TradeAppendixSection"
+   },
+   "TradeBusinessArea": {
+      "@id": "fix_trade:TradeBusinessArea"
+   },
+   "TradeCaptureReportIdentifierRule": {
+      "@id": "fix_post_trade:TradeCaptureReportIdentifierRule"
+   },
+   "TradeCaptureReportUsage": {
+      "@id": "fix_post_trade:TradeCaptureReportUsage"
+   },
+   "TradeCategorySection": {
+      "@id": "fix_trade:TradeCategorySection"
+   },
+   "TradeCommonComponentDetail": {
+      "@id": "fix_trade:TradeCommonComponentDetail"
+   },
+   "TradeComponentDetail": {
+      "@id": "fix_trade:TradeComponentDetail"
+   },
+   "TradeComponentEntry": {
+      "@id": "fix_trade:TradeComponentEntry"
+   },
+   "TradeComponentTableFootnote": {
+      "@id": "fix_trade:TradeComponentTableFootnote"
+   },
+   "TradeFragmentationEntry": {
+      "@id": "fix_trade:TradeFragmentationEntry"
+   },
+   "TradeLayoutRow": {
+      "@id": "fix_trade:TradeLayoutRow"
+   },
+   "TradeMessageDetail": {
+      "@id": "fix_trade:TradeMessageDetail"
+   },
+   "TradeMessageEntry": {
+      "@id": "fix_trade:TradeMessageEntry"
+   },
+   "TradeMessageGroup": {
+      "@id": "fix_trade:TradeMessageGroup"
+   },
+   "TradeOrdStatusPrecedenceEntry": {
+      "@id": "fix_trade:TradeOrdStatusPrecedenceEntry"
+   },
+   "UDFTagRange": {
+      "@id": "fix_base:UDFTagRange"
+   }
+}

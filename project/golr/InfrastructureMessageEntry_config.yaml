@@ -1,0 +1,17 @@
+# metamodel_version: 1.11.0id: InfrastructureMessageEntry
+schema_generating: true
+description: One row of the area-wide "Messages for Infrastructure Business Area"
+  table.
+display_name: InfrastructureMessageEntry
+document_category: InfrastructureMessageEntry
+weight: 20
+fields:
+- id: msg_type
+  description: MsgType(35) wire value identifying the message.
+  display_name: InfrastructureMessageEntry_msg_type
+- id: message_name
+  description: PascalCase name of the message.
+  display_name: InfrastructureMessageEntry_message_name
+- id: category
+  description: Message category.
+  display_name: InfrastructureMessageEntry_category

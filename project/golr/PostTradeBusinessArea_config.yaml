@@ -1,0 +1,62 @@
+# metamodel_version: 1.11.0id: PostTradeBusinessArea
+schema_generating: true
+description: Tree-root container for the Post-Trade business area of FIX Latest.
+display_name: PostTradeBusinessArea
+document_category: PostTradeBusinessArea
+weight: 20
+fields:
+- id: area
+  description: Identity of the business area.
+  display_name: PostTradeBusinessArea_area
+- id: title
+  description: Display title.
+  display_name: PostTradeBusinessArea_title
+- id: published_version
+  description: Version stamp from the document header.
+  display_name: published_version
+- id: publisher
+  description: Publishing body of the FIX Latest specification.
+  display_name: PostTradeBusinessArea_publisher
+- id: post_introduction
+  description: Prose introduction of the Post-Trade chapter.
+  display_name: post_introduction
+- id: diagram_conventions
+  description: Sentence describing diagram conventions used in the chapter.
+  display_name: diagram_conventions
+- id: post_common_components
+  description: Common Components declared at the top of the Post-Trade chapter.
+  display_name: post_common_components
+  cardinality: multi
+- id: messages
+  description: Messages defined within the enclosing element.
+  display_name: PostTradeBusinessArea_messages
+  cardinality: multi
+- id: components
+  description: Components referenced by the enclosing element.
+  display_name: PostTradeBusinessArea_components
+  cardinality: multi
+- id: post_footnotes
+  description: Footnotes attached to the area-wide components table.
+  display_name: post_footnotes
+  cardinality: multi
+- id: post_category_sections
+  description: Per-category sub-sections of the Post-Trade chapter.
+  display_name: post_category_sections
+  cardinality: multi
+- id: post_common_component_details
+  description: Per-common-component descriptions from the chapter's final Common Components
+    section.
+  display_name: post_common_component_details
+  cardinality: multi
+- id: messages_overview_note
+  description: Intro prose of the area-wide Messages sub-section.
+  display_name: messages_overview_note
+- id: components_overview_note
+  description: Intro prose of the area-wide Components sub-section.
+  display_name: components_overview_note
+- id: referenced_global_components
+  description: Names of Global Components from the FIX Latest "Global Components"
+    page that are referenced by messages in the containing business area. References
+    instances of the :class:`GlobalComponent` class (declared in fix_base) by name.
+  display_name: referenced_global_components
+  cardinality: multi

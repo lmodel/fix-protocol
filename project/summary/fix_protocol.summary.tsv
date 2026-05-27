@@ -1,0 +1,467 @@
+Class Name	Parent Class	YAML Class Name	Description	Flags	Slot Name	YAML Slot Name	Range	Card	Slot Description	URI
+AllocationFragmentationFieldMap		AllocationFragmentationFieldMap	One row of the table mapping an allocation message to its fragmentation-related fields.							
+				I	msg_type	AllocationFragmentationFieldMap_msg_type	str	1..1	MsgType(35) wire value identifying the message.	fix_base:msg_type
+					message_name	AllocationFragmentationFieldMap_message_name	str	1..1	PascalCase name of the message.	schema:name
+					total_count_field	AllocationFragmentationFieldMap_total_count_field	str	1..1	Field carrying the total number of repeating-group entries across all fragments (e.g. TotNoAllocs).	fix_post_trade:total_count_field
+					fragment_count_field	AllocationFragmentationFieldMap_fragment_count_field	str	1..1	Field carrying the number of entries in the current message fragment (e.g. NoAllocs).	fix_post_trade:fragment_count_field
+					principal_message_reference	AllocationFragmentationFieldMap_principal_message_reference	str	1..1	Principal message reference field used to bind allocation message fragments together (e.g. AllocID, AllocReportID).	fix_post_trade:principal_message_reference
+AllocationStatusDescription		AllocationStatusDescription	One row of the AllocStatus(87) value/description table.							
+				I	status_code	AllocationStatusDescription_status_code	str	1..1	Wire status code as referenced in the chapter.	fix_post_trade:status_code
+					status_label	AllocationStatusDescription_status_label	str	1..1	Human-readable label of the status code.	fix_post_trade:status_label
+					description		str	0..1	Free-text description.	dcterms:description
+ApplicationMessageReferenceKey		ApplicationMessageReferenceKey	"One row of a ""Key Fields for <area> Application Message References"" table identifying the field whose value is copied into BusinessRejectRefID(379)."							
+					category_label	ApplicationMessageReferenceKey_category_label	str	1..1	"Category label as printed in the source table (free text; may include parenthesised sub-categories such as ""Single General Order Handling"")."	fix_infrastructure:category_label
+					fix_message	ApplicationMessageReferenceKey_fix_message	str	1..1	FIX message name with MsgType in parentheses, e.g. AllocationInstruction(35=J).	fix_infrastructure:fix_message
+					business_reject_ref_id_value	ApplicationMessageReferenceKey_business_reject_ref_id_value	str	1..1	"Source field copied into BusinessRejectRefID(379) when the target message lacks its own reject. May enumerate several alternatives joined by ""or""."	fix_infrastructure:business_reject_ref_id_value
+BusinessArea		BusinessArea	A top-level business area of the FIX Latest specification.							
+				I	area	BusinessArea_area	BusinessAreaEnum	1..1	Identity of the business area.	schema:identifier
+					title	BusinessArea_title	str	0..1	Display title of the area.	dcterms:title
+					description	BusinessArea_description	str	0..1	Description of the area.	dcterms:description
+					categories		MessageCategory	0..*	Message categories defined within a business area.	fix_base:categories
+BusinessRejectReasonDescription		BusinessRejectReasonDescription	One entry of the BusinessRejectReason(380) code table.							
+				I	reject_reason_code	BusinessRejectReasonDescription_reject_reason_code	int	1..1	Numeric code value of BusinessRejectReason(380).	fix_infrastructure:reject_reason_code
+					reject_reason_label	BusinessRejectReasonDescription_reject_reason_label	str	1..1	Human-readable label of a BusinessRejectReason(380) code.	fix_infrastructure:reject_reason_label
+ClearingServicePostTradeProcessingFormat		ClearingServicePostTradeProcessingFormat	One message-format row from the Post-Trade Processing Clearing Services section, with its supported actions.							
+				I	message_format	ClearingServicePostTradeProcessingFormat_message_format	ClearingServiceForPostTradeProcessingEnum	1..1	Clearing-service message format family referenced in the chapter.	fix_post_trade:message_format
+					supported_actions	ClearingServicePostTradeProcessingFormat_supported_actions	str	1..*	Action labels (e.g. Allocation, Accept, Reject, Release, Change, Delete) supported by a clearing-service message format.	fix_post_trade:supported_actions
+CommonComponent	Component	CommonComponent	A component used only by messages within a single business area.							
+					business_area	CommonComponent_business_area	BusinessAreaEnum	1..1	Business area the element belongs to.	fix_base:business_area
+					scope	CommonComponent_scope	ComponentScope	1..1	Sharing scope of the component.	fix_base:scope
+CommonComponentDetail		CommonComponentDetail	Per-common-component description.							
+				I	component_name	CommonComponentDetail_component_name	PreTradeCommonComponentName	1..1	PascalCase name of the component.	schema:name
+					repetition		ComponentRepetition	0..1	REPEATING or NON_REPEATING.	fix_pre_trade:repetition
+					description	CommonComponentDetail_description	str	0..1	Description of the common component's purpose.	dcterms:description
+					layout_url		URI	0..1	URL of the detailed message- or component-layout.	schema:url
+					pre_layout_rows		PreTradeLayoutRow	0..*	Ordered rows of the layout table published for the message or component in the Pre-Trade Appendix.	fix_pre_trade:pre_layout_rows
+Component		Component	A FIX component — a named set of related fields.							
+				I	component_name	Component_component_name	str	1..1	PascalCase name of the component.	schema:name
+					description	Component_description	str	0..1	Description of the component.	dcterms:description
+					scope	Component_scope	ComponentScope	1..1	Sharing scope of the component.	fix_base:scope
+					is_repeating_group		Bool	0..1	True when the component is a repeating group.	fix_base:is_repeating_group
+					fields		Field	0..*	Fields directly contained by the enclosing element.	fix_base:fields
+					nested_components		*Component	0..*	Components nested within this component.	fix_base:nested_components
+ComponentTableFootnote		ComponentTableFootnote	A footnote on the area-wide components table.							
+				I	footnote_number	ComponentTableFootnote_footnote_number	int	1..1	Footnote indicator on a component-table row.	fix_pre_trade:footnote_number
+					component_name	ComponentTableFootnote_component_name	str	1..1	PascalCase name of the component.	schema:name
+					introduced_in	ComponentTableFootnote_introduced_in	str	1..1	FIX version or Extension Pack that introduced the component.	fix_pre_trade:introduced_in
+					sole_category	ComponentTableFootnote_sole_category	PreTradeCategoryEnum	1..1	Single category that actually uses the component.	fix_pre_trade:sole_category
+					text		str	0..1	Footnote text.	fix_pre_trade:text
+ExtensionPack		ExtensionPack	A unit of change to FIX Latest.							
+				I	number	ExtensionPack_number	int	1..1	Sequential identifier of the Extension Pack.	fix_base:number
+					title	ExtensionPack_title	str	1..1	Short descriptive title.	dcterms:title
+					size		ExtensionPackSize	0..1	Qualitative size indicator (XXS..XXL).	fix_base:size
+					enhancement_summary		str	0..1	Narrative summary of what the EP introduces.	fix_base:enhancement_summary
+					applies_to_session_layer_only		Bool	0..1	True when the EP applies only to the FIX Session Layer.	fix_base:applies_to_session_layer_only
+					applies_to_fixml_only		Bool	0..1	True when the EP applies only to the FIXML encoding.	fix_base:applies_to_fixml_only
+Field		Field	A FIX field — a uniquely tagged data element with a FIX datatype.							
+				I	tag	Field_tag	int	1..1	Numeric tag of the field.	fix_base:tag
+					field_name	Field_field_name	str	1..1	PascalCase name of the field.	schema:name
+					datatype	Field_datatype	FIXDatatypeName	1..1	FIX datatype of the field.	fix_base:datatype
+					description	Field_description	str	0..1	Description of the field's purpose.	dcterms:description
+					requirement		FieldRequirement	0..1	Required-status of the field within the enclosing context.	fix_base:requirement
+					is_user_defined		Bool	0..1	True when the field is a User Defined Field.	fix_base:is_user_defined
+FIXDatatype		FIXDatatype	A FIX Protocol datatype.							
+				I	datatype_name	FIXDatatype_datatype_name	FIXDatatypeName	1..1	Canonical FIX datatype name.	fix_base:datatype_name
+					definition	FIXDatatype_definition	str	1..1	Prose definition of the datatype.	fix_base:definition
+					value_space		ISO11404ValueSpace	0..*	ISO/IEC 11404:2007 GPD value space assigned to the datatype.	fix_base:value_space
+					value_space_notes		str	0..1	Additional value-space constraints.	fix_base:value_space_notes
+					deprecated_for_new_designs		Bool	0..1	True for datatypes not permitted in new designs.	fix_base:deprecated_for_new_designs
+					external_code_set		str	0..1	Reference standard for datatypes backed by an external code set.	dcterms:conformsTo
+					time_unit		TimePrecision	0..*	Time-unit precision for time-bearing datatypes.	fix_base:time_unit
+					radix		int	0..1	Numeric radix for scaled value-space datatypes.	fix_base:radix
+					repertoire		str	0..1	Character repertoire for character/string datatypes.	fix_base:repertoire
+					index_lower_bound		int	0..1	Inclusive lower bound of a bounded-array index.	fix_base:index_lower_bound
+					index_upper_bound		int	0..1	Inclusive upper bound of a bounded-array index.	fix_base:index_upper_bound
+					minimum_value		int	0..1	Inclusive lower bound on the integer value space.	fix_base:minimum_value
+					maximum_value		int	0..1	Inclusive upper bound on the integer value space.	fix_base:maximum_value
+					footnote_numbers		int	0..*	Footnote indicators attached to a datatype row.	fix_base:footnote_numbers
+FIXFamilyStandard		FIXFamilyStandard	A member standard of the FIX Family of Standards.							
+				I	id		str	1..1	Unique identifier (CURIE or local name) of the element.	fix_base:id
+					name		str	1..1	Display name of the element.	schema:name
+					description		str	0..1	Free-text description.	dcterms:description
+					acronym	FIXFamilyStandard_acronym	str	0..1	Short acronym used to refer to the standard.	schema:alternateName
+					see_also		URI	0..*	Related external resources.	rdfs:seeAlso
+					layer	FIXFamilyStandard_layer	StandardLayer	1..1	The layer the standard belongs to.	fix_base:layer
+					version		str	0..1	Version of the standard, if applicable.	schema:version
+					session_profile		SessionProtocolName	0..1	Name of the session profile for session-layer variants.	fix_base:session_profile
+					encoding_name		StandardEncodingName	0..1	Named encoding, when layer is ENCODING.	fix_base:encoding_name
+FIXIntroduction		FIXIntroduction	Container for the structural elements of the FIX Latest Introduction section. Tree root for instance data.							
+					published_version		str	0..1	Version stamp from the document header.	schema:version
+					published_date		XSDDate	0..1	Publication date of the document.	dcterms:issued
+					publisher		str	0..1	Publishing body of the FIX Latest specification.	dcterms:publisher
+					preface		str	0..1	The Preface text of the specification.	fix_base:preface
+					introduction_text		str	0..1	The Introduction prose section.	fix_base:introduction_text
+					utc_leap_seconds_note		str	0..1	Prose note on UTC leap-second handling for UTCTimestamp.	fix_base:utc_leap_seconds_note
+					about_fpl		FIXProtocolLimited	0..1	Information about FIX Protocol Limited.	fix_base:about_fpl
+					standards		FIXFamilyStandard	0..*	The FIX Family of Standards.	fix_base:standards
+					extension_packs		ExtensionPack	0..*	The list of Extension Packs.	fix_base:extension_packs
+					datatypes		FIXDatatype	0..*	FIX Protocol datatype definitions and value spaces.	fix_base:datatypes
+					business_areas		BusinessArea	0..*	Top-level business areas of FIX Latest.	fix_base:business_areas
+					global_components		GlobalComponent	0..*	Global Components defined in the Introduction.	fix_base:global_components
+					udf_ranges		UDFTagRange	0..*	Reserved ranges of user-defined-field tag numbers.	fix_base:udf_ranges
+					product_coverage		ProductCoverage	0..*	Product/asset classes covered by FIX at the application layer.	fix_base:product_coverage
+FIXProtocolLimited		FIXProtocolLimited	The organization that maintains the FIX Protocol specification.							
+					brand_name	FIXProtocolLimited_brand_name	str	0..1	Brand name used by the organization.	fix_base:brand_name
+					legal_name	FIXProtocolLimited_legal_name	str	0..1	Legal name of the organization.	schema:legalName
+					website	FIXProtocolLimited_website	URI	0..1	Main website URL of the organization.	schema:url
+					member_firms_url		URI	0..1	URL listing current FPL Member firms.	fix_base:member_firms_url
+					working_groups_url		URI	0..1	URL listing currently active FPL Working Groups.	fix_base:working_groups_url
+					committees_url		URI	0..1	URL listing Product and Regional Committees.	fix_base:committees_url
+					member_types		FPLMemberType	0..*	Organization categories represented in FPL membership.	fix_base:member_types
+					governance_bodies		FPLCommitteeRole	0..*	High-level governance bodies that represent FPL.	fix_base:governance_bodies
+					product_committees		FPLProductGroup	0..*	Global Product Committees maintained by FPL.	fix_base:product_committees
+					regional_committees		FPLRegion	0..*	Regional Committees maintained by FPL.	fix_base:regional_committees
+GlobalComponent	Component	GlobalComponent	A component shared by messages of two or more business areas.							
+					component_group	GlobalComponent_component_group	ComponentGroup	1..1	Thematic group under which the component is presented.	fix_base:component_group
+					applies_to_instrument		Bool	0..1	Applicable at the Instrument level.	fix_base:applies_to_instrument
+					applies_to_leg		Bool	0..1	Applicable at the InstrumentLeg level.	fix_base:applies_to_leg
+					applies_to_underlying		Bool	0..1	Applicable at the UnderlyingInstrument level.	fix_base:applies_to_underlying
+					conceptually_identical_to		str	0..*	Names of other components conceptually identical to this one.	fix_base:conceptually_identical_to
+					gc_id		int	0..1	"Numeric component identifier extracted from the FIX Latest ""Global Components"" page anchor ID (e.g. ""comp1057-1"" → 1057). Stable across Extension Packs and shared with the FIX Orchestra repository."	fix_base:gc_id
+					gc_referenced_in		GlobalComponentBusinessAreaEnum	0..*	FIX business areas whose messages embed the Global Component.	fix_base:gc_referenced_in
+					scope	GlobalComponent_scope	ComponentScope	1..1	Sharing scope of the component.	fix_base:scope
+InfrastructureBusinessArea		InfrastructureBusinessArea	Tree-root container for the Infrastructure business area of FIX Latest.							
+					area	InfrastructureBusinessArea_area	BusinessAreaEnum	1..1	Identity of the business area.	schema:identifier
+					title	InfrastructureBusinessArea_title	str	0..1	Display title.	dcterms:title
+					published_version		str	0..1	Version stamp from the document header.	schema:version
+					publisher	InfrastructureBusinessArea_publisher	str	0..1	Publishing body of the FIX Latest specification.	dcterms:publisher
+					infra_introduction		str	0..1	Prose introduction of the Infrastructure chapter.	fix_infrastructure:infra_introduction
+					diagram_conventions		str	0..1	Sentence describing diagram conventions used in the chapter.	fix_pre_trade:diagram_conventions
+					infra_common_components		InfrastructureComponentName	0..*	Component names declared in the area-wide components listing. Per the chapter prose, none of these are shared across categories within the area.	fix_infrastructure:infra_common_components
+					messages	InfrastructureBusinessArea_messages	InfrastructureMessageEntry	1..*	Messages defined within the enclosing element.	fix_base:messages
+					messages_overview_note		str	0..1	Intro prose of the area-wide Messages sub-section.	fix_pre_trade:messages_overview_note
+					components	InfrastructureBusinessArea_components	InfrastructureComponentEntry	1..*	Components referenced by the enclosing element.	fix_base:components
+					components_overview_note		str	0..1	Intro prose of the area-wide Components sub-section.	fix_pre_trade:components_overview_note
+					infra_footnotes		InfrastructureComponentTableFootnote	0..*	Footnotes attached to the area-wide Infrastructure components table.	fix_infrastructure:infra_footnotes
+					infra_category_sections		InfrastructureCategorySection	0..*	Per-category sub-sections of the Infrastructure chapter.	fix_infrastructure:infra_category_sections
+					standard_responses_pre_trade		StandardResponseMapping	0..*	"""Standard Responses for Pre-Trade Messages"" table rows."	fix_infrastructure:standard_responses_pre_trade
+					standard_responses_trade		StandardResponseMapping	0..*	"""Standard Responses for Trade Messages"" table rows."	fix_infrastructure:standard_responses_trade
+					standard_responses_post_trade		StandardResponseMapping	0..*	"""Standard Responses for Post-Trade Messages"" table rows."	fix_infrastructure:standard_responses_post_trade
+					key_fields_pre_trade		ApplicationMessageReferenceKey	0..*	"""Key Fields for Pre-Trade Application Message References"" table rows."	fix_infrastructure:key_fields_pre_trade
+					key_fields_trade		ApplicationMessageReferenceKey	0..*	"""Key Fields for Trade Application Message References"" table rows."	fix_infrastructure:key_fields_trade
+					key_fields_post_trade		ApplicationMessageReferenceKey	0..*	"""Key Fields for Post-Trade Application Message References"" table rows."	fix_infrastructure:key_fields_post_trade
+					business_reject_reason_descriptions		BusinessRejectReasonDescription	0..*	Descriptions tied to BusinessRejectReason(380) values.	fix_infrastructure:business_reject_reason_descriptions
+					infra_global_components		InfrastructureGlobalComponentReference	0..*	"Global Components (from the FIX Latest ""Global Components"" page) that are explicitly referenced by messages in the Infrastructure business area, together with their tag set and usage scope."	fix_infrastructure:infra_global_components
+					referenced_global_components		*GlobalComponent	0..*	"Names of Global Components from the FIX Latest ""Global Components"" page that are referenced by messages in the containing business area. References instances of the :class:`GlobalComponent` class (declared in fix_base) by name."	fix_global_components:referenced_global_components
+InfrastructureCategorySection		InfrastructureCategorySection	"A ""Category – <name>"" sub-section of the Infrastructure chapter."							
+					category	InfrastructureCategorySection_category	InfrastructureCategoryEnum	1..1	Message category.	fix_base:category
+					title		str	0..1	Display title.	dcterms:title
+					description		str	0..1	Free-text description.	dcterms:description
+					category_components_note		str	0..1	Intro prose of a category's Components sub-section.	fix_pre_trade:category_components_note
+					messages	InfrastructureCategorySection_messages	InfrastructureMessageDetail	0..*	Messages defined within the enclosing element.	fix_base:messages
+					infra_category_specific_components		InfrastructureComponentDetail	0..*	Per-component descriptions appearing in a category's Components sub-section.	fix_infrastructure:infra_category_specific_components
+					network_status_scenarios		NetworkStatusScenarioEnum	0..*	Network Status Communication usage scenarios.	fix_infrastructure:network_status_scenarios
+					network_request_types_referenced		NetworkRequestTypeEnum	0..*	NetworkRequestType(935) values explicitly cited in the Network Status Communication category prose.	fix_infrastructure:network_request_types_referenced
+					application_message_report_uses		ApplicationMessageReportTypeEnum	0..*	Documented uses of ApplicationMessageReport(35=BY).	fix_infrastructure:application_message_report_uses
+InfrastructureComponentDetail		InfrastructureComponentDetail	Per-component description appearing in a category's Components sub-section.							
+					component_name	InfrastructureComponentDetail_component_name	str	1..1	PascalCase name of the component.	schema:name
+					repetition		ComponentRepetition	0..1	REPEATING or NON_REPEATING.	fix_pre_trade:repetition
+					description		str	0..1	Free-text description.	dcterms:description
+					layout_url		URI	0..1	URL of the detailed message- or component-layout.	schema:url
+					infra_layout_rows		InfrastructureLayoutRow	0..*	Ordered rows of the layout table published for the message or component in the Infrastructure Appendix.	fix_infrastructure:infra_layout_rows
+InfrastructureComponentEntry		InfrastructureComponentEntry	"One row of the area-wide ""Components for Infrastructure Business Area"" table."							
+				I	component_name	InfrastructureComponentEntry_component_name	str	1..1	PascalCase name of the component.	schema:name
+					repetition	InfrastructureComponentEntry_repetition	ComponentRepetition	1..1	REPEATING or NON_REPEATING.	fix_pre_trade:repetition
+					category	InfrastructureComponentEntry_category	InfrastructureCategoryEnum	1..1	Message category.	fix_base:category
+					footnote_number		int	0..1	Footnote indicator on a component-table row.	fix_pre_trade:footnote_number
+InfrastructureComponentTableFootnote		InfrastructureComponentTableFootnote	A footnote attached to a row of the area-wide Infrastructure components table.							
+				I	footnote_number	InfrastructureComponentTableFootnote_footnote_number	int	1..1	Footnote indicator on a component-table row.	fix_pre_trade:footnote_number
+					component_name	InfrastructureComponentTableFootnote_component_name	str	1..1	PascalCase name of the component.	schema:name
+					introduced_in	InfrastructureComponentTableFootnote_introduced_in	str	1..1	FIX version or Extension Pack that introduced the component.	fix_pre_trade:introduced_in
+					infra_sole_category	InfrastructureComponentTableFootnote_infra_sole_category	InfrastructureCategoryEnum	1..1	Single Infrastructure category that actually uses the footnoted component.	fix_infrastructure:infra_sole_category
+					text		str	0..1	Footnote text.	fix_pre_trade:text
+InfrastructureGlobalComponentReference		InfrastructureGlobalComponentReference	"A reference from the Infrastructure business area to a Global Component declared on the FIX Latest ""Global Components"" page. Records the component name, the FIX tags it contributes, and the Infrastructure categories and messages that embed it."							
+				I	infra_global_component_name	InfrastructureGlobalComponentReference_infra_global_component_name	InfrastructureGlobalComponentName	1..1	Name of a Global Component referenced from within the Infrastructure business area.	fix_infrastructure:infra_global_component_name
+					infra_global_component_repetition		str	0..1	Repetition indicator for the Global Component as it appears in the referenced Infrastructure messages.	fix_infrastructure:infra_global_component_repetition
+					infra_global_component_field_tags		int	0..*	FIX tag numbers contributed by the referenced Global Component (as listed on the Global Components page).	fix_infrastructure:infra_global_component_field_tags
+					infra_global_component_field_names		str	0..*	Human-readable field names of the tags contributed by the referenced Global Component.	fix_infrastructure:infra_global_component_field_names
+					infra_global_component_used_in	InfrastructureGlobalComponentReference_infra_global_component_used_in	InfrastructureCategoryEnum	1..*	Infrastructure categories that reference the Global Component.	fix_infrastructure:infra_global_component_used_in
+					infra_global_component_msg_types		str	0..*	MsgType values within the Infrastructure business area that embed the referenced Global Component.	fix_infrastructure:infra_global_component_msg_types
+InfrastructureLayoutRow		InfrastructureLayoutRow	One row of the layout table published in the Infrastructure Appendix for a message or component. Each row identifies either a FIX field (by tag number + name) or an embedded component (by name), records whether it is required, carries the Description-column text, and flags whether it appears as a nested child of a repeating-group counter.							
+					infra_layout_kind	InfrastructureLayoutRow_infra_layout_kind	InfrastructureLayoutRowKindEnum	1..1	"Row kind — either a FIX field (numeric Tag) or an embedded component (literal ""Component"" in the Tag column of the source table)."	fix_infrastructure:infra_layout_kind
+					infra_layout_field_tag		int	0..1	FIX tag number drawn from the Tag column when the row is a field (i.e. layout_kind = FIELD). Absent for COMPONENT rows.	fix_infrastructure:infra_layout_field_tag
+					infra_layout_element_name	InfrastructureLayoutRow_infra_layout_element_name	str	1..1	Element name as printed in the Name column — either the FIX field name (e.g. ApplReqID) or the component name (e.g. StandardHeader, ApplIDRequestGrp).	fix_infrastructure:infra_layout_element_name
+					infra_layout_required		Bool	0..1	"Whether the field or component is required, as printed in the Req’d column of the source layout table (""Y"" / ""N"")."	fix_infrastructure:infra_layout_required
+					infra_layout_description		str	0..1	Free-text content of the Description column of the row (may be empty).	fix_infrastructure:infra_layout_description
+					infra_layout_nested		Bool	0..1	"Whether the row appears nested under a repeating-group counter (i.e. its Tag column is prefixed with the ""→"" arrow in the source table)."	fix_infrastructure:infra_layout_nested
+InfrastructureMessageDetail		InfrastructureMessageDetail	Per-message description appearing in a category's Messages sub-section.							
+					msg_type	InfrastructureMessageDetail_msg_type	str	1..1	MsgType(35) wire value identifying the message.	fix_base:msg_type
+					message_name	InfrastructureMessageDetail_message_name	str	1..1	PascalCase name of the message.	schema:name
+					description		str	0..1	Free-text description.	dcterms:description
+					layout_url		URI	0..1	URL of the detailed message- or component-layout.	schema:url
+					infra_layout_rows		InfrastructureLayoutRow	0..*	Ordered rows of the layout table published for the message or component in the Infrastructure Appendix.	fix_infrastructure:infra_layout_rows
+InfrastructureMessageEntry		InfrastructureMessageEntry	"One row of the area-wide ""Messages for Infrastructure Business Area"" table."							
+				I	msg_type	InfrastructureMessageEntry_msg_type	str	1..1	MsgType(35) wire value identifying the message.	fix_base:msg_type
+					message_name	InfrastructureMessageEntry_message_name	str	1..1	PascalCase name of the message.	schema:name
+					category	InfrastructureMessageEntry_category	InfrastructureCategoryEnum	1..1	Message category.	fix_base:category
+Message		Message	A FIX application message.							
+				I	msg_type	Message_msg_type	str	1..1	MsgType(35) wire value identifying the message.	fix_base:msg_type
+					message_name	Message_message_name	str	1..1	PascalCase name of the message.	schema:name
+					description	Message_description	str	0..1	Description of the message's purpose.	dcterms:description
+					category		MessageCategoryEnum	0..1	Message category.	fix_base:category
+					fields		Field	0..*	Fields directly contained by the enclosing element.	fix_base:fields
+					components		*Component	0..*	Components referenced by the enclosing element.	fix_base:components
+MessageCategory		MessageCategory	A message category within a business area.							
+				I	category	MessageCategory_category	MessageCategoryEnum	1..1	Identity of the message category.	fix_base:category
+					title	MessageCategory_title	str	0..1	Display title of the category.	dcterms:title
+					description	MessageCategory_description	str	0..1	Description of the category.	dcterms:description
+					business_area	MessageCategory_business_area	BusinessAreaEnum	1..1	Business area the element belongs to.	fix_base:business_area
+					messages		Message	0..*	Messages defined within the enclosing element.	fix_base:messages
+MessageGroup		MessageGroup	Purpose-grouped sub-section inside a category's Messages section.							
+				I	group_title	MessageGroup_group_title	str	1..1	Purpose-group heading inside a category's Messages sub-section.	schema:name
+					description	MessageGroup_description	str	0..1	Description of the purpose-group's role within the category.	dcterms:description
+					messages	MessageGroup_messages	PreTradeMessageDetail	1..*	Messages bundled under the purpose-group heading.	fix_base:messages
+PostTradeBusinessArea		PostTradeBusinessArea	Tree-root container for the Post-Trade business area of FIX Latest.							
+					area	PostTradeBusinessArea_area	BusinessAreaEnum	1..1	Identity of the business area.	schema:identifier
+					title	PostTradeBusinessArea_title	str	0..1	Display title.	dcterms:title
+					published_version		str	0..1	Version stamp from the document header.	schema:version
+					publisher	PostTradeBusinessArea_publisher	str	0..1	Publishing body of the FIX Latest specification.	dcterms:publisher
+					post_introduction		str	0..1	Prose introduction of the Post-Trade chapter.	fix_post_trade:post_introduction
+					diagram_conventions		str	0..1	Sentence describing diagram conventions used in the chapter.	fix_pre_trade:diagram_conventions
+					post_common_components		PostTradeCommonComponentName	0..*	Common Components declared at the top of the Post-Trade chapter.	fix_post_trade:post_common_components
+					messages	PostTradeBusinessArea_messages	PostTradeMessageEntry	1..*	Messages defined within the enclosing element.	fix_base:messages
+					components	PostTradeBusinessArea_components	PostTradeComponentEntry	1..*	Components referenced by the enclosing element.	fix_base:components
+					post_footnotes		PostTradeComponentTableFootnote	0..*	Footnotes attached to the area-wide components table.	fix_post_trade:post_footnotes
+					post_category_sections		PostTradeCategorySection	0..*	Per-category sub-sections of the Post-Trade chapter.	fix_post_trade:post_category_sections
+					post_common_component_details		PostTradeCommonComponentDetail	0..*	Per-common-component descriptions from the chapter's final Common Components section.	fix_post_trade:post_common_component_details
+					messages_overview_note		str	0..1	Intro prose of the area-wide Messages sub-section.	fix_pre_trade:messages_overview_note
+					components_overview_note		str	0..1	Intro prose of the area-wide Components sub-section.	fix_pre_trade:components_overview_note
+					referenced_global_components		*GlobalComponent	0..*	"Names of Global Components from the FIX Latest ""Global Components"" page that are referenced by messages in the containing business area. References instances of the :class:`GlobalComponent` class (declared in fix_base) by name."	fix_global_components:referenced_global_components
+PostTradeCategorySection		PostTradeCategorySection	"A ""Category – <name>"" sub-section of the Post-Trade chapter."							
+				I	category	PostTradeCategorySection_category	PostTradeCategoryEnum	1..1	Message category.	fix_base:category
+					title		str	0..1	Display title.	dcterms:title
+					description		str	0..1	Free-text description.	dcterms:description
+					category_components_note		str	0..1	Intro prose of a category's Components sub-section.	fix_pre_trade:category_components_note
+					post_message_groups		PostTradeMessageGroup	0..*	Purpose-grouped message descriptions inside a Post-Trade category.	fix_post_trade:post_message_groups
+					messages	PostTradeCategorySection_messages	PostTradeMessageDetail	0..*	Messages defined within the enclosing element.	fix_base:messages
+					post_category_specific_components		PostTradeComponentDetail	0..*	Components used exclusively by messages within a category.	fix_post_trade:post_category_specific_components
+					allocation_scenarios		AllocationScenarioEnum	0..*	Communication options supported by the Allocation category for conveying allocation instructions.	fix_post_trade:allocation_scenarios
+					allocation_roles		AllocationRoleEnum	0..*	Role labels used throughout the Allocation category prose.	fix_post_trade:allocation_roles
+					post_trade_allocation_pricing_methods		PostTradeAllocationPricingMethodEnum	0..*	Methods supported for computing post-trade allocations.	fix_post_trade:post_trade_allocation_pricing_methods
+					allocation_status_descriptions		AllocationStatusDescription	0..*	Descriptions tied to AllocStatus(87) values as listed in the Allocation Instruction Acknowledgements section.	fix_post_trade:allocation_status_descriptions
+					fragmentation_field_map		AllocationFragmentationFieldMap	0..*	Per-message mapping of fragmentation-related fields used by the Allocation messages.	fix_post_trade:fragmentation_field_map
+					trade_capture_report_usages		TradeCaptureReportUsage	0..*	"Usages described in the ""Trade Capture Report Usages"" sub-section of the Trade Capture Reporting category."	fix_post_trade:trade_capture_report_usages
+					trade_capture_report_identifier_rules		TradeCaptureReportIdentifierRule	0..*	Rules governing TradeCaptureReport(35=AE) identifier fields.	fix_post_trade:trade_capture_report_identifier_rules
+					registration_status_descriptions		RegistrationStatusDescription	0..*	Descriptions tied to RegistStatus(506) values.	fix_post_trade:registration_status_descriptions
+					clearing_services_for_position_management		ClearingServiceForPositionManagementEnum	0..*	Business functions exposed by the Position Management Clearing Services.	fix_post_trade:clearing_services_for_position_management
+					clearing_services_for_post_trade_processing		ClearingServicePostTradeProcessingFormat	0..*	Per-format action sets exposed by the Post-Trade Processing Clearing Services.	fix_post_trade:clearing_services_for_post_trade_processing
+					collateral_management_usages		CollateralManagementUsageEnum	0..*	Documented usages for the Collateral Management messages.	fix_post_trade:collateral_management_usages
+					collateral_assignment_purposes		CollateralAssignmentPurposeEnum	0..*	Documented purposes for the CollateralAssignment(35=AY) message.	fix_post_trade:collateral_assignment_purposes
+PostTradeCommonComponentDetail		PostTradeCommonComponentDetail	"Per-common-component description block from the chapter's final ""Common Components"" section."							
+				I	component_name	PostTradeCommonComponentDetail_component_name	PostTradeCommonComponentName	1..1	PascalCase name of the component.	schema:name
+					repetition		ComponentRepetition	0..1	REPEATING or NON_REPEATING.	fix_pre_trade:repetition
+					description		str	0..1	Free-text description.	dcterms:description
+					layout_url		URI	0..1	URL of the detailed message- or component-layout.	schema:url
+					post_layout_rows		PostTradeLayoutRow	0..*	Ordered rows of the layout table published for the message or component in the Post-Trade Appendix.	fix_post_trade:post_layout_rows
+PostTradeComponentDetail		PostTradeComponentDetail	Per-component description block from a Post-Trade category section's Components sub-section.							
+				I	component_name	PostTradeComponentDetail_component_name	str	1..1	PascalCase name of the component.	schema:name
+					repetition		ComponentRepetition	0..1	REPEATING or NON_REPEATING.	fix_pre_trade:repetition
+					description		str	0..1	Free-text description.	dcterms:description
+					layout_url		URI	0..1	URL of the detailed message- or component-layout.	schema:url
+					post_layout_rows		PostTradeLayoutRow	0..*	Ordered rows of the layout table published for the message or component in the Post-Trade Appendix.	fix_post_trade:post_layout_rows
+PostTradeComponentEntry		PostTradeComponentEntry	"One row of the area-wide ""Components for Post-Trade Business Area"" table."							
+				I	component_name	PostTradeComponentEntry_component_name	str	1..1	PascalCase name of the component.	schema:name
+					repetition	PostTradeComponentEntry_repetition	ComponentRepetition	1..1	REPEATING or NON_REPEATING.	fix_pre_trade:repetition
+					category	PostTradeComponentEntry_category	str	1..1	"Category label as printed in the component table; the token ""Common Components"" is allowed in addition to the PostTradeCategoryEnum values."	fix_base:category
+					is_common	PostTradeComponentEntry_is_common	Bool	0..1	True when the component is declared as a Common Component.	fix_pre_trade:is_common
+					footnote_number		int	0..1	Footnote indicator on a component-table row.	fix_pre_trade:footnote_number
+PostTradeComponentTableFootnote		PostTradeComponentTableFootnote	A footnote attached to a row of the area-wide Post-Trade components table.							
+				I	footnote_number	PostTradeComponentTableFootnote_footnote_number	int	1..1	Footnote indicator on a component-table row.	fix_pre_trade:footnote_number
+					component_name	PostTradeComponentTableFootnote_component_name	str	1..1	PascalCase name of the component.	schema:name
+					introduced_in	PostTradeComponentTableFootnote_introduced_in	str	1..1	FIX version or Extension Pack that introduced the component.	fix_pre_trade:introduced_in
+					post_sole_category	PostTradeComponentTableFootnote_post_sole_category	PostTradeCategoryEnum	1..1	Single Post-Trade category that actually uses the component (per footnote).	fix_post_trade:post_sole_category
+					text		str	0..1	Footnote text.	fix_pre_trade:text
+PostTradeLayoutRow		PostTradeLayoutRow	One row of the layout table published in the Post-Trade Appendix for a message or component. Each row identifies either a FIX field (by tag number + name) or an embedded component (by name), records whether it is required, carries the Description-column text, and flags whether it appears as a nested child of a repeating-group counter.							
+					post_layout_kind	PostTradeLayoutRow_post_layout_kind	PostTradeLayoutRowKindEnum	1..1	"Row kind — either a FIX field (numeric Tag) or an embedded component (literal ""Component"" in the Tag column of the source table)."	fix_post_trade:post_layout_kind
+					post_layout_field_tag		int	0..1	FIX tag number drawn from the Tag column when the row is a field (i.e. layout_kind = FIELD). Absent for COMPONENT rows.	fix_post_trade:post_layout_field_tag
+					post_layout_element_name	PostTradeLayoutRow_post_layout_element_name	str	1..1	Element name as printed in the Name column — either the FIX field name or the component name.	fix_post_trade:post_layout_element_name
+					post_layout_required		Bool	0..1	"Whether the field or component is required, as printed in the Req’d column of the source layout table (""Y"" / ""N"")."	fix_post_trade:post_layout_required
+					post_layout_description		str	0..1	Free-text content of the Description column of the row (may be empty).	fix_post_trade:post_layout_description
+					post_layout_nested		Bool	0..1	"Whether the row appears nested under a repeating-group counter (i.e. its Tag column is prefixed with the ""→"" arrow in the source table)."	fix_post_trade:post_layout_nested
+PostTradeMessageDetail		PostTradeMessageDetail	Per-message description block from a Post-Trade category section.							
+				I	msg_type	PostTradeMessageDetail_msg_type	str	1..1	MsgType(35) wire value identifying the message.	fix_base:msg_type
+					message_name	PostTradeMessageDetail_message_name	str	1..1	PascalCase name of the message.	schema:name
+					description		str	0..1	Free-text description.	dcterms:description
+					layout_url		URI	0..1	URL of the detailed message- or component-layout.	schema:url
+					post_layout_rows		PostTradeLayoutRow	0..*	Ordered rows of the layout table published for the message or component in the Post-Trade Appendix.	fix_post_trade:post_layout_rows
+PostTradeMessageEntry		PostTradeMessageEntry	"One row of the area-wide ""Messages for Post-Trade Business Area"" table."							
+				I	msg_type	PostTradeMessageEntry_msg_type	str	1..1	MsgType(35) wire value identifying the message.	fix_base:msg_type
+					message_name	PostTradeMessageEntry_message_name	str	1..1	PascalCase name of the message.	schema:name
+					category	PostTradeMessageEntry_category	PostTradeCategoryEnum	1..1	Message category.	fix_base:category
+PostTradeMessageGroup		PostTradeMessageGroup	"A purpose-themed grouping of messages within a Post-Trade category (e.g. ""Allocation Instructions"")."							
+				I	group_title	PostTradeMessageGroup_group_title	str	1..1	Purpose-group heading inside a category's Messages sub-section.	schema:name
+					messages	PostTradeMessageGroup_messages	PostTradeMessageDetail	1..*	Messages defined within the enclosing element.	fix_base:messages
+PreTradeBusinessArea		PreTradeBusinessArea	Tree-root container for the Pre-Trade business area of FIX Latest.							
+					area	PreTradeBusinessArea_area	BusinessAreaEnum	1..1	Identity of the business area.	schema:identifier
+					title	PreTradeBusinessArea_title	str	0..1	Display title.	dcterms:title
+					published_version		str	0..1	Version stamp from the document header.	schema:version
+					publisher	PreTradeBusinessArea_publisher	str	0..1	Publishing body of the FIX Latest specification.	dcterms:publisher
+					introduction		str	0..1	Prose introduction of the chapter.	fix_pre_trade:introduction
+					diagram_conventions		str	0..1	Sentence describing diagram conventions used in the chapter.	fix_pre_trade:diagram_conventions
+					messages_overview_note		str	0..1	Intro prose of the area-wide Messages sub-section.	fix_pre_trade:messages_overview_note
+					messages	PreTradeBusinessArea_messages	PreTradeMessageEntry	0..*	Area-wide pre-trade messages table.	fix_base:messages
+					components_overview_note		str	0..1	Intro prose of the area-wide Components sub-section.	fix_pre_trade:components_overview_note
+					components	PreTradeBusinessArea_components	PreTradeComponentEntry	0..*	Area-wide pre-trade components table.	fix_base:components
+					common_components		PreTradeCommonComponentName	0..*	Common Components declared at the top of the chapter.	fix_pre_trade:common_components
+					common_component_details		CommonComponentDetail	0..*	Per-common-component descriptions from the chapter's final section.	fix_pre_trade:common_component_details
+					footnotes		ComponentTableFootnote	0..*	Footnotes attached to the area-wide components table.	fix_pre_trade:footnotes
+					category_sections		PreTradeCategorySection	0..*	Per-category sub-sections of the chapter.	fix_pre_trade:category_sections
+					referenced_global_components		*GlobalComponent	0..*	"Names of Global Components from the FIX Latest ""Global Components"" page that are referenced by messages in the containing business area. References instances of the :class:`GlobalComponent` class (declared in fix_base) by name."	fix_global_components:referenced_global_components
+PreTradeCategorySection		PreTradeCategorySection	A per-category sub-section of the Pre-Trade chapter.							
+				I	category	PreTradeCategorySection_category	PreTradeCategoryEnum	1..1	Message category.	fix_base:category
+					title		str	0..1	Display title.	dcterms:title
+					description		str	0..1	Free-text description.	dcterms:description
+					quote_models		QuoteModelEnum	0..*	Quoting business models referenced in the Quotation / Negotiation category.	fix_pre_trade:quote_models
+					message_groups		MessageGroup	0..*	Purpose-grouped message descriptions inside a category.	fix_pre_trade:message_groups
+					messages	PreTradeCategorySection_messages	PreTradeMessageDetail	0..*	Messages defined in this category.	fix_base:messages
+					category_components_note		str	0..1	Intro prose of a category's Components sub-section.	fix_pre_trade:category_components_note
+					category_specific_components		PreTradeComponentDetail	0..*	Components used exclusively by messages within a category.	fix_pre_trade:category_specific_components
+PreTradeComponentDetail		PreTradeComponentDetail	Per-category component description.							
+				I	component_name	PreTradeComponentDetail_component_name	str	1..1	PascalCase name of the component.	schema:name
+					repetition		ComponentRepetition	0..1	REPEATING or NON_REPEATING.	fix_pre_trade:repetition
+					description	PreTradeComponentDetail_description	str	0..1	Description of the component's purpose.	dcterms:description
+					layout_url		URI	0..1	URL of the detailed message- or component-layout.	schema:url
+					pre_layout_rows		PreTradeLayoutRow	0..*	Ordered rows of the layout table published for the message or component in the Pre-Trade Appendix.	fix_pre_trade:pre_layout_rows
+PreTradeComponentEntry		PreTradeComponentEntry	One row of the area-wide pre-trade components table.							
+				I	component_name	PreTradeComponentEntry_component_name	str	1..1	PascalCase name of the component.	schema:name
+					repetition	PreTradeComponentEntry_repetition	ComponentRepetition	1..1	REPEATING or NON_REPEATING.	fix_pre_trade:repetition
+					category	PreTradeComponentEntry_category	str	1..1	"Category the component is listed under. Common Components are listed under the synthetic ""Common Components"" value."	fix_base:category
+					is_common	PreTradeComponentEntry_is_common	Bool	0..1	True when the component is declared as a Common Component.	fix_pre_trade:is_common
+					footnote_number		int	0..1	Footnote indicator on a component-table row.	fix_pre_trade:footnote_number
+PreTradeLayoutRow		PreTradeLayoutRow	One row of the layout table published in the Pre-Trade Appendix for a message or component. Each row identifies either a FIX field (by tag number + name) or an embedded component (by name), records whether it is required, carries the Description-column text, and flags whether it appears as a nested child of a repeating-group counter.							
+					pre_layout_kind	PreTradeLayoutRow_pre_layout_kind	PreTradeLayoutRowKindEnum	1..1	"Row kind — either a FIX field (numeric Tag) or an embedded component (literal ""Component"" in the Tag column of the source table)."	fix_pre_trade:pre_layout_kind
+					pre_layout_field_tag		int	0..1	FIX tag number drawn from the Tag column when the row is a field (i.e. layout_kind = FIELD). Absent for COMPONENT rows.	fix_pre_trade:pre_layout_field_tag
+					pre_layout_element_name	PreTradeLayoutRow_pre_layout_element_name	str	1..1	Element name as printed in the Name column — either the FIX field name or the component name.	fix_pre_trade:pre_layout_element_name
+					pre_layout_required		Bool	0..1	"Whether the field or component is required, as printed in the Req’d column of the source layout table (""Y"" / ""N"")."	fix_pre_trade:pre_layout_required
+					pre_layout_description		str	0..1	Free-text content of the Description column of the row (may be empty).	fix_pre_trade:pre_layout_description
+					pre_layout_nested		Bool	0..1	"Whether the row appears nested under a repeating-group counter (i.e. its Tag column is prefixed with the ""→"" arrow in the source table)."	fix_pre_trade:pre_layout_nested
+PreTradeMessageDetail		PreTradeMessageDetail	Per-category message description.							
+				I	msg_type	PreTradeMessageDetail_msg_type	str	1..1	MsgType(35) wire value identifying the message.	fix_base:msg_type
+					message_name	PreTradeMessageDetail_message_name	str	1..1	PascalCase name of the message.	schema:name
+					description	PreTradeMessageDetail_description	str	0..1	Description of the message's purpose and usage.	dcterms:description
+					layout_url		URI	0..1	URL of the detailed message- or component-layout.	schema:url
+					pre_layout_rows		PreTradeLayoutRow	0..*	Ordered rows of the layout table published for the message or component in the Pre-Trade Appendix.	fix_pre_trade:pre_layout_rows
+PreTradeMessageEntry		PreTradeMessageEntry	One row of the area-wide pre-trade messages table.							
+				I	msg_type	PreTradeMessageEntry_msg_type	str	1..1	MsgType(35) wire value identifying the message.	fix_base:msg_type
+					message_name	PreTradeMessageEntry_message_name	str	1..1	PascalCase name of the message.	schema:name
+					category	PreTradeMessageEntry_category	PreTradeCategoryEnum	1..1	Message category.	fix_base:category
+RegistrationStatusDescription		RegistrationStatusDescription	One row of the RegistStatus(506) value/description table.							
+				I	status_code	RegistrationStatusDescription_status_code	str	1..1	Wire status code as referenced in the chapter.	fix_post_trade:status_code
+					status_label	RegistrationStatusDescription_status_label	str	1..1	Human-readable label of the status code.	fix_post_trade:status_label
+					description		str	0..1	Free-text description.	dcterms:description
+SpecificComponent	Component	SpecificComponent	A component used only by messages within a single category.							
+					business_area	SpecificComponent_business_area	BusinessAreaEnum	1..1	Business area the element belongs to.	fix_base:business_area
+					category	SpecificComponent_category	MessageCategoryEnum	1..1	Message category.	fix_base:category
+					scope	SpecificComponent_scope	ComponentScope	1..1	Sharing scope of the component.	fix_base:scope
+StandardResponseMapping		StandardResponseMapping	"One row of a ""Standard Responses for <area> Messages"" table mapping a request message to its appropriate response(s)."							
+					category_label	StandardResponseMapping_category_label	str	1..1	"Category label as printed in the source table (free text; may include parenthesised sub-categories such as ""Single General Order Handling"")."	fix_infrastructure:category_label
+					fix_message	StandardResponseMapping_fix_message	str	1..1	FIX message name with MsgType in parentheses, e.g. AllocationInstruction(35=J).	fix_infrastructure:fix_message
+					appropriate_responses	StandardResponseMapping_appropriate_responses	str	1..1	Free-text appropriate-response cell from the Standard Responses tables.	fix_infrastructure:appropriate_responses
+TradeAppendix		TradeAppendix	"Tree-root container for the Trade Appendix — the spec companion document that publishes the full message- and component-layout tables for every message and component used in the Trade business area, organized into one ""Appendix – <X> Category"" sub-section per Trade category plus a final ""Appendix – Common Category"" sub-section covering the layouts of the chapter's common components."							
+					title	TradeAppendix_title	str	0..1	Display title.	dcterms:title
+					published_version		str	0..1	Version stamp from the document header.	schema:version
+					publisher	TradeAppendix_publisher	str	0..1	Publishing body of the FIX Latest specification.	dcterms:publisher
+					description	TradeAppendix_description	str	0..1	Optional preface prose for the Trade Appendix as a whole.	dcterms:description
+					trade_appendix_sections		TradeAppendixSection	0..*	"Per-category sub-sections of the Trade Appendix — one ""Appendix – <X> Category"" section per Trade category, plus a synthetic ""Common Category"" section that lists layouts of the chapter's common components."	fix_trade:trade_appendix_sections
+TradeAppendixSection		TradeAppendixSection	"One ""Appendix – <X> Category"" sub-section of the Trade Appendix. Bundles the per-message layout tables (TradeMessageDetail) and per-component layout tables (TradeComponentDetail) for messages and components that belong to one Trade category — or, for the synthetic ""Common"" section, the layouts of the chapter's common components."							
+				I	trade_appendix_category	TradeAppendixSection_trade_appendix_category	str	1..1	"Identifier for an appendix section — either the Trade category name as printed in the heading (e.g. ""CrossOrders"", ""MultilegOrders"", ""OrderMassHandling"", ""ProgramTrading"", ""SingleGeneralOrderHandling"") or the literal ""Common"" for the common-components appendix."	fix_trade:trade_appendix_category
+					title	TradeAppendixSection_title	str	0..1	"Section heading exactly as printed in the Trade Appendix (e.g. ""Appendix – CrossOrders Category"")."	dcterms:title
+					description		str	0..1	Free-text description.	dcterms:description
+					messages	TradeAppendixSection_messages	TradeMessageDetail	0..*	"Layout tables for the messages that belong to the appendix section. Empty for the ""Common"" section."	fix_base:messages
+					components	TradeAppendixSection_components	*TradeComponentDetail	0..*	Layout tables for the components that belong to the appendix section.	fix_base:components
+TradeBusinessArea		TradeBusinessArea	Tree-root container for the Trade (Orders and Executions) business area of FIX Latest.							
+					trade_area	TradeBusinessArea_trade_area	BusinessAreaEnum	1..1	Identity of the business area the chapter describes.	schema:identifier
+					title	TradeBusinessArea_title	str	0..1	Display title.	dcterms:title
+					published_version		str	0..1	Version stamp from the document header.	schema:version
+					publisher	TradeBusinessArea_publisher	str	0..1	Publishing body of the FIX Latest specification.	dcterms:publisher
+					trade_introduction		str	0..1	Prose introduction of the chapter.	fix_trade:trade_introduction
+					trade_diagram_conventions		str	0..1	Sentence describing diagram conventions used in the chapter.	fix_trade:trade_diagram_conventions
+					trade_message_diagram_template_url		URI	0..1	"URL of the ""Message Diagram Templates"" page referenced by the chapter introduction."	schema:url
+					trade_messages_overview_note		str	0..1	Intro prose of the area-wide Messages sub-section.	fix_trade:trade_messages_overview_note
+					messages	TradeBusinessArea_messages	TradeMessageEntry	0..*	Area-wide trade messages table.	fix_base:messages
+					trade_components_overview_note		str	0..1	Intro prose of the area-wide Components sub-section.	fix_trade:trade_components_overview_note
+					components	TradeBusinessArea_components	TradeComponentEntry	0..*	Area-wide trade components table.	fix_base:components
+					trade_common_components		TradeCommonComponentName	0..*	Common Components declared at the bottom of the chapter.	fix_trade:trade_common_components
+					trade_common_component_details		TradeCommonComponentDetail	0..*	Per-common-component descriptions from the chapter's final section.	fix_trade:trade_common_component_details
+					trade_footnotes		TradeComponentTableFootnote	0..*	Footnotes attached to the area-wide components table.	fix_trade:trade_footnotes
+					trade_category_sections		TradeCategorySection	0..*	Per-category sub-sections of the chapter.	fix_trade:trade_category_sections
+					referenced_global_components		*GlobalComponent	0..*	"Names of Global Components from the FIX Latest ""Global Components"" page that are referenced by messages in the containing business area. References instances of the :class:`GlobalComponent` class (declared in fix_base) by name."	fix_global_components:referenced_global_components
+TradeCaptureReportIdentifierRule		TradeCaptureReportIdentifierRule	A rule governing one of the TradeCaptureReport(35=AE) identifier fields.							
+				I	identifier_role	TradeCaptureReportIdentifierRule_identifier_role	TradeCaptureReportIdentifierRoleEnum	1..1	Role of the trade-capture-report identifier field.	fix_post_trade:identifier_role
+					description		str	0..1	Free-text description.	dcterms:description
+TradeCaptureReportUsage		TradeCaptureReportUsage	One documented usage of the TradeCaptureReport(35=AE) message.							
+				I	status_label	TradeCaptureReportUsage_status_label	str	1..1	Short label for the usage.	fix_post_trade:status_label
+					description		str	0..1	Free-text description.	dcterms:description
+					identifier_role		TradeCaptureReportIdentifierRoleEnum	0..1	Role of the trade-capture-report identifier field.	fix_post_trade:identifier_role
+TradeCategorySection		TradeCategorySection	A per-category sub-section of the Trade chapter.							
+				I	category	TradeCategorySection_category	TradeCategoryEnum	1..1	Message category.	fix_base:category
+					title		str	0..1	Display title.	dcterms:title
+					description		str	0..1	Free-text description.	dcterms:description
+					trade_category_background		str	0..1	"Optional ""Background"" prose preceding a category's message descriptions (e.g. the Cross Order Handling chapter's cross-trade overview)."	fix_trade:trade_category_background
+					trade_message_groups		TradeMessageGroup	0..*	Purpose-grouped message descriptions inside a category.	fix_trade:trade_message_groups
+					messages	TradeCategorySection_messages	TradeMessageDetail	0..*	Messages defined in this category.	fix_base:messages
+					trade_category_components_note		str	0..1	Intro prose of a category's Components sub-section.	fix_trade:trade_category_components_note
+					trade_category_specific_components		TradeComponentDetail	0..*	Components used exclusively by messages within a single category.	fix_trade:trade_category_specific_components
+					trade_fragmentation_entries		TradeFragmentationEntry	0..*	Rows of the fragmentation table listed in a Trade category that documents which messages may be fragmented and which repeating group is fragmentable (currently published only for List/Program/Basket Trading).	fix_trade:trade_fragmentation_entries
+TradeCommonComponentDetail		TradeCommonComponentDetail	"Per-common-component description from the chapter's final ""Common Components"" section."							
+				I	component_name	TradeCommonComponentDetail_component_name	TradeCommonComponentName	1..1	PascalCase name of the component.	schema:name
+					trade_repetition		TradeComponentRepetition	0..1	REPEATING or NON_REPEATING.	fix_trade:trade_repetition
+					description	TradeCommonComponentDetail_description	str	0..1	Description of the common component's purpose.	dcterms:description
+					trade_layout_url		URI	0..1	URL of the detailed message- or component-layout in the Trade Appendix.	schema:url
+					trade_layout_rows		TradeLayoutRow	0..*	Ordered rows of the layout table published for the message or component in the Trade Appendix.	fix_trade:trade_layout_rows
+TradeComponentDetail		TradeComponentDetail	Per-category component description.							
+				I	component_name	TradeComponentDetail_component_name	str	1..1	PascalCase name of the component.	schema:name
+					trade_repetition		TradeComponentRepetition	0..1	REPEATING or NON_REPEATING.	fix_trade:trade_repetition
+					description	TradeComponentDetail_description	str	0..1	Description of the component's purpose.	dcterms:description
+					trade_layout_url		URI	0..1	URL of the detailed message- or component-layout in the Trade Appendix.	schema:url
+					trade_layout_rows		TradeLayoutRow	0..*	Ordered rows of the layout table published for the message or component in the Trade Appendix.	fix_trade:trade_layout_rows
+TradeComponentEntry		TradeComponentEntry	One row of the area-wide trade components table.							
+				I	component_name	TradeComponentEntry_component_name	str	1..1	PascalCase name of the component.	schema:name
+					trade_repetition	TradeComponentEntry_trade_repetition	TradeComponentRepetition	1..1	REPEATING or NON_REPEATING.	fix_trade:trade_repetition
+					category	TradeComponentEntry_category	str	1..1	"Category the component is listed under. Common Components are listed under the synthetic ""Common Components"" value."	fix_base:category
+					trade_is_common	TradeComponentEntry_trade_is_common	Bool	0..1	True when the component is declared as a Common Component.	fix_trade:trade_is_common
+					trade_footnote_number		int	0..1	Footnote indicator on a component-table row.	fix_trade:trade_footnote_number
+TradeComponentTableFootnote		TradeComponentTableFootnote	A footnote on the area-wide components table.							
+				I	trade_footnote_number	TradeComponentTableFootnote_trade_footnote_number	int	1..1	Footnote indicator on a component-table row.	fix_trade:trade_footnote_number
+					component_name	TradeComponentTableFootnote_component_name	str	1..1	PascalCase name of the component.	schema:name
+					trade_introduced_in	TradeComponentTableFootnote_trade_introduced_in	str	1..1	FIX version or Extension Pack that introduced the component.	fix_trade:trade_introduced_in
+					trade_sole_category	TradeComponentTableFootnote_trade_sole_category	TradeCategoryEnum	1..1	Single category that actually uses the component.	fix_trade:trade_sole_category
+					trade_footnote_text		str	0..1	Footnote text.	fix_trade:trade_footnote_text
+TradeFragmentationEntry		TradeFragmentationEntry	"One row of a fragmentation table published in a Trade category (currently only List/Program/Basket Trading) identifying a message that may be fragmented, the ""Total Entries"" field used to indicate the total count across all fragments of the batch, and the verbatim description of the repeating group that may be fragmented."							
+				I	trade_fragmentation_message	TradeFragmentationEntry_trade_fragmentation_message	str	1..1	"Message that may be fragmented — verbatim text from the Message column of the fragmentation table (e.g. ""NewOrderList(35=E)"")."	fix_trade:trade_fragmentation_message
+					trade_fragmentation_total_entries_field	TradeFragmentationEntry_trade_fragmentation_total_entries_field	str	1..1	"Name and tag of the ""Total Entries"" field used to indicate the total count across all fragments of the batch (e.g. ""TotNoOrders(68)"")."	fix_trade:trade_fragmentation_total_entries_field
+					trade_fragmentation_repeating_group	TradeFragmentationEntry_trade_fragmentation_repeating_group	str	1..1	Verbatim description of the repeating group that may be fragmented — from the table's third column.	fix_trade:trade_fragmentation_repeating_group
+TradeLayoutRow		TradeLayoutRow	One row of the layout table published in the Trade Appendix for a message or component. Each row identifies either a FIX field (by tag number + name) or an embedded component (by name), records whether it is required, carries the Description-column text, and flags whether it appears as a nested child of a repeating-group counter.							
+					trade_layout_kind	TradeLayoutRow_trade_layout_kind	TradeLayoutRowKindEnum	1..1	"Row kind — either a FIX field (numeric Tag) or an embedded component (literal ""Component"" in the Tag column of the source table)."	fix_trade:trade_layout_kind
+					trade_layout_field_tag		int	0..1	FIX tag number drawn from the Tag column when the row is a field (i.e. layout_kind = FIELD). Absent for COMPONENT rows.	fix_trade:trade_layout_field_tag
+					trade_layout_element_name	TradeLayoutRow_trade_layout_element_name	str	1..1	Element name as printed in the Name column — either the FIX field name or the component name.	fix_trade:trade_layout_element_name
+					trade_layout_required		Bool	0..1	"Whether the field or component is required, as printed in the Req'd column of the source layout table (""Y"" / ""N"")."	fix_trade:trade_layout_required
+					trade_layout_description		str	0..1	Free-text content of the Description column of the row (may be empty).	fix_trade:trade_layout_description
+					trade_layout_nested		Bool	0..1	"Whether the row appears nested under a repeating-group counter (i.e. its Tag column is prefixed with the ""→"" arrow in the source table)."	fix_trade:trade_layout_nested
+TradeMessageDetail		TradeMessageDetail	Per-category message description.							
+				I	msg_type	TradeMessageDetail_msg_type	str	1..1	MsgType(35) wire value identifying the message.	fix_base:msg_type
+					message_name	TradeMessageDetail_message_name	str	1..1	PascalCase name of the message.	schema:name
+					description	TradeMessageDetail_description	str	0..1	Description of the message's purpose and usage.	dcterms:description
+					trade_layout_url		URI	0..1	URL of the detailed message- or component-layout in the Trade Appendix.	schema:url
+					trade_layout_rows		TradeLayoutRow	0..*	Ordered rows of the layout table published for the message or component in the Trade Appendix.	fix_trade:trade_layout_rows
+TradeMessageEntry		TradeMessageEntry	One row of the area-wide trade messages table.							
+				I	msg_type	TradeMessageEntry_msg_type	str	1..1	MsgType(35) wire value identifying the message.	fix_base:msg_type
+					message_name	TradeMessageEntry_message_name	str	1..1	PascalCase name of the message.	schema:name
+					category	TradeMessageEntry_category	TradeCategoryEnum	1..1	Message category.	fix_base:category
+TradeMessageGroup		TradeMessageGroup	"Purpose-grouped sub-section inside a category's Messages sub-section (e.g. ""New Order Single"", ""Execution Reports"", ""Order Cancel Requests"" under Single/General Order Handling)."							
+				I	trade_group_title	TradeMessageGroup_trade_group_title	str	1..1	Purpose-group heading inside a category's Messages sub-section.	schema:name
+					description	TradeMessageGroup_description	str	0..1	Description of the purpose-group's role within the category.	dcterms:description
+					messages	TradeMessageGroup_messages	TradeMessageDetail	1..*	Messages bundled under the purpose-group heading.	fix_base:messages
+					trade_ord_status_precedence_entries		TradeOrdStatusPrecedenceEntry	0..*	Rows of the OrdStatus(39) precedence table that appears inside the Execution Reports purpose-group of the Single/General Order Handling category.	fix_trade:trade_ord_status_precedence_entries
+TradeOrdStatusPrecedenceEntry		TradeOrdStatusPrecedenceEntry	One row of the OrdStatus(39) precedence table published in the Execution Reports purpose-group of the Single/General Order Handling category. Defines the precedence ranking used to resolve simultaneous state transitions on an order, paired with the human-readable OrdStatus label and its descriptive prose.							
+					trade_ord_status_precedence	TradeOrdStatusPrecedenceEntry_trade_ord_status_precedence	int	1..1	Precedence rank (1 = lowest, higher numbers take precedence) of an OrdStatus(39) value used to resolve simultaneous state transitions on an order.	fix_trade:trade_ord_status_precedence
+				I	trade_ord_status_label	TradeOrdStatusPrecedenceEntry_trade_ord_status_label	str	1..1	"Human-readable OrdStatus(39) label as printed in the Execution Reports precedence table (e.g. ""Pending Cancel"", ""Done for Day"", ""Filled"")."	fix_trade:trade_ord_status_label
+					description	TradeOrdStatusPrecedenceEntry_description	str	0..1	Verbatim OrdStatus description from the table.	dcterms:description
+UDFTagRange		UDFTagRange	A reserved range of tag numbers for User Defined Fields.							
+				I	range_id	UDFTagRange_range_id	str	1..1	Identifier of the range.	fix_base:range_id
+					low_tag	UDFTagRange_low_tag	int	1..1	Inclusive lower bound of the range.	fix_base:low_tag
+					high_tag	UDFTagRange_high_tag	int	0..1	Upper bound of the tag range. Required for all ``usage`` values except ``GTC_RESERVED`` (which is open-ended, 50000+). Downstream validators should enforce this; the constraint cannot be expressed here because LinkML's ``equals_string`` operator only accepts string-ranged slots and ``usage`` is an enum.	fix_base:high_tag
+					usage	UDFTagRange_usage	UDFTagRangeUsage	1..1	Usage policy assigned to the range.	fix_base:usage
+					description	UDFTagRange_description	str	0..1	Notes on the range's intended use.	dcterms:description
+					requires_registration		Bool	0..1	True when tags in the range must be registered.	fix_base:requires_registration
+

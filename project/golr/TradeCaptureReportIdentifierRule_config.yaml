@@ -1,0 +1,13 @@
+# metamodel_version: 1.11.0id: TradeCaptureReportIdentifierRule
+schema_generating: true
+description: A rule governing one of the TradeCaptureReport(35=AE) identifier fields.
+display_name: TradeCaptureReportIdentifierRule
+document_category: TradeCaptureReportIdentifierRule
+weight: 20
+fields:
+- id: identifier_role
+  description: Role of the trade-capture-report identifier field.
+  display_name: TradeCaptureReportIdentifierRule_identifier_role
+- id: description
+  description: Free-text description.
+  display_name: description

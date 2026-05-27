@@ -1,12 +1,15 @@
 ---
 id: https://w3id.org/lmodel/fix-protocol
+
 name: fix-protocol
+
 title: fix-protocol
-description: |-
-  FIX Protocol - LinkML Schema
+
+description: FIX Protocol - LinkML Schema
+
 license: Apache-2.0
-see_also:
-  - https://lmodel.github.io/fix-protocol
+
+see_also: [https://lmodel.github.io/fix-protocol]
 
 prefixes:
   fix_protocol: https://w3id.org/lmodel/fix-protocol/
@@ -24,7 +27,9 @@ prefixes:
   iso10383: https://www.iso.org/standard/61067.html#
   iso639: https://www.iso.org/iso-639-language-codes.html#
   iso17442: https://www.iso.org/standard/78829.html#
+
 default_prefix: fix_protocol
+
 default_range: string
 
 imports:

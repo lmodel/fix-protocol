@@ -1,0 +1,13 @@
+#curie_map:
+#  fix_protocol: https://w3id.org/lmodel/fix-protocol/
+#  fixp: https://w3id.org/lmodel/fixp/
+#  semapv: https://w3id.org/semapv/vocab/
+#  skos: http://www.w3.org/2004/02/skos/core#
+#mapping_set_id: https://w3id.org/lmodel/fix-protocol/mappings/fix-protocol-to-fixp.sssom.tsv
+#mapping_set_description: LLM-generated mappings from the FIX Protocol LinkML schema to the FIXP (FIX Performance Session Layer) LinkML schema. Coverage is narrow because fix-protocol describes the application metamodel rather than the session layer; only Infrastructure-area and session-protocol enums align.
+#mapping_set_version: 0.1.0
+#license: https://creativecommons.org/licenses/by/4.0/
+#mapping_date: 2026-05-27
+subject_id	subject_label	predicate_id	object_id	object_label	mapping_justification	confidence	comment
+fix_protocol:InfrastructureBusinessArea	InfrastructureBusinessArea	skos:relatedMatch	fixp:FixpSessionExchange	FixpSessionExchange	semapv:LLMBasedMatching	0.45	Infrastructure business area covers session-layer concerns; FIXP is a session-protocol container.
+fix_protocol:SessionProtocolName	SessionProtocolName	skos:relatedMatch	fixp:FixpSessionMessage	FixpSessionMessage	semapv:LLMBasedMatching	0.5	Enum lists FIX session protocols; FIXP is one such protocol's message family.

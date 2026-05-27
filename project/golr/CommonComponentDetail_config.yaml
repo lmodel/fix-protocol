@@ -1,0 +1,24 @@
+# metamodel_version: 1.11.0id: CommonComponentDetail
+schema_generating: true
+description: Per-common-component description.
+display_name: CommonComponentDetail
+document_category: CommonComponentDetail
+weight: 20
+fields:
+- id: component_name
+  description: PascalCase name of the component.
+  display_name: CommonComponentDetail_component_name
+- id: repetition
+  description: REPEATING or NON_REPEATING.
+  display_name: repetition
+- id: description
+  description: Description of the common component's purpose.
+  display_name: CommonComponentDetail_description
+- id: layout_url
+  description: URL of the detailed message- or component-layout.
+  display_name: layout_url
+- id: pre_layout_rows
+  description: Ordered rows of the layout table published for the message or component
+    in the Pre-Trade Appendix.
+  display_name: pre_layout_rows
+  cardinality: multi
