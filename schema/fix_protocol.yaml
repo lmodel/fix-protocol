@@ -9564,7 +9564,7 @@ classes:
     class_uri: fix_infrastructure:InfrastructureGlobalComponentReference
 metamodel_version: 1.11.0
 source_file: fix_protocol.yaml
-source_file_date: '2026-05-27T22:06:04'
+source_file_date: '2026-05-27T22:12:47'
 source_file_size: 1124
-generation_date: '2026-05-27T22:06:15'
+generation_date: '2026-05-27T22:12:58'
 
