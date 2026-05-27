@@ -1,0 +1,5 @@
+---
+footnote_number: 3
+component_name: ThrottleMsgTypeGrp
+introduced_in: EP116
+infra_sole_category: USER_MANAGEMENT

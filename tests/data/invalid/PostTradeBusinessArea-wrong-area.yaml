@@ -1,0 +1,9 @@
+# Prose overlay for tests/data/invalid/PostTradeBusinessArea-wrong-area.yaml
+#
+# Demonstrates failure mode: the fixture sets area: PRE_TRADE but the
+# tree-root class PostTradeBusinessArea pins area via equals_string to
+# POST_TRADE. The prose makes the rationale explicit.
+expected_violation: |-
+  PostTradeBusinessArea instances must declare area = POST_TRADE.
+  Setting any other area value (e.g. PRE_TRADE) violates the
+  equals_string constraint in slot_usage.

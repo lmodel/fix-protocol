@@ -1,0 +1,12 @@
+---
+# FIX datatype — structural shape only.
+# Spec-derived definition lives in private/test-fixtures-content/valid/.
+datatype_name: UTCTimestamp
+definition: FIX datatype UTCTimestamp.
+value_space:
+  - time
+time_unit:
+  - MILLISECOND
+  - MICROSECOND
+  - NANOSECOND
+  - PICOSECOND

@@ -1,0 +1,5 @@
+---
+# Invalid: category TRADE is not a permissible value of PreTradeCategoryEnum.
+msg_type: D
+message_name: NewOrderSingle
+category: TRADE

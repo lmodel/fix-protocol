@@ -1,0 +1,8 @@
+---
+# UDF tag range — structural identifiers only.
+# Spec-derived description lives in private/test-fixtures-content/valid/.
+range_id: 5000-9999
+low_tag: 5000
+high_tag: 9999
+usage: INTER_FIRM_REGISTERED
+requires_registration: true

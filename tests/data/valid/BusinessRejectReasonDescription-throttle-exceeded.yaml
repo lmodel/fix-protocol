@@ -1,0 +1,3 @@
+---
+reject_reason_code: 8
+reject_reason_label: Throttle limit exceeded

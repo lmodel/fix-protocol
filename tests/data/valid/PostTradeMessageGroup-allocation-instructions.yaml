@@ -1,0 +1,5 @@
+---
+group_title: Allocation Instructions
+messages:
+  - msg_type: J
+    message_name: AllocationInstruction

@@ -1,0 +1,7 @@
+---
+# Invalid: post_sole_category must be drawn from PostTradeCategoryEnum;
+# INDICATION belongs to fix_pre_trade.
+footnote_number: 99
+component_name: AveragePriceDetail
+introduced_in: EP240
+post_sole_category: INDICATION

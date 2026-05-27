@@ -1,0 +1,19 @@
+---
+# Message — structural shape only.
+# Spec-derived description lives in private/test-fixtures-content/valid/.
+msg_type: "8"
+message_name: ExecutionReport
+category: SINGLE_GENERAL_ORDER_HANDLING
+fields:
+  - tag: 37
+    field_name: OrderID
+    datatype: String
+    requirement: REQUIRED
+  - tag: 17
+    field_name: ExecID
+    datatype: String
+    requirement: REQUIRED
+  - tag: 150
+    field_name: ExecType
+    datatype: char
+    requirement: REQUIRED

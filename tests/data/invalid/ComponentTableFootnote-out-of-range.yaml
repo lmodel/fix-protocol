@@ -1,0 +1,7 @@
+---
+# Invalid: ``footnote_number`` must be in 1..25.
+footnote_number: 30
+component_name: Bogus
+introduced_in: EP999
+sole_category: SECURITIES_REFERENCE_DATA
+text: Out-of-range footnote number.

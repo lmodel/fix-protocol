@@ -1,0 +1,21 @@
+---
+# Trade Capture Reporting section with the five documented usages and
+# the identifier-field rules.
+category: TRADE_CAPTURE_REPORTING
+title: Category – Trade Capture Reporting
+trade_capture_report_usages:
+  - status_label: Relay confirmed trades to non-participants
+    identifier_role: TRADE_REPORT_ID
+  - status_label: Relay confirmed trades to counterparties
+    identifier_role: TRADE_REPORT_ID
+  - status_label: Reporting privately negotiated street-side trades
+    identifier_role: TRADE_REPORT_ID
+  - status_label: Reporting floor or routed executions
+    identifier_role: TRADE_REPORT_ID
+  - status_label: Request trade cancel or amendment
+    identifier_role: TRADE_REPORT_REF_ID
+trade_capture_report_identifier_rules:
+  - identifier_role: TRADE_REPORT_ID
+  - identifier_role: TRADE_ID
+  - identifier_role: TRADE_REPORT_REF_ID
+  - identifier_role: SECONDARY_TRADE_ID

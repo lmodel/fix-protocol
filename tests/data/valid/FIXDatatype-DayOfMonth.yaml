@@ -1,0 +1,9 @@
+---
+# FIX datatype — structural shape only.
+# Spec-derived definition lives in private/test-fixtures-content/valid/.
+datatype_name: DayOfMonth
+definition: FIX datatype DayOfMonth.
+value_space:
+  - integer
+minimum_value: 1
+maximum_value: 31

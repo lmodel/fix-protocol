@@ -1,0 +1,197 @@
+---
+# Full Infrastructure business-area tree-root populated from
+# the EP284 source chapter: all 9 messages, all 8 components,
+# 4 footnotes, the BusinessRejectReason(380) code table, and
+# representative rows of the three Standard Responses tables
+# and the three Key Fields tables.
+area: INFRASTRUCTURE
+title: Business Area Infrastructure
+published_version: EP284
+publisher: FIX Global Technical Committee
+infra_introduction: |-
+  Infrastructure messaging is characterized as messages which are
+  common to the business areas pre-trade, trade and post-trade.
+diagram_conventions: |-
+  Required components are shown with a red outline; repeating
+  groups contain an arrow symbol.
+messages_overview_note: |-
+  Lists the infrastructure messages and the category each belongs
+  to.
+components_overview_note: |-
+  Lists components used by infrastructure messages defined in this
+  part of the FIX specification. None are Common Components used
+  by more than one category in this area; messages may also
+  reference Global Components defined in the Introduction.
+infra_common_components:
+  - ApplIDReportGrp
+  - ApplIDRequestAckGrp
+  - ApplIDRequestGrp
+  - CompIDReqGrp
+  - CompIDStatGrp
+  - ThrottleMsgTypeGrp
+  - ThrottleParamsGrp
+  - UsernameGrp
+messages:
+  - msg_type: BY
+    message_name: ApplicationMessageReport
+    category: APPLICATION_SEQUENCING
+  - msg_type: BW
+    message_name: ApplicationMessageRequest
+    category: APPLICATION_SEQUENCING
+  - msg_type: BX
+    message_name: ApplicationMessageRequestAck
+    category: APPLICATION_SEQUENCING
+  - msg_type: j
+    message_name: BusinessMessageReject
+    category: BUSINESS_MESSAGE_REJECTS
+  - msg_type: BC
+    message_name: NetworkCounterpartySystemStatusRequest
+    category: NETWORK_STATUS_COMMUNICATION
+  - msg_type: BD
+    message_name: NetworkCounterpartySystemStatusResponse
+    category: NETWORK_STATUS_COMMUNICATION
+  - msg_type: BE
+    message_name: UserRequest
+    category: USER_MANAGEMENT
+  - msg_type: BF
+    message_name: UserResponse
+    category: USER_MANAGEMENT
+  - msg_type: CB
+    message_name: UserNotification
+    category: USER_MANAGEMENT
+components:
+  - component_name: ApplIDReportGrp
+    repetition: REPEATING
+    category: APPLICATION_SEQUENCING
+  - component_name: ApplIDRequestAckGrp
+    repetition: REPEATING
+    category: APPLICATION_SEQUENCING
+  - component_name: ApplIDRequestGrp
+    repetition: REPEATING
+    category: APPLICATION_SEQUENCING
+  - component_name: CompIDReqGrp
+    repetition: REPEATING
+    category: NETWORK_STATUS_COMMUNICATION
+    footnote_number: 1
+  - component_name: CompIDStatGrp
+    repetition: REPEATING
+    category: NETWORK_STATUS_COMMUNICATION
+    footnote_number: 2
+  - component_name: ThrottleMsgTypeGrp
+    repetition: REPEATING
+    category: USER_MANAGEMENT
+    footnote_number: 3
+  - component_name: ThrottleParamsGrp
+    repetition: REPEATING
+    category: USER_MANAGEMENT
+    footnote_number: 4
+  - component_name: UsernameGrp
+    repetition: REPEATING
+    category: USER_MANAGEMENT
+infra_footnotes:
+  - footnote_number: 1
+    component_name: CompIDReqGrp
+    introduced_in: FIX 4.4
+    infra_sole_category: NETWORK_STATUS_COMMUNICATION
+  - footnote_number: 2
+    component_name: CompIDStatGrp
+    introduced_in: FIX 4.4
+    infra_sole_category: NETWORK_STATUS_COMMUNICATION
+  - footnote_number: 3
+    component_name: ThrottleMsgTypeGrp
+    introduced_in: EP116
+    infra_sole_category: USER_MANAGEMENT
+  - footnote_number: 4
+    component_name: ThrottleParamsGrp
+    introduced_in: EP116
+    infra_sole_category: USER_MANAGEMENT
+infra_category_sections:
+  - category: BUSINESS_MESSAGE_REJECTS
+    title: Category – Business Rejects
+  - category: NETWORK_STATUS_COMMUNICATION
+    title: Category – Network Status Communication
+    network_status_scenarios:
+      - SCENARIO_A
+      - SCENARIO_B
+    network_request_types_referenced:
+      - SNAPSHOT
+      - STOP_SUBSCRIBING
+  - category: USER_MANAGEMENT
+    title: Category – User Management
+  - category: APPLICATION_SEQUENCING
+    title: Category – Application Sequencing
+    application_message_report_uses:
+      - RESET
+      - LAST_MESSAGE
+      - KEEP_ALIVE
+      - RESEND_COMPLETED
+standard_responses_pre_trade:
+  - category_label: Indication
+    fix_message: CrossRequest(35=DS)
+    appropriate_responses: CrossRequestAck(35=DT)
+  - category_label: Quotation Negotiation
+    fix_message: MassQuote(35=i)
+    appropriate_responses: MassQuoteAck(35=b)
+  - category_label: Market Data
+    fix_message: MarketDataRequest(35=V)
+    appropriate_responses: MarketDataRequestReject(35=Y)
+standard_responses_trade:
+  - category_label: Single General Order Handling
+    fix_message: NewOrderSingle(35=D)
+    appropriate_responses: ExecutionReport(35=8)
+  - category_label: Order Mass Handling
+    fix_message: OrderMassCancelRequest(35=q)
+    appropriate_responses: OrderMassCancelReport(35=r)
+standard_responses_post_trade:
+  - category_label: Allocation
+    fix_message: AllocationInstruction(35=J)
+    appropriate_responses: AllocationInstructionAck(35=P)
+  - category_label: Trade Capture
+    fix_message: TradeCaptureReport(35=AE)
+    appropriate_responses: TradeCaptureReportAck(35=AR)
+key_fields_pre_trade:
+  - category_label: Indication
+    fix_message: IOI(35=6)
+    business_reject_ref_id_value: IOIID(23)
+  - category_label: Event Communication
+    fix_message: News(35=B)
+    business_reject_ref_id_value: Headline(148) or NewsID(1472)
+key_fields_trade:
+  - category_label: Single General Order Handling
+    fix_message: ExecutionAck(35=BN)
+    business_reject_ref_id_value: ExecID(17)
+  - category_label: Program Trading
+    fix_message: BidResponse(35=l)
+    business_reject_ref_id_value: BidID(390)
+key_fields_post_trade:
+  - category_label: Allocation
+    fix_message: AllocationInstructionAck(35=P)
+    business_reject_ref_id_value: AllocID(70)
+  - category_label: Settlement Instruction
+    fix_message: SettlementInstructions(35=T)
+    business_reject_ref_id_value: SettInstMsgID(777)
+business_reject_reason_descriptions:
+  - reject_reason_code: 0
+    reject_reason_label: Other
+  - reject_reason_code: 1
+    reject_reason_label: Unknown ID
+  - reject_reason_code: 2
+    reject_reason_label: Unknown Security
+  - reject_reason_code: 3
+    reject_reason_label: Unsupported Message Type
+  - reject_reason_code: 4
+    reject_reason_label: Application not available
+  - reject_reason_code: 5
+    reject_reason_label: Conditionally Required Field Missing
+  - reject_reason_code: 6
+    reject_reason_label: Not Authorised
+  - reject_reason_code: 7
+    reject_reason_label: DeliverTo firm not available at this time
+  - reject_reason_code: 8
+    reject_reason_label: Throttle limit exceeded
+  - reject_reason_code: 9
+    reject_reason_label: Throttle limit exceeded, session will be disconnected
+  - reject_reason_code: 10
+    reject_reason_label: Throttled messages rejected on request
+  - reject_reason_code: 18
+    reject_reason_label: Invalid price increment

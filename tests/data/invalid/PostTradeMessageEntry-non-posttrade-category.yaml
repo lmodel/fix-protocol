@@ -1,0 +1,5 @@
+---
+# Invalid: INDICATION is not a permissible value of PostTradeCategoryEnum.
+msg_type: J
+message_name: AllocationInstruction
+category: INDICATION

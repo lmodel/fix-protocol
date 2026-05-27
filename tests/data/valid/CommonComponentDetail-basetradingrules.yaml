@@ -1,0 +1,6 @@
+---
+# Common-component entry — structural identifiers and citation only.
+# Spec-derived prose lives in private/test-fixtures-content/valid/.
+component_name: BaseTradingRules
+repetition: NON_REPEATING
+layout_url: https://www.fixtrading.org/standards/fix-latest-online/business-area-pre-trade/common-components/basetradingrules/

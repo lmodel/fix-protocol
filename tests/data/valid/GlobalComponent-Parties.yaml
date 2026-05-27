@@ -1,0 +1,13 @@
+---
+# Global component — structural shape only.
+# Spec-derived description lives in private/test-fixtures-content/valid/.
+component_name: Parties
+scope: GLOBAL
+component_group: PARTIES
+is_repeating_group: true
+conceptually_identical_to:
+  - NestedParties
+  - NestedParties2
+  - NestedParties3
+  - NestedParties4
+  - RootParties

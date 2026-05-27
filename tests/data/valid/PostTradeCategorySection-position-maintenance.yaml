@@ -1,0 +1,51 @@
+---
+# Position Maintenance section listing the Position Management
+# Clearing Services functions and the Post-Trade Processing
+# Clearing Services message-format families with their actions.
+category: POSITION_MAINTENANCE
+title: Category – Position Maintenance
+clearing_services_for_position_management:
+  - POSITION_CHANGE_SUBMISSION
+  - POSITION_ADJUSTMENT
+  - EXERCISE_NOTICE
+  - ABANDONMENT_NOTICE
+  - MARGIN_DISPOSITION
+  - POSITION_PLEDGE
+  - REQUEST_FOR_POSITION
+clearing_services_for_post_trade_processing:
+  - message_format: ETP
+    supported_actions:
+      - Trade Change
+  - message_format: GIVE_UP
+    supported_actions:
+      - Allocation
+      - Accept
+      - Reject
+      - Release
+      - Change
+      - Delete
+  - message_format: EXCHANGE_FOR_PHYSICAL
+    supported_actions:
+      - Allocation
+      - Accept
+      - Reject
+      - Change
+      - Delete
+  - message_format: AVERAGE_PRICE_SYSTEM
+    supported_actions:
+      - Allocation
+      - Accept
+      - Change
+      - Delete
+  - message_format: MUTUAL_OFFSET_SYSTEM
+    supported_actions:
+      - Allocation
+      - Accept
+      - Reject
+      - Change
+      - Delete
+  - message_format: TRADE_ENTRY_EDIT
+    supported_actions:
+      - Trade Add
+      - Transfer
+      - Change

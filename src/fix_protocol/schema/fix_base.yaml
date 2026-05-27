@@ -1,0 +1,1096 @@
+---
+id: https://w3id.org/lmodel/fix-protocol/fix-base
+name: fix-base
+title: FIX Protocol Introduction
+description: |-
+  LinkML metamodel for the structural elements of the FIX Latest
+  Introduction section: the FIX Family of Standards, Extension Packs,
+  FIX Protocol datatypes, business areas, message categories,
+  messages, components, fields, user-defined-field tag ranges, and
+  the FPL organizational structure. Original (non-normative)
+  authored content only; for spec-derived prose see the private
+  overlay (see NOTICE).
+license: Apache-2.0
+see_also:
+  - https://www.fixtrading.org/standards/
+  - https://www.fixtrading.org/online-specification/
+  - https://www.fixtrading.org/standards/fix-latest-online/introduction-to-fix-protocol/
+source: https://www.fixtrading.org/standards/fix-latest-online/introduction-to-fix-protocol/
+version: EP284
+
+prefixes:
+  fix_protocol: https://w3id.org/lmodel/fix-protocol/
+  fix_base: https://w3id.org/lmodel/fix-protocol/fix-base/
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+  xsd: http://www.w3.org/2001/XMLSchema#
+  iso11404: https://www.iso.org/standard/39479.html#
+  iso3166: https://www.iso.org/iso-3166-country-codes.html#
+  iso4217: https://www.iso.org/iso-4217-currency-codes.html#
+  iso10383: https://www.iso.org/standard/61067.html#
+  iso639: https://www.iso.org/iso-639-language-codes.html#
+  iso17442: https://www.iso.org/standard/78829.html#
+
+default_prefix: fix_base
+default_range: string
+
+imports:
+  - linkml:types
+
+subsets:
+  introduction:
+    description: Elements drawn from the FIX Latest Introduction section.
+  governance:
+    description: Elements describing FPL governance and organization.
+  datatypes:
+    description: FIX Protocol datatype definitions.
+  organization:
+    description: Elements describing the organization of FIX Latest.
+
+types:
+  TagNumber:
+    description: A FIX field tag number (a positive integer).
+    uri: xsd:integer
+    base: int
+    minimum_value: 1
+    exact_mappings:
+      - "fix_protocol:TagNum"
+      - "xsd:positiveInteger"
+
+  ExtensionPackNumber:
+    description: |-
+      Sequential identifier of a FIX Extension Pack. Carried on the wire in
+      ApplExtID(1156).
+    uri: xsd:integer
+    base: int
+    minimum_value: 0
+    exact_mappings:
+      - "xsd:nonNegativeInteger"
+
+enums:
+  StandardLayer:
+    description: Layer of the FIX Technical Standard Stack.
+    permissible_values:
+      APPLICATION:
+      ENCODING:
+      SESSION:
+
+  ExtensionPackSize:
+    description: Qualitative size indicator for an Extension Pack.
+    permissible_values:
+      XXS:
+      XS:
+      S:
+      M:
+      L:
+      XL:
+      XXL:
+
+  GlobalComponentBusinessAreaEnum:
+    description: |-
+      FIX business areas that may reference a Global Component
+      from the FIX Latest "Global Components" page.
+    permissible_values:
+      PRE_TRADE:
+      TRADE:
+      POST_TRADE:
+      INFRASTRUCTURE:
+
+  BusinessAreaEnum:
+    description: Top-level business areas of the FIX Latest specification.
+    permissible_values:
+      INTRODUCTION:
+      PRE_TRADE:
+      TRADE:
+      POST_TRADE:
+      INFRASTRUCTURE:
+
+  MessageCategoryEnum:
+    description: Message categories defined within FIX Latest business areas.
+    permissible_values:
+      INDICATION:
+      EVENT_COMMUNICATION:
+      QUOTATION_NEGOTIATION:
+      MARKET_DATA:
+      MARKET_STRUCTURE_REFERENCE_DATA:
+      SECURITIES_REFERENCE_DATA:
+      PARTIES_REFERENCE_DATA:
+      PARTIES_ACTION:
+      SINGLE_GENERAL_ORDER_HANDLING:
+      ORDER_MASS_HANDLING:
+      CROSS_ORDERS:
+      MULTILEG_ORDERS:
+      LIST_PROGRAM_BASKET_TRADING:
+      ALLOCATION_AND_READY_TO_BOOK:
+      CONFIRMATION:
+      SETTLEMENT_INSTRUCTIONS:
+      TRADE_CAPTURE_REPORTING:
+      REGISTRATION_INSTRUCTIONS:
+      POSITIONS_MAINTENANCE:
+      COLLATERAL_MANAGEMENT:
+      MARGIN_REQUIREMENT_MANAGEMENT:
+      ACCOUNT_REPORTING:
+      TRADE_MANAGEMENT:
+      PAY_MANAGEMENT:
+      SETTLEMENT_STATUS_MANAGEMENT:
+      BUSINESS_MESSAGE_REJECTS:
+      NETWORK_STATUS_COMMUNICATION:
+      USER_MANAGEMENT:
+      APPLICATION_SEQUENCING:
+
+  ComponentScope:
+    description: Sharing scope of a FIX component.
+    permissible_values:
+      GLOBAL:
+      COMMON:
+      SPECIFIC:
+
+  ComponentGroup:
+    description: Thematic grouping under which a Global Component is presented.
+    permissible_values:
+      SECURITIES:
+      LEG_SECURITIES:
+      UNDERLYING_SECURITIES:
+      PARTIES:
+      ORDERS_AND_QUOTES:
+      TRADES:
+      COMMISSIONS_AND_FEES:
+      FINANCING:
+      PAYMENTS:
+      STIPULATIONS:
+      HEADER_AND_TRAILER:
+      MISCELLANEOUS:
+
+  FieldRequirement:
+    description: Required-status of a field within a message or component.
+    permissible_values:
+      REQUIRED:
+      OPTIONAL:
+      CONDITIONALLY_REQUIRED:
+
+  ProductCoverage:
+    description: Product/asset classes covered by FIX at the application layer.
+    permissible_values:
+      EQUITIES:
+      CIV:
+      DERIVATIVES:
+      FIXED_INCOME:
+      FOREIGN_EXCHANGE:
+
+  FIXDatatypeName:
+    description: Names of FIX Protocol datatypes.
+    permissible_values:
+      int:
+      TagNum:
+      SeqNum:
+      NumInGroup:
+      DayOfMonth:
+      float:
+      Qty:
+      Price:
+      PriceOffset:
+      Amt:
+      Percentage:
+      char:
+      Boolean:
+      String:
+      MultipleCharValue:
+      MultipleStringValue:
+      Country:
+        meaning: "iso3166:"
+      Currency:
+        meaning: "iso4217:"
+      Exchange:
+        meaning: "iso10383:"
+      MonthYear:
+      UTCTimestamp:
+      UTCTimeOnly:
+      UTCDateOnly:
+      LocalMktDate:
+      TZTimeOnly:
+      TZTimestamp:
+      Length:
+      data:
+      Tenor:
+      Reserved100Plus:
+      Reserved1000Plus:
+      Reserved4000Plus:
+      XMLData:
+      Language:
+        meaning: "iso639:"
+      LocalMktTime:
+
+  ISO11404ValueSpace:
+    description: ISO/IEC 11404:2007 General-Purpose Datatypes value space.
+    permissible_values:
+      integer:
+      ordinal:
+      size:
+      real:
+      scaled:
+      character:
+      characterstring:
+      boolean:
+      set:
+      array:
+      time:
+      union:
+
+  TenorUnit:
+    description: Time unit used in a FIX Tenor expression.
+    permissible_values:
+      D:
+      W:
+      M:
+      Y:
+
+  StandardEncodingName:
+    description: Named encodings of the FIX Family of Standards.
+    permissible_values:
+      TAGVALUE:
+      FIXML:
+      FAST:
+      SBE:
+      GPB:
+      JSON:
+      ASN_1:
+
+  SessionProtocolName:
+    description: Named session-layer protocols in the FIX Family of Standards.
+    permissible_values:
+      FIX_4_2:
+      FIX4:
+      FIXT:
+      LFIXT:
+      FIXP:
+      SOFH:
+      FIXS:
+      AMQP:
+
+  TimePrecision:
+    description: Time-unit precision for FIX time-bearing datatypes.
+    permissible_values:
+      SECOND:
+      MILLISECOND:
+      MICROSECOND:
+      NANOSECOND:
+      PICOSECOND:
+      DAY:
+
+  FPLCommitteeRole:
+    description: Organizational bodies of FIX Protocol Limited.
+    permissible_values:
+      GLOBAL_STEERING_COMMITTEE:
+      GLOBAL_TECHNICAL_COMMITTEE:
+      GLOBAL_PRODUCT_COMMITTEE:
+      GLOBAL_BUY_SIDE_COMMITTEE:
+      GLOBAL_MEMBER_SERVICES_COMMITTEE:
+      REGIONAL_COMMITTEE:
+
+  FPLRegion:
+    description: Geographic regions for FPL Regional Committees.
+    permissible_values:
+      AMERICAS:
+      ASIA_PACIFIC:
+      EMEA:
+      JAPAN:
+
+  FPLProductGroup:
+    description: Global Product Committees maintained by FIX Protocol Limited.
+    permissible_values:
+      FIXED_INCOME_AND_CURRENCIES:
+      LISTED_PRODUCTS_AND_EXCHANGES:
+
+  FPLMemberType:
+    description: Categories of organizations represented in FPL membership.
+    permissible_values:
+      BUY_SIDE_FIRM:
+      SELL_SIDE_FIRM:
+      EXCHANGE:
+      ECN_ATS:
+      UTILITY:
+      VENDOR:
+      OTHER_ASSOCIATION:
+
+  UDFTagRangeUsage:
+    description: Usage policy assigned to a reserved range of UDF tag numbers.
+    permissible_values:
+      INTER_FIRM_REGISTERED:
+      INTER_FIRM_BILATERAL:
+      GTC_REGULATORY_LEGACY:
+      WIP_CHINA:
+      INTERNAL_FIRM:
+      GTC_OTC_DERIVATIVES:
+      GTC_RESERVED:
+
+slots:
+  # ---- Identity ----
+
+  id:
+    identifier: true
+    range: string
+    required: true
+    description: Unique identifier (CURIE or local name) of the element.
+    exact_mappings:
+      - schema:identifier
+      - dcterms:identifier
+
+  name:
+    range: string
+    required: true
+    slot_uri: schema:name
+    description: Display name of the element.
+
+  description:
+    range: string
+    slot_uri: dcterms:description
+    description: Free-text description.
+
+  acronym:
+    range: string
+    description: Short acronym used to refer to the element.
+    slot_uri: schema:alternateName
+
+  see_also:
+    range: uri
+    multivalued: true
+    slot_uri: rdfs:seeAlso
+    description: Related external resources.
+
+  title:
+    description: Display title.
+    range: string
+    slot_uri: dcterms:title
+
+  # ---- FIXIntroduction container slots ----
+
+  published_version:
+    description: Version stamp from the document header.
+    range: string
+    slot_uri: schema:version
+
+  published_date:
+    description: Publication date of the document.
+    range: date
+    slot_uri: dcterms:issued
+
+  publisher:
+    description: Publishing body of the FIX Latest specification.
+    range: string
+    ifabsent: string(FIX Global Technical Committee)
+    slot_uri: dcterms:publisher
+
+  preface:
+    description: The Preface text of the specification.
+    range: string
+
+  introduction_text:
+    description: The Introduction prose section.
+    range: string
+
+  utc_leap_seconds_note:
+    description: Prose note on UTC leap-second handling for UTCTimestamp.
+    range: string
+    see_also:
+      - https://maia.usno.navy.mil/information/what-is-a-leap-second
+
+  about_fpl:
+    description: Information about FIX Protocol Limited.
+    range: FIXProtocolLimited
+    inlined: true
+
+  standards:
+    description: The FIX Family of Standards.
+    range: FIXFamilyStandard
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+
+  extension_packs:
+    description: The list of Extension Packs.
+    range: ExtensionPack
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+
+  datatypes:
+    description: FIX Protocol datatype definitions and value spaces.
+    range: FIXDatatype
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+
+  business_areas:
+    description: Top-level business areas of FIX Latest.
+    range: BusinessArea
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+
+  global_components:
+    description: Global Components defined in the Introduction.
+    range: GlobalComponent
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+
+  udf_ranges:
+    description: Reserved ranges of user-defined-field tag numbers.
+    range: UDFTagRange
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+
+  product_coverage:
+    description: Product/asset classes covered by FIX at the application layer.
+    range: ProductCoverage
+    multivalued: true
+
+  # ---- FPL (organization) slots ----
+
+  brand_name:
+    description: Brand name used by the organization.
+    range: string
+
+  legal_name:
+    description: Legal name of the organization.
+    range: string
+    slot_uri: schema:legalName
+
+  website:
+    description: Main website URL of the organization.
+    range: uri
+    slot_uri: schema:url
+
+  member_firms_url:
+    description: URL listing current FPL Member firms.
+    range: uri
+
+  working_groups_url:
+    description: URL listing currently active FPL Working Groups.
+    range: uri
+
+  committees_url:
+    description: URL listing Product and Regional Committees.
+    range: uri
+
+  member_types:
+    description: Organization categories represented in FPL membership.
+    range: FPLMemberType
+    multivalued: true
+
+  governance_bodies:
+    description: High-level governance bodies that represent FPL.
+    range: FPLCommitteeRole
+    multivalued: true
+
+  product_committees:
+    description: Global Product Committees maintained by FPL.
+    range: FPLProductGroup
+    multivalued: true
+
+  regional_committees:
+    description: Regional Committees maintained by FPL.
+    range: FPLRegion
+    multivalued: true
+
+  # ---- FIXFamilyStandard slots ----
+
+  layer:
+    description: The layer the standard belongs to.
+    range: StandardLayer
+
+  version:
+    description: Version of the standard, if applicable.
+    range: string
+    slot_uri: schema:version
+
+  session_profile:
+    description: Name of the session profile for session-layer variants.
+    range: SessionProtocolName
+
+  encoding_name:
+    description: Named encoding, when layer is ENCODING.
+    range: StandardEncodingName
+
+  # ---- ExtensionPack slots ----
+
+  number:
+    description: Sequential identifier of the Extension Pack.
+    range: ExtensionPackNumber
+
+  size:
+    description: Qualitative size indicator (XXS..XXL).
+    range: ExtensionPackSize
+
+  enhancement_summary:
+    description: Narrative summary of what the EP introduces.
+    range: string
+
+  applies_to_session_layer_only:
+    description: True when the EP applies only to the FIX Session Layer.
+    range: boolean
+    ifabsent: string(False)
+
+  applies_to_fixml_only:
+    description: True when the EP applies only to the FIXML encoding.
+    range: boolean
+    ifabsent: string(False)
+
+  # ---- FIXDatatype slots ----
+
+  datatype_name:
+    description: Canonical FIX datatype name.
+    range: FIXDatatypeName
+
+  definition:
+    description: Prose definition of the datatype.
+    range: string
+
+  value_space:
+    description: ISO/IEC 11404:2007 GPD value space assigned to the datatype.
+    range: ISO11404ValueSpace
+    multivalued: true
+
+  value_space_notes:
+    description: Additional value-space constraints.
+    range: string
+
+  deprecated_for_new_designs:
+    description: True for datatypes not permitted in new designs.
+    range: boolean
+    ifabsent: string(False)
+
+  external_code_set:
+    description: Reference standard for datatypes backed by an external code set.
+    range: string
+    slot_uri: dcterms:conformsTo
+
+  time_unit:
+    description: Time-unit precision for time-bearing datatypes.
+    range: TimePrecision
+    multivalued: true
+
+  radix:
+    description: Numeric radix for scaled value-space datatypes.
+    range: integer
+
+  repertoire:
+    description: Character repertoire for character/string datatypes.
+    range: string
+
+  index_lower_bound:
+    description: Inclusive lower bound of a bounded-array index.
+    range: integer
+
+  index_upper_bound:
+    description: Inclusive upper bound of a bounded-array index.
+    range: integer
+
+  minimum_value:
+    description: Inclusive lower bound on the integer value space.
+    range: integer
+
+  maximum_value:
+    description: Inclusive upper bound on the integer value space.
+    range: integer
+
+  footnote_numbers:
+    description: Footnote indicators attached to a datatype row.
+    range: integer
+    multivalued: true
+
+  # ---- BusinessArea / MessageCategory slots ----
+
+  area:
+    description: Identity of the business area.
+    range: BusinessAreaEnum
+    slot_uri: schema:identifier
+
+  categories:
+    description: Message categories defined within a business area.
+    range: MessageCategory
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+
+  category:
+    description: Message category.
+    range: MessageCategoryEnum
+
+  business_area:
+    description: Business area the element belongs to.
+    range: BusinessAreaEnum
+
+  messages:
+    description: Messages defined within the enclosing element.
+    range: Message
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+
+  # ---- Field slots ----
+
+  tag:
+    description: Numeric tag of the field.
+    range: TagNumber
+
+  field_name:
+    description: PascalCase name of the field.
+    range: string
+    slot_uri: schema:name
+
+  datatype:
+    description: FIX datatype of the field.
+    range: FIXDatatypeName
+
+  requirement:
+    description: Required-status of the field within the enclosing context.
+    range: FieldRequirement
+
+  is_user_defined:
+    description: True when the field is a User Defined Field.
+    range: boolean
+    ifabsent: string(False)
+
+  # ---- Component slots ----
+
+  component_name:
+    description: PascalCase name of the component.
+    range: string
+    slot_uri: schema:name
+
+  scope:
+    description: Sharing scope of the component.
+    range: ComponentScope
+
+  is_repeating_group:
+    description: True when the component is a repeating group.
+    range: boolean
+    ifabsent: string(False)
+
+  fields:
+    description: Fields directly contained by the enclosing element.
+    range: Field
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+
+  nested_components:
+    description: Components nested within this component.
+    range: Component
+    multivalued: true
+    inlined: false
+
+  components:
+    description: Components referenced by the enclosing element.
+    range: Component
+    multivalued: true
+    inlined: false
+
+  # ---- GlobalComponent extra slots ----
+
+  component_group:
+    description: Thematic group under which the component is presented.
+    range: ComponentGroup
+
+  applies_to_instrument:
+    description: Applicable at the Instrument level.
+    range: boolean
+
+  applies_to_leg:
+    description: Applicable at the InstrumentLeg level.
+    range: boolean
+
+  applies_to_underlying:
+    description: Applicable at the UnderlyingInstrument level.
+    range: boolean
+
+  conceptually_identical_to:
+    description: Names of other components conceptually identical to this one.
+    range: string
+    multivalued: true
+
+  # ---- Message slots ----
+
+  msg_type:
+    description: MsgType(35) wire value identifying the message.
+    range: string
+    pattern: "^[A-Za-z0-9]{1,3}$"
+
+  message_name:
+    description: PascalCase name of the message.
+    range: string
+    slot_uri: schema:name
+
+  # ---- UDFTagRange slots ----
+
+  range_id:
+    description: Identifier of the range.
+    range: string
+
+  low_tag:
+    description: Inclusive lower bound of the range.
+    range: TagNumber
+
+  high_tag:
+    description: Inclusive upper bound of the range (absent for open-ended).
+    range: TagNumber
+
+  usage:
+    description: Usage policy assigned to the range.
+    range: UDFTagRangeUsage
+
+  requires_registration:
+    description: True when tags in the range must be registered.
+    range: boolean
+    ifabsent: string(False)
+
+  gc_id:
+    description: |-
+      Numeric component identifier extracted from the FIX Latest
+      "Global Components" page anchor ID (e.g. "comp1057-1" →
+      1057). Stable across Extension Packs and shared with the
+      FIX Orchestra repository.
+    range: integer
+    minimum_value: 0
+
+  gc_referenced_in:
+    description: |-
+      FIX business areas whose messages embed the Global
+      Component.
+    range: GlobalComponentBusinessAreaEnum
+    multivalued: true
+
+classes:
+  FIXIntroduction:
+    description: |-
+      Container for the structural elements of the FIX Latest Introduction
+      section. Tree root for instance data.
+    tree_root: true
+    in_subset:
+      - introduction
+    aliases:
+      - FIX Latest Introduction
+    see_also:
+      - https://www.fixtrading.org/standards/fix-latest-online/introduction-to-fix-protocol/
+    slots:
+      - published_version
+      - published_date
+      - publisher
+      - preface
+      - introduction_text
+      - utc_leap_seconds_note
+      - about_fpl
+      - standards
+      - extension_packs
+      - datatypes
+      - business_areas
+      - global_components
+      - udf_ranges
+      - product_coverage
+
+  FIXProtocolLimited:
+    description: The organization that maintains the FIX Protocol specification.
+    aliases:
+      - FPL
+      - FIX Trading Community
+    in_subset:
+      - governance
+    class_uri: fix_base:FIXProtocolLimited
+    exact_mappings:
+      - schema:Organization
+    see_also:
+      - https://www.fixtrading.org/about-fix/corporate-structure/
+    slots:
+      - brand_name
+      - legal_name
+      - website
+      - member_firms_url
+      - working_groups_url
+      - committees_url
+      - member_types
+      - governance_bodies
+      - product_committees
+      - regional_committees
+    slot_usage:
+      brand_name:
+        ifabsent: string(FIX Trading Community)
+      legal_name:
+        ifabsent: string(FIX Protocol Limited)
+      website:
+        ifabsent: string(https://www.fixtrading.org)
+
+  FIXFamilyStandard:
+    description: A member standard of the FIX Family of Standards.
+    in_subset:
+      - introduction
+    class_uri: fix_base:FIXFamilyStandard
+    exact_mappings:
+      - schema:Specification
+    see_also:
+      - https://www.fixtrading.org/standards/
+    slots:
+      - id
+      - name
+      - description
+      - acronym
+      - see_also
+      - layer
+      - version
+      - session_profile
+      - encoding_name
+    slot_usage:
+      layer:
+        required: true
+      acronym:
+        description: Short acronym used to refer to the standard.
+
+  ExtensionPack:
+    description: A unit of change to FIX Latest.
+    aliases:
+      - EP
+    in_subset:
+      - introduction
+    class_uri: fix_base:ExtensionPack
+    see_also:
+      - https://www.fixtrading.org/standards/extension-packs/
+    annotations:
+      wire_tag:
+        value:
+          field_name: ApplExtID
+          field_number: 1156
+    slots:
+      - number
+      - title
+      - size
+      - enhancement_summary
+      - applies_to_session_layer_only
+      - applies_to_fixml_only
+    slot_usage:
+      number:
+        identifier: true
+        required: true
+      title:
+        required: true
+        description: Short descriptive title.
+
+  FIXDatatype:
+    description: A FIX Protocol datatype.
+    in_subset:
+      - datatypes
+    class_uri: fix_base:FIXDatatype
+    see_also:
+      - https://www.iso.org/standard/39479.html
+    slots:
+      - datatype_name
+      - definition
+      - value_space
+      - value_space_notes
+      - deprecated_for_new_designs
+      - external_code_set
+      - time_unit
+      - radix
+      - repertoire
+      - index_lower_bound
+      - index_upper_bound
+      - minimum_value
+      - maximum_value
+      - footnote_numbers
+    slot_usage:
+      datatype_name:
+        identifier: true
+        required: true
+      definition:
+        required: true
+
+  BusinessArea:
+    description: A top-level business area of the FIX Latest specification.
+    in_subset:
+      - organization
+    class_uri: fix_base:BusinessArea
+    slots:
+      - area
+      - title
+      - description
+      - categories
+    slot_usage:
+      area:
+        identifier: true
+        required: true
+      title:
+        description: Display title of the area.
+      description:
+        description: Description of the area.
+
+  MessageCategory:
+    description: A message category within a business area.
+    in_subset:
+      - organization
+    class_uri: fix_base:MessageCategory
+    slots:
+      - category
+      - title
+      - description
+      - business_area
+      - messages
+    slot_usage:
+      category:
+        identifier: true
+        required: true
+        description: Identity of the message category.
+      title:
+        description: Display title of the category.
+      description:
+        description: Description of the category.
+      business_area:
+        required: true
+
+  Field:
+    description: A FIX field — a uniquely tagged data element with a FIX datatype.
+    in_subset:
+      - introduction
+    class_uri: fix_base:Field
+    slots:
+      - tag
+      - field_name
+      - datatype
+      - description
+      - requirement
+      - is_user_defined
+    slot_usage:
+      tag:
+        identifier: true
+        required: true
+      field_name:
+        required: true
+      datatype:
+        required: true
+      description:
+        description: Description of the field's purpose.
+
+  Component:
+    description: A FIX component — a named set of related fields.
+    abstract: true
+    in_subset:
+      - introduction
+    class_uri: fix_base:Component
+    slots:
+      - component_name
+      - description
+      - scope
+      - is_repeating_group
+      - fields
+      - nested_components
+    slot_usage:
+      component_name:
+        identifier: true
+        required: true
+      scope:
+        required: true
+      description:
+        description: Description of the component.
+
+  GlobalComponent:
+    description: A component shared by messages of two or more business areas.
+    is_a: Component
+    in_subset:
+      - introduction
+    class_uri: fix_base:GlobalComponent
+    slots:
+      - component_group
+      - applies_to_instrument
+      - applies_to_leg
+      - applies_to_underlying
+      - conceptually_identical_to
+      - gc_id
+      - gc_referenced_in
+    slot_usage:
+      scope:
+        ifabsent: string(GLOBAL)
+      component_group:
+        required: true
+
+  CommonComponent:
+    description: A component used only by messages within a single business area.
+    is_a: Component
+    in_subset:
+      - introduction
+    class_uri: fix_base:CommonComponent
+    slots:
+      - business_area
+    slot_usage:
+      scope:
+        ifabsent: string(COMMON)
+      business_area:
+        required: true
+
+  SpecificComponent:
+    description: A component used only by messages within a single category.
+    is_a: Component
+    in_subset:
+      - introduction
+    class_uri: fix_base:SpecificComponent
+    slots:
+      - business_area
+      - category
+    slot_usage:
+      scope:
+        ifabsent: string(SPECIFIC)
+      business_area:
+        required: true
+      category:
+        required: true
+
+  Message:
+    description: A FIX application message.
+    in_subset:
+      - introduction
+    class_uri: fix_base:Message
+    slots:
+      - msg_type
+      - message_name
+      - description
+      - category
+      - fields
+      - components
+    slot_usage:
+      msg_type:
+        identifier: true
+        required: true
+      message_name:
+        required: true
+      description:
+        description: Description of the message's purpose.
+
+  UDFTagRange:
+    description: A reserved range of tag numbers for User Defined Fields.
+    in_subset:
+      - introduction
+    class_uri: fix_base:UDFTagRange
+    slots:
+      - range_id
+      - low_tag
+      - high_tag
+      - usage
+      - description
+      - requires_registration
+    slot_usage:
+      range_id:
+        identifier: true
+        required: true
+      low_tag:
+        required: true
+      usage:
+        required: true
+      description:
+        description: Notes on the range's intended use.
+      high_tag:
+        description: |-
+          Upper bound of the tag range. Required for all ``usage`` values
+          except ``GTC_RESERVED`` (which is open-ended, 50000+). Downstream
+          validators should enforce this; the constraint cannot be expressed
+          here because LinkML's ``equals_string`` operator only accepts
+          string-ranged slots and ``usage`` is an enum.

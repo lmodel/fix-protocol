@@ -1,0 +1,12 @@
+---
+# Network Status Communication section with both documented
+# usage scenarios and the two NetworkRequestType(935) values
+# explicitly cited in the request-message prose.
+category: NETWORK_STATUS_COMMUNICATION
+title: Category – Network Status Communication
+network_status_scenarios:
+  - SCENARIO_A
+  - SCENARIO_B
+network_request_types_referenced:
+  - SNAPSHOT
+  - STOP_SUBSCRIBING

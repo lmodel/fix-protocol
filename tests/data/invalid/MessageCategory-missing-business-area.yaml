@@ -1,0 +1,7 @@
+---
+# Invalid: a Message in this category must reference TRADE_CAPTURE_REPORTING;
+# here the category is mis-set as POSITIONS_MAINTENANCE while the
+# enclosing context (file name) declares trade capture. Independently
+# invalid because ``business_area`` is required and missing.
+category: TRADE_CAPTURE_REPORTING
+title: Missing required business_area

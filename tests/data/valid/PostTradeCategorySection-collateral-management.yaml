@@ -1,0 +1,12 @@
+---
+# Collateral Management section listing the documented usages and the
+# CollateralAssignment(35=AY) purposes.
+category: COLLATERAL_MANAGEMENT
+title: Category – Collateral Management
+collateral_management_usages:
+  - SECURITIES_FINANCING_COLLATERALIZATION
+  - CLEARING_HOUSE_COLLATERALIZATION
+collateral_assignment_purposes:
+  - ASSIGN_INITIAL_COLLATERAL
+  - REPLENISH_COLLATERAL
+  - REPLACE_OR_SUBSTITUTE_COLLATERAL

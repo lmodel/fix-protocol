@@ -1,0 +1,5 @@
+---
+# Invalid: ExtensionPackSize must be in {XXS,XS,S,M,L,XL,XXL}.
+number: 998
+title: Bad size
+size: HUGE

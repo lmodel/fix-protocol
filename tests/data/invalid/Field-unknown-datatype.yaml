@@ -1,0 +1,5 @@
+---
+# Invalid: ``datatype`` is not a member of FIXDatatypeName.
+tag: 5002
+field_name: BogusDatatype
+datatype: NotAFixType

@@ -1,0 +1,13 @@
+---
+# Message category — structural identifiers and label only.
+# Spec-derived description lives in private/test-fixtures-content/valid/.
+category: TRADE_CAPTURE_REPORTING
+title: Trade Capture Reporting
+business_area: POST_TRADE
+messages:
+  - msg_type: AE
+    message_name: TradeCaptureReport
+    category: TRADE_CAPTURE_REPORTING
+  - msg_type: AD
+    message_name: TradeCaptureReportRequest
+    category: TRADE_CAPTURE_REPORTING

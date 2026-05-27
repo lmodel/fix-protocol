@@ -1,0 +1,7 @@
+---
+# Component-table footnote — structural identifiers only.
+# Spec-derived footnote text lives in private/test-fixtures-content/valid/.
+footnote_number: 1
+component_name: ClearingPriceParametersGrp
+introduced_in: EP195
+sole_category: SECURITIES_REFERENCE_DATA

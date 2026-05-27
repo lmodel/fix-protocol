@@ -1,0 +1,6 @@
+---
+# Invalid: INDICATION is not a permissible value of
+# InfrastructureCategoryEnum.
+msg_type: j
+message_name: BusinessMessageReject
+category: INDICATION

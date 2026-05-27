@@ -1,0 +1,12 @@
+---
+# Business area — structural identifiers and label only.
+# Spec-derived description lives in private/test-fixtures-content/valid/.
+area: PRE_TRADE
+title: Pre-Trade
+categories:
+  - category: MARKET_DATA
+    business_area: PRE_TRADE
+  - category: INDICATION
+    business_area: PRE_TRADE
+  - category: SECURITIES_REFERENCE_DATA
+    business_area: PRE_TRADE

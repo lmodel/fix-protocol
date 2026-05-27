@@ -1,0 +1,4 @@
+---
+# Invalid: ``area`` permissible values do not include OTHER.
+area: OTHER
+title: Bogus area

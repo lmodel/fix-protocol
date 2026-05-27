@@ -1,0 +1,4 @@
+---
+# Invalid: category not a member of PostTradeCategoryEnum.
+category: MARKET_DATA
+title: Bogus

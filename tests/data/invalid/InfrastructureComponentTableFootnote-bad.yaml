@@ -1,0 +1,8 @@
+---
+# Invalid: NotARealComponent is not a permissible value of
+# InfrastructureComponentName, and the footnote_number exceeds
+# the maximum of 25.
+footnote_number: 99
+component_name: NotARealComponent
+introduced_in: EP116
+infra_sole_category: USER_MANAGEMENT

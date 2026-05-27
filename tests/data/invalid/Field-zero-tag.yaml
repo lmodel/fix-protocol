@@ -1,0 +1,5 @@
+---
+# Invalid: TagNumber has minimum_value 1. Tag 0 is not a valid FIX tag.
+tag: 0
+field_name: ZeroTag
+datatype: int

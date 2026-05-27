@@ -1,0 +1,8 @@
+---
+# UDF field — structural shape only.
+# Spec-derived description lives in private/test-fixtures-content/valid/.
+tag: 5001
+field_name: ExampleRegisteredUDF
+datatype: String
+requirement: OPTIONAL
+is_user_defined: true

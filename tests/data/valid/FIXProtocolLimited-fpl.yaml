@@ -1,0 +1,20 @@
+---
+brand_name: FIX Trading Community
+legal_name: FIX Protocol Limited
+website: https://www.fixtrading.org
+member_types:
+  - BUY_SIDE_FIRM
+  - SELL_SIDE_FIRM
+  - EXCHANGE
+  - VENDOR
+governance_bodies:
+  - GLOBAL_STEERING_COMMITTEE
+  - GLOBAL_TECHNICAL_COMMITTEE
+regional_committees:
+  - AMERICAS
+  - ASIA_PACIFIC
+  - EMEA
+  - JAPAN
+product_committees:
+  - FIXED_INCOME_AND_CURRENCIES
+  - LISTED_PRODUCTS_AND_EXCHANGES

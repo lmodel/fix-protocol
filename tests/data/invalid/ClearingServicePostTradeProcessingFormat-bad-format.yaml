@@ -1,0 +1,6 @@
+---
+# Invalid: message_format must be a permissible value of
+# ClearingServicePostTradeProcessingFormatEnum.
+message_format: BOGUS_FORMAT
+supported_actions:
+  - Allocation

@@ -1,0 +1,8 @@
+# Prose overlay for tests/data/invalid/InfrastructureBusinessArea-wrong-area.yaml
+area: PRE_TRADE
+violation_note: |-
+  Negative fixture: the source chapter is unambiguously titled
+  "Business Area: Infrastructure" and its `area` discriminator
+  must therefore be INFRASTRUCTURE. Setting `area: PRE_TRADE`
+  violates the `equals_string: INFRASTRUCTURE` constraint that
+  the schema places on `InfrastructureBusinessArea.area`.

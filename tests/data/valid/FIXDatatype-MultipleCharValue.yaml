@@ -1,0 +1,10 @@
+---
+# FIX datatype — structural shape only.
+# Spec-derived definition lives in private/test-fixtures-content/valid/.
+datatype_name: MultipleCharValue
+definition: FIX datatype MultipleCharValue.
+value_space:
+  - set
+deprecated_for_new_designs: true
+footnote_numbers:
+  - 3

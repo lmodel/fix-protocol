@@ -1,0 +1,9 @@
+---
+# Invalid: 99 is not a permissible value of
+# BusinessRejectReasonEnum (codes are 0..10 and 18); we
+# also model the integer code minimum as 0. The label is
+# present but the code itself is rejected via enum membership
+# at the schema-validation layer when the value is wired into
+# the source-of-truth enum elsewhere. Here we trigger
+# missing-required: omit reject_reason_label.
+reject_reason_code: 8

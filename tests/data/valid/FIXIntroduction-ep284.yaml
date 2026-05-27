@@ -1,0 +1,354 @@
+---
+# Tree-root instance — FIX Latest Introduction (EP284, Nov 2023).
+# Structural shape only. Spec-derived prose lives in
+# private/test-fixtures-content/valid/FIXIntroduction-ep284.yaml.
+published_version: "EP284, November 2023"
+published_date: "2023-11-01"
+publisher: FIX Global Technical Committee
+
+about_fpl:
+  brand_name: FIX Trading Community
+  legal_name: FIX Protocol Limited
+  website: https://www.fixtrading.org
+  member_firms_url: https://www.fixtrading.org/members/
+  working_groups_url: https://www.fixtrading.org/community/working-groups/
+  committees_url: https://www.fixtrading.org/community/committees/
+  member_types:
+    - BUY_SIDE_FIRM
+    - SELL_SIDE_FIRM
+    - EXCHANGE
+    - ECN_ATS
+    - UTILITY
+    - VENDOR
+    - OTHER_ASSOCIATION
+  governance_bodies:
+    - GLOBAL_STEERING_COMMITTEE
+    - GLOBAL_TECHNICAL_COMMITTEE
+    - GLOBAL_PRODUCT_COMMITTEE
+    - GLOBAL_BUY_SIDE_COMMITTEE
+    - GLOBAL_MEMBER_SERVICES_COMMITTEE
+    - REGIONAL_COMMITTEE
+  product_committees:
+    - FIXED_INCOME_AND_CURRENCIES
+    - LISTED_PRODUCTS_AND_EXCHANGES
+  regional_committees:
+    - AMERICAS
+    - ASIA_PACIFIC
+    - EMEA
+    - JAPAN
+
+standards:
+  - id: FIXLatest
+    name: FIXLatest
+    acronym: FIXLatest
+    layer: APPLICATION
+    version: Latest
+  - id: FIXatdl
+    name: FIXatdl
+    acronym: FIXatdl
+    layer: APPLICATION
+  - id: tagvalue
+    name: tagvalue
+    acronym: tagvalue
+    layer: ENCODING
+    encoding_name: TAGVALUE
+  - id: FIXML
+    name: FIXML
+    acronym: FIXML
+    layer: ENCODING
+    encoding_name: FIXML
+  - id: FAST
+    name: FAST
+    acronym: FAST
+    layer: ENCODING
+    encoding_name: FAST
+  - id: SBE
+    name: SBE
+    acronym: SBE
+    layer: ENCODING
+    encoding_name: SBE
+  - id: GPB
+    name: GPB
+    acronym: GPB
+    layer: ENCODING
+    encoding_name: GPB
+  - id: JSON
+    name: JSON
+    acronym: JSON
+    layer: ENCODING
+    encoding_name: JSON
+  - id: ASN.1
+    name: ASN.1
+    acronym: ASN.1
+    layer: ENCODING
+    encoding_name: ASN_1
+  - id: FIX.4.2
+    name: FIX.4.2
+    acronym: FIX.4.2
+    layer: SESSION
+    session_profile: FIX_4_2
+  - id: FIX4
+    name: FIX4
+    acronym: FIX4
+    layer: SESSION
+    session_profile: FIX4
+  - id: FIXT
+    name: FIXT
+    acronym: FIXT
+    layer: SESSION
+    session_profile: FIXT
+  - id: LFIXT
+    name: LFIXT
+    acronym: LFIXT
+    layer: SESSION
+    session_profile: LFIXT
+  - id: FIXP
+    name: FIXP
+    acronym: FIXP
+    layer: SESSION
+    session_profile: FIXP
+  - id: SOFH
+    name: SOFH
+    acronym: SOFH
+    layer: SESSION
+    session_profile: SOFH
+  - id: FIXS
+    name: FIXS
+    acronym: FIXS
+    layer: SESSION
+    session_profile: FIXS
+
+extension_packs:
+  - number: 284
+    title: EP284
+    size: M
+  - number: 178
+    title: EP178
+    size: XS
+    applies_to_fixml_only: true
+  - number: 124
+    title: EP124
+    size: XS
+    applies_to_session_layer_only: true
+  - number: 113
+    title: EP113
+    size: XS
+    applies_to_session_layer_only: true
+
+datatypes:
+  - datatype_name: int
+    definition: FIX datatype int.
+    value_space:
+      - integer
+  - datatype_name: DayOfMonth
+    definition: FIX datatype DayOfMonth.
+    value_space:
+      - integer
+    minimum_value: 1
+    maximum_value: 31
+  - datatype_name: Qty
+    definition: FIX datatype Qty.
+    value_space:
+      - scaled
+    radix: 10
+  - datatype_name: Price
+    definition: FIX datatype Price.
+    value_space:
+      - scaled
+    radix: 10
+  - datatype_name: Country
+    definition: FIX datatype Country.
+    value_space:
+      - array
+      - character
+    repertoire: "8859-1 (Latin-1)"
+    external_code_set: ISO 3166-1
+    index_lower_bound: 1
+    index_upper_bound: 2
+  - datatype_name: Currency
+    definition: FIX datatype Currency.
+    value_space:
+      - array
+      - character
+    repertoire: "8859-1 (Latin-1)"
+    external_code_set: ISO 4217
+    index_lower_bound: 1
+    index_upper_bound: 3
+  - datatype_name: Exchange
+    definition: FIX datatype Exchange.
+    value_space:
+      - array
+      - character
+    repertoire: "8859-1 (Latin-1)"
+    external_code_set: ISO 10383
+    index_lower_bound: 1
+    index_upper_bound: 4
+  - datatype_name: Language
+    definition: FIX datatype Language.
+    value_space:
+      - array
+      - character
+    repertoire: "8859-1 (Latin-1)"
+    external_code_set: ISO 639-1
+    index_lower_bound: 1
+    index_upper_bound: 2
+  - datatype_name: UTCTimestamp
+    definition: FIX datatype UTCTimestamp.
+    value_space:
+      - time
+    time_unit:
+      - MILLISECOND
+      - MICROSECOND
+      - NANOSECOND
+      - PICOSECOND
+  - datatype_name: UTCDateOnly
+    definition: FIX datatype UTCDateOnly.
+    value_space:
+      - time
+    time_unit:
+      - DAY
+  - datatype_name: LocalMktTime
+    definition: FIX datatype LocalMktTime.
+    value_space:
+      - time
+    time_unit:
+      - SECOND
+  - datatype_name: MultipleCharValue
+    definition: FIX datatype MultipleCharValue.
+    value_space:
+      - set
+    deprecated_for_new_designs: true
+    footnote_numbers:
+      - 3
+  - datatype_name: MultipleStringValue
+    definition: FIX datatype MultipleStringValue.
+    value_space:
+      - set
+    deprecated_for_new_designs: true
+    footnote_numbers:
+      - 3
+  - datatype_name: Reserved100Plus
+    definition: FIX datatype Reserved100Plus.
+    value_space:
+      - integer
+    minimum_value: 100
+  - datatype_name: Reserved1000Plus
+    definition: FIX datatype Reserved1000Plus.
+    value_space:
+      - integer
+    minimum_value: 1000
+  - datatype_name: Reserved4000Plus
+    definition: FIX datatype Reserved4000Plus.
+    value_space:
+      - integer
+    minimum_value: 4000
+  - datatype_name: Tenor
+    definition: FIX datatype Tenor.
+    value_space:
+      - characterstring
+  - datatype_name: data
+    definition: FIX datatype data.
+    value_space:
+      - union
+
+business_areas:
+  - area: PRE_TRADE
+    title: Pre-Trade
+    categories:
+      - category: MARKET_DATA
+        title: Market Data
+        business_area: PRE_TRADE
+      - category: INDICATION
+        title: Indications
+        business_area: PRE_TRADE
+  - area: TRADE
+    title: Trade
+    categories:
+      - category: SINGLE_GENERAL_ORDER_HANDLING
+        title: Single / General Order Handling
+        business_area: TRADE
+        messages:
+          - msg_type: D
+            message_name: NewOrderSingle
+            category: SINGLE_GENERAL_ORDER_HANDLING
+          - msg_type: "8"
+            message_name: ExecutionReport
+            category: SINGLE_GENERAL_ORDER_HANDLING
+  - area: POST_TRADE
+    title: Post-Trade
+    categories:
+      - category: TRADE_CAPTURE_REPORTING
+        title: Trade Capture Reporting
+        business_area: POST_TRADE
+        messages:
+          - msg_type: AE
+            message_name: TradeCaptureReport
+            category: TRADE_CAPTURE_REPORTING
+  - area: INFRASTRUCTURE
+    title: Infrastructure
+    categories:
+      - category: USER_MANAGEMENT
+        title: User Management
+        business_area: INFRASTRUCTURE
+
+global_components:
+  - component_name: Parties
+    scope: GLOBAL
+    component_group: PARTIES
+    is_repeating_group: true
+    conceptually_identical_to:
+      - NestedParties
+      - NestedParties2
+      - RootParties
+  - component_name: Instrument
+    scope: GLOBAL
+    component_group: SECURITIES
+    applies_to_instrument: true
+  - component_name: LegInstrument
+    scope: GLOBAL
+    component_group: LEG_SECURITIES
+    applies_to_leg: true
+  - component_name: UnderlyingInstrument
+    scope: GLOBAL
+    component_group: UNDERLYING_SECURITIES
+    applies_to_underlying: true
+  - component_name: StandardHeader
+    scope: GLOBAL
+    component_group: HEADER_AND_TRAILER
+
+udf_ranges:
+  - range_id: 5000-9999
+    low_tag: 5000
+    high_tag: 9999
+    usage: INTER_FIRM_REGISTERED
+    requires_registration: true
+  - range_id: 8000-8499
+    low_tag: 8000
+    high_tag: 8499
+    usage: GTC_REGULATORY_LEGACY
+  - range_id: 8500-8999
+    low_tag: 8500
+    high_tag: 8999
+    usage: WIP_CHINA
+  - range_id: 10000-19999
+    low_tag: 10000
+    high_tag: 19999
+    usage: INTERNAL_FIRM
+  - range_id: 20000-39999
+    low_tag: 20000
+    high_tag: 39999
+    usage: INTER_FIRM_BILATERAL
+  - range_id: 40000-49999
+    low_tag: 40000
+    high_tag: 49999
+    usage: GTC_OTC_DERIVATIVES
+  - range_id: 50000-plus
+    low_tag: 50000
+    usage: GTC_RESERVED
+
+product_coverage:
+  - EQUITIES
+  - CIV
+  - DERIVATIVES
+  - FIXED_INCOME
+  - FOREIGN_EXCHANGE

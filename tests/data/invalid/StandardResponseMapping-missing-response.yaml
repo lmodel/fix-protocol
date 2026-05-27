@@ -1,0 +1,4 @@
+---
+# Invalid: appropriate_responses is required.
+category_label: Allocation
+fix_message: AllocationInstruction(35=J)

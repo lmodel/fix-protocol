@@ -1,0 +1,8 @@
+---
+# FIX field — structural shape only.
+# Spec-derived description lives in private/test-fixtures-content/valid/.
+tag: 1156
+field_name: ApplExtID
+datatype: int
+requirement: OPTIONAL
+is_user_defined: false

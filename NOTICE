@@ -1,0 +1,60 @@
+fix-protocol
+============
+
+1. Project code, schema structure, build tooling, tests
+
+  All files in this repository are licensed under the Apache License,
+  Version 2.0. See the LICENSE file for the full text.
+
+    SPDX-License-Identifier: Apache-2.0
+
+  This includes the LinkML schema modules under
+  `src/fix_protocol/schema/` (fix_protocol.yaml, fix_base.yaml,
+  fix_pre_trade.yaml). Those schemas are deliberately structural only:
+  they define class, slot and enum *shapes* and FIX wire-format
+  identifiers (tag numbers, MsgType codes, datatype names). They do
+  **not** contain normative prose, paraphrased descriptions, or
+  verbatim text from the FIX Latest specification.
+
+2. Modelled subject matter — FIX Protocol specification
+
+  The subject matter modelled by the schemas is the FIX Latest
+  specification (Extension Pack 284, November 2023), published by
+  FIX Protocol Ltd. ("FIX Trading Community"):
+
+    https://www.fixtrading.org/standards/fix-latest-online/
+    https://www.fixtrading.org/standards/fix-latest-online/introduction-to-fix-protocol/
+    https://www.fixtrading.org/standards/fix-latest-online/business-area-pre-trade/
+
+    Copyright (c) FIX Protocol Ltd.
+    Licensed by FPL under Creative Commons Attribution-NoDerivatives 4.0
+    International (CC BY-ND 4.0):
+      https://creativecommons.org/licenses/by-nd/4.0/legalcode
+
+  The schemas in this repository reference FIX concepts and
+  interoperability identifiers solely for the purpose of describing
+  the shape of FIX-aligned data. This repository does not relicense,
+  sublicense, or redistribute FIX Protocol specification text under
+  its Apache-2.0 license. Where FIX wire identifiers (e.g. enum
+  permissible-value codes such as MsgType wire values, datatype names)
+  appear in the schemas, they are included as functional
+  interoperability identifiers, not as protected expression.
+
+3. Private content overlays — not part of this distribution
+
+  Spec-derived prose (paraphrased descriptions, enum permissible-value
+  descriptions, footnote text, policy quotations) are maintained in a
+  private overlay files and is excluded from this version control. 
+  
+  Those overlays are intended for internal use within an organisation only, consistent with the FIX Terms of Use, and must not be redistributed.
+
+  If you need to reproduce or redistribute FIX specification text in
+  software, documentation, or generated artifacts, obtain permission
+  from FIX Protocol Ltd.
+
+4. Trademarks
+
+  "FIX", "FIX Protocol", "FIX Trading Community" and related marks
+  are trademarks of FIX Protocol Ltd. Use of these names in this
+  repository is for identification and attribution only and does not
+  imply endorsement.

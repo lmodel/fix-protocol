@@ -1,0 +1,5 @@
+---
+# Invalid: ``layer`` is required on FIXFamilyStandard.
+id: NoLayer
+acronym: NoLayer
+description: Missing required layer slot.

@@ -1,0 +1,4 @@
+---
+category_label: Allocation
+fix_message: AllocationInstruction(35=J)
+appropriate_responses: AllocationInstructionAck(35=P)

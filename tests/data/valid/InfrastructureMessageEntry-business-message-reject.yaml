@@ -1,0 +1,4 @@
+---
+msg_type: j
+message_name: BusinessMessageReject
+category: BUSINESS_MESSAGE_REJECTS

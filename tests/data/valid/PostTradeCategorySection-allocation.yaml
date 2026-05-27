@@ -1,0 +1,38 @@
+---
+# Allocation category section with the four communication scenarios,
+# Initiator/Respondent role labels, post-trade pricing methods, the
+# AllocStatus(87) value table, and the fragmentation-field map for the
+# AllocationInstruction(35=J) and AllocationReport(35=AS) messages.
+category: ALLOCATION
+title: Category – Allocation
+allocation_scenarios:
+  - PRE_ALLOCATED_ORDER
+  - PRE_TRADE_ALLOCATION
+  - POST_TRADE_ALLOCATION
+  - READY_TO_BOOK
+allocation_roles:
+  - INITIATOR
+  - RESPONDENT
+post_trade_allocation_pricing_methods:
+  - AVERAGE_PRICE
+  - EXECUTED_PRICE
+allocation_status_descriptions:
+  - status_code: "3"
+    status_label: Received, not yet processed
+  - status_code: "0"
+    status_label: Accepted
+  - status_code: "1"
+    status_label: Block level reject
+  - status_code: "2"
+    status_label: Account level reject
+fragmentation_field_map:
+  - msg_type: J
+    message_name: AllocationInstruction
+    total_count_field: TotNoAllocs(892)
+    fragment_count_field: NoAllocs(78)
+    principal_message_reference: AllocID(70)
+  - msg_type: AS
+    message_name: AllocationReport
+    total_count_field: TotNoAllocs(892)
+    fragment_count_field: NoAllocs(78)
+    principal_message_reference: AllocReportID(755)

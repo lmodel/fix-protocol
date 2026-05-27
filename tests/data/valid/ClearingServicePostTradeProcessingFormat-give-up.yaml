@@ -1,0 +1,9 @@
+---
+message_format: GIVE_UP
+supported_actions:
+  - Allocation
+  - Accept
+  - Reject
+  - Release
+  - Change
+  - Delete

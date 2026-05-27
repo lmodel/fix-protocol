@@ -1,0 +1,8 @@
+---
+# Extension Pack — structural identifiers only.
+# Spec-derived enhancement summary lives in private/test-fixtures-content/valid/.
+number: 284
+title: EP284
+size: M
+applies_to_session_layer_only: false
+applies_to_fixml_only: false

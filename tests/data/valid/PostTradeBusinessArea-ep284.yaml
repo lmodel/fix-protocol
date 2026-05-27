@@ -1,0 +1,460 @@
+---
+# Tree-root instance — Post-Trade business area (EP284, November 2023).
+# Structural shape only. Spec-derived prose lives in
+# private/test-fixtures-content/valid/PostTradeBusinessArea-ep284.yaml.
+area: POST_TRADE
+title: Business Area Post-Trade
+published_version: "EP284, November 2023"
+publisher: FIX Global Technical Committee
+
+post_common_components:
+  - AllocCommissionDataGrp
+  - AllocRegulatoryTradeIDGrp
+  - ClrInstGrp
+  - CollateralAmountGrp
+  - CollateralReinvestmentGrp
+  - DlvyInstGrp
+  - ExecAllocGrp
+  - MarginAmount
+  - OrdAllocGrp
+  - PositionAmountData
+  - SettlDetails
+  - SettlInstructionsData
+  - SettlParties
+  - SettlPtysSubGrp
+  - TradeAllocAmtGrp
+  - TransactionAttributeGrp
+
+messages:
+  - msg_type: CQ
+    message_name: AccountSummaryReport
+    category: ACCOUNT_REPORTING
+  - msg_type: BL
+    message_name: AdjustedPositionReport
+    category: POSITION_MAINTENANCE
+  - msg_type: J
+    message_name: AllocationInstruction
+    category: ALLOCATION
+  - msg_type: P
+    message_name: AllocationInstructionAck
+    category: ALLOCATION
+  - msg_type: BM
+    message_name: AllocationInstructionAlert
+    category: ALLOCATION
+  - msg_type: DU
+    message_name: AllocationInstructionAlertRequest
+    category: ALLOCATION
+  - msg_type: DV
+    message_name: AllocationInstructionAlertRequestAck
+    category: ALLOCATION
+  - msg_type: AS
+    message_name: AllocationReport
+    category: ALLOCATION
+  - msg_type: AT
+    message_name: AllocationReportAck
+    category: ALLOCATION
+  - msg_type: AW
+    message_name: AssignmentReport
+    category: POSITION_MAINTENANCE
+  - msg_type: AY
+    message_name: CollateralAssignment
+    category: COLLATERAL_MANAGEMENT
+  - msg_type: BB
+    message_name: CollateralInquiry
+    category: COLLATERAL_MANAGEMENT
+  - msg_type: BG
+    message_name: CollateralInquiryAck
+    category: COLLATERAL_MANAGEMENT
+  - msg_type: BA
+    message_name: CollateralReport
+    category: COLLATERAL_MANAGEMENT
+  - msg_type: DQ
+    message_name: CollateralReportAck
+    category: COLLATERAL_MANAGEMENT
+  - msg_type: AX
+    message_name: CollateralRequest
+    category: COLLATERAL_MANAGEMENT
+  - msg_type: AZ
+    message_name: CollateralResponse
+    category: COLLATERAL_MANAGEMENT
+  - msg_type: AK
+    message_name: Confirmation
+    category: CONFIRMATION
+  - msg_type: AU
+    message_name: ConfirmationAck
+    category: CONFIRMATION
+  - msg_type: BH
+    message_name: ConfirmationRequest
+    category: CONFIRMATION
+  - msg_type: BO
+    message_name: ContraryIntentionReport
+    category: POSITION_MAINTENANCE
+  - msg_type: CH
+    message_name: MarginRequirementInquiry
+    category: MARGIN_REQUIREMENT_MANAGEMENT
+  - msg_type: CI
+    message_name: MarginRequirementInquiryAck
+    category: MARGIN_REQUIREMENT_MANAGEMENT
+  - msg_type: CJ
+    message_name: MarginRequirementReport
+    category: MARGIN_REQUIREMENT_MANAGEMENT
+  - msg_type: EA
+    message_name: PayManagementReport
+    category: PAY_MANAGEMENT
+  - msg_type: EB
+    message_name: PayManagementReportAck
+    category: PAY_MANAGEMENT
+  - msg_type: DY
+    message_name: PayManagementRequest
+    category: PAY_MANAGEMENT
+  - msg_type: DZ
+    message_name: PayManagementRequestAck
+    category: PAY_MANAGEMENT
+  - msg_type: AM
+    message_name: PositionMaintenanceReport
+    category: POSITION_MAINTENANCE
+  - msg_type: AL
+    message_name: PositionMaintenanceRequest
+    category: POSITION_MAINTENANCE
+  - msg_type: AP
+    message_name: PositionReport
+    category: POSITION_MAINTENANCE
+  - msg_type: DL
+    message_name: PositionTransferInstruction
+    category: POSITION_MAINTENANCE
+  - msg_type: DM
+    message_name: PositionTransferInstructionAck
+    category: POSITION_MAINTENANCE
+  - msg_type: DN
+    message_name: PositionTransferReport
+    category: POSITION_MAINTENANCE
+  - msg_type: o
+    message_name: RegistrationInstructions
+    category: REGISTRATION_INSTRUCTION
+  - msg_type: p
+    message_name: RegistrationInstructionsResponse
+    category: REGISTRATION_INSTRUCTION
+  - msg_type: AN
+    message_name: RequestForPositions
+    category: POSITION_MAINTENANCE
+  - msg_type: AO
+    message_name: RequestForPositionsAck
+    category: POSITION_MAINTENANCE
+  - msg_type: AV
+    message_name: SettlementInstructionRequest
+    category: SETTLEMENT_INSTRUCTION
+  - msg_type: T
+    message_name: SettlementInstructions
+    category: SETTLEMENT_INSTRUCTION
+  - msg_type: BQ
+    message_name: SettlementObligationReport
+    category: SETTLEMENT_INSTRUCTION
+  - msg_type: EE
+    message_name: SettlementStatusReport
+    category: SETTLEMENT_STATUS_MANAGEMENT
+  - msg_type: EF
+    message_name: SettlementStatusReportAck
+    category: SETTLEMENT_STATUS_MANAGEMENT
+  - msg_type: EC
+    message_name: SettlementStatusRequest
+    category: SETTLEMENT_STATUS_MANAGEMENT
+  - msg_type: ED
+    message_name: SettlementStatusRequestAck
+    category: SETTLEMENT_STATUS_MANAGEMENT
+  - msg_type: DX
+    message_name: TradeAggregationReport
+    category: TRADE_MANAGEMENT
+  - msg_type: DW
+    message_name: TradeAggregationRequest
+    category: TRADE_MANAGEMENT
+  - msg_type: AE
+    message_name: TradeCaptureReport
+    category: TRADE_CAPTURE_REPORTING
+  - msg_type: AR
+    message_name: TradeCaptureReportAck
+    category: TRADE_CAPTURE_REPORTING
+  - msg_type: AD
+    message_name: TradeCaptureReportRequest
+    category: TRADE_CAPTURE_REPORTING
+  - msg_type: AQ
+    message_name: TradeCaptureReportRequestAck
+    category: TRADE_CAPTURE_REPORTING
+  - msg_type: DC
+    message_name: TradeMatchReport
+    category: TRADE_CAPTURE_REPORTING
+  - msg_type: DD
+    message_name: TradeMatchReportAck
+    category: TRADE_CAPTURE_REPORTING
+
+components:
+  - component_name: AllocAckGrp
+    repetition: REPEATING
+    category: Allocation
+  - component_name: AllocCommissionDataGrp
+    repetition: REPEATING
+    category: Common Components
+    is_common: true
+  - component_name: AllocGrp
+    repetition: REPEATING
+    category: Allocation
+  - component_name: AllocRegulatoryTradeIDGrp
+    repetition: REPEATING
+    category: Common Components
+    is_common: true
+  - component_name: AveragePriceDetail
+    repetition: NON_REPEATING
+    category: Trade Capture Reporting
+    footnote_number: 1
+  - component_name: ClrInstGrp
+    repetition: REPEATING
+    category: Common Components
+    is_common: true
+  - component_name: CollateralAmountGrp
+    repetition: REPEATING
+    category: Common Components
+    is_common: true
+  - component_name: CollateralReinvestmentGrp
+    repetition: REPEATING
+    category: Common Components
+    is_common: true
+  - component_name: CollInqQualGrp
+    repetition: REPEATING
+    category: Collateral Management
+  - component_name: CpctyConfGrp
+    repetition: REPEATING
+    category: Confirmation
+  - component_name: DlvyInstGrp
+    repetition: REPEATING
+    category: Common Components
+    is_common: true
+  - component_name: ExecAllocGrp
+    repetition: REPEATING
+    category: Common Components
+    is_common: true
+  - component_name: ExecCollGrp
+    repetition: REPEATING
+    category: Collateral Management
+  - component_name: ExecutionAggregationGrp
+    repetition: REPEATING
+    category: Trade Management
+    footnote_number: 2
+  - component_name: ExpirationQty
+    repetition: REPEATING
+    category: Position Maintenance
+  - component_name: FundingSourceGrp
+    repetition: REPEATING
+    category: Collateral Management
+    footnote_number: 3
+  - component_name: InstrmtMatchSideGrp
+    repetition: REPEATING
+    category: Trade Capture Reporting
+  - component_name: LegPositionAmountData
+    repetition: REPEATING
+    category: Trade Capture Reporting
+  - component_name: MandatoryClearingJurisdictionGrp
+    repetition: REPEATING
+    category: Trade Capture Reporting
+    footnote_number: 4
+  - component_name: MarginAmount
+    repetition: REPEATING
+    category: Common Components
+    is_common: true
+  - component_name: MarginReqmtInqQualGrp
+    repetition: REPEATING
+    category: Margin Requirement Management
+  - component_name: MatchExceptionGrp
+    repetition: REPEATING
+    category: Confirmation
+    footnote_number: 5
+  - component_name: MatchingDataPointGrp
+    repetition: REPEATING
+    category: Confirmation
+    footnote_number: 6
+  - component_name: OrdAllocGrp
+    repetition: REPEATING
+    category: Common Components
+    is_common: true
+  - component_name: OrderAggregationGrp
+    repetition: REPEATING
+    category: Trade Management
+    footnote_number: 7
+  - component_name: PayCollectGrp
+    repetition: REPEATING
+    category: Account Reporting
+  - component_name: PosUndInstrmtGrp
+    repetition: REPEATING
+    category: Position Maintenance
+  - component_name: PositionAmountData
+    repetition: REPEATING
+    category: Common Components
+    is_common: true
+  - component_name: PositionQty
+    repetition: REPEATING
+    category: Position Maintenance
+    footnote_number: 8
+  - component_name: PostTradePayment
+    repetition: NON_REPEATING
+    category: Pay Management
+  - component_name: RelatedPositionGrp
+    repetition: REPEATING
+    category: Trade Capture Reporting
+    footnote_number: 9
+  - component_name: RgstDistInstGrp
+    repetition: REPEATING
+    category: Registration Instruction
+  - component_name: RgstDtlsGrp
+    repetition: REPEATING
+    category: Registration Instruction
+  - component_name: SettlDetails
+    repetition: REPEATING
+    category: Common Components
+    is_common: true
+  - component_name: SettlementAmountGrp
+    repetition: REPEATING
+    category: Account Reporting
+  - component_name: SettlInstGrp
+    repetition: REPEATING
+    category: Settlement Instruction
+  - component_name: SettlInstructionsData
+    repetition: NON_REPEATING
+    category: Common Components
+    is_common: true
+  - component_name: SettlObligationInstructions
+    repetition: REPEATING
+    category: Settlement Instruction
+  - component_name: SettlParties
+    repetition: REPEATING
+    category: Common Components
+    is_common: true
+  - component_name: SettlPtysSubGrp
+    repetition: REPEATING
+    category: Common Components
+    is_common: true
+  - component_name: SettlTradeDetails
+    repetition: NON_REPEATING
+    category: Settlement Status Management
+  - component_name: SideCollateralAmountGrp
+    repetition: REPEATING
+    category: Trade Capture Reporting
+    footnote_number: 10
+  - component_name: SideCollateralReinvestmentGrp
+    repetition: REPEATING
+    category: Trade Capture Reporting
+    footnote_number: 11
+  - component_name: SideRegulatoryTradeIDGrp
+    repetition: REPEATING
+    category: Trade Capture Reporting
+    footnote_number: 12
+  - component_name: SideTrdRegTS
+    repetition: REPEATING
+    category: Trade Capture Reporting
+  - component_name: TradeAllocAmtGrp
+    repetition: REPEATING
+    category: Common Components
+    is_common: true
+  - component_name: TradePositionQty
+    repetition: REPEATING
+    category: Trade Capture Reporting
+    footnote_number: 13
+  - component_name: TradeQtyGrp
+    repetition: REPEATING
+    category: Trade Capture Reporting
+    footnote_number: 14
+  - component_name: TradeReportOrderDetail
+    repetition: NON_REPEATING
+    category: Trade Capture Reporting
+  - component_name: TransactionAttributeGrp
+    repetition: REPEATING
+    category: Common Components
+    is_common: true
+  - component_name: TrdAllocGrp
+    repetition: REPEATING
+    category: Trade Capture Reporting
+  - component_name: TrdCapDtGrp
+    repetition: REPEATING
+    category: Trade Capture Reporting
+  - component_name: TrdCapRptAckSideGrp
+    repetition: REPEATING
+    category: Trade Capture Reporting
+  - component_name: TrdCapRptSideGrp
+    repetition: REPEATING
+    category: Trade Capture Reporting
+  - component_name: TrdCollGrp
+    repetition: REPEATING
+    category: Collateral Management
+  - component_name: TrdInstrmtLegExecGrp
+    repetition: REPEATING
+    category: Trade Capture Reporting
+  - component_name: TrdInstrmtLegGrp
+    repetition: REPEATING
+    category: Trade Capture Reporting
+  - component_name: TrdMatchSideGrp
+    repetition: REPEATING
+    category: Trade Capture Reporting
+  - component_name: TrdRepIndicatorsGrp
+    repetition: REPEATING
+    category: Trade Capture Reporting
+  - component_name: UndInstrmtCollGrp
+    repetition: REPEATING
+    category: Collateral Management
+  - component_name: UnderlyingAmount
+    repetition: REPEATING
+    category: Position Maintenance
+
+post_footnotes:
+  - footnote_number: 1
+    component_name: AveragePriceDetail
+    introduced_in: EP240
+    post_sole_category: TRADE_CAPTURE_REPORTING
+  - footnote_number: 2
+    component_name: ExecutionAggregationGrp
+    introduced_in: EP247
+    post_sole_category: TRADE_MANAGEMENT
+  - footnote_number: 3
+    component_name: FundingSourceGrp
+    introduced_in: EP254
+    post_sole_category: COLLATERAL_MANAGEMENT
+  - footnote_number: 4
+    component_name: MandatoryClearingJurisdictionGrp
+    introduced_in: EP169
+    post_sole_category: TRADE_CAPTURE_REPORTING
+  - footnote_number: 5
+    component_name: MatchExceptionGrp
+    introduced_in: EP240
+    post_sole_category: CONFIRMATION
+  - footnote_number: 6
+    component_name: MatchingDataPointGrp
+    introduced_in: EP240
+    post_sole_category: CONFIRMATION
+  - footnote_number: 7
+    component_name: OrderAggregationGrp
+    introduced_in: EP247
+    post_sole_category: TRADE_MANAGEMENT
+  - footnote_number: 8
+    component_name: PositionQty
+    introduced_in: FIX 4.4
+    post_sole_category: POSITION_MAINTENANCE
+  - footnote_number: 9
+    component_name: RelatedPositionGrp
+    introduced_in: EP142
+    post_sole_category: TRADE_CAPTURE_REPORTING
+  - footnote_number: 10
+    component_name: SideCollateralAmountGrp
+    introduced_in: EP227
+    post_sole_category: TRADE_CAPTURE_REPORTING
+  - footnote_number: 11
+    component_name: SideCollateralReinvestmentGrp
+    introduced_in: EP254
+    post_sole_category: TRADE_CAPTURE_REPORTING
+  - footnote_number: 12
+    component_name: SideRegulatoryTradeIDGrp
+    introduced_in: EP162
+    post_sole_category: TRADE_CAPTURE_REPORTING
+  - footnote_number: 13
+    component_name: TradePositionQty
+    introduced_in: EP141
+    post_sole_category: TRADE_CAPTURE_REPORTING
+  - footnote_number: 14
+    component_name: TradeQtyGrp
+    introduced_in: EP141
+    post_sole_category: TRADE_CAPTURE_REPORTING

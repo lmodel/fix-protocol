@@ -1,0 +1,8 @@
+---
+# Purpose-grouped messages — structural identifiers only.
+# Spec-derived prose lives in private/test-fixtures-content/valid/.
+group_title: Advertisements
+messages:
+  - msg_type: "7"
+    message_name: Advertisement
+    layout_url: https://www.fixtrading.org/standards/fix-latest-online/business-area-pre-trade/category-indication/messages/advertisement/

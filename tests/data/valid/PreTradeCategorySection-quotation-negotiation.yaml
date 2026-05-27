@@ -1,0 +1,19 @@
+---
+# Per-category section — structural identifiers and label only.
+# Spec-derived prose lives in private/test-fixtures-content/valid/.
+category: QUOTATION_NEGOTIATION
+title: Quotation / Negotiation
+quote_models:
+  - INDICATIVE
+  - TRADEABLE
+  - RESTRICTED_TRADEABLE
+  - NEGOTIATION
+message_groups:
+  - group_title: Quote Requests
+    messages:
+      - msg_type: R
+        message_name: QuoteRequest
+  - group_title: Quotes
+    messages:
+      - msg_type: S
+        message_name: Quote

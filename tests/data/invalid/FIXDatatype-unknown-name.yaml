@@ -1,0 +1,4 @@
+---
+# Invalid: ``datatype_name`` is not a member of FIXDatatypeName enum.
+datatype_name: NotARealDatatype
+definition: Bogus.

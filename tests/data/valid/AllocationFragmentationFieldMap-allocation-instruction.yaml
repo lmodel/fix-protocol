@@ -1,0 +1,6 @@
+---
+msg_type: J
+message_name: AllocationInstruction
+total_count_field: TotNoAllocs(892)
+fragment_count_field: NoAllocs(78)
+principal_message_reference: AllocID(70)

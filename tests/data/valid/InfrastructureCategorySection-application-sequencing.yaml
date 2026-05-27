@@ -1,0 +1,10 @@
+---
+# Application Sequencing section listing the four documented
+# uses of ApplicationMessageReport(35=BY).
+category: APPLICATION_SEQUENCING
+title: Category – Application Sequencing
+application_message_report_uses:
+  - RESET
+  - LAST_MESSAGE
+  - KEEP_ALIVE
+  - RESEND_COMPLETED

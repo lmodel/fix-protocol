@@ -1,0 +1,12 @@
+---
+# FIX datatype — structural shape and ISO citation only.
+# Spec-derived definition lives in private/test-fixtures-content/valid/.
+datatype_name: Country
+definition: FIX datatype Country.
+value_space:
+  - array
+  - character
+repertoire: "8859-1 (Latin-1)"
+external_code_set: ISO 3166-1
+index_lower_bound: 1
+index_upper_bound: 2

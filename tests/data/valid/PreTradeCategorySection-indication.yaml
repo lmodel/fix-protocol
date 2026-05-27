@@ -1,0 +1,15 @@
+---
+# Per-category section — structural identifiers and label only.
+# Spec-derived prose lives in private/test-fixtures-content/valid/.
+category: INDICATION
+title: Indication
+messages:
+  - msg_type: "7"
+    message_name: Advertisement
+  - msg_type: "6"
+    message_name: IOI
+category_specific_components:
+  - component_name: InstrmtLegIOIGrp
+    repetition: REPEATING
+  - component_name: IOIQualGrp
+    repetition: REPEATING

@@ -1,0 +1,8 @@
+---
+# FIX datatype — structural shape only.
+# Spec-derived definition lives in private/test-fixtures-content/valid/.
+datatype_name: Qty
+definition: FIX datatype Qty.
+value_space:
+  - scaled
+radix: 10

@@ -1,0 +1,8 @@
+---
+# FIX Family standard — structural identifiers only.
+# Spec-derived description lives in private/test-fixtures-content/valid/.
+id: FIXT
+name: FIXT
+acronym: FIXT
+layer: SESSION
+session_profile: FIXT

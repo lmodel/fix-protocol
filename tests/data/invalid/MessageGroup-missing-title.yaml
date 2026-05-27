@@ -1,0 +1,5 @@
+# INVALID: MessageGroup requires identifier 'group_title'.
+description: Group missing its required group_title identifier.
+messages:
+  - msg_type: "7"
+    message_name: Advertisement

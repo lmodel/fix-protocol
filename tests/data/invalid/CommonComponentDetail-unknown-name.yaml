@@ -1,0 +1,5 @@
+# INVALID: component_name 'NotACommonComponent' is not a permissible
+# value of PreTradeCommonComponentName.
+component_name: NotACommonComponent
+repetition: NON_REPEATING
+description: A made-up common component.

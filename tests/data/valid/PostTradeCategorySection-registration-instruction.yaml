@@ -1,0 +1,13 @@
+---
+# Registration Instruction section with the RegistStatus(506) table.
+category: REGISTRATION_INSTRUCTION
+title: Category – Registration Instruction
+registration_status_descriptions:
+  - status_code: A
+    status_label: Accepted
+  - status_code: R
+    status_label: Rejected
+  - status_code: H
+    status_label: Held
+  - status_code: N
+    status_label: Reminder

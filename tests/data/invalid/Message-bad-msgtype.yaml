@@ -1,0 +1,5 @@
+---
+# Invalid: msg_type pattern is ``^[A-Za-z0-9]{1,3}$`` — '@@@@' violates length
+# and character class.
+msg_type: "@@@@"
+message_name: Bogus

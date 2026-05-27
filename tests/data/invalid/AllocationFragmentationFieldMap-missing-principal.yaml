@@ -1,0 +1,6 @@
+---
+# Invalid: principal_message_reference is required but omitted.
+msg_type: J
+message_name: AllocationInstruction
+total_count_field: TotNoAllocs(892)
+fragment_count_field: NoAllocs(78)

@@ -1,0 +1,346 @@
+---
+# Tree-root instance — Pre-Trade business area (EP284, November 2023).
+# Structural shape only. Spec-derived prose lives in
+# private/test-fixtures-content/valid/PreTradeBusinessArea-ep284.yaml.
+area: PRE_TRADE
+title: Pre-Trade
+published_version: "EP284, November 2023"
+publisher: FIX Global Technical Committee
+
+common_components:
+  - AuctionTypeRuleGrp
+  - BaseTradingRules
+  - ExecInstRules
+  - InstrumentScope
+  - InstrumentScopeGrp
+  - InstrumentScopeSecurityAltIDGrp
+  - LotTypeRules
+  - MarketDataFeedTypes
+  - MarketSegmentScopeGrp
+  - MatchRules
+  - OrdTypeRules
+  - PriceLimits
+  - PriceRangeRuleGrp
+  - QuoteSizeRuleGrp
+  - RequestedPartyRoleGrp
+  - RequestingPartyGrp
+  - RequestingPartySubGrp
+  - RoutingGrp
+  - TickRules
+  - TimeInForceRules
+  - TradingSessionRules
+
+messages:
+  - msg_type: "7"
+    message_name: Advertisement
+    category: INDICATION
+  - msg_type: DS
+    message_name: CrossRequest
+    category: INDICATION
+  - msg_type: DT
+    message_name: CrossRequestAck
+    category: INDICATION
+  - msg_type: AA
+    message_name: DerivativeSecurityList
+    category: SECURITIES_REFERENCE_DATA
+  - msg_type: z
+    message_name: DerivativeSecurityListRequest
+    category: SECURITIES_REFERENCE_DATA
+  - msg_type: BR
+    message_name: DerivativeSecurityListUpdateReport
+    category: SECURITIES_REFERENCE_DATA
+  - msg_type: C
+    message_name: Email
+    category: EVENT_COMMUNICATION
+  - msg_type: "6"
+    message_name: IOI
+    category: INDICATION
+  - msg_type: X
+    message_name: MarketDataIncrementalRefresh
+    category: MARKET_DATA
+  - msg_type: DR
+    message_name: MarketDataReport
+    category: MARKET_DATA
+  - msg_type: V
+    message_name: MarketDataRequest
+    category: MARKET_DATA
+  - msg_type: Y
+    message_name: MarketDataRequestReject
+    category: MARKET_DATA
+  - msg_type: W
+    message_name: MarketDataSnapshotFullRefresh
+    category: MARKET_DATA
+  - msg_type: DO
+    message_name: MarketDataStatisticsRequest
+    category: MARKET_DATA
+  - msg_type: DP
+    message_name: MarketDataStatisticsReport
+    category: MARKET_DATA
+  - msg_type: BU
+    message_name: MarketDefinition
+    category: MARKET_STRUCTURE_REFERENCE_DATA
+  - msg_type: BT
+    message_name: MarketDefinitionRequest
+    category: MARKET_STRUCTURE_REFERENCE_DATA
+  - msg_type: BV
+    message_name: MarketDefinitionUpdateReport
+    category: MARKET_STRUCTURE_REFERENCE_DATA
+  - msg_type: i
+    message_name: MassQuote
+    category: QUOTATION_NEGOTIATION
+  - msg_type: b
+    message_name: MassQuoteAck
+    category: QUOTATION_NEGOTIATION
+  - msg_type: B
+    message_name: News
+    category: EVENT_COMMUNICATION
+  - msg_type: DI
+    message_name: PartyActionReport
+    category: PARTIES_ACTION
+  - msg_type: DH
+    message_name: PartyActionRequest
+    category: PARTIES_ACTION
+  - msg_type: CX
+    message_name: PartyDetailsDefinitionRequest
+    category: PARTIES_REFERENCE_DATA
+  - msg_type: CY
+    message_name: PartyDetailsDefinitionRequestAck
+    category: PARTIES_REFERENCE_DATA
+  - msg_type: CG
+    message_name: PartyDetailsListReport
+    category: PARTIES_REFERENCE_DATA
+  - msg_type: CF
+    message_name: PartyDetailsListRequest
+    category: PARTIES_REFERENCE_DATA
+  - msg_type: CK
+    message_name: PartyDetailsListUpdateReport
+    category: PARTIES_REFERENCE_DATA
+  - msg_type: DA
+    message_name: PartyEntitlementsDefinitionRequest
+    category: PARTIES_REFERENCE_DATA
+  - msg_type: DB
+    message_name: PartyEntitlementsDefinitionRequestAck
+    category: PARTIES_REFERENCE_DATA
+  - msg_type: CV
+    message_name: PartyEntitlementsReport
+    category: PARTIES_REFERENCE_DATA
+  - msg_type: CU
+    message_name: PartyEntitlementsRequest
+    category: PARTIES_REFERENCE_DATA
+  - msg_type: CZ
+    message_name: PartyEntitlementsUpdateReport
+    category: PARTIES_REFERENCE_DATA
+  - msg_type: DF
+    message_name: PartyRiskLimitCheckRequest
+    category: PARTIES_ACTION
+  - msg_type: DG
+    message_name: PartyRiskLimitCheckRequestAck
+    category: PARTIES_ACTION
+  - msg_type: CM
+    message_name: PartyRiskLimitsReport
+    category: PARTIES_REFERENCE_DATA
+  - msg_type: DE
+    message_name: PartyRiskLimitsReportAck
+    category: PARTIES_REFERENCE_DATA
+  - msg_type: CL
+    message_name: PartyRiskLimitsRequest
+    category: PARTIES_REFERENCE_DATA
+  - msg_type: CR
+    message_name: PartyRiskLimitsUpdateReport
+    category: PARTIES_REFERENCE_DATA
+  - msg_type: CS
+    message_name: PartyRiskLimitsDefinitionRequest
+    category: PARTIES_REFERENCE_DATA
+  - msg_type: CT
+    message_name: PartyRiskLimitsDefinitionRequestAck
+    category: PARTIES_REFERENCE_DATA
+  - msg_type: S
+    message_name: Quote
+    category: QUOTATION_NEGOTIATION
+  - msg_type: CW
+    message_name: QuoteAck
+    category: QUOTATION_NEGOTIATION
+  - msg_type: Z
+    message_name: QuoteCancel
+    category: QUOTATION_NEGOTIATION
+  - msg_type: R
+    message_name: QuoteRequest
+    category: QUOTATION_NEGOTIATION
+  - msg_type: AG
+    message_name: QuoteRequestReject
+    category: QUOTATION_NEGOTIATION
+  - msg_type: AJ
+    message_name: QuoteResponse
+    category: QUOTATION_NEGOTIATION
+  - msg_type: AI
+    message_name: QuoteStatusReport
+    category: QUOTATION_NEGOTIATION
+  - msg_type: a
+    message_name: QuoteStatusRequest
+    category: QUOTATION_NEGOTIATION
+  - msg_type: AH
+    message_name: RFQRequest
+    category: QUOTATION_NEGOTIATION
+  - msg_type: d
+    message_name: SecurityDefinition
+    category: SECURITIES_REFERENCE_DATA
+  - msg_type: c
+    message_name: SecurityDefinitionRequest
+    category: SECURITIES_REFERENCE_DATA
+  - msg_type: BP
+    message_name: SecurityDefinitionUpdateReport
+    category: SECURITIES_REFERENCE_DATA
+  - msg_type: y
+    message_name: SecurityList
+    category: SECURITIES_REFERENCE_DATA
+  - msg_type: x
+    message_name: SecurityListRequest
+    category: SECURITIES_REFERENCE_DATA
+  - msg_type: BK
+    message_name: SecurityListUpdateReport
+    category: SECURITIES_REFERENCE_DATA
+  - msg_type: CO
+    message_name: SecurityMassStatus
+    category: SECURITIES_REFERENCE_DATA
+  - msg_type: CN
+    message_name: SecurityMassStatusRequest
+    category: SECURITIES_REFERENCE_DATA
+  - msg_type: f
+    message_name: SecurityStatus
+    category: SECURITIES_REFERENCE_DATA
+  - msg_type: e
+    message_name: SecurityStatusRequest
+    category: SECURITIES_REFERENCE_DATA
+  - msg_type: v
+    message_name: SecurityTypeRequest
+    category: SECURITIES_REFERENCE_DATA
+  - msg_type: w
+    message_name: SecurityTypes
+    category: SECURITIES_REFERENCE_DATA
+  - msg_type: CD
+    message_name: StreamAssignmentReport
+    category: MARKET_DATA
+  - msg_type: CE
+    message_name: StreamAssignmentReportACK
+    category: MARKET_DATA
+  - msg_type: CC
+    message_name: StreamAssignmentRequest
+    category: MARKET_DATA
+  - msg_type: BJ
+    message_name: TradingSessionList
+    category: MARKET_STRUCTURE_REFERENCE_DATA
+  - msg_type: BI
+    message_name: TradingSessionListRequest
+    category: MARKET_STRUCTURE_REFERENCE_DATA
+  - msg_type: BS
+    message_name: TradingSessionListUpdateReport
+    category: MARKET_STRUCTURE_REFERENCE_DATA
+  - msg_type: h
+    message_name: TradingSessionStatus
+    category: MARKET_STRUCTURE_REFERENCE_DATA
+  - msg_type: g
+    message_name: TradingSessionStatusRequest
+    category: MARKET_STRUCTURE_REFERENCE_DATA
+
+components:
+  - component_name: AuctionTypeRuleGrp
+    repetition: REPEATING
+    category: Common Components
+    is_common: true
+  - component_name: BaseTradingRules
+    repetition: NON_REPEATING
+    category: Common Components
+    is_common: true
+  - component_name: ClearingPriceParametersGrp
+    repetition: REPEATING
+    category: Securities Reference Data
+    footnote_number: 1
+  - component_name: DerivativeInstrument
+    repetition: NON_REPEATING
+    category: Securities Reference Data
+    footnote_number: 2
+  - component_name: InstrmtLegIOIGrp
+    repetition: REPEATING
+    category: Indication
+    footnote_number: 10
+  - component_name: LegQuotGrp
+    repetition: REPEATING
+    category: Quotation Negotiation
+  - component_name: MDFullGrp
+    repetition: REPEATING
+    category: Market Data
+  - component_name: TickRules
+    repetition: REPEATING
+    category: Common Components
+    is_common: true
+
+footnotes:
+  - footnote_number: 1
+    component_name: ClearingPriceParametersGrp
+    introduced_in: EP195
+    sole_category: SECURITIES_REFERENCE_DATA
+  - footnote_number: 2
+    component_name: DerivativeInstrument
+    introduced_in: FIX 5.0
+    sole_category: SECURITIES_REFERENCE_DATA
+  - footnote_number: 10
+    component_name: InstrmtLegIOIGrp
+    introduced_in: FIX 4.4
+    sole_category: INDICATION
+  - footnote_number: 17
+    component_name: QuoteAttributeGrp
+    introduced_in: EP229
+    sole_category: QUOTATION_NEGOTIATION
+  - footnote_number: 21
+    component_name: SecurityClassificationGrp
+    introduced_in: EP107
+    sole_category: SECURITIES_REFERENCE_DATA
+
+category_sections:
+  - category: INDICATION
+    title: Indication
+    messages:
+      - msg_type: "7"
+        message_name: Advertisement
+      - msg_type: DS
+        message_name: CrossRequest
+      - msg_type: DT
+        message_name: CrossRequestAck
+      - msg_type: "6"
+        message_name: IOI
+    category_specific_components:
+      - component_name: InstrmtLegIOIGrp
+        repetition: REPEATING
+      - component_name: IOIQualGrp
+        repetition: REPEATING
+
+  - category: EVENT_COMMUNICATION
+    title: Event Communication
+    messages:
+      - msg_type: C
+        message_name: Email
+      - msg_type: B
+        message_name: News
+    category_specific_components:
+      - component_name: LinesOfTextGrp
+        repetition: REPEATING
+      - component_name: NewsRefGrp
+        repetition: REPEATING
+
+  - category: QUOTATION_NEGOTIATION
+    title: Quotation / Negotiation
+
+  - category: MARKET_DATA
+    title: Market Data
+
+  - category: MARKET_STRUCTURE_REFERENCE_DATA
+    title: Market Structure Reference Data
+
+  - category: SECURITIES_REFERENCE_DATA
+    title: Securities Reference Data
+
+  - category: PARTIES_REFERENCE_DATA
+    title: Parties Reference Data
+
+  - category: PARTIES_ACTION
+    title: Parties Action

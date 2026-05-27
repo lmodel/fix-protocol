@@ -1,0 +1,6 @@
+---
+# UDF tag range — structural identifiers only.
+# Spec-derived description lives in private/test-fixtures-content/valid/.
+range_id: 50000-plus
+low_tag: 50000
+usage: GTC_RESERVED
