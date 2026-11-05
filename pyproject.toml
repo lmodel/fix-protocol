@@ -3,13 +3,15 @@ requires = ["hatchling", "uv-dynamic-versioning"]
 build-backend = "hatchling.build"
 
 [project]
-name = "fix_protocol"
-description = "FIX Protocol - LinkML Schema"
+# Named like lmodel/slsa's slsa-linkml, so the PyPI name says what it holds;
+# the import package stays fix_protocol. PyPI publishing is off.
+name = "fix-protocol-linkml"
+description = "FIX Latest, the FIX application layer standard (LinkML)"
 authors = [
   {name = "Noel McLoughlin", email = "noel.mcloughlin@gmail.com"},
 ]
 license = "Apache-2.0"
-license-files = ["LICENSE"]
+license-files = ["LICENSE", "NOTICE"]
 readme = "README.md"
 requires-python = ">=3.10"
 dynamic = ["version"]
@@ -20,13 +22,13 @@ dependencies = [
 
 [dependency-groups]
 dev = [
-    "linkml>=1.9.3",
-    "mkdocs-material>=8.2.8",
-    "mkdocs-mermaid2-plugin>=1.1.1",
-    "mkdocs-pymdownx-material-extras>=2.5.6",
-    "jupyter>=1.0.0",
-    "mknotebooks>= 0.8.0",
+    "jsonschema>=4.26.0",
+    "linkml>=1.12.1",
+    "rdflib>=7",
 ]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/fix_protocol"]
 
 # See https://hatch.pypa.io/latest/config/build/#file-selection for how to
 # explicitly include files other than default into the build distributions.
@@ -56,20 +58,33 @@ target-version = "py310"
 [tool.codespell]
 skip = [
   "LICENSE",
+  "NOTICE",
   "pyproject.toml",
   "uv.lock",
   "project/*",
   "src/fix_protocol/datamodel/fix_protocol_pydantic.py",
   "src/fix_protocol/datamodel/fix_protocol.py",
+  # The upstream's files, copied as published; the neighbours' adapt copies,
+  # copied as released; and files copied in by the KTL sidecar sync or written
+  # by npm, not by hand.
+  "upstream/*",
+  "tests/neighbours/*",
+  # FIX's own names and values, written from upstream/ by scripts/fix_latest_to_records.py.
+  "src/fix_protocol/data/*",
+  "tests/data/*",
+  ".lokf/scripts/*",
+  "website/package-lock.json",
 ]
 
-# Reminder: words have to be lowercased for the ignore-words-list
+# Reminder: words have to be lowercased for the ignore-words-list.
 ignore-words-list = "linke"
 quiet-level = 3
 
 # Ref.: https://github.com/crate-ci/typos (spell checker)
 [tool.typos.default.extend-words]
 linke = "linke"
+# The ND of CC BY-ND, which typos would otherwise rewrite as AND.
+nd = "nd"
 
 [tool.typos.files]
 extend-exclude = [
@@ -79,4 +94,10 @@ extend-exclude = [
   "project/*",
   "src/fix_protocol/datamodel/fix_protocol_pydantic.py",
   "src/fix_protocol/datamodel/fix_protocol.py",
+  "upstream/*",
+  "tests/neighbours/*",
+  "src/fix_protocol/data/*",
+  "tests/data/*",
+  ".lokf/scripts/*",
+  "website/package-lock.json",
 ]
