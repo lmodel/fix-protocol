@@ -6,6 +6,8 @@ The `v0.0.0` tag is a baseline, not a release: it marks where versioning starts 
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-11-05
+
 ### Added
 
 - **Every element of FIX Latest at extension pack 312 as a record** in `src/fix_protocol/data/`: 5 sections, 34 categories, 38 datatypes, 694 code sets with 5,745 codes, 6,203 fields, 167 components, 580 repeating groups and 181 messages. `scripts/fix_latest_to_records.py` writes them from `upstream/`.
