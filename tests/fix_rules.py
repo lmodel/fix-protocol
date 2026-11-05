@@ -1,10 +1,9 @@
 """The rules FIX Latest's data keeps that no generated schema can state.
 
 The JSON Schema checks each record on its own. These rules check what a record says about
-the others: that a reference names a record that exists, that a name or a value is unique
-where FIX keeps it unique, and how a field, a code set and a group fit together. Each rule
-is one FIX Latest's own data keeps, but for the departures tests/upstream_departures.yaml
-lists.
+the others. A reference names a record that exists, a name or a value is unique where FIX
+keeps it unique, and a field, a code set and a group fit together. FIX Latest's own data
+keeps each rule, but for the departures tests/upstream_departures.yaml lists.
 
 ``rule_errors`` returns one finding per broken rule as (pointer, rule, id, message). The
 pointer is the JSON Pointer of the value at fault, the rule is the function's name and the

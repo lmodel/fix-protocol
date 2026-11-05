@@ -27,7 +27,14 @@ Nothing comes from fixtrading.org. The earlier schema described the online speci
 
 ## Rules beside the schema
 
-`tests/fix_rules.py` holds what the data keeps and no JSON Schema can state: references resolve, names, tags and MsgTypes are unique, an extension pack comes with its version, and each message starts with the standard header and ends with the standard trailer. FIX Latest breaks two of these rules, and `tests/upstream_departures.yaml` names both:
+`tests/fix_rules.py` holds what the data keeps and no JSON Schema can state:
+
+- references resolve;
+- names, tags and MsgTypes are unique;
+- an extension pack comes with its version;
+- each message starts with the standard header and ends with the standard trailer.
+
+FIX Latest breaks two of these rules, and `tests/upstream_departures.yaml` names both:
 
 - the MsgType code BQ states no `added`;
 - the raw-data field EncodedMDEntryStatusText names no length field.
