@@ -26,6 +26,7 @@ OWN = [
     *sorted((ROOT / "src" / "fix_protocol" / "schema").glob("*.yaml")),
     *sorted((ROOT / "docs").glob("*.md")),
     ROOT / "README.md",
+    ROOT / "CHANGELOG.md",
     *sorted((ROOT / ".lokf" / "knowledge").rglob("*.md")),
 ]
 
