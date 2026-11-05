@@ -146,7 +146,11 @@ def dated(document, whole):
     for key in DATED:
         for i, record in enumerate(document.get(key) or ()):
             if "added_in" not in record:
-                yield f"/{key}/{i}", record["id"], f"{record['name']} states no added_in"
+                yield (
+                    f"/{key}/{i}",
+                    record["id"],
+                    f"{record['name']} states no added_in",
+                )
             for j, code in enumerate(record.get("fix_codes") or ()):
                 if "added_in" not in code:
                     yield (
@@ -235,7 +239,11 @@ def code_sets_take_their_fields_tag(document, whole):
             if whole:
                 yield f"/fix_code_sets/{i}", code_set["id"], "no field takes it"
         elif f"fix_field:{number}" not in found:
-            yield f"/fix_code_sets/{i}/id", code_set["id"], "no field of its number takes it"
+            yield (
+                f"/fix_code_sets/{i}/id",
+                code_set["id"],
+                "no field of its number takes it",
+            )
 
 
 def code_values_fit_their_datatype(document, whole):
@@ -262,7 +270,11 @@ def categories_fit_their_kind(document, whole):
     categories = _index(document, "fix_categories")
     for i, category in enumerate(document.get("fix_categories") or ()):
         if "in_section" in category and category.get("category_kind") != "Message":
-            yield f"/fix_categories/{i}/in_section", category["id"], "fields in a section"
+            yield (
+                f"/fix_categories/{i}/in_section",
+                category["id"],
+                "fields in a section",
+            )
     for key in ("fix_messages", "fix_components", "fix_groups"):
         for i, record in enumerate(document.get(key) or ()):
             category = categories.get(record["in_category"])
@@ -271,7 +283,11 @@ def categories_fit_their_kind(document, whole):
             if category.get("category_kind") != "Message":
                 yield f"/{key}/{i}/in_category", record["id"], "a category of fields"
             elif key == "fix_messages" and "in_section" not in category:
-                yield f"/{key}/{i}/in_category", record["id"], "a category in no section"
+                yield (
+                    f"/{key}/{i}/in_category",
+                    record["id"],
+                    "a category in no section",
+                )
 
 
 def base_category_names_come_together(document, whole):

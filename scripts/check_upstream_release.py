@@ -182,7 +182,9 @@ def version_at(commit: str) -> str:
 def check_latest() -> tuple[list[str], bool]:
     """Report whether a newer commit has replaced the file."""
     pinned = header()
-    commits = _get(f"/commits?sha={BRANCH}&path={urllib.parse.quote(LATEST)}&per_page=1")
+    commits = _get(
+        f"/commits?sha={BRANCH}&path={urllib.parse.quote(LATEST)}&per_page=1"
+    )
     newest = commits[0]["sha"]
     if newest == pinned["commit"]:
         return [
@@ -216,7 +218,9 @@ def check_pinned() -> tuple[list[str], bool]:
 
 def check_licence() -> tuple[list[str], bool]:
     """Report whether the licence on the default branch is the pinned file."""
-    root = {entry["path"]: entry["sha"] for entry in _get(f"/git/trees/{BRANCH}")["tree"]}
+    root = {
+        entry["path"]: entry["sha"] for entry in _get(f"/git/trees/{BRANCH}")["tree"]
+    }
     spdx = (_get("").get("license") or {}).get("spdx_id")
     lines, attention = [], False
     if root.get("LICENSE") != pins()["LICENSE"]:
@@ -229,7 +233,9 @@ def check_licence() -> tuple[list[str], bool]:
         attention = True
         lines.append(f"- **GitHub names the licence {_code(spdx)}, not Apache-2.0.**")
     if not attention:
-        lines.append("- The licence on the default branch is the pinned Apache-2.0 file.")
+        lines.append(
+            "- The licence on the default branch is the pinned Apache-2.0 file."
+        )
     return lines, attention
 
 

@@ -204,7 +204,9 @@ class Converter:
             if raw in self.datatypes:
                 record["field_datatype"] = self.reference("datatype", raw)
             elif raw in self.code_sets:
-                record["field_code_set"] = self.reference("code_set", self.code_sets[raw])
+                record["field_code_set"] = self.reference(
+                    "code_set", self.code_sets[raw]
+                )
             else:
                 raise Unknown(f"field type {raw!r} names no datatype or code set")
             return None
@@ -375,9 +377,7 @@ def stamp(text: str, version: str, commit: str, created: str) -> str:
         text,
     )
     text = re.sub(r"(?m)^(  upstream_commit: )[0-9a-f]{40}$", rf"\g<1>{commit}", text)
-    return re.sub(
-        r'(?m)^(  upstream_created: )"[0-9-]+"$', rf'\g<1>"{created}"', text
-    )
+    return re.sub(r'(?m)^(  upstream_created: )"[0-9-]+"$', rf'\g<1>"{created}"', text)
 
 
 def outputs() -> dict[Path, str]:
@@ -386,7 +386,9 @@ def outputs() -> dict[Path, str]:
     pinned = pins()
     version = root.get("version")
     if version != pinned["version"]:
-        raise Unknown(f"upstream/ holds {version}, and the pins name {pinned['version']}")
+        raise Unknown(
+            f"upstream/ holds {version}, and the pins name {pinned['version']}"
+        )
     written = {}
     for stem, data in Converter(root).files().items():
         written[DATA / f"{stem}.yaml"] = header(stem, version, pinned["commit"]) + dump(
@@ -407,7 +409,9 @@ def main(argv: list[str] | None = None) -> int:
     try:
         written = outputs()
     except Unknown as err:
-        print(f"Stopped: {err}. Model it before writing the catalogue.", file=sys.stderr)
+        print(
+            f"Stopped: {err}. Model it before writing the catalogue.", file=sys.stderr
+        )
         return 1
     stale = [
         path

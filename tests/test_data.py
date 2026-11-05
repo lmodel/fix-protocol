@@ -130,7 +130,9 @@ def test_each_rule_has_a_counter_example():
     """Every rule of tests/fix_rules.py refuses one of the counter-examples."""
     from tests.fix_rules import RULES
 
-    caught = {rule for path in PROBLEM_INVALID for _, rule, _, _ in rule_errors(load(path))}
+    caught = {
+        rule for path in PROBLEM_INVALID for _, rule, _, _ in rule_errors(load(path))
+    }
     assert caught == {rule.__name__ for rule in RULES}
 
 

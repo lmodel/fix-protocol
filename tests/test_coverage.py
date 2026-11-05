@@ -98,7 +98,9 @@ def expected_value(slot, raw):
     """What a record holds for an attribute's text, by the slot's range."""
     if slot.range in view().all_classes():
         return by_id_or_name(slot.range).get(raw)
-    ancestry = view().type_ancestors(slot.range) if slot.range in view().all_types() else []
+    ancestry = (
+        view().type_ancestors(slot.range) if slot.range in view().all_types() else []
+    )
     if "integer" in ancestry or slot.range == "integer":
         return int(raw)
     if slot.range == "boolean":
@@ -114,7 +116,9 @@ def expected(element):
     record = {}
     if tag in ("section", "category", "datatype", "codeSet", "code", "field",
                "component", "group", "message"):  # fmt: skip
-        record["id"] = f"{id_prefix(class_name)}:{element.get('id') or element.get('name')}"
+        record["id"] = (
+            f"{id_prefix(class_name)}:{element.get('id') or element.get('name')}"
+        )
     for attribute, raw in element.attrib.items():
         if attribute == "id" and "id" in record:
             continue
@@ -174,7 +178,7 @@ def test_every_element_is_its_record_and_nothing_more():
     assert compared == 5 + 34 + 38 + 694 + 6203 + 167 + 580 + 181
 
 
-def test_the_repositorys_name_version_and_metadata():
+def test_the_repositories_name_version_and_metadata():
     slots = slots_of("FixRepository")
     for document in conversion.documents().values():
         for attribute, raw in root().attrib.items():
@@ -213,9 +217,7 @@ def test_every_alias_is_a_name_fix_writes():
         written.add(local(element.tag))
         written.update(local(name) for name in element.attrib)
     aliases = {
-        alias
-        for slot in view().all_slots().values()
-        for alias in slot.aliases or ()
+        alias for slot in view().all_slots().values() for alias in slot.aliases or ()
     }
     for cls in view().all_classes().values():
         for attribute in (cls.attributes or {}).values():

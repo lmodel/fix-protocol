@@ -11,7 +11,6 @@ names and values, which the records keep, do not count.
 import re
 import xml.etree.ElementTree as ET
 from functools import cache
-from pathlib import Path
 
 import pytest
 import yaml

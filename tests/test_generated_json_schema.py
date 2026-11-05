@@ -60,7 +60,11 @@ def test_a_reference_must_look_like_one():
 
 
 def test_a_field_takes_a_datatype_or_a_code_set_and_not_both():
-    field = {"id": "fix_field:55", "name": "Symbol", "field_datatype": "fix_datatype:String"}
+    field = {
+        "id": "fix_field:55",
+        "name": "Symbol",
+        "field_datatype": "fix_datatype:String",
+    }
     defs = schema()["$defs"]
     check = jsonschema.validators.validator_for(schema())(
         {"$ref": "#/$defs/FixField", "$defs": defs}

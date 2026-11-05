@@ -32,7 +32,11 @@ def _tree(watch, file_sha=None, licence_sha=None):
         "root": {
             "tree": [
                 {"path": "FIX Standard", "type": "tree", "sha": "folder"},
-                {"path": "LICENSE", "type": "blob", "sha": licence_sha or pins["LICENSE"]},
+                {
+                    "path": "LICENSE",
+                    "type": "blob",
+                    "sha": licence_sha or pins["LICENSE"],
+                },
             ]
         },
         "folder": {
@@ -53,7 +57,7 @@ def _answers(watch, newest=None, new_sha=None, licence_sha=None, spdx="Apache-2.
     newest = newest or pinned
     old = _tree(watch)
     answers = {
-        f"/commits?sha=master&path=FIX%20Standard/OrchestraFIXLatest.xml&per_page=1": [
+        "/commits?sha=master&path=FIX%20Standard/OrchestraFIXLatest.xml&per_page=1": [
             {"sha": newest}
         ],
         f"/git/trees/{pinned}": old["root"],
