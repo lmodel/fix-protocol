@@ -8,7 +8,7 @@ A LinkML schema of FIX Latest, the application layer of the FIX protocol, at the
 
 | Path | Holds |
 | --- | --- |
-| `src/fix_protocol/schema/` | The LinkML schema, edited by hand but for the edition in its headers. |
+| `src/fix_protocol/schema/` | The LinkML schema, edited by hand, except for the edition in its headers. |
 | `src/fix_protocol/datamodel/`, `project/`, `docs/schema/` | Artefacts generated from the schema. |
 | `src/fix_protocol/data/` | Every element as a record. `scripts/fix_latest_to_records.py` writes them. |
 | `upstream/` | FIX Latest's Orchestra file and its repository's licence, unchanged. |
@@ -41,11 +41,11 @@ npx skills add noelmcloughlin/knowledge-trust-ladder --skill ktl-curator --yes  
 
 - **Edit the schema or the converter, then regenerate.** Run `just gen-schema`, `just gen-project`, `just gen-doc` and `just lokf-adapt`, and commit the output. `src/fix_protocol/data/`, `project/`, `src/fix_protocol/datamodel/`, `docs/schema/` and `.lokf/fix-protocol.yaml` are generated.
 - **Move to a new extension pack in one pull request.** `just refresh-fix-latest <commit>` copies FIX Latest at that commit into `upstream/` and rebuilds the catalogue; regenerate as above.
-- **FIX's attributes stay in the records.** `tests/test_coverage.py` walks the Orchestra file beside the catalogue, sharing no code with the converter.
+- **FIX's attributes stay in the records.** `tests/test_coverage.py` checks the catalogue against the Orchestra file, sharing no code with the converter.
 - **FIX's text stays out.** `tests/test_own_words.py` refuses a run of FIX's descriptions in the catalogue, the schema, the docs and the bundle.
 - **A rule states what FIX's data keeps.** A rule goes in `tests/fix_rules.py`, and a place where FIX breaks it in `tests/upstream_departures.yaml`, with a report to the FIX Trading Community.
-- **A mapping names a term that exists.** `tests/test_mappings.py` holds each `fixr:` and `fix_orchestra:` target to its source. A term with no sure match stays unmapped.
-- **Render the pinned edition.** `tests/test_upstream.py` holds the schema headers, the pins and `upstream/` equal.
+- **A mapping names a term that exists.** `tests/test_mappings.py` checks each `fixr:` and `fix_orchestra:` target against its source. A term with no sure match stays unmapped.
+- **Render the pinned edition.** `tests/test_upstream.py` checks that the schema headers, the pins and `upstream/` agree.
 - **Keep names apart.** A host imports this adapt copy beside the Linked Open Knowledge Format (LOKF) schema and the released copies in `tests/neighbours/`. `tests/test_schema_rules.py` checks this.
 - **Run the tests**: `just test` (schema generation, `pytest` and the examples under `tests/data/`). Example data goes in `tests/data/valid/` and `tests/data/invalid/`, named `ClassName-suffix.yaml`; an invalid example's second line, `# Fails at: <pointer>`, names where it fails.
 - **Follow the schema's conventions**: PascalCase classes with the `Fix` prefix, snake_case slots whose aliases name FIX's attribute, and a short description on every element.
@@ -67,7 +67,7 @@ Artificial intelligence (AI) assistance is welcome; [AI_COVENANT.md](AI_COVENANT
 
 ## Reporting issues
 
-Use the [issue tracker](https://github.com/lmodel/fix-protocol/issues) for the schema. A problem in FIX Latest's Orchestra file belongs with the [FIX Trading Community](https://github.com/FIXTradingCommunity/orchestrations/issues).
+Use the [issue tracker](https://github.com/lmodel/fix-protocol/issues) for the schema. Report a problem in FIX Latest's Orchestra file to the [FIX Trading Community](https://github.com/FIXTradingCommunity/orchestrations/issues).
 
 ## Releasing (maintainers)
 

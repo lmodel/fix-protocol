@@ -11,7 +11,7 @@ The `v0.0.0` tag is a baseline, not a release: it marks where versioning starts 
 - **Every element of FIX Latest at extension pack 312 as a record** in `src/fix_protocol/data/`: 5 sections, 34 categories, 38 datatypes, 694 code sets with 5,745 codes, 6,203 fields, 167 components, 580 repeating groups and 181 messages. `scripts/fix_latest_to_records.py` writes them from `upstream/`.
 - **`upstream/`**, holding FIX Latest's Orchestra file and its repository's licence at commit `cd24169` of FIXTradingCommunity/orchestrations, pinned by git object hash, with a weekly watch and `just refresh-fix-latest`.
 - **Rules a validator cannot state** in `tests/fix_rules.py`, and the two places FIX Latest breaks one in `tests/upstream_departures.yaml`.
-- **Tests** that walk the Orchestra file beside the catalogue, keep FIX's descriptions out of every file the project writes, and hold an example per class and a counter-example per constraint.
+- **Tests** that check the catalogue against the Orchestra file, keep FIX's descriptions out of every file the project writes, and hold an example per class and a counter-example per constraint.
 - **`.lokf/fix-protocol.yaml`, the schema's `lokf adapt` copy.** The knowledge release attaches it as `schema-<tag>-fix-protocol.yaml`.
 - **The repository's Knowledge Trust Ladder (KTL) knowledge bundle and its sidecar automation**, from the KTL v0.61.0 templates with the lokf floor at 0.9.0, and a knowledge website that replaces the mkdocs site.
 - **The governance files**: SECURITY.md, AI_COVENANT.md, the CONTRIBUTING checklist, and a NOTICE that states the licence position.

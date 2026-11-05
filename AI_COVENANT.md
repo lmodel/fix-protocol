@@ -27,7 +27,7 @@ So:
 
 - **A record says what FIX's file says.** The converter writes every record from `upstream/`, and a change to one is a change to the converter or to the pinned extension pack. Name the XML element in the pull request. "The model said so" is not a source.
 - **A rule states only what FIX's data keeps.** `tests/fix_rules.py` holds each rule, and `tests/upstream_departures.yaml` records where FIX's own data breaks one.
-- **A mapping names a term that exists, or it is absent.** `tests/test_mappings.py` holds each to the Orchestra 1.0 names and to fix-orchestra's released copy. Leave out what you cannot confirm at its source.
+- **A mapping names a term that exists, or it is absent.** `tests/test_mappings.py` checks each against the Orchestra 1.0 names and against fix-orchestra's released copy. Leave out what you cannot confirm at its source.
 - **FIX's words stay out.** Every title and description is this project's own, and `tests/test_own_words.py` refuses a run of four words from FIX's text. [NOTICE](NOTICE) says why.
 
 ## AI-Assisted Code Reviews

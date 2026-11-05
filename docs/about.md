@@ -15,7 +15,7 @@ Each key is a snake_case slot whose `aliases` give the attribute FIX writes, suc
 - A field's `type` names a datatype or a code set. The record splits it into `field_datatype` and `field_code_set`, so each reference has one range, as Orchestra 1.1 does.
 - A message lists its fields, components and groups inside a structure element. Components and groups list theirs directly. All three records list them in `fix_members`, in FIX's order.
 - The FIXML annotation becomes `fixml_not_required` on an element, or `fixml_inlined` on a member.
-- The edition's metadata, from the file's Dublin Core elements, sits in `repository.yaml` under `metadata_` keys.
+- The edition's metadata, from the file's Dublin Core elements, is in `repository.yaml` under `metadata_` keys.
 
 A member with no `presence` is optional, as Orchestra 1.0 defines.
 
@@ -47,9 +47,9 @@ FIX Latest breaks two of these rules, and `tests/upstream_departures.yaml` names
 
 ## Mappings
 
-Each class maps to Orchestra 1.0's type for it, under `fixr:`, the namespace the file uses, and to its class in [lmodel/fix-orchestra](https://github.com/lmodel/fix-orchestra)'s Orchestra 1.0 module. Each slot maps to the attribute it holds. `tests/test_mappings.py` holds the `fixr:` names to Orchestra 1.0's schema. The `fix_orchestra:` names wait for fix-orchestra's first release, whose copy then joins `tests/neighbours/`.
+Each class maps to Orchestra 1.0's type for it, under `fixr:`, the namespace the file uses, and to its class in [lmodel/fix-orchestra](https://github.com/lmodel/fix-orchestra)'s Orchestra 1.0 module. Each slot maps to the attribute it holds. `tests/test_mappings.py` checks the `fixr:` names against Orchestra 1.0's schema. The `fix_orchestra:` names wait for fix-orchestra's first release, whose copy then joins `tests/neighbours/`.
 
-There is no SSSOM set. The six the earlier schema carried were a matching tool's guesses, and most named classes that no longer exist. FIX's own datatype mappings, to XML Schema types, sit on each datatype's record under `mapped_datatypes`.
+There is no SSSOM set. The six the earlier schema carried were a matching tool's guesses, and most named classes that no longer exist. FIX's own datatype mappings, to XML Schema types, are on each datatype's record under `mapped_datatypes`.
 
 ## Keeping current
 

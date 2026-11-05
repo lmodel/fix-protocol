@@ -20,8 +20,8 @@ The schema renders FIX Latest at extension pack 312, of 8 September 2026: the FI
 
 ## Mappings
 
-* **Orchestra 1.0**, the edition FIX Latest's file follows: each class and slot maps to its type or attribute under `fixr:`. `tests/test_mappings.py` holds each to Orchestra 1.0's names.
-* **[lmodel/fix-orchestra](https://github.com/lmodel/fix-orchestra)**: each record class maps to its class in that model of Orchestra 1.0. The test holds them to its released copy once there is one.
+* **Orchestra 1.0**, the edition FIX Latest's file follows: each class and slot maps to its type or attribute under `fixr:`. `tests/test_mappings.py` checks each against Orchestra 1.0's names.
+* **[lmodel/fix-orchestra](https://github.com/lmodel/fix-orchestra)**: each record class maps to its class in that model of Orchestra 1.0. The test checks them against its released copy once there is one.
 
 The six SSSOM sets are gone: a matching tool wrote their rows, and most named classes that no longer exist.
 
