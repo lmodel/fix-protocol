@@ -1,7 +1,6 @@
 # Where FIX Latest at the pinned extension pack breaks a rule of tests/fix_rules.py. The
 # catalogue keeps what FIX states, so each departure stays in it as FIX wrote it.
 # tests/test_catalogue.py fails when a departure goes away, so this list stays current.
-# issues/92 in the maintainer's notes reports them to FIX.
 - id: fix_code:35102
   rule: dated
   why: >-
