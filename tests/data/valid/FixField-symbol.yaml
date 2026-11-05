@@ -1,0 +1,6 @@
+# Field 55, Symbol, whose values are strings.
+id: fix_field:55
+name: Symbol
+abbr_name: Sym
+field_datatype: fix_datatype:String
+added_in: FIX.2.7

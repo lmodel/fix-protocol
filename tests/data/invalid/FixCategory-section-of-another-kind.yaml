@@ -1,0 +1,8 @@
+# A category whose section is a category.
+# Fails at: /in_section
+id: fix_category:SingleGeneralOrderHandling
+name: SingleGeneralOrderHandling
+fixml_file_name: order
+in_section: fix_category:Common
+category_kind: Message
+include_file: components

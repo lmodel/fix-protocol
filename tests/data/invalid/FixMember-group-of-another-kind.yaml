@@ -1,0 +1,5 @@
+# A group member that names a component.
+# Fails at: /member_group
+presence: required
+added_in: FIX.2.7
+member_group: fix_component:1024

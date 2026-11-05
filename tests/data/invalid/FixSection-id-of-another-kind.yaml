@@ -1,0 +1,8 @@
+# A section whose identifier is a field's.
+# Fails at: /id
+id: fix_field:1
+name: PreTrade
+fixml_file_name: pretrade
+section_order: 1
+updated_in: FIX.Latest
+updated_in_ep: 271

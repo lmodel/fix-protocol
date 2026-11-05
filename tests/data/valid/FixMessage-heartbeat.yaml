@@ -1,0 +1,17 @@
+# The Heartbeat message, MsgType 0, as the catalogue holds it.
+id: fix_message:1
+name: Heartbeat
+abbr_name: Heartbeat
+msg_type: '0'
+in_category: fix_category:Session
+added_in: FIX.2.7
+fixml_not_required: true
+fix_members:
+  - member_component: fix_component:1024
+    presence: required
+    added_in: FIX.2.7
+  - member_field: fix_field:112
+    added_in: FIX.4.0
+  - member_component: fix_component:1025
+    presence: required
+    added_in: FIX.2.7

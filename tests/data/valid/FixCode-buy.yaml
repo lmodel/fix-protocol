@@ -1,0 +1,8 @@
+# The code 1, Buy, of the code set of Side.
+id: fix_code:54001
+name: Buy
+code_value: '1'
+sort_order: 1
+added_in: FIX.2.7
+updated_in: FIX.5.0SP2
+updated_in_ep: 254

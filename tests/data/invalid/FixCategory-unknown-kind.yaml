@@ -1,0 +1,8 @@
+# A category of a kind FIX does not name.
+# Fails at: /category_kind
+id: fix_category:SingleGeneralOrderHandling
+name: SingleGeneralOrderHandling
+fixml_file_name: order
+in_section: fix_section:Trade
+category_kind: Messages
+include_file: components

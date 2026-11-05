@@ -1,0 +1,18 @@
+# A message whose MsgType is three characters long.
+# Fails at: /msg_type
+id: fix_message:1
+name: Heartbeat
+abbr_name: Heartbeat
+msg_type: ABC
+in_category: fix_category:Session
+added_in: FIX.2.7
+fixml_not_required: true
+fix_members:
+  - member_component: fix_component:1024
+    presence: required
+    added_in: FIX.2.7
+  - member_field: fix_field:112
+    added_in: FIX.4.0
+  - member_component: fix_component:1025
+    presence: required
+    added_in: FIX.2.7

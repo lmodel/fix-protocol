@@ -1,0 +1,8 @@
+# A category that brings in a file FIX does not name.
+# Fails at: /include_file
+id: fix_category:SingleGeneralOrderHandling
+name: SingleGeneralOrderHandling
+fixml_file_name: order
+in_section: fix_section:Trade
+category_kind: Message
+include_file: messages

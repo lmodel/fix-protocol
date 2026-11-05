@@ -1,0 +1,5 @@
+# The XML Schema form of Tenor, with FIX's pattern.
+mapped_standard: XML
+mapped_base: xs:string
+mapped_builtin: false
+mapped_pattern: '[DMWY](\d)+'

@@ -1,0 +1,9 @@
+# A code sorted before the first.
+# Fails at: /sort_order
+id: fix_code:54001
+name: Buy
+code_value: '1'
+sort_order: -1
+added_in: FIX.2.7
+updated_in: FIX.5.0SP2
+updated_in_ep: 254

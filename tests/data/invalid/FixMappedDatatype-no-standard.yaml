@@ -1,0 +1,5 @@
+# A mapped datatype that names no standard.
+# Fails at: /
+mapped_base: xs:string
+mapped_builtin: false
+mapped_pattern: '[DMWY](\d)+'

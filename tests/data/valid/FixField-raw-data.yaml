@@ -1,0 +1,7 @@
+# Field 96, RawData, which names the field that gives its length.
+id: fix_field:96
+name: RawData
+abbr_name: RawData
+field_datatype: fix_datatype:data
+length_field: fix_field:95
+added_in: FIX.2.7

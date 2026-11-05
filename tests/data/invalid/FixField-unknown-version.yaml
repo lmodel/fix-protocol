@@ -1,0 +1,7 @@
+# A field added in a version FIX has no form for.
+# Fails at: /added_in
+id: fix_field:55
+name: Symbol
+abbr_name: Sym
+field_datatype: fix_datatype:String
+added_in: FIX.6.0

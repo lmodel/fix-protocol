@@ -1,0 +1,7 @@
+# The PreTrade section of FIX Latest, as the catalogue holds it.
+id: fix_section:PreTrade
+name: PreTrade
+fixml_file_name: pretrade
+section_order: 1
+updated_in: FIX.Latest
+updated_in_ep: 271

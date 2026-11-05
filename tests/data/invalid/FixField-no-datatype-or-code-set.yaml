@@ -1,0 +1,6 @@
+# A field that names neither a datatype nor a code set.
+# Fails at: /
+id: fix_field:54
+name: Side
+abbr_name: Side
+added_in: FIX.2.7

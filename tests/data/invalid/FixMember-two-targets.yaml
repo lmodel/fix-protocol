@@ -1,0 +1,6 @@
+# A member that is both a component and a field.
+# Fails at: /
+member_component: fix_component:1024
+presence: required
+added_in: FIX.2.7
+member_field: fix_field:8

@@ -1,0 +1,101 @@
+# A code set whose datatype is not written as a reference.
+# Fails at: /code_set_datatype
+id: fix_code_set:54
+name: SideCodeSet
+code_set_datatype: char
+added_in: FIX.2.7
+fix_codes:
+  - id: fix_code:54001
+    name: Buy
+    code_value: '1'
+    sort_order: 1
+    added_in: FIX.2.7
+    updated_in: FIX.5.0SP2
+    updated_in_ep: 254
+  - id: fix_code:54002
+    name: Sell
+    code_value: '2'
+    sort_order: 2
+    added_in: FIX.2.7
+    updated_in: FIX.5.0SP2
+    updated_in_ep: 254
+  - id: fix_code:54003
+    name: BuyMinus
+    code_value: '3'
+    sort_order: 3
+    added_in: FIX.2.7
+  - id: fix_code:54004
+    name: SellPlus
+    code_value: '4'
+    sort_order: 4
+    added_in: FIX.2.7
+  - id: fix_code:54005
+    name: SellShort
+    code_value: '5'
+    sort_order: 5
+    added_in: FIX.2.7
+  - id: fix_code:54006
+    name: SellShortExempt
+    code_value: '6'
+    sort_order: 6
+    added_in: FIX.2.7
+  - id: fix_code:54007
+    name: Undisclosed
+    code_value: '7'
+    sort_order: 7
+    added_in: FIX.4.1
+    updated_in: FIX.5.0SP2
+    updated_in_ep: 131
+  - id: fix_code:54008
+    name: Cross
+    code_value: '8'
+    sort_order: 8
+    added_in: FIX.4.1
+  - id: fix_code:54009
+    name: CrossShort
+    code_value: '9'
+    sort_order: 9
+    added_in: FIX.4.2
+  - id: fix_code:54010
+    name: CrossShortExempt
+    code_value: A
+    sort_order: 10
+    added_in: FIX.4.3
+    updated_in: FIX.5.0SP1
+    updated_in_ep: 95
+  - id: fix_code:54011
+    name: AsDefined
+    code_value: B
+    sort_order: 11
+    added_in: FIX.4.3
+  - id: fix_code:54012
+    name: Opposite
+    code_value: C
+    sort_order: 12
+    added_in: FIX.4.3
+  - id: fix_code:54013
+    name: Subscribe
+    code_value: D
+    sort_order: 13
+    added_in: FIX.4.4
+  - id: fix_code:54014
+    name: Redeem
+    code_value: E
+    sort_order: 14
+    added_in: FIX.4.4
+  - id: fix_code:54015
+    name: Lend
+    code_value: F
+    sort_order: 15
+    added_in: FIX.4.4
+  - id: fix_code:54016
+    name: Borrow
+    code_value: G
+    sort_order: 16
+    added_in: FIX.4.4
+  - id: fix_code:54017
+    name: SellUndisclosed
+    code_value: H
+    sort_order: 17
+    added_in: FIX.5.0SP2
+    added_in_ep: 222

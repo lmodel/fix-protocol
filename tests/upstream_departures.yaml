@@ -1,0 +1,15 @@
+# Where FIX Latest at the pinned extension pack breaks a rule of tests/fix_rules.py. The
+# catalogue keeps what FIX states, so each departure stays in it as FIX wrote it.
+# tests/test_catalogue.py fails when a departure goes away, so this list stays current.
+# issues/92 in the maintainer's notes reports them to FIX.
+- id: fix_code:35102
+  rule: dated
+  why: >-
+    The code BQ of MsgTypeCodeSet, SettlementObligationReport, states no added
+    attribute. Every other code does, and the message it names states FIX.4.4.
+- id: fix_field:3109
+  rule: lengths_pair_with_data
+  why: >-
+    EncodedMDEntryStatusText is raw data with no lengthId, while
+    EncodedMDEntryStatusTextLen, the Length field added beside it in the same
+    extension pack, is named by no field.

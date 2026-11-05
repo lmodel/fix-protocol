@@ -1,0 +1,4 @@
+# A count that names a group rather than a field.
+# Fails at: /count_field
+count_field: fix_group:1019
+added_in: FIX.4.3

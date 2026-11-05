@@ -1,0 +1,7 @@
+# The category of single orders, as the catalogue holds it.
+id: fix_category:SingleGeneralOrderHandling
+name: SingleGeneralOrderHandling
+fixml_file_name: order
+in_section: fix_section:Trade
+category_kind: Message
+include_file: components

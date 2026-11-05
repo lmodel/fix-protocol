@@ -1,0 +1,5 @@
+# The category that holds fields, which sits in no section.
+id: fix_category:Fields
+name: Fields
+fixml_file_name: fields
+category_kind: Field

@@ -1,0 +1,7 @@
+# A field whose name holds a space.
+# Fails at: /name
+id: fix_field:55
+name: Ticker Symbol
+abbr_name: Sym
+field_datatype: fix_datatype:String
+added_in: FIX.2.7
