@@ -37,7 +37,7 @@ The converter writes each file from `upstream/`. Each file is a `FixRepository` 
 | `groups.yaml` | 580 repeating groups |
 | `messages.yaml` | 181 messages |
 
-Every file passes the committed JSON Schema and the rules in `tests/fix_rules.py`, but for the two departures the departures file names.[^tests-test_catalogue.py]
+Every file passes the committed JSON Schema and the rules in `tests/fix_rules.py`, except the two departures that the departures file names.[^tests-test_catalogue.py]
 
 [^docs-index.md]: docs/index.md, What the catalogue holds
 [^tests-test_catalogue.py]: tests/test_catalogue.py, the module's tests

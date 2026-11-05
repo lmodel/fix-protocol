@@ -23,6 +23,6 @@ status: draft
 
 The module holds `FixDatatype`, `FixMappedDatatype`, `FixCodeSet`, `FixCode` and `FixField`.[^src-fix_protocol-schema-fix_protocol_dictionary.yaml]
 
-A field names its datatype in `field_datatype` or its code set in `field_code_set`, never both. FIX's file names either in one attribute, `type`, and the record splits it so each reference has one range.[^src-fix_protocol-schema-fix_protocol_dictionary.yaml]
+A field names its datatype in `field_datatype` or its code set in `field_code_set`, never both. FIX's file names either one in a single attribute, `type`. The record splits it, so each reference has one range.[^src-fix_protocol-schema-fix_protocol_dictionary.yaml]
 
 [^src-fix_protocol-schema-fix_protocol_dictionary.yaml]: src/fix_protocol/schema/fix_protocol_dictionary.yaml, the module

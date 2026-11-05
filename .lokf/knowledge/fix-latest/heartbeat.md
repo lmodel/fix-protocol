@@ -38,7 +38,7 @@ status: draft
 
 Heartbeat is the message of MsgType 0, in the Session category. Its members are the standard header, field 112 and the standard trailer.[^src-fix_protocol-data-messages.yaml]
 
-The keys beside LOKF's are the catalogue's own for `fix_message:1`, which `lokf validate` checks against `.lokf/fix-protocol.yaml`.[^readme.md]
+The keys beside LOKF's are the catalogue's own for `fix_message:1`. `lokf validate` checks them against `.lokf/fix-protocol.yaml`.[^readme.md]
 
 [^src-fix_protocol-data-messages.yaml]: src/fix_protocol/data/messages.yaml, the record fix_message:1
 [^readme.md]: README.md, Knowledge Trust Ladder (KTL)

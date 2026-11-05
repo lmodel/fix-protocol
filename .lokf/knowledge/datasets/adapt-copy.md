@@ -26,7 +26,7 @@ status: draft
 
 `just lokf-adapt` writes the copy from the schema, and `just lokf-adapt-check` fails when it is stale.[^project.justfile]
 
-The copy drops `id` for LOKF's `id` and folds FIX's `name` into LOKF's `title`. It keeps the metadata's source apart from LOKF's, since it holds one value where LOKF's holds a list.[^project.justfile]
+The copy drops `id` for LOKF's `id` and folds FIX's `name` into LOKF's `title`. It keeps the metadata's source apart from LOKF's, because it holds one value where LOKF's holds a list.[^project.justfile]
 
 No other key is renamed, and the copy shares no name with LOKF or with a released neighbour copy.[^readme.md]
 

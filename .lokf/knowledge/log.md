@@ -2,6 +2,7 @@
 
 ## 2026-11-05
 
+* **Prose**: reworded 15 concept bodies in plain English. No fact, link, number or frontmatter changed.
 * **Updated**: Rules beside the schema, which now lists the rules FIX Latest breaks.
 * **Added**: The FIX Latest LinkML schema.
 * **Added**: The core module.

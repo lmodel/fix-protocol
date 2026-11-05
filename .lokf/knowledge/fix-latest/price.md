@@ -30,7 +30,7 @@ status: draft
 
 Price narrows FIX's float datatype, and FIX gives xs:decimal as its XML Schema form. FIX 4.2 added it.[^src-fix_protocol-data-datatypes.yaml]
 
-The keys beside LOKF's are the catalogue's own for `fix_datatype:Price`, which `lokf validate` checks against `.lokf/fix-protocol.yaml`.[^readme.md]
+The keys beside LOKF's are the catalogue's own for `fix_datatype:Price`. `lokf validate` checks them against `.lokf/fix-protocol.yaml`.[^readme.md]
 
 [^src-fix_protocol-data-datatypes.yaml]: src/fix_protocol/data/datatypes.yaml, the record fix_datatype:Price
 [^readme.md]: README.md, Knowledge Trust Ladder (KTL)

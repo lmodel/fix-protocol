@@ -28,7 +28,7 @@ status: draft
 
 PreTrade is FIX Latest's section of messages exchanged before a trade. Its FIXML schema file is `pretrade`, and FIX Latest last changed it in extension pack 271.[^src-fix_protocol-data-repository.yaml]
 
-The keys beside LOKF's are the catalogue's own for `fix_section:PreTrade`, which `lokf validate` checks against `.lokf/fix-protocol.yaml`.[^readme.md]
+The keys beside LOKF's are the catalogue's own for `fix_section:PreTrade`. `lokf validate` checks them against `.lokf/fix-protocol.yaml`.[^readme.md]
 
 [^src-fix_protocol-data-repository.yaml]: src/fix_protocol/data/repository.yaml, the record fix_section:PreTrade
 [^readme.md]: README.md, Knowledge Trust Ladder (KTL)

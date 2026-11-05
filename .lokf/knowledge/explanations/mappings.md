@@ -22,6 +22,6 @@ status: draft
 
 Each class maps to Orchestra 1.0's type for it, and to its class in lmodel/fix-orchestra's Orchestra 1.0 module. Each slot maps to the attribute it holds.[^docs-about.md]
 
-The six SSSOM sets of the earlier schema were a matching tool's guesses, and most named classes that no longer exist, so they are gone. FIX's own datatype mappings sit on each datatype's record.[^docs-about.md]
+The six SSSOM sets of the earlier schema were a matching tool's guesses, and most named classes that no longer exist, so they are gone. FIX's own datatype mappings are on each datatype's record.[^docs-about.md]
 
 [^docs-about.md]: docs/about.md, Mappings

@@ -26,7 +26,7 @@ status: draft
 
 `just gen-project` writes `project/` and the Python datamodel, and `just gen-doc` writes `docs/schema/` and the schema's pages. None of them is edited by hand.[^contributing.md]
 
-`project/jsonschema/fix_protocol.schema.json` is the schema for anyone without LinkML. A test holds it to the generator's output.[^tests-test_generated_json_schema.py]
+`project/jsonschema/fix_protocol.schema.json` is the schema for anyone without LinkML. A test compares it with the generator's output.[^tests-test_generated_json_schema.py]
 
 [^contributing.md]: CONTRIBUTING.md, Before opening a pull request
 [^tests-test_generated_json_schema.py]: tests/test_generated_json_schema.py, the module's tests

@@ -20,7 +20,7 @@ status: draft
 
 # The example data
 
-- `valid/` holds an example of every concrete class. Each but the small catalogue is a real record of the catalogue.
+- `valid/` holds an example of every concrete class. Each one except the small catalogue is a real record from the catalogue.
 - `invalid/` holds the counter-examples the JSON Schema refuses. Each file's second line names where it fails.
 - `problem/invalid/` holds a counter-example for each rule, which passes the JSON Schema and breaks only that rule.
 

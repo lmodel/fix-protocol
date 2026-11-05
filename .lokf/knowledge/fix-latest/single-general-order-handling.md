@@ -26,9 +26,9 @@ status: draft
 
 # SingleGeneralOrderHandling
 
-SingleGeneralOrderHandling groups the messages for one order, such as NewOrderSingle. It sits in the Trade section, and its FIXML schema file is `order`.[^src-fix_protocol-data-repository.yaml]
+SingleGeneralOrderHandling groups the messages for one order, such as NewOrderSingle. The Trade section holds it, and its FIXML schema file is `order`.[^src-fix_protocol-data-repository.yaml]
 
-The keys beside LOKF's are the catalogue's own for `fix_category:SingleGeneralOrderHandling`, which `lokf validate` checks against `.lokf/fix-protocol.yaml`.[^readme.md]
+The keys beside LOKF's are the catalogue's own for `fix_category:SingleGeneralOrderHandling`. `lokf validate` checks them against `.lokf/fix-protocol.yaml`.[^readme.md]
 
 [^src-fix_protocol-data-repository.yaml]: src/fix_protocol/data/repository.yaml, the record fix_category:SingleGeneralOrderHandling
 [^readme.md]: README.md, Knowledge Trust Ladder (KTL)

@@ -48,7 +48,7 @@ status: draft
 
 Parties belongs to the Common category. Field 453 counts its repeats, and it holds five members.[^src-fix_protocol-data-groups.yaml]
 
-The keys beside LOKF's are the catalogue's own for `fix_group:1012`, which `lokf validate` checks against `.lokf/fix-protocol.yaml`.[^readme.md]
+The keys beside LOKF's are the catalogue's own for `fix_group:1012`. `lokf validate` checks them against `.lokf/fix-protocol.yaml`.[^readme.md]
 
 [^src-fix_protocol-data-groups.yaml]: src/fix_protocol/data/groups.yaml, the record fix_group:1012
 [^readme.md]: README.md, Knowledge Trust Ladder (KTL)

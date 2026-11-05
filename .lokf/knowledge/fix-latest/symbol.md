@@ -27,7 +27,7 @@ status: draft
 
 Symbol is field 55. It holds values of datatype String. Its FIXML short name is Sym, and FIX 2.7 added it.[^src-fix_protocol-data-fields.yaml]
 
-The keys beside LOKF's are the catalogue's own for `fix_field:55`, which `lokf validate` checks against `.lokf/fix-protocol.yaml`.[^readme.md]
+The keys beside LOKF's are the catalogue's own for `fix_field:55`. `lokf validate` checks them against `.lokf/fix-protocol.yaml`.[^readme.md]
 
 [^src-fix_protocol-data-fields.yaml]: src/fix_protocol/data/fields.yaml, the record fix_field:55
 [^readme.md]: README.md, Knowledge Trust Ladder (KTL)
