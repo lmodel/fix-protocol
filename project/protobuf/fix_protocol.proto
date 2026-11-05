@@ -1,0 +1,401 @@
+syntax = "proto3";
+package fix_protocol;
+// metamodel_version: 1.12.0
+// version: FIX.Latest_EP312
+// A group of messages within a section, or one of the groups that hold the shared components and the fields.
+message FixCategory {
+  // The element's name in FIX, such as NewOrderSingle or Symbol.
+  string name = 1;
+  // The FIX version that added the element.
+  string added_in = 2;
+  // The extension pack that added the element.
+  int32 added_in_ep = 3;
+  // The FIX version that last changed the element.
+  string updated_in = 4;
+  // The extension pack that last changed the element.
+  int32 updated_in_ep = 5;
+  // The FIX version that deprecated the element.
+  string deprecated_in = 6;
+  // The extension pack that deprecated the element.
+  int32 deprecated_in_ep = 7;
+  // The name of the FIXML schema file that holds the section's or category's elements.
+  string fixml_file_name = 8;
+  // The section a category belongs to.
+  FixSection in_section = 9;
+  // True when the element is left out of FIXML, FIX's XML encoding.
+  bool fixml_not_required = 10;
+  // Whether the category groups messages or fields.
+  FixCategoryKind category_kind = 11;
+  // The shared FIXML schema file that the category's own FIXML schema file brings in.
+  FixIncludeFile include_file = 12;
+  // The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation.
+  string id = 13;
+}
+// One value of a code set, with its name, such as 1 for Buy.
+message FixCode {
+  // The element's name in FIX, such as NewOrderSingle or Symbol.
+  string name = 1;
+  // The FIX version that added the element.
+  string added_in = 2;
+  // The extension pack that added the element.
+  int32 added_in_ep = 3;
+  // The FIX version that last changed the element.
+  string updated_in = 4;
+  // The extension pack that last changed the element.
+  int32 updated_in_ep = 5;
+  // The FIX version that deprecated the element.
+  string deprecated_in = 6;
+  // The extension pack that deprecated the element.
+  int32 deprecated_in_ep = 7;
+  // The value as it travels on the wire.
+  string code_value = 8;
+  // Where the code comes when FIX lists the set.
+  int32 sort_order = 9;
+  // A label that groups some codes of a large set, such as one asset class.
+  string code_group = 10;
+  // The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation.
+  string id = 11;
+}
+// A list of the values a field may take, each a code with a name, such as the sides of an order.
+message FixCodeSet {
+  // The element's name in FIX, such as NewOrderSingle or Symbol.
+  string name = 1;
+  // The FIX version that added the element.
+  string added_in = 2;
+  // The extension pack that added the element.
+  int32 added_in_ep = 3;
+  // The FIX version that last changed the element.
+  string updated_in = 4;
+  // The extension pack that last changed the element.
+  int32 updated_in_ep = 5;
+  // The FIX version that deprecated the element.
+  string deprecated_in = 6;
+  // The extension pack that deprecated the element.
+  int32 deprecated_in_ep = 7;
+  // The datatype of the codes' values.
+  FixDatatype code_set_datatype = 8;
+  // The codes of the set, in FIX's order.
+  repeated FixCode fix_codes = 9;
+  // The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation.
+  string id = 10;
+}
+// A named block of fields, components and groups that messages share, such as Instrument.
+message FixComponent {
+  // The element's name in FIX, such as NewOrderSingle or Symbol.
+  string name = 1;
+  // The FIX version that added the element.
+  string added_in = 2;
+  // The extension pack that added the element.
+  int32 added_in_ep = 3;
+  // The FIX version that last changed the element.
+  string updated_in = 4;
+  // The extension pack that last changed the element.
+  int32 updated_in_ep = 5;
+  // The FIX version that deprecated the element.
+  string deprecated_in = 6;
+  // The extension pack that deprecated the element.
+  int32 deprecated_in_ep = 7;
+  // The shorter name FIXML uses for the element's tag.
+  string abbr_name = 8;
+  // The category a message, component or group belongs to.
+  FixCategory in_category = 9;
+  // The fields, components and groups the element holds, in the order FIX lists them.
+  repeated FixMember fix_members = 10;
+  // True when the element is left out of FIXML, FIX's XML encoding.
+  bool fixml_not_required = 11;
+  // The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation.
+  string id = 12;
+}
+// A kind of value a field holds, such as int, Price or UTCTimestamp, with the XML Schema types it maps to.
+message FixDatatype {
+  // The element's name in FIX, such as NewOrderSingle or Symbol.
+  string name = 1;
+  // The FIX version that added the element.
+  string added_in = 2;
+  // The extension pack that added the element.
+  int32 added_in_ep = 3;
+  // The FIX version that last changed the element.
+  string updated_in = 4;
+  // The extension pack that last changed the element.
+  int32 updated_in_ep = 5;
+  // The FIX version that deprecated the element.
+  string deprecated_in = 6;
+  // The extension pack that deprecated the element.
+  int32 deprecated_in_ep = 7;
+  // The datatype this one narrows.
+  FixDatatype base_type = 8;
+  // The types of other standards that FIX gives as this datatype's form.
+  repeated FixMappedDatatype mapped_datatypes = 9;
+  // The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation.
+  string id = 10;
+}
+// An element of FIX Latest with an identifier and a name of its own.
+message FixElement {
+  // The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation.
+  string id = 1;
+  // The element's name in FIX, such as NewOrderSingle or Symbol.
+  string name = 2;
+  // The FIX version that added the element.
+  string added_in = 3;
+  // The extension pack that added the element.
+  int32 added_in_ep = 4;
+  // The FIX version that last changed the element.
+  string updated_in = 5;
+  // The extension pack that last changed the element.
+  int32 updated_in_ep = 6;
+  // The FIX version that deprecated the element.
+  string deprecated_in = 7;
+  // The extension pack that deprecated the element.
+  int32 deprecated_in_ep = 8;
+}
+// A field of FIX, known by its tag number, such as 55 for Symbol, with the datatype or code set of its values.
+message FixField {
+  // The element's name in FIX, such as NewOrderSingle or Symbol.
+  string name = 1;
+  // The FIX version that added the element.
+  string added_in = 2;
+  // The extension pack that added the element.
+  int32 added_in_ep = 3;
+  // The FIX version that last changed the element.
+  string updated_in = 4;
+  // The extension pack that last changed the element.
+  int32 updated_in_ep = 5;
+  // The FIX version that deprecated the element.
+  string deprecated_in = 6;
+  // The extension pack that deprecated the element.
+  int32 deprecated_in_ep = 7;
+  // The shorter name FIXML uses for the element's tag.
+  string abbr_name = 8;
+  // True when the element is left out of FIXML, FIX's XML encoding.
+  bool fixml_not_required = 9;
+  // The datatype of the field's values, when no code set lists them.
+  FixDatatype field_datatype = 10;
+  // The code set that lists the field's values.
+  FixCodeSet field_code_set = 11;
+  // A datatype whose values the field also takes, beside those of its code set, such as a range of numbers kept for private use.
+  FixDatatype union_datatype = 12;
+  // The field that gives this field's length in bytes.
+  FixField length_field = 13;
+  // The field whose value says how to read this field's value.
+  FixField discriminator_field = 14;
+  // The category whose FIXML element carries the field under the short name base_category_abbr_name gives.
+  FixCategory base_category = 15;
+  // The field's short name within its base category's FIXML element.
+  string base_category_abbr_name = 16;
+  // The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation.
+  string id = 17;
+}
+// A block of members that repeats in a message, with the field that counts the repeats.
+message FixGroup {
+  // The element's name in FIX, such as NewOrderSingle or Symbol.
+  string name = 1;
+  // The FIX version that added the element.
+  string added_in = 2;
+  // The extension pack that added the element.
+  int32 added_in_ep = 3;
+  // The FIX version that last changed the element.
+  string updated_in = 4;
+  // The extension pack that last changed the element.
+  int32 updated_in_ep = 5;
+  // The FIX version that deprecated the element.
+  string deprecated_in = 6;
+  // The extension pack that deprecated the element.
+  int32 deprecated_in_ep = 7;
+  // The shorter name FIXML uses for the element's tag.
+  string abbr_name = 8;
+  // The category a message, component or group belongs to.
+  FixCategory in_category = 9;
+  // The fields, components and groups the element holds, in the order FIX lists them.
+  repeated FixMember fix_members = 10;
+  // The field that states how many times the group repeats.
+  FixNumInGroup num_in_group = 11;
+  // The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation.
+  string id = 12;
+}
+// The type of another standard that a FIX datatype takes, such as xs:decimal in XML Schema.
+message FixMappedDatatype {
+  // The standard the type belongs to, such as XML.
+  string mapped_standard = 1;
+  // The standard's type, such as xs:decimal.
+  string mapped_base = 2;
+  // True when the type is one the standard defines itself.
+  bool mapped_builtin = 3;
+  // The smallest value the type allows, as FIX writes it.
+  string mapped_min_inclusive = 4;
+  // A regular expression in XML Schema's syntax that a value must match.
+  string mapped_pattern = 5;
+}
+// One field, component or group in a message, component or group, and whether it must be there.
+message FixMember {
+  // The field this member is.
+  FixField member_field = 1;
+  // The component this member is.
+  FixComponent member_component = 2;
+  // The repeating group this member is.
+  FixGroup member_group = 3;
+  // Whether the member must be there. A member that states none is optional.
+  FixPresence presence = 4;
+  // True when FIXML writes the component's fields directly in the enclosing element rather than in an element of its own.
+  bool fixml_inlined = 5;
+  // The FIX version that added the element.
+  string added_in = 6;
+  // The extension pack that added the element.
+  int32 added_in_ep = 7;
+  // The FIX version that last changed the element.
+  string updated_in = 8;
+  // The extension pack that last changed the element.
+  int32 updated_in_ep = 9;
+  // The FIX version that deprecated the element.
+  string deprecated_in = 10;
+  // The extension pack that deprecated the element.
+  int32 deprecated_in_ep = 11;
+}
+// A FIX message, known by its MsgType, such as D for NewOrderSingle, with its members in order.
+message FixMessage {
+  // The element's name in FIX, such as NewOrderSingle or Symbol.
+  string name = 1;
+  // The FIX version that added the element.
+  string added_in = 2;
+  // The extension pack that added the element.
+  int32 added_in_ep = 3;
+  // The FIX version that last changed the element.
+  string updated_in = 4;
+  // The extension pack that last changed the element.
+  int32 updated_in_ep = 5;
+  // The FIX version that deprecated the element.
+  string deprecated_in = 6;
+  // The extension pack that deprecated the element.
+  int32 deprecated_in_ep = 7;
+  // The shorter name FIXML uses for the element's tag.
+  string abbr_name = 8;
+  // The category a message, component or group belongs to.
+  FixCategory in_category = 9;
+  // The fields, components and groups the element holds, in the order FIX lists them.
+  repeated FixMember fix_members = 10;
+  // True when the element is left out of FIXML, FIX's XML encoding.
+  bool fixml_not_required = 11;
+  // The value of field 35 that marks a message of this kind.
+  string msg_type = 12;
+  // The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation.
+  string id = 13;
+}
+// The field that counts a group's repeats, as the group names it.
+message FixNumInGroup {
+  // The field that holds the count.
+  FixField count_field = 1;
+  // The FIX version that added the element.
+  string added_in = 2;
+  // The extension pack that added the element.
+  int32 added_in_ep = 3;
+  // The FIX version that last changed the element.
+  string updated_in = 4;
+  // The extension pack that last changed the element.
+  int32 updated_in_ep = 5;
+  // The FIX version that deprecated the element.
+  string deprecated_in = 6;
+  // The extension pack that deprecated the element.
+  int32 deprecated_in_ep = 7;
+}
+// When FIX added, last changed and deprecated an element, by version and extension pack.
+message FixPedigreeMixin {
+  // The FIX version that added the element.
+  string added_in = 1;
+  // The extension pack that added the element.
+  int32 added_in_ep = 2;
+  // The FIX version that last changed the element.
+  string updated_in = 3;
+  // The extension pack that last changed the element.
+  int32 updated_in_ep = 4;
+  // The FIX version that deprecated the element.
+  string deprecated_in = 5;
+  // The extension pack that deprecated the element.
+  int32 deprecated_in_ep = 6;
+}
+// One file of the catalogue: the edition it renders and one or more kinds of FIX Latest's elements.
+message FixRepository {
+  // The name FIX gives the repository, FIX.Latest.
+  string repository_name = 1;
+  // The extension pack the repository stands at, such as FIX.Latest_EP312.
+  string repository_version = 2;
+  // The title the repository's metadata gives.
+  string metadata_title = 3;
+  // The metadata's one-line statement of which extension pack the file holds.
+  string metadata_description = 4;
+  // Who made the repository, by its metadata.
+  string metadata_creator = 5;
+  // Who published the repository, by its metadata.
+  string metadata_publisher = 6;
+  // The rights line in the repository's metadata, word for word.
+  string metadata_rights = 7;
+  // The media type of the repository file.
+  string metadata_format = 8;
+  // The Orchestra version the repository file follows.
+  string metadata_conforms_to = 9;
+  // The date the repository file was made.
+  string metadata_created = 10;
+  // The tool or source the metadata names for the file.
+  string metadata_source = 11;
+  // The sections, in FIX's order.
+  repeated FixSection fix_sections = 12;
+  // The categories, in FIX's order.
+  repeated FixCategory fix_categories = 13;
+  // The datatypes, in FIX's order.
+  repeated FixDatatype fix_datatypes = 14;
+  // The code sets, in FIX's order.
+  repeated FixCodeSet fix_code_sets = 15;
+  // The fields, in FIX's order.
+  repeated FixField fix_fields = 16;
+  // The components, in FIX's order.
+  repeated FixComponent fix_components = 17;
+  // The repeating groups, in FIX's order.
+  repeated FixGroup fix_groups = 18;
+  // The messages, in FIX's order.
+  repeated FixMessage fix_messages = 19;
+}
+// One of the five parts of FIX by business area, such as pre-trade or post-trade.
+message FixSection {
+  // The element's name in FIX, such as NewOrderSingle or Symbol.
+  string name = 1;
+  // The FIX version that added the element.
+  string added_in = 2;
+  // The extension pack that added the element.
+  int32 added_in_ep = 3;
+  // The FIX version that last changed the element.
+  string updated_in = 4;
+  // The extension pack that last changed the element.
+  int32 updated_in_ep = 5;
+  // The FIX version that deprecated the element.
+  string deprecated_in = 6;
+  // The extension pack that deprecated the element.
+  int32 deprecated_in_ep = 7;
+  // The name of the FIXML schema file that holds the section's or category's elements.
+  string fixml_file_name = 8;
+  // True when the element is left out of FIXML, FIX's XML encoding.
+  bool fixml_not_required = 9;
+  // Where the section comes in FIX's own order of sections, counting from 0.
+  int32 section_order = 10;
+  // The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation.
+  string id = 11;
+}
+
+// Whether a category groups messages or fields.
+enum FixCategoryKind {
+  FIX_CATEGORY_KIND_UNSPECIFIED = 0;
+  FIX_CATEGORY_KIND_MESSAGE = 1;
+  FIX_CATEGORY_KIND_FIELD = 2;
+}
+// Which shared FIXML schema file a category's own FIXML schema file brings in.
+enum FixIncludeFile {
+  FIX_INCLUDE_FILE_UNSPECIFIED = 0;
+  FIX_INCLUDE_FILE_COMPONENTS = 1;
+  FIX_INCLUDE_FILE_FIELDS = 2;
+}
+// Whether a message, component or group must carry a member, as Orchestra 1.0 lets FIX Latest say it.
+enum FixPresence {
+  FIX_PRESENCE_UNSPECIFIED = 0;
+  FIX_PRESENCE_OPTIONAL = 1;
+  FIX_PRESENCE_REQUIRED = 2;
+  FIX_PRESENCE_FORBIDDEN = 3;
+  FIX_PRESENCE_IGNORED = 4;
+  FIX_PRESENCE_CONSTANT = 5;
+}

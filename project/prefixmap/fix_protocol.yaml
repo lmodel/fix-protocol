@@ -1,0 +1,16 @@
+{
+   "dcterms": "http://purl.org/dc/terms/",
+   "fix_category": "https://w3id.org/lmodel/fix-protocol/category/",
+   "fix_code": "https://w3id.org/lmodel/fix-protocol/code/",
+   "fix_code_set": "https://w3id.org/lmodel/fix-protocol/code_set/",
+   "fix_component": "https://w3id.org/lmodel/fix-protocol/component/",
+   "fix_datatype": "https://w3id.org/lmodel/fix-protocol/datatype/",
+   "fix_field": "https://w3id.org/lmodel/fix-protocol/field/",
+   "fix_group": "https://w3id.org/lmodel/fix-protocol/group/",
+   "fix_message": "https://w3id.org/lmodel/fix-protocol/message/",
+   "fix_orchestra": "https://w3id.org/lmodel/fix-orchestra/",
+   "fix_protocol": "https://w3id.org/lmodel/fix-protocol/",
+   "fix_section": "https://w3id.org/lmodel/fix-protocol/section/",
+   "fixr": "http://fixprotocol.io/2020/orchestra/repository/",
+   "linkml": "https://w3id.org/linkml/"
+}

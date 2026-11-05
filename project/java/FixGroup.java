@@ -1,0 +1,25 @@
+package example;
+
+/* metamodel_version: 1.12.0 */
+/* version: FIX.Latest_EP312 */
+import java.net.URI;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZonedDateTime;
+import java.util.List;
+import lombok.*;
+
+/**
+  A block of members that repeats in a message, with the field that counts the repeats.
+**/
+@Data
+@EqualsAndHashCode(callSuper=false)
+public class FixGroup extends FixElement {
+
+  private String abbrName;
+  private FixCategory inCategory;
+  private List<FixMember> fixMembers;
+  private FixNumInGroup numInGroup;
+
+
+}

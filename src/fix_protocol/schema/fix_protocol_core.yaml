@@ -1,0 +1,357 @@
+---
+id: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core
+name: fix_protocol_core
+title: FIX Latest core
+description: >-
+  The shared parts of this project's model of FIX Latest: the version and
+  extension pack every element records, the base all FIX elements share, and
+  how FIX groups its messages by section and category.
+version: FIX.Latest_EP312
+source: https://github.com/FIXTradingCommunity/orchestrations/blob/cd24169a2abd8daba7c360987c7a46ca11873a12/FIX%20Standard/OrchestraFIXLatest.xml
+license: Apache-2.0
+see_also:
+  - https://lmodel.github.io/fix-protocol
+prefixes:
+  fix_protocol: https://w3id.org/lmodel/fix-protocol/
+  fix_section: https://w3id.org/lmodel/fix-protocol/section/
+  fix_category: https://w3id.org/lmodel/fix-protocol/category/
+  fix_orchestra: https://w3id.org/lmodel/fix-orchestra/
+  fixr: http://fixprotocol.io/2020/orchestra/repository/
+  linkml: https://w3id.org/linkml/
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: fix_protocol
+default_range: string
+
+imports:
+  - linkml:types
+
+types:
+
+  fix_version:
+    title: FIX Version
+    description: >-
+      A FIX version, such as FIX.4.4, FIX.5.0SP2 or FIX.Latest.
+    typeof: string
+    base: str
+    uri: xsd:string
+    pattern: >-
+      ^(FIX\.2\.7|FIX\.3\.0|FIX\.4\.[0-4]|(FIX\.Latest|FIX\.5\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\.1\.1|[0-9]+\.[0-9]+|[0-9]{8})$
+    exact_mappings:
+      - fixr:Version_t
+    comments:
+      - The pattern is Orchestra 1.0's for a version, anchored at both ends.
+
+  fix_extension_pack:
+    title: Extension Pack Number
+    description: >-
+      The number of a FIX extension pack. FIX Latest changes one extension pack
+      at a time.
+    typeof: integer
+    base: int
+    uri: xsd:integer
+    minimum_value: -1
+    exact_mappings:
+      - fixr:EP_t
+    comments:
+      - >-
+        FIX Latest writes -1 on some elements that FIX 4.4 and FIX 5.0 added,
+        and states nothing about what the value means.
+
+  fix_date:
+    title: Date
+    description: A date as the repository's metadata writes it, year first.
+    typeof: string
+    base: str
+    uri: xsd:date
+    pattern: ^[0-9]{4}-[0-9]{2}-[0-9]{2}$
+    comments:
+      - LinkML's date type asks a JSON Schema format checker, which many validators leave off.
+
+  fix_name:
+    title: FIX Name
+    description: >-
+      A name as FIX writes one: a letter, then letters, digits and underscores.
+    typeof: string
+    base: str
+    uri: xsd:string
+    pattern: ^[A-Za-z][A-Za-z0-9_]{0,254}$
+    exact_mappings:
+      - fixr:Name_t
+
+enums:
+
+  FixPresence:
+    title: Presence
+    description: >-
+      Whether a message, component or group must carry a member, as Orchestra
+      1.0 lets FIX Latest say it.
+    comments:
+      - >-
+        FIX Latest states only required. A member with no presence is optional,
+        which is Orchestra 1.0's default.
+    permissible_values:
+      optional:
+        title: Optional
+        description: The member may be left out.
+      required:
+        title: Required
+        description: The member must be there.
+      forbidden:
+        title: Forbidden
+        description: The member must be left out.
+      ignored:
+        title: Ignored
+        description: A receiver disregards the member if it is there.
+      constant:
+        title: Constant
+        description: The member always takes one fixed value.
+
+  FixCategoryKind:
+    title: Category Kind
+    description: Whether a category groups messages or fields.
+    permissible_values:
+      Message:
+        title: Messages
+        description: The category groups messages and their components.
+      Field:
+        title: Fields
+        description: The category groups fields.
+
+  FixIncludeFile:
+    title: Included FIXML File
+    description: >-
+      Which shared FIXML schema file a category's own FIXML schema file brings
+      in.
+    permissible_values:
+      components:
+        title: Components
+        description: The file that defines the shared components.
+      fields:
+        title: Fields
+        description: The file that defines the fields.
+
+slots:
+
+  id:
+    title: Identifier
+    description: >-
+      The element's identifier: a prefix for its kind, then the number or name
+      FIX gives it, such as fix_field:55 or fix_category:Allocation.
+    identifier: true
+    range: uriorcurie
+    required: true
+
+  name:
+    title: Name
+    description: The element's name in FIX, such as NewOrderSingle or Symbol.
+    slot_uri: fix_protocol:name
+    range: fix_name
+    required: true
+    aliases:
+      - name
+    exact_mappings:
+      - fixr:name
+
+  abbr_name:
+    title: Abbreviated Name
+    description: The shorter name FIXML uses for the element's tag.
+    slot_uri: fix_protocol:abbr_name
+    range: fix_name
+    aliases:
+      - abbrName
+    exact_mappings:
+      - fixr:abbrName
+
+  fixml_file_name:
+    title: FIXML File Name
+    description: The FIXML schema file that holds the section's or category's elements, by its file name.
+    slot_uri: fix_protocol:fixml_file_name
+    range: fix_name
+    aliases:
+      - FIXMLFileName
+    exact_mappings:
+      - fixr:FIXMLFileName
+
+  fixml_not_required:
+    title: Not Required in FIXML
+    description: >-
+      True when the element is left out of FIXML, FIX's XML encoding.
+    slot_uri: fix_protocol:fixml_not_required
+    range: boolean
+    aliases:
+      - notReqXML
+    comments:
+      - >-
+        FIX Latest writes it in a FIXML annotation, the only kind of
+        application information the file carries.
+
+  added_in:
+    title: Added In
+    description: The FIX version that added the element.
+    slot_uri: fix_protocol:added_in
+    range: fix_version
+    aliases:
+      - added
+    exact_mappings:
+      - fixr:added
+
+  added_in_ep:
+    title: Added In Extension Pack
+    description: The extension pack that added the element.
+    slot_uri: fix_protocol:added_in_ep
+    range: fix_extension_pack
+    aliases:
+      - addedEP
+    exact_mappings:
+      - fixr:addedEP
+
+  updated_in:
+    title: Last Updated In
+    description: The FIX version that last changed the element.
+    slot_uri: fix_protocol:updated_in
+    range: fix_version
+    aliases:
+      - updated
+    exact_mappings:
+      - fixr:updated
+
+  updated_in_ep:
+    title: Last Updated In Extension Pack
+    description: The extension pack that last changed the element.
+    slot_uri: fix_protocol:updated_in_ep
+    range: fix_extension_pack
+    aliases:
+      - updatedEP
+    exact_mappings:
+      - fixr:updatedEP
+
+  deprecated_in:
+    title: Deprecated In
+    description: The FIX version that deprecated the element.
+    slot_uri: fix_protocol:deprecated_in
+    range: fix_version
+    aliases:
+      - deprecated
+    exact_mappings:
+      - fixr:deprecated
+
+  deprecated_in_ep:
+    title: Deprecated In Extension Pack
+    description: The extension pack that deprecated the element.
+    slot_uri: fix_protocol:deprecated_in_ep
+    range: fix_extension_pack
+    aliases:
+      - deprecatedEP
+    exact_mappings:
+      - fixr:deprecatedEP
+
+  in_section:
+    title: Section
+    description: The section a category belongs to.
+    slot_uri: fix_protocol:in_section
+    range: FixSection
+    pattern: ^fix_section:[A-Za-z][A-Za-z0-9_]*$
+    aliases:
+      - section
+    exact_mappings:
+      - fixr:section
+
+  in_category:
+    title: Category
+    description: The category a message, component or group belongs to.
+    slot_uri: fix_protocol:in_category
+    range: FixCategory
+    pattern: ^fix_category:[A-Za-z][A-Za-z0-9_]*$
+    required: true
+    aliases:
+      - category
+    exact_mappings:
+      - fixr:category
+
+classes:
+
+  FixPedigreeMixin:
+    title: Pedigree
+    description: >-
+      When FIX added, last changed and deprecated an element, by version and
+      extension pack.
+    mixin: true
+    slots:
+      - added_in
+      - added_in_ep
+      - updated_in
+      - updated_in_ep
+      - deprecated_in
+      - deprecated_in_ep
+
+  FixElement:
+    title: FIX Element
+    description: An element of FIX Latest with an identifier and a name of its own.
+    abstract: true
+    mixins:
+      - FixPedigreeMixin
+    slots:
+      - id
+      - name
+
+  FixSection:
+    title: Section
+    description: >-
+      One of the five parts FIX divides its messages into by business area, such
+      as PreTrade.
+    is_a: FixElement
+    slots:
+      - fixml_file_name
+      - fixml_not_required
+    attributes:
+      section_order:
+        title: Display Order
+        description: Where the section comes in FIX's own order of sections, counting from 0.
+        range: integer
+        minimum_value: 0
+        aliases:
+          - displayOrder
+        exact_mappings:
+          - fixr:displayOrder
+    slot_usage:
+      id:
+        pattern: ^fix_section:[A-Za-z][A-Za-z0-9_]*$
+    exact_mappings:
+      - fix_orchestra:OrchestraSectionV10
+      - fixr:sectionType
+
+  FixCategory:
+    title: Category
+    description: >-
+      A group of messages within a section. Three categories sit in no section
+      and hold the shared components and the fields instead.
+    is_a: FixElement
+    slots:
+      - fixml_file_name
+      - in_section
+      - fixml_not_required
+    attributes:
+      category_kind:
+        title: Category Kind
+        description: Whether the category groups messages or fields.
+        range: FixCategoryKind
+        aliases:
+          - componentType
+        exact_mappings:
+          - fixr:componentType
+      include_file:
+        title: Included FIXML File
+        description: >-
+          The shared FIXML schema file that the category's own FIXML schema
+          file brings in.
+        range: FixIncludeFile
+        aliases:
+          - includeFile
+        exact_mappings:
+          - fixr:includeFile
+    slot_usage:
+      id:
+        pattern: ^fix_category:[A-Za-z][A-Za-z0-9_]*$
+    exact_mappings:
+      - fix_orchestra:OrchestraCategoryV10
+      - fixr:categoryType

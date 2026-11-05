@@ -1,0 +1,303 @@
+{
+   "@context": {
+      "xsd": "http://www.w3.org/2001/XMLSchema#",
+      "dcterms": "http://purl.org/dc/terms/",
+      "fix_category": "https://w3id.org/lmodel/fix-protocol/category/",
+      "fix_code": "https://w3id.org/lmodel/fix-protocol/code/",
+      "fix_code_set": "https://w3id.org/lmodel/fix-protocol/code_set/",
+      "fix_component": "https://w3id.org/lmodel/fix-protocol/component/",
+      "fix_datatype": "https://w3id.org/lmodel/fix-protocol/datatype/",
+      "fix_field": "https://w3id.org/lmodel/fix-protocol/field/",
+      "fix_group": "https://w3id.org/lmodel/fix-protocol/group/",
+      "fix_message": "https://w3id.org/lmodel/fix-protocol/message/",
+      "fix_orchestra": "https://w3id.org/lmodel/fix-orchestra/",
+      "fix_protocol": "https://w3id.org/lmodel/fix-protocol/",
+      "fix_section": "https://w3id.org/lmodel/fix-protocol/section/",
+      "fixr": "http://fixprotocol.io/2020/orchestra/repository/",
+      "linkml": "https://w3id.org/linkml/",
+      "skos": "http://www.w3.org/2004/02/skos/core#",
+      "@vocab": "https://w3id.org/lmodel/fix-protocol/",
+      "abbr_name": {
+         "@id": "abbr_name"
+      },
+      "added_in": {
+         "@id": "added_in"
+      },
+      "added_in_ep": {
+         "@type": "xsd:integer",
+         "@id": "added_in_ep"
+      },
+      "deprecated_in": {
+         "@id": "deprecated_in"
+      },
+      "deprecated_in_ep": {
+         "@type": "xsd:integer",
+         "@id": "deprecated_in_ep"
+      },
+      "fix_members": {
+         "@type": "@id",
+         "@id": "fix_members"
+      },
+      "category_kind": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "category_kind"
+      },
+      "include_file": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "include_file"
+      },
+      "id": "@id",
+      "code_group": {
+         "@id": "code_group"
+      },
+      "code_value": {
+         "@id": "code_value"
+      },
+      "sort_order": {
+         "@type": "xsd:integer",
+         "@id": "sort_order"
+      },
+      "code_set_datatype": {
+         "@type": "@id",
+         "@id": "code_set_datatype"
+      },
+      "fix_codes": {
+         "@type": "@id",
+         "@id": "fix_codes"
+      },
+      "base_type": {
+         "@type": "@id",
+         "@id": "base_type"
+      },
+      "mapped_datatypes": {
+         "@type": "@id",
+         "@id": "mapped_datatypes"
+      },
+      "base_category": {
+         "@type": "@id",
+         "@id": "base_category"
+      },
+      "base_category_abbr_name": {
+         "@id": "base_category_abbr_name"
+      },
+      "discriminator_field": {
+         "@type": "@id",
+         "@id": "discriminator_field"
+      },
+      "field_code_set": {
+         "@type": "@id",
+         "@id": "field_code_set"
+      },
+      "field_datatype": {
+         "@type": "@id",
+         "@id": "field_datatype"
+      },
+      "length_field": {
+         "@type": "@id",
+         "@id": "length_field"
+      },
+      "union_datatype": {
+         "@type": "@id",
+         "@id": "union_datatype"
+      },
+      "num_in_group": {
+         "@type": "@id",
+         "@id": "num_in_group"
+      },
+      "mapped_base": {
+         "@id": "mapped_base"
+      },
+      "mapped_builtin": {
+         "@type": "xsd:boolean",
+         "@id": "mapped_builtin"
+      },
+      "mapped_min_inclusive": {
+         "@id": "mapped_min_inclusive"
+      },
+      "mapped_pattern": {
+         "@id": "mapped_pattern"
+      },
+      "mapped_standard": {
+         "@id": "mapped_standard"
+      },
+      "fixml_inlined": {
+         "@type": "xsd:boolean",
+         "@id": "fixml_inlined"
+      },
+      "member_component": {
+         "@type": "@id",
+         "@id": "member_component"
+      },
+      "member_field": {
+         "@type": "@id",
+         "@id": "member_field"
+      },
+      "member_group": {
+         "@type": "@id",
+         "@id": "member_group"
+      },
+      "presence": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "presence"
+      },
+      "msg_type": {
+         "@id": "msg_type"
+      },
+      "fixml_file_name": {
+         "@id": "fixml_file_name"
+      },
+      "fixml_not_required": {
+         "@type": "xsd:boolean",
+         "@id": "fixml_not_required"
+      },
+      "count_field": {
+         "@type": "@id",
+         "@id": "count_field"
+      },
+      "fix_categories": {
+         "@type": "@id",
+         "@id": "fix_categories"
+      },
+      "fix_code_sets": {
+         "@type": "@id",
+         "@id": "fix_code_sets"
+      },
+      "fix_components": {
+         "@type": "@id",
+         "@id": "fix_components"
+      },
+      "fix_datatypes": {
+         "@type": "@id",
+         "@id": "fix_datatypes"
+      },
+      "fix_fields": {
+         "@type": "@id",
+         "@id": "fix_fields"
+      },
+      "fix_groups": {
+         "@type": "@id",
+         "@id": "fix_groups"
+      },
+      "fix_messages": {
+         "@type": "@id",
+         "@id": "fix_messages"
+      },
+      "fix_sections": {
+         "@type": "@id",
+         "@id": "fix_sections"
+      },
+      "metadata_conforms_to": {
+         "@id": "metadata_conforms_to"
+      },
+      "metadata_created": {
+         "@type": "xsd:date",
+         "@id": "metadata_created"
+      },
+      "metadata_creator": {
+         "@id": "metadata_creator"
+      },
+      "metadata_description": {
+         "@id": "metadata_description"
+      },
+      "metadata_format": {
+         "@id": "metadata_format"
+      },
+      "metadata_publisher": {
+         "@id": "metadata_publisher"
+      },
+      "metadata_rights": {
+         "@id": "metadata_rights"
+      },
+      "metadata_source": {
+         "@id": "metadata_source"
+      },
+      "metadata_title": {
+         "@id": "metadata_title"
+      },
+      "repository_name": {
+         "@id": "repository_name"
+      },
+      "repository_version": {
+         "@id": "repository_version"
+      },
+      "section_order": {
+         "@type": "xsd:integer",
+         "@id": "section_order"
+      },
+      "in_category": {
+         "@type": "@id",
+         "@id": "in_category"
+      },
+      "in_section": {
+         "@type": "@id",
+         "@id": "in_section"
+      },
+      "name": {
+         "@id": "name"
+      },
+      "updated_in": {
+         "@id": "updated_in"
+      },
+      "updated_in_ep": {
+         "@type": "xsd:integer",
+         "@id": "updated_in_ep"
+      },
+      "FixCategory": {
+         "@id": "FixCategory"
+      },
+      "FixCode": {
+         "@id": "FixCode"
+      },
+      "FixCodeSet": {
+         "@id": "FixCodeSet"
+      },
+      "FixComponent": {
+         "@id": "FixComponent"
+      },
+      "FixDatatype": {
+         "@id": "FixDatatype"
+      },
+      "FixElement": {
+         "@id": "FixElement"
+      },
+      "FixField": {
+         "@id": "FixField"
+      },
+      "FixGroup": {
+         "@id": "FixGroup"
+      },
+      "FixMappedDatatype": {
+         "@id": "FixMappedDatatype"
+      },
+      "FixMember": {
+         "@id": "FixMember"
+      },
+      "FixMessage": {
+         "@id": "FixMessage"
+      },
+      "FixNumInGroup": {
+         "@id": "FixNumInGroup"
+      },
+      "FixPedigreeMixin": {
+         "@id": "FixPedigreeMixin"
+      },
+      "FixRepository": {
+         "@id": "FixRepository"
+      },
+      "FixSection": {
+         "@id": "FixSection"
+      }
+   }
+}

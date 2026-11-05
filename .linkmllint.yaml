@@ -1,0 +1,10 @@
+# linkml-lint reads this file from the directory `just lint` runs in. The recommended rules
+# apply, with permissible values left out of the naming rule: a value keeps the text FIX
+# writes, such as Message and Field for a category's kind, so a record holds what the
+# Orchestra file holds. Class, slot, enum and type names keep the rule's usual form.
+extends: recommended
+rules:
+  standard_naming:
+    level: error
+    exclude_type:
+      - permissible_value

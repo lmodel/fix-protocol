@@ -1,0 +1,247 @@
+# metamodel_version: 1.12.0
+# version: FIX.Latest_EP312
+enum FixCategoryKind
+  {
+    Message
+    Field
+  }
+
+enum FixIncludeFile
+  {
+    components
+    fields
+  }
+
+enum FixPresence
+  {
+    optional
+    required
+    forbidden
+    ignored
+    constant
+  }
+
+type FixCategory
+  {
+    name: FixName!
+    addedIn: FixVersion
+    addedInEp: FixExtensionPack
+    updatedIn: FixVersion
+    updatedInEp: FixExtensionPack
+    deprecatedIn: FixVersion
+    deprecatedInEp: FixExtensionPack
+    fixmlFileName: FixName
+    inSection: FixSection
+    fixmlNotRequired: Boolean
+    categoryKind: FixCategoryKind
+    includeFile: FixIncludeFile
+    id: String!
+  }
+
+type FixCode
+  {
+    name: FixName!
+    addedIn: FixVersion
+    addedInEp: FixExtensionPack
+    updatedIn: FixVersion
+    updatedInEp: FixExtensionPack
+    deprecatedIn: FixVersion
+    deprecatedInEp: FixExtensionPack
+    codeValue: String!
+    sortOrder: Int
+    codeGroup: String
+    id: String!
+  }
+
+type FixCodeSet
+  {
+    name: FixName!
+    addedIn: FixVersion
+    addedInEp: FixExtensionPack
+    updatedIn: FixVersion
+    updatedInEp: FixExtensionPack
+    deprecatedIn: FixVersion
+    deprecatedInEp: FixExtensionPack
+    codeSetDatatype: FixDatatype!
+    fixCodes: [FixCode]!
+    id: String!
+  }
+
+type FixComponent
+  {
+    name: FixName!
+    addedIn: FixVersion
+    addedInEp: FixExtensionPack
+    updatedIn: FixVersion
+    updatedInEp: FixExtensionPack
+    deprecatedIn: FixVersion
+    deprecatedInEp: FixExtensionPack
+    abbrName: FixName
+    inCategory: FixCategory!
+    fixMembers: [FixMember]
+    fixmlNotRequired: Boolean
+    id: String!
+  }
+
+type FixDatatype
+  {
+    name: FixName!
+    addedIn: FixVersion
+    addedInEp: FixExtensionPack
+    updatedIn: FixVersion
+    updatedInEp: FixExtensionPack
+    deprecatedIn: FixVersion
+    deprecatedInEp: FixExtensionPack
+    baseType: FixDatatype
+    mappedDatatypes: [FixMappedDatatype]
+    id: String!
+  }
+
+type FixElement implements FixPedigreeMixin
+  {
+    id: String!
+    name: FixName!
+    addedIn: FixVersion
+    addedInEp: FixExtensionPack
+    updatedIn: FixVersion
+    updatedInEp: FixExtensionPack
+    deprecatedIn: FixVersion
+    deprecatedInEp: FixExtensionPack
+  }
+
+type FixField
+  {
+    name: FixName!
+    addedIn: FixVersion
+    addedInEp: FixExtensionPack
+    updatedIn: FixVersion
+    updatedInEp: FixExtensionPack
+    deprecatedIn: FixVersion
+    deprecatedInEp: FixExtensionPack
+    abbrName: FixName
+    fixmlNotRequired: Boolean
+    fieldDatatype: FixDatatype
+    fieldCodeSet: FixCodeSet
+    unionDatatype: FixDatatype
+    lengthField: FixField
+    discriminatorField: FixField
+    baseCategory: FixCategory
+    baseCategoryAbbrName: FixName
+    id: String!
+  }
+
+type FixGroup
+  {
+    name: FixName!
+    addedIn: FixVersion
+    addedInEp: FixExtensionPack
+    updatedIn: FixVersion
+    updatedInEp: FixExtensionPack
+    deprecatedIn: FixVersion
+    deprecatedInEp: FixExtensionPack
+    abbrName: FixName
+    inCategory: FixCategory!
+    fixMembers: [FixMember]!
+    numInGroup: FixNumInGroup!
+    id: String!
+  }
+
+type FixMappedDatatype
+  {
+    mappedStandard: String!
+    mappedBase: String
+    mappedBuiltin: Boolean
+    mappedMinInclusive: String
+    mappedPattern: String
+  }
+
+type FixMember implements FixPedigreeMixin
+  {
+    memberField: FixField
+    memberComponent: FixComponent
+    memberGroup: FixGroup
+    presence: FixPresence
+    fixmlInlined: Boolean
+    addedIn: FixVersion
+    addedInEp: FixExtensionPack
+    updatedIn: FixVersion
+    updatedInEp: FixExtensionPack
+    deprecatedIn: FixVersion
+    deprecatedInEp: FixExtensionPack
+  }
+
+type FixMessage
+  {
+    name: FixName!
+    addedIn: FixVersion
+    addedInEp: FixExtensionPack
+    updatedIn: FixVersion
+    updatedInEp: FixExtensionPack
+    deprecatedIn: FixVersion
+    deprecatedInEp: FixExtensionPack
+    abbrName: FixName
+    inCategory: FixCategory!
+    fixMembers: [FixMember]!
+    fixmlNotRequired: Boolean
+    msgType: String!
+    id: String!
+  }
+
+type FixNumInGroup implements FixPedigreeMixin
+  {
+    countField: FixField!
+    addedIn: FixVersion
+    addedInEp: FixExtensionPack
+    updatedIn: FixVersion
+    updatedInEp: FixExtensionPack
+    deprecatedIn: FixVersion
+    deprecatedInEp: FixExtensionPack
+  }
+
+interface FixPedigreeMixin
+  {
+    addedIn: FixVersion
+    addedInEp: FixExtensionPack
+    updatedIn: FixVersion
+    updatedInEp: FixExtensionPack
+    deprecatedIn: FixVersion
+    deprecatedInEp: FixExtensionPack
+  }
+
+type FixRepository
+  {
+    repositoryName: String!
+    repositoryVersion: FixVersion!
+    metadataTitle: String
+    metadataDescription: String
+    metadataCreator: String
+    metadataPublisher: String
+    metadataRights: String
+    metadataFormat: String
+    metadataConformsTo: String
+    metadataCreated: FixDate
+    metadataSource: String
+    fixSections: [FixSection]
+    fixCategories: [FixCategory]
+    fixDatatypes: [FixDatatype]
+    fixCodeSets: [FixCodeSet]
+    fixFields: [FixField]
+    fixComponents: [FixComponent]
+    fixGroups: [FixGroup]
+    fixMessages: [FixMessage]
+  }
+
+type FixSection
+  {
+    name: FixName!
+    addedIn: FixVersion
+    addedInEp: FixExtensionPack
+    updatedIn: FixVersion
+    updatedInEp: FixExtensionPack
+    deprecatedIn: FixVersion
+    deprecatedInEp: FixExtensionPack
+    fixmlFileName: FixName
+    fixmlNotRequired: Boolean
+    sectionOrder: Int
+    id: String!
+  }

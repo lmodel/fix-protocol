@@ -1,0 +1,234 @@
+---
+id: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_structure
+name: fix_protocol_structure
+title: FIX Latest message structure
+description: >-
+  How FIX Latest builds its messages: the messages, the components and
+  repeating groups they reuse, and the ordered members of each.
+version: FIX.Latest_EP312
+source: https://github.com/FIXTradingCommunity/orchestrations/blob/cd24169a2abd8daba7c360987c7a46ca11873a12/FIX%20Standard/OrchestraFIXLatest.xml
+license: Apache-2.0
+see_also:
+  - https://lmodel.github.io/fix-protocol
+prefixes:
+  fix_protocol: https://w3id.org/lmodel/fix-protocol/
+  fix_field: https://w3id.org/lmodel/fix-protocol/field/
+  fix_component: https://w3id.org/lmodel/fix-protocol/component/
+  fix_group: https://w3id.org/lmodel/fix-protocol/group/
+  fix_message: https://w3id.org/lmodel/fix-protocol/message/
+  fix_orchestra: https://w3id.org/lmodel/fix-orchestra/
+  fixr: http://fixprotocol.io/2020/orchestra/repository/
+  linkml: https://w3id.org/linkml/
+default_prefix: fix_protocol
+default_range: string
+
+imports:
+  - linkml:types
+  - ./fix_protocol_core
+  - ./fix_protocol_dictionary
+
+slots:
+
+  fix_members:
+    title: Members
+    description: >-
+      The fields, components and groups the element holds, in the order FIX
+      lists them.
+    slot_uri: fix_protocol:fix_members
+    range: FixMember
+    multivalued: true
+    inlined_as_list: true
+    comments:
+      - >-
+        A message lists its members in a structure element and a component or
+        a group lists them directly. The record lists them here in each case.
+
+classes:
+
+  FixMember:
+    title: Member
+    description: >-
+      One field, component or group in a message, component or group, and
+      whether it must be there.
+    mixins:
+      - FixPedigreeMixin
+    attributes:
+      member_field:
+        title: Field
+        description: The field this member is.
+        range: FixField
+        pattern: ^fix_field:[1-9][0-9]*$
+        aliases:
+          - fieldRef
+        exact_mappings:
+          - fixr:fieldRef
+      member_component:
+        title: Component
+        description: The component this member is.
+        range: FixComponent
+        pattern: ^fix_component:[1-9][0-9]*$
+        aliases:
+          - componentRef
+        exact_mappings:
+          - fixr:componentRef
+      member_group:
+        title: Group
+        description: The repeating group this member is.
+        range: FixGroup
+        pattern: ^fix_group:[1-9][0-9]*$
+        aliases:
+          - groupRef
+        exact_mappings:
+          - fixr:groupRef
+      presence:
+        title: Presence
+        description: Whether the member must be there. A member that states none is optional.
+        range: FixPresence
+        aliases:
+          - presence
+        exact_mappings:
+          - fixr:presence
+      fixml_inlined:
+        title: Inlined in FIXML
+        description: >-
+          True when FIXML writes the component's fields directly in the
+          enclosing element rather than in an element of its own.
+        range: boolean
+        aliases:
+          - inlined
+    exactly_one_of:
+      - slot_conditions:
+          member_field:
+            name: member_field
+            required: true
+          member_component:
+            name: member_component
+            value_presence: ABSENT
+          member_group:
+            name: member_group
+            value_presence: ABSENT
+      - slot_conditions:
+          member_field:
+            name: member_field
+            value_presence: ABSENT
+          member_component:
+            name: member_component
+            required: true
+          member_group:
+            name: member_group
+            value_presence: ABSENT
+      - slot_conditions:
+          member_field:
+            name: member_field
+            value_presence: ABSENT
+          member_component:
+            name: member_component
+            value_presence: ABSENT
+          member_group:
+            name: member_group
+            required: true
+    exact_mappings:
+      - fixr:fieldRefType
+      - fixr:componentRefType
+      - fixr:groupRefType
+    comments:
+      - >-
+        Orchestra gives the three kinds of member three elements of one shape.
+        The record gives each a key, and one member holds exactly one of them.
+
+  FixComponent:
+    title: Component
+    description: >-
+      A named block of fields, components and groups that messages share, such
+      as Instrument.
+    is_a: FixElement
+    slots:
+      - abbr_name
+      - in_category
+      - fix_members
+      - fixml_not_required
+    slot_usage:
+      id:
+        pattern: ^fix_component:[1-9][0-9]*$
+    exact_mappings:
+      - fix_orchestra:OrchestraComponentV10
+      - fixr:componentType
+
+  FixGroup:
+    title: Repeating Group
+    description: >-
+      A block of members that repeats in a message, with the field that
+      counts the repeats.
+    is_a: FixElement
+    slots:
+      - abbr_name
+      - in_category
+      - fix_members
+    attributes:
+      num_in_group:
+        title: Count Field
+        description: The field that states how many times the group repeats.
+        range: FixNumInGroup
+        required: true
+        inlined: true
+        aliases:
+          - numInGroup
+        exact_mappings:
+          - fixr:numInGroup
+    slot_usage:
+      id:
+        pattern: ^fix_group:[1-9][0-9]*$
+      fix_members:
+        required: true
+    exact_mappings:
+      - fix_orchestra:OrchestraGroupV10
+      - fixr:groupType
+
+  FixNumInGroup:
+    title: Count Field Reference
+    description: The field that counts a group's repeats, as the group names it.
+    mixins:
+      - FixPedigreeMixin
+    attributes:
+      count_field:
+        title: Field
+        description: The field that holds the count.
+        range: FixField
+        required: true
+        pattern: ^fix_field:[1-9][0-9]*$
+        aliases:
+          - id
+        exact_mappings:
+          - fixr:id
+    exact_mappings:
+      - fixr:numInGroupType
+
+  FixMessage:
+    title: Message
+    description: >-
+      A FIX message, known by its MsgType, such as D for NewOrderSingle, with
+      its members in order.
+    is_a: FixElement
+    slots:
+      - abbr_name
+      - in_category
+      - fix_members
+      - fixml_not_required
+    attributes:
+      msg_type:
+        title: MsgType
+        description: The value of field 35 that marks a message of this kind.
+        required: true
+        pattern: ^[0-9A-Za-z]{1,2}$
+        aliases:
+          - msgType
+        exact_mappings:
+          - fixr:msgType
+    slot_usage:
+      id:
+        pattern: ^fix_message:[1-9][0-9]*$
+      fix_members:
+        required: true
+    exact_mappings:
+      - fix_orchestra:OrchestraMessageV10
+      - fixr:messageType

@@ -1,0 +1,270 @@
+# metamodel_version: 1.12.0
+# version: FIX.Latest_EP312
+BASE <https://w3id.org/lmodel/fix-protocol/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX linkml: <https://w3id.org/linkml/>
+
+
+linkml:String xsd:string
+
+linkml:Integer xsd:integer
+
+linkml:Boolean xsd:boolean
+
+linkml:Float xsd:float
+
+linkml:Double xsd:double
+
+linkml:Decimal xsd:decimal
+
+linkml:Time xsd:time
+
+linkml:Date xsd:date
+
+linkml:Datetime xsd:dateTime
+
+linkml:DateOrDatetime linkml:DateOrDatetime
+
+linkml:Uriorcurie IRI
+
+linkml:Curie xsd:string
+
+linkml:Uri IRI
+
+linkml:Ncname xsd:string
+
+linkml:Objectidentifier IRI
+
+linkml:Nodeidentifier NONLITERAL
+
+linkml:Jsonpointer xsd:string
+
+linkml:Jsonpath xsd:string
+
+linkml:Sparqlpath xsd:string
+
+<FixVersion> xsd:string
+
+<FixExtensionPack> xsd:integer
+
+<FixDate> xsd:date
+
+<FixName> xsd:string
+
+<FixCategory> CLOSED {
+    (  $<FixCategory_tes> (  &<FixElement_tes> ;
+          rdf:type [ <FixElement> ] ? ;
+          <fixml_file_name> @<FixName> ? ;
+          <in_section> @<FixSection> ? ;
+          <fixml_not_required> @linkml:Boolean ? ;
+          <category_kind> [ <https://w3id.org/lmodel/fix-protocol/FixCategoryKind#Message>
+             <https://w3id.org/lmodel/fix-protocol/FixCategoryKind#Field> ] ? ;
+          <include_file> [ <https://w3id.org/lmodel/fix-protocol/FixIncludeFile#components>
+             <https://w3id.org/lmodel/fix-protocol/FixIncludeFile#fields> ] ?
+       ) ;
+       rdf:type [ <FixCategory> ]
+    )
+}
+
+<FixCode> CLOSED {
+    (  $<FixCode_tes> (  &<FixElement_tes> ;
+          rdf:type [ <FixElement> ] ? ;
+          <code_value> @linkml:String ;
+          <sort_order> @linkml:Integer ? ;
+          <code_group> @linkml:String ?
+       ) ;
+       rdf:type [ <FixCode> ]
+    )
+}
+
+<FixCodeSet> CLOSED {
+    (  $<FixCodeSet_tes> (  &<FixElement_tes> ;
+          rdf:type [ <FixElement> ] ? ;
+          <code_set_datatype> @<FixDatatype> ;
+          <fix_codes> @<FixCode> +
+       ) ;
+       rdf:type [ <FixCodeSet> ]
+    )
+}
+
+<FixComponent> CLOSED {
+    (  $<FixComponent_tes> (  &<FixElement_tes> ;
+          rdf:type [ <FixElement> ] ? ;
+          <abbr_name> @<FixName> ? ;
+          <in_category> @<FixCategory> ;
+          <fix_members> @<FixMember> * ;
+          <fixml_not_required> @linkml:Boolean ?
+       ) ;
+       rdf:type [ <FixComponent> ]
+    )
+}
+
+<FixDatatype> CLOSED {
+    (  $<FixDatatype_tes> (  &<FixElement_tes> ;
+          rdf:type [ <FixElement> ] ? ;
+          <base_type> @<FixDatatype> ? ;
+          <mapped_datatypes> @<FixMappedDatatype> *
+       ) ;
+       rdf:type [ <FixDatatype> ]
+    )
+}
+
+<FixElement>  (
+    @<FixCategory> OR @<FixCode> OR @<FixCodeSet> OR @<FixComponent> OR @<FixDatatype> OR @<FixField> OR @<FixGroup> OR
+    @<FixMessage> OR @<FixSection>
+)
+
+<FixElement_struct> {
+    (  $<FixElement_tes> (  &<FixPedigreeMixin_tes> ;
+          rdf:type [ <FixPedigreeMixin> ] ? ;
+          <name> @<FixName> ;
+          <added_in> @<FixVersion> ? ;
+          <added_in_ep> @<FixExtensionPack> ? ;
+          <updated_in> @<FixVersion> ? ;
+          <updated_in_ep> @<FixExtensionPack> ? ;
+          <deprecated_in> @<FixVersion> ? ;
+          <deprecated_in_ep> @<FixExtensionPack> ?
+       ) ;
+       rdf:type [ <FixElement> ]
+    )
+}
+
+<FixField> CLOSED {
+    (  $<FixField_tes> (  &<FixElement_tes> ;
+          rdf:type [ <FixElement> ] ? ;
+          <abbr_name> @<FixName> ? ;
+          <fixml_not_required> @linkml:Boolean ? ;
+          <field_datatype> @<FixDatatype> ? ;
+          <field_code_set> @<FixCodeSet> ? ;
+          <union_datatype> @<FixDatatype> ? ;
+          <length_field> @<FixField> ? ;
+          <discriminator_field> @<FixField> ? ;
+          <base_category> @<FixCategory> ? ;
+          <base_category_abbr_name> @<FixName> ?
+       ) ;
+       rdf:type [ <FixField> ]
+    )
+}
+
+<FixGroup> CLOSED {
+    (  $<FixGroup_tes> (  &<FixElement_tes> ;
+          rdf:type [ <FixElement> ] ? ;
+          <abbr_name> @<FixName> ? ;
+          <in_category> @<FixCategory> ;
+          <fix_members> @<FixMember> + ;
+          <num_in_group> @<FixNumInGroup>
+       ) ;
+       rdf:type [ <FixGroup> ]
+    )
+}
+
+<FixMappedDatatype> CLOSED {
+    (  $<FixMappedDatatype_tes> (  <mapped_standard> @linkml:String ;
+          <mapped_base> @linkml:String ? ;
+          <mapped_builtin> @linkml:Boolean ? ;
+          <mapped_min_inclusive> @linkml:String ? ;
+          <mapped_pattern> @linkml:String ?
+       ) ;
+       rdf:type [ <FixMappedDatatype> ] ?
+    )
+}
+
+<FixMember> CLOSED {
+    (  $<FixMember_tes> (  &<FixPedigreeMixin_tes> ;
+          rdf:type [ <FixPedigreeMixin> ] ? ;
+          <member_field> @<FixField> ? ;
+          <member_component> @<FixComponent> ? ;
+          <member_group> @<FixGroup> ? ;
+          <presence> [ <https://w3id.org/lmodel/fix-protocol/FixPresence#optional>
+             <https://w3id.org/lmodel/fix-protocol/FixPresence#required>
+             <https://w3id.org/lmodel/fix-protocol/FixPresence#forbidden>
+             <https://w3id.org/lmodel/fix-protocol/FixPresence#ignored> <https://w3id.org/lmodel/fix-protocol/FixPresence#constant>
+             ] ? ;
+          <fixml_inlined> @linkml:Boolean ? ;
+          <added_in> @<FixVersion> ? ;
+          <added_in_ep> @<FixExtensionPack> ? ;
+          <updated_in> @<FixVersion> ? ;
+          <updated_in_ep> @<FixExtensionPack> ? ;
+          <deprecated_in> @<FixVersion> ? ;
+          <deprecated_in_ep> @<FixExtensionPack> ?
+       ) ;
+       rdf:type [ <FixMember> ] ?
+    )
+}
+
+<FixMessage> CLOSED {
+    (  $<FixMessage_tes> (  &<FixElement_tes> ;
+          rdf:type [ <FixElement> ] ? ;
+          <abbr_name> @<FixName> ? ;
+          <in_category> @<FixCategory> ;
+          <fix_members> @<FixMember> + ;
+          <fixml_not_required> @linkml:Boolean ? ;
+          <msg_type> @linkml:String
+       ) ;
+       rdf:type [ <FixMessage> ]
+    )
+}
+
+<FixNumInGroup> CLOSED {
+    (  $<FixNumInGroup_tes> (  &<FixPedigreeMixin_tes> ;
+          rdf:type [ <FixPedigreeMixin> ] ? ;
+          <count_field> @<FixField> ;
+          <added_in> @<FixVersion> ? ;
+          <added_in_ep> @<FixExtensionPack> ? ;
+          <updated_in> @<FixVersion> ? ;
+          <updated_in_ep> @<FixExtensionPack> ? ;
+          <deprecated_in> @<FixVersion> ? ;
+          <deprecated_in_ep> @<FixExtensionPack> ?
+       ) ;
+       rdf:type [ <FixNumInGroup> ] ?
+    )
+}
+
+<FixPedigreeMixin> {
+    (  $<FixPedigreeMixin_tes> (  <added_in> @<FixVersion> ? ;
+          <added_in_ep> @<FixExtensionPack> ? ;
+          <updated_in> @<FixVersion> ? ;
+          <updated_in_ep> @<FixExtensionPack> ? ;
+          <deprecated_in> @<FixVersion> ? ;
+          <deprecated_in_ep> @<FixExtensionPack> ?
+       ) ;
+       rdf:type [ <FixPedigreeMixin> ] ?
+    )
+}
+
+<FixRepository> CLOSED {
+    (  $<FixRepository_tes> (  <repository_name> @linkml:String ;
+          <repository_version> @<FixVersion> ;
+          <metadata_title> @linkml:String ? ;
+          <metadata_description> @linkml:String ? ;
+          <metadata_creator> @linkml:String ? ;
+          <metadata_publisher> @linkml:String ? ;
+          <metadata_rights> @linkml:String ? ;
+          <metadata_format> @linkml:String ? ;
+          <metadata_conforms_to> @linkml:String ? ;
+          <metadata_created> @<FixDate> ? ;
+          <metadata_source> @linkml:String ? ;
+          <fix_sections> @<FixSection> * ;
+          <fix_categories> @<FixCategory> * ;
+          <fix_datatypes> @<FixDatatype> * ;
+          <fix_code_sets> @<FixCodeSet> * ;
+          <fix_fields> @<FixField> * ;
+          <fix_components> @<FixComponent> * ;
+          <fix_groups> @<FixGroup> * ;
+          <fix_messages> @<FixMessage> *
+       ) ;
+       rdf:type [ <FixRepository> ] ?
+    )
+}
+
+<FixSection> CLOSED {
+    (  $<FixSection_tes> (  &<FixElement_tes> ;
+          rdf:type [ <FixElement> ] ? ;
+          <fixml_file_name> @<FixName> ? ;
+          <fixml_not_required> @linkml:Boolean ? ;
+          <section_order> @linkml:Integer ?
+       ) ;
+       rdf:type [ <FixSection> ]
+    )
+}

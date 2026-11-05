@@ -1,0 +1,218 @@
+---
+id: https://w3id.org/lmodel/fix-protocol
+name: fix_protocol
+title: FIX Latest
+description: >-
+  A LinkML model of FIX Latest, the application layer of the Financial
+  Information eXchange (FIX) protocol that the FIX Trading Community
+  maintains. It holds every section, category, datatype, code set, field,
+  component, repeating group and message of FIX Latest as a record, with the
+  version and extension pack that added and last changed each one. The records
+  keep FIX's names, numbers and codes and none of its descriptive text.
+version: FIX.Latest_EP312
+source: https://github.com/FIXTradingCommunity/orchestrations/blob/cd24169a2abd8daba7c360987c7a46ca11873a12/FIX%20Standard/OrchestraFIXLatest.xml
+license: Apache-2.0
+keywords:
+  - FIX
+  - FIX Latest
+  - financial messaging
+  - trading
+  - Orchestra
+see_also:
+  - https://lmodel.github.io/fix-protocol
+  - https://github.com/FIXTradingCommunity/orchestrations
+annotations:
+  upstream_repository: https://github.com/FIXTradingCommunity/orchestrations
+  upstream_commit: cd24169a2abd8daba7c360987c7a46ca11873a12
+  upstream_created: "2026-09-08"
+  upstream_license: Apache-2.0
+comments:
+  - >-
+    The version is the extension pack the catalogue renders. upstream/ holds
+    FIX Latest's Orchestra file unchanged, scripts/fix_latest_to_records.py
+    writes the catalogue from it, and scripts/check_upstream_release.py reports
+    when FIX publishes another.
+# Every prefix the data's CURIEs use. The JSON-LD context takes its prefixes from this file
+# alone, and a record's CURIE under any other would not expand.
+prefixes:
+  fix_protocol: https://w3id.org/lmodel/fix-protocol/
+  fix_section: https://w3id.org/lmodel/fix-protocol/section/
+  fix_category: https://w3id.org/lmodel/fix-protocol/category/
+  fix_datatype: https://w3id.org/lmodel/fix-protocol/datatype/
+  fix_code_set: https://w3id.org/lmodel/fix-protocol/code_set/
+  fix_code: https://w3id.org/lmodel/fix-protocol/code/
+  fix_field: https://w3id.org/lmodel/fix-protocol/field/
+  fix_component: https://w3id.org/lmodel/fix-protocol/component/
+  fix_group: https://w3id.org/lmodel/fix-protocol/group/
+  fix_message: https://w3id.org/lmodel/fix-protocol/message/
+  fix_orchestra: https://w3id.org/lmodel/fix-orchestra/
+  fixr: http://fixprotocol.io/2020/orchestra/repository/
+  dcterms: http://purl.org/dc/terms/
+  linkml: https://w3id.org/linkml/
+default_prefix: fix_protocol
+default_range: string
+
+imports:
+  - linkml:types
+  - ./fix_protocol_core
+  - ./fix_protocol_dictionary
+  - ./fix_protocol_structure
+
+classes:
+
+  FixRepository:
+    title: FIX Latest Catalogue
+    description: >-
+      One file of the catalogue: the edition it renders, with some kinds of
+      FIX Latest's elements.
+    tree_root: true
+    attributes:
+      repository_name:
+        title: Repository Name
+        description: The name FIX gives the repository, FIX.Latest.
+        required: true
+        equals_string: FIX.Latest
+        aliases:
+          - name
+        exact_mappings:
+          - fixr:name
+      repository_version:
+        title: Edition
+        description: The extension pack the repository stands at, such as FIX.Latest_EP312.
+        required: true
+        range: fix_version
+        aliases:
+          - version
+        exact_mappings:
+          - fixr:version
+      metadata_title:
+        title: Title
+        description: The title the repository's metadata gives.
+        aliases:
+          - title
+        exact_mappings:
+          - dcterms:title
+      metadata_description:
+        title: Edition Statement
+        description: The metadata's one-line statement of which extension pack the file holds.
+        aliases:
+          - description
+        exact_mappings:
+          - dcterms:description
+      metadata_creator:
+        title: Creator
+        description: Who made the repository, by its metadata.
+        aliases:
+          - creator
+        exact_mappings:
+          - dcterms:creator
+      metadata_publisher:
+        title: Publisher
+        description: Who published the repository, by its metadata.
+        aliases:
+          - publisher
+        exact_mappings:
+          - dcterms:publisher
+      metadata_rights:
+        title: Rights Statement
+        description: The rights line in the repository's metadata, word for word.
+        aliases:
+          - rights
+        exact_mappings:
+          - dcterms:rights
+      metadata_format:
+        title: Format
+        description: The media type of the repository file.
+        aliases:
+          - format
+        exact_mappings:
+          - dcterms:format
+      metadata_conforms_to:
+        title: Conforms To
+        description: The Orchestra version the repository file follows.
+        aliases:
+          - conformsTo
+        exact_mappings:
+          - dcterms:conformsTo
+      metadata_created:
+        title: Created
+        description: The date the repository file was made.
+        range: fix_date
+        aliases:
+          - created
+        exact_mappings:
+          - dcterms:created
+      metadata_source:
+        title: Source
+        description: The tool or source the metadata names for the file.
+        aliases:
+          - source
+        exact_mappings:
+          - dcterms:source
+      fix_sections:
+        title: Sections
+        description: The sections, in FIX's order.
+        range: FixSection
+        multivalued: true
+        inlined_as_list: true
+        aliases:
+          - sections
+      fix_categories:
+        title: Categories
+        description: The categories, in FIX's order.
+        range: FixCategory
+        multivalued: true
+        inlined_as_list: true
+        aliases:
+          - categories
+      fix_datatypes:
+        title: Datatypes
+        description: The datatypes, in FIX's order.
+        range: FixDatatype
+        multivalued: true
+        inlined_as_list: true
+        aliases:
+          - datatypes
+      fix_code_sets:
+        title: Code Sets
+        description: The code sets, in FIX's order.
+        range: FixCodeSet
+        multivalued: true
+        inlined_as_list: true
+        aliases:
+          - codeSets
+      fix_fields:
+        title: Fields
+        description: The fields, in FIX's order.
+        range: FixField
+        multivalued: true
+        inlined_as_list: true
+        aliases:
+          - fields
+      fix_components:
+        title: Components
+        description: The components, in FIX's order.
+        range: FixComponent
+        multivalued: true
+        inlined_as_list: true
+        aliases:
+          - components
+      fix_groups:
+        title: Repeating Groups
+        description: The repeating groups, in FIX's order.
+        range: FixGroup
+        multivalued: true
+        inlined_as_list: true
+        aliases:
+          - groups
+      fix_messages:
+        title: Messages
+        description: The messages, in FIX's order.
+        range: FixMessage
+        multivalued: true
+        inlined_as_list: true
+        aliases:
+          - messages
+    exact_mappings:
+      - fix_orchestra:OrchestraRepositoryV10
+      - fixr:repository

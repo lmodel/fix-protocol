@@ -1,0 +1,1693 @@
+{
+    "$defs": {
+        "FixCategory": {
+            "additionalProperties": false,
+            "description": "A group of messages within a section, or one of the groups that hold the shared components and the fields.",
+            "properties": {
+                "added_in": {
+                    "description": "The FIX version that added the element.",
+                    "pattern": "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "added_in_ep": {
+                    "description": "The extension pack that added the element.",
+                    "minimum": -1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "category_kind": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/FixCategoryKind"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Whether the category groups messages or fields."
+                },
+                "deprecated_in": {
+                    "description": "The FIX version that deprecated the element.",
+                    "pattern": "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "deprecated_in_ep": {
+                    "description": "The extension pack that deprecated the element.",
+                    "minimum": -1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "fixml_file_name": {
+                    "description": "The name of the FIXML schema file that holds the section's or category's elements.",
+                    "pattern": "^[A-Za-z][A-Za-z0-9_]{0,254}$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "fixml_not_required": {
+                    "description": "True when the element is left out of FIXML, FIX's XML encoding.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation.",
+                    "pattern": "^fix_category:[A-Za-z][A-Za-z0-9_]*$",
+                    "type": "string"
+                },
+                "in_section": {
+                    "description": "The section a category belongs to.",
+                    "pattern": "^fix_section:[A-Za-z][A-Za-z0-9_]*$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "include_file": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/FixIncludeFile"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The shared FIXML schema file that the category's own FIXML schema file brings in."
+                },
+                "name": {
+                    "description": "The element's name in FIX, such as NewOrderSingle or Symbol.",
+                    "pattern": "^[A-Za-z][A-Za-z0-9_]{0,254}$",
+                    "type": "string"
+                },
+                "updated_in": {
+                    "description": "The FIX version that last changed the element.",
+                    "pattern": "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "updated_in_ep": {
+                    "description": "The extension pack that last changed the element.",
+                    "minimum": -1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "FixCategory",
+            "type": "object"
+        },
+        "FixCategoryKind": {
+            "description": "Whether a category groups messages or fields.",
+            "enum": [
+                "Message",
+                "Field"
+            ],
+            "title": "FixCategoryKind",
+            "type": "string"
+        },
+        "FixCode": {
+            "additionalProperties": false,
+            "description": "One value of a code set, with its name, such as 1 for Buy.",
+            "properties": {
+                "added_in": {
+                    "description": "The FIX version that added the element.",
+                    "pattern": "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "added_in_ep": {
+                    "description": "The extension pack that added the element.",
+                    "minimum": -1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "code_group": {
+                    "description": "A label that groups some codes of a large set, such as one asset class.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "code_value": {
+                    "description": "The value as it travels on the wire.",
+                    "pattern": "^\\S+$",
+                    "type": "string"
+                },
+                "deprecated_in": {
+                    "description": "The FIX version that deprecated the element.",
+                    "pattern": "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "deprecated_in_ep": {
+                    "description": "The extension pack that deprecated the element.",
+                    "minimum": -1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation.",
+                    "pattern": "^fix_code:[1-9][0-9]*$",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The element's name in FIX, such as NewOrderSingle or Symbol.",
+                    "pattern": "^[A-Za-z][A-Za-z0-9_]{0,254}$",
+                    "type": "string"
+                },
+                "sort_order": {
+                    "description": "Where the code comes when FIX lists the set.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "updated_in": {
+                    "description": "The FIX version that last changed the element.",
+                    "pattern": "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "updated_in_ep": {
+                    "description": "The extension pack that last changed the element.",
+                    "minimum": -1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "code_value",
+                "id",
+                "name"
+            ],
+            "title": "FixCode",
+            "type": "object"
+        },
+        "FixCodeSet": {
+            "additionalProperties": false,
+            "description": "A list of the values a field may take, each a code with a name, such as the sides of an order.",
+            "properties": {
+                "added_in": {
+                    "description": "The FIX version that added the element.",
+                    "pattern": "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "added_in_ep": {
+                    "description": "The extension pack that added the element.",
+                    "minimum": -1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "code_set_datatype": {
+                    "description": "The datatype of the codes' values.",
+                    "pattern": "^fix_datatype:[A-Za-z][A-Za-z0-9_]*$",
+                    "type": "string"
+                },
+                "deprecated_in": {
+                    "description": "The FIX version that deprecated the element.",
+                    "pattern": "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "deprecated_in_ep": {
+                    "description": "The extension pack that deprecated the element.",
+                    "minimum": -1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "fix_codes": {
+                    "description": "The codes of the set, in FIX's order.",
+                    "items": {
+                        "$ref": "#/$defs/FixCode"
+                    },
+                    "type": "array"
+                },
+                "id": {
+                    "description": "The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation.",
+                    "pattern": "^fix_code_set:[1-9][0-9]*$",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The element's name in FIX, such as NewOrderSingle or Symbol.",
+                    "pattern": "^[A-Za-z][A-Za-z0-9_]{0,254}$",
+                    "type": "string"
+                },
+                "updated_in": {
+                    "description": "The FIX version that last changed the element.",
+                    "pattern": "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "updated_in_ep": {
+                    "description": "The extension pack that last changed the element.",
+                    "minimum": -1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "code_set_datatype",
+                "fix_codes",
+                "id",
+                "name"
+            ],
+            "title": "FixCodeSet",
+            "type": "object"
+        },
+        "FixComponent": {
+            "additionalProperties": false,
+            "description": "A named block of fields, components and groups that messages share, such as Instrument.",
+            "properties": {
+                "abbr_name": {
+                    "description": "The shorter name FIXML uses for the element's tag.",
+                    "pattern": "^[A-Za-z][A-Za-z0-9_]{0,254}$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "added_in": {
+                    "description": "The FIX version that added the element.",
+                    "pattern": "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "added_in_ep": {
+                    "description": "The extension pack that added the element.",
+                    "minimum": -1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "deprecated_in": {
+                    "description": "The FIX version that deprecated the element.",
+                    "pattern": "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "deprecated_in_ep": {
+                    "description": "The extension pack that deprecated the element.",
+                    "minimum": -1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "fix_members": {
+                    "description": "The fields, components and groups the element holds, in the order FIX lists them.",
+                    "items": {
+                        "$ref": "#/$defs/FixMember"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "fixml_not_required": {
+                    "description": "True when the element is left out of FIXML, FIX's XML encoding.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation.",
+                    "pattern": "^fix_component:[1-9][0-9]*$",
+                    "type": "string"
+                },
+                "in_category": {
+                    "description": "The category a message, component or group belongs to.",
+                    "pattern": "^fix_category:[A-Za-z][A-Za-z0-9_]*$",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The element's name in FIX, such as NewOrderSingle or Symbol.",
+                    "pattern": "^[A-Za-z][A-Za-z0-9_]{0,254}$",
+                    "type": "string"
+                },
+                "updated_in": {
+                    "description": "The FIX version that last changed the element.",
+                    "pattern": "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "updated_in_ep": {
+                    "description": "The extension pack that last changed the element.",
+                    "minimum": -1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "in_category",
+                "id",
+                "name"
+            ],
+            "title": "FixComponent",
+            "type": "object"
+        },
+        "FixDatatype": {
+            "additionalProperties": false,
+            "description": "A kind of value a field holds, such as int, Price or UTCTimestamp, with the XML Schema types it maps to.",
+            "properties": {
+                "added_in": {
+                    "description": "The FIX version that added the element.",
+                    "pattern": "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "added_in_ep": {
+                    "description": "The extension pack that added the element.",
+                    "minimum": -1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "base_type": {
+                    "description": "The datatype this one narrows.",
+                    "pattern": "^fix_datatype:[A-Za-z][A-Za-z0-9_]*$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "deprecated_in": {
+                    "description": "The FIX version that deprecated the element.",
+                    "pattern": "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "deprecated_in_ep": {
+                    "description": "The extension pack that deprecated the element.",
+                    "minimum": -1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation.",
+                    "pattern": "^fix_datatype:[A-Za-z][A-Za-z0-9_]*$",
+                    "type": "string"
+                },
+                "mapped_datatypes": {
+                    "description": "The types of other standards that FIX gives as this datatype's form.",
+                    "items": {
+                        "$ref": "#/$defs/FixMappedDatatype"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "The element's name in FIX, such as NewOrderSingle or Symbol.",
+                    "pattern": "^[A-Za-z][A-Za-z0-9_]{0,254}$",
+                    "type": "string"
+                },
+                "updated_in": {
+                    "description": "The FIX version that last changed the element.",
+                    "pattern": "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "updated_in_ep": {
+                    "description": "The extension pack that last changed the element.",
+                    "minimum": -1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "FixDatatype",
+            "type": "object"
+        },
+        "FixElement": {
+            "additionalProperties": false,
+            "description": "An element of FIX Latest with an identifier and a name of its own.",
+            "properties": {
+                "added_in": {
+                    "description": "The FIX version that added the element.",
+                    "pattern": "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "added_in_ep": {
+                    "description": "The extension pack that added the element.",
+                    "minimum": -1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "deprecated_in": {
+                    "description": "The FIX version that deprecated the element.",
+                    "pattern": "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "deprecated_in_ep": {
+                    "description": "The extension pack that deprecated the element.",
+                    "minimum": -1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The element's name in FIX, such as NewOrderSingle or Symbol.",
+                    "pattern": "^[A-Za-z][A-Za-z0-9_]{0,254}$",
+                    "type": "string"
+                },
+                "updated_in": {
+                    "description": "The FIX version that last changed the element.",
+                    "pattern": "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "updated_in_ep": {
+                    "description": "The extension pack that last changed the element.",
+                    "minimum": -1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "FixElement",
+            "type": "object"
+        },
+        "FixField": {
+            "additionalProperties": false,
+            "description": "A field of FIX, known by its tag number, such as 55 for Symbol, with the datatype or code set of its values.",
+            "oneOf": [
+                {
+                    "not": {
+                        "required": [
+                            "field_code_set"
+                        ]
+                    },
+                    "properties": {
+                        "field_code_set": {},
+                        "field_datatype": {}
+                    },
+                    "required": [
+                        "field_datatype"
+                    ]
+                },
+                {
+                    "not": {
+                        "required": [
+                            "field_datatype"
+                        ]
+                    },
+                    "properties": {
+                        "field_code_set": {},
+                        "field_datatype": {}
+                    },
+                    "required": [
+                        "field_code_set"
+                    ]
+                }
+            ],
+            "properties": {
+                "abbr_name": {
+                    "description": "The shorter name FIXML uses for the element's tag.",
+                    "pattern": "^[A-Za-z][A-Za-z0-9_]{0,254}$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "added_in": {
+                    "description": "The FIX version that added the element.",
+                    "pattern": "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "added_in_ep": {
+                    "description": "The extension pack that added the element.",
+                    "minimum": -1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "base_category": {
+                    "description": "The category whose FIXML element carries the field under the short name base_category_abbr_name gives.",
+                    "pattern": "^fix_category:[A-Za-z][A-Za-z0-9_]*$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "base_category_abbr_name": {
+                    "description": "The field's short name within its base category's FIXML element.",
+                    "pattern": "^[A-Za-z][A-Za-z0-9_]{0,254}$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "deprecated_in": {
+                    "description": "The FIX version that deprecated the element.",
+                    "pattern": "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "deprecated_in_ep": {
+                    "description": "The extension pack that deprecated the element.",
+                    "minimum": -1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "discriminator_field": {
+                    "description": "The field whose value says how to read this field's value.",
+                    "pattern": "^fix_field:[1-9][0-9]*$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "field_code_set": {
+                    "description": "The code set that lists the field's values.",
+                    "pattern": "^fix_code_set:[1-9][0-9]*$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "field_datatype": {
+                    "description": "The datatype of the field's values, when no code set lists them.",
+                    "pattern": "^fix_datatype:[A-Za-z][A-Za-z0-9_]*$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "fixml_not_required": {
+                    "description": "True when the element is left out of FIXML, FIX's XML encoding.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation.",
+                    "pattern": "^fix_field:[1-9][0-9]*$",
+                    "type": "string"
+                },
+                "length_field": {
+                    "description": "The field that gives this field's length in bytes.",
+                    "pattern": "^fix_field:[1-9][0-9]*$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "The element's name in FIX, such as NewOrderSingle or Symbol.",
+                    "pattern": "^[A-Za-z][A-Za-z0-9_]{0,254}$",
+                    "type": "string"
+                },
+                "union_datatype": {
+                    "description": "A datatype whose values the field also takes, beside those of its code set, such as a range of numbers kept for private use.",
+                    "pattern": "^fix_datatype:[A-Za-z][A-Za-z0-9_]*$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "updated_in": {
+                    "description": "The FIX version that last changed the element.",
+                    "pattern": "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "updated_in_ep": {
+                    "description": "The extension pack that last changed the element.",
+                    "minimum": -1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "FixField",
+            "type": "object"
+        },
+        "FixGroup": {
+            "additionalProperties": false,
+            "description": "A block of members that repeats in a message, with the field that counts the repeats.",
+            "properties": {
+                "abbr_name": {
+                    "description": "The shorter name FIXML uses for the element's tag.",
+                    "pattern": "^[A-Za-z][A-Za-z0-9_]{0,254}$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "added_in": {
+                    "description": "The FIX version that added the element.",
+                    "pattern": "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "added_in_ep": {
+                    "description": "The extension pack that added the element.",
+                    "minimum": -1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "deprecated_in": {
+                    "description": "The FIX version that deprecated the element.",
+                    "pattern": "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "deprecated_in_ep": {
+                    "description": "The extension pack that deprecated the element.",
+                    "minimum": -1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "fix_members": {
+                    "description": "The fields, components and groups the element holds, in the order FIX lists them.",
+                    "items": {
+                        "$ref": "#/$defs/FixMember"
+                    },
+                    "type": "array"
+                },
+                "id": {
+                    "description": "The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation.",
+                    "pattern": "^fix_group:[1-9][0-9]*$",
+                    "type": "string"
+                },
+                "in_category": {
+                    "description": "The category a message, component or group belongs to.",
+                    "pattern": "^fix_category:[A-Za-z][A-Za-z0-9_]*$",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The element's name in FIX, such as NewOrderSingle or Symbol.",
+                    "pattern": "^[A-Za-z][A-Za-z0-9_]{0,254}$",
+                    "type": "string"
+                },
+                "num_in_group": {
+                    "$ref": "#/$defs/FixNumInGroup",
+                    "description": "The field that states how many times the group repeats."
+                },
+                "updated_in": {
+                    "description": "The FIX version that last changed the element.",
+                    "pattern": "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "updated_in_ep": {
+                    "description": "The extension pack that last changed the element.",
+                    "minimum": -1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "in_category",
+                "fix_members",
+                "num_in_group",
+                "id",
+                "name"
+            ],
+            "title": "FixGroup",
+            "type": "object"
+        },
+        "FixIncludeFile": {
+            "description": "Which shared FIXML schema file a category's own FIXML schema file brings in.",
+            "enum": [
+                "components",
+                "fields"
+            ],
+            "title": "FixIncludeFile",
+            "type": "string"
+        },
+        "FixMappedDatatype": {
+            "additionalProperties": false,
+            "description": "The type of another standard that a FIX datatype takes, such as xs:decimal in XML Schema.",
+            "properties": {
+                "mapped_base": {
+                    "description": "The standard's type, such as xs:decimal.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "mapped_builtin": {
+                    "description": "True when the type is one the standard defines itself.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "mapped_min_inclusive": {
+                    "description": "The smallest value the type allows, as FIX writes it.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "mapped_pattern": {
+                    "description": "A regular expression in XML Schema's syntax that a value must match.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "mapped_standard": {
+                    "description": "The standard the type belongs to, such as XML.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "mapped_standard"
+            ],
+            "title": "FixMappedDatatype",
+            "type": "object"
+        },
+        "FixMember": {
+            "additionalProperties": false,
+            "description": "One field, component or group in a message, component or group, and whether it must be there.",
+            "oneOf": [
+                {
+                    "not": {
+                        "required": [
+                            "member_component",
+                            "member_group"
+                        ]
+                    },
+                    "properties": {
+                        "member_component": {},
+                        "member_field": {},
+                        "member_group": {}
+                    },
+                    "required": [
+                        "member_field"
+                    ]
+                },
+                {
+                    "not": {
+                        "required": [
+                            "member_field",
+                            "member_group"
+                        ]
+                    },
+                    "properties": {
+                        "member_component": {},
+                        "member_field": {},
+                        "member_group": {}
+                    },
+                    "required": [
+                        "member_component"
+                    ]
+                },
+                {
+                    "not": {
+                        "required": [
+                            "member_field",
+                            "member_component"
+                        ]
+                    },
+                    "properties": {
+                        "member_component": {},
+                        "member_field": {},
+                        "member_group": {}
+                    },
+                    "required": [
+                        "member_group"
+                    ]
+                }
+            ],
+            "properties": {
+                "added_in": {
+                    "description": "The FIX version that added the element.",
+                    "pattern": "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "added_in_ep": {
+                    "description": "The extension pack that added the element.",
+                    "minimum": -1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "deprecated_in": {
+                    "description": "The FIX version that deprecated the element.",
+                    "pattern": "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "deprecated_in_ep": {
+                    "description": "The extension pack that deprecated the element.",
+                    "minimum": -1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "fixml_inlined": {
+                    "description": "True when FIXML writes the component's fields directly in the enclosing element rather than in an element of its own.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "member_component": {
+                    "description": "The component this member is.",
+                    "pattern": "^fix_component:[1-9][0-9]*$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "member_field": {
+                    "description": "The field this member is.",
+                    "pattern": "^fix_field:[1-9][0-9]*$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "member_group": {
+                    "description": "The repeating group this member is.",
+                    "pattern": "^fix_group:[1-9][0-9]*$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "presence": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/FixPresence"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Whether the member must be there. A member that states none is optional."
+                },
+                "updated_in": {
+                    "description": "The FIX version that last changed the element.",
+                    "pattern": "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "updated_in_ep": {
+                    "description": "The extension pack that last changed the element.",
+                    "minimum": -1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                }
+            },
+            "title": "FixMember",
+            "type": "object"
+        },
+        "FixMessage": {
+            "additionalProperties": false,
+            "description": "A FIX message, known by its MsgType, such as D for NewOrderSingle, with its members in order.",
+            "properties": {
+                "abbr_name": {
+                    "description": "The shorter name FIXML uses for the element's tag.",
+                    "pattern": "^[A-Za-z][A-Za-z0-9_]{0,254}$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "added_in": {
+                    "description": "The FIX version that added the element.",
+                    "pattern": "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "added_in_ep": {
+                    "description": "The extension pack that added the element.",
+                    "minimum": -1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "deprecated_in": {
+                    "description": "The FIX version that deprecated the element.",
+                    "pattern": "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "deprecated_in_ep": {
+                    "description": "The extension pack that deprecated the element.",
+                    "minimum": -1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "fix_members": {
+                    "description": "The fields, components and groups the element holds, in the order FIX lists them.",
+                    "items": {
+                        "$ref": "#/$defs/FixMember"
+                    },
+                    "type": "array"
+                },
+                "fixml_not_required": {
+                    "description": "True when the element is left out of FIXML, FIX's XML encoding.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation.",
+                    "pattern": "^fix_message:[1-9][0-9]*$",
+                    "type": "string"
+                },
+                "in_category": {
+                    "description": "The category a message, component or group belongs to.",
+                    "pattern": "^fix_category:[A-Za-z][A-Za-z0-9_]*$",
+                    "type": "string"
+                },
+                "msg_type": {
+                    "description": "The value of field 35 that marks a message of this kind.",
+                    "pattern": "^[0-9A-Za-z]{1,2}$",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The element's name in FIX, such as NewOrderSingle or Symbol.",
+                    "pattern": "^[A-Za-z][A-Za-z0-9_]{0,254}$",
+                    "type": "string"
+                },
+                "updated_in": {
+                    "description": "The FIX version that last changed the element.",
+                    "pattern": "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "updated_in_ep": {
+                    "description": "The extension pack that last changed the element.",
+                    "minimum": -1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "in_category",
+                "fix_members",
+                "msg_type",
+                "id",
+                "name"
+            ],
+            "title": "FixMessage",
+            "type": "object"
+        },
+        "FixNumInGroup": {
+            "additionalProperties": false,
+            "description": "The field that counts a group's repeats, as the group names it.",
+            "properties": {
+                "added_in": {
+                    "description": "The FIX version that added the element.",
+                    "pattern": "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "added_in_ep": {
+                    "description": "The extension pack that added the element.",
+                    "minimum": -1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "count_field": {
+                    "description": "The field that holds the count.",
+                    "pattern": "^fix_field:[1-9][0-9]*$",
+                    "type": "string"
+                },
+                "deprecated_in": {
+                    "description": "The FIX version that deprecated the element.",
+                    "pattern": "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "deprecated_in_ep": {
+                    "description": "The extension pack that deprecated the element.",
+                    "minimum": -1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "updated_in": {
+                    "description": "The FIX version that last changed the element.",
+                    "pattern": "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "updated_in_ep": {
+                    "description": "The extension pack that last changed the element.",
+                    "minimum": -1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "count_field"
+            ],
+            "title": "FixNumInGroup",
+            "type": "object"
+        },
+        "FixPedigreeMixin": {
+            "additionalProperties": false,
+            "description": "When FIX added, last changed and deprecated an element, by version and extension pack.",
+            "properties": {
+                "added_in": {
+                    "description": "The FIX version that added the element.",
+                    "pattern": "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "added_in_ep": {
+                    "description": "The extension pack that added the element.",
+                    "minimum": -1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "deprecated_in": {
+                    "description": "The FIX version that deprecated the element.",
+                    "pattern": "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "deprecated_in_ep": {
+                    "description": "The extension pack that deprecated the element.",
+                    "minimum": -1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "updated_in": {
+                    "description": "The FIX version that last changed the element.",
+                    "pattern": "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "updated_in_ep": {
+                    "description": "The extension pack that last changed the element.",
+                    "minimum": -1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                }
+            },
+            "title": "FixPedigreeMixin",
+            "type": "object"
+        },
+        "FixPresence": {
+            "description": "Whether a message, component or group must carry a member, as Orchestra 1.0 lets FIX Latest say it.",
+            "enum": [
+                "optional",
+                "required",
+                "forbidden",
+                "ignored",
+                "constant"
+            ],
+            "title": "FixPresence",
+            "type": "string"
+        },
+        "FixRepository": {
+            "additionalProperties": false,
+            "description": "One file of the catalogue: the edition it renders and one or more kinds of FIX Latest's elements.",
+            "properties": {
+                "fix_categories": {
+                    "description": "The categories, in FIX's order.",
+                    "items": {
+                        "$ref": "#/$defs/FixCategory"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "fix_code_sets": {
+                    "description": "The code sets, in FIX's order.",
+                    "items": {
+                        "$ref": "#/$defs/FixCodeSet"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "fix_components": {
+                    "description": "The components, in FIX's order.",
+                    "items": {
+                        "$ref": "#/$defs/FixComponent"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "fix_datatypes": {
+                    "description": "The datatypes, in FIX's order.",
+                    "items": {
+                        "$ref": "#/$defs/FixDatatype"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "fix_fields": {
+                    "description": "The fields, in FIX's order.",
+                    "items": {
+                        "$ref": "#/$defs/FixField"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "fix_groups": {
+                    "description": "The repeating groups, in FIX's order.",
+                    "items": {
+                        "$ref": "#/$defs/FixGroup"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "fix_messages": {
+                    "description": "The messages, in FIX's order.",
+                    "items": {
+                        "$ref": "#/$defs/FixMessage"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "fix_sections": {
+                    "description": "The sections, in FIX's order.",
+                    "items": {
+                        "$ref": "#/$defs/FixSection"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "metadata_conforms_to": {
+                    "description": "The Orchestra version the repository file follows.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "metadata_created": {
+                    "description": "The date the repository file was made.",
+                    "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "metadata_creator": {
+                    "description": "Who made the repository, by its metadata.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "metadata_description": {
+                    "description": "The metadata's one-line statement of which extension pack the file holds.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "metadata_format": {
+                    "description": "The media type of the repository file.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "metadata_publisher": {
+                    "description": "Who published the repository, by its metadata.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "metadata_rights": {
+                    "description": "The rights line in the repository's metadata, word for word.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "metadata_source": {
+                    "description": "The tool or source the metadata names for the file.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "metadata_title": {
+                    "description": "The title the repository's metadata gives.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "repository_name": {
+                    "const": "FIX.Latest",
+                    "description": "The name FIX gives the repository, FIX.Latest.",
+                    "type": "string"
+                },
+                "repository_version": {
+                    "description": "The extension pack the repository stands at, such as FIX.Latest_EP312.",
+                    "pattern": "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "repository_name",
+                "repository_version"
+            ],
+            "title": "FixRepository",
+            "type": "object"
+        },
+        "FixSection": {
+            "additionalProperties": false,
+            "description": "One of the five parts of FIX by business area, such as pre-trade or post-trade.",
+            "properties": {
+                "added_in": {
+                    "description": "The FIX version that added the element.",
+                    "pattern": "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "added_in_ep": {
+                    "description": "The extension pack that added the element.",
+                    "minimum": -1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "deprecated_in": {
+                    "description": "The FIX version that deprecated the element.",
+                    "pattern": "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "deprecated_in_ep": {
+                    "description": "The extension pack that deprecated the element.",
+                    "minimum": -1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "fixml_file_name": {
+                    "description": "The name of the FIXML schema file that holds the section's or category's elements.",
+                    "pattern": "^[A-Za-z][A-Za-z0-9_]{0,254}$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "fixml_not_required": {
+                    "description": "True when the element is left out of FIXML, FIX's XML encoding.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation.",
+                    "pattern": "^fix_section:[A-Za-z][A-Za-z0-9_]*$",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The element's name in FIX, such as NewOrderSingle or Symbol.",
+                    "pattern": "^[A-Za-z][A-Za-z0-9_]{0,254}$",
+                    "type": "string"
+                },
+                "section_order": {
+                    "description": "Where the section comes in FIX's own order of sections, counting from 0.",
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "updated_in": {
+                    "description": "The FIX version that last changed the element.",
+                    "pattern": "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "updated_in_ep": {
+                    "description": "The extension pack that last changed the element.",
+                    "minimum": -1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "FixSection",
+            "type": "object"
+        }
+    },
+    "$id": "https://w3id.org/lmodel/fix-protocol",
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "One file of the catalogue: the edition it renders and one or more kinds of FIX Latest's elements.",
+    "metamodel_version": "1.12.0",
+    "properties": {
+        "fix_categories": {
+            "description": "The categories, in FIX's order.",
+            "items": {
+                "$ref": "#/$defs/FixCategory"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "fix_code_sets": {
+            "description": "The code sets, in FIX's order.",
+            "items": {
+                "$ref": "#/$defs/FixCodeSet"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "fix_components": {
+            "description": "The components, in FIX's order.",
+            "items": {
+                "$ref": "#/$defs/FixComponent"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "fix_datatypes": {
+            "description": "The datatypes, in FIX's order.",
+            "items": {
+                "$ref": "#/$defs/FixDatatype"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "fix_fields": {
+            "description": "The fields, in FIX's order.",
+            "items": {
+                "$ref": "#/$defs/FixField"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "fix_groups": {
+            "description": "The repeating groups, in FIX's order.",
+            "items": {
+                "$ref": "#/$defs/FixGroup"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "fix_messages": {
+            "description": "The messages, in FIX's order.",
+            "items": {
+                "$ref": "#/$defs/FixMessage"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "fix_sections": {
+            "description": "The sections, in FIX's order.",
+            "items": {
+                "$ref": "#/$defs/FixSection"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "metadata_conforms_to": {
+            "description": "The Orchestra version the repository file follows.",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "metadata_created": {
+            "description": "The date the repository file was made.",
+            "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "metadata_creator": {
+            "description": "Who made the repository, by its metadata.",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "metadata_description": {
+            "description": "The metadata's one-line statement of which extension pack the file holds.",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "metadata_format": {
+            "description": "The media type of the repository file.",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "metadata_publisher": {
+            "description": "Who published the repository, by its metadata.",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "metadata_rights": {
+            "description": "The rights line in the repository's metadata, word for word.",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "metadata_source": {
+            "description": "The tool or source the metadata names for the file.",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "metadata_title": {
+            "description": "The title the repository's metadata gives.",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "repository_name": {
+            "const": "FIX.Latest",
+            "description": "The name FIX gives the repository, FIX.Latest.",
+            "type": "string"
+        },
+        "repository_version": {
+            "description": "The extension pack the repository stands at, such as FIX.Latest_EP312.",
+            "pattern": "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$",
+            "type": "string"
+        }
+    },
+    "required": [
+        "repository_name",
+        "repository_version"
+    ],
+    "title": "fix_protocol",
+    "type": "object",
+    "version": "FIX.Latest_EP312"
+}
