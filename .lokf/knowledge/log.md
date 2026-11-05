@@ -2,6 +2,7 @@
 
 ## 2026-11-05
 
+* **Updated**: Rules beside the schema, which now lists the rules FIX Latest breaks.
 * **Added**: The FIX Latest LinkML schema.
 * **Added**: The core module.
 * **Added**: The data dictionary module.

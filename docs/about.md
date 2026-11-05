@@ -27,12 +27,18 @@ Nothing comes from fixtrading.org. The earlier schema described the online speci
 
 ## Rules beside the schema
 
-`tests/fix_rules.py` holds what the data keeps and no JSON Schema can state:
+`tests/fix_rules.py` checks what the data keeps and no JSON Schema can state:
 
-- references resolve;
-- names, tags and MsgTypes are unique;
-- an extension pack comes with its version;
-- each message starts with the standard header and ends with the standard trailer.
+- each identifier names one record, and each reference names a record that exists;
+- no two records of a kind share a name, no two messages share a MsgType, and no two codes of a set share a value or a name;
+- an extension pack comes with its version, and each code set, code, field, component, group and message states the version that added it;
+- each message starts with the standard header and ends with the standard trailer;
+- a raw-data field names the Length field that gives its length, and no other field names one;
+- the field that counts a group's repeats is a NumInGroup, or takes a code set of NumInGroup values;
+- a code set's number is the tag of a field that takes it, and some field takes every code set;
+- a code of a char, int or Boolean code set has a value of that datatype;
+- a category in a section groups messages, a message's category is in a section, and a category of fields holds no message, component or group;
+- a field gives a short name in a base category only when it names that category.
 
 FIX Latest breaks two of these rules, and `tests/upstream_departures.yaml` names both:
 

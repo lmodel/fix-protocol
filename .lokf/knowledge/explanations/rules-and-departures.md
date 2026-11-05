@@ -16,15 +16,21 @@ sources:
     title: Rules beside the schema
 generated:
   by: process:ktl-librarian
-  at: "2026-11-05T19:39:39Z"
+  at: "2026-11-05T19:50:21Z"
 status: draft
 ---
 
 # Rules beside the schema
 
-The rules hold what FIX's data keeps: references resolve; names, tags and MsgTypes are unique; an extension pack comes with its version; a raw-data field names its length field; and a code set's number is the tag of a field that takes it.[^tests-fix_rules.py]
+The rules check what FIX's data keeps and no JSON Schema can state.[^tests-fix_rules.py] Among them:
 
-FIX Latest breaks two of them, and the departures file names both.[^docs-about.md]
+- each reference names a record that exists;
+- names, MsgTypes and the codes of a set are unique;
+- each code set, code, field, component, group and message states the FIX version that added it;
+- each message opens with the standard header and closes with the standard trailer;
+- a raw-data field names the field that gives its length.
+
+FIX Latest breaks two of them, the third and the last, and the departures file names both.[^docs-about.md]
 
 [^tests-fix_rules.py]: tests/fix_rules.py, the module's description
 [^docs-about.md]: docs/about.md, Rules beside the schema
