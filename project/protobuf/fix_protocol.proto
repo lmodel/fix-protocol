@@ -2,7 +2,7 @@ syntax = "proto3";
 package fix_protocol;
 // metamodel_version: 1.12.0
 // version: FIX.Latest_EP312
-// A group of messages within a section, or one of the groups that hold the shared components and the fields.
+// A group of messages within a section. Three categories sit in no section and hold the shared components and the fields instead.
 message FixCategory {
   // The element's name in FIX, such as NewOrderSingle or Symbol.
   string name = 1;
@@ -18,7 +18,7 @@ message FixCategory {
   string deprecated_in = 6;
   // The extension pack that deprecated the element.
   int32 deprecated_in_ep = 7;
-  // The name of the FIXML schema file that holds the section's or category's elements.
+  // The FIXML schema file that holds the section's or category's elements, by its file name.
   string fixml_file_name = 8;
   // The section a category belongs to.
   FixSection in_section = 9;
@@ -311,7 +311,7 @@ message FixPedigreeMixin {
   // The extension pack that deprecated the element.
   int32 deprecated_in_ep = 6;
 }
-// One file of the catalogue: the edition it renders and one or more kinds of FIX Latest's elements.
+// One file of the catalogue: the edition it renders, with some kinds of FIX Latest's elements.
 message FixRepository {
   // The name FIX gives the repository, FIX.Latest.
   string repository_name = 1;
@@ -352,7 +352,7 @@ message FixRepository {
   // The messages, in FIX's order.
   repeated FixMessage fix_messages = 19;
 }
-// One of the five parts of FIX by business area, such as pre-trade or post-trade.
+// One of the five parts FIX divides its messages into by business area, such as PreTrade.
 message FixSection {
   // The element's name in FIX, such as NewOrderSingle or Symbol.
   string name = 1;
@@ -368,7 +368,7 @@ message FixSection {
   string deprecated_in = 6;
   // The extension pack that deprecated the element.
   int32 deprecated_in_ep = 7;
-  // The name of the FIXML schema file that holds the section's or category's elements.
+  // The FIXML schema file that holds the section's or category's elements, by its file name.
   string fixml_file_name = 8;
   // True when the element is left out of FIXML, FIX's XML encoding.
   bool fixml_not_required = 9;

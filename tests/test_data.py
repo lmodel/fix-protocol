@@ -83,7 +83,7 @@ def places(error):
 def test_the_example_folders_hold_examples():
     """The parametrized tests below pass on an empty folder, so this one does not."""
     assert len(VALID) >= 16, len(VALID)
-    assert len(INVALID) >= 30, len(INVALID)
+    assert len(INVALID) >= 29, len(INVALID)
     assert len(PROBLEM_INVALID) >= 13, len(PROBLEM_INVALID)
 
 

@@ -10,7 +10,7 @@ import java.util.List;
 import lombok.*;
 
 /**
-  One of the five parts of FIX by business area, such as pre-trade or post-trade.
+  One of the five parts FIX divides its messages into by business area, such as PreTrade.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)

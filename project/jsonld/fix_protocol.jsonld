@@ -100,6 +100,10 @@
     {
       "prefix_prefix": "linkml",
       "prefix_reference": "https://w3id.org/linkml/"
+    },
+    {
+      "prefix_prefix": "xsd",
+      "prefix_reference": "http://www.w3.org/2001/XMLSchema#"
     }
   ],
   "default_prefix": "fix_protocol",
@@ -416,7 +420,7 @@
     {
       "name": "fix_version",
       "definition_uri": "https://w3id.org/lmodel/fix-protocol/FixVersion",
-      "description": "A version of the FIX standard, such as FIX.4.4, FIX.5.0SP2 or FIX.Latest.",
+      "description": "A FIX version, such as FIX.4.4, FIX.5.0SP2 or FIX.Latest.",
       "title": "FIX Version",
       "comments": [
         "The pattern is Orchestra 1.0's for a version, anchored at both ends."
@@ -434,7 +438,7 @@
     {
       "name": "fix_extension_pack",
       "definition_uri": "https://w3id.org/lmodel/fix-protocol/FixExtensionPack",
-      "description": "The number of a FIX extension pack, the unit in which FIX Latest changes.",
+      "description": "The number of a FIX extension pack. FIX Latest changes one extension pack at a time.",
       "title": "Extension Pack Number",
       "comments": [
         "FIX Latest writes -1 on some elements that FIX 4.4 and FIX 5.0 added, and states nothing about what the value means."
@@ -627,7 +631,7 @@
     {
       "name": "fixml_file_name",
       "definition_uri": "https://w3id.org/lmodel/fix-protocol/fixml_file_name",
-      "description": "The name of the FIXML schema file that holds the section's or category's elements.",
+      "description": "The FIXML schema file that holds the section's or category's elements, by its file name.",
       "title": "FIXML File Name",
       "from_schema": "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core",
       "aliases": [
@@ -1518,7 +1522,6 @@
         "FixCodeSet"
       ],
       "range": "FixCode",
-      "required": true,
       "multivalued": true,
       "inlined": true,
       "inlined_as_list": true,
@@ -2161,7 +2164,7 @@
     {
       "name": "FixRepository",
       "definition_uri": "https://w3id.org/lmodel/fix-protocol/FixRepository",
-      "description": "One file of the catalogue: the edition it renders and one or more kinds of FIX Latest's elements.",
+      "description": "One file of the catalogue: the edition it renders, with some kinds of FIX Latest's elements.",
       "title": "FIX Latest Catalogue",
       "from_schema": "https://w3id.org/lmodel/fix-protocol",
       "exact_mappings": [
@@ -2475,7 +2478,7 @@
     {
       "name": "FixSection",
       "definition_uri": "https://w3id.org/lmodel/fix-protocol/FixSection",
-      "description": "One of the five parts of FIX by business area, such as pre-trade or post-trade.",
+      "description": "One of the five parts FIX divides its messages into by business area, such as PreTrade.",
       "title": "Section",
       "from_schema": "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core",
       "exact_mappings": [
@@ -2519,7 +2522,7 @@
     {
       "name": "FixCategory",
       "definition_uri": "https://w3id.org/lmodel/fix-protocol/FixCategory",
-      "description": "A group of messages within a section, or one of the groups that hold the shared components and the fields.",
+      "description": "A group of messages within a section. Three categories sit in no section and hold the shared components and the fields instead.",
       "title": "Category",
       "from_schema": "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core",
       "exact_mappings": [
@@ -2767,7 +2770,6 @@
             "fixr:code"
           ],
           "range": "FixCode",
-          "required": true,
           "multivalued": true,
           "inlined_as_list": true,
           "@type": "SlotDefinition"
@@ -3023,7 +3025,7 @@
         "Orchestra gives the three kinds of member three elements of one shape. The record gives each a key, and one member holds exactly one of them."
       ],
       "from_schema": "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_structure",
-      "exact_mappings": [
+      "close_mappings": [
         "fixr:fieldRefType",
         "fixr:componentRefType",
         "fixr:groupRefType"
@@ -3257,9 +3259,12 @@
       "definition_uri": "https://w3id.org/lmodel/fix-protocol/FixNumInGroup",
       "description": "The field that counts a group's repeats, as the group names it.",
       "title": "Count Field Reference",
+      "comments": [
+        "Orchestra 1.0 gives the count the shape of a field reference."
+      ],
       "from_schema": "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_structure",
-      "exact_mappings": [
-        "fixr:numInGroupType"
+      "close_mappings": [
+        "fixr:fieldRefType"
       ],
       "mixins": [
         "FixPedigreeMixin"
@@ -3343,8 +3348,8 @@
   ],
   "metamodel_version": "1.12.0",
   "source_file": "fix_protocol.yaml",
-  "source_file_date": "2026-11-05T19:18:34",
-  "source_file_size": 7049,
+  "source_file_date": "2026-11-05T19:27:16",
+  "source_file_size": 7085,
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/fix_protocol.context.jsonld",

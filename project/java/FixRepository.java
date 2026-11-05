@@ -10,7 +10,7 @@ import java.util.List;
 import lombok.*;
 
 /**
-  One file of the catalogue: the edition it renders and one or more kinds of FIX Latest's elements.
+  One file of the catalogue: the edition it renders, with some kinds of FIX Latest's elements.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)

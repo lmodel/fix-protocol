@@ -128,7 +128,9 @@ linkml_meta = LinkMLMeta({'annotations': {'upstream_commit': {'tag': 'upstream_c
                   'fixr': {'prefix_prefix': 'fixr',
                            'prefix_reference': 'http://fixprotocol.io/2020/orchestra/repository/'},
                   'linkml': {'prefix_prefix': 'linkml',
-                             'prefix_reference': 'https://w3id.org/linkml/'}},
+                             'prefix_reference': 'https://w3id.org/linkml/'},
+                  'xsd': {'prefix_prefix': 'xsd',
+                          'prefix_reference': 'http://www.w3.org/2001/XMLSchema#'}},
      'see_also': ['https://lmodel.github.io/fix-protocol',
                   'https://github.com/FIXTradingCommunity/orchestrations'],
      'source': 'https://github.com/FIXTradingCommunity/orchestrations/blob/cd24169a2abd8daba7c360987c7a46ca11873a12/FIX%20Standard/OrchestraFIXLatest.xml',
@@ -266,7 +268,7 @@ class FixElement(FixPedigreeMixin):
 
 class FixSection(FixElement):
     """
-    One of the five parts of FIX by business area, such as pre-trade or post-trade.
+    One of the five parts FIX divides its messages into by business area, such as PreTrade.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'exact_mappings': ['fix_orchestra:OrchestraSectionV10', 'fixr:sectionType'],
          'from_schema': 'https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core',
@@ -274,7 +276,7 @@ class FixSection(FixElement):
                                'pattern': '^fix_section:[A-Za-z][A-Za-z0-9_]*$'}},
          'title': 'Section'})
 
-    fixml_file_name: Optional[str] = Field(default=None, title="FIXML File Name", description="""The name of the FIXML schema file that holds the section's or category's elements.""", json_schema_extra = { "linkml_meta": {'aliases': ['FIXMLFileName'],
+    fixml_file_name: Optional[str] = Field(default=None, title="FIXML File Name", description="""The FIXML schema file that holds the section's or category's elements, by its file name.""", json_schema_extra = { "linkml_meta": {'aliases': ['FIXMLFileName'],
          'domain_of': ['FixSection', 'FixCategory'],
          'exact_mappings': ['fixr:FIXMLFileName'],
          'slot_uri': 'fix_protocol:fixml_file_name'} })
@@ -336,7 +338,7 @@ class FixSection(FixElement):
 
 class FixCategory(FixElement):
     """
-    A group of messages within a section, or one of the groups that hold the shared components and the fields.
+    A group of messages within a section. Three categories sit in no section and hold the shared components and the fields instead.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'exact_mappings': ['fix_orchestra:OrchestraCategoryV10', 'fixr:categoryType'],
          'from_schema': 'https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core',
@@ -344,7 +346,7 @@ class FixCategory(FixElement):
                                'pattern': '^fix_category:[A-Za-z][A-Za-z0-9_]*$'}},
          'title': 'Category'})
 
-    fixml_file_name: Optional[str] = Field(default=None, title="FIXML File Name", description="""The name of the FIXML schema file that holds the section's or category's elements.""", json_schema_extra = { "linkml_meta": {'aliases': ['FIXMLFileName'],
+    fixml_file_name: Optional[str] = Field(default=None, title="FIXML File Name", description="""The FIXML schema file that holds the section's or category's elements, by its file name.""", json_schema_extra = { "linkml_meta": {'aliases': ['FIXMLFileName'],
          'domain_of': ['FixSection', 'FixCategory'],
          'exact_mappings': ['fixr:FIXMLFileName'],
          'slot_uri': 'fix_protocol:fixml_file_name'} })
@@ -534,7 +536,7 @@ class FixCodeSet(FixElement):
     code_set_datatype: str = Field(default=..., title="Datatype", description="""The datatype of the codes' values.""", json_schema_extra = { "linkml_meta": {'aliases': ['type'],
          'domain_of': ['FixCodeSet'],
          'exact_mappings': ['fixr:type']} })
-    fix_codes: list[FixCode] = Field(default=..., title="Codes", description="""The codes of the set, in FIX's order.""", json_schema_extra = { "linkml_meta": {'aliases': ['code'],
+    fix_codes: Optional[list[FixCode]] = Field(default=None, title="Codes", description="""The codes of the set, in FIX's order.""", json_schema_extra = { "linkml_meta": {'aliases': ['code'],
          'domain_of': ['FixCodeSet'],
          'exact_mappings': ['fixr:code']} })
     id: str = Field(default=..., title="Identifier", description="""The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FixElement']} })
@@ -847,12 +849,12 @@ class FixMember(FixPedigreeMixin):
     """
     One field, component or group in a message, component or group, and whether it must be there.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'comments': ['Orchestra gives the three kinds of member three elements of one '
-                      'shape. The record gives each a key, and one member holds '
-                      'exactly one of them.'],
-         'exact_mappings': ['fixr:fieldRefType',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'close_mappings': ['fixr:fieldRefType',
                             'fixr:componentRefType',
                             'fixr:groupRefType'],
+         'comments': ['Orchestra gives the three kinds of member three elements of one '
+                      'shape. The record gives each a key, and one member holds '
+                      'exactly one of them.'],
          'exactly_one_of': [{'slot_conditions': {'member_component': {'name': 'member_component',
                                                                       'value_presence': 'ABSENT'},
                                                  'member_field': {'name': 'member_field',
@@ -1129,7 +1131,8 @@ class FixNumInGroup(FixPedigreeMixin):
     """
     The field that counts a group's repeats, as the group names it.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'exact_mappings': ['fixr:numInGroupType'],
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'close_mappings': ['fixr:fieldRefType'],
+         'comments': ['Orchestra 1.0 gives the count the shape of a field reference.'],
          'from_schema': 'https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_structure',
          'mixins': ['FixPedigreeMixin'],
          'title': 'Count Field Reference'})
@@ -1283,7 +1286,7 @@ class FixMessage(FixElement):
 
 class FixRepository(ConfiguredBaseModel):
     """
-    One file of the catalogue: the edition it renders and one or more kinds of FIX Latest's elements.
+    One file of the catalogue: the edition it renders, with some kinds of FIX Latest's elements.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'exact_mappings': ['fix_orchestra:OrchestraRepositoryV10', 'fixr:repository'],
          'from_schema': 'https://w3id.org/lmodel/fix-protocol',

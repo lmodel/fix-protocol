@@ -1,4 +1,4 @@
--- # Class: FixRepository Description: One file of the catalogue: the edition it renders and one or more kinds of FIX Latest's elements.
+-- # Class: FixRepository Description: One file of the catalogue: the edition it renders, with some kinds of FIX Latest's elements.
 --     * Slot: id
 --     * Slot: repository_name Description: The name FIX gives the repository, FIX.Latest.
 --     * Slot: repository_version Description: The extension pack the repository stands at, such as FIX.Latest_EP312.
@@ -28,8 +28,8 @@
 --     * Slot: updated_in_ep Description: The extension pack that last changed the element.
 --     * Slot: deprecated_in Description: The FIX version that deprecated the element.
 --     * Slot: deprecated_in_ep Description: The extension pack that deprecated the element.
--- # Class: FixSection Description: One of the five parts of FIX by business area, such as pre-trade or post-trade.
---     * Slot: fixml_file_name Description: The name of the FIXML schema file that holds the section's or category's elements.
+-- # Class: FixSection Description: One of the five parts FIX divides its messages into by business area, such as PreTrade.
+--     * Slot: fixml_file_name Description: The FIXML schema file that holds the section's or category's elements, by its file name.
 --     * Slot: fixml_not_required Description: True when the element is left out of FIXML, FIX's XML encoding.
 --     * Slot: section_order Description: Where the section comes in FIX's own order of sections, counting from 0.
 --     * Slot: id Description: The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation.
@@ -41,8 +41,8 @@
 --     * Slot: deprecated_in Description: The FIX version that deprecated the element.
 --     * Slot: deprecated_in_ep Description: The extension pack that deprecated the element.
 --     * Slot: FixRepository_id Description: Autocreated FK slot
--- # Class: FixCategory Description: A group of messages within a section, or one of the groups that hold the shared components and the fields.
---     * Slot: fixml_file_name Description: The name of the FIXML schema file that holds the section's or category's elements.
+-- # Class: FixCategory Description: A group of messages within a section. Three categories sit in no section and hold the shared components and the fields instead.
+--     * Slot: fixml_file_name Description: The FIXML schema file that holds the section's or category's elements, by its file name.
 --     * Slot: in_section Description: The section a category belongs to.
 --     * Slot: fixml_not_required Description: True when the element is left out of FIXML, FIX's XML encoding.
 --     * Slot: category_kind Description: Whether the category groups messages or fields.

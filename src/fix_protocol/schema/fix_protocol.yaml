@@ -49,6 +49,7 @@ prefixes:
   fixr: http://fixprotocol.io/2020/orchestra/repository/
   dcterms: http://purl.org/dc/terms/
   linkml: https://w3id.org/linkml/
+  xsd: http://www.w3.org/2001/XMLSchema#
 default_prefix: fix_protocol
 default_range: string
 

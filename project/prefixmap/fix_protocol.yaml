@@ -12,5 +12,6 @@
    "fix_protocol": "https://w3id.org/lmodel/fix-protocol/",
    "fix_section": "https://w3id.org/lmodel/fix-protocol/section/",
    "fixr": "http://fixprotocol.io/2020/orchestra/repository/",
-   "linkml": "https://w3id.org/linkml/"
+   "linkml": "https://w3id.org/linkml/",
+   "xsd": "http://www.w3.org/2001/XMLSchema#"
 }

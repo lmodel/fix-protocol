@@ -63,7 +63,7 @@ type FixCodeSet
     deprecatedIn: FixVersion
     deprecatedInEp: FixExtensionPack
     codeSetDatatype: FixDatatype!
-    fixCodes: [FixCode]!
+    fixCodes: [FixCode]
     id: String!
   }
 

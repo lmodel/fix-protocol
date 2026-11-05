@@ -10,7 +10,7 @@
 @prefix linkml: <https://w3id.org/linkml/> .
 @prefix pav: <http://purl.org/pav/> .
 xsd:date a rdfs:Datatype ;
-	owl:equivalentClass _:c14n199 .
+	owl:equivalentClass _:c14n200 .
 xsd:integer a rdfs:Datatype ;
 	owl:equivalentClass _:c14n82 .
 xsd:string a rdfs:Datatype ;
@@ -32,8 +32,8 @@ xsd:string a rdfs:Datatype ;
 fix_protocol:FixCategory dcterms:title "Category" ;
 	a owl:Class ;
 	rdfs:label "FixCategory" ;
-	rdfs:subClassOf fix_protocol:FixElement , _:c14n100 , _:c14n105 , _:c14n109 , _:c14n11 , _:c14n116 , _:c14n179 , _:c14n19 , _:c14n191 , _:c14n194 , _:c14n206 , _:c14n212 , _:c14n237 , _:c14n238 , _:c14n252 , _:c14n76 , _:c14n80 , _:c14n92 , _:c14n96 ;
-	skos:definition "A group of messages within a section, or one of the groups that hold the shared components and the fields." ;
+	rdfs:subClassOf fix_protocol:FixElement , _:c14n100 , _:c14n105 , _:c14n109 , _:c14n11 , _:c14n116 , _:c14n180 , _:c14n19 , _:c14n192 , _:c14n195 , _:c14n207 , _:c14n213 , _:c14n238 , _:c14n239 , _:c14n253 , _:c14n76 , _:c14n80 , _:c14n92 , _:c14n96 ;
+	skos:definition "A group of messages within a section. Three categories sit in no section and hold the shared components and the fields instead." ;
 	skos:exactMatch fixr:categoryType , fix_orchestra:OrchestraCategoryV10 ;
 	skos:inScheme fix_protocol:schema\/fix_protocol_core .
 fix_protocol:FixCategoryKind\#Field dcterms:title "Fields" ;
@@ -56,41 +56,41 @@ fix_protocol:FixCategoryKind dcterms:title "Category Kind" ;
 fix_protocol:FixCode dcterms:title "Code" ;
 	a owl:Class ;
 	rdfs:label "FixCode" ;
-	rdfs:subClassOf fix_protocol:FixElement , _:c14n12 , _:c14n124 , _:c14n168 , _:c14n190 , _:c14n239 , _:c14n262 , _:c14n265 , _:c14n270 , _:c14n39 , _:c14n7 , _:c14n81 , _:c14n88 ;
+	rdfs:subClassOf fix_protocol:FixElement , _:c14n12 , _:c14n124 , _:c14n169 , _:c14n191 , _:c14n240 , _:c14n263 , _:c14n266 , _:c14n271 , _:c14n39 , _:c14n7 , _:c14n81 , _:c14n88 ;
 	skos:definition "One value of a code set, with its name, such as 1 for Buy." ;
 	skos:exactMatch fixr:codeType , fix_orchestra:OrchestraCodeV10 ;
 	skos:inScheme fix_protocol:schema\/fix_protocol_dictionary .
 fix_protocol:FixCodeSet dcterms:title "Code Set" ;
 	a owl:Class ;
 	rdfs:label "FixCodeSet" ;
-	rdfs:subClassOf fix_protocol:FixElement , _:c14n142 , _:c14n154 , _:c14n159 , _:c14n184 , _:c14n187 , _:c14n230 , _:c14n272 , _:c14n77 ;
+	rdfs:subClassOf fix_protocol:FixElement , _:c14n142 , _:c14n154 , _:c14n159 , _:c14n168 , _:c14n185 , _:c14n188 , _:c14n231 , _:c14n77 ;
 	skos:definition "A list of the values a field may take, each a code with a name, such as the sides of an order." ;
 	skos:exactMatch fixr:codeSetType , fix_orchestra:OrchestraCodeSetV10 ;
 	skos:inScheme fix_protocol:schema\/fix_protocol_dictionary .
 fix_protocol:FixComponent dcterms:title "Component" ;
 	a owl:Class ;
 	rdfs:label "FixComponent" ;
-	rdfs:subClassOf fix_protocol:FixElement , _:c14n110 , _:c14n123 , _:c14n145 , _:c14n169 , _:c14n185 , _:c14n186 , _:c14n250 , _:c14n253 , _:c14n257 , _:c14n277 , _:c14n3 , _:c14n45 , _:c14n63 , _:c14n74 ;
+	rdfs:subClassOf fix_protocol:FixElement , _:c14n110 , _:c14n123 , _:c14n145 , _:c14n170 , _:c14n186 , _:c14n187 , _:c14n251 , _:c14n254 , _:c14n258 , _:c14n277 , _:c14n3 , _:c14n45 , _:c14n63 , _:c14n74 ;
 	skos:definition "A named block of fields, components and groups that messages share, such as Instrument." ;
 	skos:exactMatch fixr:componentType , fix_orchestra:OrchestraComponentV10 ;
 	skos:inScheme fix_protocol:schema\/fix_protocol_structure .
 fix_protocol:FixDatatype dcterms:title "Datatype" ;
 	a owl:Class ;
 	rdfs:label "FixDatatype" ;
-	rdfs:subClassOf fix_protocol:FixElement , _:c14n148 , _:c14n150 , _:c14n152 , _:c14n176 , _:c14n193 , _:c14n204 , _:c14n275 , _:c14n54 ;
+	rdfs:subClassOf fix_protocol:FixElement , _:c14n148 , _:c14n150 , _:c14n152 , _:c14n177 , _:c14n194 , _:c14n205 , _:c14n275 , _:c14n54 ;
 	skos:definition "A kind of value a field holds, such as int, Price or UTCTimestamp, with the XML Schema types it maps to." ;
 	skos:exactMatch fixr:datatype , fix_orchestra:OrchestraDatatypeV10 ;
 	skos:inScheme fix_protocol:schema\/fix_protocol_dictionary .
 fix_protocol:FixElement dcterms:title "FIX Element" ;
 	a owl:Class ;
 	rdfs:label "FixElement" ;
-	rdfs:subClassOf fix_protocol:FixPedigreeMixin , _:c14n157 , _:c14n183 , _:c14n223 , _:c14n232 , _:c14n60 , _:c14n90 , _:c14n98 ;
+	rdfs:subClassOf fix_protocol:FixPedigreeMixin , _:c14n157 , _:c14n184 , _:c14n224 , _:c14n233 , _:c14n60 , _:c14n90 , _:c14n98 ;
 	skos:definition "An element of FIX Latest with an identifier and a name of its own." ;
 	skos:inScheme fix_protocol:schema\/fix_protocol_core .
 fix_protocol:FixField dcterms:title "Field" ;
 	a owl:Class ;
 	rdfs:label "FixField" ;
-	rdfs:subClassOf fix_protocol:FixElement , _:c14n1 , _:c14n106 , _:c14n108 , _:c14n136 , _:c14n140 , _:c14n15 , _:c14n155 , _:c14n167 , _:c14n18 , _:c14n213 , _:c14n216 , _:c14n234 , _:c14n24 , _:c14n244 , _:c14n245 , _:c14n246 , _:c14n251 , _:c14n264 , _:c14n27 , _:c14n279 , _:c14n32 , _:c14n35 , _:c14n42 , _:c14n51 , _:c14n58 , _:c14n62 , _:c14n64 , _:c14n70 , _:c14n94 , _:c14n99 ;
+	rdfs:subClassOf fix_protocol:FixElement , _:c14n1 , _:c14n106 , _:c14n108 , _:c14n136 , _:c14n140 , _:c14n15 , _:c14n155 , _:c14n167 , _:c14n18 , _:c14n214 , _:c14n217 , _:c14n235 , _:c14n24 , _:c14n245 , _:c14n246 , _:c14n247 , _:c14n252 , _:c14n265 , _:c14n27 , _:c14n279 , _:c14n32 , _:c14n35 , _:c14n42 , _:c14n51 , _:c14n58 , _:c14n62 , _:c14n64 , _:c14n70 , _:c14n94 , _:c14n99 ;
 	owl:disjointUnionOf _:c14n56 ;
 	skos:definition "A field of FIX, known by its tag number, such as 55 for Symbol, with the datatype or code set of its values." ;
 	skos:exactMatch fixr:fieldType , fix_orchestra:OrchestraFieldV10 ;
@@ -99,7 +99,7 @@ fix_protocol:FixField dcterms:title "Field" ;
 fix_protocol:FixGroup dcterms:title "Repeating Group" ;
 	a owl:Class ;
 	rdfs:label "FixGroup" ;
-	rdfs:subClassOf fix_protocol:FixElement , _:c14n119 , _:c14n147 , _:c14n181 , _:c14n195 , _:c14n21 , _:c14n221 , _:c14n235 , _:c14n268 , _:c14n273 , _:c14n274 , _:c14n69 , _:c14n79 , _:c14n9 , _:c14n93 ;
+	rdfs:subClassOf fix_protocol:FixElement , _:c14n119 , _:c14n147 , _:c14n182 , _:c14n196 , _:c14n21 , _:c14n222 , _:c14n236 , _:c14n269 , _:c14n273 , _:c14n274 , _:c14n69 , _:c14n79 , _:c14n9 , _:c14n93 ;
 	skos:definition "A block of members that repeats in a message, with the field that counts the repeats." ;
 	skos:exactMatch fixr:groupType , fix_orchestra:OrchestraGroupV10 ;
 	skos:inScheme fix_protocol:schema\/fix_protocol_structure .
@@ -123,23 +123,23 @@ fix_protocol:FixIncludeFile dcterms:title "Included FIXML File" ;
 fix_protocol:FixMappedDatatype dcterms:title "Mapped Datatype" ;
 	a owl:Class ;
 	rdfs:label "FixMappedDatatype" ;
-	rdfs:subClassOf _:c14n121 , _:c14n137 , _:c14n138 , _:c14n173 , _:c14n182 , _:c14n229 , _:c14n248 , _:c14n254 , _:c14n260 , _:c14n281 , _:c14n50 , _:c14n53 , _:c14n61 , _:c14n78 , _:c14n91 ;
+	rdfs:subClassOf _:c14n121 , _:c14n137 , _:c14n138 , _:c14n174 , _:c14n183 , _:c14n230 , _:c14n249 , _:c14n255 , _:c14n261 , _:c14n281 , _:c14n50 , _:c14n53 , _:c14n61 , _:c14n78 , _:c14n91 ;
 	skos:definition "The type of another standard that a FIX datatype takes, such as xs:decimal in XML Schema." ;
 	skos:exactMatch fixr:mappedDatatype ;
 	skos:inScheme fix_protocol:schema\/fix_protocol_dictionary .
 fix_protocol:FixMember dcterms:title "Member" ;
 	a owl:Class ;
 	rdfs:label "FixMember" ;
-	rdfs:subClassOf fix_protocol:FixPedigreeMixin , _:c14n107 , _:c14n133 , _:c14n16 , _:c14n163 , _:c14n17 , _:c14n210 , _:c14n236 , _:c14n26 , _:c14n267 , _:c14n30 , _:c14n49 , _:c14n66 , _:c14n73 , _:c14n95 , _:c14n97 ;
+	rdfs:subClassOf fix_protocol:FixPedigreeMixin , _:c14n107 , _:c14n133 , _:c14n16 , _:c14n163 , _:c14n17 , _:c14n211 , _:c14n237 , _:c14n26 , _:c14n268 , _:c14n30 , _:c14n49 , _:c14n66 , _:c14n73 , _:c14n95 , _:c14n97 ;
 	owl:disjointUnionOf _:c14n164 ;
+	skos:closeMatch fixr:componentRefType , fixr:fieldRefType , fixr:groupRefType ;
 	skos:definition "One field, component or group in a message, component or group, and whether it must be there." ;
-	skos:exactMatch fixr:componentRefType , fixr:fieldRefType , fixr:groupRefType ;
 	skos:inScheme fix_protocol:schema\/fix_protocol_structure ;
 	skos:note "Orchestra gives the three kinds of member three elements of one shape. The record gives each a key, and one member holds exactly one of them." .
 fix_protocol:FixMessage dcterms:title "Message" ;
 	a owl:Class ;
 	rdfs:label "FixMessage" ;
-	rdfs:subClassOf fix_protocol:FixElement , _:c14n101 , _:c14n135 , _:c14n139 , _:c14n177 , _:c14n201 , _:c14n22 , _:c14n220 , _:c14n231 , _:c14n241 , _:c14n280 , _:c14n29 , _:c14n34 , _:c14n4 , _:c14n47 , _:c14n5 , _:c14n86 , _:c14n89 ;
+	rdfs:subClassOf fix_protocol:FixElement , _:c14n101 , _:c14n135 , _:c14n139 , _:c14n178 , _:c14n202 , _:c14n22 , _:c14n221 , _:c14n232 , _:c14n242 , _:c14n280 , _:c14n29 , _:c14n34 , _:c14n4 , _:c14n47 , _:c14n5 , _:c14n86 , _:c14n89 ;
 	skos:definition "A FIX message, known by its MsgType, such as D for NewOrderSingle, with its members in order." ;
 	skos:exactMatch fixr:messageType , fix_orchestra:OrchestraMessageV10 ;
 	skos:inScheme fix_protocol:schema\/fix_protocol_structure .
@@ -147,13 +147,14 @@ fix_protocol:FixNumInGroup dcterms:title "Count Field Reference" ;
 	a owl:Class ;
 	rdfs:label "FixNumInGroup" ;
 	rdfs:subClassOf fix_protocol:FixPedigreeMixin , _:c14n20 , _:c14n59 , _:c14n87 ;
+	skos:closeMatch fixr:fieldRefType ;
 	skos:definition "The field that counts a group's repeats, as the group names it." ;
-	skos:exactMatch fixr:numInGroupType ;
-	skos:inScheme fix_protocol:schema\/fix_protocol_structure .
+	skos:inScheme fix_protocol:schema\/fix_protocol_structure ;
+	skos:note "Orchestra 1.0 gives the count the shape of a field reference." .
 fix_protocol:FixPedigreeMixin dcterms:title "Pedigree" ;
 	a owl:Class ;
 	rdfs:label "FixPedigreeMixin" ;
-	rdfs:subClassOf _:c14n10 , _:c14n111 , _:c14n122 , _:c14n125 , _:c14n131 , _:c14n144 , _:c14n160 , _:c14n171 , _:c14n197 , _:c14n198 , _:c14n207 , _:c14n225 , _:c14n23 , _:c14n233 , _:c14n242 , _:c14n266 , _:c14n269 , _:c14n271 ;
+	rdfs:subClassOf _:c14n10 , _:c14n111 , _:c14n122 , _:c14n125 , _:c14n131 , _:c14n144 , _:c14n160 , _:c14n172 , _:c14n198 , _:c14n199 , _:c14n208 , _:c14n226 , _:c14n23 , _:c14n234 , _:c14n243 , _:c14n267 , _:c14n270 , _:c14n272 ;
 	skos:definition "When FIX added, last changed and deprecated an element, by version and extension pack." ;
 	skos:inScheme fix_protocol:schema\/fix_protocol_core .
 fix_protocol:FixPresence\#constant dcterms:title "Constant" ;
@@ -184,7 +185,7 @@ fix_protocol:FixPresence\#required dcterms:title "Required" ;
 fix_protocol:FixPresence dcterms:title "Presence" ;
 	a owl:Class ;
 	rdfs:label "FixPresence" ;
-	owl:unionOf _:c14n205 ;
+	owl:unionOf _:c14n206 ;
 	skos:definition "Whether a message, component or group must carry a member, as Orchestra 1.0 lets FIX Latest say it." ;
 	skos:inScheme fix_protocol:schema\/fix_protocol_core ;
 	skos:note "FIX Latest states only required. A member with no presence is optional, which is Orchestra 1.0's default." ;
@@ -192,15 +193,15 @@ fix_protocol:FixPresence dcterms:title "Presence" ;
 fix_protocol:FixRepository dcterms:title "FIX Latest Catalogue" ;
 	a owl:Class ;
 	rdfs:label "FixRepository" ;
-	rdfs:subClassOf _:c14n0 , _:c14n102 , _:c14n104 , _:c14n112 , _:c14n113 , _:c14n114 , _:c14n115 , _:c14n126 , _:c14n127 , _:c14n129 , _:c14n13 , _:c14n132 , _:c14n14 , _:c14n141 , _:c14n146 , _:c14n153 , _:c14n158 , _:c14n161 , _:c14n170 , _:c14n172 , _:c14n175 , _:c14n180 , _:c14n192 , _:c14n196 , _:c14n2 , _:c14n202 , _:c14n203 , _:c14n208 , _:c14n209 , _:c14n215 , _:c14n217 , _:c14n219 , _:c14n222 , _:c14n226 , _:c14n228 , _:c14n240 , _:c14n249 , _:c14n25 , _:c14n255 , _:c14n256 , _:c14n276 , _:c14n278 , _:c14n28 , _:c14n31 , _:c14n36 , _:c14n38 , _:c14n44 , _:c14n57 , _:c14n6 ;
-	skos:definition "One file of the catalogue: the edition it renders and one or more kinds of FIX Latest's elements." ;
+	rdfs:subClassOf _:c14n0 , _:c14n102 , _:c14n104 , _:c14n112 , _:c14n113 , _:c14n114 , _:c14n115 , _:c14n126 , _:c14n127 , _:c14n129 , _:c14n13 , _:c14n132 , _:c14n14 , _:c14n141 , _:c14n146 , _:c14n153 , _:c14n158 , _:c14n161 , _:c14n171 , _:c14n173 , _:c14n176 , _:c14n181 , _:c14n193 , _:c14n197 , _:c14n2 , _:c14n203 , _:c14n204 , _:c14n209 , _:c14n210 , _:c14n216 , _:c14n218 , _:c14n220 , _:c14n223 , _:c14n227 , _:c14n229 , _:c14n241 , _:c14n25 , _:c14n250 , _:c14n256 , _:c14n257 , _:c14n276 , _:c14n278 , _:c14n28 , _:c14n31 , _:c14n36 , _:c14n38 , _:c14n44 , _:c14n57 , _:c14n6 ;
+	skos:definition "One file of the catalogue: the edition it renders, with some kinds of FIX Latest's elements." ;
 	skos:exactMatch fixr:repository , fix_orchestra:OrchestraRepositoryV10 ;
 	skos:inScheme <https://w3id.org/lmodel/fix-protocol> .
 fix_protocol:FixSection dcterms:title "Section" ;
 	a owl:Class ;
 	rdfs:label "FixSection" ;
-	rdfs:subClassOf fix_protocol:FixElement , _:c14n134 , _:c14n151 , _:c14n178 , _:c14n188 , _:c14n243 , _:c14n259 , _:c14n33 , _:c14n40 , _:c14n41 , _:c14n65 , _:c14n71 , _:c14n8 ;
-	skos:definition "One of the five parts of FIX by business area, such as pre-trade or post-trade." ;
+	rdfs:subClassOf fix_protocol:FixElement , _:c14n134 , _:c14n151 , _:c14n179 , _:c14n189 , _:c14n244 , _:c14n260 , _:c14n33 , _:c14n40 , _:c14n41 , _:c14n65 , _:c14n71 , _:c14n8 ;
+	skos:definition "One of the five parts FIX divides its messages into by business area, such as PreTrade." ;
 	skos:exactMatch fixr:sectionType , fix_orchestra:OrchestraSectionV10 ;
 	skos:inScheme fix_protocol:schema\/fix_protocol_core .
 fix_protocol:abbr_name dcterms:title "Abbreviated Name" ;
@@ -387,7 +388,7 @@ fix_protocol:fixml_file_name dcterms:title "FIXML File Name" ;
 	rdfs:label "fixml_file_name" ;
 	rdfs:range xsd:string ;
 	skos:altLabel "FIXMLFileName" ;
-	skos:definition "The name of the FIXML schema file that holds the section's or category's elements." ;
+	skos:definition "The FIXML schema file that holds the section's or category's elements, by its file name." ;
 	skos:exactMatch fixr:FIXMLFileName ;
 	skos:inScheme fix_protocol:schema\/fix_protocol_core .
 fix_protocol:fixml_inlined dcterms:title "Inlined in FIXML" ;
@@ -413,7 +414,7 @@ fix_protocol:id dcterms:title "Identifier" ;
 fix_protocol:in_category dcterms:title "Category" ;
 	a owl:ObjectProperty ;
 	rdfs:label "in_category" ;
-	rdfs:range _:c14n261 ;
+	rdfs:range _:c14n262 ;
 	skos:altLabel "category" ;
 	skos:definition "The category a message, component or group belongs to." ;
 	skos:exactMatch fixr:category ;
@@ -665,7 +666,7 @@ _:c14n102 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty fix_protocol:metadata_rights .
 _:c14n103 rdf:first fix_protocol:FixPresence\#ignored ;
-	rdf:rest _:c14n189 .
+	rdf:rest _:c14n190 .
 _:c14n104 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_protocol:repository_name .
@@ -774,7 +775,7 @@ _:c14n138 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_protocol:mapped_base .
 _:c14n139 a owl:Restriction ;
-	owl:allValuesFrom _:c14n345 ;
+	owl:allValuesFrom _:c14n344 ;
 	owl:onProperty fix_protocol:id .
 _:c14n14 a owl:Restriction ;
 	owl:minCardinality 0 ;
@@ -862,336 +863,336 @@ _:c14n167 a owl:Restriction ;
 	owl:onProperty fix_protocol:field_code_set .
 _:c14n168 a owl:Restriction ;
 	owl:minCardinality 0 ;
-	owl:onProperty fix_protocol:sort_order .
+	owl:onProperty fix_protocol:fix_codes .
 _:c14n169 a owl:Restriction ;
 	owl:minCardinality 0 ;
-	owl:onProperty fix_protocol:fix_members .
+	owl:onProperty fix_protocol:sort_order .
 _:c14n17 a owl:Restriction ;
 	owl:allValuesFrom fix_protocol:FixComponent ;
 	owl:onProperty fix_protocol:member_component .
 _:c14n170 a owl:Restriction ;
 	owl:minCardinality 0 ;
-	owl:onProperty fix_protocol:metadata_publisher .
+	owl:onProperty fix_protocol:fix_members .
 _:c14n171 a owl:Restriction ;
+	owl:minCardinality 0 ;
+	owl:onProperty fix_protocol:metadata_publisher .
+_:c14n172 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty fix_protocol:added_in .
-_:c14n172 a owl:Restriction ;
+_:c14n173 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_protocol:metadata_title .
-_:c14n173 a owl:Restriction ;
+_:c14n174 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty fix_protocol:mapped_base .
-_:c14n174 xsd:pattern "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" .
-_:c14n175 a owl:Restriction ;
+_:c14n175 xsd:pattern "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" .
+_:c14n176 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_protocol:fix_code_sets .
-_:c14n176 a owl:Restriction ;
+_:c14n177 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_protocol:id .
-_:c14n177 a owl:Restriction ;
+_:c14n178 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty fix_protocol:fix_members .
-_:c14n178 a owl:Restriction ;
+_:c14n179 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_protocol:fixml_not_required .
-_:c14n179 a owl:Restriction ;
-	owl:minCardinality 0 ;
-	owl:onProperty fix_protocol:in_section .
 _:c14n18 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_protocol:fixml_not_required .
 _:c14n180 a owl:Restriction ;
 	owl:minCardinality 0 ;
-	owl:onProperty fix_protocol:metadata_format .
+	owl:onProperty fix_protocol:in_section .
 _:c14n181 a owl:Restriction ;
+	owl:minCardinality 0 ;
+	owl:onProperty fix_protocol:metadata_format .
+_:c14n182 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty fix_protocol:abbr_name .
-_:c14n182 a owl:Restriction ;
+_:c14n183 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_protocol:mapped_builtin .
-_:c14n183 a owl:Restriction ;
+_:c14n184 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_protocol:name .
-_:c14n184 a owl:Restriction ;
+_:c14n185 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty fix_protocol:id .
-_:c14n185 a owl:Restriction ;
+_:c14n186 a owl:Restriction ;
 	owl:allValuesFrom fix_protocol:FixCategory ;
 	owl:onProperty fix_protocol:in_category .
-_:c14n186 a owl:Restriction ;
+_:c14n187 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_protocol:abbr_name .
-_:c14n187 a owl:Restriction ;
-	owl:allValuesFrom _:c14n359 ;
-	owl:onProperty fix_protocol:id .
 _:c14n188 a owl:Restriction ;
+	owl:allValuesFrom _:c14n355 ;
+	owl:onProperty fix_protocol:id .
+_:c14n189 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_protocol:section_order .
-_:c14n189 rdf:first fix_protocol:FixPresence\#constant ;
-	rdf:rest rdf:nil .
 _:c14n19 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_protocol:fixml_file_name .
-_:c14n190 a owl:Restriction ;
+_:c14n190 rdf:first fix_protocol:FixPresence\#constant ;
+	rdf:rest rdf:nil .
+_:c14n191 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty fix_protocol:id .
-_:c14n191 a owl:Restriction ;
-	owl:allValuesFrom _:c14n342 ;
-	owl:onProperty fix_protocol:id .
 _:c14n192 a owl:Restriction ;
+	owl:allValuesFrom _:c14n348 ;
+	owl:onProperty fix_protocol:id .
+_:c14n193 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty fix_protocol:metadata_conforms_to .
-_:c14n193 a owl:Restriction ;
+_:c14n194 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_protocol:mapped_datatypes .
-_:c14n194 a owl:Restriction ;
+_:c14n195 a owl:Restriction ;
 	owl:allValuesFrom fix_protocol:FixCategoryKind ;
 	owl:onProperty fix_protocol:category_kind .
-_:c14n195 a owl:Restriction ;
-	owl:minCardinality 0 ;
-	owl:onProperty fix_protocol:abbr_name .
 _:c14n196 a owl:Restriction ;
 	owl:minCardinality 0 ;
-	owl:onProperty fix_protocol:metadata_title .
+	owl:onProperty fix_protocol:abbr_name .
 _:c14n197 a owl:Restriction ;
+	owl:minCardinality 0 ;
+	owl:onProperty fix_protocol:metadata_title .
+_:c14n198 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_protocol:updated_in_ep .
-_:c14n198 a owl:Restriction ;
+_:c14n199 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_protocol:added_in .
-_:c14n199 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n85 .
 _:c14n2 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty fix_protocol:metadata_publisher .
 _:c14n20 a owl:Restriction ;
 	owl:allValuesFrom fix_protocol:FixField ;
 	owl:onProperty fix_protocol:count_field .
-_:c14n200 xsd:pattern "^fix_datatype:[A-Za-z][A-Za-z0-9_]*$" .
-_:c14n201 a owl:Restriction ;
+_:c14n200 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n85 .
+_:c14n201 xsd:pattern "^fix_datatype:[A-Za-z][A-Za-z0-9_]*$" .
+_:c14n202 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_protocol:id .
-_:c14n202 a owl:Restriction ;
+_:c14n203 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_protocol:fix_groups .
-_:c14n203 a owl:Restriction ;
+_:c14n204 a owl:Restriction ;
 	owl:allValuesFrom fix_protocol:FixDatatype ;
 	owl:onProperty fix_protocol:fix_datatypes .
-_:c14n204 a owl:Restriction ;
+_:c14n205 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_protocol:base_type .
-_:c14n205 rdf:first fix_protocol:FixPresence\#optional ;
-	rdf:rest _:c14n227 .
-_:c14n206 a owl:Restriction ;
+_:c14n206 rdf:first fix_protocol:FixPresence\#optional ;
+	rdf:rest _:c14n228 .
+_:c14n207 a owl:Restriction ;
 	owl:allValuesFrom xsd:boolean ;
 	owl:onProperty fix_protocol:fixml_not_required .
-_:c14n207 a owl:Restriction ;
-	owl:minCardinality 0 ;
-	owl:onProperty fix_protocol:added_in_ep .
 _:c14n208 a owl:Restriction ;
 	owl:minCardinality 0 ;
-	owl:onProperty fix_protocol:fix_datatypes .
+	owl:onProperty fix_protocol:added_in_ep .
 _:c14n209 a owl:Restriction ;
-	owl:allValuesFrom xsd:string ;
-	owl:onProperty fix_protocol:metadata_creator .
+	owl:minCardinality 0 ;
+	owl:onProperty fix_protocol:fix_datatypes .
 _:c14n21 a owl:Restriction ;
 	owl:allValuesFrom fix_protocol:FixMember ;
 	owl:onProperty fix_protocol:fix_members .
 _:c14n210 a owl:Restriction ;
+	owl:allValuesFrom xsd:string ;
+	owl:onProperty fix_protocol:metadata_creator .
+_:c14n211 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_protocol:member_component .
-_:c14n211 rdf:first fix_protocol:FixCode ;
+_:c14n212 rdf:first fix_protocol:FixCode ;
 	rdf:rest _:c14n68 .
-_:c14n212 a owl:Restriction ;
+_:c14n213 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_protocol:include_file .
-_:c14n213 a owl:Restriction ;
+_:c14n214 a owl:Restriction ;
 	owl:allValuesFrom xsd:boolean ;
 	owl:onProperty fix_protocol:fixml_not_required .
-_:c14n214 xsd:pattern "^[0-9A-Za-z]{1,2}$" .
-_:c14n215 a owl:Restriction ;
+_:c14n215 xsd:pattern "^[0-9A-Za-z]{1,2}$" .
+_:c14n216 a owl:Restriction ;
 	owl:allValuesFrom fix_protocol:FixCodeSet ;
 	owl:onProperty fix_protocol:fix_code_sets .
-_:c14n216 a owl:Restriction ;
+_:c14n217 a owl:Restriction ;
 	owl:allValuesFrom fix_protocol:FixDatatype ;
 	owl:onProperty fix_protocol:field_datatype .
-_:c14n217 a owl:Restriction ;
+_:c14n218 a owl:Restriction ;
 	owl:allValuesFrom fix_protocol:FixMessage ;
 	owl:onProperty fix_protocol:fix_messages .
-_:c14n218 xsd:pattern "^fix_message:[1-9][0-9]*$" .
-_:c14n219 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty fix_protocol:metadata_description .
+_:c14n219 xsd:pattern "^fix_message:[1-9][0-9]*$" .
 _:c14n22 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_protocol:abbr_name .
 _:c14n220 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty fix_protocol:metadata_description .
+_:c14n221 a owl:Restriction ;
 	owl:allValuesFrom fix_protocol:FixMember ;
 	owl:onProperty fix_protocol:fix_members .
-_:c14n221 a owl:Restriction ;
+_:c14n222 a owl:Restriction ;
 	owl:allValuesFrom _:c14n353 ;
 	owl:onProperty fix_protocol:id .
-_:c14n222 a owl:Restriction ;
+_:c14n223 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty fix_protocol:metadata_format .
-_:c14n223 a owl:Restriction ;
+_:c14n224 a owl:Restriction ;
 	owl:allValuesFrom xsd:anyURI ;
 	owl:onProperty fix_protocol:id .
-_:c14n224 rdf:first fix_protocol:FixPresence\#forbidden ;
+_:c14n225 rdf:first fix_protocol:FixPresence\#forbidden ;
 	rdf:rest _:c14n103 .
-_:c14n225 a owl:Restriction ;
+_:c14n226 a owl:Restriction ;
 	owl:allValuesFrom xsd:integer ;
 	owl:onProperty fix_protocol:added_in_ep .
-_:c14n226 a owl:Restriction ;
+_:c14n227 a owl:Restriction ;
 	owl:allValuesFrom fix_protocol:FixSection ;
 	owl:onProperty fix_protocol:fix_sections .
-_:c14n227 rdf:first fix_protocol:FixPresence\#required ;
-	rdf:rest _:c14n224 .
-_:c14n228 a owl:Restriction ;
+_:c14n228 rdf:first fix_protocol:FixPresence\#required ;
+	rdf:rest _:c14n225 .
+_:c14n229 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_protocol:metadata_description .
-_:c14n229 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty fix_protocol:mapped_min_inclusive .
 _:c14n23 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_protocol:deprecated_in .
 _:c14n230 a owl:Restriction ;
 	owl:maxCardinality 1 ;
-	owl:onProperty fix_protocol:code_set_datatype .
+	owl:onProperty fix_protocol:mapped_min_inclusive .
 _:c14n231 a owl:Restriction ;
-	owl:allValuesFrom _:c14n357 ;
-	owl:onProperty fix_protocol:msg_type .
+	owl:maxCardinality 1 ;
+	owl:onProperty fix_protocol:code_set_datatype .
 _:c14n232 a owl:Restriction ;
+	owl:allValuesFrom _:c14n342 ;
+	owl:onProperty fix_protocol:msg_type .
+_:c14n233 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty fix_protocol:id .
-_:c14n233 a owl:Restriction ;
+_:c14n234 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_protocol:updated_in .
-_:c14n234 a owl:Restriction ;
+_:c14n235 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty fix_protocol:id .
-_:c14n235 a owl:Restriction ;
+_:c14n236 a owl:Restriction ;
 	owl:allValuesFrom fix_protocol:FixNumInGroup ;
 	owl:onProperty fix_protocol:num_in_group .
-_:c14n236 a owl:Restriction ;
+_:c14n237 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_protocol:fixml_inlined .
-_:c14n237 a owl:Restriction ;
+_:c14n238 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_protocol:in_section .
-_:c14n238 a owl:Restriction ;
+_:c14n239 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_protocol:fixml_not_required .
-_:c14n239 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty fix_protocol:code_value .
 _:c14n24 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_protocol:field_code_set .
 _:c14n240 a owl:Restriction ;
 	owl:maxCardinality 1 ;
-	owl:onProperty fix_protocol:metadata_publisher .
+	owl:onProperty fix_protocol:code_value .
 _:c14n241 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty fix_protocol:metadata_publisher .
+_:c14n242 a owl:Restriction ;
 	owl:allValuesFrom xsd:boolean ;
 	owl:onProperty fix_protocol:fixml_not_required .
-_:c14n242 a owl:Restriction ;
+_:c14n243 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_protocol:added_in .
-_:c14n243 a owl:Restriction ;
+_:c14n244 a owl:Restriction ;
 	owl:allValuesFrom xsd:boolean ;
 	owl:onProperty fix_protocol:fixml_not_required .
-_:c14n244 a owl:Restriction ;
+_:c14n245 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty fix_protocol:abbr_name .
-_:c14n245 a owl:Restriction ;
-	owl:allValuesFrom _:c14n347 ;
-	owl:onProperty fix_protocol:id .
 _:c14n246 a owl:Restriction ;
+	owl:allValuesFrom _:c14n357 ;
+	owl:onProperty fix_protocol:id .
+_:c14n247 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_protocol:field_datatype .
-_:c14n247 rdf:first fix_protocol:FixCategoryKind\#Field ;
+_:c14n248 rdf:first fix_protocol:FixCategoryKind\#Field ;
 	rdf:rest rdf:nil .
-_:c14n248 a owl:Restriction ;
+_:c14n249 a owl:Restriction ;
 	owl:allValuesFrom xsd:boolean ;
 	owl:onProperty fix_protocol:mapped_builtin .
-_:c14n249 a owl:Restriction ;
-	owl:minCardinality 0 ;
-	owl:onProperty fix_protocol:metadata_source .
 _:c14n25 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_protocol:metadata_creator .
 _:c14n250 a owl:Restriction ;
+	owl:minCardinality 0 ;
+	owl:onProperty fix_protocol:metadata_source .
+_:c14n251 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_protocol:in_category .
-_:c14n251 a owl:Restriction ;
-	owl:minCardinality 0 ;
-	owl:onProperty fix_protocol:discriminator_field .
 _:c14n252 a owl:Restriction ;
 	owl:minCardinality 0 ;
-	owl:onProperty fix_protocol:include_file .
+	owl:onProperty fix_protocol:discriminator_field .
 _:c14n253 a owl:Restriction ;
+	owl:minCardinality 0 ;
+	owl:onProperty fix_protocol:include_file .
+_:c14n254 a owl:Restriction ;
 	owl:allValuesFrom _:c14n351 ;
 	owl:onProperty fix_protocol:id .
-_:c14n254 a owl:Restriction ;
+_:c14n255 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_protocol:mapped_base .
-_:c14n255 a owl:Restriction ;
+_:c14n256 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty fix_protocol:repository_version .
-_:c14n256 a owl:Restriction ;
+_:c14n257 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_protocol:fix_fields .
-_:c14n257 a owl:Restriction ;
+_:c14n258 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty fix_protocol:abbr_name .
-_:c14n258 rdf:first fix_protocol:FixCategory ;
-	rdf:rest _:c14n211 .
-_:c14n259 a owl:Restriction ;
-	owl:minCardinality 0 ;
-	owl:onProperty fix_protocol:section_order .
+_:c14n259 rdf:first fix_protocol:FixCategory ;
+	rdf:rest _:c14n212 .
 _:c14n26 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_protocol:member_field .
 _:c14n260 a owl:Restriction ;
+	owl:minCardinality 0 ;
+	owl:onProperty fix_protocol:section_order .
+_:c14n261 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty fix_protocol:mapped_standard .
-_:c14n261 owl:intersectionOf _:c14n143 .
-_:c14n262 a owl:Restriction ;
+_:c14n262 owl:intersectionOf _:c14n143 .
+_:c14n263 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_protocol:code_group .
-_:c14n263 rdf:first "FIX.Latest" ;
+_:c14n264 rdf:first "FIX.Latest" ;
 	rdf:rest rdf:nil .
-_:c14n264 a owl:Restriction ;
+_:c14n265 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_protocol:base_category .
-_:c14n265 a owl:Restriction ;
+_:c14n266 a owl:Restriction ;
 	owl:allValuesFrom _:c14n336 ;
 	owl:onProperty fix_protocol:sort_order .
-_:c14n266 a owl:Restriction ;
-	owl:minCardinality 0 ;
-	owl:onProperty fix_protocol:updated_in_ep .
 _:c14n267 a owl:Restriction ;
 	owl:minCardinality 0 ;
-	owl:onProperty fix_protocol:member_field .
+	owl:onProperty fix_protocol:updated_in_ep .
 _:c14n268 a owl:Restriction ;
+	owl:minCardinality 0 ;
+	owl:onProperty fix_protocol:member_field .
+_:c14n269 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_protocol:num_in_group .
-_:c14n269 a owl:Restriction ;
-	owl:allValuesFrom xsd:integer ;
-	owl:onProperty fix_protocol:deprecated_in_ep .
 _:c14n27 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_protocol:union_datatype .
 _:c14n270 a owl:Restriction ;
-	owl:allValuesFrom _:c14n355 ;
-	owl:onProperty fix_protocol:code_value .
+	owl:allValuesFrom xsd:integer ;
+	owl:onProperty fix_protocol:deprecated_in_ep .
 _:c14n271 a owl:Restriction ;
+	owl:allValuesFrom _:c14n359 ;
+	owl:onProperty fix_protocol:code_value .
+_:c14n272 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_protocol:deprecated_in .
-_:c14n272 a owl:Restriction ;
-	owl:minCardinality 1 ;
-	owl:onProperty fix_protocol:fix_codes .
 _:c14n273 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty fix_protocol:id .
@@ -1288,7 +1289,7 @@ _:c14n305 a rdfs:Datatype ;
 	owl:withRestrictions _:c14n307 .
 _:c14n306 rdf:first _:c14n305 ;
 	rdf:rest rdf:nil .
-_:c14n307 rdf:first _:c14n174 ;
+_:c14n307 rdf:first _:c14n175 ;
 	rdf:rest rdf:nil .
 _:c14n308 a rdfs:Datatype ;
 	owl:onDatatype xsd:string ;
@@ -1375,27 +1376,27 @@ _:c14n341 a rdfs:Datatype ;
 _:c14n342 a rdfs:Datatype ;
 	owl:onDatatype xsd:string ;
 	owl:withRestrictions _:c14n343 .
-_:c14n343 rdf:first _:c14n344 ;
+_:c14n343 rdf:first _:c14n215 ;
 	rdf:rest rdf:nil .
-_:c14n344 xsd:pattern "^fix_category:[A-Za-z][A-Za-z0-9_]*$" .
-_:c14n345 a rdfs:Datatype ;
+_:c14n344 a rdfs:Datatype ;
 	owl:onDatatype xsd:string ;
-	owl:withRestrictions _:c14n346 .
-_:c14n346 rdf:first _:c14n218 ;
+	owl:withRestrictions _:c14n345 .
+_:c14n345 rdf:first _:c14n219 ;
 	rdf:rest rdf:nil .
-_:c14n347 a rdfs:Datatype ;
+_:c14n346 a rdfs:Datatype ;
 	owl:onDatatype xsd:string ;
-	owl:withRestrictions _:c14n348 .
-_:c14n348 rdf:first _:c14n67 ;
+	owl:withRestrictions _:c14n347 .
+_:c14n347 rdf:first _:c14n201 ;
 	rdf:rest rdf:nil .
-_:c14n349 a rdfs:Datatype ;
+_:c14n348 a rdfs:Datatype ;
 	owl:onDatatype xsd:string ;
-	owl:withRestrictions _:c14n350 .
+	owl:withRestrictions _:c14n349 .
+_:c14n349 rdf:first _:c14n350 ;
+	rdf:rest rdf:nil .
 _:c14n35 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_protocol:abbr_name .
-_:c14n350 rdf:first _:c14n200 ;
-	rdf:rest rdf:nil .
+_:c14n350 xsd:pattern "^fix_category:[A-Za-z][A-Za-z0-9_]*$" .
 _:c14n351 a rdfs:Datatype ;
 	owl:onDatatype xsd:string ;
 	owl:withRestrictions _:c14n352 .
@@ -1409,12 +1410,12 @@ _:c14n354 rdf:first _:c14n84 ;
 _:c14n355 a rdfs:Datatype ;
 	owl:onDatatype xsd:string ;
 	owl:withRestrictions _:c14n356 .
-_:c14n356 rdf:first _:c14n83 ;
+_:c14n356 rdf:first _:c14n156 ;
 	rdf:rest rdf:nil .
 _:c14n357 a rdfs:Datatype ;
 	owl:onDatatype xsd:string ;
 	owl:withRestrictions _:c14n358 .
-_:c14n358 rdf:first _:c14n214 ;
+_:c14n358 rdf:first _:c14n67 ;
 	rdf:rest rdf:nil .
 _:c14n359 a rdfs:Datatype ;
 	owl:onDatatype xsd:string ;
@@ -1422,7 +1423,7 @@ _:c14n359 a rdfs:Datatype ;
 _:c14n36 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_protocol:metadata_format .
-_:c14n360 rdf:first _:c14n156 ;
+_:c14n360 rdf:first _:c14n83 ;
 	rdf:rest rdf:nil .
 _:c14n361 a rdfs:Datatype ;
 	owl:onDatatype xsd:string ;
@@ -1474,7 +1475,7 @@ _:c14n47 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty fix_protocol:abbr_name .
 _:c14n48 rdf:first fix_protocol:FixCategoryKind\#Message ;
-	rdf:rest _:c14n247 .
+	rdf:rest _:c14n248 .
 _:c14n49 a owl:Restriction ;
 	owl:allValuesFrom fix_protocol:FixPresence ;
 	owl:onProperty fix_protocol:presence .
@@ -1488,12 +1489,12 @@ _:c14n51 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty fix_protocol:field_code_set .
 _:c14n52 a rdfs:Datatype ;
-	owl:oneOf _:c14n263 .
+	owl:oneOf _:c14n264 .
 _:c14n53 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty fix_protocol:mapped_pattern .
 _:c14n54 a owl:Restriction ;
-	owl:allValuesFrom _:c14n349 ;
+	owl:allValuesFrom _:c14n346 ;
 	owl:onProperty fix_protocol:id .
 _:c14n55 xsd:pattern "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$" .
 _:c14n56 rdf:first _:c14n320 ;
@@ -1598,7 +1599,7 @@ _:c14n89 a owl:Restriction ;
 _:c14n9 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty fix_protocol:in_category .
-_:c14n90 owl:unionOf _:c14n258 .
+_:c14n90 owl:unionOf _:c14n259 .
 _:c14n91 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty fix_protocol:mapped_min_inclusive .

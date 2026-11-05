@@ -127,7 +127,7 @@ classes:
           member_group:
             name: member_group
             required: true
-    exact_mappings:
+    close_mappings:
       - fixr:fieldRefType
       - fixr:componentRefType
       - fixr:groupRefType
@@ -200,8 +200,10 @@ classes:
           - id
         exact_mappings:
           - fixr:id
-    exact_mappings:
-      - fixr:numInGroupType
+    close_mappings:
+      - fixr:fieldRefType
+    comments:
+      - Orchestra 1.0 gives the count the shape of a field reference.
 
   FixMessage:
     title: Message

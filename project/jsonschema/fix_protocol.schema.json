@@ -2,7 +2,7 @@
     "$defs": {
         "FixCategory": {
             "additionalProperties": false,
-            "description": "A group of messages within a section, or one of the groups that hold the shared components and the fields.",
+            "description": "A group of messages within a section. Three categories sit in no section and hold the shared components and the fields instead.",
             "properties": {
                 "added_in": {
                     "description": "The FIX version that added the element.",
@@ -48,7 +48,7 @@
                     ]
                 },
                 "fixml_file_name": {
-                    "description": "The name of the FIXML schema file that holds the section's or category's elements.",
+                    "description": "The FIXML schema file that holds the section's or category's elements, by its file name.",
                     "pattern": "^[A-Za-z][A-Za-z0-9_]{0,254}$",
                     "type": [
                         "string",
@@ -261,7 +261,10 @@
                     "items": {
                         "$ref": "#/$defs/FixCode"
                     },
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "id": {
                     "description": "The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation.",
@@ -292,7 +295,6 @@
             },
             "required": [
                 "code_set_datatype",
-                "fix_codes",
                 "id",
                 "name"
             ],
@@ -1264,7 +1266,7 @@
         },
         "FixRepository": {
             "additionalProperties": false,
-            "description": "One file of the catalogue: the edition it renders and one or more kinds of FIX Latest's elements.",
+            "description": "One file of the catalogue: the edition it renders, with some kinds of FIX Latest's elements.",
             "properties": {
                 "fix_categories": {
                     "description": "The categories, in FIX's order.",
@@ -1430,7 +1432,7 @@
         },
         "FixSection": {
             "additionalProperties": false,
-            "description": "One of the five parts of FIX by business area, such as pre-trade or post-trade.",
+            "description": "One of the five parts FIX divides its messages into by business area, such as PreTrade.",
             "properties": {
                 "added_in": {
                     "description": "The FIX version that added the element.",
@@ -1465,7 +1467,7 @@
                     ]
                 },
                 "fixml_file_name": {
-                    "description": "The name of the FIXML schema file that holds the section's or category's elements.",
+                    "description": "The FIXML schema file that holds the section's or category's elements, by its file name.",
                     "pattern": "^[A-Za-z][A-Za-z0-9_]{0,254}$",
                     "type": [
                         "string",
@@ -1525,7 +1527,7 @@
     "$id": "https://w3id.org/lmodel/fix-protocol",
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": false,
-    "description": "One file of the catalogue: the edition it renders and one or more kinds of FIX Latest's elements.",
+    "description": "One file of the catalogue: the edition it renders, with some kinds of FIX Latest's elements.",
     "metamodel_version": "1.12.0",
     "properties": {
         "fix_categories": {

@@ -82,7 +82,7 @@ linkml:Sparqlpath xsd:string
     (  $<FixCodeSet_tes> (  &<FixElement_tes> ;
           rdf:type [ <FixElement> ] ? ;
           <code_set_datatype> @<FixDatatype> ;
-          <fix_codes> @<FixCode> +
+          <fix_codes> @<FixCode> *
        ) ;
        rdf:type [ <FixCodeSet> ]
     )

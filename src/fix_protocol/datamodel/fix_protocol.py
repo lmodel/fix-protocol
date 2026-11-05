@@ -82,7 +82,7 @@ DEFAULT_ = FIX_PROTOCOL
 
 # Types
 class FixVersion(String):
-    """ A version of the FIX standard, such as FIX.4.4, FIX.5.0SP2 or FIX.Latest. """
+    """ A FIX version, such as FIX.4.4, FIX.5.0SP2 or FIX.Latest. """
     type_class_uri = XSD["string"]
     type_class_curie = "xsd:string"
     type_name = "fix_version"
@@ -90,7 +90,7 @@ class FixVersion(String):
 
 
 class FixExtensionPack(Integer):
-    """ The number of a FIX extension pack, the unit in which FIX Latest changes. """
+    """ The number of a FIX extension pack. FIX Latest changes one extension pack at a time. """
     type_class_uri = XSD["integer"]
     type_class_curie = "xsd:integer"
     type_name = "fix_extension_pack"
@@ -157,7 +157,7 @@ class FixMessageId(FixElementId):
 @dataclass(repr=False)
 class FixRepository(YAMLRoot):
     """
-    One file of the catalogue: the edition it renders and one or more kinds of FIX Latest's elements.
+    One file of the catalogue: the edition it renders, with some kinds of FIX Latest's elements.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -340,7 +340,7 @@ class FixElement(YAMLRoot):
 @dataclass(repr=False)
 class FixSection(FixElement):
     """
-    One of the five parts of FIX by business area, such as pre-trade or post-trade.
+    One of the five parts FIX divides its messages into by business area, such as PreTrade.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -376,7 +376,8 @@ class FixSection(FixElement):
 @dataclass(repr=False)
 class FixCategory(FixElement):
     """
-    A group of messages within a section, or one of the groups that hold the shared components and the fields.
+    A group of messages within a section. Three categories sit in no section and hold the shared components and the
+    fields instead.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -502,7 +503,7 @@ class FixCodeSet(FixElement):
     id: Union[str, FixCodeSetId] = None
     name: Union[str, FixName] = None
     code_set_datatype: Union[str, FixDatatypeId] = None
-    fix_codes: Union[dict[Union[str, FixCodeId], Union[dict, "FixCode"]], list[Union[dict, "FixCode"]]] = empty_dict()
+    fix_codes: Optional[Union[dict[Union[str, FixCodeId], Union[dict, "FixCode"]], list[Union[dict, "FixCode"]]]] = empty_dict()
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
@@ -515,8 +516,6 @@ class FixCodeSet(FixElement):
         if not isinstance(self.code_set_datatype, FixDatatypeId):
             self.code_set_datatype = FixDatatypeId(self.code_set_datatype)
 
-        if self._is_empty(self.fix_codes):
-            self.MissingRequiredField("fix_codes")
         self._normalize_inlined_as_list(slot_name="fix_codes", slot_type=FixCode, key_name="id", keyed=True)
 
         super().__post_init__(**kwargs)
@@ -1077,7 +1076,7 @@ slots.fixCodeSet__code_set_datatype = Slot(uri=FIX_PROTOCOL.code_set_datatype, n
                    pattern=re.compile(r'^fix_datatype:[A-Za-z][A-Za-z0-9_]*$'))
 
 slots.fixCodeSet__fix_codes = Slot(uri=FIX_PROTOCOL.fix_codes, name="fixCodeSet__fix_codes", curie=FIX_PROTOCOL.curie('fix_codes'),
-                   model_uri=FIX_PROTOCOL.fixCodeSet__fix_codes, domain=None, range=Union[dict[Union[str, FixCodeId], Union[dict, FixCode]], list[Union[dict, FixCode]]])
+                   model_uri=FIX_PROTOCOL.fixCodeSet__fix_codes, domain=None, range=Optional[Union[dict[Union[str, FixCodeId], Union[dict, FixCode]], list[Union[dict, FixCode]]]])
 
 slots.fixCode__code_value = Slot(uri=FIX_PROTOCOL.code_value, name="fixCode__code_value", curie=FIX_PROTOCOL.curie('code_value'),
                    model_uri=FIX_PROTOCOL.fixCode__code_value, domain=None, range=str,

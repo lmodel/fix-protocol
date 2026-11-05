@@ -1,6 +1,0 @@
-# A code set with no codes.
-# Fails at: /
-id: fix_code_set:54
-name: SideCodeSet
-code_set_datatype: fix_datatype:char
-added_in: FIX.2.7

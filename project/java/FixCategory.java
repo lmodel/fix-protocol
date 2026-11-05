@@ -10,7 +10,7 @@ import java.util.List;
 import lombok.*;
 
 /**
-  A group of messages within a section, or one of the groups that hold the shared components and the fields.
+  A group of messages within a section. Three categories sit in no section and hold the shared components and the fields instead.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)

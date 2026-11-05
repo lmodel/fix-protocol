@@ -130,7 +130,6 @@ classes:
         range: FixCode
         multivalued: true
         inlined_as_list: true
-        required: true
         aliases:
           - code
         exact_mappings:

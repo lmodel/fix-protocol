@@ -77,10 +77,10 @@ export interface FixElement extends FixPedigreeMixin {
 
 
 /**
- * One of the five parts of FIX by business area, such as pre-trade or post-trade.
+ * One of the five parts FIX divides its messages into by business area, such as PreTrade.
  */
 export interface FixSection extends FixElement {
-    /** The name of the FIXML schema file that holds the section's or category's elements. */
+    /** The FIXML schema file that holds the section's or category's elements, by its file name. */
     fixml_file_name?: string,
     /** True when the element is left out of FIXML, FIX's XML encoding. */
     fixml_not_required?: boolean,
@@ -90,10 +90,10 @@ export interface FixSection extends FixElement {
 
 
 /**
- * A group of messages within a section, or one of the groups that hold the shared components and the fields.
+ * A group of messages within a section. Three categories sit in no section and hold the shared components and the fields instead.
  */
 export interface FixCategory extends FixElement {
-    /** The name of the FIXML schema file that holds the section's or category's elements. */
+    /** The FIXML schema file that holds the section's or category's elements, by its file name. */
     fixml_file_name?: string,
     /** The section a category belongs to. */
     in_section?: FixSectionId,
@@ -141,7 +141,7 @@ export interface FixCodeSet extends FixElement {
     /** The datatype of the codes' values. */
     code_set_datatype: FixDatatypeId,
     /** The codes of the set, in FIX's order. */
-    fix_codes: FixCode[],
+    fix_codes?: FixCode[],
 }
 
 
@@ -257,7 +257,7 @@ export interface FixMessage extends FixElement {
 
 
 /**
- * One file of the catalogue: the edition it renders and one or more kinds of FIX Latest's elements.
+ * One file of the catalogue: the edition it renders, with some kinds of FIX Latest's elements.
  */
 export interface FixRepository {
     /** The name FIX gives the repository, FIX.Latest. */
