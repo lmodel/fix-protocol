@@ -1,0 +1,2678 @@
+name: fix_protocol
+annotations:
+  upstream_repository:
+    tag: upstream_repository
+    value: https://github.com/FIXTradingCommunity/orchestrations
+  upstream_commit:
+    tag: upstream_commit
+    value: cd24169a2abd8daba7c360987c7a46ca11873a12
+  upstream_created:
+    tag: upstream_created
+    value: '2026-09-08'
+  upstream_license:
+    tag: upstream_license
+    value: Apache-2.0
+description: A LinkML model of FIX Latest, the application layer of the Financial
+  Information eXchange (FIX) protocol that the FIX Trading Community maintains. It
+  holds every section, category, datatype, code set, field, component, repeating group
+  and message of FIX Latest as a record, with the version and extension pack that
+  added and last changed each one. The records keep FIX's names, numbers and codes
+  and none of its descriptive text.
+title: FIX Latest
+comments:
+- The version is the extension pack the catalogue renders. upstream/ holds FIX Latest's
+  Orchestra file unchanged, scripts/fix_latest_to_records.py writes the catalogue
+  from it, and scripts/check_upstream_release.py reports when FIX publishes another.
+source: https://github.com/FIXTradingCommunity/orchestrations/blob/cd24169a2abd8daba7c360987c7a46ca11873a12/FIX%20Standard/OrchestraFIXLatest.xml
+see_also:
+- https://lmodel.github.io/fix-protocol
+- https://github.com/FIXTradingCommunity/orchestrations
+keywords:
+- FIX
+- FIX Latest
+- financial messaging
+- trading
+- Orchestra
+id: https://w3id.org/lmodel/fix-protocol
+version: FIX.Latest_EP312
+imports:
+- linkml:types
+- ./fix_protocol_core
+- ./fix_protocol_dictionary
+- ./fix_protocol_structure
+license: Apache-2.0
+prefixes:
+  fix_protocol:
+    prefix_prefix: fix_protocol
+    prefix_reference: https://w3id.org/lmodel/fix-protocol/
+  fix_section:
+    prefix_prefix: fix_section
+    prefix_reference: https://w3id.org/lmodel/fix-protocol/section/
+  fix_category:
+    prefix_prefix: fix_category
+    prefix_reference: https://w3id.org/lmodel/fix-protocol/category/
+  fix_datatype:
+    prefix_prefix: fix_datatype
+    prefix_reference: https://w3id.org/lmodel/fix-protocol/datatype/
+  fix_code_set:
+    prefix_prefix: fix_code_set
+    prefix_reference: https://w3id.org/lmodel/fix-protocol/code_set/
+  fix_code:
+    prefix_prefix: fix_code
+    prefix_reference: https://w3id.org/lmodel/fix-protocol/code/
+  fix_field:
+    prefix_prefix: fix_field
+    prefix_reference: https://w3id.org/lmodel/fix-protocol/field/
+  fix_component:
+    prefix_prefix: fix_component
+    prefix_reference: https://w3id.org/lmodel/fix-protocol/component/
+  fix_group:
+    prefix_prefix: fix_group
+    prefix_reference: https://w3id.org/lmodel/fix-protocol/group/
+  fix_message:
+    prefix_prefix: fix_message
+    prefix_reference: https://w3id.org/lmodel/fix-protocol/message/
+  fix_orchestra:
+    prefix_prefix: fix_orchestra
+    prefix_reference: https://w3id.org/lmodel/fix-orchestra/
+  fixr:
+    prefix_prefix: fixr
+    prefix_reference: http://fixprotocol.io/2020/orchestra/repository/
+  dcterms:
+    prefix_prefix: dcterms
+    prefix_reference: http://purl.org/dc/terms/
+  linkml:
+    prefix_prefix: linkml
+    prefix_reference: https://w3id.org/linkml/
+  xsd:
+    prefix_prefix: xsd
+    prefix_reference: http://www.w3.org/2001/XMLSchema#
+default_prefix: fix_protocol
+default_range: string
+types:
+  string:
+    name: string
+    definition_uri: https://w3id.org/linkml/String
+    description: A character string
+    notes:
+    - In RDF serializations, a slot with range of string is treated as a literal or
+      type xsd:string. If you are authoring schemas in LinkML YAML, the type is referenced
+      with the lower case "string".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Text
+    base: str
+    uri: xsd:string
+  integer:
+    name: integer
+    definition_uri: https://w3id.org/linkml/Integer
+    description: An integer
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "integer".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Integer
+    base: int
+    uri: xsd:integer
+  boolean:
+    name: boolean
+    definition_uri: https://w3id.org/linkml/Boolean
+    description: A binary (true or false) value
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "boolean".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Boolean
+    base: Bool
+    uri: xsd:boolean
+    repr: bool
+  float:
+    name: float
+    definition_uri: https://w3id.org/linkml/Float
+    description: A real number that conforms to the xsd:float specification
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "float".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Float
+    base: float
+    uri: xsd:float
+  double:
+    name: double
+    definition_uri: https://w3id.org/linkml/Double
+    description: A real number that conforms to the xsd:double specification
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "double".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    close_mappings:
+    - schema:Float
+    base: float
+    uri: xsd:double
+  decimal:
+    name: decimal
+    definition_uri: https://w3id.org/linkml/Decimal
+    description: A real number with arbitrary precision that conforms to the xsd:decimal
+      specification
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "decimal".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    broad_mappings:
+    - schema:Number
+    base: Decimal
+    uri: xsd:decimal
+  time:
+    name: time
+    definition_uri: https://w3id.org/linkml/Time
+    description: A time object represents a (local) time of day, independent of any
+      particular day
+    notes:
+    - URI is dateTime because OWL reasoners do not work with straight date or time
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "time".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Time
+    base: XSDTime
+    uri: xsd:time
+    repr: str
+  date:
+    name: date
+    definition_uri: https://w3id.org/linkml/Date
+    description: a date (year, month and day) in an idealized calendar
+    notes:
+    - URI is dateTime because OWL reasoners don't work with straight date or time
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "date".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Date
+    base: XSDDate
+    uri: xsd:date
+    repr: str
+  datetime:
+    name: datetime
+    definition_uri: https://w3id.org/linkml/Datetime
+    description: The combination of a date and time
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "datetime".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:DateTime
+    base: XSDDateTime
+    uri: xsd:dateTime
+    repr: str
+  date_or_datetime:
+    name: date_or_datetime
+    definition_uri: https://w3id.org/linkml/DateOrDatetime
+    description: Either a date or a datetime
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "date_or_datetime".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: linkml:DateOrDatetime
+    repr: str
+  uriorcurie:
+    name: uriorcurie
+    definition_uri: https://w3id.org/linkml/Uriorcurie
+    description: a URI or a CURIE
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "uriorcurie".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: URIorCURIE
+    uri: xsd:anyURI
+    repr: str
+  curie:
+    name: curie
+    definition_uri: https://w3id.org/linkml/Curie
+    conforms_to: https://www.w3.org/TR/curie/
+    description: a compact URI
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "curie".
+    comments:
+    - in RDF serializations this MUST be expanded to a URI
+    - in non-RDF serializations MAY be serialized as the compact representation
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: Curie
+    uri: xsd:string
+    repr: str
+  uri:
+    name: uri
+    definition_uri: https://w3id.org/linkml/Uri
+    conforms_to: https://www.ietf.org/rfc/rfc3987.txt
+    description: a complete URI
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "uri".
+    comments:
+    - in RDF serializations a slot with range of uri is treated as a literal or type
+      xsd:anyURI unless it is an identifier or a reference to an identifier, in which
+      case it is translated directly to a node
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    close_mappings:
+    - schema:URL
+    base: URI
+    uri: xsd:anyURI
+    repr: str
+  ncname:
+    name: ncname
+    definition_uri: https://w3id.org/linkml/Ncname
+    description: Prefix part of CURIE
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "ncname".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: NCName
+    uri: xsd:string
+    repr: str
+  objectidentifier:
+    name: objectidentifier
+    definition_uri: https://w3id.org/linkml/Objectidentifier
+    description: A URI or CURIE that represents an object in the model.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "objectidentifier".
+    comments:
+    - Used for inheritance and type checking
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: ElementIdentifier
+    uri: shex:iri
+    repr: str
+  nodeidentifier:
+    name: nodeidentifier
+    definition_uri: https://w3id.org/linkml/Nodeidentifier
+    description: A URI, CURIE or BNODE that represents a node in a model.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "nodeidentifier".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: NodeIdentifier
+    uri: shex:nonLiteral
+    repr: str
+  jsonpointer:
+    name: jsonpointer
+    definition_uri: https://w3id.org/linkml/Jsonpointer
+    conforms_to: https://datatracker.ietf.org/doc/html/rfc6901
+    description: A string encoding a JSON Pointer. The value of the string MUST conform
+      to JSON Point syntax and SHOULD dereference to a valid object within the current
+      instance document when encoded in tree form.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "jsonpointer".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: xsd:string
+    repr: str
+  jsonpath:
+    name: jsonpath
+    definition_uri: https://w3id.org/linkml/Jsonpath
+    conforms_to: https://www.ietf.org/archive/id/draft-goessner-dispatch-jsonpath-00.html
+    description: A string encoding a JSON Path. The value of the string MUST conform
+      to JSON Point syntax and SHOULD dereference to zero or more valid objects within
+      the current instance document when encoded in tree form.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "jsonpath".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: xsd:string
+    repr: str
+  sparqlpath:
+    name: sparqlpath
+    definition_uri: https://w3id.org/linkml/Sparqlpath
+    conforms_to: https://www.w3.org/TR/sparql11-query/#propertypaths
+    description: A string encoding a SPARQL Property Path. The value of the string
+      MUST conform to SPARQL syntax and SHOULD dereference to zero or more valid objects
+      within the current instance document when encoded as RDF.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "sparqlpath".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: xsd:string
+    repr: str
+  fix_version:
+    name: fix_version
+    definition_uri: https://w3id.org/lmodel/fix-protocol/FixVersion
+    description: A FIX version, such as FIX.4.4, FIX.5.0SP2 or FIX.Latest.
+    title: FIX Version
+    comments:
+    - The pattern is Orchestra 1.0's for a version, anchored at both ends.
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core
+    exact_mappings:
+    - fixr:Version_t
+    typeof: string
+    base: str
+    uri: xsd:string
+    pattern: ^(FIX\.2\.7|FIX\.3\.0|FIX\.4\.[0-4]|(FIX\.Latest|FIX\.5\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\.1\.1|[0-9]+\.[0-9]+|[0-9]{8})$
+  fix_extension_pack:
+    name: fix_extension_pack
+    definition_uri: https://w3id.org/lmodel/fix-protocol/FixExtensionPack
+    description: The number of a FIX extension pack. FIX Latest changes one extension
+      pack at a time.
+    title: Extension Pack Number
+    comments:
+    - FIX Latest writes -1 on some elements that FIX 4.4 and FIX 5.0 added, and states
+      nothing about what the value means.
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core
+    exact_mappings:
+    - fixr:EP_t
+    typeof: integer
+    base: int
+    uri: xsd:integer
+    minimum_value: -1
+  fix_date:
+    name: fix_date
+    definition_uri: https://w3id.org/lmodel/fix-protocol/FixDate
+    description: A date as the repository's metadata writes it, year first.
+    title: Date
+    comments:
+    - LinkML's date type asks a JSON Schema format checker, which many validators
+      leave off.
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core
+    typeof: string
+    base: str
+    uri: xsd:date
+    pattern: ^[0-9]{4}-[0-9]{2}-[0-9]{2}$
+  fix_name:
+    name: fix_name
+    definition_uri: https://w3id.org/lmodel/fix-protocol/FixName
+    description: 'A name as FIX writes one: a letter, then letters, digits and underscores.'
+    title: FIX Name
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core
+    exact_mappings:
+    - fixr:Name_t
+    typeof: string
+    base: str
+    uri: xsd:string
+    pattern: ^[A-Za-z][A-Za-z0-9_]{0,254}$
+enums:
+  FixPresence:
+    name: FixPresence
+    definition_uri: https://w3id.org/lmodel/fix-protocol/FixPresence
+    description: Whether a message, component or group must carry a member, as Orchestra
+      1.0 lets FIX Latest say it.
+    title: Presence
+    comments:
+    - FIX Latest states only required. A member with no presence is optional, which
+      is Orchestra 1.0's default.
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core
+    permissible_values:
+      optional:
+        text: optional
+        description: The member may be left out.
+        title: Optional
+      required:
+        text: required
+        description: The member must be there.
+        title: Required
+      forbidden:
+        text: forbidden
+        description: The member must be left out.
+        title: Forbidden
+      ignored:
+        text: ignored
+        description: A receiver disregards the member if it is there.
+        title: Ignored
+      constant:
+        text: constant
+        description: The member always takes one fixed value.
+        title: Constant
+  FixCategoryKind:
+    name: FixCategoryKind
+    definition_uri: https://w3id.org/lmodel/fix-protocol/FixCategoryKind
+    description: Whether a category groups messages or fields.
+    title: Category Kind
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core
+    permissible_values:
+      Message:
+        text: Message
+        description: The category groups messages and their components.
+        title: Messages
+      Field:
+        text: Field
+        description: The category groups fields.
+        title: Fields
+  FixIncludeFile:
+    name: FixIncludeFile
+    definition_uri: https://w3id.org/lmodel/fix-protocol/FixIncludeFile
+    description: Which shared FIXML schema file a category's own FIXML schema file
+      brings in.
+    title: Included FIXML File
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core
+    permissible_values:
+      components:
+        text: components
+        description: The file that defines the shared components.
+        title: Components
+      fields:
+        text: fields
+        description: The file that defines the fields.
+        title: Fields
+slots:
+  id:
+    name: id
+    definition_uri: https://w3id.org/lmodel/fix-protocol/id
+    description: 'The element''s identifier: a prefix for its kind, then the number
+      or name FIX gives it, such as fix_field:55 or fix_category:Allocation.'
+    title: Identifier
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core
+    slot_uri: fix_protocol:id
+    identifier: true
+    owner: FixElement
+    domain_of:
+    - FixElement
+    range: uriorcurie
+    required: true
+  name:
+    name: name
+    definition_uri: https://w3id.org/lmodel/fix-protocol/name
+    description: The element's name in FIX, such as NewOrderSingle or Symbol.
+    title: Name
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core
+    aliases:
+    - name
+    mappings:
+    - fix_protocol:name
+    exact_mappings:
+    - fixr:name
+    slot_uri: fix_protocol:name
+    owner: FixElement
+    domain_of:
+    - FixElement
+    range: fix_name
+    required: true
+  abbr_name:
+    name: abbr_name
+    definition_uri: https://w3id.org/lmodel/fix-protocol/abbr_name
+    description: The shorter name FIXML uses for the element's tag.
+    title: Abbreviated Name
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core
+    aliases:
+    - abbrName
+    mappings:
+    - fix_protocol:abbr_name
+    exact_mappings:
+    - fixr:abbrName
+    slot_uri: fix_protocol:abbr_name
+    owner: FixMessage
+    domain_of:
+    - FixField
+    - FixComponent
+    - FixGroup
+    - FixMessage
+    range: fix_name
+  fixml_file_name:
+    name: fixml_file_name
+    definition_uri: https://w3id.org/lmodel/fix-protocol/fixml_file_name
+    description: The FIXML schema file that holds the section's or category's elements,
+      by its file name.
+    title: FIXML File Name
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core
+    aliases:
+    - FIXMLFileName
+    mappings:
+    - fix_protocol:fixml_file_name
+    exact_mappings:
+    - fixr:FIXMLFileName
+    slot_uri: fix_protocol:fixml_file_name
+    owner: FixCategory
+    domain_of:
+    - FixSection
+    - FixCategory
+    range: fix_name
+  fixml_not_required:
+    name: fixml_not_required
+    definition_uri: https://w3id.org/lmodel/fix-protocol/fixml_not_required
+    description: True when the element is left out of FIXML, FIX's XML encoding.
+    title: Not Required in FIXML
+    comments:
+    - FIX Latest writes it in a FIXML annotation, the only kind of application information
+      the file carries.
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core
+    aliases:
+    - notReqXML
+    mappings:
+    - fix_protocol:fixml_not_required
+    slot_uri: fix_protocol:fixml_not_required
+    owner: FixMessage
+    domain_of:
+    - FixSection
+    - FixCategory
+    - FixField
+    - FixComponent
+    - FixMessage
+    range: boolean
+  added_in:
+    name: added_in
+    definition_uri: https://w3id.org/lmodel/fix-protocol/added_in
+    description: The FIX version that added the element.
+    title: Added In
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core
+    aliases:
+    - added
+    mappings:
+    - fix_protocol:added_in
+    exact_mappings:
+    - fixr:added
+    slot_uri: fix_protocol:added_in
+    owner: FixPedigreeMixin
+    domain_of:
+    - FixPedigreeMixin
+    range: fix_version
+  added_in_ep:
+    name: added_in_ep
+    definition_uri: https://w3id.org/lmodel/fix-protocol/added_in_ep
+    description: The extension pack that added the element.
+    title: Added In Extension Pack
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core
+    aliases:
+    - addedEP
+    mappings:
+    - fix_protocol:added_in_ep
+    exact_mappings:
+    - fixr:addedEP
+    slot_uri: fix_protocol:added_in_ep
+    owner: FixPedigreeMixin
+    domain_of:
+    - FixPedigreeMixin
+    range: fix_extension_pack
+  updated_in:
+    name: updated_in
+    definition_uri: https://w3id.org/lmodel/fix-protocol/updated_in
+    description: The FIX version that last changed the element.
+    title: Last Updated In
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core
+    aliases:
+    - updated
+    mappings:
+    - fix_protocol:updated_in
+    exact_mappings:
+    - fixr:updated
+    slot_uri: fix_protocol:updated_in
+    owner: FixPedigreeMixin
+    domain_of:
+    - FixPedigreeMixin
+    range: fix_version
+  updated_in_ep:
+    name: updated_in_ep
+    definition_uri: https://w3id.org/lmodel/fix-protocol/updated_in_ep
+    description: The extension pack that last changed the element.
+    title: Last Updated In Extension Pack
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core
+    aliases:
+    - updatedEP
+    mappings:
+    - fix_protocol:updated_in_ep
+    exact_mappings:
+    - fixr:updatedEP
+    slot_uri: fix_protocol:updated_in_ep
+    owner: FixPedigreeMixin
+    domain_of:
+    - FixPedigreeMixin
+    range: fix_extension_pack
+  deprecated_in:
+    name: deprecated_in
+    definition_uri: https://w3id.org/lmodel/fix-protocol/deprecated_in
+    description: The FIX version that deprecated the element.
+    title: Deprecated In
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core
+    aliases:
+    - deprecated
+    mappings:
+    - fix_protocol:deprecated_in
+    exact_mappings:
+    - fixr:deprecated
+    slot_uri: fix_protocol:deprecated_in
+    owner: FixPedigreeMixin
+    domain_of:
+    - FixPedigreeMixin
+    range: fix_version
+  deprecated_in_ep:
+    name: deprecated_in_ep
+    definition_uri: https://w3id.org/lmodel/fix-protocol/deprecated_in_ep
+    description: The extension pack that deprecated the element.
+    title: Deprecated In Extension Pack
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core
+    aliases:
+    - deprecatedEP
+    mappings:
+    - fix_protocol:deprecated_in_ep
+    exact_mappings:
+    - fixr:deprecatedEP
+    slot_uri: fix_protocol:deprecated_in_ep
+    owner: FixPedigreeMixin
+    domain_of:
+    - FixPedigreeMixin
+    range: fix_extension_pack
+  in_section:
+    name: in_section
+    definition_uri: https://w3id.org/lmodel/fix-protocol/in_section
+    description: The section a category belongs to.
+    title: Section
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core
+    aliases:
+    - section
+    mappings:
+    - fix_protocol:in_section
+    exact_mappings:
+    - fixr:section
+    slot_uri: fix_protocol:in_section
+    owner: FixCategory
+    domain_of:
+    - FixCategory
+    range: FixSection
+    pattern: ^fix_section:[A-Za-z][A-Za-z0-9_]*$
+  in_category:
+    name: in_category
+    definition_uri: https://w3id.org/lmodel/fix-protocol/in_category
+    description: The category a message, component or group belongs to.
+    title: Category
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core
+    aliases:
+    - category
+    mappings:
+    - fix_protocol:in_category
+    exact_mappings:
+    - fixr:category
+    slot_uri: fix_protocol:in_category
+    owner: FixMessage
+    domain_of:
+    - FixComponent
+    - FixGroup
+    - FixMessage
+    range: FixCategory
+    required: true
+    pattern: ^fix_category:[A-Za-z][A-Za-z0-9_]*$
+  fix_members:
+    name: fix_members
+    definition_uri: https://w3id.org/lmodel/fix-protocol/fix_members
+    description: The fields, components and groups the element holds, in the order
+      FIX lists them.
+    title: Members
+    comments:
+    - A message lists its members in a structure element and a component or a group
+      lists them directly. The record lists them here in each case.
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_structure
+    mappings:
+    - fix_protocol:fix_members
+    slot_uri: fix_protocol:fix_members
+    owner: FixMessage
+    domain_of:
+    - FixComponent
+    - FixGroup
+    - FixMessage
+    range: FixMember
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  fixRepository__repository_name:
+    name: fixRepository__repository_name
+    description: The name FIX gives the repository, FIX.Latest.
+    title: Repository Name
+    from_schema: https://w3id.org/lmodel/fix-protocol
+    aliases:
+    - name
+    exact_mappings:
+    - fixr:name
+    slot_uri: fix_protocol:repository_name
+    alias: repository_name
+    owner: FixRepository
+    domain_of:
+    - FixRepository
+    range: string
+    required: true
+    equals_string: FIX.Latest
+  fixRepository__repository_version:
+    name: fixRepository__repository_version
+    description: The extension pack the repository stands at, such as FIX.Latest_EP312.
+    title: Edition
+    from_schema: https://w3id.org/lmodel/fix-protocol
+    aliases:
+    - version
+    exact_mappings:
+    - fixr:version
+    slot_uri: fix_protocol:repository_version
+    alias: repository_version
+    owner: FixRepository
+    domain_of:
+    - FixRepository
+    range: fix_version
+    required: true
+  fixRepository__metadata_title:
+    name: fixRepository__metadata_title
+    description: The title the repository's metadata gives.
+    title: Title
+    from_schema: https://w3id.org/lmodel/fix-protocol
+    aliases:
+    - title
+    exact_mappings:
+    - dcterms:title
+    slot_uri: fix_protocol:metadata_title
+    alias: metadata_title
+    owner: FixRepository
+    domain_of:
+    - FixRepository
+    range: string
+  fixRepository__metadata_description:
+    name: fixRepository__metadata_description
+    description: The metadata's one-line statement of which extension pack the file
+      holds.
+    title: Edition Statement
+    from_schema: https://w3id.org/lmodel/fix-protocol
+    aliases:
+    - description
+    exact_mappings:
+    - dcterms:description
+    slot_uri: fix_protocol:metadata_description
+    alias: metadata_description
+    owner: FixRepository
+    domain_of:
+    - FixRepository
+    range: string
+  fixRepository__metadata_creator:
+    name: fixRepository__metadata_creator
+    description: Who made the repository, by its metadata.
+    title: Creator
+    from_schema: https://w3id.org/lmodel/fix-protocol
+    aliases:
+    - creator
+    exact_mappings:
+    - dcterms:creator
+    slot_uri: fix_protocol:metadata_creator
+    alias: metadata_creator
+    owner: FixRepository
+    domain_of:
+    - FixRepository
+    range: string
+  fixRepository__metadata_publisher:
+    name: fixRepository__metadata_publisher
+    description: Who published the repository, by its metadata.
+    title: Publisher
+    from_schema: https://w3id.org/lmodel/fix-protocol
+    aliases:
+    - publisher
+    exact_mappings:
+    - dcterms:publisher
+    slot_uri: fix_protocol:metadata_publisher
+    alias: metadata_publisher
+    owner: FixRepository
+    domain_of:
+    - FixRepository
+    range: string
+  fixRepository__metadata_rights:
+    name: fixRepository__metadata_rights
+    description: The rights line in the repository's metadata, word for word.
+    title: Rights Statement
+    from_schema: https://w3id.org/lmodel/fix-protocol
+    aliases:
+    - rights
+    exact_mappings:
+    - dcterms:rights
+    slot_uri: fix_protocol:metadata_rights
+    alias: metadata_rights
+    owner: FixRepository
+    domain_of:
+    - FixRepository
+    range: string
+  fixRepository__metadata_format:
+    name: fixRepository__metadata_format
+    description: The media type of the repository file.
+    title: Format
+    from_schema: https://w3id.org/lmodel/fix-protocol
+    aliases:
+    - format
+    exact_mappings:
+    - dcterms:format
+    slot_uri: fix_protocol:metadata_format
+    alias: metadata_format
+    owner: FixRepository
+    domain_of:
+    - FixRepository
+    range: string
+  fixRepository__metadata_conforms_to:
+    name: fixRepository__metadata_conforms_to
+    description: The Orchestra version the repository file follows.
+    title: Conforms To
+    from_schema: https://w3id.org/lmodel/fix-protocol
+    aliases:
+    - conformsTo
+    exact_mappings:
+    - dcterms:conformsTo
+    slot_uri: fix_protocol:metadata_conforms_to
+    alias: metadata_conforms_to
+    owner: FixRepository
+    domain_of:
+    - FixRepository
+    range: string
+  fixRepository__metadata_created:
+    name: fixRepository__metadata_created
+    description: The date the repository file was made.
+    title: Created
+    from_schema: https://w3id.org/lmodel/fix-protocol
+    aliases:
+    - created
+    exact_mappings:
+    - dcterms:created
+    slot_uri: fix_protocol:metadata_created
+    alias: metadata_created
+    owner: FixRepository
+    domain_of:
+    - FixRepository
+    range: fix_date
+  fixRepository__metadata_source:
+    name: fixRepository__metadata_source
+    description: The tool or source the metadata names for the file.
+    title: Source
+    from_schema: https://w3id.org/lmodel/fix-protocol
+    aliases:
+    - source
+    exact_mappings:
+    - dcterms:source
+    slot_uri: fix_protocol:metadata_source
+    alias: metadata_source
+    owner: FixRepository
+    domain_of:
+    - FixRepository
+    range: string
+  fixRepository__fix_sections:
+    name: fixRepository__fix_sections
+    description: The sections, in FIX's order.
+    title: Sections
+    from_schema: https://w3id.org/lmodel/fix-protocol
+    aliases:
+    - sections
+    slot_uri: fix_protocol:fix_sections
+    alias: fix_sections
+    owner: FixRepository
+    domain_of:
+    - FixRepository
+    range: FixSection
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  fixRepository__fix_categories:
+    name: fixRepository__fix_categories
+    description: The categories, in FIX's order.
+    title: Categories
+    from_schema: https://w3id.org/lmodel/fix-protocol
+    aliases:
+    - categories
+    slot_uri: fix_protocol:fix_categories
+    alias: fix_categories
+    owner: FixRepository
+    domain_of:
+    - FixRepository
+    range: FixCategory
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  fixRepository__fix_datatypes:
+    name: fixRepository__fix_datatypes
+    description: The datatypes, in FIX's order.
+    title: Datatypes
+    from_schema: https://w3id.org/lmodel/fix-protocol
+    aliases:
+    - datatypes
+    slot_uri: fix_protocol:fix_datatypes
+    alias: fix_datatypes
+    owner: FixRepository
+    domain_of:
+    - FixRepository
+    range: FixDatatype
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  fixRepository__fix_code_sets:
+    name: fixRepository__fix_code_sets
+    description: The code sets, in FIX's order.
+    title: Code Sets
+    from_schema: https://w3id.org/lmodel/fix-protocol
+    aliases:
+    - codeSets
+    slot_uri: fix_protocol:fix_code_sets
+    alias: fix_code_sets
+    owner: FixRepository
+    domain_of:
+    - FixRepository
+    range: FixCodeSet
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  fixRepository__fix_fields:
+    name: fixRepository__fix_fields
+    description: The fields, in FIX's order.
+    title: Fields
+    from_schema: https://w3id.org/lmodel/fix-protocol
+    aliases:
+    - fields
+    slot_uri: fix_protocol:fix_fields
+    alias: fix_fields
+    owner: FixRepository
+    domain_of:
+    - FixRepository
+    range: FixField
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  fixRepository__fix_components:
+    name: fixRepository__fix_components
+    description: The components, in FIX's order.
+    title: Components
+    from_schema: https://w3id.org/lmodel/fix-protocol
+    aliases:
+    - components
+    slot_uri: fix_protocol:fix_components
+    alias: fix_components
+    owner: FixRepository
+    domain_of:
+    - FixRepository
+    range: FixComponent
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  fixRepository__fix_groups:
+    name: fixRepository__fix_groups
+    description: The repeating groups, in FIX's order.
+    title: Repeating Groups
+    from_schema: https://w3id.org/lmodel/fix-protocol
+    aliases:
+    - groups
+    slot_uri: fix_protocol:fix_groups
+    alias: fix_groups
+    owner: FixRepository
+    domain_of:
+    - FixRepository
+    range: FixGroup
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  fixRepository__fix_messages:
+    name: fixRepository__fix_messages
+    description: The messages, in FIX's order.
+    title: Messages
+    from_schema: https://w3id.org/lmodel/fix-protocol
+    aliases:
+    - messages
+    slot_uri: fix_protocol:fix_messages
+    alias: fix_messages
+    owner: FixRepository
+    domain_of:
+    - FixRepository
+    range: FixMessage
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  fixSection__section_order:
+    name: fixSection__section_order
+    description: Where the section comes in FIX's own order of sections, counting
+      from 0.
+    title: Display Order
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core
+    aliases:
+    - displayOrder
+    exact_mappings:
+    - fixr:displayOrder
+    slot_uri: fix_protocol:section_order
+    alias: section_order
+    owner: FixSection
+    domain_of:
+    - FixSection
+    range: integer
+    minimum_value: 0
+  fixCategory__category_kind:
+    name: fixCategory__category_kind
+    description: Whether the category groups messages or fields.
+    title: Category Kind
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core
+    aliases:
+    - componentType
+    exact_mappings:
+    - fixr:componentType
+    slot_uri: fix_protocol:category_kind
+    alias: category_kind
+    owner: FixCategory
+    domain_of:
+    - FixCategory
+    range: FixCategoryKind
+  fixCategory__include_file:
+    name: fixCategory__include_file
+    description: The shared FIXML schema file that the category's own FIXML schema
+      file brings in.
+    title: Included FIXML File
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core
+    aliases:
+    - includeFile
+    exact_mappings:
+    - fixr:includeFile
+    slot_uri: fix_protocol:include_file
+    alias: include_file
+    owner: FixCategory
+    domain_of:
+    - FixCategory
+    range: FixIncludeFile
+  fixDatatype__base_type:
+    name: fixDatatype__base_type
+    description: The datatype this one narrows.
+    title: Base Type
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary
+    aliases:
+    - baseType
+    exact_mappings:
+    - fixr:baseType
+    slot_uri: fix_protocol:base_type
+    alias: base_type
+    owner: FixDatatype
+    domain_of:
+    - FixDatatype
+    range: FixDatatype
+    pattern: ^fix_datatype:[A-Za-z][A-Za-z0-9_]*$
+  fixDatatype__mapped_datatypes:
+    name: fixDatatype__mapped_datatypes
+    description: The types of other standards that FIX gives as this datatype's form.
+    title: Mapped Datatypes
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary
+    aliases:
+    - mappedDatatype
+    exact_mappings:
+    - fixr:mappedDatatype
+    slot_uri: fix_protocol:mapped_datatypes
+    alias: mapped_datatypes
+    owner: FixDatatype
+    domain_of:
+    - FixDatatype
+    range: FixMappedDatatype
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  fixMappedDatatype__mapped_standard:
+    name: fixMappedDatatype__mapped_standard
+    description: The standard the type belongs to, such as XML.
+    title: Standard
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary
+    aliases:
+    - standard
+    exact_mappings:
+    - fixr:standard
+    slot_uri: fix_protocol:mapped_standard
+    alias: mapped_standard
+    owner: FixMappedDatatype
+    domain_of:
+    - FixMappedDatatype
+    range: string
+    required: true
+  fixMappedDatatype__mapped_base:
+    name: fixMappedDatatype__mapped_base
+    description: The standard's type, such as xs:decimal.
+    title: Base
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary
+    aliases:
+    - base
+    exact_mappings:
+    - fixr:base
+    slot_uri: fix_protocol:mapped_base
+    alias: mapped_base
+    owner: FixMappedDatatype
+    domain_of:
+    - FixMappedDatatype
+    range: string
+  fixMappedDatatype__mapped_builtin:
+    name: fixMappedDatatype__mapped_builtin
+    description: True when the type is one the standard defines itself.
+    title: Built In
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary
+    aliases:
+    - builtin
+    exact_mappings:
+    - fixr:builtin
+    slot_uri: fix_protocol:mapped_builtin
+    alias: mapped_builtin
+    owner: FixMappedDatatype
+    domain_of:
+    - FixMappedDatatype
+    range: boolean
+  fixMappedDatatype__mapped_min_inclusive:
+    name: fixMappedDatatype__mapped_min_inclusive
+    description: The smallest value the type allows, as FIX writes it.
+    title: Least Value
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary
+    aliases:
+    - minInclusive
+    exact_mappings:
+    - fixr:minInclusive
+    slot_uri: fix_protocol:mapped_min_inclusive
+    alias: mapped_min_inclusive
+    owner: FixMappedDatatype
+    domain_of:
+    - FixMappedDatatype
+    range: string
+  fixMappedDatatype__mapped_pattern:
+    name: fixMappedDatatype__mapped_pattern
+    description: A regular expression in XML Schema's syntax that a value must match.
+    title: Pattern
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary
+    aliases:
+    - pattern
+    exact_mappings:
+    - fixr:pattern
+    slot_uri: fix_protocol:mapped_pattern
+    alias: mapped_pattern
+    owner: FixMappedDatatype
+    domain_of:
+    - FixMappedDatatype
+    range: string
+  fixCodeSet__code_set_datatype:
+    name: fixCodeSet__code_set_datatype
+    description: The datatype of the codes' values.
+    title: Datatype
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary
+    aliases:
+    - type
+    exact_mappings:
+    - fixr:type
+    slot_uri: fix_protocol:code_set_datatype
+    alias: code_set_datatype
+    owner: FixCodeSet
+    domain_of:
+    - FixCodeSet
+    range: FixDatatype
+    required: true
+    pattern: ^fix_datatype:[A-Za-z][A-Za-z0-9_]*$
+  fixCodeSet__fix_codes:
+    name: fixCodeSet__fix_codes
+    description: The codes of the set, in FIX's order.
+    title: Codes
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary
+    aliases:
+    - code
+    exact_mappings:
+    - fixr:code
+    slot_uri: fix_protocol:fix_codes
+    alias: fix_codes
+    owner: FixCodeSet
+    domain_of:
+    - FixCodeSet
+    range: FixCode
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  fixCode__code_value:
+    name: fixCode__code_value
+    description: The value as it travels on the wire.
+    title: Value
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary
+    aliases:
+    - value
+    exact_mappings:
+    - fixr:value
+    slot_uri: fix_protocol:code_value
+    alias: code_value
+    owner: FixCode
+    domain_of:
+    - FixCode
+    range: string
+    required: true
+    pattern: ^\S+$
+  fixCode__sort_order:
+    name: fixCode__sort_order
+    description: Where the code comes when FIX lists the set.
+    title: Sort Order
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary
+    aliases:
+    - sort
+    exact_mappings:
+    - fixr:sort
+    slot_uri: fix_protocol:sort_order
+    alias: sort_order
+    owner: FixCode
+    domain_of:
+    - FixCode
+    range: integer
+    minimum_value: 0
+  fixCode__code_group:
+    name: fixCode__code_group
+    description: A label that groups some codes of a large set, such as one asset
+      class.
+    title: Code Group
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary
+    aliases:
+    - group
+    exact_mappings:
+    - fixr:group
+    slot_uri: fix_protocol:code_group
+    alias: code_group
+    owner: FixCode
+    domain_of:
+    - FixCode
+    range: string
+  fixField__field_datatype:
+    name: fixField__field_datatype
+    description: The datatype of the field's values, when no code set lists them.
+    title: Datatype
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary
+    aliases:
+    - type
+    exact_mappings:
+    - fixr:type
+    slot_uri: fix_protocol:field_datatype
+    alias: field_datatype
+    owner: FixField
+    domain_of:
+    - FixField
+    range: FixDatatype
+    pattern: ^fix_datatype:[A-Za-z][A-Za-z0-9_]*$
+  fixField__field_code_set:
+    name: fixField__field_code_set
+    description: The code set that lists the field's values.
+    title: Code Set
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary
+    aliases:
+    - type
+    exact_mappings:
+    - fixr:type
+    slot_uri: fix_protocol:field_code_set
+    alias: field_code_set
+    owner: FixField
+    domain_of:
+    - FixField
+    range: FixCodeSet
+    pattern: ^fix_code_set:[1-9][0-9]*$
+  fixField__union_datatype:
+    name: fixField__union_datatype
+    description: A datatype whose values the field also takes, beside those of its
+      code set, such as a range of numbers kept for private use.
+    title: Union Datatype
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary
+    aliases:
+    - unionDataType
+    exact_mappings:
+    - fixr:unionDataType
+    slot_uri: fix_protocol:union_datatype
+    alias: union_datatype
+    owner: FixField
+    domain_of:
+    - FixField
+    range: FixDatatype
+    pattern: ^fix_datatype:[A-Za-z][A-Za-z0-9_]*$
+  fixField__length_field:
+    name: fixField__length_field
+    description: The field that gives this field's length in bytes.
+    title: Length Field
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary
+    aliases:
+    - lengthId
+    exact_mappings:
+    - fixr:lengthId
+    slot_uri: fix_protocol:length_field
+    alias: length_field
+    owner: FixField
+    domain_of:
+    - FixField
+    range: FixField
+    pattern: ^fix_field:[1-9][0-9]*$
+  fixField__discriminator_field:
+    name: fixField__discriminator_field
+    description: The field whose value says how to read this field's value.
+    title: Discriminator Field
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary
+    aliases:
+    - discriminatorId
+    exact_mappings:
+    - fixr:discriminatorId
+    slot_uri: fix_protocol:discriminator_field
+    alias: discriminator_field
+    owner: FixField
+    domain_of:
+    - FixField
+    range: FixField
+    pattern: ^fix_field:[1-9][0-9]*$
+  fixField__base_category:
+    name: fixField__base_category
+    description: The category whose FIXML element carries the field under the short
+      name base_category_abbr_name gives.
+    title: Base Category
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary
+    aliases:
+    - baseCategory
+    exact_mappings:
+    - fixr:baseCategory
+    slot_uri: fix_protocol:base_category
+    alias: base_category
+    owner: FixField
+    domain_of:
+    - FixField
+    range: FixCategory
+    pattern: ^fix_category:[A-Za-z][A-Za-z0-9_]*$
+  fixField__base_category_abbr_name:
+    name: fixField__base_category_abbr_name
+    description: The field's short name within its base category's FIXML element.
+    title: Base Category Abbreviated Name
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary
+    aliases:
+    - baseCategoryAbbrName
+    exact_mappings:
+    - fixr:baseCategoryAbbrName
+    slot_uri: fix_protocol:base_category_abbr_name
+    alias: base_category_abbr_name
+    owner: FixField
+    domain_of:
+    - FixField
+    range: fix_name
+  fixMember__member_field:
+    name: fixMember__member_field
+    description: The field this member is.
+    title: Field
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_structure
+    aliases:
+    - fieldRef
+    exact_mappings:
+    - fixr:fieldRef
+    slot_uri: fix_protocol:member_field
+    alias: member_field
+    owner: FixMember
+    domain_of:
+    - FixMember
+    range: FixField
+    pattern: ^fix_field:[1-9][0-9]*$
+  fixMember__member_component:
+    name: fixMember__member_component
+    description: The component this member is.
+    title: Component
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_structure
+    aliases:
+    - componentRef
+    exact_mappings:
+    - fixr:componentRef
+    slot_uri: fix_protocol:member_component
+    alias: member_component
+    owner: FixMember
+    domain_of:
+    - FixMember
+    range: FixComponent
+    pattern: ^fix_component:[1-9][0-9]*$
+  fixMember__member_group:
+    name: fixMember__member_group
+    description: The repeating group this member is.
+    title: Group
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_structure
+    aliases:
+    - groupRef
+    exact_mappings:
+    - fixr:groupRef
+    slot_uri: fix_protocol:member_group
+    alias: member_group
+    owner: FixMember
+    domain_of:
+    - FixMember
+    range: FixGroup
+    pattern: ^fix_group:[1-9][0-9]*$
+  fixMember__presence:
+    name: fixMember__presence
+    description: Whether the member must be there. A member that states none is optional.
+    title: Presence
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_structure
+    aliases:
+    - presence
+    exact_mappings:
+    - fixr:presence
+    slot_uri: fix_protocol:presence
+    alias: presence
+    owner: FixMember
+    domain_of:
+    - FixMember
+    range: FixPresence
+  fixMember__fixml_inlined:
+    name: fixMember__fixml_inlined
+    description: True when FIXML writes the component's fields directly in the enclosing
+      element rather than in an element of its own.
+    title: Inlined in FIXML
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_structure
+    aliases:
+    - inlined
+    slot_uri: fix_protocol:fixml_inlined
+    alias: fixml_inlined
+    owner: FixMember
+    domain_of:
+    - FixMember
+    range: boolean
+  fixGroup__num_in_group:
+    name: fixGroup__num_in_group
+    description: The field that states how many times the group repeats.
+    title: Count Field
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_structure
+    aliases:
+    - numInGroup
+    exact_mappings:
+    - fixr:numInGroup
+    slot_uri: fix_protocol:num_in_group
+    alias: num_in_group
+    owner: FixGroup
+    domain_of:
+    - FixGroup
+    range: FixNumInGroup
+    required: true
+    inlined: true
+    inlined_as_list: true
+  fixNumInGroup__count_field:
+    name: fixNumInGroup__count_field
+    description: The field that holds the count.
+    title: Field
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_structure
+    aliases:
+    - id
+    exact_mappings:
+    - fixr:id
+    slot_uri: fix_protocol:count_field
+    alias: count_field
+    owner: FixNumInGroup
+    domain_of:
+    - FixNumInGroup
+    range: FixField
+    required: true
+    pattern: ^fix_field:[1-9][0-9]*$
+  fixMessage__msg_type:
+    name: fixMessage__msg_type
+    description: The value of field 35 that marks a message of this kind.
+    title: MsgType
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_structure
+    aliases:
+    - msgType
+    exact_mappings:
+    - fixr:msgType
+    slot_uri: fix_protocol:msg_type
+    alias: msg_type
+    owner: FixMessage
+    domain_of:
+    - FixMessage
+    range: string
+    required: true
+    pattern: ^[0-9A-Za-z]{1,2}$
+  FixSection_id:
+    name: FixSection_id
+    definition_uri: https://w3id.org/lmodel/fix-protocol/id
+    description: 'The element''s identifier: a prefix for its kind, then the number
+      or name FIX gives it, such as fix_field:55 or fix_category:Allocation.'
+    title: Identifier
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core
+    is_a: id
+    domain: FixSection
+    slot_uri: fix_protocol:id
+    identifier: true
+    alias: id
+    owner: FixSection
+    domain_of:
+    - FixSection
+    is_usage_slot: true
+    usage_slot_name: id
+    range: uriorcurie
+    required: true
+    pattern: ^fix_section:[A-Za-z][A-Za-z0-9_]*$
+  FixCategory_id:
+    name: FixCategory_id
+    definition_uri: https://w3id.org/lmodel/fix-protocol/id
+    description: 'The element''s identifier: a prefix for its kind, then the number
+      or name FIX gives it, such as fix_field:55 or fix_category:Allocation.'
+    title: Identifier
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core
+    is_a: id
+    domain: FixCategory
+    slot_uri: fix_protocol:id
+    identifier: true
+    alias: id
+    owner: FixCategory
+    domain_of:
+    - FixCategory
+    is_usage_slot: true
+    usage_slot_name: id
+    range: uriorcurie
+    required: true
+    pattern: ^fix_category:[A-Za-z][A-Za-z0-9_]*$
+  FixDatatype_id:
+    name: FixDatatype_id
+    definition_uri: https://w3id.org/lmodel/fix-protocol/id
+    description: 'The element''s identifier: a prefix for its kind, then the number
+      or name FIX gives it, such as fix_field:55 or fix_category:Allocation.'
+    title: Identifier
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core
+    is_a: id
+    domain: FixDatatype
+    slot_uri: fix_protocol:id
+    identifier: true
+    alias: id
+    owner: FixDatatype
+    domain_of:
+    - FixDatatype
+    is_usage_slot: true
+    usage_slot_name: id
+    range: uriorcurie
+    required: true
+    pattern: ^fix_datatype:[A-Za-z][A-Za-z0-9_]*$
+  FixCodeSet_id:
+    name: FixCodeSet_id
+    definition_uri: https://w3id.org/lmodel/fix-protocol/id
+    description: 'The element''s identifier: a prefix for its kind, then the number
+      or name FIX gives it, such as fix_field:55 or fix_category:Allocation.'
+    title: Identifier
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core
+    is_a: id
+    domain: FixCodeSet
+    slot_uri: fix_protocol:id
+    identifier: true
+    alias: id
+    owner: FixCodeSet
+    domain_of:
+    - FixCodeSet
+    is_usage_slot: true
+    usage_slot_name: id
+    range: uriorcurie
+    required: true
+    pattern: ^fix_code_set:[1-9][0-9]*$
+  FixCode_id:
+    name: FixCode_id
+    definition_uri: https://w3id.org/lmodel/fix-protocol/id
+    description: 'The element''s identifier: a prefix for its kind, then the number
+      or name FIX gives it, such as fix_field:55 or fix_category:Allocation.'
+    title: Identifier
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core
+    is_a: id
+    domain: FixCode
+    slot_uri: fix_protocol:id
+    identifier: true
+    alias: id
+    owner: FixCode
+    domain_of:
+    - FixCode
+    is_usage_slot: true
+    usage_slot_name: id
+    range: uriorcurie
+    required: true
+    pattern: ^fix_code:[1-9][0-9]*$
+  FixField_id:
+    name: FixField_id
+    definition_uri: https://w3id.org/lmodel/fix-protocol/id
+    description: 'The element''s identifier: a prefix for its kind, then the number
+      or name FIX gives it, such as fix_field:55 or fix_category:Allocation.'
+    title: Identifier
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core
+    is_a: id
+    domain: FixField
+    slot_uri: fix_protocol:id
+    identifier: true
+    alias: id
+    owner: FixField
+    domain_of:
+    - FixField
+    is_usage_slot: true
+    usage_slot_name: id
+    range: uriorcurie
+    required: true
+    pattern: ^fix_field:[1-9][0-9]*$
+  FixComponent_id:
+    name: FixComponent_id
+    definition_uri: https://w3id.org/lmodel/fix-protocol/id
+    description: 'The element''s identifier: a prefix for its kind, then the number
+      or name FIX gives it, such as fix_field:55 or fix_category:Allocation.'
+    title: Identifier
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core
+    is_a: id
+    domain: FixComponent
+    slot_uri: fix_protocol:id
+    identifier: true
+    alias: id
+    owner: FixComponent
+    domain_of:
+    - FixComponent
+    is_usage_slot: true
+    usage_slot_name: id
+    range: uriorcurie
+    required: true
+    pattern: ^fix_component:[1-9][0-9]*$
+  FixGroup_id:
+    name: FixGroup_id
+    definition_uri: https://w3id.org/lmodel/fix-protocol/id
+    description: 'The element''s identifier: a prefix for its kind, then the number
+      or name FIX gives it, such as fix_field:55 or fix_category:Allocation.'
+    title: Identifier
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core
+    is_a: id
+    domain: FixGroup
+    slot_uri: fix_protocol:id
+    identifier: true
+    alias: id
+    owner: FixGroup
+    domain_of:
+    - FixGroup
+    is_usage_slot: true
+    usage_slot_name: id
+    range: uriorcurie
+    required: true
+    pattern: ^fix_group:[1-9][0-9]*$
+  FixGroup_fix_members:
+    name: FixGroup_fix_members
+    definition_uri: https://w3id.org/lmodel/fix-protocol/fix_members
+    description: The fields, components and groups the element holds, in the order
+      FIX lists them.
+    title: Members
+    comments:
+    - A message lists its members in a structure element and a component or a group
+      lists them directly. The record lists them here in each case.
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_structure
+    mappings:
+    - fix_protocol:fix_members
+    is_a: fix_members
+    domain: FixGroup
+    slot_uri: fix_protocol:fix_members
+    alias: fix_members
+    owner: FixGroup
+    domain_of:
+    - FixGroup
+    is_usage_slot: true
+    usage_slot_name: fix_members
+    range: FixMember
+    required: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  FixMessage_id:
+    name: FixMessage_id
+    definition_uri: https://w3id.org/lmodel/fix-protocol/id
+    description: 'The element''s identifier: a prefix for its kind, then the number
+      or name FIX gives it, such as fix_field:55 or fix_category:Allocation.'
+    title: Identifier
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core
+    is_a: id
+    domain: FixMessage
+    slot_uri: fix_protocol:id
+    identifier: true
+    alias: id
+    owner: FixMessage
+    domain_of:
+    - FixMessage
+    is_usage_slot: true
+    usage_slot_name: id
+    range: uriorcurie
+    required: true
+    pattern: ^fix_message:[1-9][0-9]*$
+  FixMessage_fix_members:
+    name: FixMessage_fix_members
+    definition_uri: https://w3id.org/lmodel/fix-protocol/fix_members
+    description: The fields, components and groups the element holds, in the order
+      FIX lists them.
+    title: Members
+    comments:
+    - A message lists its members in a structure element and a component or a group
+      lists them directly. The record lists them here in each case.
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_structure
+    mappings:
+    - fix_protocol:fix_members
+    is_a: fix_members
+    domain: FixMessage
+    slot_uri: fix_protocol:fix_members
+    alias: fix_members
+    owner: FixMessage
+    domain_of:
+    - FixMessage
+    is_usage_slot: true
+    usage_slot_name: fix_members
+    range: FixMember
+    required: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+classes:
+  FixRepository:
+    name: FixRepository
+    definition_uri: https://w3id.org/lmodel/fix-protocol/FixRepository
+    description: 'One file of the catalogue: the edition it renders, with some kinds
+      of FIX Latest''s elements.'
+    title: FIX Latest Catalogue
+    from_schema: https://w3id.org/lmodel/fix-protocol
+    exact_mappings:
+    - fix_orchestra:OrchestraRepositoryV10
+    - fixr:repository
+    slots:
+    - fixRepository__repository_name
+    - fixRepository__repository_version
+    - fixRepository__metadata_title
+    - fixRepository__metadata_description
+    - fixRepository__metadata_creator
+    - fixRepository__metadata_publisher
+    - fixRepository__metadata_rights
+    - fixRepository__metadata_format
+    - fixRepository__metadata_conforms_to
+    - fixRepository__metadata_created
+    - fixRepository__metadata_source
+    - fixRepository__fix_sections
+    - fixRepository__fix_categories
+    - fixRepository__fix_datatypes
+    - fixRepository__fix_code_sets
+    - fixRepository__fix_fields
+    - fixRepository__fix_components
+    - fixRepository__fix_groups
+    - fixRepository__fix_messages
+    attributes:
+      repository_name:
+        name: repository_name
+        description: The name FIX gives the repository, FIX.Latest.
+        title: Repository Name
+        aliases:
+        - name
+        exact_mappings:
+        - fixr:name
+        required: true
+        equals_string: FIX.Latest
+      repository_version:
+        name: repository_version
+        description: The extension pack the repository stands at, such as FIX.Latest_EP312.
+        title: Edition
+        aliases:
+        - version
+        exact_mappings:
+        - fixr:version
+        range: fix_version
+        required: true
+      metadata_title:
+        name: metadata_title
+        description: The title the repository's metadata gives.
+        title: Title
+        aliases:
+        - title
+        exact_mappings:
+        - dcterms:title
+      metadata_description:
+        name: metadata_description
+        description: The metadata's one-line statement of which extension pack the
+          file holds.
+        title: Edition Statement
+        aliases:
+        - description
+        exact_mappings:
+        - dcterms:description
+      metadata_creator:
+        name: metadata_creator
+        description: Who made the repository, by its metadata.
+        title: Creator
+        aliases:
+        - creator
+        exact_mappings:
+        - dcterms:creator
+      metadata_publisher:
+        name: metadata_publisher
+        description: Who published the repository, by its metadata.
+        title: Publisher
+        aliases:
+        - publisher
+        exact_mappings:
+        - dcterms:publisher
+      metadata_rights:
+        name: metadata_rights
+        description: The rights line in the repository's metadata, word for word.
+        title: Rights Statement
+        aliases:
+        - rights
+        exact_mappings:
+        - dcterms:rights
+      metadata_format:
+        name: metadata_format
+        description: The media type of the repository file.
+        title: Format
+        aliases:
+        - format
+        exact_mappings:
+        - dcterms:format
+      metadata_conforms_to:
+        name: metadata_conforms_to
+        description: The Orchestra version the repository file follows.
+        title: Conforms To
+        aliases:
+        - conformsTo
+        exact_mappings:
+        - dcterms:conformsTo
+      metadata_created:
+        name: metadata_created
+        description: The date the repository file was made.
+        title: Created
+        aliases:
+        - created
+        exact_mappings:
+        - dcterms:created
+        range: fix_date
+      metadata_source:
+        name: metadata_source
+        description: The tool or source the metadata names for the file.
+        title: Source
+        aliases:
+        - source
+        exact_mappings:
+        - dcterms:source
+      fix_sections:
+        name: fix_sections
+        description: The sections, in FIX's order.
+        title: Sections
+        aliases:
+        - sections
+        range: FixSection
+        multivalued: true
+        inlined_as_list: true
+      fix_categories:
+        name: fix_categories
+        description: The categories, in FIX's order.
+        title: Categories
+        aliases:
+        - categories
+        range: FixCategory
+        multivalued: true
+        inlined_as_list: true
+      fix_datatypes:
+        name: fix_datatypes
+        description: The datatypes, in FIX's order.
+        title: Datatypes
+        aliases:
+        - datatypes
+        range: FixDatatype
+        multivalued: true
+        inlined_as_list: true
+      fix_code_sets:
+        name: fix_code_sets
+        description: The code sets, in FIX's order.
+        title: Code Sets
+        aliases:
+        - codeSets
+        range: FixCodeSet
+        multivalued: true
+        inlined_as_list: true
+      fix_fields:
+        name: fix_fields
+        description: The fields, in FIX's order.
+        title: Fields
+        aliases:
+        - fields
+        range: FixField
+        multivalued: true
+        inlined_as_list: true
+      fix_components:
+        name: fix_components
+        description: The components, in FIX's order.
+        title: Components
+        aliases:
+        - components
+        range: FixComponent
+        multivalued: true
+        inlined_as_list: true
+      fix_groups:
+        name: fix_groups
+        description: The repeating groups, in FIX's order.
+        title: Repeating Groups
+        aliases:
+        - groups
+        range: FixGroup
+        multivalued: true
+        inlined_as_list: true
+      fix_messages:
+        name: fix_messages
+        description: The messages, in FIX's order.
+        title: Messages
+        aliases:
+        - messages
+        range: FixMessage
+        multivalued: true
+        inlined_as_list: true
+    class_uri: fix_protocol:FixRepository
+    tree_root: true
+  FixPedigreeMixin:
+    name: FixPedigreeMixin
+    definition_uri: https://w3id.org/lmodel/fix-protocol/FixPedigreeMixin
+    description: When FIX added, last changed and deprecated an element, by version
+      and extension pack.
+    title: Pedigree
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core
+    mixin: true
+    slots:
+    - added_in
+    - added_in_ep
+    - updated_in
+    - updated_in_ep
+    - deprecated_in
+    - deprecated_in_ep
+    class_uri: fix_protocol:FixPedigreeMixin
+  FixElement:
+    name: FixElement
+    definition_uri: https://w3id.org/lmodel/fix-protocol/FixElement
+    description: An element of FIX Latest with an identifier and a name of its own.
+    title: FIX Element
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core
+    abstract: true
+    mixins:
+    - FixPedigreeMixin
+    slots:
+    - id
+    - name
+    - added_in
+    - added_in_ep
+    - updated_in
+    - updated_in_ep
+    - deprecated_in
+    - deprecated_in_ep
+    class_uri: fix_protocol:FixElement
+  FixSection:
+    name: FixSection
+    definition_uri: https://w3id.org/lmodel/fix-protocol/FixSection
+    description: One of the five parts FIX divides its messages into by business area,
+      such as PreTrade.
+    title: Section
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core
+    exact_mappings:
+    - fix_orchestra:OrchestraSectionV10
+    - fixr:sectionType
+    is_a: FixElement
+    slots:
+    - name
+    - added_in
+    - added_in_ep
+    - updated_in
+    - updated_in_ep
+    - deprecated_in
+    - deprecated_in_ep
+    - fixml_file_name
+    - fixml_not_required
+    - fixSection__section_order
+    - FixSection_id
+    slot_usage:
+      id:
+        name: id
+        pattern: ^fix_section:[A-Za-z][A-Za-z0-9_]*$
+    attributes:
+      section_order:
+        name: section_order
+        description: Where the section comes in FIX's own order of sections, counting
+          from 0.
+        title: Display Order
+        aliases:
+        - displayOrder
+        exact_mappings:
+        - fixr:displayOrder
+        range: integer
+        minimum_value: 0
+    class_uri: fix_protocol:FixSection
+  FixCategory:
+    name: FixCategory
+    definition_uri: https://w3id.org/lmodel/fix-protocol/FixCategory
+    description: A group of messages within a section. Three categories sit in no
+      section and hold the shared components and the fields instead.
+    title: Category
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core
+    exact_mappings:
+    - fix_orchestra:OrchestraCategoryV10
+    - fixr:categoryType
+    is_a: FixElement
+    slots:
+    - name
+    - added_in
+    - added_in_ep
+    - updated_in
+    - updated_in_ep
+    - deprecated_in
+    - deprecated_in_ep
+    - fixml_file_name
+    - in_section
+    - fixml_not_required
+    - fixCategory__category_kind
+    - fixCategory__include_file
+    - FixCategory_id
+    slot_usage:
+      id:
+        name: id
+        pattern: ^fix_category:[A-Za-z][A-Za-z0-9_]*$
+    attributes:
+      category_kind:
+        name: category_kind
+        description: Whether the category groups messages or fields.
+        title: Category Kind
+        aliases:
+        - componentType
+        exact_mappings:
+        - fixr:componentType
+        range: FixCategoryKind
+      include_file:
+        name: include_file
+        description: The shared FIXML schema file that the category's own FIXML schema
+          file brings in.
+        title: Included FIXML File
+        aliases:
+        - includeFile
+        exact_mappings:
+        - fixr:includeFile
+        range: FixIncludeFile
+    class_uri: fix_protocol:FixCategory
+  FixDatatype:
+    name: FixDatatype
+    definition_uri: https://w3id.org/lmodel/fix-protocol/FixDatatype
+    description: A kind of value a field holds, such as int, Price or UTCTimestamp,
+      with the XML Schema types it maps to.
+    title: Datatype
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary
+    exact_mappings:
+    - fix_orchestra:OrchestraDatatypeV10
+    - fixr:datatype
+    is_a: FixElement
+    slots:
+    - name
+    - added_in
+    - added_in_ep
+    - updated_in
+    - updated_in_ep
+    - deprecated_in
+    - deprecated_in_ep
+    - fixDatatype__base_type
+    - fixDatatype__mapped_datatypes
+    - FixDatatype_id
+    slot_usage:
+      id:
+        name: id
+        pattern: ^fix_datatype:[A-Za-z][A-Za-z0-9_]*$
+    attributes:
+      base_type:
+        name: base_type
+        description: The datatype this one narrows.
+        title: Base Type
+        aliases:
+        - baseType
+        exact_mappings:
+        - fixr:baseType
+        range: FixDatatype
+        pattern: ^fix_datatype:[A-Za-z][A-Za-z0-9_]*$
+      mapped_datatypes:
+        name: mapped_datatypes
+        description: The types of other standards that FIX gives as this datatype's
+          form.
+        title: Mapped Datatypes
+        aliases:
+        - mappedDatatype
+        exact_mappings:
+        - fixr:mappedDatatype
+        range: FixMappedDatatype
+        multivalued: true
+        inlined_as_list: true
+    class_uri: fix_protocol:FixDatatype
+  FixMappedDatatype:
+    name: FixMappedDatatype
+    definition_uri: https://w3id.org/lmodel/fix-protocol/FixMappedDatatype
+    description: The type of another standard that a FIX datatype takes, such as xs:decimal
+      in XML Schema.
+    title: Mapped Datatype
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary
+    exact_mappings:
+    - fixr:mappedDatatype
+    slots:
+    - fixMappedDatatype__mapped_standard
+    - fixMappedDatatype__mapped_base
+    - fixMappedDatatype__mapped_builtin
+    - fixMappedDatatype__mapped_min_inclusive
+    - fixMappedDatatype__mapped_pattern
+    attributes:
+      mapped_standard:
+        name: mapped_standard
+        description: The standard the type belongs to, such as XML.
+        title: Standard
+        aliases:
+        - standard
+        exact_mappings:
+        - fixr:standard
+        required: true
+      mapped_base:
+        name: mapped_base
+        description: The standard's type, such as xs:decimal.
+        title: Base
+        aliases:
+        - base
+        exact_mappings:
+        - fixr:base
+      mapped_builtin:
+        name: mapped_builtin
+        description: True when the type is one the standard defines itself.
+        title: Built In
+        aliases:
+        - builtin
+        exact_mappings:
+        - fixr:builtin
+        range: boolean
+      mapped_min_inclusive:
+        name: mapped_min_inclusive
+        description: The smallest value the type allows, as FIX writes it.
+        title: Least Value
+        aliases:
+        - minInclusive
+        exact_mappings:
+        - fixr:minInclusive
+      mapped_pattern:
+        name: mapped_pattern
+        description: A regular expression in XML Schema's syntax that a value must
+          match.
+        title: Pattern
+        aliases:
+        - pattern
+        exact_mappings:
+        - fixr:pattern
+    class_uri: fix_protocol:FixMappedDatatype
+  FixCodeSet:
+    name: FixCodeSet
+    definition_uri: https://w3id.org/lmodel/fix-protocol/FixCodeSet
+    description: A list of the values a field may take, each a code with a name, such
+      as the sides of an order.
+    title: Code Set
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary
+    exact_mappings:
+    - fix_orchestra:OrchestraCodeSetV10
+    - fixr:codeSetType
+    is_a: FixElement
+    slots:
+    - name
+    - added_in
+    - added_in_ep
+    - updated_in
+    - updated_in_ep
+    - deprecated_in
+    - deprecated_in_ep
+    - fixCodeSet__code_set_datatype
+    - fixCodeSet__fix_codes
+    - FixCodeSet_id
+    slot_usage:
+      id:
+        name: id
+        pattern: ^fix_code_set:[1-9][0-9]*$
+    attributes:
+      code_set_datatype:
+        name: code_set_datatype
+        description: The datatype of the codes' values.
+        title: Datatype
+        aliases:
+        - type
+        exact_mappings:
+        - fixr:type
+        range: FixDatatype
+        required: true
+        pattern: ^fix_datatype:[A-Za-z][A-Za-z0-9_]*$
+      fix_codes:
+        name: fix_codes
+        description: The codes of the set, in FIX's order.
+        title: Codes
+        aliases:
+        - code
+        exact_mappings:
+        - fixr:code
+        range: FixCode
+        multivalued: true
+        inlined_as_list: true
+    class_uri: fix_protocol:FixCodeSet
+  FixCode:
+    name: FixCode
+    definition_uri: https://w3id.org/lmodel/fix-protocol/FixCode
+    description: One value of a code set, with its name, such as 1 for Buy.
+    title: Code
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary
+    exact_mappings:
+    - fix_orchestra:OrchestraCodeV10
+    - fixr:codeType
+    is_a: FixElement
+    slots:
+    - name
+    - added_in
+    - added_in_ep
+    - updated_in
+    - updated_in_ep
+    - deprecated_in
+    - deprecated_in_ep
+    - fixCode__code_value
+    - fixCode__sort_order
+    - fixCode__code_group
+    - FixCode_id
+    slot_usage:
+      id:
+        name: id
+        pattern: ^fix_code:[1-9][0-9]*$
+    attributes:
+      code_value:
+        name: code_value
+        description: The value as it travels on the wire.
+        title: Value
+        aliases:
+        - value
+        exact_mappings:
+        - fixr:value
+        required: true
+        pattern: ^\S+$
+      sort_order:
+        name: sort_order
+        description: Where the code comes when FIX lists the set.
+        title: Sort Order
+        aliases:
+        - sort
+        exact_mappings:
+        - fixr:sort
+        range: integer
+        minimum_value: 0
+      code_group:
+        name: code_group
+        description: A label that groups some codes of a large set, such as one asset
+          class.
+        title: Code Group
+        aliases:
+        - group
+        exact_mappings:
+        - fixr:group
+    class_uri: fix_protocol:FixCode
+  FixField:
+    name: FixField
+    definition_uri: https://w3id.org/lmodel/fix-protocol/FixField
+    description: A field of FIX, known by its tag number, such as 55 for Symbol, with
+      the datatype or code set of its values.
+    title: Field
+    comments:
+    - FIX Latest names a field's datatype or code set in one attribute, type. The
+      record splits it, so each reference has one range, as Orchestra 1.1 does.
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary
+    exact_mappings:
+    - fix_orchestra:OrchestraFieldV10
+    - fixr:fieldType
+    is_a: FixElement
+    slots:
+    - name
+    - added_in
+    - added_in_ep
+    - updated_in
+    - updated_in_ep
+    - deprecated_in
+    - deprecated_in_ep
+    - abbr_name
+    - fixml_not_required
+    - fixField__field_datatype
+    - fixField__field_code_set
+    - fixField__union_datatype
+    - fixField__length_field
+    - fixField__discriminator_field
+    - fixField__base_category
+    - fixField__base_category_abbr_name
+    - FixField_id
+    slot_usage:
+      id:
+        name: id
+        pattern: ^fix_field:[1-9][0-9]*$
+    attributes:
+      field_datatype:
+        name: field_datatype
+        description: The datatype of the field's values, when no code set lists them.
+        title: Datatype
+        aliases:
+        - type
+        exact_mappings:
+        - fixr:type
+        range: FixDatatype
+        pattern: ^fix_datatype:[A-Za-z][A-Za-z0-9_]*$
+      field_code_set:
+        name: field_code_set
+        description: The code set that lists the field's values.
+        title: Code Set
+        aliases:
+        - type
+        exact_mappings:
+        - fixr:type
+        range: FixCodeSet
+        pattern: ^fix_code_set:[1-9][0-9]*$
+      union_datatype:
+        name: union_datatype
+        description: A datatype whose values the field also takes, beside those of
+          its code set, such as a range of numbers kept for private use.
+        title: Union Datatype
+        aliases:
+        - unionDataType
+        exact_mappings:
+        - fixr:unionDataType
+        range: FixDatatype
+        pattern: ^fix_datatype:[A-Za-z][A-Za-z0-9_]*$
+      length_field:
+        name: length_field
+        description: The field that gives this field's length in bytes.
+        title: Length Field
+        aliases:
+        - lengthId
+        exact_mappings:
+        - fixr:lengthId
+        range: FixField
+        pattern: ^fix_field:[1-9][0-9]*$
+      discriminator_field:
+        name: discriminator_field
+        description: The field whose value says how to read this field's value.
+        title: Discriminator Field
+        aliases:
+        - discriminatorId
+        exact_mappings:
+        - fixr:discriminatorId
+        range: FixField
+        pattern: ^fix_field:[1-9][0-9]*$
+      base_category:
+        name: base_category
+        description: The category whose FIXML element carries the field under the
+          short name base_category_abbr_name gives.
+        title: Base Category
+        aliases:
+        - baseCategory
+        exact_mappings:
+        - fixr:baseCategory
+        range: FixCategory
+        pattern: ^fix_category:[A-Za-z][A-Za-z0-9_]*$
+      base_category_abbr_name:
+        name: base_category_abbr_name
+        description: The field's short name within its base category's FIXML element.
+        title: Base Category Abbreviated Name
+        aliases:
+        - baseCategoryAbbrName
+        exact_mappings:
+        - fixr:baseCategoryAbbrName
+        range: fix_name
+    class_uri: fix_protocol:FixField
+    exactly_one_of:
+    - slot_conditions:
+        field_datatype:
+          name: field_datatype
+          required: true
+        field_code_set:
+          name: field_code_set
+          value_presence: ABSENT
+    - slot_conditions:
+        field_datatype:
+          name: field_datatype
+          value_presence: ABSENT
+        field_code_set:
+          name: field_code_set
+          required: true
+  FixMember:
+    name: FixMember
+    definition_uri: https://w3id.org/lmodel/fix-protocol/FixMember
+    description: One field, component or group in a message, component or group, and
+      whether it must be there.
+    title: Member
+    comments:
+    - Orchestra gives the three kinds of member three elements of one shape. The record
+      gives each a key, and one member holds exactly one of them.
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_structure
+    close_mappings:
+    - fixr:fieldRefType
+    - fixr:componentRefType
+    - fixr:groupRefType
+    mixins:
+    - FixPedigreeMixin
+    slots:
+    - fixMember__member_field
+    - fixMember__member_component
+    - fixMember__member_group
+    - fixMember__presence
+    - fixMember__fixml_inlined
+    - added_in
+    - added_in_ep
+    - updated_in
+    - updated_in_ep
+    - deprecated_in
+    - deprecated_in_ep
+    attributes:
+      member_field:
+        name: member_field
+        description: The field this member is.
+        title: Field
+        aliases:
+        - fieldRef
+        exact_mappings:
+        - fixr:fieldRef
+        range: FixField
+        pattern: ^fix_field:[1-9][0-9]*$
+      member_component:
+        name: member_component
+        description: The component this member is.
+        title: Component
+        aliases:
+        - componentRef
+        exact_mappings:
+        - fixr:componentRef
+        range: FixComponent
+        pattern: ^fix_component:[1-9][0-9]*$
+      member_group:
+        name: member_group
+        description: The repeating group this member is.
+        title: Group
+        aliases:
+        - groupRef
+        exact_mappings:
+        - fixr:groupRef
+        range: FixGroup
+        pattern: ^fix_group:[1-9][0-9]*$
+      presence:
+        name: presence
+        description: Whether the member must be there. A member that states none is
+          optional.
+        title: Presence
+        aliases:
+        - presence
+        exact_mappings:
+        - fixr:presence
+        range: FixPresence
+      fixml_inlined:
+        name: fixml_inlined
+        description: True when FIXML writes the component's fields directly in the
+          enclosing element rather than in an element of its own.
+        title: Inlined in FIXML
+        aliases:
+        - inlined
+        range: boolean
+    class_uri: fix_protocol:FixMember
+    exactly_one_of:
+    - slot_conditions:
+        member_field:
+          name: member_field
+          required: true
+        member_component:
+          name: member_component
+          value_presence: ABSENT
+        member_group:
+          name: member_group
+          value_presence: ABSENT
+    - slot_conditions:
+        member_field:
+          name: member_field
+          value_presence: ABSENT
+        member_component:
+          name: member_component
+          required: true
+        member_group:
+          name: member_group
+          value_presence: ABSENT
+    - slot_conditions:
+        member_field:
+          name: member_field
+          value_presence: ABSENT
+        member_component:
+          name: member_component
+          value_presence: ABSENT
+        member_group:
+          name: member_group
+          required: true
+  FixComponent:
+    name: FixComponent
+    definition_uri: https://w3id.org/lmodel/fix-protocol/FixComponent
+    description: A named block of fields, components and groups that messages share,
+      such as Instrument.
+    title: Component
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_structure
+    exact_mappings:
+    - fix_orchestra:OrchestraComponentV10
+    - fixr:componentType
+    is_a: FixElement
+    slots:
+    - name
+    - added_in
+    - added_in_ep
+    - updated_in
+    - updated_in_ep
+    - deprecated_in
+    - deprecated_in_ep
+    - abbr_name
+    - in_category
+    - fix_members
+    - fixml_not_required
+    - FixComponent_id
+    slot_usage:
+      id:
+        name: id
+        pattern: ^fix_component:[1-9][0-9]*$
+    class_uri: fix_protocol:FixComponent
+  FixGroup:
+    name: FixGroup
+    definition_uri: https://w3id.org/lmodel/fix-protocol/FixGroup
+    description: A block of members that repeats in a message, with the field that
+      counts the repeats.
+    title: Repeating Group
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_structure
+    exact_mappings:
+    - fix_orchestra:OrchestraGroupV10
+    - fixr:groupType
+    is_a: FixElement
+    slots:
+    - name
+    - added_in
+    - added_in_ep
+    - updated_in
+    - updated_in_ep
+    - deprecated_in
+    - deprecated_in_ep
+    - abbr_name
+    - in_category
+    - FixGroup_fix_members
+    - fixGroup__num_in_group
+    - FixGroup_id
+    slot_usage:
+      id:
+        name: id
+        pattern: ^fix_group:[1-9][0-9]*$
+      fix_members:
+        name: fix_members
+        required: true
+    attributes:
+      num_in_group:
+        name: num_in_group
+        description: The field that states how many times the group repeats.
+        title: Count Field
+        aliases:
+        - numInGroup
+        exact_mappings:
+        - fixr:numInGroup
+        range: FixNumInGroup
+        required: true
+        inlined: true
+    class_uri: fix_protocol:FixGroup
+  FixNumInGroup:
+    name: FixNumInGroup
+    definition_uri: https://w3id.org/lmodel/fix-protocol/FixNumInGroup
+    description: The field that counts a group's repeats, as the group names it.
+    title: Count Field Reference
+    comments:
+    - Orchestra 1.0 gives the count the shape of a field reference.
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_structure
+    close_mappings:
+    - fixr:fieldRefType
+    mixins:
+    - FixPedigreeMixin
+    slots:
+    - fixNumInGroup__count_field
+    - added_in
+    - added_in_ep
+    - updated_in
+    - updated_in_ep
+    - deprecated_in
+    - deprecated_in_ep
+    attributes:
+      count_field:
+        name: count_field
+        description: The field that holds the count.
+        title: Field
+        aliases:
+        - id
+        exact_mappings:
+        - fixr:id
+        range: FixField
+        required: true
+        pattern: ^fix_field:[1-9][0-9]*$
+    class_uri: fix_protocol:FixNumInGroup
+  FixMessage:
+    name: FixMessage
+    definition_uri: https://w3id.org/lmodel/fix-protocol/FixMessage
+    description: A FIX message, known by its MsgType, such as D for NewOrderSingle,
+      with its members in order.
+    title: Message
+    from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_structure
+    exact_mappings:
+    - fix_orchestra:OrchestraMessageV10
+    - fixr:messageType
+    is_a: FixElement
+    slots:
+    - name
+    - added_in
+    - added_in_ep
+    - updated_in
+    - updated_in_ep
+    - deprecated_in
+    - deprecated_in_ep
+    - abbr_name
+    - in_category
+    - FixMessage_fix_members
+    - fixml_not_required
+    - fixMessage__msg_type
+    - FixMessage_id
+    slot_usage:
+      id:
+        name: id
+        pattern: ^fix_message:[1-9][0-9]*$
+      fix_members:
+        name: fix_members
+        required: true
+    attributes:
+      msg_type:
+        name: msg_type
+        description: The value of field 35 that marks a message of this kind.
+        title: MsgType
+        aliases:
+        - msgType
+        exact_mappings:
+        - fixr:msgType
+        required: true
+        pattern: ^[0-9A-Za-z]{1,2}$
+    class_uri: fix_protocol:FixMessage
+metamodel_version: 1.12.0
+source_file: fix_protocol.yaml
+source_file_date: '2026-11-05T19:27:16'
+source_file_size: 7085
+
