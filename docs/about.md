@@ -31,6 +31,7 @@ Nothing comes from fixtrading.org. The earlier schema described the online speci
 
 - each identifier names one record, and each reference names a record that exists;
 - no two records of a kind share a name, no two messages share a MsgType, and no two codes of a set share a value or a name;
+- each message's MsgType is a code of the MsgType code set, and each code of that set names a message;
 - an extension pack comes with its version, and each code set, code, field, component, group and message states the version that added it;
 - each message starts with the standard header and ends with the standard trailer;
 - a raw-data field names the Length field that gives its length, and no other field names one;
@@ -44,6 +45,10 @@ FIX Latest breaks two of these rules, and `tests/upstream_departures.yaml` names
 
 - the MsgType code BQ states no `added`;
 - the raw-data field EncodedMDEntryStatusText names no length field.
+
+## Your own text
+
+The records hold no description, FIX's or anyone's. A firm that documents how it uses FIX writes an Orchestra file, which is what the standard provides for: it names FIX's elements by the same numbers these records do, carries the firm's own text and restrictions, and validates against [lmodel/fix-orchestra](https://github.com/lmodel/fix-orchestra). A reader who holds the right to FIX's own text finds it in `upstream/`, where each element's `id` matches a record's. This project adds no slot for either, so the catalogue stays a statement of facts that anyone may copy.
 
 ## Mappings
 

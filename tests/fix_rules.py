@@ -245,6 +245,36 @@ def code_sets_take_their_fields_tag(document, whole):
             )
 
 
+def msg_types_are_the_codes_of_msg_type(document, whole):
+    """Each message's MsgType is a code of the MsgType code set, and in the whole edition
+    each code of that set names a message."""
+    code_sets = _index(document, "fix_code_sets")
+    code_set = code_sets.get("fix_code_set:35")
+    if code_set is None:
+        return
+    codes = {code["code_value"] for code in code_set.get("fix_codes") or ()}
+    msg_types = set()
+    for i, message in enumerate(document.get("fix_messages") or ()):
+        msg_types.add(message["msg_type"])
+        if message["msg_type"] not in codes:
+            yield (
+                f"/fix_messages/{i}/msg_type",
+                message["id"],
+                f"MsgType {message['msg_type']} is no code of MsgTypeCodeSet",
+            )
+    if whole:
+        i = next(
+            i for i, found in enumerate(document["fix_code_sets"]) if found is code_set
+        )
+        for j, code in enumerate(code_set.get("fix_codes") or ()):
+            if code["code_value"] not in msg_types:
+                yield (
+                    f"/fix_code_sets/{i}/fix_codes/{j}/code_value",
+                    code["id"],
+                    f"MsgType {code['code_value']} names no message",
+                )
+
+
 def code_values_fit_their_datatype(document, whole):
     for i, code_set in enumerate(document.get("fix_code_sets") or ()):
         datatype = code_set["code_set_datatype"]
@@ -310,6 +340,7 @@ RULES = (
     lengths_pair_with_data,
     counts_are_counts,
     code_sets_take_their_fields_tag,
+    msg_types_are_the_codes_of_msg_type,
     code_values_fit_their_datatype,
     categories_fit_their_kind,
     base_category_names_come_together,
