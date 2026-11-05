@@ -256,17 +256,23 @@ def refresh(commit: str) -> int:
         print("Give the commit as its full 40-character hash.", file=sys.stderr)
         return 2
     expected = listing(commit)
-    rows = []
-    for path, name in FILES.items():
+    fetched = {}
+    for path in FILES:
         data = _raw(commit, path)
         if path not in expected or _blob(data) != expected[path]:
             print(f"{path} at {commit} does not match GitHub's tree.", file=sys.stderr)
             return 1
-        (UPSTREAM / name).write_bytes(data)
-        rows.append(f"{path}\t{expected[path]}")
-    data = (UPSTREAM / FILES[LATEST]).read_bytes()
-    version = VERSION.search(data[:1024]).group(1).decode("ascii")
+        fetched[path] = data
+    data = fetched[LATEST]
+    match = VERSION.search(data[:1024])
+    if not match:
+        raise ValueError(f"no version attribute in the first kilobyte at {commit}")
+    version = match.group(1).decode("ascii")
     created = re.search(rb"<dcterms:created>([^<]+)</dcterms:created>", data)
+    # Every file matched, so upstream/ is replaced whole and never half.
+    for path, name in FILES.items():
+        (UPSTREAM / name).write_bytes(fetched[path])
+    rows = [f"{path}\t{expected[path]}" for path in FILES]
     lines = [
         "# The commit of FIXTradingCommunity/orchestrations that upstream/ copies, the",
         "# extension pack its FIX Latest file names, and the file's creation date. Each row",
