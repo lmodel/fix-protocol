@@ -26,6 +26,7 @@ The rules check what FIX's data keeps and no JSON Schema can state.[^tests-fix_r
 
 - each reference names a record that exists;
 - names, MsgTypes and the codes of a set are unique;
+- each message's MsgType is a code of the MsgType code set, and each code of that set names a message;
 - each code set, code, field, component, group and message states the FIX version that added it;
 - each message opens with the standard header and closes with the standard trailer;
 - a raw-data field names the field that gives its length.
