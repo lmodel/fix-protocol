@@ -108,7 +108,13 @@ def _prose(path):
     """The descriptive text of a file: each title, description, comment and note of a
     schema, or a Markdown file's text."""
     text = path.read_text(encoding="utf-8")
-    if path.suffix != ".yaml":
+    if path.suffix == ".md":
+        # A concept's frontmatter holds FIX's names and values under the catalogue's keys;
+        # only its title and description are prose.
+        if text.startswith("---\n"):
+            head, _, text = text[4:].partition("\n---\n")
+            meta = yaml.safe_load(head) or {}
+            return [text, str(meta.get("title", "")), str(meta.get("description", ""))]
         return [text]
     found = []
 
