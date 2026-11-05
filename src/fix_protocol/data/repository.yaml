@@ -1,0 +1,262 @@
+# FIX Latest at FIX.Latest_EP312: repository. scripts/fix_latest_to_records.py writes this
+# file from upstream/OrchestraFIXLatest.xml, so regenerate it, never edit it.
+#
+# Copyright (c) FIX Protocol Ltd. The file is copied from
+# FIXTradingCommunity/orchestrations at cd24169a2abd8daba7c360987c7a46ca11873a12,
+# which is licensed under the Apache License, Version 2.0. This file restates its
+# names, numbers and codes as records and leaves its descriptive text out, as
+# NOTICE says.
+repository_name: FIX.Latest
+repository_version: FIX.Latest_EP312
+metadata_creator: FIX Protocol Ltd.
+metadata_description: FIX Latest as of Extension Pack 312
+metadata_publisher: FIX Protocol Ltd.
+metadata_title: OrchestraFIXLatest
+metadata_rights: Copyright (c) FIX Protocol Ltd. All Rights Reserved.
+metadata_format: application/xml
+metadata_conforms_to: Orchestra v1.0
+metadata_created: '2026-09-08'
+metadata_source: Orchid
+fix_sections:
+  - id: fix_section:Session
+    name: Session
+    fixml_file_name: session
+    section_order: 0
+    fixml_not_required: true
+  - id: fix_section:PreTrade
+    name: PreTrade
+    fixml_file_name: pretrade
+    section_order: 1
+    updated_in: FIX.Latest
+    updated_in_ep: 271
+  - id: fix_section:Trade
+    name: Trade
+    fixml_file_name: trade
+    section_order: 2
+  - id: fix_section:PostTrade
+    name: PostTrade
+    fixml_file_name: posttrade
+    section_order: 3
+  - id: fix_section:Infrastructure
+    name: Infrastructure
+    fixml_file_name: infrastructure
+    section_order: 4
+fix_categories:
+  - id: fix_category:Session
+    name: Session
+    fixml_file_name: session
+    in_section: fix_section:Session
+    category_kind: Message
+    fixml_not_required: true
+  - id: fix_category:Indication
+    name: Indication
+    fixml_file_name: indications
+    in_section: fix_section:PreTrade
+    category_kind: Message
+    include_file: components
+  - id: fix_category:SingleGeneralOrderHandling
+    name: SingleGeneralOrderHandling
+    fixml_file_name: order
+    in_section: fix_section:Trade
+    category_kind: Message
+    include_file: components
+  - id: fix_category:EventCommunication
+    name: EventCommunication
+    fixml_file_name: newsevents
+    in_section: fix_section:PreTrade
+    category_kind: Message
+    include_file: components
+  - id: fix_category:ProgramTrading
+    name: ProgramTrading
+    fixml_file_name: listorders
+    in_section: fix_section:Trade
+    category_kind: Message
+    include_file: components
+  - id: fix_category:OrderMassHandling
+    name: OrderMassHandling
+    fixml_file_name: ordermasshandling
+    in_section: fix_section:Trade
+    category_kind: Message
+    include_file: components
+  - id: fix_category:Allocation
+    name: Allocation
+    fixml_file_name: allocation
+    in_section: fix_section:PostTrade
+    category_kind: Message
+    include_file: components
+  - id: fix_category:QuotationNegotiation
+    name: QuotationNegotiation
+    fixml_file_name: quotation
+    in_section: fix_section:PreTrade
+    category_kind: Message
+    include_file: components
+  - id: fix_category:SettlementInstruction
+    name: SettlementInstruction
+    fixml_file_name: settlement
+    in_section: fix_section:PostTrade
+    category_kind: Message
+    include_file: components
+  - id: fix_category:MarketData
+    name: MarketData
+    fixml_file_name: marketdata
+    in_section: fix_section:PreTrade
+    category_kind: Message
+    include_file: components
+  - id: fix_category:Common
+    name: Common
+    fixml_file_name: components
+    category_kind: Message
+    include_file: fields
+  - id: fix_category:RegistrationInstruction
+    name: RegistrationInstruction
+    fixml_file_name: registration
+    in_section: fix_section:PostTrade
+    category_kind: Message
+    include_file: components
+  - id: fix_category:CrossOrders
+    name: CrossOrders
+    fixml_file_name: crossorders
+    in_section: fix_section:Trade
+    category_kind: Message
+    include_file: components
+  - id: fix_category:MultilegOrders
+    name: MultilegOrders
+    fixml_file_name: multilegorders
+    in_section: fix_section:Trade
+    category_kind: Message
+    include_file: components
+  - id: fix_category:TradeCapture
+    name: TradeCapture
+    fixml_file_name: tradecapture
+    in_section: fix_section:PostTrade
+    category_kind: Message
+    include_file: components
+  - id: fix_category:Confirmation
+    name: Confirmation
+    fixml_file_name: confirmation
+    in_section: fix_section:PostTrade
+    category_kind: Message
+    include_file: components
+  - id: fix_category:PositionMaintenance
+    name: PositionMaintenance
+    fixml_file_name: positions
+    in_section: fix_section:PostTrade
+    category_kind: Message
+    include_file: components
+  - id: fix_category:CollateralManagement
+    name: CollateralManagement
+    fixml_file_name: collateral
+    in_section: fix_section:PostTrade
+    category_kind: Message
+    include_file: components
+  - id: fix_category:Application
+    name: Application
+    fixml_file_name: application
+    in_section: fix_section:Infrastructure
+    category_kind: Message
+    include_file: components
+  - id: fix_category:BusinessReject
+    name: BusinessReject
+    fixml_file_name: businessreject
+    in_section: fix_section:Infrastructure
+    category_kind: Message
+    include_file: components
+  - id: fix_category:Network
+    name: Network
+    fixml_file_name: network
+    in_section: fix_section:Infrastructure
+    category_kind: Message
+    include_file: components
+  - id: fix_category:UserManagement
+    name: UserManagement
+    fixml_file_name: usermanagement
+    in_section: fix_section:Infrastructure
+    category_kind: Message
+    include_file: components
+  - id: fix_category:Fields
+    name: Fields
+    fixml_file_name: fields
+    category_kind: Field
+  - id: fix_category:ImplFields
+    name: ImplFields
+    fixml_file_name: fields
+    category_kind: Field
+  - id: fix_category:MarketStructureReferenceData
+    name: MarketStructureReferenceData
+    fixml_file_name: marketstructure
+    in_section: fix_section:PreTrade
+    category_kind: Message
+    include_file: components
+    added_in: FIX.5.0SP1
+    added_in_ep: 97
+  - id: fix_category:SecuritiesReferenceData
+    name: SecuritiesReferenceData
+    fixml_file_name: securitiesreference
+    in_section: fix_section:PreTrade
+    category_kind: Message
+    include_file: components
+    added_in: FIX.5.0SP1
+    added_in_ep: 97
+  - id: fix_category:MarginRequirementManagement
+    name: MarginRequirementManagement
+    fixml_file_name: marginrequirement
+    in_section: fix_section:PostTrade
+    category_kind: Message
+    include_file: components
+    added_in: FIX.5.0SP2
+    added_in_ep: 102
+  - id: fix_category:PartiesReferenceData
+    name: PartiesReferenceData
+    fixml_file_name: partiesreference
+    in_section: fix_section:PreTrade
+    category_kind: Message
+    include_file: components
+    added_in: FIX.5.0SP2
+    added_in_ep: 105
+  - id: fix_category:AccountReporting
+    name: AccountReporting
+    fixml_file_name: accountreporting
+    in_section: fix_section:PostTrade
+    category_kind: Message
+    include_file: components
+    added_in: FIX.5.0SP2
+    added_in_ep: 117
+  - id: fix_category:PartiesAction
+    name: PartiesAction
+    fixml_file_name: partiesaction
+    in_section: fix_section:PreTrade
+    category_kind: Message
+    include_file: components
+    added_in: FIX.5.0SP2
+    added_in_ep: 171
+  - id: fix_category:TradeManagement
+    name: TradeManagement
+    fixml_file_name: trademanagement
+    in_section: fix_section:PostTrade
+    category_kind: Message
+    include_file: components
+    added_in: FIX.5.0SP2
+    added_in_ep: 247
+  - id: fix_category:PayManagement
+    name: PayManagement
+    fixml_file_name: paymgt
+    in_section: fix_section:PostTrade
+    category_kind: Message
+    include_file: components
+    added_in: FIX.5.0SP2
+    added_in_ep: 249
+  - id: fix_category:SettlementStatusManagement
+    name: SettlementStatusManagement
+    fixml_file_name: settlstatmgmt
+    in_section: fix_section:PostTrade
+    category_kind: Message
+    include_file: components
+    added_in: FIX.Latest
+    added_in_ep: 281
+  - id: fix_category:Testing
+    name: Testing
+    fixml_file_name: testing
+    in_section: fix_section:PreTrade
+    category_kind: Message
+    added_in: FIX.Latest
+    added_in_ep: 292

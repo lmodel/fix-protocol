@@ -1,0 +1,8 @@
+# A field that names both a datatype and a code set.
+# Fails at: /
+id: fix_field:54
+name: Side
+abbr_name: Side
+field_code_set: fix_code_set:54
+added_in: FIX.2.7
+field_datatype: fix_datatype:char

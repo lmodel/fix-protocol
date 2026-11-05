@@ -1,0 +1,8 @@
+# A field whose length field is a datatype.
+# Fails at: /length_field
+id: fix_field:96
+name: RawData
+abbr_name: RawData
+field_datatype: fix_datatype:data
+length_field: fix_datatype:Length
+added_in: FIX.2.7

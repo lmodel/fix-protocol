@@ -1,0 +1,9 @@
+# A message with no members.
+# Fails at: /
+id: fix_message:1
+name: Heartbeat
+abbr_name: Heartbeat
+msg_type: '0'
+in_category: fix_category:Session
+added_in: FIX.2.7
+fixml_not_required: true

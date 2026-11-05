@@ -1,0 +1,8 @@
+# The commit of FIXTradingCommunity/orchestrations that upstream/ copies, the
+# extension pack its FIX Latest file names, and the file's creation date. Each row
+# below is a file's path in that repository and its git object hash.
+# commit: cd24169a2abd8daba7c360987c7a46ca11873a12
+# version: FIX.Latest_EP312
+# created: 2026-09-08
+FIX Standard/OrchestraFIXLatest.xml	0f1432acab26ecc196aabdc8c1234eb5bc53ac48
+LICENSE	8dada3edaf50dbc082c9a125058f25def75e625a

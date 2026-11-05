@@ -1,0 +1,282 @@
+---
+id: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary
+name: fix_protocol_dictionary
+title: FIX Latest data dictionary
+description: >-
+  FIX Latest's data dictionary: the datatypes, the code sets with their codes,
+  and the fields that carry values on the wire.
+version: FIX.Latest_EP312
+source: https://github.com/FIXTradingCommunity/orchestrations/blob/cd24169a2abd8daba7c360987c7a46ca11873a12/FIX%20Standard/OrchestraFIXLatest.xml
+license: Apache-2.0
+see_also:
+  - https://lmodel.github.io/fix-protocol
+prefixes:
+  fix_protocol: https://w3id.org/lmodel/fix-protocol/
+  fix_datatype: https://w3id.org/lmodel/fix-protocol/datatype/
+  fix_code_set: https://w3id.org/lmodel/fix-protocol/code_set/
+  fix_code: https://w3id.org/lmodel/fix-protocol/code/
+  fix_field: https://w3id.org/lmodel/fix-protocol/field/
+  fix_orchestra: https://w3id.org/lmodel/fix-orchestra/
+  fixr: http://fixprotocol.io/2020/orchestra/repository/
+  linkml: https://w3id.org/linkml/
+default_prefix: fix_protocol
+default_range: string
+
+imports:
+  - linkml:types
+  - ./fix_protocol_core
+
+classes:
+
+  FixDatatype:
+    title: Datatype
+    description: >-
+      A kind of value a field holds, such as int, Price or UTCTimestamp, with
+      the XML Schema types it maps to.
+    is_a: FixElement
+    attributes:
+      base_type:
+        title: Base Type
+        description: The datatype this one narrows.
+        range: FixDatatype
+        pattern: ^fix_datatype:[A-Za-z][A-Za-z0-9_]*$
+        aliases:
+          - baseType
+        exact_mappings:
+          - fixr:baseType
+      mapped_datatypes:
+        title: Mapped Datatypes
+        description: The types of other standards that FIX gives as this datatype's form.
+        range: FixMappedDatatype
+        multivalued: true
+        inlined_as_list: true
+        aliases:
+          - mappedDatatype
+        exact_mappings:
+          - fixr:mappedDatatype
+    slot_usage:
+      id:
+        pattern: ^fix_datatype:[A-Za-z][A-Za-z0-9_]*$
+    exact_mappings:
+      - fix_orchestra:OrchestraDatatypeV10
+      - fixr:datatype
+
+  FixMappedDatatype:
+    title: Mapped Datatype
+    description: >-
+      The type of another standard that a FIX datatype takes, such as
+      xs:decimal in XML Schema.
+    attributes:
+      mapped_standard:
+        title: Standard
+        description: The standard the type belongs to, such as XML.
+        required: true
+        aliases:
+          - standard
+        exact_mappings:
+          - fixr:standard
+      mapped_base:
+        title: Base
+        description: The standard's type, such as xs:decimal.
+        aliases:
+          - base
+        exact_mappings:
+          - fixr:base
+      mapped_builtin:
+        title: Built In
+        description: True when the type is one the standard defines itself.
+        range: boolean
+        aliases:
+          - builtin
+        exact_mappings:
+          - fixr:builtin
+      mapped_min_inclusive:
+        title: Least Value
+        description: The smallest value the type allows, as FIX writes it.
+        aliases:
+          - minInclusive
+        exact_mappings:
+          - fixr:minInclusive
+      mapped_pattern:
+        title: Pattern
+        description: A regular expression in XML Schema's syntax that a value must match.
+        aliases:
+          - pattern
+        exact_mappings:
+          - fixr:pattern
+    exact_mappings:
+      - fixr:mappedDatatype
+
+  FixCodeSet:
+    title: Code Set
+    description: >-
+      A list of the values a field may take, each a code with a name, such as
+      the sides of an order.
+    is_a: FixElement
+    attributes:
+      code_set_datatype:
+        title: Datatype
+        description: The datatype of the codes' values.
+        range: FixDatatype
+        required: true
+        pattern: ^fix_datatype:[A-Za-z][A-Za-z0-9_]*$
+        aliases:
+          - type
+        exact_mappings:
+          - fixr:type
+      fix_codes:
+        title: Codes
+        description: The codes of the set, in FIX's order.
+        range: FixCode
+        multivalued: true
+        inlined_as_list: true
+        aliases:
+          - code
+        exact_mappings:
+          - fixr:code
+    slot_usage:
+      id:
+        pattern: ^fix_code_set:[1-9][0-9]*$
+    exact_mappings:
+      - fix_orchestra:OrchestraCodeSetV10
+      - fixr:codeSetType
+
+  FixCode:
+    title: Code
+    description: One value of a code set, with its name, such as 1 for Buy.
+    is_a: FixElement
+    attributes:
+      code_value:
+        title: Value
+        description: The value as it travels on the wire.
+        required: true
+        pattern: ^\S+$
+        aliases:
+          - value
+        exact_mappings:
+          - fixr:value
+      sort_order:
+        title: Sort Order
+        description: Where the code comes when FIX lists the set.
+        range: integer
+        minimum_value: 0
+        aliases:
+          - sort
+        exact_mappings:
+          - fixr:sort
+      code_group:
+        title: Code Group
+        description: A label that groups some codes of a large set, such as one asset class.
+        aliases:
+          - group
+        exact_mappings:
+          - fixr:group
+    slot_usage:
+      id:
+        pattern: ^fix_code:[1-9][0-9]*$
+    exact_mappings:
+      - fix_orchestra:OrchestraCodeV10
+      - fixr:codeType
+
+  FixField:
+    title: Field
+    description: >-
+      A field of FIX, known by its tag number, such as 55 for Symbol, with the
+      datatype or code set of its values.
+    is_a: FixElement
+    slots:
+      - abbr_name
+      - fixml_not_required
+    attributes:
+      field_datatype:
+        title: Datatype
+        description: The datatype of the field's values, when no code set lists them.
+        range: FixDatatype
+        pattern: ^fix_datatype:[A-Za-z][A-Za-z0-9_]*$
+        aliases:
+          - type
+        exact_mappings:
+          - fixr:type
+      field_code_set:
+        title: Code Set
+        description: The code set that lists the field's values.
+        range: FixCodeSet
+        pattern: ^fix_code_set:[1-9][0-9]*$
+        aliases:
+          - type
+        exact_mappings:
+          - fixr:type
+      union_datatype:
+        title: Union Datatype
+        description: >-
+          A datatype whose values the field also takes, beside those of its code
+          set, such as a range of numbers kept for private use.
+        range: FixDatatype
+        pattern: ^fix_datatype:[A-Za-z][A-Za-z0-9_]*$
+        aliases:
+          - unionDataType
+        exact_mappings:
+          - fixr:unionDataType
+      length_field:
+        title: Length Field
+        description: The field that gives this field's length in bytes.
+        range: FixField
+        pattern: ^fix_field:[1-9][0-9]*$
+        aliases:
+          - lengthId
+        exact_mappings:
+          - fixr:lengthId
+      discriminator_field:
+        title: Discriminator Field
+        description: The field whose value says how to read this field's value.
+        range: FixField
+        pattern: ^fix_field:[1-9][0-9]*$
+        aliases:
+          - discriminatorId
+        exact_mappings:
+          - fixr:discriminatorId
+      base_category:
+        title: Base Category
+        description: >-
+          The category whose FIXML element carries the field, under the short
+          name in base_category_abbr_name.
+        range: FixCategory
+        pattern: ^fix_category:[A-Za-z][A-Za-z0-9_]*$
+        aliases:
+          - baseCategory
+        exact_mappings:
+          - fixr:baseCategory
+      base_category_abbr_name:
+        title: Base Category Abbreviated Name
+        description: The field's short name within its base category's FIXML element.
+        range: fix_name
+        aliases:
+          - baseCategoryAbbrName
+        exact_mappings:
+          - fixr:baseCategoryAbbrName
+    slot_usage:
+      id:
+        pattern: ^fix_field:[1-9][0-9]*$
+    exactly_one_of:
+      - slot_conditions:
+          field_datatype:
+            name: field_datatype
+            required: true
+          field_code_set:
+            name: field_code_set
+            value_presence: ABSENT
+      - slot_conditions:
+          field_datatype:
+            name: field_datatype
+            value_presence: ABSENT
+          field_code_set:
+            name: field_code_set
+            required: true
+    comments:
+      - >-
+        FIX Latest names a field's datatype or code set in one attribute, type.
+        The record splits it, so each reference has one range, as Orchestra 1.1
+        does.
+    exact_mappings:
+      - fix_orchestra:OrchestraFieldV10
+      - fixr:fieldType

@@ -1,0 +1,209 @@
+# A field that states no version that added it.
+# Fails at: /fix_fields/1
+repository_name: FIX.Latest
+repository_version: FIX.Latest_EP312
+fix_sections:
+  - id: fix_section:Session
+    name: Session
+    fixml_file_name: session
+    section_order: 0
+    fixml_not_required: true
+fix_categories:
+  - id: fix_category:Session
+    name: Session
+    fixml_file_name: session
+    in_section: fix_section:Session
+    category_kind: Message
+    fixml_not_required: true
+  - id: fix_category:Common
+    name: Common
+    fixml_file_name: components
+    category_kind: Message
+    include_file: fields
+fix_datatypes:
+  - id: fix_datatype:int
+    name: int
+    added_in: FIX.2.7
+    updated_in: FIX.Latest
+    updated_in_ep: 271
+    mapped_datatypes:
+      - mapped_standard: XML
+        mapped_base: xs:integer
+        mapped_builtin: true
+  - id: fix_datatype:String
+    name: String
+    added_in: FIX.4.2
+    mapped_datatypes:
+      - mapped_standard: XML
+        mapped_base: xs:string
+        mapped_builtin: true
+  - id: fix_datatype:char
+    name: char
+    added_in: FIX.2.7
+    updated_in: FIX.5.0SP2
+    updated_in_ep: 206
+    mapped_datatypes:
+      - mapped_standard: XML
+        mapped_base: xs:string
+        mapped_builtin: false
+  - id: fix_datatype:Length
+    name: Length
+    base_type: fix_datatype:int
+    added_in: FIX.4.3
+    mapped_datatypes:
+      - mapped_standard: XML
+        mapped_base: xs:nonNegativeInteger
+        mapped_builtin: false
+  - id: fix_datatype:NumInGroup
+    name: NumInGroup
+    base_type: fix_datatype:int
+    added_in: FIX.4.3
+  - id: fix_datatype:data
+    name: data
+    added_in: FIX.2.7
+    updated_in: FIX.Latest
+    updated_in_ep: 300
+    mapped_datatypes:
+      - mapped_standard: XML
+        mapped_base: xs:base64Binary
+        mapped_builtin: true
+fix_code_sets:
+  - id: fix_code_set:8
+    name: BeginStringCodeSet
+    code_set_datatype: fix_datatype:String
+    added_in: FIX.2.7
+    updated_in: FIX.Latest
+    updated_in_ep: 270
+    fix_codes:
+      - id: fix_code:8001
+        name: FIX42
+        code_value: FIX.4.2
+        sort_order: 1
+        added_in: FIX.Latest
+        added_in_ep: 270
+      - id: fix_code:8002
+        name: FIX44
+        code_value: FIX.4.4
+        sort_order: 2
+        added_in: FIX.Latest
+        added_in_ep: 270
+  - id: fix_code_set:54
+    name: SideCodeSet
+    code_set_datatype: fix_datatype:char
+    added_in: FIX.2.7
+    fix_codes:
+      - id: fix_code:54001
+        name: Buy
+        code_value: '1'
+        sort_order: 1
+        added_in: FIX.2.7
+        updated_in: FIX.5.0SP2
+        updated_in_ep: 254
+      - id: fix_code:54002
+        name: Sell
+        code_value: '2'
+        sort_order: 2
+        added_in: FIX.2.7
+        updated_in: FIX.5.0SP2
+        updated_in_ep: 254
+fix_fields:
+  - id: fix_field:8
+    name: BeginString
+    abbr_name: BeginString
+    field_code_set: fix_code_set:8
+    added_in: FIX.2.7
+    updated_in: FIX.Latest
+    updated_in_ep: 270
+    fixml_not_required: true
+  - id: fix_field:10
+    name: CheckSum
+    abbr_name: CheckSum
+    field_datatype: fix_datatype:String
+    fixml_not_required: true
+  - id: fix_field:54
+    name: Side
+    abbr_name: Side
+    field_code_set: fix_code_set:54
+    added_in: FIX.2.7
+  - id: fix_field:95
+    name: RawDataLength
+    abbr_name: RawDataLength
+    field_datatype: fix_datatype:Length
+    added_in: FIX.2.7
+  - id: fix_field:96
+    name: RawData
+    abbr_name: RawData
+    field_datatype: fix_datatype:data
+    length_field: fix_field:95
+    added_in: FIX.2.7
+  - id: fix_field:112
+    name: TestReqID
+    abbr_name: TestReqID
+    field_datatype: fix_datatype:String
+    added_in: FIX.3.0
+    fixml_not_required: true
+  - id: fix_field:232
+    name: NoStipulations
+    field_datatype: fix_datatype:NumInGroup
+    added_in: FIX.4.2
+    updated_in: FIX.Latest
+    updated_in_ep: 294
+    fixml_not_required: true
+  - id: fix_field:234
+    name: StipulationValue
+    abbr_name: Val
+    field_datatype: fix_datatype:String
+    added_in: FIX.4.2
+fix_components:
+  - id: fix_component:1024
+    name: StandardHeader
+    abbr_name: Hdr
+    in_category: fix_category:Session
+    added_in: FIX.4.0
+    updated_in: FIX.Latest
+    updated_in_ep: 271
+    fix_members:
+      - member_field: fix_field:8
+        presence: required
+        added_in: FIX.4.0
+        updated_in: FIX.Latest
+        updated_in_ep: 306
+  - id: fix_component:1025
+    name: StandardTrailer
+    abbr_name: Trlr
+    in_category: fix_category:Session
+    added_in: FIX.4.0
+    fixml_not_required: true
+    fix_members:
+      - member_field: fix_field:10
+        presence: required
+        added_in: FIX.4.0
+fix_groups:
+  - id: fix_group:1019
+    name: Stipulations
+    abbr_name: Stip
+    in_category: fix_category:Common
+    added_in: FIX.4.3
+    num_in_group:
+      count_field: fix_field:232
+      added_in: FIX.4.3
+    fix_members:
+      - member_field: fix_field:234
+        added_in: FIX.4.3
+fix_messages:
+  - id: fix_message:1
+    name: Heartbeat
+    abbr_name: Heartbeat
+    msg_type: '0'
+    in_category: fix_category:Session
+    added_in: FIX.2.7
+    fixml_not_required: true
+    fix_members:
+      - member_component: fix_component:1024
+        presence: required
+        added_in: FIX.2.7
+      - member_field: fix_field:112
+        added_in: FIX.4.0
+      - member_component: fix_component:1025
+        presence: required
+        added_in: FIX.2.7

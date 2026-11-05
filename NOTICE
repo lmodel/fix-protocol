@@ -1,60 +1,100 @@
-fix-protocol
-============
+FIX Latest LinkML Schema (fix-protocol)
+Copyright 2026 Noel McLoughlin
 
-1. Project code, schema structure, build tooling, tests
+The code in this repository is licensed under the Apache License,
+Version 2.0 (see LICENSE). Some of the content it carries is third-party
+work under its own terms, listed below. No party named here has endorsed
+this project, and its use implies no endorsement by any of them.
 
-  All files in this repository are licensed under the Apache License,
-  Version 2.0. See the LICENSE file for the full text.
+FIX Latest
+----------
 
-    SPDX-License-Identifier: Apache-2.0
+upstream/OrchestraFIXLatest.xml is FIX Latest at extension pack 312, the
+application layer of the FIX protocol, as the FIX Trading Community publishes
+it in https://github.com/FIXTradingCommunity/orchestrations. It is copied
+unchanged from commit cd24169a2abd8daba7c360987c7a46ca11873a12, and
+scripts/upstream_pins.tsv pins it by its git object hash. upstream/LICENSE is
+that repository's licence, the Apache License, Version 2.0, whose README
+states:
 
-  This includes the LinkML schema modules under
-  `src/fix_protocol/schema/` (fix_protocol.yaml, fix_base.yaml,
-  fix_pre_trade.yaml). Those schemas are deliberately structural only:
-  they define class, slot and enum *shapes* and FIX wire-format
-  identifiers (tag numbers, MsgType codes, datatype names). They do
-  **not** contain normative prose, paraphrased descriptions, or
-  verbatim text from the FIX Latest specification.
+  (c) Copyright 2017-2026 FIX Protocol Limited
 
-2. Modelled subject matter — FIX Protocol specification
+  Licensed under the Apache License, Version 2.0 (the "License"); you may
+  not use this file except in compliance with the License.
 
-  The subject matter modelled by the schemas is the FIX Latest
-  specification (Extension Pack 284, November 2023), published by
-  FIX Protocol Ltd. ("FIX Trading Community"):
+The file's own metadata carries another rights line: "Copyright (c) FIX
+Protocol Ltd. All Rights Reserved." This project reads the repository's
+Apache License grant as the terms the file is shared under. It keeps the file
+whole and unchanged, rights line included, and takes the narrower course with
+everything it derives from the file:
 
-    https://www.fixtrading.org/standards/fix-latest-online/
-    https://www.fixtrading.org/standards/fix-latest-online/introduction-to-fix-protocol/
-    https://www.fixtrading.org/standards/fix-latest-online/business-area-pre-trade/
+- src/fix_protocol/data/ restates the file's identifiers, names, numbers,
+  codes, structure and pedigree as records. Systems that speak FIX must use
+  these as FIX writes them.
+- It leaves out the text of every documentation element, FIX's descriptions
+  of its elements, 29,430 in this edition. Nothing generated from the
+  catalogue carries that text, and tests/test_own_words.py checks it.
+- The schema's titles and descriptions, the docs and the knowledge bundle are
+  this project's own words, written from what each element does. The same
+  test refuses any run of four words they share with FIX's descriptions.
 
-    Copyright (c) FIX Protocol Ltd.
-    Licensed by FPL under Creative Commons Attribution-NoDerivatives 4.0
-    International (CC BY-ND 4.0):
-      https://creativecommons.org/licenses/by-nd/4.0/legalcode
+This project claims no right in FIX's material. The Apache License that
+covers this repository grants rights in this project's own code, schema and
+words. FIX's material in upstream/ and in the records stays under the FIX
+Trading Community's terms.
 
-  The schemas in this repository reference FIX concepts and
-  interoperability identifiers solely for the purpose of describing
-  the shape of FIX-aligned data. This repository does not relicense,
-  sublicense, or redistribute FIX Protocol specification text under
-  its Apache-2.0 license. Where FIX wire identifiers (e.g. enum
-  permissible-value codes such as MsgType wire values, datatype names)
-  appear in the schemas, they are included as functional
-  interoperability identifiers, not as protected expression.
+The FIX Trading Community's website, https://www.fixtrading.org/, publishes the
+FIX specification under its own terms of use. This repository takes nothing
+from it: no text, no table and no download.
 
-3. Private content overlays — not part of this distribution
+The names FIX and FIX Trading Community belong to FIX Protocol Ltd. They are
+used here only to name the standard.
 
-  Spec-derived prose (paraphrased descriptions, enum permissible-value
-  descriptions, footnote text, policy quotations) are maintained in a
-  private overlay files and is excluded from this version control. 
-  
-  Those overlays are intended for internal use within an organisation only, consistent with the FIX Terms of Use, and must not be redistributed.
+linkml-project-copier
+---------------------
 
-  If you need to reproduce or redistribute FIX specification text in
-  software, documentation, or generated artifacts, obtain permission
-  from FIX Protocol Ltd.
+This project was generated from linkml-project-copier
+(https://github.com/linkml/linkml-project-copier), and its justfile,
+configuration and documentation scaffolding derive from that template:
 
-4. Trademarks
+  The MIT License (MIT)
+  Copyright (c) 2025 David Linke
 
-  "FIX", "FIX Protocol", "FIX Trading Community" and related marks
-  are trademarks of FIX Protocol Ltd. Use of these names in this
-  repository is for identification and attribution only and does not
-  imply endorsement.
+  Permission is hereby granted, free of charge, to any person obtaining a
+  copy of this software and associated documentation files (the
+  "Software"), to deal in the Software without restriction, including
+  without limitation the rights to use, copy, modify, merge, publish,
+  distribute, sublicense, and/or sell copies of the Software, and to permit
+  persons to whom the Software is furnished to do so, subject to the
+  following conditions:
+
+  The above copyright notice and this permission notice shall be included
+  in all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+  OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+  NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+  DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+  USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Knowledge bundle
+----------------
+
+This product maintains its documentation as a Linked Open Knowledge Format
+(LOKF) bundle under .lokf/: https://lokf.nolan-nichols.com/specification/
+
+LOKF is a semantic profile of the Open Knowledge Format (OKF) specification
+by Google Cloud Platform:
+https://github.com/GoogleCloudPlatform/open-knowledge-format/blob/main/SPEC.md
+
+The scripts under .lokf/scripts/ and .lokf/m365/ and the
+knowledge-librarian, knowledge-registrar, knowledge-release and
+knowledge-sync workflows under .github/workflows/ are copies of the
+ktl-sidecar templates in knowledge-trust-ladder
+(https://github.com/noelmcloughlin/knowledge-trust-ladder). The site under
+website/ and the knowledge-website workflow derive from the ktl-website
+templates in the same repository, and website/NOTICE lists the part
+adapted from the LOKF toolkit's site. All of them are licensed under the
+Apache License, Version 2.0.

@@ -1,0 +1,350 @@
+# FIX Latest at FIX.Latest_EP312: datatypes. scripts/fix_latest_to_records.py writes this
+# file from upstream/OrchestraFIXLatest.xml, so regenerate it, never edit it.
+#
+# Copyright (c) FIX Protocol Ltd. The file is copied from
+# FIXTradingCommunity/orchestrations at cd24169a2abd8daba7c360987c7a46ca11873a12,
+# which is licensed under the Apache License, Version 2.0. This file restates its
+# names, numbers and codes as records and leaves its descriptive text out, as
+# NOTICE says.
+repository_name: FIX.Latest
+repository_version: FIX.Latest_EP312
+fix_datatypes:
+  - id: fix_datatype:int
+    name: int
+    added_in: FIX.2.7
+    updated_in: FIX.Latest
+    updated_in_ep: 271
+    mapped_datatypes:
+      - mapped_standard: XML
+        mapped_base: xs:integer
+        mapped_builtin: true
+  - id: fix_datatype:Length
+    name: Length
+    base_type: fix_datatype:int
+    added_in: FIX.4.3
+    mapped_datatypes:
+      - mapped_standard: XML
+        mapped_base: xs:nonNegativeInteger
+        mapped_builtin: false
+  - id: fix_datatype:TagNum
+    name: TagNum
+    base_type: fix_datatype:int
+    added_in: FIX.4.3
+    updated_in: FIX.Latest
+    updated_in_ep: 271
+    mapped_datatypes:
+      - mapped_standard: XML
+        mapped_base: xs:nonNegativeInteger
+        mapped_builtin: false
+  - id: fix_datatype:SeqNum
+    name: SeqNum
+    base_type: fix_datatype:int
+    added_in: FIX.4.3
+    mapped_datatypes:
+      - mapped_standard: XML
+        mapped_base: xs:positiveInteger
+        mapped_builtin: false
+  - id: fix_datatype:NumInGroup
+    name: NumInGroup
+    base_type: fix_datatype:int
+    added_in: FIX.4.3
+  - id: fix_datatype:DayOfMonth
+    name: DayOfMonth
+    base_type: fix_datatype:int
+    added_in: FIX.4.1
+    updated_in: FIX.Latest
+    updated_in_ep: 271
+    mapped_datatypes:
+      - mapped_standard: XML
+        mapped_base: xs:integer
+        mapped_builtin: false
+  - id: fix_datatype:float
+    name: float
+    added_in: FIX.2.7
+    updated_in: FIX.5.0SP2
+    updated_in_ep: 206
+    mapped_datatypes:
+      - mapped_standard: XML
+        mapped_base: xs:decimal
+        mapped_builtin: true
+  - id: fix_datatype:Qty
+    name: Qty
+    base_type: fix_datatype:float
+    added_in: FIX.4.2
+    mapped_datatypes:
+      - mapped_standard: XML
+        mapped_base: xs:decimal
+        mapped_builtin: false
+  - id: fix_datatype:Price
+    name: Price
+    base_type: fix_datatype:float
+    added_in: FIX.4.2
+    mapped_datatypes:
+      - mapped_standard: XML
+        mapped_base: xs:decimal
+        mapped_builtin: false
+  - id: fix_datatype:PriceOffset
+    name: PriceOffset
+    base_type: fix_datatype:float
+    added_in: FIX.4.2
+    mapped_datatypes:
+      - mapped_standard: XML
+        mapped_base: xs:decimal
+        mapped_builtin: false
+  - id: fix_datatype:Amt
+    name: Amt
+    base_type: fix_datatype:float
+    added_in: FIX.4.2
+    mapped_datatypes:
+      - mapped_standard: XML
+        mapped_base: xs:decimal
+        mapped_builtin: false
+  - id: fix_datatype:Percentage
+    name: Percentage
+    base_type: fix_datatype:float
+    added_in: FIX.4.3
+    mapped_datatypes:
+      - mapped_standard: XML
+        mapped_base: xs:decimal
+        mapped_builtin: false
+  - id: fix_datatype:char
+    name: char
+    added_in: FIX.2.7
+    updated_in: FIX.5.0SP2
+    updated_in_ep: 206
+    mapped_datatypes:
+      - mapped_standard: XML
+        mapped_base: xs:string
+        mapped_builtin: false
+  - id: fix_datatype:Boolean
+    name: Boolean
+    base_type: fix_datatype:char
+    added_in: FIX.4.2
+    mapped_datatypes:
+      - mapped_standard: XML
+        mapped_base: xs:string
+        mapped_builtin: false
+        mapped_pattern: '[YN]{1}'
+  - id: fix_datatype:String
+    name: String
+    added_in: FIX.4.2
+    mapped_datatypes:
+      - mapped_standard: XML
+        mapped_base: xs:string
+        mapped_builtin: true
+  - id: fix_datatype:MultipleCharValue
+    name: MultipleCharValue
+    base_type: fix_datatype:String
+    added_in: FIX.4.4
+    mapped_datatypes:
+      - mapped_standard: XML
+        mapped_base: xs:string
+        mapped_builtin: false
+        mapped_pattern: '[A-Za-z0-9](\s[A-Za-z0-9])*'
+  - id: fix_datatype:MultipleStringValue
+    name: MultipleStringValue
+    base_type: fix_datatype:String
+    added_in: FIX.4.2
+    mapped_datatypes:
+      - mapped_standard: XML
+        mapped_base: xs:string
+        mapped_builtin: false
+        mapped_pattern: .+(\s.+)*
+  - id: fix_datatype:Country
+    name: Country
+    base_type: fix_datatype:String
+    added_in: FIX.4.4
+    mapped_datatypes:
+      - mapped_standard: XML
+        mapped_base: xs:string
+        mapped_builtin: false
+        mapped_pattern: .{2}
+  - id: fix_datatype:Currency
+    name: Currency
+    base_type: fix_datatype:String
+    added_in: FIX.4.2
+    mapped_datatypes:
+      - mapped_standard: XML
+        mapped_base: xs:string
+        mapped_builtin: false
+        mapped_pattern: .{3}
+  - id: fix_datatype:Exchange
+    name: Exchange
+    base_type: fix_datatype:String
+    added_in: FIX.4.2
+    mapped_datatypes:
+      - mapped_standard: XML
+        mapped_base: xs:string
+        mapped_builtin: false
+        mapped_pattern: .*
+  - id: fix_datatype:MonthYear
+    name: MonthYear
+    base_type: fix_datatype:String
+    added_in: FIX.4.1
+    mapped_datatypes:
+      - mapped_standard: XML
+        mapped_base: xs:string
+        mapped_builtin: false
+        mapped_pattern: \d{4}(0|1)\d([0-3wW]\d)?
+  - id: fix_datatype:UTCTimestamp
+    name: UTCTimestamp
+    base_type: fix_datatype:String
+    added_in: FIX.4.2
+    updated_in: FIX.5.0SP2
+    updated_in_ep: 256
+    mapped_datatypes:
+      - mapped_standard: XML
+        mapped_base: xs:dateTime
+        mapped_builtin: false
+  - id: fix_datatype:UTCTimeOnly
+    name: UTCTimeOnly
+    base_type: fix_datatype:String
+    added_in: FIX.4.2
+    updated_in: FIX.5.0SP2
+    updated_in_ep: 206
+    mapped_datatypes:
+      - mapped_standard: XML
+        mapped_base: xs:time
+        mapped_builtin: false
+  - id: fix_datatype:UTCDateOnly
+    name: UTCDateOnly
+    base_type: fix_datatype:String
+    added_in: FIX.4.4
+    updated_in: FIX.Latest
+    updated_in_ep: 271
+    mapped_datatypes:
+      - mapped_standard: XML
+        mapped_base: xs:date
+        mapped_builtin: false
+  - id: fix_datatype:LocalMktDate
+    name: LocalMktDate
+    base_type: fix_datatype:String
+    added_in: FIX.4.2
+    updated_in: FIX.5.0SP2
+    updated_in_ep: 206
+    mapped_datatypes:
+      - mapped_standard: XML
+        mapped_base: xs:date
+        mapped_builtin: false
+  - id: fix_datatype:TZTimeOnly
+    name: TZTimeOnly
+    base_type: fix_datatype:String
+    added_in: FIX.4.4
+    added_in_ep: -1
+    updated_in: FIX.5.0SP2
+    updated_in_ep: 206
+    mapped_datatypes:
+      - mapped_standard: XML
+        mapped_base: xs:time
+        mapped_builtin: true
+  - id: fix_datatype:TZTimestamp
+    name: TZTimestamp
+    base_type: fix_datatype:String
+    added_in: FIX.4.4
+    added_in_ep: -1
+    updated_in: FIX.5.0SP2
+    updated_in_ep: 206
+    mapped_datatypes:
+      - mapped_standard: XML
+        mapped_base: xs:dateTime
+        mapped_builtin: true
+  - id: fix_datatype:data
+    name: data
+    added_in: FIX.2.7
+    updated_in: FIX.Latest
+    updated_in_ep: 300
+    mapped_datatypes:
+      - mapped_standard: XML
+        mapped_base: xs:base64Binary
+        mapped_builtin: true
+  - id: fix_datatype:Pattern
+    name: Pattern
+    added_in: FIX.4.4
+    added_in_ep: -1
+  - id: fix_datatype:Tenor
+    name: Tenor
+    base_type: fix_datatype:Pattern
+    added_in: FIX.4.4
+    added_in_ep: -1
+    mapped_datatypes:
+      - mapped_standard: XML
+        mapped_base: xs:string
+        mapped_builtin: false
+        mapped_pattern: '[DMWY](\d)+'
+  - id: fix_datatype:Reserved100Plus
+    name: Reserved100Plus
+    base_type: fix_datatype:Pattern
+    added_in: FIX.4.4
+    added_in_ep: -1
+    mapped_datatypes:
+      - mapped_standard: XML
+        mapped_base: xs:integer
+        mapped_builtin: false
+        mapped_min_inclusive: '100'
+  - id: fix_datatype:Reserved1000Plus
+    name: Reserved1000Plus
+    base_type: fix_datatype:Pattern
+    added_in: FIX.4.4
+    added_in_ep: -1
+    mapped_datatypes:
+      - mapped_standard: XML
+        mapped_base: xs:integer
+        mapped_builtin: false
+        mapped_min_inclusive: '1000'
+  - id: fix_datatype:Reserved4000Plus
+    name: Reserved4000Plus
+    base_type: fix_datatype:Pattern
+    added_in: FIX.4.4
+    added_in_ep: -1
+    mapped_datatypes:
+      - mapped_standard: XML
+        mapped_base: xs:integer
+        mapped_builtin: false
+        mapped_min_inclusive: '4000'
+  - id: fix_datatype:XMLData
+    name: XMLData
+    base_type: fix_datatype:String
+    added_in: FIX.5.0
+    added_in_ep: -1
+    mapped_datatypes:
+      - mapped_standard: XML
+        mapped_base: xs:string
+        mapped_builtin: false
+  - id: fix_datatype:Language
+    name: Language
+    base_type: fix_datatype:String
+    added_in: FIX.5.0SP1
+    added_in_ep: 90
+    mapped_datatypes:
+      - mapped_standard: XML
+        mapped_base: xs:language
+        mapped_builtin: true
+  - id: fix_datatype:LocalMktTime
+    name: LocalMktTime
+    base_type: fix_datatype:String
+    added_in: FIX.5.0SP2
+    added_in_ep: 161
+    mapped_datatypes:
+      - mapped_standard: XML
+        mapped_base: xs:time
+        mapped_builtin: true
+  - id: fix_datatype:XID
+    name: XID
+    base_type: fix_datatype:String
+    added_in: FIX.5.0SP2
+    added_in_ep: 161
+    updated_in: FIX.Latest
+    updated_in_ep: 282
+    mapped_datatypes:
+      - mapped_standard: XML
+        mapped_base: xs:ID
+        mapped_builtin: true
+  - id: fix_datatype:XIDREF
+    name: XIDREF
+    base_type: fix_datatype:String
+    added_in: FIX.5.0SP2
+    added_in_ep: 161
+    mapped_datatypes:
+      - mapped_standard: XML
+        mapped_base: xs:IDREF
+        mapped_builtin: true

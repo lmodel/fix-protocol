@@ -1,0 +1,23 @@
+# A component in no category.
+# Fails at: /
+id: fix_component:1025
+name: StandardTrailer
+abbr_name: Trlr
+added_in: FIX.4.0
+fixml_not_required: true
+fix_members:
+  - member_field: fix_field:93
+    added_in: FIX.4.0
+    updated_in: FIX.5.0SP2
+    updated_in_ep: 195
+    deprecated_in: FIX.5.0SP2
+    deprecated_in_ep: 195
+  - member_field: fix_field:89
+    added_in: FIX.4.0
+    updated_in: FIX.5.0SP2
+    updated_in_ep: 195
+    deprecated_in: FIX.5.0SP2
+    deprecated_in_ep: 195
+  - member_field: fix_field:10
+    presence: required
+    added_in: FIX.4.0

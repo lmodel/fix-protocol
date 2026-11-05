@@ -1,0 +1,5 @@
+# A member whose presence FIX does not name.
+# Fails at: /presence
+member_component: fix_component:1024
+presence: mandatory
+added_in: FIX.2.7

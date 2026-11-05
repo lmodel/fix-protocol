@@ -1,0 +1,14 @@
+# Datasets
+
+* [The FIX Latest LinkML schema](fix-protocol-linkml-schema.md) - The LinkML schema in `src/fix_protocol/schema/`: an umbrella over three modules that models each kind of element in FIX Latest, at extension pack 312, as a class with the `Fix` prefix.
+* [The core module](core-module.md) - `fix_protocol_core.yaml`: the types for a FIX version, an extension pack number and a FIX name, the pedigree every element records, the `FixElement` base, and the section and category classes.
+* [The data dictionary module](dictionary-module.md) - `fix_protocol_dictionary.yaml`: the classes for FIX's datatypes, the XML Schema types they map to, code sets, codes and fields.
+* [The message structure module](structure-module.md) - `fix_protocol_structure.yaml`: the classes for FIX's components, repeating groups and messages, with the ordered members each holds and the field that counts a group's repeats.
+* [The catalogue](catalogue.md) - `src/fix_protocol/data/`: every element of FIX Latest at extension pack 312 as a record, in seven files: 5 sections, 34 categories, 38 datatypes, 694 code sets with 5,745 codes, 6,203 fields, 167 components, 580 repeating groups and 181 messages.
+* [The copy of FIX Latest](upstream-copy.md) - `upstream/`: FIX Latest's Orchestra file and the Apache-2.0 licence of the repository it comes from, unchanged, at commit `cd24169` of FIXTradingCommunity/orchestrations, pinned by git object hash.
+* [The adapt copy](adapt-copy.md) - `.lokf/fix-protocol.yaml`: the copy of the schema that `lokf adapt` writes for the knowledge bundle, with `FixElement` re-rooted on LOKF's `Concept`; a release carries it as `schema-<tag>-fix-protocol.yaml`.
+* [The neighbour copies](neighbour-copies.md) - `tests/neighbours/`: the adapt copies that 30 other lmodel repositories release, each pinned by checksum, which the tests hold this copy apart from.
+* [The example data](example-data.md) - `tests/data/`: a valid example of every class, a counter-example for each constraint the JSON Schema states, and one for each rule of `tests/fix_rules.py`, all copied from real records.
+* [Where FIX Latest breaks its own rules](upstream-departures.md) - `tests/upstream_departures.yaml`: the two places FIX Latest at extension pack 312 breaks a rule its data otherwise keeps, which the catalogue keeps as FIX wrote them.
+* [Orchestra 1.0's names](orchestra-names.md) - `tests/upstream/orchestra-1.0-names.txt`: the names Orchestra 1.0 gives its types, elements and attributes, which the mapping test holds every `fixr:` mapping to.
+* [The generated artefacts](generated-artefacts.md) - What the LinkML generators write from the schema: `project/` (JSON Schema, JSON-LD, OWL, SHACL, ShEx, SQL, GraphQL, protobuf, TypeScript, Java, Excel), the Python datamodel in `src/fix_protocol/datamodel/`, and `docs/schema/`.

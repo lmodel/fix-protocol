@@ -1,221 +1,61 @@
 # About fix-protocol
 
-LinkML metamodel for the structural elements of the FIX Latest
-specification. The schema describes the **shape** of the FIX
-specification documents (business areas, message categories, message
-and component listings, datatypes, extension packs, footnotes,
-workflow scenarios, status tables) — not market data or session
-traffic.
+## What the schema models
 
-## Design
+FIX Latest is the FIX Trading Community's current FIX application layer. It changes by extension packs, several a month. The community publishes it as one Orchestra file, `FIX Standard/OrchestraFIXLatest.xml` in its [orchestrations](https://github.com/FIXTradingCommunity/orchestrations) repository. `upstream/` holds that file at the commit `scripts/upstream_pins.tsv` names, and the schema's `version` is the extension pack the file states.
 
-### Modular layout
+The schema models what the file holds: sections, categories, datatypes, code sets and their codes, fields, components, repeating groups and messages. Each is a class with the `Fix` prefix, and every element of the file is a record in `src/fix_protocol/data/`. `scripts/fix_latest_to_records.py` writes them, and stops on an element or attribute it has no rule for.
 
-The umbrella schema [`fix_protocol.yaml`](../src/fix_protocol/schema/fix_protocol.yaml)
-imports one module per FIX Latest chapter:
+## How a record reads
 
-| Module | Source chapter | Classes | Enums | Slots |
-|---|---|---:|---:|---:|
-| [`fix_base`](../src/fix_protocol/schema/fix_base.yaml) | Introduction | 14 | 20 | 83 |
-| [`fix_pre_trade`](../src/fix_protocol/schema/fix_pre_trade.yaml) | Business Area: Pre-Trade | 10 | 5 | 27 |
-| [`fix_trade`](../src/fix_protocol/schema/fix_trade.yaml) | Business Area: Trade | 14 | 4 | 38 |
-| [`fix_post_trade`](../src/fix_protocol/schema/fix_post_trade.yaml) | Business Area: Post-Trade | 16 | 21 | 35 |
-| [`fix_infrastructure`](../src/fix_protocol/schema/fix_infrastructure.yaml) | Business Area: Infrastructure | 12 | 11 | 36 |
-| [`fix_global_components`](../src/fix_protocol/schema/fix_global_components.yaml) | Global Components (cross-area) | 0 | 0 | 1 |
+A record's `id` is a prefix for its kind and FIX's own identifier: `fix_field:55` for Symbol, `fix_message:14` for NewOrderSingle, `fix_code_set:54`, `fix_code:54001`, `fix_component:1003`, `fix_group:1012`. Datatypes, categories and sections have no number in FIX, so their name stands in: `fix_datatype:Price`, `fix_category:Allocation`, `fix_section:PreTrade`. The prefix matters because FIX numbers each kind on its own, and 159 message numbers are also field tags.
 
-The `fix_global_components` module is a thin horizontal overlay: it
-defines the `referenced_global_components` slot that each business-area
-tree-root uses to record which entries from the FIX Latest "Global
-Components" page its messages embed. The component catalog itself
-(name, numeric ID, repeating-vs-block flag) is published as instances
-of the `GlobalComponent` class declared in `fix_base`.
+Each key is a snake_case slot whose `aliases` give the attribute FIX writes, such as `msg_type` for `msgType`. Values keep FIX's form: tags and extension packs are numbers, and codes and MsgTypes are strings. Four things differ from the file:
 
-### Authoring conventions
+- A field's `type` names a datatype or a code set. The record splits it into `field_datatype` and `field_code_set`, so each reference has one range, as Orchestra 1.1 does.
+- A message lists its fields, components and groups inside a structure element. Components and groups list theirs directly. All three records list them in `fix_members`, in FIX's order.
+- The FIXML annotation becomes `fixml_not_required` on an element, or `fixml_inlined` on a member.
+- The edition's metadata, from the file's Dublin Core elements, is in `repository.yaml` under `metadata_` keys.
 
-- Apache-2.0 licensed; only shape-level structure lives in the public
-  repository. FIX prose enrichments (descriptions, examples drawn from the
-  published specification) live in a private `fix-protocol-private/` overlay
-  repository split into a schema-side overlay (`fix-content/<module>.content.yaml`),
-  and a fixture-side overlay (`test-fixtures-content/{valid,invalid}/<fixture>.yaml`).
-  Both overlays carry CC BY-ND 4.0 prose from FIX Latest and can be deep-merged
-  over the public artifacts at load time, never redistributed.
-- Enums use body-less permissible values; descriptive prose is added
-  in the private overlay.
-- Names follow LinkML conventions: PascalCase for classes/enums,
-  snake_case for slots, UPPER_SNAKE_CASE for permissible values.
-- Per-module slots that would collide across business areas are
-  disambiguated with a module prefix (e.g. `post_common_components`,
-  `post_sole_category`).
-- Line length ≤ 80 chars; indented lists; lint clean under
-  `linkml-lint` and `yamllint`.
+A member with no `presence` is optional, as Orchestra 1.0 defines.
 
-### Source provenance
+## What the catalogue leaves out
 
-Each module's `source:` field points at the canonical FIX Latest
-chapter URL on fixtrading.org.
+The file carries FIX's descriptions of its elements in 29,430 documentation elements. Neither the catalogue nor anything generated from it holds them, and every title and description in the schema, the docs and the bundle is this project's own. [NOTICE](../NOTICE) gives the reasons, and `tests/test_own_words.py` checks both.
 
-### Mappings
+Nothing comes from fixtrading.org. The earlier schema described the online specification's chapters: business areas, footnotes, page layouts, committees and the like. Those pages are under a licence that allows no adapted copy, and the Orchestra file states what they said about messages and fields, so that part is gone.
 
-Semantic alignment between FIX Protocol entities and adjacent
-vocabularies is carried out-of-band in SSSOM TSV files under
-[`src/fix_protocol/mappings/`](../src/fix_protocol/mappings/), one
-file per target vocabulary. Subject-side rows use the
-`fix_protocol:` (and, where applicable, `fix_simple_binary_encoding:`)
-CURIE prefix; predicates are the standard SKOS match types
-(`exactMatch`, `closeMatch`, `broadMatch`, `narrowMatch`,
-`relatedMatch`) which map onto the corresponding LinkML mapping
-slots.
+## Rules beside the schema
 
-| Target vocabulary | TSV | Rows | Predicate mix |
-|---|---|---:|---|
-| FIX Orchestra | `fix-protocol-to-fix-orchestra.sssom.tsv` | 27 | exact / close / narrow / related |
-| Common Domain Model (CDM) | `fix-protocol-to-common-domain-model.sssom.tsv` | 11 | close / related |
-| FIX SBE | `fix-protocol-to-fix-sbe.sssom.tsv` | 4 | exact / close / related |
-| FIXP | `fix-protocol-to-fixp.sssom.tsv` | 3 | related |
-| Fluxnova BPM Platform | `fix-protocol-to-fluxnova-bpm-platform.sssom.tsv` | 4 | related |
-| ISO 27001 | `fix-protocol-to-iso27001.sssom.tsv` | 4 | close / related |
+`tests/fix_rules.py` checks what the data keeps and no JSON Schema can state:
 
-Each TSV carries an SSSOM metadata header (`#curie_map:`,
-`#mapping_set_id:`, `#mapping_set_description:`, `#mapping_date:`,
-provenance / license) and rows with `subject_id`, `predicate_id`,
-`object_id`, `mapping_justification` (typically
-`semapv:LLMBasedMatching` for the initial pass), `confidence`, and a
-human comment. Mappings are CC BY 4.0; both source and target stay
-verifiable from any LinkML element's rendered docs page.
+- each identifier names one record, and each reference names a record that exists;
+- no two records of a kind share a name, no two messages share a MsgType, and no two codes of a set share a value or a name;
+- each message's MsgType is a code of the MsgType code set, and each code of that set names a message;
+- an extension pack comes with its version, and each code set, code, field, component, group and message states the version that added it;
+- each message starts with the standard header and ends with the standard trailer;
+- a raw-data field names the Length field that gives its length, and no other field names one;
+- the field that counts a group's repeats is a NumInGroup, or takes a code set of NumInGroup values;
+- a code set's number is the tag of a field that takes it, and some field takes every code set;
+- a code of a char, int or Boolean code set has a value of that datatype;
+- a category in a section groups messages, a message's category is in a section, and a category of fields holds no message, component or group;
+- a field gives a short name in a base category only when it names that category.
 
-Mappings are pushed into the schema YAMLs by
-[`scripts/apply_sssom_overlay.py`](../scripts/apply_sssom_overlay.py),
-which:
+FIX Latest breaks two of these rules, and `tests/upstream_departures.yaml` names both:
 
-1. Loads every `*.sssom.tsv` in `--mappings-dir` (default
-   `src/fix_protocol/mappings/`) and indexes rows by subject
-   local-name.
-2. For each YAML in `--schema-dir`, merges the predicate-mapped
-   object CURIEs into the matching LinkML mapping slot
-   (`exact_mappings`, `close_mappings`, `broad_mappings`,
-   `narrow_mappings`, `related_mappings`) on the matching class,
-   slot, enum, or type. Existing entries are preserved; duplicates
-   are dropped.
-3. Adds any newly referenced object-side prefixes to the YAML's
-   `prefixes:` block (URIs come from the TSV's `#curie_map:`
-   metadata).
-4. Writes each schema back through the canonical hand-rolled
-   formatter in [`schema_to_linkml.py`](../schema_to_linkml.py) (the
-   four helpers — `yaml_quote`, `yaml_key`, `scalar`, `dump_yaml`,
-   plus `SEPARATED_DICT_KEYS` — are inlined in the overlay script
-   so it has no runtime dependency on `schema_to_linkml.py`).
+- the MsgType code BQ states no `added`;
+- the raw-data field EncodedMDEntryStatusText names no length field.
 
-The overlay is idempotent: running it on an already-overlaid tree
-produces no further changes. Schemas under
-`src/fix_protocol/schema/` (and the private prose overlay at
-`../fix-protocol-private/fix-content/`) are kept in the canonical
-dumper-shape so any overlay run produces a diff containing only the
-new mapping links, not whole-file cosmetic reformatting.
+## Your own text
 
-## Status
+The records hold no description, FIX's or anyone's. A firm that documents how it uses FIX writes an Orchestra file, which is what the standard provides for: it names FIX's elements by the same numbers these records do, carries the firm's own text and restrictions, and validates against [lmodel/fix-orchestra](https://github.com/lmodel/fix-orchestra). A reader who holds the right to FIX's own text finds it in `upstream/`, where each element's `id` matches a record's. This project adds no slot for either, so the catalogue stays a statement of facts that anyone may copy.
 
-### Coverage
+## Mappings
 
-- **Introduction** — complete; covers FIX Family Standards, datatypes,
-  field tag ranges (UDF / Reserved / GTC), extension packs,
-  publisher / FPL metadata, footnotes, common components.
-- **Pre-Trade business area** — complete for all eight pre-trade
-  message categories with per-category sections, quote models,
-  message and component listings.
-- **Post-Trade business area** — complete; all twelve message
-  categories, 47 messages, ~55 components (16 common), 14 footnotes
-  with `introduced_in` extension packs, Allocation / Registration
-  status tables, Trade Capture report usages and identifier rules,
-  Allocation fragmentation field map, four communication scenarios,
-  post-trade allocation pricing methods, Collateral Management usages
-  and CollateralAssignment purposes, Position Management clearing
-  functions, six clearing-service message-format families with
-  per-format action lists, INITIATOR / RESPONDENT role labelling.
-- **Infrastructure business area** — complete; four categories
-  (Business Rejects, Network Status Communication, User Management,
-  Application Sequencing), messages and components per category,
-  BusinessRejectReason value table, standard request/response
-  mappings, and Global-Components cross-references (the
-  ApplicationSequenceControl global component referenced by the
-  Application Sequencing category, with its tag set captured via
-  `InfrastructureGlobalComponentReference`).
-- **Trade business area** — complete; 18 classes covering the
-  Trade categories (Single General Order Handling, Cross Order
-  Handling, Multileg Order Handling, List Order Handling, Order
-  Mass Handling, Indication of Interest, Order Status, Trade
-  Capture), message and component listings, common-component
-  catalog, OrdStatus precedence table, fragmentation entries, and
-  Trade Appendix sections.
+Each class maps to Orchestra 1.0's type for it, under `fixr:`, the namespace the file uses, and to its class in [lmodel/fix-orchestra](https://github.com/lmodel/fix-orchestra)'s Orchestra 1.0 module. Each slot maps to the attribute it holds. `tests/test_mappings.py` checks the `fixr:` names against Orchestra 1.0's schema. The `fix_orchestra:` names wait for fix-orchestra's first release, whose copy then joins `tests/neighbours/`.
 
-The full FIX Latest specification (EP284) has been audited against
-the schemas; all enums and class catalogs match the upstream TOC
-verbatim.
+There is no SSSOM set. The six the earlier schema carried were a matching tool's guesses, and most named classes that no longer exist. FIX's own datatype mappings, to XML Schema types, are on each datatype's record under `mapped_datatypes`.
 
-### Test fixtures
+## Keeping current
 
-Executable instance data lives under
-[`tests/data/`](../tests/data/) and is validated both with the
-pytest harness (against the generated Python dataclasses) and with
-`linkml-run-examples` (against the umbrella schema).
-
-- **56 valid fixtures** (`tests/data/valid/`) — at least one per
-  concrete class, plus rich tree-root fixtures for each business area
-  populated from the corresponding source chapter.
-- **26 invalid fixtures** (`tests/data/invalid/`) — each exercises a
-  distinct constraint that LinkML actually enforces (enum
-  membership, required-slot omission, pattern violation, numeric
-  range). Four earlier fixtures that asserted constraints LinkML
-  cannot express on enum-ranged slots (`equals_string` on
-  `*BusinessArea.area`; conditional `high_tag` on `UDFTagRange`)
-  have been retired — see [Known issues](#known-issues).
-- Filename convention: `<ClassName>-<desc>.yaml`; the stem prefix
-  must match the LinkML class name so the test driver can dispatch.
-
-### Tooling
-
-| Goal | Command |
-|---|---|
-| Lint the schema | `just lint` |
-| Validate one fixture | `uv run linkml-validate -s src/fix_protocol/schema/fix_protocol.yaml -C <Class> <file>` |
-| Regenerate artifacts | `just gen-project` |
-| Regenerate pandera schema | `just gen-pandera-artifact` |
-| Run full test suite | `just test` |
-| Build docs | `just gen-doc` |
-
-`just lint`, `just gen-project`, `just gen-pandera-artifact`, and
-`just test` (schema lint + 56 pytest cases + counter-example
-validation via `linkml-run-examples`) are all clean.
-
-### Known issues
-
-A growing set of upstream `linkml` / `linkml-runtime` defects
-surfaced while building this schema. Every effort was made
-to isolate the issues and report upstream with fix-PRs.
-
-Meanwhile we done local workarounds:
-
-| Upstream defect | Workaround in this repo |
-|---|---|
-| A. `gen-python` / `gen-yaml` drop prefixes declared on imported sub-schemas | Duplicate every ISO prefix into the umbrella `fix_protocol.yaml` |
-| B. `linkml-runtime` is missing a PyYAML representer for `JsonObj` | [`scripts/gen_yaml_patched.py`](../scripts/gen_yaml_patched.py) registers it |
-| C. `EnumDefinitionImpl` instances are unhashable | [`scripts/patch_pythongen.py`](../scripts/patch_pythongen.py) injects a `__hash__` |
-| D. `EnumDefinitionMeta.__contains__` / `__getitem__` ignore the MRO | Same script rewrites empty enum-wrapper subclasses as module-level aliases |
-| E. `EnumDefinitionImpl.__eq__` is not text-comparable to strings | Same script also injects a text-aware `__eq__` |
-| F. `panderagen.map_type` crashes on a type whose `uri` is not in its built-in `TYPE_MAP` and that has no `typeof:` | Custom types (e.g. `TagNumber`) declare `uri: xsd:integer` and record the tighter XSD type via `exact_mappings:` |
-| G. `pythongen` raises `Cyclic wrapper inheritance` when `camelcase(class)+camelcase(slot) == range-type-name` | Avoided by not declaring `typeof:` on the affected custom types (see F) |
-| [linkml/linkml#3572](https://github.com/linkml/linkml/issues/3572) — `pythongen` emits class-reference wrappers before referenced enum bodies | `scripts/patch_pythongen.py` reorders the sections; [`scripts/run_examples_patched.py`](../scripts/run_examples_patched.py) applies the same patch in-process so `linkml-run-examples` can compile the module |
-| H. `gen-rdf` embeds relative `./<module>.context.jsonld` refs in the merged `@context` array; rdflib resolves them against the schema's `@base` URI and 404s because the files are not published there | [`scripts/gen_rdf_patched.py`](../scripts/gen_rdf_patched.py) subclasses `RDFGenerator` and strips the unresolvable relative refs (plus the redundant `w3id.org/linkml/types.context.jsonld` remote ref) from the JSON-LD before handing it to rdflib |
-| I. `gen-pandera` doesn't actually merge imports — `DataframeGenerator` builds its `SchemaView` without calling `merge_imports()`, so classes/enums in imported sub-modules are invisible and the emitted Pandera code only covers the umbrella schema's local entities | [`scripts/gen_pandera_patched.py`](../scripts/gen_pandera_patched.py) monkey-patches `DataframeGenerator.__post_init__` to call `self.schemaview.merge_imports()` after super setup |
-| J. `gen-pandera`'s `DependencySorter._visit` raises `ValueError: Cyclic dependency detected` on any back-edge, aborting generation for schemas with legitimate cycles (self-referential slots, mutual references) | Same script replaces `_visit` with a cycle-tolerant variant that skips back-edges silently |
-| K. `gen-markdown-datadict._generate_class_diagram` constructs a fresh `ERDiagramGenerator` (re-parsing the whole schema from disk) for every class, making the generator O(n²) and effectively hanging on large schemas | [`scripts/gen_markdown_datadict_patched.py`](../scripts/gen_markdown_datadict_patched.py) subclasses `MarkdownDataDictGen`, lazily creates a single `ERDiagramGenerator` on `self._erd_gen` and reuses it across all per-class diagrams |
-
-In addition to the upstream defects above, two FIX-Latest invariants
-cannot be expressed in LinkML and are therefore enforced only by
-convention and documented inline on the affected slots:
-
-- `*BusinessArea.area` is enum-typed and so cannot be pinned with
-  `equals_string` (which accepts string-ranged slots only).
-- `UDFTagRange.high_tag` is required for every `usage` except
-  `GTC_RESERVED`; LinkML rules cannot make slot presence depend on
-  the value of another enum-typed slot.
-
+`upstream-watch.yaml` asks GitHub each week whether a newer commit changed the file. When one has, its issue names the new extension pack and the commit, and `just refresh-fix-latest <commit>` copies it and rebuilds the catalogue. `just gen-project`, `just gen-doc`, `just lokf-adapt` and the tests then show what changed.

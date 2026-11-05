@@ -1,0 +1,12 @@
+# A datatype that narrows a field.
+# Fails at: /base_type
+id: fix_datatype:Tenor
+name: Tenor
+base_type: fix_field:1
+added_in: FIX.4.4
+added_in_ep: -1
+mapped_datatypes:
+  - mapped_standard: XML
+    mapped_base: xs:string
+    mapped_builtin: false
+    mapped_pattern: '[DMWY](\d)+'

@@ -1,0 +1,14 @@
+# A repeating group with nothing to count its repeats.
+# Fails at: /
+id: fix_group:1019
+name: Stipulations
+abbr_name: Stip
+in_category: fix_category:Common
+added_in: FIX.4.3
+fix_members:
+  - member_field: fix_field:233
+    added_in: FIX.4.3
+    updated_in: FIX.Latest
+    updated_in_ep: 306
+  - member_field: fix_field:234
+    added_in: FIX.4.3

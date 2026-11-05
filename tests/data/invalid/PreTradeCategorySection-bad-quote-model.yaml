@@ -1,5 +1,0 @@
-# INVALID: 'EXECUTABLE' is not a permissible value of QuoteModelEnum.
-category: QUOTATION_NEGOTIATION
-title: Bad quote model
-quote_models:
-  - EXECUTABLE

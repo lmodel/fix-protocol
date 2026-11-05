@@ -1,0 +1,4 @@
+# The first member of every message, the StandardHeader component.
+member_component: fix_component:1024
+presence: required
+added_in: FIX.2.7

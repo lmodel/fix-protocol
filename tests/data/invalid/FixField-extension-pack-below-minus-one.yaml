@@ -1,0 +1,8 @@
+# A field added in an extension pack below -1.
+# Fails at: /added_in_ep
+id: fix_field:55
+name: Symbol
+abbr_name: Sym
+field_datatype: fix_datatype:String
+added_in: FIX.2.7
+added_in_ep: -2

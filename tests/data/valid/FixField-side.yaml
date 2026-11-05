@@ -1,0 +1,6 @@
+# Field 54, Side, whose values its code set lists.
+id: fix_field:54
+name: Side
+abbr_name: Side
+field_code_set: fix_code_set:54
+added_in: FIX.2.7

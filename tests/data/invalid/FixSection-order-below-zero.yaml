@@ -1,0 +1,8 @@
+# A section placed before the first.
+# Fails at: /section_order
+id: fix_section:PreTrade
+name: PreTrade
+fixml_file_name: pretrade
+section_order: -1
+updated_in: FIX.Latest
+updated_in_ep: 271

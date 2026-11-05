@@ -4,208 +4,41 @@
 # name in this file is not possible until a known issue in just is fixed,
 # https://github.com/casey/just/issues/2540
 
-# Apply curated SSSOM mapping TSVs to the generated LinkML schema YAMLs.
-# Merges SKOS exact/close/broad/narrow/related matches into the matching
-# class / enum / type bodies and declares any referenced object-side prefixes.
-# Idempotent: re-running on a clean tree produces no further changes. Run
-# after `schema_to_linkml.py` regenerates the YAMLs and before `gen-project`.
+# Rewrite the catalogue in src/fix_protocol/data/ from upstream/, and the edition in the
+# schema's headers.
 [group('model development')]
-apply-sssom-overlay:
-  uv run python scripts/apply_sssom_overlay.py \
-    --schema-dir src/fix_protocol/schema \
-    --mappings-dir src/fix_protocol/mappings
+gen-schema:
+  uv run --quiet scripts/fix_latest_to_records.py
 
-# ============== Supplemental generator recipes (beyond gen-project defaults) ==============
-# gen-project already covers: graphql, jsonldcontext, jsonld, jsonschema, owl,
-# prefixmap, proto, python, shex, shacl, sqlddl, excel, typescript.
-# Explicit in main justfile: java, typescript (dup), owl (dup), pydantic (→ datamodel/).
-# The recipes below cover the remaining available generators.
-# Run all at once with: just gen-project-extended
+# Move to the FIX Latest file of another commit of FIXTradingCommunity/orchestrations, as
+# the upstream watch names it, and rebuild the catalogue from it. Then run gen-project,
+# gen-doc and the tests, and commit everything they change together.
+[group('model development')]
+refresh-fix-latest COMMIT:
+  python3 scripts/check_upstream_release.py --refresh {{COMMIT}}
+  uv run --quiet scripts/fix_latest_to_records.py
 
-# ---- Schema / metadata formats ----
+# ============ Knowledge bundle: the adapted domain schema ============
 
-# NOTE: recipe named gen-merged-schema to avoid conflict with CDM's gen-linkml recipe
-# Generate a single self-contained merged LinkML YAML with all imports resolved
-[group('model development - extended')]
-gen-merged-schema:
-  mkdir -p {{dest}}/linkml
-  uv run gen-linkml --mergeimports -o {{dest}}/linkml/{{schema_name}}.merged.linkml.yaml {{source_schema_path}}
+# `.lokf/fix-protocol.yaml` is the copy `lokf adapt` writes from the schema so that it can
+# sit beside `.lokf/lokf.yaml` (`lokf adapt --help` lists the moves). The root is
+# FixElement, the abstract base of every record with an identifier, so a concept names
+# FixSection, FixCategory, FixDatatype, FixCodeSet, FixCode, FixField, FixComponent,
+# FixGroup or FixMessage as its `type`, and LOKF's `id` stands for the record's. The fold
+# puts FIX's name into the concept's `title`. The metadata's source stays this schema's
+# own, since it holds one value where LOKF's source holds a list. The recipes run the
+# `lokf` the sidecar's floor pins (0.9.0 or later); LOKF_CMD runs another, such as a
+# checkout:
+# LOKF_CMD="uv run --project ../lokf lokf" just lokf-adapt
+lokf_cmd := env_var_or_default("LOKF_CMD", "uv run --project .lokf lokf")
+lokf_adapt_roots := "--root FixElement --prefix fix_protocol --fold name=title --keep FixRepository.metadata_source"
 
-# gen-yaml CLI hits the linkml-runtime 1.11.0 RepresenterError (JsonObj missing SafeDumper representer).
-# Use the same patched script as _gen-yaml until linkml-runtime > 1.11.0 lands.
-# Generate resolved YAML schema (patched yamlgen)
-[group('model development - extended')]
-gen-yaml-artifact:
-  mkdir -p {{dest}}/yaml
-  uv run python scripts//gen_yaml_patched.py {{source_schema_path}} > {{dest}}/yaml/{{schema_name}}.yaml
+# Rewrite .lokf/fix-protocol.yaml from the schema (run after every schema change)
+[group('knowledge bundle')]
+lokf-adapt:
+  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --lokf .lokf/lokf.yaml -o .lokf/fix-protocol.yaml
 
-# Generate SSSOM mapping TSV from schema slot_uri / mappings
-[group('model development - extended')]
-gen-sssom-artifact:
-  mkdir -p {{dest}}/sssom
-  uv run gen-sssom --mergeimports -o {{dest}}/sssom/{{schema_name}}.sssom.tsv {{source_schema_path}}
-
-# Generate Python namespace manager for all prefixes in the schema
-[group('model development - extended')]
-gen-namespaces-artifact:
-  mkdir -p {{dest}}/namespaces
-  uv run gen-namespaces --mergeimports {{source_schema_path}} > {{dest}}/namespaces/{{schema_name}}.namespaces.py
-
-# Generate TSV summary (classes, slots, counts — useful in spreadsheets)
-[group('model development - extended')]
-gen-summary-artifact:
-  mkdir -p {{dest}}/summary
-  uv run gen-summary --mergeimports {{source_schema_path}} > {{dest}}/summary/{{schema_name}}.summary.tsv
-
-# ---- Visualization / diagram formats ----
-
-# Generate a single combined Graphviz DOT graph of the schema
-[group('model development - extended')]
-gen-graphviz-artifact:
-  mkdir -p {{dest}}/graphviz
-  uv run gen-graphviz --mergeimports -f dot -o {{dest}}/graphviz/{{schema_name}}.dot {{source_schema_path}}
-
-# Generate per-class Mermaid class diagram Markdown files (one .md per class)
-[group('model development - extended')]
-gen-mermaid-artifact:
-  mkdir -p {{dest}}/mermaid
-  uv run gen-mermaid-class-diagram --mergeimports -d {{dest}}/mermaid {{source_schema_path}}
-
-# Generate Mermaid ER diagram (single file, mermaid format)
-[group('model development - extended')]
-gen-erdiagram-artifact:
-  mkdir -p {{dest}}/erdiagram
-  uv run gen-erdiagram --mergeimports -f mermaid {{source_schema_path}} > {{dest}}/erdiagram/{{schema_name}}.er.md
-
-# Generate PlantUML diagram (stdout → single file)
-[group('model development - extended')]
-gen-plantuml-artifact:
-  mkdir -p {{dest}}/plantuml
-  uv run gen-plantuml --mergeimports {{source_schema_path}} > {{dest}}/plantuml/{{schema_name}}.plantuml
-
-# ---- Data / query formats ----
-
-# gen-rdf embeds ./cdm_*.context.jsonld refs that rdflib resolves against the
-# schema @base URL (https://w3id.org/lmodel/…), returning HTTP 404. Patched
-# script strips those refs; all prefix bindings are in the merged context.
-# Generate RDF/Turtle representation of the schema
-[group('model development - extended')]
-gen-rdf-artifact:
-  mkdir -p {{dest}}/rdf
-  uv run python scripts//gen_rdf_patched.py --mergeimports -o {{dest}}/rdf/{{schema_name}}.ttl {{source_schema_path}}
-
-# Generate a directory of SPARQL validation queries (one query per constraint)
-[group('model development - extended')]
-gen-sparql-artifact:
-  mkdir -p {{dest}}/sparql
-  uv run gen-sparql --mergeimports -d {{dest}}/sparql {{source_schema_path}}
-
-# Generate CSV data dictionary of classes and slots
-[group('model development - extended')]
-gen-csv-artifact:
-  mkdir -p {{dest}}/csv
-  uv run gen-csv --mergeimports {{source_schema_path}} > {{dest}}/csv/{{schema_name}}.csv
-
-# ---- Database formats ----
-
-# Generate DBML (Database Markup Language) for schema visualization tools (DBDiagram etc.)
-[group('model development - extended')]
-gen-dbml-artifact:
-  mkdir -p {{dest}}/dbml
-  uv run python3 scripts//gen_dbml_patched.py -s {{source_schema_path}} -o {{dest}}/dbml/{{schema_name}}.dbml
-
-# Generate SQLAlchemy ORM models
-[group('model development - extended')]
-gen-sqla-artifact:
-  mkdir -p {{dest}}/sqla
-  uv run gen-sqla --mergeimports {{source_schema_path}} > {{dest}}/sqla/{{schema_name}}_sqlalchemy.py
-
-# Generate SQL validation queries
-[group('model development - extended')]
-gen-sqlvalidation-artifact:
-  mkdir -p {{dest}}/sqlvalidation
-  uv run gen-sqlvalidation --mergeimports {{source_schema_path}} > {{dest}}/sqlvalidation/{{schema_name}}.sql
-
-# Generate TerminusDB JSON-LD schema
-[group('model development - extended')]
-gen-terminusdb-artifact:
-  mkdir -p {{dest}}/terminusdb
-  uv run gen-terminusdb --mergeimports {{source_schema_path}} > {{dest}}/terminusdb/{{schema_name}}.json
-
-# Generate TypeDB TypeQL schema definitions
-[group('model development - extended')]
-gen-typedb-artifact:
-  mkdir -p {{dest}}/typedb
-  uv run gen-typedb --mergeimports {{source_schema_path}} > {{dest}}/typedb/{{schema_name}}.tql
-
-# ---- Language bindings ----
-
-# Generate Go structs (stdout → single file)
-[group('model development - extended')]
-gen-golang-artifact:
-  mkdir -p {{dest}}/golang
-  uv run gen-golang --mergeimports {{source_schema_path}} > {{dest}}/golang/{{schema_name}}.go
-
-# Generate Rust crate (directory with Cargo.toml + src/)
-[group('model development - extended')]
-gen-rust-artifact:
-  mkdir -p {{dest}}/rust
-  uv run gen-rust --mergeimports --force -o {{dest}}/rust {{source_schema_path}}
-
-# Generate C++17 header file
-[group('model development - extended')]
-gen-cpp-artifact:
-  mkdir -p {{dest}}/cpp
-  uv run gen-cpp-header --mergeimports {{source_schema_path}} > {{dest}}/cpp/{{schema_name}}.h
-
-# Generate Pandera dataframe validation schemas
-[group('model development - extended')]
-gen-pandera-artifact:
-  mkdir -p {{dest}}/pandera
-  uv run python3 scripts//gen_pandera_patched.py {{source_schema_path}} > {{dest}}/pandera/{{schema_name}}_pandera.py
-
-# Generate Markdown data dictionary (single combined file)
-# NOTE Bug 12: gen-markdown-datadict creates a new ERDiagramGenerator (and
-# therefore re-loads the full CDM schema) for every one of the 2500+ CDM
-# classes, hanging indefinitely.  scripts/gen_markdown_datadict_patched.py
-# overrides _generate_class_diagram to cache one ERDiagramGenerator instance.
-[group('model development - extended')]
-gen-markdown-datadict-artifact:
-  mkdir -p {{dest}}/markdown-datadict
-  uv run python3 scripts//gen_markdown_datadict_patched.py --mergeimports {{source_schema_path}} > {{dest}}/markdown-datadict/{{schema_name}}.md
-
-# Generate GOLR (SOLR) view configurations (one JSON per class)
-[group('model development - extended')]
-gen-golr-artifact:
-  mkdir -p {{dest}}/golr
-  uv run gen-golr-views --mergeimports -d {{dest}}/golr {{source_schema_path}}
-
-# ---- Aggregate ----
-
-# Usage: just gen-project && just gen-project-extended
-# Run all supplemental generators (those not already covered by gen-project)
-[group('model development - extended')]
-gen-project-extended: \
-  gen-merged-schema \
-  gen-yaml-artifact \
-  gen-sssom-artifact \
-  gen-namespaces-artifact \
-  gen-summary-artifact \
-  gen-graphviz-artifact \
-  gen-mermaid-artifact \
-  gen-erdiagram-artifact \
-  gen-plantuml-artifact \
-  gen-rdf-artifact \
-  gen-sparql-artifact \
-  gen-csv-artifact \
-  gen-dbml-artifact \
-  gen-sqla-artifact \
-  gen-sqlvalidation-artifact \
-  gen-terminusdb-artifact \
-  gen-typedb-artifact \
-  gen-golang-artifact \
-  gen-rust-artifact \
-  gen-cpp-artifact \
-  gen-pandera-artifact \
-  gen-markdown-datadict-artifact \
-  gen-golr-artifact
+# Fail when .lokf/fix-protocol.yaml is stale against the schema or .lokf/lokf.yaml
+[group('knowledge bundle')]
+lokf-adapt-check:
+  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --lokf .lokf/lokf.yaml -o .lokf/fix-protocol.yaml --check
