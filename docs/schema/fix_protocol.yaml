@@ -394,8 +394,8 @@ types:
     description: A date as the repository's metadata writes it, year first.
     title: Date
     comments:
-    - LinkML's date type asks a JSON Schema format checker, which many validators
-      leave off.
+    - LinkML's date type relies on a JSON Schema format checker, which many validators
+      do not enable.
     from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core
     typeof: string
     base: str
@@ -417,8 +417,8 @@ enums:
   FixPresence:
     name: FixPresence
     definition_uri: https://w3id.org/lmodel/fix-protocol/FixPresence
-    description: Whether a message, component or group must carry a member, as Orchestra
-      1.0 lets FIX Latest say it.
+    description: Whether a message, component or group must carry a member, in the
+      terms Orchestra 1.0 defines.
     title: Presence
     comments:
     - FIX Latest states only required. A member with no presence is optional, which
@@ -799,7 +799,7 @@ slots:
     range: string
   fixRepository__metadata_creator:
     name: fixRepository__metadata_creator
-    description: Who made the repository, by its metadata.
+    description: Who made the repository, as its metadata states.
     title: Creator
     from_schema: https://w3id.org/lmodel/fix-protocol
     aliases:
@@ -814,7 +814,7 @@ slots:
     range: string
   fixRepository__metadata_publisher:
     name: fixRepository__metadata_publisher
-    description: Who published the repository, by its metadata.
+    description: Who published the repository, as its metadata states.
     title: Publisher
     from_schema: https://w3id.org/lmodel/fix-protocol
     aliases:
@@ -1355,8 +1355,8 @@ slots:
     pattern: ^fix_field:[1-9][0-9]*$
   fixField__base_category:
     name: fixField__base_category
-    description: The category whose FIXML element carries the field under the short
-      name base_category_abbr_name gives.
+    description: The category whose FIXML element carries the field, under the short
+      name in base_category_abbr_name.
     title: Base Category
     from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary
     aliases:
@@ -1817,7 +1817,7 @@ classes:
         - dcterms:description
       metadata_creator:
         name: metadata_creator
-        description: Who made the repository, by its metadata.
+        description: Who made the repository, as its metadata states.
         title: Creator
         aliases:
         - creator
@@ -1825,7 +1825,7 @@ classes:
         - dcterms:creator
       metadata_publisher:
         name: metadata_publisher
-        description: Who published the repository, by its metadata.
+        description: Who published the repository, as its metadata states.
         title: Publisher
         aliases:
         - publisher
@@ -2024,8 +2024,8 @@ classes:
   FixCategory:
     name: FixCategory
     definition_uri: https://w3id.org/lmodel/fix-protocol/FixCategory
-    description: A group of messages within a section. Three categories sit in no
-      section and hold the shared components and the fields instead.
+    description: A group of messages within a section. Three categories belong to
+      no section, and hold the shared components and the fields instead.
     title: Category
     from_schema: https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core
     exact_mappings:
@@ -2378,8 +2378,8 @@ classes:
         pattern: ^fix_field:[1-9][0-9]*$
       base_category:
         name: base_category
-        description: The category whose FIXML element carries the field under the
-          short name base_category_abbr_name gives.
+        description: The category whose FIXML element carries the field, under the
+          short name in base_category_abbr_name.
         title: Base Category
         aliases:
         - baseCategory
@@ -2673,6 +2673,6 @@ classes:
     class_uri: fix_protocol:FixMessage
 metamodel_version: 1.12.0
 source_file: fix_protocol.yaml
-source_file_date: '2026-11-05T19:27:16'
-source_file_size: 7085
+source_file_date: '2026-11-05T19:52:16'
+source_file_size: 7099
 

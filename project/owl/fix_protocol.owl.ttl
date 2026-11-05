@@ -33,7 +33,7 @@ fix_protocol:FixCategory dcterms:title "Category" ;
 	a owl:Class ;
 	rdfs:label "FixCategory" ;
 	rdfs:subClassOf fix_protocol:FixElement , _:c14n100 , _:c14n105 , _:c14n109 , _:c14n11 , _:c14n116 , _:c14n180 , _:c14n19 , _:c14n192 , _:c14n195 , _:c14n207 , _:c14n213 , _:c14n238 , _:c14n239 , _:c14n253 , _:c14n76 , _:c14n80 , _:c14n92 , _:c14n96 ;
-	skos:definition "A group of messages within a section. Three categories sit in no section and hold the shared components and the fields instead." ;
+	skos:definition "A group of messages within a section. Three categories belong to no section, and hold the shared components and the fields instead." ;
 	skos:exactMatch fixr:categoryType , fix_orchestra:OrchestraCategoryV10 ;
 	skos:inScheme fix_protocol:schema\/fix_protocol_core .
 fix_protocol:FixCategoryKind\#Field dcterms:title "Fields" ;
@@ -186,7 +186,7 @@ fix_protocol:FixPresence dcterms:title "Presence" ;
 	a owl:Class ;
 	rdfs:label "FixPresence" ;
 	owl:unionOf _:c14n206 ;
-	skos:definition "Whether a message, component or group must carry a member, as Orchestra 1.0 lets FIX Latest say it." ;
+	skos:definition "Whether a message, component or group must carry a member, in the terms Orchestra 1.0 defines." ;
 	skos:inScheme fix_protocol:schema\/fix_protocol_core ;
 	skos:note "FIX Latest states only required. A member with no presence is optional, which is Orchestra 1.0's default." ;
 	linkml:permissible_values fix_protocol:FixPresence\#constant , fix_protocol:FixPresence\#forbidden , fix_protocol:FixPresence\#ignored , fix_protocol:FixPresence\#optional , fix_protocol:FixPresence\#required .
@@ -232,7 +232,7 @@ fix_protocol:base_category dcterms:title "Base Category" ;
 	a owl:ObjectProperty ;
 	rdfs:label "base_category" ;
 	skos:altLabel "baseCategory" ;
-	skos:definition "The category whose FIXML element carries the field under the short name base_category_abbr_name gives." ;
+	skos:definition "The category whose FIXML element carries the field, under the short name in base_category_abbr_name." ;
 	skos:exactMatch fixr:baseCategory ;
 	skos:inScheme fix_protocol:schema\/fix_protocol_dictionary .
 fix_protocol:base_category_abbr_name dcterms:title "Base Category Abbreviated Name" ;
@@ -522,7 +522,7 @@ fix_protocol:metadata_creator dcterms:title "Creator" ;
 	a owl:DatatypeProperty ;
 	rdfs:label "metadata_creator" ;
 	skos:altLabel "creator" ;
-	skos:definition "Who made the repository, by its metadata." ;
+	skos:definition "Who made the repository, as its metadata states." ;
 	skos:exactMatch dcterms:creator ;
 	skos:inScheme <https://w3id.org/lmodel/fix-protocol> .
 fix_protocol:metadata_description dcterms:title "Edition Statement" ;
@@ -543,7 +543,7 @@ fix_protocol:metadata_publisher dcterms:title "Publisher" ;
 	a owl:DatatypeProperty ;
 	rdfs:label "metadata_publisher" ;
 	skos:altLabel "publisher" ;
-	skos:definition "Who published the repository, by its metadata." ;
+	skos:definition "Who published the repository, as its metadata states." ;
 	skos:exactMatch dcterms:publisher ;
 	skos:inScheme <https://w3id.org/lmodel/fix-protocol> .
 fix_protocol:metadata_rights dcterms:title "Rights Statement" ;

@@ -9,7 +9,7 @@ export type FixComponentId = string;
 export type FixGroupId = string;
 export type FixMessageId = string;
 /**
-* Whether a message, component or group must carry a member, as Orchestra 1.0 lets FIX Latest say it.
+* Whether a message, component or group must carry a member, in the terms Orchestra 1.0 defines.
 */
 export enum FixPresence {
     
@@ -90,7 +90,7 @@ export interface FixSection extends FixElement {
 
 
 /**
- * A group of messages within a section. Three categories sit in no section and hold the shared components and the fields instead.
+ * A group of messages within a section. Three categories belong to no section, and hold the shared components and the fields instead.
  */
 export interface FixCategory extends FixElement {
     /** The FIXML schema file that holds the section's or category's elements, by its file name. */
@@ -176,7 +176,7 @@ export interface FixField extends FixElement {
     length_field?: FixFieldId,
     /** The field whose value says how to read this field's value. */
     discriminator_field?: FixFieldId,
-    /** The category whose FIXML element carries the field under the short name base_category_abbr_name gives. */
+    /** The category whose FIXML element carries the field, under the short name in base_category_abbr_name. */
     base_category?: FixCategoryId,
     /** The field's short name within its base category's FIXML element. */
     base_category_abbr_name?: string,
@@ -268,9 +268,9 @@ export interface FixRepository {
     metadata_title?: string,
     /** The metadata's one-line statement of which extension pack the file holds. */
     metadata_description?: string,
-    /** Who made the repository, by its metadata. */
+    /** Who made the repository, as its metadata states. */
     metadata_creator?: string,
-    /** Who published the repository, by its metadata. */
+    /** Who published the repository, as its metadata states. */
     metadata_publisher?: string,
     /** The rights line in the repository's metadata, word for word. */
     metadata_rights?: string,

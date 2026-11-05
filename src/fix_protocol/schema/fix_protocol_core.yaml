@@ -65,7 +65,7 @@ types:
     uri: xsd:date
     pattern: ^[0-9]{4}-[0-9]{2}-[0-9]{2}$
     comments:
-      - LinkML's date type asks a JSON Schema format checker, which many validators leave off.
+      - LinkML's date type relies on a JSON Schema format checker, which many validators do not enable.
 
   fix_name:
     title: FIX Name
@@ -83,8 +83,8 @@ enums:
   FixPresence:
     title: Presence
     description: >-
-      Whether a message, component or group must carry a member, as Orchestra
-      1.0 lets FIX Latest say it.
+      Whether a message, component or group must carry a member, in the terms
+      Orchestra 1.0 defines.
     comments:
       - >-
         FIX Latest states only required. A member with no presence is optional,
@@ -323,8 +323,8 @@ classes:
   FixCategory:
     title: Category
     description: >-
-      A group of messages within a section. Three categories sit in no section
-      and hold the shared components and the fields instead.
+      A group of messages within a section. Three categories belong to no
+      section, and hold the shared components and the fields instead.
     is_a: FixElement
     slots:
       - fixml_file_name

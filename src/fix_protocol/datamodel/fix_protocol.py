@@ -376,8 +376,8 @@ class FixSection(FixElement):
 @dataclass(repr=False)
 class FixCategory(FixElement):
     """
-    A group of messages within a section. Three categories sit in no section and hold the shared components and the
-    fields instead.
+    A group of messages within a section. Three categories belong to no section, and hold the shared components and
+    the fields instead.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -871,7 +871,7 @@ class FixMessage(FixElement):
 # Enumerations
 class FixPresence(EnumDefinitionImpl):
     """
-    Whether a message, component or group must carry a member, as Orchestra 1.0 lets FIX Latest say it.
+    Whether a message, component or group must carry a member, in the terms Orchestra 1.0 defines.
     """
     optional = PermissibleValue(
         text="optional",
@@ -896,7 +896,7 @@ class FixPresence(EnumDefinitionImpl):
 
     _defn = EnumDefinition(
         name="FixPresence",
-        description="Whether a message, component or group must carry a member, as Orchestra 1.0 lets FIX Latest say it.",
+        description="Whether a message, component or group must carry a member, in the terms Orchestra 1.0 defines.",
     )
 
 class FixCategoryKind(EnumDefinitionImpl):

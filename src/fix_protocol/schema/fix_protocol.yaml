@@ -102,14 +102,14 @@ classes:
           - dcterms:description
       metadata_creator:
         title: Creator
-        description: Who made the repository, by its metadata.
+        description: Who made the repository, as its metadata states.
         aliases:
           - creator
         exact_mappings:
           - dcterms:creator
       metadata_publisher:
         title: Publisher
-        description: Who published the repository, by its metadata.
+        description: Who published the repository, as its metadata states.
         aliases:
           - publisher
         exact_mappings:

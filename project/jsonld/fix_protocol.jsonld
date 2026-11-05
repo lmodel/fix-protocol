@@ -459,7 +459,7 @@
       "description": "A date as the repository's metadata writes it, year first.",
       "title": "Date",
       "comments": [
-        "LinkML's date type asks a JSON Schema format checker, which many validators leave off."
+        "LinkML's date type relies on a JSON Schema format checker, which many validators do not enable."
       ],
       "from_schema": "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core",
       "typeof": "string",
@@ -488,7 +488,7 @@
     {
       "name": "FixPresence",
       "definition_uri": "https://w3id.org/lmodel/fix-protocol/FixPresence",
-      "description": "Whether a message, component or group must carry a member, as Orchestra 1.0 lets FIX Latest say it.",
+      "description": "Whether a message, component or group must carry a member, in the terms Orchestra 1.0 defines.",
       "title": "Presence",
       "comments": [
         "FIX Latest states only required. A member with no presence is optional, which is Orchestra 1.0's default."
@@ -978,7 +978,7 @@
     },
     {
       "name": "fixRepository__metadata_creator",
-      "description": "Who made the repository, by its metadata.",
+      "description": "Who made the repository, as its metadata states.",
       "title": "Creator",
       "from_schema": "https://w3id.org/lmodel/fix-protocol",
       "aliases": [
@@ -998,7 +998,7 @@
     },
     {
       "name": "fixRepository__metadata_publisher",
-      "description": "Who published the repository, by its metadata.",
+      "description": "Who published the repository, as its metadata states.",
       "title": "Publisher",
       "from_schema": "https://w3id.org/lmodel/fix-protocol",
       "aliases": [
@@ -1697,7 +1697,7 @@
     },
     {
       "name": "fixField__base_category",
-      "description": "The category whose FIXML element carries the field under the short name base_category_abbr_name gives.",
+      "description": "The category whose FIXML element carries the field, under the short name in base_category_abbr_name.",
       "title": "Base Category",
       "from_schema": "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary",
       "aliases": [
@@ -2248,7 +2248,7 @@
         },
         {
           "name": "metadata_creator",
-          "description": "Who made the repository, by its metadata.",
+          "description": "Who made the repository, as its metadata states.",
           "title": "Creator",
           "aliases": [
             "creator"
@@ -2260,7 +2260,7 @@
         },
         {
           "name": "metadata_publisher",
-          "description": "Who published the repository, by its metadata.",
+          "description": "Who published the repository, as its metadata states.",
           "title": "Publisher",
           "aliases": [
             "publisher"
@@ -2522,7 +2522,7 @@
     {
       "name": "FixCategory",
       "definition_uri": "https://w3id.org/lmodel/fix-protocol/FixCategory",
-      "description": "A group of messages within a section. Three categories sit in no section and hold the shared components and the fields instead.",
+      "description": "A group of messages within a section. Three categories belong to no section, and hold the shared components and the fields instead.",
       "title": "Category",
       "from_schema": "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core",
       "exact_mappings": [
@@ -2955,7 +2955,7 @@
         },
         {
           "name": "base_category",
-          "description": "The category whose FIXML element carries the field under the short name base_category_abbr_name gives.",
+          "description": "The category whose FIXML element carries the field, under the short name in base_category_abbr_name.",
           "title": "Base Category",
           "aliases": [
             "baseCategory"
@@ -3348,8 +3348,8 @@
   ],
   "metamodel_version": "1.12.0",
   "source_file": "fix_protocol.yaml",
-  "source_file_date": "2026-11-05T19:27:16",
-  "source_file_size": 7085,
+  "source_file_date": "2026-11-05T19:52:16",
+  "source_file_size": 7099,
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/fix_protocol.context.jsonld",

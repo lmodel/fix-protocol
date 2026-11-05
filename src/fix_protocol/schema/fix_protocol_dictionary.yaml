@@ -238,8 +238,8 @@ classes:
       base_category:
         title: Base Category
         description: >-
-          The category whose FIXML element carries the field under the short
-          name base_category_abbr_name gives.
+          The category whose FIXML element carries the field, under the short
+          name in base_category_abbr_name.
         range: FixCategory
         pattern: ^fix_category:[A-Za-z][A-Za-z0-9_]*$
         aliases:

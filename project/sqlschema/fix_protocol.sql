@@ -4,8 +4,8 @@
 --     * Slot: repository_version Description: The extension pack the repository stands at, such as FIX.Latest_EP312.
 --     * Slot: metadata_title Description: The title the repository's metadata gives.
 --     * Slot: metadata_description Description: The metadata's one-line statement of which extension pack the file holds.
---     * Slot: metadata_creator Description: Who made the repository, by its metadata.
---     * Slot: metadata_publisher Description: Who published the repository, by its metadata.
+--     * Slot: metadata_creator Description: Who made the repository, as its metadata states.
+--     * Slot: metadata_publisher Description: Who published the repository, as its metadata states.
 --     * Slot: metadata_rights Description: The rights line in the repository's metadata, word for word.
 --     * Slot: metadata_format Description: The media type of the repository file.
 --     * Slot: metadata_conforms_to Description: The Orchestra version the repository file follows.
@@ -41,7 +41,7 @@
 --     * Slot: deprecated_in Description: The FIX version that deprecated the element.
 --     * Slot: deprecated_in_ep Description: The extension pack that deprecated the element.
 --     * Slot: FixRepository_id Description: Autocreated FK slot
--- # Class: FixCategory Description: A group of messages within a section. Three categories sit in no section and hold the shared components and the fields instead.
+-- # Class: FixCategory Description: A group of messages within a section. Three categories belong to no section, and hold the shared components and the fields instead.
 --     * Slot: fixml_file_name Description: The FIXML schema file that holds the section's or category's elements, by its file name.
 --     * Slot: in_section Description: The section a category belongs to.
 --     * Slot: fixml_not_required Description: True when the element is left out of FIXML, FIX's XML encoding.
@@ -107,7 +107,7 @@
 --     * Slot: union_datatype Description: A datatype whose values the field also takes, beside those of its code set, such as a range of numbers kept for private use.
 --     * Slot: length_field Description: The field that gives this field's length in bytes.
 --     * Slot: discriminator_field Description: The field whose value says how to read this field's value.
---     * Slot: base_category Description: The category whose FIXML element carries the field under the short name base_category_abbr_name gives.
+--     * Slot: base_category Description: The category whose FIXML element carries the field, under the short name in base_category_abbr_name.
 --     * Slot: base_category_abbr_name Description: The field's short name within its base category's FIXML element.
 --     * Slot: id Description: The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation.
 --     * Slot: name Description: The element's name in FIX, such as NewOrderSingle or Symbol.

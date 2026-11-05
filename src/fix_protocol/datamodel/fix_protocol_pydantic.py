@@ -139,7 +139,7 @@ linkml_meta = LinkMLMeta({'annotations': {'upstream_commit': {'tag': 'upstream_c
 
 class FixPresence(str, Enum):
     """
-    Whether a message, component or group must carry a member, as Orchestra 1.0 lets FIX Latest say it.
+    Whether a message, component or group must carry a member, in the terms Orchestra 1.0 defines.
     """
     Optional = "optional"
     """
@@ -338,7 +338,7 @@ class FixSection(FixElement):
 
 class FixCategory(FixElement):
     """
-    A group of messages within a section. Three categories sit in no section and hold the shared components and the fields instead.
+    A group of messages within a section. Three categories belong to no section, and hold the shared components and the fields instead.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'exact_mappings': ['fix_orchestra:OrchestraCategoryV10', 'fixr:categoryType'],
          'from_schema': 'https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core',
@@ -717,7 +717,7 @@ class FixField(FixElement):
     discriminator_field: Optional[str] = Field(default=None, title="Discriminator Field", description="""The field whose value says how to read this field's value.""", json_schema_extra = { "linkml_meta": {'aliases': ['discriminatorId'],
          'domain_of': ['FixField'],
          'exact_mappings': ['fixr:discriminatorId']} })
-    base_category: Optional[str] = Field(default=None, title="Base Category", description="""The category whose FIXML element carries the field under the short name base_category_abbr_name gives.""", json_schema_extra = { "linkml_meta": {'aliases': ['baseCategory'],
+    base_category: Optional[str] = Field(default=None, title="Base Category", description="""The category whose FIXML element carries the field, under the short name in base_category_abbr_name.""", json_schema_extra = { "linkml_meta": {'aliases': ['baseCategory'],
          'domain_of': ['FixField'],
          'exact_mappings': ['fixr:baseCategory']} })
     base_category_abbr_name: Optional[str] = Field(default=None, title="Base Category Abbreviated Name", description="""The field's short name within its base category's FIXML element.""", json_schema_extra = { "linkml_meta": {'aliases': ['baseCategoryAbbrName'],
@@ -1306,10 +1306,10 @@ class FixRepository(ConfiguredBaseModel):
     metadata_description: Optional[str] = Field(default=None, title="Edition Statement", description="""The metadata's one-line statement of which extension pack the file holds.""", json_schema_extra = { "linkml_meta": {'aliases': ['description'],
          'domain_of': ['FixRepository'],
          'exact_mappings': ['dcterms:description']} })
-    metadata_creator: Optional[str] = Field(default=None, title="Creator", description="""Who made the repository, by its metadata.""", json_schema_extra = { "linkml_meta": {'aliases': ['creator'],
+    metadata_creator: Optional[str] = Field(default=None, title="Creator", description="""Who made the repository, as its metadata states.""", json_schema_extra = { "linkml_meta": {'aliases': ['creator'],
          'domain_of': ['FixRepository'],
          'exact_mappings': ['dcterms:creator']} })
-    metadata_publisher: Optional[str] = Field(default=None, title="Publisher", description="""Who published the repository, by its metadata.""", json_schema_extra = { "linkml_meta": {'aliases': ['publisher'],
+    metadata_publisher: Optional[str] = Field(default=None, title="Publisher", description="""Who published the repository, as its metadata states.""", json_schema_extra = { "linkml_meta": {'aliases': ['publisher'],
          'domain_of': ['FixRepository'],
          'exact_mappings': ['dcterms:publisher']} })
     metadata_rights: Optional[str] = Field(default=None, title="Rights Statement", description="""The rights line in the repository's metadata, word for word.""", json_schema_extra = { "linkml_meta": {'aliases': ['rights'],

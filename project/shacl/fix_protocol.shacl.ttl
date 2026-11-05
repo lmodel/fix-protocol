@@ -4,109 +4,109 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 fix_protocol:FixCategory a sh:NodeShape ;
-	rdfs:comment "A group of messages within a section. Three categories sit in no section and hold the shared components and the fields instead." ;
+	rdfs:comment "A group of messages within a section. Three categories belong to no section, and hold the shared components and the fields instead." ;
 	rdfs:label "Category" ;
 	sh:closed true ;
 	sh:ignoredProperties _:c14n51 ;
-	sh:property _:c14n142 , _:c14n168 , _:c14n174 , _:c14n177 , _:c14n208 , _:c14n31 , _:c14n50 , _:c14n54 , _:c14n57 , _:c14n59 , _:c14n6 , _:c14n64 , _:c14n92 ;
+	sh:property _:c14n140 , _:c14n168 , _:c14n174 , _:c14n177 , _:c14n208 , _:c14n32 , _:c14n50 , _:c14n54 , _:c14n57 , _:c14n59 , _:c14n6 , _:c14n64 , _:c14n90 ;
 	sh:targetClass fix_protocol:FixCategory .
 fix_protocol:FixCode a sh:NodeShape ;
 	rdfs:comment "One value of a code set, with its name, such as 1 for Buy." ;
 	rdfs:label "Code" ;
 	sh:closed true ;
 	sh:ignoredProperties _:c14n27 ;
-	sh:property _:c14n105 , _:c14n14 , _:c14n147 , _:c14n148 , _:c14n15 , _:c14n175 , _:c14n209 , _:c14n212 , _:c14n43 , _:c14n84 , _:c14n88 ;
+	sh:property _:c14n103 , _:c14n14 , _:c14n146 , _:c14n147 , _:c14n15 , _:c14n175 , _:c14n209 , _:c14n212 , _:c14n43 , _:c14n82 , _:c14n86 ;
 	sh:targetClass fix_protocol:FixCode .
 fix_protocol:FixCodeSet a sh:NodeShape ;
 	rdfs:comment "A list of the values a field may take, each a code with a name, such as the sides of an order." ;
 	rdfs:label "Code Set" ;
 	sh:closed true ;
 	sh:ignoredProperties _:c14n19 ;
-	sh:property _:c14n100 , _:c14n13 , _:c14n139 , _:c14n16 , _:c14n160 , _:c14n199 , _:c14n36 , _:c14n41 , _:c14n65 , _:c14n79 ;
+	sh:property _:c14n13 , _:c14n137 , _:c14n16 , _:c14n160 , _:c14n199 , _:c14n37 , _:c14n41 , _:c14n65 , _:c14n77 , _:c14n98 ;
 	sh:targetClass fix_protocol:FixCodeSet .
 fix_protocol:FixComponent a sh:NodeShape ;
 	rdfs:comment "A named block of fields, components and groups that messages share, such as Instrument." ;
 	rdfs:label "Component" ;
 	sh:closed true ;
 	sh:ignoredProperties _:c14n153 ;
-	sh:property _:c14n1 , _:c14n112 , _:c14n117 , _:c14n136 , _:c14n166 , _:c14n170 , _:c14n176 , _:c14n214 , _:c14n55 , _:c14n58 , _:c14n80 , _:c14n98 ;
+	sh:property _:c14n1 , _:c14n110 , _:c14n115 , _:c14n134 , _:c14n166 , _:c14n170 , _:c14n176 , _:c14n214 , _:c14n55 , _:c14n58 , _:c14n78 , _:c14n96 ;
 	sh:targetClass fix_protocol:FixComponent .
 fix_protocol:FixDatatype a sh:NodeShape ;
 	rdfs:comment "A kind of value a field holds, such as int, Price or UTCTimestamp, with the XML Schema types it maps to." ;
 	rdfs:label "Datatype" ;
 	sh:closed true ;
-	sh:ignoredProperties _:c14n128 ;
-	sh:property _:c14n124 , _:c14n129 , _:c14n143 , _:c14n152 , _:c14n189 , _:c14n20 , _:c14n45 , _:c14n52 , _:c14n76 , _:c14n85 ;
+	sh:ignoredProperties _:c14n126 ;
+	sh:property _:c14n122 , _:c14n127 , _:c14n141 , _:c14n152 , _:c14n189 , _:c14n20 , _:c14n45 , _:c14n52 , _:c14n74 , _:c14n83 ;
 	sh:targetClass fix_protocol:FixDatatype .
 fix_protocol:FixElement a sh:NodeShape ;
 	rdfs:comment "An element of FIX Latest with an identifier and a name of its own." ;
 	rdfs:label "FIX Element" ;
 	sh:closed false ;
 	sh:ignoredProperties _:c14n8 ;
-	sh:property _:c14n10 , _:c14n104 , _:c14n116 , _:c14n127 , _:c14n134 , _:c14n179 , _:c14n201 , _:c14n96 ;
+	sh:property _:c14n10 , _:c14n102 , _:c14n114 , _:c14n125 , _:c14n132 , _:c14n179 , _:c14n201 , _:c14n94 ;
 	sh:targetClass fix_protocol:FixElement .
 fix_protocol:FixField a sh:NodeShape ;
 	rdfs:comment "A field of FIX, known by its tag number, such as 55 for Symbol, with the datatype or code set of its values." ;
 	rdfs:label "Field" ;
 	sh:closed true ;
-	sh:ignoredProperties _:c14n146 ;
-	sh:property _:c14n111 , _:c14n157 , _:c14n178 , _:c14n185 , _:c14n193 , _:c14n202 , _:c14n205 , _:c14n207 , _:c14n210 , _:c14n35 , _:c14n37 , _:c14n49 , _:c14n61 , _:c14n70 , _:c14n78 , _:c14n90 , _:c14n94 ;
+	sh:ignoredProperties _:c14n145 ;
+	sh:property _:c14n109 , _:c14n157 , _:c14n178 , _:c14n185 , _:c14n193 , _:c14n202 , _:c14n205 , _:c14n207 , _:c14n210 , _:c14n30 , _:c14n36 , _:c14n49 , _:c14n61 , _:c14n69 , _:c14n76 , _:c14n88 , _:c14n92 ;
 	sh:targetClass fix_protocol:FixField .
 fix_protocol:FixGroup a sh:NodeShape ;
 	rdfs:comment "A block of members that repeats in a message, with the field that counts the repeats." ;
 	rdfs:label "Repeating Group" ;
 	sh:closed true ;
-	sh:ignoredProperties _:c14n71 ;
-	sh:property _:c14n108 , _:c14n114 , _:c14n130 , _:c14n135 , _:c14n137 , _:c14n141 , _:c14n145 , _:c14n158 , _:c14n164 , _:c14n180 , _:c14n183 , _:c14n86 ;
+	sh:ignoredProperties _:c14n70 ;
+	sh:property _:c14n106 , _:c14n112 , _:c14n128 , _:c14n133 , _:c14n135 , _:c14n139 , _:c14n144 , _:c14n158 , _:c14n164 , _:c14n180 , _:c14n183 , _:c14n84 ;
 	sh:targetClass fix_protocol:FixGroup .
 fix_protocol:FixMappedDatatype a sh:NodeShape ;
 	rdfs:comment "The type of another standard that a FIX datatype takes, such as xs:decimal in XML Schema." ;
 	rdfs:label "Mapped Datatype" ;
 	sh:closed true ;
 	sh:ignoredProperties _:c14n190 ;
-	sh:property _:c14n106 , _:c14n150 , _:c14n171 , _:c14n22 , _:c14n89 ;
+	sh:property _:c14n104 , _:c14n149 , _:c14n171 , _:c14n22 , _:c14n87 ;
 	sh:targetClass fix_protocol:FixMappedDatatype .
 fix_protocol:FixMember a sh:NodeShape ;
 	rdfs:comment "One field, component or group in a message, component or group, and whether it must be there." ;
 	rdfs:label "Member" ;
 	sh:closed true ;
 	sh:ignoredProperties _:c14n7 ;
-	sh:property _:c14n101 , _:c14n118 , _:c14n154 , _:c14n161 , _:c14n2 , _:c14n213 , _:c14n3 , _:c14n5 , _:c14n68 , _:c14n73 , _:c14n99 ;
+	sh:property _:c14n116 , _:c14n154 , _:c14n161 , _:c14n2 , _:c14n213 , _:c14n3 , _:c14n5 , _:c14n68 , _:c14n72 , _:c14n97 , _:c14n99 ;
 	sh:targetClass fix_protocol:FixMember .
 fix_protocol:FixMessage a sh:NodeShape ;
 	rdfs:comment "A FIX message, known by its MsgType, such as D for NewOrderSingle, with its members in order." ;
 	rdfs:label "Message" ;
 	sh:closed true ;
 	sh:ignoredProperties _:c14n0 ;
-	sh:property _:c14n103 , _:c14n120 , _:c14n123 , _:c14n140 , _:c14n163 , _:c14n169 , _:c14n172 , _:c14n203 , _:c14n33 , _:c14n38 , _:c14n42 , _:c14n60 , _:c14n66 ;
+	sh:property _:c14n101 , _:c14n118 , _:c14n121 , _:c14n138 , _:c14n163 , _:c14n169 , _:c14n172 , _:c14n203 , _:c14n34 , _:c14n38 , _:c14n42 , _:c14n60 , _:c14n66 ;
 	sh:targetClass fix_protocol:FixMessage .
 fix_protocol:FixNumInGroup a sh:NodeShape ;
 	rdfs:comment "The field that counts a group's repeats, as the group names it." ;
 	rdfs:label "Count Field Reference" ;
 	sh:closed true ;
-	sh:ignoredProperties _:c14n77 ;
-	sh:property _:c14n109 , _:c14n132 , _:c14n182 , _:c14n23 , _:c14n24 , _:c14n39 , _:c14n82 ;
+	sh:ignoredProperties _:c14n75 ;
+	sh:property _:c14n107 , _:c14n130 , _:c14n182 , _:c14n23 , _:c14n24 , _:c14n39 , _:c14n80 ;
 	sh:targetClass fix_protocol:FixNumInGroup .
 fix_protocol:FixPedigreeMixin a sh:NodeShape ;
 	rdfs:comment "When FIX added, last changed and deprecated an element, by version and extension pack." ;
 	rdfs:label "Pedigree" ;
 	sh:closed false ;
-	sh:ignoredProperties _:c14n119 ;
-	sh:property _:c14n126 , _:c14n151 , _:c14n167 , _:c14n211 , _:c14n4 , _:c14n74 ;
+	sh:ignoredProperties _:c14n117 ;
+	sh:property _:c14n124 , _:c14n151 , _:c14n167 , _:c14n211 , _:c14n4 , _:c14n73 ;
 	sh:targetClass fix_protocol:FixPedigreeMixin .
 fix_protocol:FixRepository a sh:NodeShape ;
 	rdfs:comment "One file of the catalogue: the edition it renders, with some kinds of FIX Latest's elements." ;
 	rdfs:label "FIX Latest Catalogue" ;
 	sh:closed true ;
 	sh:ignoredProperties _:c14n198 ;
-	sh:property _:c14n102 , _:c14n110 , _:c14n113 , _:c14n115 , _:c14n122 , _:c14n131 , _:c14n162 , _:c14n165 , _:c14n195 , _:c14n197 , _:c14n21 , _:c14n28 , _:c14n29 , _:c14n47 , _:c14n63 , _:c14n69 , _:c14n75 , _:c14n9 , _:c14n91 ;
+	sh:property _:c14n100 , _:c14n108 , _:c14n111 , _:c14n113 , _:c14n120 , _:c14n129 , _:c14n143 , _:c14n150 , _:c14n162 , _:c14n165 , _:c14n195 , _:c14n197 , _:c14n21 , _:c14n28 , _:c14n29 , _:c14n47 , _:c14n63 , _:c14n89 , _:c14n9 ;
 	sh:targetClass fix_protocol:FixRepository .
 fix_protocol:FixSection a sh:NodeShape ;
 	rdfs:comment "One of the five parts FIX divides its messages into by business area, such as PreTrade." ;
 	rdfs:label "Section" ;
 	sh:closed true ;
 	sh:ignoredProperties _:c14n186 ;
-	sh:property _:c14n107 , _:c14n12 , _:c14n156 , _:c14n173 , _:c14n187 , _:c14n200 , _:c14n25 , _:c14n44 , _:c14n46 , _:c14n48 , _:c14n83 ;
+	sh:property _:c14n105 , _:c14n12 , _:c14n156 , _:c14n173 , _:c14n187 , _:c14n200 , _:c14n25 , _:c14n44 , _:c14n46 , _:c14n48 , _:c14n81 ;
 	sh:targetClass fix_protocol:FixSection .
 _:c14n0 rdf:first rdf:type ;
 	rdf:rest rdf:nil .
@@ -125,28 +125,13 @@ _:c14n10 sh:datatype xsd:integer ;
 	sh:nodeKind sh:Literal ;
 	sh:order 3 ;
 	sh:path fix_protocol:added_in_ep .
-_:c14n100 sh:description "The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation." ;
-	sh:maxCount 1 ;
-	sh:name "Identifier" ;
-	sh:nodeKind sh:IRI ;
-	sh:order 2 ;
-	sh:path fix_protocol:id ;
-	sh:pattern "^fix_code_set:[1-9][0-9]*$" .
-_:c14n101 sh:datatype xsd:string ;
-	sh:description "The FIX version that last changed the element." ;
-	sh:maxCount 1 ;
-	sh:name "Last Updated In" ;
-	sh:nodeKind sh:Literal ;
-	sh:order 7 ;
-	sh:path fix_protocol:updated_in ;
-	sh:pattern "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$" .
-_:c14n102 sh:class fix_protocol:FixGroup ;
+_:c14n100 sh:class fix_protocol:FixGroup ;
 	sh:description "The repeating groups, in FIX's order." ;
 	sh:name "Repeating Groups" ;
 	sh:nodeKind sh:IRI ;
 	sh:order 17 ;
 	sh:path fix_protocol:fix_groups .
-_:c14n103 sh:datatype xsd:string ;
+_:c14n101 sh:datatype xsd:string ;
 	sh:description "The element's name in FIX, such as NewOrderSingle or Symbol." ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
@@ -155,7 +140,7 @@ _:c14n103 sh:datatype xsd:string ;
 	sh:order 6 ;
 	sh:path fix_protocol:name ;
 	sh:pattern "^[A-Za-z][A-Za-z0-9_]{0,254}$" .
-_:c14n104 sh:datatype xsd:string ;
+_:c14n102 sh:datatype xsd:string ;
 	sh:description "The FIX version that added the element." ;
 	sh:maxCount 1 ;
 	sh:name "Added In" ;
@@ -163,21 +148,21 @@ _:c14n104 sh:datatype xsd:string ;
 	sh:order 2 ;
 	sh:path fix_protocol:added_in ;
 	sh:pattern "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$" .
-_:c14n105 sh:datatype xsd:integer ;
+_:c14n103 sh:datatype xsd:integer ;
 	sh:description "The extension pack that last changed the element." ;
 	sh:maxCount 1 ;
 	sh:name "Last Updated In Extension Pack" ;
 	sh:nodeKind sh:Literal ;
 	sh:order 8 ;
 	sh:path fix_protocol:updated_in_ep .
-_:c14n106 sh:datatype xsd:string ;
+_:c14n104 sh:datatype xsd:string ;
 	sh:description "The smallest value the type allows, as FIX writes it." ;
 	sh:maxCount 1 ;
 	sh:name "Least Value" ;
 	sh:nodeKind sh:Literal ;
 	sh:order 3 ;
 	sh:path fix_protocol:mapped_min_inclusive .
-_:c14n107 sh:datatype xsd:string ;
+_:c14n105 sh:datatype xsd:string ;
 	sh:description "The FIX version that deprecated the element." ;
 	sh:maxCount 1 ;
 	sh:name "Deprecated In" ;
@@ -185,14 +170,14 @@ _:c14n107 sh:datatype xsd:string ;
 	sh:order 9 ;
 	sh:path fix_protocol:deprecated_in ;
 	sh:pattern "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$" .
-_:c14n108 sh:class fix_protocol:FixMember ;
+_:c14n106 sh:class fix_protocol:FixMember ;
 	sh:description "The fields, components and groups the element holds, in the order FIX lists them." ;
 	sh:minCount 1 ;
 	sh:name "Members" ;
 	sh:nodeKind sh:BlankNodeOrIRI ;
 	sh:order 2 ;
 	sh:path fix_protocol:fix_members .
-_:c14n109 sh:datatype xsd:string ;
+_:c14n107 sh:datatype xsd:string ;
 	sh:description "The FIX version that added the element." ;
 	sh:maxCount 1 ;
 	sh:name "Added In" ;
@@ -200,15 +185,13 @@ _:c14n109 sh:datatype xsd:string ;
 	sh:order 1 ;
 	sh:path fix_protocol:added_in ;
 	sh:pattern "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$" .
-_:c14n11 rdf:first fix_protocol:length_field ;
-	rdf:rest _:c14n155 .
-_:c14n110 sh:class fix_protocol:FixComponent ;
+_:c14n108 sh:class fix_protocol:FixComponent ;
 	sh:description "The components, in FIX's order." ;
 	sh:name "Components" ;
 	sh:nodeKind sh:IRI ;
 	sh:order 16 ;
 	sh:path fix_protocol:fix_components .
-_:c14n111 sh:class fix_protocol:FixField ;
+_:c14n109 sh:class fix_protocol:FixField ;
 	sh:description "The field whose value says how to read this field's value." ;
 	sh:maxCount 1 ;
 	sh:name "Discriminator Field" ;
@@ -216,7 +199,9 @@ _:c14n111 sh:class fix_protocol:FixField ;
 	sh:order 6 ;
 	sh:path fix_protocol:discriminator_field ;
 	sh:pattern "^fix_field:[1-9][0-9]*$" .
-_:c14n112 sh:datatype xsd:string ;
+_:c14n11 rdf:first fix_protocol:length_field ;
+	rdf:rest _:c14n155 .
+_:c14n110 sh:datatype xsd:string ;
 	sh:description "The element's name in FIX, such as NewOrderSingle or Symbol." ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
@@ -225,27 +210,27 @@ _:c14n112 sh:datatype xsd:string ;
 	sh:order 5 ;
 	sh:path fix_protocol:name ;
 	sh:pattern "^[A-Za-z][A-Za-z0-9_]{0,254}$" .
-_:c14n113 sh:class fix_protocol:FixMessage ;
+_:c14n111 sh:class fix_protocol:FixMessage ;
 	sh:description "The messages, in FIX's order." ;
 	sh:name "Messages" ;
 	sh:nodeKind sh:IRI ;
 	sh:order 18 ;
 	sh:path fix_protocol:fix_messages .
-_:c14n114 sh:datatype xsd:integer ;
+_:c14n112 sh:datatype xsd:integer ;
 	sh:description "The extension pack that added the element." ;
 	sh:maxCount 1 ;
 	sh:name "Added In Extension Pack" ;
 	sh:nodeKind sh:Literal ;
 	sh:order 7 ;
 	sh:path fix_protocol:added_in_ep .
-_:c14n115 sh:datatype xsd:string ;
+_:c14n113 sh:datatype xsd:string ;
 	sh:description "The media type of the repository file." ;
 	sh:maxCount 1 ;
 	sh:name "Format" ;
 	sh:nodeKind sh:Literal ;
 	sh:order 7 ;
 	sh:path fix_protocol:metadata_format .
-_:c14n116 sh:datatype xsd:string ;
+_:c14n114 sh:datatype xsd:string ;
 	sh:description "The element's name in FIX, such as NewOrderSingle or Symbol." ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
@@ -254,22 +239,32 @@ _:c14n116 sh:datatype xsd:string ;
 	sh:order 1 ;
 	sh:path fix_protocol:name ;
 	sh:pattern "^[A-Za-z][A-Za-z0-9_]{0,254}$" .
-_:c14n117 sh:datatype xsd:boolean ;
+_:c14n115 sh:datatype xsd:boolean ;
 	sh:description "True when the element is left out of FIXML, FIX's XML encoding." ;
 	sh:maxCount 1 ;
 	sh:name "Not Required in FIXML" ;
 	sh:nodeKind sh:Literal ;
 	sh:order 3 ;
 	sh:path fix_protocol:fixml_not_required .
-_:c14n118 sh:datatype xsd:integer ;
+_:c14n116 sh:datatype xsd:integer ;
 	sh:description "The extension pack that added the element." ;
 	sh:maxCount 1 ;
 	sh:name "Added In Extension Pack" ;
 	sh:nodeKind sh:Literal ;
 	sh:order 6 ;
 	sh:path fix_protocol:added_in_ep .
-_:c14n119 rdf:first rdf:type ;
+_:c14n117 rdf:first rdf:type ;
 	rdf:rest rdf:nil .
+_:c14n118 sh:datatype xsd:string ;
+	sh:description "The FIX version that added the element." ;
+	sh:maxCount 1 ;
+	sh:name "Added In" ;
+	sh:nodeKind sh:Literal ;
+	sh:order 7 ;
+	sh:path fix_protocol:added_in ;
+	sh:pattern "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$" .
+_:c14n119 rdf:first fix_protocol:in_category ;
+	rdf:rest _:c14n194 .
 _:c14n12 sh:datatype xsd:string ;
 	sh:description "The FIX version that last changed the element." ;
 	sh:maxCount 1 ;
@@ -278,23 +273,13 @@ _:c14n12 sh:datatype xsd:string ;
 	sh:order 7 ;
 	sh:path fix_protocol:updated_in ;
 	sh:pattern "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$" .
-_:c14n120 sh:datatype xsd:string ;
-	sh:description "The FIX version that added the element." ;
-	sh:maxCount 1 ;
-	sh:name "Added In" ;
-	sh:nodeKind sh:Literal ;
-	sh:order 7 ;
-	sh:path fix_protocol:added_in ;
-	sh:pattern "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$" .
-_:c14n121 rdf:first fix_protocol:in_category ;
-	rdf:rest _:c14n194 .
-_:c14n122 sh:class fix_protocol:FixSection ;
+_:c14n120 sh:class fix_protocol:FixSection ;
 	sh:description "The sections, in FIX's order." ;
 	sh:name "Sections" ;
 	sh:nodeKind sh:IRI ;
 	sh:order 11 ;
 	sh:path fix_protocol:fix_sections .
-_:c14n123 sh:datatype xsd:string ;
+_:c14n121 sh:datatype xsd:string ;
 	sh:description "The FIX version that last changed the element." ;
 	sh:maxCount 1 ;
 	sh:name "Last Updated In" ;
@@ -302,7 +287,7 @@ _:c14n123 sh:datatype xsd:string ;
 	sh:order 9 ;
 	sh:path fix_protocol:updated_in ;
 	sh:pattern "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$" .
-_:c14n124 sh:datatype xsd:string ;
+_:c14n122 sh:datatype xsd:string ;
 	sh:description "The FIX version that deprecated the element." ;
 	sh:maxCount 1 ;
 	sh:name "Deprecated In" ;
@@ -310,24 +295,24 @@ _:c14n124 sh:datatype xsd:string ;
 	sh:order 8 ;
 	sh:path fix_protocol:deprecated_in ;
 	sh:pattern "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$" .
-_:c14n125 rdf:first fix_protocol:code_group ;
-	rdf:rest _:c14n144 .
-_:c14n126 sh:datatype xsd:integer ;
+_:c14n123 rdf:first fix_protocol:code_group ;
+	rdf:rest _:c14n142 .
+_:c14n124 sh:datatype xsd:integer ;
 	sh:description "The extension pack that last changed the element." ;
 	sh:maxCount 1 ;
 	sh:name "Last Updated In Extension Pack" ;
 	sh:nodeKind sh:Literal ;
 	sh:order 3 ;
 	sh:path fix_protocol:updated_in_ep .
-_:c14n127 sh:description "The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation." ;
+_:c14n125 sh:description "The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation." ;
 	sh:maxCount 1 ;
 	sh:name "Identifier" ;
 	sh:nodeKind sh:IRI ;
 	sh:order 0 ;
 	sh:path fix_protocol:id .
-_:c14n128 rdf:first rdf:type ;
+_:c14n126 rdf:first rdf:type ;
 	rdf:rest rdf:nil .
-_:c14n129 sh:datatype xsd:string ;
+_:c14n127 sh:datatype xsd:string ;
 	sh:description "The FIX version that added the element." ;
 	sh:maxCount 1 ;
 	sh:name "Added In" ;
@@ -335,14 +320,7 @@ _:c14n129 sh:datatype xsd:string ;
 	sh:order 4 ;
 	sh:path fix_protocol:added_in ;
 	sh:pattern "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$" .
-_:c14n13 sh:datatype xsd:integer ;
-	sh:description "The extension pack that added the element." ;
-	sh:maxCount 1 ;
-	sh:name "Added In Extension Pack" ;
-	sh:nodeKind sh:Literal ;
-	sh:order 5 ;
-	sh:path fix_protocol:added_in_ep .
-_:c14n130 sh:datatype xsd:string ;
+_:c14n128 sh:datatype xsd:string ;
 	sh:description "The FIX version that deprecated the element." ;
 	sh:maxCount 1 ;
 	sh:name "Deprecated In" ;
@@ -350,23 +328,30 @@ _:c14n130 sh:datatype xsd:string ;
 	sh:order 10 ;
 	sh:path fix_protocol:deprecated_in ;
 	sh:pattern "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$" .
-_:c14n131 sh:datatype xsd:string ;
+_:c14n129 sh:datatype xsd:string ;
 	sh:description "The title the repository's metadata gives." ;
 	sh:maxCount 1 ;
 	sh:name "Title" ;
 	sh:nodeKind sh:Literal ;
 	sh:order 2 ;
 	sh:path fix_protocol:metadata_title .
-_:c14n132 sh:datatype xsd:integer ;
+_:c14n13 sh:datatype xsd:integer ;
+	sh:description "The extension pack that added the element." ;
+	sh:maxCount 1 ;
+	sh:name "Added In Extension Pack" ;
+	sh:nodeKind sh:Literal ;
+	sh:order 5 ;
+	sh:path fix_protocol:added_in_ep .
+_:c14n130 sh:datatype xsd:integer ;
 	sh:description "The extension pack that added the element." ;
 	sh:maxCount 1 ;
 	sh:name "Added In Extension Pack" ;
 	sh:nodeKind sh:Literal ;
 	sh:order 2 ;
 	sh:path fix_protocol:added_in_ep .
-_:c14n133 rdf:first fix_protocol:fixml_not_required ;
-	rdf:rest _:c14n121 .
-_:c14n134 sh:datatype xsd:string ;
+_:c14n131 rdf:first fix_protocol:fixml_not_required ;
+	rdf:rest _:c14n119 .
+_:c14n132 sh:datatype xsd:string ;
 	sh:description "The FIX version that last changed the element." ;
 	sh:maxCount 1 ;
 	sh:name "Last Updated In" ;
@@ -374,7 +359,7 @@ _:c14n134 sh:datatype xsd:string ;
 	sh:order 4 ;
 	sh:path fix_protocol:updated_in ;
 	sh:pattern "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$" .
-_:c14n135 sh:datatype xsd:string ;
+_:c14n133 sh:datatype xsd:string ;
 	sh:description "The FIX version that added the element." ;
 	sh:maxCount 1 ;
 	sh:name "Added In" ;
@@ -382,7 +367,7 @@ _:c14n135 sh:datatype xsd:string ;
 	sh:order 6 ;
 	sh:path fix_protocol:added_in ;
 	sh:pattern "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$" .
-_:c14n136 sh:datatype xsd:string ;
+_:c14n134 sh:datatype xsd:string ;
 	sh:description "The FIX version that last changed the element." ;
 	sh:maxCount 1 ;
 	sh:name "Last Updated In" ;
@@ -390,7 +375,7 @@ _:c14n136 sh:datatype xsd:string ;
 	sh:order 8 ;
 	sh:path fix_protocol:updated_in ;
 	sh:pattern "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$" .
-_:c14n137 sh:datatype xsd:string ;
+_:c14n135 sh:datatype xsd:string ;
 	sh:description "The element's name in FIX, such as NewOrderSingle or Symbol." ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
@@ -399,29 +384,22 @@ _:c14n137 sh:datatype xsd:string ;
 	sh:order 5 ;
 	sh:path fix_protocol:name ;
 	sh:pattern "^[A-Za-z][A-Za-z0-9_]{0,254}$" .
-_:c14n138 rdf:first fix_protocol:base_type ;
+_:c14n136 rdf:first fix_protocol:base_type ;
 	rdf:rest _:c14n184 .
-_:c14n139 sh:class fix_protocol:FixCode ;
+_:c14n137 sh:class fix_protocol:FixCode ;
 	sh:description "The codes of the set, in FIX's order." ;
 	sh:name "Codes" ;
 	sh:nodeKind sh:IRI ;
 	sh:order 1 ;
 	sh:path fix_protocol:fix_codes .
-_:c14n14 sh:datatype xsd:integer ;
-	sh:description "The extension pack that added the element." ;
-	sh:maxCount 1 ;
-	sh:name "Added In Extension Pack" ;
-	sh:nodeKind sh:Literal ;
-	sh:order 6 ;
-	sh:path fix_protocol:added_in_ep .
-_:c14n140 sh:class fix_protocol:FixMember ;
+_:c14n138 sh:class fix_protocol:FixMember ;
 	sh:description "The fields, components and groups the element holds, in the order FIX lists them." ;
 	sh:minCount 1 ;
 	sh:name "Members" ;
 	sh:nodeKind sh:BlankNodeOrIRI ;
 	sh:order 2 ;
 	sh:path fix_protocol:fix_members .
-_:c14n141 sh:class fix_protocol:FixCategory ;
+_:c14n139 sh:class fix_protocol:FixCategory ;
 	sh:description "The category a message, component or group belongs to." ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
@@ -430,23 +408,37 @@ _:c14n141 sh:class fix_protocol:FixCategory ;
 	sh:order 1 ;
 	sh:path fix_protocol:in_category ;
 	sh:pattern "^fix_category:[A-Za-z][A-Za-z0-9_]*$" .
-_:c14n142 sh:description "The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation." ;
+_:c14n14 sh:datatype xsd:integer ;
+	sh:description "The extension pack that added the element." ;
+	sh:maxCount 1 ;
+	sh:name "Added In Extension Pack" ;
+	sh:nodeKind sh:Literal ;
+	sh:order 6 ;
+	sh:path fix_protocol:added_in_ep .
+_:c14n140 sh:description "The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation." ;
 	sh:maxCount 1 ;
 	sh:name "Identifier" ;
 	sh:nodeKind sh:IRI ;
 	sh:order 5 ;
 	sh:path fix_protocol:id ;
 	sh:pattern "^fix_category:[A-Za-z][A-Za-z0-9_]*$" .
-_:c14n143 sh:datatype xsd:integer ;
+_:c14n141 sh:datatype xsd:integer ;
 	sh:description "The extension pack that last changed the element." ;
 	sh:maxCount 1 ;
 	sh:name "Last Updated In Extension Pack" ;
 	sh:nodeKind sh:Literal ;
 	sh:order 7 ;
 	sh:path fix_protocol:updated_in_ep .
-_:c14n144 rdf:first fix_protocol:code_set_datatype ;
+_:c14n142 rdf:first fix_protocol:code_set_datatype ;
 	rdf:rest _:c14n40 .
-_:c14n145 sh:datatype xsd:string ;
+_:c14n143 sh:datatype xsd:string ;
+	sh:description "Who published the repository, as its metadata states." ;
+	sh:maxCount 1 ;
+	sh:name "Publisher" ;
+	sh:nodeKind sh:Literal ;
+	sh:order 5 ;
+	sh:path fix_protocol:metadata_publisher .
+_:c14n144 sh:datatype xsd:string ;
 	sh:description "The FIX version that last changed the element." ;
 	sh:maxCount 1 ;
 	sh:name "Last Updated In" ;
@@ -454,9 +446,9 @@ _:c14n145 sh:datatype xsd:string ;
 	sh:order 8 ;
 	sh:path fix_protocol:updated_in ;
 	sh:pattern "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$" .
-_:c14n146 rdf:first rdf:type ;
+_:c14n145 rdf:first rdf:type ;
 	rdf:rest rdf:nil .
-_:c14n147 sh:datatype xsd:string ;
+_:c14n146 sh:datatype xsd:string ;
 	sh:description "The element's name in FIX, such as NewOrderSingle or Symbol." ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
@@ -465,7 +457,7 @@ _:c14n147 sh:datatype xsd:string ;
 	sh:order 4 ;
 	sh:path fix_protocol:name ;
 	sh:pattern "^[A-Za-z][A-Za-z0-9_]{0,254}$" .
-_:c14n148 sh:datatype xsd:string ;
+_:c14n147 sh:datatype xsd:string ;
 	sh:description "The FIX version that deprecated the element." ;
 	sh:maxCount 1 ;
 	sh:name "Deprecated In" ;
@@ -473,8 +465,16 @@ _:c14n148 sh:datatype xsd:string ;
 	sh:order 9 ;
 	sh:path fix_protocol:deprecated_in ;
 	sh:pattern "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$" .
-_:c14n149 rdf:first "required" ;
+_:c14n148 rdf:first "required" ;
 	rdf:rest _:c14n181 .
+_:c14n149 sh:datatype xsd:string ;
+	sh:description "The standard the type belongs to, such as XML." ;
+	sh:maxCount 1 ;
+	sh:minCount 1 ;
+	sh:name "Standard" ;
+	sh:nodeKind sh:Literal ;
+	sh:order 0 ;
+	sh:path fix_protocol:mapped_standard .
 _:c14n15 sh:datatype xsd:string ;
 	sh:description "The FIX version that last changed the element." ;
 	sh:maxCount 1 ;
@@ -484,13 +484,12 @@ _:c14n15 sh:datatype xsd:string ;
 	sh:path fix_protocol:updated_in ;
 	sh:pattern "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$" .
 _:c14n150 sh:datatype xsd:string ;
-	sh:description "The standard the type belongs to, such as XML." ;
+	sh:description "Who made the repository, as its metadata states." ;
 	sh:maxCount 1 ;
-	sh:minCount 1 ;
-	sh:name "Standard" ;
+	sh:name "Creator" ;
 	sh:nodeKind sh:Literal ;
-	sh:order 0 ;
-	sh:path fix_protocol:mapped_standard .
+	sh:order 4 ;
+	sh:path fix_protocol:metadata_creator .
 _:c14n151 sh:datatype xsd:string ;
 	sh:description "The FIX version that added the element." ;
 	sh:maxCount 1 ;
@@ -510,13 +509,13 @@ _:c14n152 sh:datatype xsd:string ;
 _:c14n153 rdf:first rdf:type ;
 	rdf:rest rdf:nil .
 _:c14n154 sh:description "Whether the member must be there. A member that states none is optional." ;
-	sh:in _:c14n87 ;
+	sh:in _:c14n85 ;
 	sh:maxCount 1 ;
 	sh:name "Presence" ;
 	sh:order 3 ;
 	sh:path fix_protocol:presence .
 _:c14n155 rdf:first fix_protocol:mapped_datatypes ;
-	rdf:rest _:c14n30 .
+	rdf:rest _:c14n31 .
 _:c14n156 sh:datatype xsd:integer ;
 	sh:description "The extension pack that deprecated the element." ;
 	sh:maxCount 1 ;
@@ -541,7 +540,7 @@ _:c14n158 sh:datatype xsd:string ;
 	sh:path fix_protocol:abbr_name ;
 	sh:pattern "^[A-Za-z][A-Za-z0-9_]{0,254}$" .
 _:c14n159 rdf:first fix_protocol:abbr_name ;
-	rdf:rest _:c14n32 .
+	rdf:rest _:c14n33 .
 _:c14n16 sh:datatype xsd:integer ;
 	sh:description "The extension pack that last changed the element." ;
 	sh:maxCount 1 ;
@@ -625,7 +624,7 @@ _:c14n169 sh:datatype xsd:integer ;
 	sh:order 8 ;
 	sh:path fix_protocol:added_in_ep .
 _:c14n17 rdf:first fix_protocol:fix_codes ;
-	rdf:rest _:c14n34 .
+	rdf:rest _:c14n35 .
 _:c14n170 sh:description "The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation." ;
 	sh:maxCount 1 ;
 	sh:name "Identifier" ;
@@ -707,7 +706,7 @@ _:c14n180 sh:class fix_protocol:FixNumInGroup ;
 	sh:order 3 ;
 	sh:path fix_protocol:num_in_group .
 _:c14n181 rdf:first "forbidden" ;
-	rdf:rest _:c14n72 .
+	rdf:rest _:c14n71 .
 _:c14n182 sh:datatype xsd:string ;
 	sh:description "The FIX version that last changed the element." ;
 	sh:maxCount 1 ;
@@ -724,7 +723,7 @@ _:c14n183 sh:datatype xsd:integer ;
 	sh:order 11 ;
 	sh:path fix_protocol:deprecated_in_ep .
 _:c14n184 rdf:first fix_protocol:category_kind ;
-	rdf:rest _:c14n125 .
+	rdf:rest _:c14n123 .
 _:c14n185 sh:description "The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation." ;
 	sh:maxCount 1 ;
 	sh:name "Identifier" ;
@@ -879,7 +878,7 @@ _:c14n209 sh:datatype xsd:string ;
 	sh:pattern "^\\S+$" .
 _:c14n21 sh:datatype xsd:string ;
 	sh:description "The name FIX gives the repository, FIX.Latest." ;
-	sh:in _:c14n97 ;
+	sh:in _:c14n95 ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
 	sh:name "Repository Name" ;
@@ -980,27 +979,35 @@ _:c14n3 sh:datatype xsd:integer ;
 	sh:nodeKind sh:Literal ;
 	sh:order 8 ;
 	sh:path fix_protocol:updated_in_ep .
-_:c14n30 rdf:first fix_protocol:msg_type ;
+_:c14n30 sh:class fix_protocol:FixCategory ;
+	sh:description "The category whose FIXML element carries the field, under the short name in base_category_abbr_name." ;
+	sh:maxCount 1 ;
+	sh:name "Base Category" ;
+	sh:nodeKind sh:IRI ;
+	sh:order 7 ;
+	sh:path fix_protocol:base_category ;
+	sh:pattern "^fix_category:[A-Za-z][A-Za-z0-9_]*$" .
+_:c14n31 rdf:first fix_protocol:msg_type ;
 	rdf:rest _:c14n26 .
-_:c14n31 sh:datatype xsd:boolean ;
+_:c14n32 sh:datatype xsd:boolean ;
 	sh:description "True when the element is left out of FIXML, FIX's XML encoding." ;
 	sh:maxCount 1 ;
 	sh:name "Not Required in FIXML" ;
 	sh:nodeKind sh:Literal ;
 	sh:order 2 ;
 	sh:path fix_protocol:fixml_not_required .
-_:c14n32 rdf:first fix_protocol:base_category ;
-	rdf:rest _:c14n95 .
-_:c14n33 sh:datatype xsd:integer ;
+_:c14n33 rdf:first fix_protocol:base_category ;
+	rdf:rest _:c14n93 .
+_:c14n34 sh:datatype xsd:integer ;
 	sh:description "The extension pack that last changed the element." ;
 	sh:maxCount 1 ;
 	sh:name "Last Updated In Extension Pack" ;
 	sh:nodeKind sh:Literal ;
 	sh:order 10 ;
 	sh:path fix_protocol:updated_in_ep .
-_:c14n34 rdf:first fix_protocol:fix_members ;
-	rdf:rest _:c14n81 .
-_:c14n35 sh:datatype xsd:string ;
+_:c14n35 rdf:first fix_protocol:fix_members ;
+	rdf:rest _:c14n79 .
+_:c14n36 sh:datatype xsd:string ;
 	sh:description "The FIX version that last changed the element." ;
 	sh:maxCount 1 ;
 	sh:name "Last Updated In" ;
@@ -1008,7 +1015,7 @@ _:c14n35 sh:datatype xsd:string ;
 	sh:order 13 ;
 	sh:path fix_protocol:updated_in ;
 	sh:pattern "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$" .
-_:c14n36 sh:datatype xsd:string ;
+_:c14n37 sh:datatype xsd:string ;
 	sh:description "The FIX version that deprecated the element." ;
 	sh:maxCount 1 ;
 	sh:name "Deprecated In" ;
@@ -1016,14 +1023,6 @@ _:c14n36 sh:datatype xsd:string ;
 	sh:order 8 ;
 	sh:path fix_protocol:deprecated_in ;
 	sh:pattern "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$" .
-_:c14n37 sh:class fix_protocol:FixCategory ;
-	sh:description "The category whose FIXML element carries the field under the short name base_category_abbr_name gives." ;
-	sh:maxCount 1 ;
-	sh:name "Base Category" ;
-	sh:nodeKind sh:IRI ;
-	sh:order 7 ;
-	sh:path fix_protocol:base_category ;
-	sh:pattern "^fix_category:[A-Za-z][A-Za-z0-9_]*$" .
 _:c14n38 sh:datatype xsd:boolean ;
 	sh:description "True when the element is left out of FIXML, FIX's XML encoding." ;
 	sh:maxCount 1 ;
@@ -1159,7 +1158,7 @@ _:c14n55 sh:datatype xsd:string ;
 	sh:path fix_protocol:abbr_name ;
 	sh:pattern "^[A-Za-z][A-Za-z0-9_]{0,254}$" .
 _:c14n56 rdf:first "Message" ;
-	rdf:rest _:c14n93 .
+	rdf:rest _:c14n91 .
 _:c14n57 sh:datatype xsd:string ;
 	sh:description "The element's name in FIX, such as NewOrderSingle or Symbol." ;
 	sh:maxCount 1 ;
@@ -1253,57 +1252,43 @@ _:c14n68 sh:class fix_protocol:FixField ;
 	sh:order 0 ;
 	sh:path fix_protocol:member_field ;
 	sh:pattern "^fix_field:[1-9][0-9]*$" .
-_:c14n69 sh:datatype xsd:string ;
-	sh:description "Who made the repository, by its metadata." ;
-	sh:maxCount 1 ;
-	sh:name "Creator" ;
-	sh:nodeKind sh:Literal ;
-	sh:order 4 ;
-	sh:path fix_protocol:metadata_creator .
-_:c14n7 rdf:first rdf:type ;
-	rdf:rest rdf:nil .
-_:c14n70 sh:datatype xsd:integer ;
+_:c14n69 sh:datatype xsd:integer ;
 	sh:description "The extension pack that deprecated the element." ;
 	sh:maxCount 1 ;
 	sh:name "Deprecated In Extension Pack" ;
 	sh:nodeKind sh:Literal ;
 	sh:order 16 ;
 	sh:path fix_protocol:deprecated_in_ep .
-_:c14n71 rdf:first rdf:type ;
+_:c14n7 rdf:first rdf:type ;
 	rdf:rest rdf:nil .
-_:c14n72 rdf:first "ignored" ;
+_:c14n70 rdf:first rdf:type ;
+	rdf:rest rdf:nil .
+_:c14n71 rdf:first "ignored" ;
 	rdf:rest _:c14n18 .
-_:c14n73 sh:datatype xsd:boolean ;
+_:c14n72 sh:datatype xsd:boolean ;
 	sh:description "True when FIXML writes the component's fields directly in the enclosing element rather than in an element of its own." ;
 	sh:maxCount 1 ;
 	sh:name "Inlined in FIXML" ;
 	sh:nodeKind sh:Literal ;
 	sh:order 4 ;
 	sh:path fix_protocol:fixml_inlined .
-_:c14n74 sh:datatype xsd:integer ;
+_:c14n73 sh:datatype xsd:integer ;
 	sh:description "The extension pack that deprecated the element." ;
 	sh:maxCount 1 ;
 	sh:name "Deprecated In Extension Pack" ;
 	sh:nodeKind sh:Literal ;
 	sh:order 5 ;
 	sh:path fix_protocol:deprecated_in_ep .
-_:c14n75 sh:datatype xsd:string ;
-	sh:description "Who published the repository, by its metadata." ;
-	sh:maxCount 1 ;
-	sh:name "Publisher" ;
-	sh:nodeKind sh:Literal ;
-	sh:order 5 ;
-	sh:path fix_protocol:metadata_publisher .
-_:c14n76 sh:datatype xsd:integer ;
+_:c14n74 sh:datatype xsd:integer ;
 	sh:description "The extension pack that added the element." ;
 	sh:maxCount 1 ;
 	sh:name "Added In Extension Pack" ;
 	sh:nodeKind sh:Literal ;
 	sh:order 5 ;
 	sh:path fix_protocol:added_in_ep .
-_:c14n77 rdf:first rdf:type ;
+_:c14n75 rdf:first rdf:type ;
 	rdf:rest rdf:nil .
-_:c14n78 sh:datatype xsd:string ;
+_:c14n76 sh:datatype xsd:string ;
 	sh:description "The element's name in FIX, such as NewOrderSingle or Symbol." ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
@@ -1312,7 +1297,7 @@ _:c14n78 sh:datatype xsd:string ;
 	sh:order 10 ;
 	sh:path fix_protocol:name ;
 	sh:pattern "^[A-Za-z][A-Za-z0-9_]{0,254}$" .
-_:c14n79 sh:class fix_protocol:FixDatatype ;
+_:c14n77 sh:class fix_protocol:FixDatatype ;
 	sh:description "The datatype of the codes' values." ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
@@ -1321,17 +1306,17 @@ _:c14n79 sh:class fix_protocol:FixDatatype ;
 	sh:order 0 ;
 	sh:path fix_protocol:code_set_datatype ;
 	sh:pattern "^fix_datatype:[A-Za-z][A-Za-z0-9_]*$" .
-_:c14n8 rdf:first rdf:type ;
-	rdf:rest _:c14n159 .
-_:c14n80 sh:class fix_protocol:FixMember ;
+_:c14n78 sh:class fix_protocol:FixMember ;
 	sh:description "The fields, components and groups the element holds, in the order FIX lists them." ;
 	sh:name "Members" ;
 	sh:nodeKind sh:BlankNodeOrIRI ;
 	sh:order 2 ;
 	sh:path fix_protocol:fix_members .
-_:c14n81 rdf:first fix_protocol:fixml_file_name ;
-	rdf:rest _:c14n133 .
-_:c14n82 sh:class fix_protocol:FixField ;
+_:c14n79 rdf:first fix_protocol:fixml_file_name ;
+	rdf:rest _:c14n131 .
+_:c14n8 rdf:first rdf:type ;
+	rdf:rest _:c14n159 .
+_:c14n80 sh:class fix_protocol:FixField ;
 	sh:description "The field that holds the count." ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
@@ -1340,14 +1325,14 @@ _:c14n82 sh:class fix_protocol:FixField ;
 	sh:order 0 ;
 	sh:path fix_protocol:count_field ;
 	sh:pattern "^fix_field:[1-9][0-9]*$" .
-_:c14n83 sh:description "The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation." ;
+_:c14n81 sh:description "The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation." ;
 	sh:maxCount 1 ;
 	sh:name "Identifier" ;
 	sh:nodeKind sh:IRI ;
 	sh:order 3 ;
 	sh:path fix_protocol:id ;
 	sh:pattern "^fix_section:[A-Za-z][A-Za-z0-9_]*$" .
-_:c14n84 sh:datatype xsd:string ;
+_:c14n82 sh:datatype xsd:string ;
 	sh:description "The FIX version that added the element." ;
 	sh:maxCount 1 ;
 	sh:name "Added In" ;
@@ -1355,23 +1340,23 @@ _:c14n84 sh:datatype xsd:string ;
 	sh:order 5 ;
 	sh:path fix_protocol:added_in ;
 	sh:pattern "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$" .
-_:c14n85 sh:description "The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation." ;
+_:c14n83 sh:description "The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation." ;
 	sh:maxCount 1 ;
 	sh:name "Identifier" ;
 	sh:nodeKind sh:IRI ;
 	sh:order 2 ;
 	sh:path fix_protocol:id ;
 	sh:pattern "^fix_datatype:[A-Za-z][A-Za-z0-9_]*$" .
-_:c14n86 sh:description "The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation." ;
+_:c14n84 sh:description "The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation." ;
 	sh:maxCount 1 ;
 	sh:name "Identifier" ;
 	sh:nodeKind sh:IRI ;
 	sh:order 4 ;
 	sh:path fix_protocol:id ;
 	sh:pattern "^fix_group:[1-9][0-9]*$" .
-_:c14n87 rdf:first "optional" ;
-	rdf:rest _:c14n149 .
-_:c14n88 sh:datatype xsd:integer ;
+_:c14n85 rdf:first "optional" ;
+	rdf:rest _:c14n148 .
+_:c14n86 sh:datatype xsd:integer ;
 	sh:description "Where the code comes when FIX lists the set." ;
 	sh:maxCount 1 ;
 	sh:minInclusive 0 ;
@@ -1379,21 +1364,14 @@ _:c14n88 sh:datatype xsd:integer ;
 	sh:nodeKind sh:Literal ;
 	sh:order 1 ;
 	sh:path fix_protocol:sort_order .
-_:c14n89 sh:datatype xsd:string ;
+_:c14n87 sh:datatype xsd:string ;
 	sh:description "The standard's type, such as xs:decimal." ;
 	sh:maxCount 1 ;
 	sh:name "Base" ;
 	sh:nodeKind sh:Literal ;
 	sh:order 1 ;
 	sh:path fix_protocol:mapped_base .
-_:c14n9 sh:datatype xsd:string ;
-	sh:description "The tool or source the metadata names for the file." ;
-	sh:maxCount 1 ;
-	sh:name "Source" ;
-	sh:nodeKind sh:Literal ;
-	sh:order 10 ;
-	sh:path fix_protocol:metadata_source .
-_:c14n90 sh:class fix_protocol:FixDatatype ;
+_:c14n88 sh:class fix_protocol:FixDatatype ;
 	sh:description "The datatype of the field's values, when no code set lists them." ;
 	sh:maxCount 1 ;
 	sh:name "Datatype" ;
@@ -1401,50 +1379,72 @@ _:c14n90 sh:class fix_protocol:FixDatatype ;
 	sh:order 2 ;
 	sh:path fix_protocol:field_datatype ;
 	sh:pattern "^fix_datatype:[A-Za-z][A-Za-z0-9_]*$" .
-_:c14n91 sh:class fix_protocol:FixCodeSet ;
+_:c14n89 sh:class fix_protocol:FixCodeSet ;
 	sh:description "The code sets, in FIX's order." ;
 	sh:name "Code Sets" ;
 	sh:nodeKind sh:IRI ;
 	sh:order 14 ;
 	sh:path fix_protocol:fix_code_sets .
-_:c14n92 sh:datatype xsd:integer ;
+_:c14n9 sh:datatype xsd:string ;
+	sh:description "The tool or source the metadata names for the file." ;
+	sh:maxCount 1 ;
+	sh:name "Source" ;
+	sh:nodeKind sh:Literal ;
+	sh:order 10 ;
+	sh:path fix_protocol:metadata_source .
+_:c14n90 sh:datatype xsd:integer ;
 	sh:description "The extension pack that added the element." ;
 	sh:maxCount 1 ;
 	sh:name "Added In Extension Pack" ;
 	sh:nodeKind sh:Literal ;
 	sh:order 8 ;
 	sh:path fix_protocol:added_in_ep .
-_:c14n93 rdf:first "Field" ;
+_:c14n91 rdf:first "Field" ;
 	rdf:rest rdf:nil .
-_:c14n94 sh:datatype xsd:integer ;
+_:c14n92 sh:datatype xsd:integer ;
 	sh:description "The extension pack that last changed the element." ;
 	sh:maxCount 1 ;
 	sh:name "Last Updated In Extension Pack" ;
 	sh:nodeKind sh:Literal ;
 	sh:order 14 ;
 	sh:path fix_protocol:updated_in_ep .
-_:c14n95 rdf:first fix_protocol:base_category_abbr_name ;
-	rdf:rest _:c14n138 .
-_:c14n96 sh:datatype xsd:integer ;
+_:c14n93 rdf:first fix_protocol:base_category_abbr_name ;
+	rdf:rest _:c14n136 .
+_:c14n94 sh:datatype xsd:integer ;
 	sh:description "The extension pack that last changed the element." ;
 	sh:maxCount 1 ;
 	sh:name "Last Updated In Extension Pack" ;
 	sh:nodeKind sh:Literal ;
 	sh:order 5 ;
 	sh:path fix_protocol:updated_in_ep .
-_:c14n97 rdf:first "FIX.Latest" ;
+_:c14n95 rdf:first "FIX.Latest" ;
 	rdf:rest rdf:nil .
-_:c14n98 sh:datatype xsd:integer ;
+_:c14n96 sh:datatype xsd:integer ;
 	sh:description "The extension pack that added the element." ;
 	sh:maxCount 1 ;
 	sh:name "Added In Extension Pack" ;
 	sh:nodeKind sh:Literal ;
 	sh:order 7 ;
 	sh:path fix_protocol:added_in_ep .
-_:c14n99 sh:datatype xsd:integer ;
+_:c14n97 sh:datatype xsd:integer ;
 	sh:description "The extension pack that deprecated the element." ;
 	sh:maxCount 1 ;
 	sh:name "Deprecated In Extension Pack" ;
 	sh:nodeKind sh:Literal ;
 	sh:order 10 ;
 	sh:path fix_protocol:deprecated_in_ep .
+_:c14n98 sh:description "The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation." ;
+	sh:maxCount 1 ;
+	sh:name "Identifier" ;
+	sh:nodeKind sh:IRI ;
+	sh:order 2 ;
+	sh:path fix_protocol:id ;
+	sh:pattern "^fix_code_set:[1-9][0-9]*$" .
+_:c14n99 sh:datatype xsd:string ;
+	sh:description "The FIX version that last changed the element." ;
+	sh:maxCount 1 ;
+	sh:name "Last Updated In" ;
+	sh:nodeKind sh:Literal ;
+	sh:order 7 ;
+	sh:path fix_protocol:updated_in ;
+	sh:pattern "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$" .

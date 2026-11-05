@@ -2,7 +2,7 @@ syntax = "proto3";
 package fix_protocol;
 // metamodel_version: 1.12.0
 // version: FIX.Latest_EP312
-// A group of messages within a section. Three categories sit in no section and hold the shared components and the fields instead.
+// A group of messages within a section. Three categories belong to no section, and hold the shared components and the fields instead.
 message FixCategory {
   // The element's name in FIX, such as NewOrderSingle or Symbol.
   string name = 1;
@@ -178,7 +178,7 @@ message FixField {
   FixField length_field = 13;
   // The field whose value says how to read this field's value.
   FixField discriminator_field = 14;
-  // The category whose FIXML element carries the field under the short name base_category_abbr_name gives.
+  // The category whose FIXML element carries the field, under the short name in base_category_abbr_name.
   FixCategory base_category = 15;
   // The field's short name within its base category's FIXML element.
   string base_category_abbr_name = 16;
@@ -321,9 +321,9 @@ message FixRepository {
   string metadata_title = 3;
   // The metadata's one-line statement of which extension pack the file holds.
   string metadata_description = 4;
-  // Who made the repository, by its metadata.
+  // Who made the repository, as its metadata states.
   string metadata_creator = 5;
-  // Who published the repository, by its metadata.
+  // Who published the repository, as its metadata states.
   string metadata_publisher = 6;
   // The rights line in the repository's metadata, word for word.
   string metadata_rights = 7;
@@ -390,7 +390,7 @@ enum FixIncludeFile {
   FIX_INCLUDE_FILE_COMPONENTS = 1;
   FIX_INCLUDE_FILE_FIELDS = 2;
 }
-// Whether a message, component or group must carry a member, as Orchestra 1.0 lets FIX Latest say it.
+// Whether a message, component or group must carry a member, in the terms Orchestra 1.0 defines.
 enum FixPresence {
   FIX_PRESENCE_UNSPECIFIED = 0;
   FIX_PRESENCE_OPTIONAL = 1;

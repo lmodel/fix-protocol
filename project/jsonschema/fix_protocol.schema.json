@@ -2,7 +2,7 @@
     "$defs": {
         "FixCategory": {
             "additionalProperties": false,
-            "description": "A group of messages within a section. Three categories sit in no section and hold the shared components and the fields instead.",
+            "description": "A group of messages within a section. Three categories belong to no section, and hold the shared components and the fields instead.",
             "properties": {
                 "added_in": {
                     "description": "The FIX version that added the element.",
@@ -618,7 +618,7 @@
                     ]
                 },
                 "base_category": {
-                    "description": "The category whose FIXML element carries the field under the short name base_category_abbr_name gives.",
+                    "description": "The category whose FIXML element carries the field, under the short name in base_category_abbr_name.",
                     "pattern": "^fix_category:[A-Za-z][A-Za-z0-9_]*$",
                     "type": [
                         "string",
@@ -1253,7 +1253,7 @@
             "type": "object"
         },
         "FixPresence": {
-            "description": "Whether a message, component or group must carry a member, as Orchestra 1.0 lets FIX Latest say it.",
+            "description": "Whether a message, component or group must carry a member, in the terms Orchestra 1.0 defines.",
             "enum": [
                 "optional",
                 "required",
@@ -1364,7 +1364,7 @@
                     ]
                 },
                 "metadata_creator": {
-                    "description": "Who made the repository, by its metadata.",
+                    "description": "Who made the repository, as its metadata states.",
                     "type": [
                         "string",
                         "null"
@@ -1385,7 +1385,7 @@
                     ]
                 },
                 "metadata_publisher": {
-                    "description": "Who published the repository, by its metadata.",
+                    "description": "Who published the repository, as its metadata states.",
                     "type": [
                         "string",
                         "null"
@@ -1626,7 +1626,7 @@
             ]
         },
         "metadata_creator": {
-            "description": "Who made the repository, by its metadata.",
+            "description": "Who made the repository, as its metadata states.",
             "type": [
                 "string",
                 "null"
@@ -1647,7 +1647,7 @@
             ]
         },
         "metadata_publisher": {
-            "description": "Who published the repository, by its metadata.",
+            "description": "Who published the repository, as its metadata states.",
             "type": [
                 "string",
                 "null"
