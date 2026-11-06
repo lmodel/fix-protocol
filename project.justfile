@@ -20,8 +20,8 @@ refresh-fix-latest COMMIT:
 
 # ============ Knowledge bundle: the adapted domain schema ============
 
-# `.lokf/fix-protocol.yaml` is the copy `lokf adapt` writes from the schema so that it can
-# sit beside `.lokf/lokf.yaml` (`lokf adapt --help` lists the moves). The root is
+# `.lokf/schema/fix-protocol.yaml` is the copy `lokf adapt` writes from the schema so that it can
+# sit beside `.lokf/schema/lokf.yaml` (`lokf adapt --help` lists the moves). The root is
 # FixElement, the abstract base of every record with an identifier, so a concept names
 # FixSection, FixCategory, FixDatatype, FixCodeSet, FixCode, FixField, FixComponent,
 # FixGroup or FixMessage as its `type`, and LOKF's `id` stands for the record's. The fold
@@ -33,12 +33,12 @@ refresh-fix-latest COMMIT:
 lokf_cmd := env_var_or_default("LOKF_CMD", "uv run --project .lokf lokf")
 lokf_adapt_roots := "--root FixElement --prefix fix_protocol --fold name=title --keep FixRepository.metadata_source"
 
-# Rewrite .lokf/fix-protocol.yaml from the schema (run after every schema change)
+# Rewrite .lokf/schema/fix-protocol.yaml from the schema (run after every schema change)
 [group('knowledge bundle')]
 lokf-adapt:
-  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --lokf .lokf/lokf.yaml -o .lokf/fix-protocol.yaml
+  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --lokf .lokf/schema/lokf.yaml -o .lokf/schema/fix-protocol.yaml
 
-# Fail when .lokf/fix-protocol.yaml is stale against the schema or .lokf/lokf.yaml
+# Fail when .lokf/schema/fix-protocol.yaml is stale against the schema or .lokf/schema/lokf.yaml
 [group('knowledge bundle')]
 lokf-adapt-check:
-  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --lokf .lokf/lokf.yaml -o .lokf/fix-protocol.yaml --check
+  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --lokf .lokf/schema/lokf.yaml -o .lokf/schema/fix-protocol.yaml --check

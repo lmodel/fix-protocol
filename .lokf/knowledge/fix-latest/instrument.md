@@ -19,7 +19,7 @@ sources:
     title: Knowledge Trust Ladder (KTL)
 generated:
   by: process:ktl-librarian
-  at: "2026-11-05T19:39:39Z"
+  at: "2026-11-06T21:20:28Z"
 status: draft
 ---
 
@@ -27,7 +27,7 @@ status: draft
 
 Instrument belongs to the Common category, which holds the components messages share. The catalogue lists its 174 members. This concept leaves them out, which the schema allows for a component.[^src-fix_protocol-data-components.yaml]
 
-The keys beside LOKF's are the catalogue's own for `fix_component:1003`. `lokf validate` checks them against `.lokf/fix-protocol.yaml`.[^readme.md]
+The keys beside LOKF's are the catalogue's own for `fix_component:1003`. `lokf validate` checks them against `.lokf/schema/fix-protocol.yaml`.[^readme.md]
 
 [^src-fix_protocol-data-components.yaml]: src/fix_protocol/data/components.yaml, the record fix_component:1003
 [^readme.md]: README.md, Knowledge Trust Ladder (KTL)

@@ -20,8 +20,8 @@ ROOT = Path(__file__).parent.parent
 # attestation, and pinned here by that checksum. tests/test_mappings.py checks this
 # schema's fix_orchestra: mappings against fix-orchestra.yaml.
 SOURCE_DIR = ROOT / "src" / "fix_protocol" / "schema"
-COPY = ROOT / ".lokf" / "fix-protocol.yaml"
-LOKF = ROOT / ".lokf" / "lokf.yaml"
+COPY = ROOT / ".lokf" / "schema" / "fix-protocol.yaml"
+LOKF = ROOT / ".lokf" / "schema" / "lokf.yaml"
 NEIGHBOURS = {
     # lmodel/slsa v0.10.0
     "slsa.yaml": "9eeb68decc918565886794fe4eb6e32e1fee0620688cc699961c227242a2f4c2",

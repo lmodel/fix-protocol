@@ -39,7 +39,7 @@ npx skills add noelmcloughlin/knowledge-trust-ladder --skill ktl-curator --yes  
 
 ## Before opening a pull request
 
-- **Edit the schema or the converter, then regenerate.** Run `just gen-schema`, `just gen-project`, `just gen-doc` and `just lokf-adapt`, and commit the output. `src/fix_protocol/data/`, `project/`, `src/fix_protocol/datamodel/`, `docs/schema/` and `.lokf/fix-protocol.yaml` are generated.
+- **Edit the schema or the converter, then regenerate.** Run `just gen-schema`, `just gen-project`, `just gen-doc` and `just lokf-adapt`, and commit the output. `src/fix_protocol/data/`, `project/`, `src/fix_protocol/datamodel/`, `docs/schema/` and `.lokf/schema/fix-protocol.yaml` are generated.
 - **Move to a new extension pack in one pull request.** `just refresh-fix-latest <commit>` copies FIX Latest at that commit into `upstream/` and rebuilds the catalogue; regenerate as above.
 - **FIX's attributes stay in the records.** `tests/test_coverage.py` checks the catalogue against the Orchestra file, sharing no code with the converter.
 - **FIX's text stays out.** `tests/test_own_words.py` refuses a run of FIX's descriptions in the catalogue, the schema, the docs and the bundle.

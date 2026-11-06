@@ -15,7 +15,7 @@ exclude: >-
     project/|
     docs/schema/|
     \.lokf/(scripts|m365)/|
-    \.lokf/(lokf|fix-protocol)\.yaml$|
+    \.lokf/schema/(lokf|fix-protocol)\.yaml$|
     \.github/release/package-lock\.json$|
     tests/neighbours/|
     upstream/

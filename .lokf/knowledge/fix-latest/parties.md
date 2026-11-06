@@ -40,7 +40,7 @@ sources:
     title: Knowledge Trust Ladder (KTL)
 generated:
   by: process:ktl-librarian
-  at: "2026-11-05T19:39:39Z"
+  at: "2026-11-06T21:20:28Z"
 status: draft
 ---
 
@@ -48,7 +48,7 @@ status: draft
 
 Parties belongs to the Common category. Field 453 counts its repeats, and it holds five members.[^src-fix_protocol-data-groups.yaml]
 
-The keys beside LOKF's are the catalogue's own for `fix_group:1012`. `lokf validate` checks them against `.lokf/fix-protocol.yaml`.[^readme.md]
+The keys beside LOKF's are the catalogue's own for `fix_group:1012`. `lokf validate` checks them against `.lokf/schema/fix-protocol.yaml`.[^readme.md]
 
 [^src-fix_protocol-data-groups.yaml]: src/fix_protocol/data/groups.yaml, the record fix_group:1012
 [^readme.md]: README.md, Knowledge Trust Ladder (KTL)

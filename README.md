@@ -43,7 +43,7 @@ Run `just` to list the project's [just](https://github.com/casey/just/) recipes.
 
 ## Knowledge Trust Ladder (KTL)
 
-`.lokf/` holds this project's [KTL](https://w3id.org/ktl/) knowledge bundle. Its domain schema, `.lokf/fix-protocol.yaml`, is the copy `just lokf-adapt` writes from `src/fix_protocol/schema/fix_protocol.yaml`, and `just lokf-adapt-check` says when it is stale. Edit the source, never the copy. A release carries the copy as `schema-<tag>-fix-protocol.yaml`.
+`.lokf/` holds this project's [KTL](https://w3id.org/ktl/) knowledge bundle. Its domain schema, `.lokf/schema/fix-protocol.yaml`, is the copy `just lokf-adapt` writes from `src/fix_protocol/schema/fix_protocol.yaml`, and `just lokf-adapt-check` says when it is stale. Edit the source, never the copy. A release carries the copy as `schema-<tag>-fix-protocol.yaml`.
 
 The copy roots `FixElement` on `Concept`, so a concept names one of its record classes as its type. In Obsidian, add these to the *Known LOKF types* setting of the KTL Registrar and KTL Curator plugins:
 

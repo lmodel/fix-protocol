@@ -18,7 +18,7 @@ sources:
     title: Knowledge Trust Ladder (KTL)
 generated:
   by: process:ktl-librarian
-  at: "2026-11-05T19:39:39Z"
+  at: "2026-11-06T21:20:28Z"
 status: draft
 ---
 
@@ -26,7 +26,7 @@ status: draft
 
 SideCodeSet lists the values of field 54, Side, and its codes are of datatype char. The catalogue holds its 17 codes. This concept leaves them out, since each would be a concept of its own.[^src-fix_protocol-data-code-sets.yaml]
 
-The keys beside LOKF's are the catalogue's own for `fix_code_set:54`. `lokf validate` checks them against `.lokf/fix-protocol.yaml`.[^readme.md]
+The keys beside LOKF's are the catalogue's own for `fix_code_set:54`. `lokf validate` checks them against `.lokf/schema/fix-protocol.yaml`.[^readme.md]
 
 [^src-fix_protocol-data-code-sets.yaml]: src/fix_protocol/data/code-sets.yaml, the record fix_code_set:54
 [^readme.md]: README.md, Knowledge Trust Ladder (KTL)
