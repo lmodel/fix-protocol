@@ -67,7 +67,7 @@ exclusions:
     reason: The pointer that sends agents to this bundle.
   - resource: knowledge_bundle
     reason: The sidecar's link to the bundle.
-  - resource: .lokf/lokf.yaml
+  - resource: .lokf/schema/lokf.yaml
     reason: LOKF's schema, pinned by the sidecar.
   - resource: .lokf/scripts
     reason: The sidecar's scripts, which the weekly sync replaces.
@@ -103,7 +103,7 @@ sources:
   - resource: project.justfile
   - resource: website
   - resource: .github/workflows
-  - resource: .lokf/fix-protocol.yaml
+  - resource: .lokf/schema/fix-protocol.yaml
   - resource: NOTICE
   - resource: AI_COVENANT.md
   - resource: SECURITY.md
@@ -111,7 +111,7 @@ sources:
   - resource: CHANGELOG.md
 generated:
   by: process:ktl-librarian
-  at: "2026-11-05T19:39:39Z"
+  at: "2026-11-06T21:20:28Z"
 status: draft
 ---
 
@@ -128,5 +128,5 @@ status: draft
 | `.github/workflows/` | one `Service` per workflow | each workflow's header comment |
 | `docs/`, `README.md` | the explanations and the how-to pages | the section each concept cites |
 | `NOTICE`, `AI_COVENANT.md`, `SECURITY.md`, `CONTRIBUTING.md` | the policies (`Policy`) and the release playbook | the section each concept cites |
-| `.lokf/fix-protocol.yaml`, `project.justfile` | the adapt copy (`Dataset`) | `just lokf-adapt-check` |
+| `.lokf/schema/fix-protocol.yaml`, `project.justfile` | the adapt copy (`Dataset`) | `just lokf-adapt-check` |
 | `website/` | the documentation site (`Service`) | `website/README.md` |

@@ -1,5 +1,9 @@
 # Change Log
 
+## 2026-11-06
+
+* **Changed**: `lokf.yaml` and `fix-protocol.yaml` moved into `.lokf/schema/`, where KTL v0.62.0 keeps a sidecar's schema files, and the concepts that name them follow.
+
 ## 2026-11-05
 
 * **Prose**: reworded 15 concept bodies in plain English. No fact, link, number or frontmatter changed.

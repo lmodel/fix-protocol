@@ -20,7 +20,7 @@ sources:
     title: Knowledge Trust Ladder (KTL)
 generated:
   by: process:ktl-librarian
-  at: "2026-11-05T19:39:39Z"
+  at: "2026-11-06T21:20:28Z"
 status: draft
 ---
 
@@ -28,7 +28,7 @@ status: draft
 
 SingleGeneralOrderHandling groups the messages for one order, such as NewOrderSingle. The Trade section holds it, and its FIXML schema file is `order`.[^src-fix_protocol-data-repository.yaml]
 
-The keys beside LOKF's are the catalogue's own for `fix_category:SingleGeneralOrderHandling`. `lokf validate` checks them against `.lokf/fix-protocol.yaml`.[^readme.md]
+The keys beside LOKF's are the catalogue's own for `fix_category:SingleGeneralOrderHandling`. `lokf validate` checks them against `.lokf/schema/fix-protocol.yaml`.[^readme.md]
 
 [^src-fix_protocol-data-repository.yaml]: src/fix_protocol/data/repository.yaml, the record fix_category:SingleGeneralOrderHandling
 [^readme.md]: README.md, Knowledge Trust Ladder (KTL)

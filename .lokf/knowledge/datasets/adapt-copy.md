@@ -3,8 +3,8 @@ type: Dataset
 id: https://w3id.org/lmodel/fix-protocol/knowledge/datasets/adapt-copy
 genre: reference
 title: The adapt copy
-description: "`.lokf/fix-protocol.yaml`: the copy of the schema that `lokf adapt` writes for the knowledge bundle, with `FixElement` re-rooted on LOKF's `Concept`; a release carries it as `schema-<tag>-fix-protocol.yaml`."
-resource: .lokf/fix-protocol.yaml
+description: "`.lokf/schema/fix-protocol.yaml`: the copy of the schema that `lokf adapt` writes for the knowledge bundle, with `FixElement` re-rooted on LOKF's `Concept`; a release carries it as `schema-<tag>-fix-protocol.yaml`."
+resource: .lokf/schema/fix-protocol.yaml
 derivedFrom:
   - https://w3id.org/lmodel/fix-protocol/knowledge/datasets/fix-protocol-linkml-schema
 references:
@@ -18,7 +18,7 @@ sources:
     title: Knowledge Trust Ladder (KTL)
 generated:
   by: process:ktl-librarian
-  at: "2026-11-05T19:39:39Z"
+  at: "2026-11-06T21:20:28Z"
 status: draft
 ---
 
