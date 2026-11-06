@@ -9,7 +9,6 @@ which this test reads from that repository's released adapt copy in tests/neighb
 from functools import cache
 from pathlib import Path
 
-import pytest
 import yaml
 
 from tests import conversion
@@ -88,10 +87,6 @@ def test_each_record_class_maps_to_its_orchestra_type():
 
 
 def test_every_fix_orchestra_mapping_names_a_released_class():
-    """Skipped until lmodel/fix-orchestra releases a copy that tests/test_schema_rules.py
-    pins as a neighbour."""
-    if not FIX_ORCHESTRA.exists():
-        pytest.skip("lmodel/fix-orchestra has no release yet to hold the targets to")
     classes = set(yaml.safe_load(FIX_ORCHESTRA.read_text(encoding="utf-8"))["classes"])
     targets = {
         curie.partition(":")[2]

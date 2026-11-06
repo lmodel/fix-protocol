@@ -17,9 +17,8 @@ ROOT = Path(__file__).parent.parent
 # What a host may import beside this schema's adapt copy: LOKF's schema, pinned by the
 # sidecar, and the adapt copies other lmodel repositories release. Each neighbour is the
 # schema asset of a release, downloaded and checked against the release's .sha256 and its
-# attestation, and pinned here by that checksum. When lmodel/fix-orchestra releases, its
-# asset joins them as fix-orchestra.yaml, and tests/test_mappings.py then checks this
-# schema's fix_orchestra: mappings against it.
+# attestation, and pinned here by that checksum. tests/test_mappings.py checks this
+# schema's fix_orchestra: mappings against fix-orchestra.yaml.
 SOURCE_DIR = ROOT / "src" / "fix_protocol" / "schema"
 COPY = ROOT / ".lokf" / "fix-protocol.yaml"
 LOKF = ROOT / ".lokf" / "lokf.yaml"
@@ -84,6 +83,8 @@ NEIGHBOURS = {
     "iso29100.yaml": "2b773c6c71a7bf72779fc92e9974f3c2b02c414fdc36c2185c4cb99f54f40bd2",
     # lmodel/ai-governance-framework v0.1.0
     "ai-governance-framework.yaml": "5c853b7ffe526a8610c1b98a152e3321fb8db11a63007c3419cfb18a0e5d948d",
+    # lmodel/fix-orchestra v0.1.0
+    "fix-orchestra.yaml": "68574443d6a144f1e9c4f453fea67ad421bf05186cdce972c45e1ac00111f4a8",
 }
 NEIGHBOUR_DIR = ROOT / "tests" / "neighbours"
 ELEMENT_KINDS = ("classes", "enums", "types", "subsets")
