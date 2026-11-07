@@ -1,0 +1,1784 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix linkml: <https://w3id.org/linkml/> .
+@prefix pav: <http://purl.org/pav/> .
+@prefix schema1: <http://schema.org/> .
+<https://w3id.org/lmodel/fix-protocol/Field> dcterms:title "Fields" ;
+	linkml:description "The category groups fields." .
+<https://w3id.org/lmodel/fix-protocol/FixCategory> dcterms:title "Category" ;
+	a linkml:ClassDefinition ;
+	skos:exactMatch "fix_orchestra:OrchestraCategoryV10"^^xsd:anyURI , "fixr:categoryType"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core"^^xsd:anyURI ;
+	linkml:attributes <https://w3id.org/lmodel/fix-protocol/category_kind> , <https://w3id.org/lmodel/fix-protocol/include_file> ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-protocol/FixCategory"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/FixCategory"^^xsd:anyURI ;
+	linkml:description "A group of messages within a section. Three categories belong to no section, and hold the shared components and the fields instead." ;
+	linkml:is_a <https://w3id.org/lmodel/fix-protocol/FixElement> ;
+	linkml:slot_usage _:c14n30 ;
+	linkml:slots <https://w3id.org/lmodel/fix-protocol/FixCategory_id> , <https://w3id.org/lmodel/fix-protocol/added_in> , <https://w3id.org/lmodel/fix-protocol/added_in_ep> , <https://w3id.org/lmodel/fix-protocol/deprecated_in> , <https://w3id.org/lmodel/fix-protocol/deprecated_in_ep> , <https://w3id.org/lmodel/fix-protocol/fixCategory__category_kind> , <https://w3id.org/lmodel/fix-protocol/fixCategory__include_file> , <https://w3id.org/lmodel/fix-protocol/fixml_file_name> , <https://w3id.org/lmodel/fix-protocol/fixml_not_required> , <https://w3id.org/lmodel/fix-protocol/in_section> , <https://w3id.org/lmodel/fix-protocol/name> , <https://w3id.org/lmodel/fix-protocol/updated_in> , <https://w3id.org/lmodel/fix-protocol/updated_in_ep> .
+<https://w3id.org/lmodel/fix-protocol/FixCategoryKind> dcterms:title "Category Kind" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/FixCategoryKind"^^xsd:anyURI ;
+	linkml:description "Whether a category groups messages or fields." ;
+	linkml:permissible_values <https://w3id.org/lmodel/fix-protocol/Field> , <https://w3id.org/lmodel/fix-protocol/Message> .
+<https://w3id.org/lmodel/fix-protocol/FixCategory_id> dcterms:title "Identifier" ;
+	a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core"^^xsd:anyURI ;
+	skos:prefLabel "id" ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/id"^^xsd:anyURI ;
+	linkml:description "The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation." ;
+	linkml:domain <https://w3id.org/lmodel/fix-protocol/FixCategory> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixCategory> ;
+	linkml:identifier true ;
+	linkml:is_a <https://w3id.org/lmodel/fix-protocol/id> ;
+	linkml:is_usage_slot true ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixCategory> ;
+	linkml:pattern "^fix_category:[A-Za-z][A-Za-z0-9_]*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/uriorcurie> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/id"^^xsd:anyURI ;
+	linkml:usage_slot_name "id" .
+<https://w3id.org/lmodel/fix-protocol/FixCode> dcterms:title "Code" ;
+	a linkml:ClassDefinition ;
+	skos:exactMatch "fix_orchestra:OrchestraCodeV10"^^xsd:anyURI , "fixr:codeType"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary"^^xsd:anyURI ;
+	linkml:attributes <https://w3id.org/lmodel/fix-protocol/code_group> , <https://w3id.org/lmodel/fix-protocol/code_value> , <https://w3id.org/lmodel/fix-protocol/sort_order> ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-protocol/FixCode"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/FixCode"^^xsd:anyURI ;
+	linkml:description "One value of a code set, with its name, such as 1 for Buy." ;
+	linkml:is_a <https://w3id.org/lmodel/fix-protocol/FixElement> ;
+	linkml:slot_usage _:c14n0 ;
+	linkml:slots <https://w3id.org/lmodel/fix-protocol/FixCode_id> , <https://w3id.org/lmodel/fix-protocol/added_in> , <https://w3id.org/lmodel/fix-protocol/added_in_ep> , <https://w3id.org/lmodel/fix-protocol/deprecated_in> , <https://w3id.org/lmodel/fix-protocol/deprecated_in_ep> , <https://w3id.org/lmodel/fix-protocol/fixCode__code_group> , <https://w3id.org/lmodel/fix-protocol/fixCode__code_value> , <https://w3id.org/lmodel/fix-protocol/fixCode__sort_order> , <https://w3id.org/lmodel/fix-protocol/name> , <https://w3id.org/lmodel/fix-protocol/updated_in> , <https://w3id.org/lmodel/fix-protocol/updated_in_ep> .
+<https://w3id.org/lmodel/fix-protocol/FixCodeSet> dcterms:title "Code Set" ;
+	a linkml:ClassDefinition ;
+	skos:exactMatch "fix_orchestra:OrchestraCodeSetV10"^^xsd:anyURI , "fixr:codeSetType"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary"^^xsd:anyURI ;
+	linkml:attributes <https://w3id.org/lmodel/fix-protocol/code_set_datatype> , <https://w3id.org/lmodel/fix-protocol/fix_codes> ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-protocol/FixCodeSet"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/FixCodeSet"^^xsd:anyURI ;
+	linkml:description "A list of the values a field may take, each a code with a name, such as the sides of an order." ;
+	linkml:is_a <https://w3id.org/lmodel/fix-protocol/FixElement> ;
+	linkml:slot_usage _:c14n24 ;
+	linkml:slots <https://w3id.org/lmodel/fix-protocol/FixCodeSet_id> , <https://w3id.org/lmodel/fix-protocol/added_in> , <https://w3id.org/lmodel/fix-protocol/added_in_ep> , <https://w3id.org/lmodel/fix-protocol/deprecated_in> , <https://w3id.org/lmodel/fix-protocol/deprecated_in_ep> , <https://w3id.org/lmodel/fix-protocol/fixCodeSet__code_set_datatype> , <https://w3id.org/lmodel/fix-protocol/fixCodeSet__fix_codes> , <https://w3id.org/lmodel/fix-protocol/name> , <https://w3id.org/lmodel/fix-protocol/updated_in> , <https://w3id.org/lmodel/fix-protocol/updated_in_ep> .
+<https://w3id.org/lmodel/fix-protocol/FixCodeSet_id> dcterms:title "Identifier" ;
+	a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core"^^xsd:anyURI ;
+	skos:prefLabel "id" ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/id"^^xsd:anyURI ;
+	linkml:description "The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation." ;
+	linkml:domain <https://w3id.org/lmodel/fix-protocol/FixCodeSet> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixCodeSet> ;
+	linkml:identifier true ;
+	linkml:is_a <https://w3id.org/lmodel/fix-protocol/id> ;
+	linkml:is_usage_slot true ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixCodeSet> ;
+	linkml:pattern "^fix_code_set:[1-9][0-9]*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/uriorcurie> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/id"^^xsd:anyURI ;
+	linkml:usage_slot_name "id" .
+<https://w3id.org/lmodel/fix-protocol/FixCode_id> dcterms:title "Identifier" ;
+	a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core"^^xsd:anyURI ;
+	skos:prefLabel "id" ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/id"^^xsd:anyURI ;
+	linkml:description "The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation." ;
+	linkml:domain <https://w3id.org/lmodel/fix-protocol/FixCode> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixCode> ;
+	linkml:identifier true ;
+	linkml:is_a <https://w3id.org/lmodel/fix-protocol/id> ;
+	linkml:is_usage_slot true ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixCode> ;
+	linkml:pattern "^fix_code:[1-9][0-9]*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/uriorcurie> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/id"^^xsd:anyURI ;
+	linkml:usage_slot_name "id" .
+<https://w3id.org/lmodel/fix-protocol/FixComponent> dcterms:title "Component" ;
+	a linkml:ClassDefinition ;
+	skos:exactMatch "fix_orchestra:OrchestraComponentV10"^^xsd:anyURI , "fixr:componentType"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_structure"^^xsd:anyURI ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-protocol/FixComponent"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/FixComponent"^^xsd:anyURI ;
+	linkml:description "A named block of fields, components and groups that messages share, such as Instrument." ;
+	linkml:is_a <https://w3id.org/lmodel/fix-protocol/FixElement> ;
+	linkml:slot_usage _:c14n28 ;
+	linkml:slots <https://w3id.org/lmodel/fix-protocol/FixComponent_id> , <https://w3id.org/lmodel/fix-protocol/abbr_name> , <https://w3id.org/lmodel/fix-protocol/added_in> , <https://w3id.org/lmodel/fix-protocol/added_in_ep> , <https://w3id.org/lmodel/fix-protocol/deprecated_in> , <https://w3id.org/lmodel/fix-protocol/deprecated_in_ep> , <https://w3id.org/lmodel/fix-protocol/fix_members> , <https://w3id.org/lmodel/fix-protocol/fixml_not_required> , <https://w3id.org/lmodel/fix-protocol/in_category> , <https://w3id.org/lmodel/fix-protocol/name> , <https://w3id.org/lmodel/fix-protocol/updated_in> , <https://w3id.org/lmodel/fix-protocol/updated_in_ep> .
+<https://w3id.org/lmodel/fix-protocol/FixComponent_id> dcterms:title "Identifier" ;
+	a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core"^^xsd:anyURI ;
+	skos:prefLabel "id" ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/id"^^xsd:anyURI ;
+	linkml:description "The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation." ;
+	linkml:domain <https://w3id.org/lmodel/fix-protocol/FixComponent> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixComponent> ;
+	linkml:identifier true ;
+	linkml:is_a <https://w3id.org/lmodel/fix-protocol/id> ;
+	linkml:is_usage_slot true ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixComponent> ;
+	linkml:pattern "^fix_component:[1-9][0-9]*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/uriorcurie> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/id"^^xsd:anyURI ;
+	linkml:usage_slot_name "id" .
+<https://w3id.org/lmodel/fix-protocol/FixDatatype> dcterms:title "Datatype" ;
+	a linkml:ClassDefinition ;
+	skos:exactMatch "fix_orchestra:OrchestraDatatypeV10"^^xsd:anyURI , "fixr:datatype"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary"^^xsd:anyURI ;
+	linkml:attributes <https://w3id.org/lmodel/fix-protocol/base_type> , <https://w3id.org/lmodel/fix-protocol/mapped_datatypes> ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-protocol/FixDatatype"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/FixDatatype"^^xsd:anyURI ;
+	linkml:description "A kind of value a field holds, such as int, Price or UTCTimestamp, with the XML Schema types it maps to." ;
+	linkml:is_a <https://w3id.org/lmodel/fix-protocol/FixElement> ;
+	linkml:slot_usage _:c14n7 ;
+	linkml:slots <https://w3id.org/lmodel/fix-protocol/FixDatatype_id> , <https://w3id.org/lmodel/fix-protocol/added_in> , <https://w3id.org/lmodel/fix-protocol/added_in_ep> , <https://w3id.org/lmodel/fix-protocol/deprecated_in> , <https://w3id.org/lmodel/fix-protocol/deprecated_in_ep> , <https://w3id.org/lmodel/fix-protocol/fixDatatype__base_type> , <https://w3id.org/lmodel/fix-protocol/fixDatatype__mapped_datatypes> , <https://w3id.org/lmodel/fix-protocol/name> , <https://w3id.org/lmodel/fix-protocol/updated_in> , <https://w3id.org/lmodel/fix-protocol/updated_in_ep> .
+<https://w3id.org/lmodel/fix-protocol/FixDatatype_id> dcterms:title "Identifier" ;
+	a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core"^^xsd:anyURI ;
+	skos:prefLabel "id" ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/id"^^xsd:anyURI ;
+	linkml:description "The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation." ;
+	linkml:domain <https://w3id.org/lmodel/fix-protocol/FixDatatype> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixDatatype> ;
+	linkml:identifier true ;
+	linkml:is_a <https://w3id.org/lmodel/fix-protocol/id> ;
+	linkml:is_usage_slot true ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixDatatype> ;
+	linkml:pattern "^fix_datatype:[A-Za-z][A-Za-z0-9_]*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/uriorcurie> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/id"^^xsd:anyURI ;
+	linkml:usage_slot_name "id" .
+<https://w3id.org/lmodel/fix-protocol/FixElement> dcterms:title "FIX Element" ;
+	a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core"^^xsd:anyURI ;
+	linkml:abstract true ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-protocol/FixElement"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/FixElement"^^xsd:anyURI ;
+	linkml:description "An element of FIX Latest with an identifier and a name of its own." ;
+	linkml:mixins <https://w3id.org/lmodel/fix-protocol/FixPedigreeMixin> ;
+	linkml:slot_usage _:c14n31 ;
+	linkml:slots <https://w3id.org/lmodel/fix-protocol/added_in> , <https://w3id.org/lmodel/fix-protocol/added_in_ep> , <https://w3id.org/lmodel/fix-protocol/deprecated_in> , <https://w3id.org/lmodel/fix-protocol/deprecated_in_ep> , <https://w3id.org/lmodel/fix-protocol/id> , <https://w3id.org/lmodel/fix-protocol/name> , <https://w3id.org/lmodel/fix-protocol/updated_in> , <https://w3id.org/lmodel/fix-protocol/updated_in_ep> .
+<https://w3id.org/lmodel/fix-protocol/FixField> dcterms:title "Field" ;
+	a linkml:ClassDefinition ;
+	skos:exactMatch "fix_orchestra:OrchestraFieldV10"^^xsd:anyURI , "fixr:fieldType"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary"^^xsd:anyURI ;
+	skos:note "FIX Latest names a field's datatype or code set in one attribute, type. The record splits it, so each reference has one range, as Orchestra 1.1 does." ;
+	linkml:attributes <https://w3id.org/lmodel/fix-protocol/base_category> , <https://w3id.org/lmodel/fix-protocol/base_category_abbr_name> , <https://w3id.org/lmodel/fix-protocol/discriminator_field> , <https://w3id.org/lmodel/fix-protocol/field_code_set> , <https://w3id.org/lmodel/fix-protocol/field_datatype> , <https://w3id.org/lmodel/fix-protocol/length_field> , <https://w3id.org/lmodel/fix-protocol/union_datatype> ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-protocol/FixField"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/FixField"^^xsd:anyURI ;
+	linkml:description "A field of FIX, known by its tag number, such as 55 for Symbol, with the datatype or code set of its values." ;
+	linkml:exactly_one_of _:c14n37 , _:c14n38 ;
+	linkml:is_a <https://w3id.org/lmodel/fix-protocol/FixElement> ;
+	linkml:slot_usage _:c14n33 ;
+	linkml:slots <https://w3id.org/lmodel/fix-protocol/FixField_id> , <https://w3id.org/lmodel/fix-protocol/abbr_name> , <https://w3id.org/lmodel/fix-protocol/added_in> , <https://w3id.org/lmodel/fix-protocol/added_in_ep> , <https://w3id.org/lmodel/fix-protocol/deprecated_in> , <https://w3id.org/lmodel/fix-protocol/deprecated_in_ep> , <https://w3id.org/lmodel/fix-protocol/fixField__base_category> , <https://w3id.org/lmodel/fix-protocol/fixField__base_category_abbr_name> , <https://w3id.org/lmodel/fix-protocol/fixField__discriminator_field> , <https://w3id.org/lmodel/fix-protocol/fixField__field_code_set> , <https://w3id.org/lmodel/fix-protocol/fixField__field_datatype> , <https://w3id.org/lmodel/fix-protocol/fixField__length_field> , <https://w3id.org/lmodel/fix-protocol/fixField__union_datatype> , <https://w3id.org/lmodel/fix-protocol/fixml_not_required> , <https://w3id.org/lmodel/fix-protocol/name> , <https://w3id.org/lmodel/fix-protocol/updated_in> , <https://w3id.org/lmodel/fix-protocol/updated_in_ep> .
+<https://w3id.org/lmodel/fix-protocol/FixField_id> dcterms:title "Identifier" ;
+	a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core"^^xsd:anyURI ;
+	skos:prefLabel "id" ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/id"^^xsd:anyURI ;
+	linkml:description "The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation." ;
+	linkml:domain <https://w3id.org/lmodel/fix-protocol/FixField> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixField> ;
+	linkml:identifier true ;
+	linkml:is_a <https://w3id.org/lmodel/fix-protocol/id> ;
+	linkml:is_usage_slot true ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixField> ;
+	linkml:pattern "^fix_field:[1-9][0-9]*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/uriorcurie> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/id"^^xsd:anyURI ;
+	linkml:usage_slot_name "id" .
+<https://w3id.org/lmodel/fix-protocol/FixGroup> dcterms:title "Repeating Group" ;
+	a linkml:ClassDefinition ;
+	skos:exactMatch "fix_orchestra:OrchestraGroupV10"^^xsd:anyURI , "fixr:groupType"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_structure"^^xsd:anyURI ;
+	linkml:attributes <https://w3id.org/lmodel/fix-protocol/num_in_group> ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-protocol/FixGroup"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/FixGroup"^^xsd:anyURI ;
+	linkml:description "A block of members that repeats in a message, with the field that counts the repeats." ;
+	linkml:is_a <https://w3id.org/lmodel/fix-protocol/FixElement> ;
+	linkml:slot_usage _:c14n2 ;
+	linkml:slots <https://w3id.org/lmodel/fix-protocol/FixGroup_fix_members> , <https://w3id.org/lmodel/fix-protocol/FixGroup_id> , <https://w3id.org/lmodel/fix-protocol/abbr_name> , <https://w3id.org/lmodel/fix-protocol/added_in> , <https://w3id.org/lmodel/fix-protocol/added_in_ep> , <https://w3id.org/lmodel/fix-protocol/deprecated_in> , <https://w3id.org/lmodel/fix-protocol/deprecated_in_ep> , <https://w3id.org/lmodel/fix-protocol/fixGroup__num_in_group> , <https://w3id.org/lmodel/fix-protocol/in_category> , <https://w3id.org/lmodel/fix-protocol/name> , <https://w3id.org/lmodel/fix-protocol/updated_in> , <https://w3id.org/lmodel/fix-protocol/updated_in_ep> .
+<https://w3id.org/lmodel/fix-protocol/FixGroup_fix_members> dcterms:title "Members" ;
+	a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_structure"^^xsd:anyURI ;
+	skos:mappingRelation "https://w3id.org/lmodel/fix-protocol/fix_members"^^xsd:anyURI ;
+	skos:note "A message lists its members in a structure element and a component or a group lists them directly. The record lists them here in each case." ;
+	skos:prefLabel "fix_members" ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/fix_members"^^xsd:anyURI ;
+	linkml:description "The fields, components and groups the element holds, in the order FIX lists them." ;
+	linkml:domain <https://w3id.org/lmodel/fix-protocol/FixGroup> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixGroup> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:is_a <https://w3id.org/lmodel/fix-protocol/fix_members> ;
+	linkml:is_usage_slot true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixGroup> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixMember> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/fix_members"^^xsd:anyURI ;
+	linkml:usage_slot_name "fix_members" .
+<https://w3id.org/lmodel/fix-protocol/FixGroup_id> dcterms:title "Identifier" ;
+	a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core"^^xsd:anyURI ;
+	skos:prefLabel "id" ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/id"^^xsd:anyURI ;
+	linkml:description "The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation." ;
+	linkml:domain <https://w3id.org/lmodel/fix-protocol/FixGroup> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixGroup> ;
+	linkml:identifier true ;
+	linkml:is_a <https://w3id.org/lmodel/fix-protocol/id> ;
+	linkml:is_usage_slot true ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixGroup> ;
+	linkml:pattern "^fix_group:[1-9][0-9]*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/uriorcurie> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/id"^^xsd:anyURI ;
+	linkml:usage_slot_name "id" .
+<https://w3id.org/lmodel/fix-protocol/FixIncludeFile> dcterms:title "Included FIXML File" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/FixIncludeFile"^^xsd:anyURI ;
+	linkml:description "Which shared FIXML schema file a category's own FIXML schema file brings in." ;
+	linkml:permissible_values <https://w3id.org/lmodel/fix-protocol/components> , <https://w3id.org/lmodel/fix-protocol/fields> .
+<https://w3id.org/lmodel/fix-protocol/FixMappedDatatype> dcterms:title "Mapped Datatype" ;
+	a linkml:ClassDefinition ;
+	skos:exactMatch "fixr:mappedDatatype"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary"^^xsd:anyURI ;
+	linkml:attributes <https://w3id.org/lmodel/fix-protocol/mapped_base> , <https://w3id.org/lmodel/fix-protocol/mapped_builtin> , <https://w3id.org/lmodel/fix-protocol/mapped_min_inclusive> , <https://w3id.org/lmodel/fix-protocol/mapped_pattern> , <https://w3id.org/lmodel/fix-protocol/mapped_standard> ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-protocol/FixMappedDatatype"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/FixMappedDatatype"^^xsd:anyURI ;
+	linkml:description "The type of another standard that a FIX datatype takes, such as xs:decimal in XML Schema." ;
+	linkml:slot_usage _:c14n15 ;
+	linkml:slots <https://w3id.org/lmodel/fix-protocol/fixMappedDatatype__mapped_base> , <https://w3id.org/lmodel/fix-protocol/fixMappedDatatype__mapped_builtin> , <https://w3id.org/lmodel/fix-protocol/fixMappedDatatype__mapped_min_inclusive> , <https://w3id.org/lmodel/fix-protocol/fixMappedDatatype__mapped_pattern> , <https://w3id.org/lmodel/fix-protocol/fixMappedDatatype__mapped_standard> .
+<https://w3id.org/lmodel/fix-protocol/FixMember> dcterms:title "Member" ;
+	a linkml:ClassDefinition ;
+	skos:closeMatch "fixr:componentRefType"^^xsd:anyURI , "fixr:fieldRefType"^^xsd:anyURI , "fixr:groupRefType"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_structure"^^xsd:anyURI ;
+	skos:note "Orchestra gives the three kinds of member three elements of one shape. The record gives each a key, and one member holds exactly one of them." ;
+	linkml:attributes <https://w3id.org/lmodel/fix-protocol/fixml_inlined> , <https://w3id.org/lmodel/fix-protocol/member_component> , <https://w3id.org/lmodel/fix-protocol/member_field> , <https://w3id.org/lmodel/fix-protocol/member_group> , <https://w3id.org/lmodel/fix-protocol/presence> ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-protocol/FixMember"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/FixMember"^^xsd:anyURI ;
+	linkml:description "One field, component or group in a message, component or group, and whether it must be there." ;
+	linkml:exactly_one_of _:c14n34 , _:c14n35 , _:c14n36 ;
+	linkml:mixins <https://w3id.org/lmodel/fix-protocol/FixPedigreeMixin> ;
+	linkml:slot_usage _:c14n11 ;
+	linkml:slots <https://w3id.org/lmodel/fix-protocol/added_in> , <https://w3id.org/lmodel/fix-protocol/added_in_ep> , <https://w3id.org/lmodel/fix-protocol/deprecated_in> , <https://w3id.org/lmodel/fix-protocol/deprecated_in_ep> , <https://w3id.org/lmodel/fix-protocol/fixMember__fixml_inlined> , <https://w3id.org/lmodel/fix-protocol/fixMember__member_component> , <https://w3id.org/lmodel/fix-protocol/fixMember__member_field> , <https://w3id.org/lmodel/fix-protocol/fixMember__member_group> , <https://w3id.org/lmodel/fix-protocol/fixMember__presence> , <https://w3id.org/lmodel/fix-protocol/updated_in> , <https://w3id.org/lmodel/fix-protocol/updated_in_ep> .
+<https://w3id.org/lmodel/fix-protocol/FixMessage> dcterms:title "Message" ;
+	a linkml:ClassDefinition ;
+	skos:exactMatch "fix_orchestra:OrchestraMessageV10"^^xsd:anyURI , "fixr:messageType"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_structure"^^xsd:anyURI ;
+	linkml:attributes <https://w3id.org/lmodel/fix-protocol/msg_type> ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-protocol/FixMessage"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/FixMessage"^^xsd:anyURI ;
+	linkml:description "A FIX message, known by its MsgType, such as D for NewOrderSingle, with its members in order." ;
+	linkml:is_a <https://w3id.org/lmodel/fix-protocol/FixElement> ;
+	linkml:slot_usage _:c14n10 ;
+	linkml:slots <https://w3id.org/lmodel/fix-protocol/FixMessage_fix_members> , <https://w3id.org/lmodel/fix-protocol/FixMessage_id> , <https://w3id.org/lmodel/fix-protocol/abbr_name> , <https://w3id.org/lmodel/fix-protocol/added_in> , <https://w3id.org/lmodel/fix-protocol/added_in_ep> , <https://w3id.org/lmodel/fix-protocol/deprecated_in> , <https://w3id.org/lmodel/fix-protocol/deprecated_in_ep> , <https://w3id.org/lmodel/fix-protocol/fixMessage__msg_type> , <https://w3id.org/lmodel/fix-protocol/fixml_not_required> , <https://w3id.org/lmodel/fix-protocol/in_category> , <https://w3id.org/lmodel/fix-protocol/name> , <https://w3id.org/lmodel/fix-protocol/updated_in> , <https://w3id.org/lmodel/fix-protocol/updated_in_ep> .
+<https://w3id.org/lmodel/fix-protocol/FixMessage_fix_members> dcterms:title "Members" ;
+	a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_structure"^^xsd:anyURI ;
+	skos:mappingRelation "https://w3id.org/lmodel/fix-protocol/fix_members"^^xsd:anyURI ;
+	skos:note "A message lists its members in a structure element and a component or a group lists them directly. The record lists them here in each case." ;
+	skos:prefLabel "fix_members" ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/fix_members"^^xsd:anyURI ;
+	linkml:description "The fields, components and groups the element holds, in the order FIX lists them." ;
+	linkml:domain <https://w3id.org/lmodel/fix-protocol/FixMessage> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixMessage> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:is_a <https://w3id.org/lmodel/fix-protocol/fix_members> ;
+	linkml:is_usage_slot true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixMessage> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixMember> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/fix_members"^^xsd:anyURI ;
+	linkml:usage_slot_name "fix_members" .
+<https://w3id.org/lmodel/fix-protocol/FixMessage_id> dcterms:title "Identifier" ;
+	a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core"^^xsd:anyURI ;
+	skos:prefLabel "id" ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/id"^^xsd:anyURI ;
+	linkml:description "The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation." ;
+	linkml:domain <https://w3id.org/lmodel/fix-protocol/FixMessage> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixMessage> ;
+	linkml:identifier true ;
+	linkml:is_a <https://w3id.org/lmodel/fix-protocol/id> ;
+	linkml:is_usage_slot true ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixMessage> ;
+	linkml:pattern "^fix_message:[1-9][0-9]*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/uriorcurie> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/id"^^xsd:anyURI ;
+	linkml:usage_slot_name "id" .
+<https://w3id.org/lmodel/fix-protocol/FixNumInGroup> dcterms:title "Count Field Reference" ;
+	a linkml:ClassDefinition ;
+	skos:closeMatch "fixr:fieldRefType"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_structure"^^xsd:anyURI ;
+	skos:note "Orchestra 1.0 gives the count the shape of a field reference." ;
+	linkml:attributes <https://w3id.org/lmodel/fix-protocol/count_field> ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-protocol/FixNumInGroup"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/FixNumInGroup"^^xsd:anyURI ;
+	linkml:description "The field that counts a group's repeats, as the group names it." ;
+	linkml:mixins <https://w3id.org/lmodel/fix-protocol/FixPedigreeMixin> ;
+	linkml:slot_usage _:c14n16 ;
+	linkml:slots <https://w3id.org/lmodel/fix-protocol/added_in> , <https://w3id.org/lmodel/fix-protocol/added_in_ep> , <https://w3id.org/lmodel/fix-protocol/deprecated_in> , <https://w3id.org/lmodel/fix-protocol/deprecated_in_ep> , <https://w3id.org/lmodel/fix-protocol/fixNumInGroup__count_field> , <https://w3id.org/lmodel/fix-protocol/updated_in> , <https://w3id.org/lmodel/fix-protocol/updated_in_ep> .
+<https://w3id.org/lmodel/fix-protocol/FixPedigreeMixin> dcterms:title "Pedigree" ;
+	a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core"^^xsd:anyURI ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-protocol/FixPedigreeMixin"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/FixPedigreeMixin"^^xsd:anyURI ;
+	linkml:description "When FIX added, last changed and deprecated an element, by version and extension pack." ;
+	linkml:mixin true ;
+	linkml:slot_usage _:c14n29 ;
+	linkml:slots <https://w3id.org/lmodel/fix-protocol/added_in> , <https://w3id.org/lmodel/fix-protocol/added_in_ep> , <https://w3id.org/lmodel/fix-protocol/deprecated_in> , <https://w3id.org/lmodel/fix-protocol/deprecated_in_ep> , <https://w3id.org/lmodel/fix-protocol/updated_in> , <https://w3id.org/lmodel/fix-protocol/updated_in_ep> .
+<https://w3id.org/lmodel/fix-protocol/FixPresence> dcterms:title "Presence" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core"^^xsd:anyURI ;
+	skos:note "FIX Latest states only required. A member with no presence is optional, which is Orchestra 1.0's default." ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/FixPresence"^^xsd:anyURI ;
+	linkml:description "Whether a message, component or group must carry a member, in the terms Orchestra 1.0 defines." ;
+	linkml:permissible_values <https://w3id.org/lmodel/fix-protocol/constant> , <https://w3id.org/lmodel/fix-protocol/forbidden> , <https://w3id.org/lmodel/fix-protocol/ignored> , <https://w3id.org/lmodel/fix-protocol/optional> , <https://w3id.org/lmodel/fix-protocol/required> .
+<https://w3id.org/lmodel/fix-protocol/FixRepository> dcterms:title "FIX Latest Catalogue" ;
+	a linkml:ClassDefinition ;
+	skos:exactMatch "fix_orchestra:OrchestraRepositoryV10"^^xsd:anyURI , "fixr:repository"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol"^^xsd:anyURI ;
+	linkml:attributes <https://w3id.org/lmodel/fix-protocol/fix_categories> , <https://w3id.org/lmodel/fix-protocol/fix_code_sets> , <https://w3id.org/lmodel/fix-protocol/fix_components> , <https://w3id.org/lmodel/fix-protocol/fix_datatypes> , <https://w3id.org/lmodel/fix-protocol/fix_fields> , <https://w3id.org/lmodel/fix-protocol/fix_groups> , <https://w3id.org/lmodel/fix-protocol/fix_messages> , <https://w3id.org/lmodel/fix-protocol/fix_sections> , <https://w3id.org/lmodel/fix-protocol/metadata_conforms_to> , <https://w3id.org/lmodel/fix-protocol/metadata_created> , <https://w3id.org/lmodel/fix-protocol/metadata_creator> , <https://w3id.org/lmodel/fix-protocol/metadata_description> , <https://w3id.org/lmodel/fix-protocol/metadata_format> , <https://w3id.org/lmodel/fix-protocol/metadata_publisher> , <https://w3id.org/lmodel/fix-protocol/metadata_rights> , <https://w3id.org/lmodel/fix-protocol/metadata_source> , <https://w3id.org/lmodel/fix-protocol/metadata_title> , <https://w3id.org/lmodel/fix-protocol/repository_name> , <https://w3id.org/lmodel/fix-protocol/repository_version> ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-protocol/FixRepository"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/FixRepository"^^xsd:anyURI ;
+	linkml:description "One file of the catalogue: the edition it renders, with some kinds of FIX Latest's elements." ;
+	linkml:slot_usage _:c14n4 ;
+	linkml:slots <https://w3id.org/lmodel/fix-protocol/fixRepository__fix_categories> , <https://w3id.org/lmodel/fix-protocol/fixRepository__fix_code_sets> , <https://w3id.org/lmodel/fix-protocol/fixRepository__fix_components> , <https://w3id.org/lmodel/fix-protocol/fixRepository__fix_datatypes> , <https://w3id.org/lmodel/fix-protocol/fixRepository__fix_fields> , <https://w3id.org/lmodel/fix-protocol/fixRepository__fix_groups> , <https://w3id.org/lmodel/fix-protocol/fixRepository__fix_messages> , <https://w3id.org/lmodel/fix-protocol/fixRepository__fix_sections> , <https://w3id.org/lmodel/fix-protocol/fixRepository__metadata_conforms_to> , <https://w3id.org/lmodel/fix-protocol/fixRepository__metadata_created> , <https://w3id.org/lmodel/fix-protocol/fixRepository__metadata_creator> , <https://w3id.org/lmodel/fix-protocol/fixRepository__metadata_description> , <https://w3id.org/lmodel/fix-protocol/fixRepository__metadata_format> , <https://w3id.org/lmodel/fix-protocol/fixRepository__metadata_publisher> , <https://w3id.org/lmodel/fix-protocol/fixRepository__metadata_rights> , <https://w3id.org/lmodel/fix-protocol/fixRepository__metadata_source> , <https://w3id.org/lmodel/fix-protocol/fixRepository__metadata_title> , <https://w3id.org/lmodel/fix-protocol/fixRepository__repository_name> , <https://w3id.org/lmodel/fix-protocol/fixRepository__repository_version> ;
+	linkml:tree_root true .
+<https://w3id.org/lmodel/fix-protocol/FixSection> dcterms:title "Section" ;
+	a linkml:ClassDefinition ;
+	skos:exactMatch "fix_orchestra:OrchestraSectionV10"^^xsd:anyURI , "fixr:sectionType"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core"^^xsd:anyURI ;
+	linkml:attributes <https://w3id.org/lmodel/fix-protocol/section_order> ;
+	linkml:class_uri "https://w3id.org/lmodel/fix-protocol/FixSection"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/FixSection"^^xsd:anyURI ;
+	linkml:description "One of the five parts FIX divides its messages into by business area, such as PreTrade." ;
+	linkml:is_a <https://w3id.org/lmodel/fix-protocol/FixElement> ;
+	linkml:slot_usage _:c14n22 ;
+	linkml:slots <https://w3id.org/lmodel/fix-protocol/FixSection_id> , <https://w3id.org/lmodel/fix-protocol/added_in> , <https://w3id.org/lmodel/fix-protocol/added_in_ep> , <https://w3id.org/lmodel/fix-protocol/deprecated_in> , <https://w3id.org/lmodel/fix-protocol/deprecated_in_ep> , <https://w3id.org/lmodel/fix-protocol/fixSection__section_order> , <https://w3id.org/lmodel/fix-protocol/fixml_file_name> , <https://w3id.org/lmodel/fix-protocol/fixml_not_required> , <https://w3id.org/lmodel/fix-protocol/name> , <https://w3id.org/lmodel/fix-protocol/updated_in> , <https://w3id.org/lmodel/fix-protocol/updated_in_ep> .
+<https://w3id.org/lmodel/fix-protocol/FixSection_id> dcterms:title "Identifier" ;
+	a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core"^^xsd:anyURI ;
+	skos:prefLabel "id" ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/id"^^xsd:anyURI ;
+	linkml:description "The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation." ;
+	linkml:domain <https://w3id.org/lmodel/fix-protocol/FixSection> ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixSection> ;
+	linkml:identifier true ;
+	linkml:is_a <https://w3id.org/lmodel/fix-protocol/id> ;
+	linkml:is_usage_slot true ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixSection> ;
+	linkml:pattern "^fix_section:[A-Za-z][A-Za-z0-9_]*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/uriorcurie> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/id"^^xsd:anyURI ;
+	linkml:usage_slot_name "id" .
+<https://w3id.org/lmodel/fix-protocol/Message> dcterms:title "Messages" ;
+	linkml:description "The category groups messages and their components." .
+<https://w3id.org/lmodel/fix-protocol/abbr_name> dcterms:title "Abbreviated Name" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "abbrName" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/abbrName"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core"^^xsd:anyURI ;
+	skos:mappingRelation "https://w3id.org/lmodel/fix-protocol/abbr_name"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/abbr_name"^^xsd:anyURI ;
+	linkml:description "The shorter name FIXML uses for the element's tag." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixComponent> , <https://w3id.org/lmodel/fix-protocol/FixField> , <https://w3id.org/lmodel/fix-protocol/FixGroup> , <https://w3id.org/lmodel/fix-protocol/FixMessage> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixMessage> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/fix_name> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/abbr_name"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/added_in> dcterms:title "Added In" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "added" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/added"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core"^^xsd:anyURI ;
+	skos:mappingRelation "https://w3id.org/lmodel/fix-protocol/added_in"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/added_in"^^xsd:anyURI ;
+	linkml:description "The FIX version that added the element." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixPedigreeMixin> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixPedigreeMixin> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/fix_version> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/added_in"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/added_in_ep> dcterms:title "Added In Extension Pack" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "addedEP" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/addedEP"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core"^^xsd:anyURI ;
+	skos:mappingRelation "https://w3id.org/lmodel/fix-protocol/added_in_ep"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/added_in_ep"^^xsd:anyURI ;
+	linkml:description "The extension pack that added the element." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixPedigreeMixin> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixPedigreeMixin> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/fix_extension_pack> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/added_in_ep"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/base_category> dcterms:title "Base Category" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "baseCategory" ;
+	skos:exactMatch "fixr:baseCategory"^^xsd:anyURI ;
+	linkml:description "The category whose FIXML element carries the field, under the short name in base_category_abbr_name." ;
+	linkml:pattern "^fix_category:[A-Za-z][A-Za-z0-9_]*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixCategory> .
+<https://w3id.org/lmodel/fix-protocol/base_category_abbr_name> dcterms:title "Base Category Abbreviated Name" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "baseCategoryAbbrName" ;
+	skos:exactMatch "fixr:baseCategoryAbbrName"^^xsd:anyURI ;
+	linkml:description "The field's short name within its base category's FIXML element." ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/fix_name> .
+<https://w3id.org/lmodel/fix-protocol/base_type> dcterms:title "Base Type" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "baseType" ;
+	skos:exactMatch "fixr:baseType"^^xsd:anyURI ;
+	linkml:description "The datatype this one narrows." ;
+	linkml:pattern "^fix_datatype:[A-Za-z][A-Za-z0-9_]*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixDatatype> .
+<https://w3id.org/lmodel/fix-protocol/boolean> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"boolean\"." ;
+	skos:exactMatch "schema:Boolean"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "Bool" ;
+	linkml:definition_uri "https://w3id.org/linkml/Boolean"^^xsd:anyURI ;
+	linkml:description "A binary (true or false) value" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "bool" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#boolean"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/category_kind> dcterms:title "Category Kind" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "componentType" ;
+	skos:exactMatch "fixr:componentType"^^xsd:anyURI ;
+	linkml:description "Whether the category groups messages or fields." ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixCategoryKind> .
+<https://w3id.org/lmodel/fix-protocol/code_group> dcterms:title "Code Group" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "group" ;
+	skos:exactMatch "fixr:group"^^xsd:anyURI ;
+	linkml:description "A label that groups some codes of a large set, such as one asset class." .
+<https://w3id.org/lmodel/fix-protocol/code_set_datatype> dcterms:title "Datatype" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "type" ;
+	skos:exactMatch "fixr:type"^^xsd:anyURI ;
+	linkml:description "The datatype of the codes' values." ;
+	linkml:pattern "^fix_datatype:[A-Za-z][A-Za-z0-9_]*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixDatatype> ;
+	linkml:required true .
+<https://w3id.org/lmodel/fix-protocol/code_value> dcterms:title "Value" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "value" ;
+	skos:exactMatch "fixr:value"^^xsd:anyURI ;
+	linkml:description "The value as it travels on the wire." ;
+	linkml:pattern "^\\S+$" ;
+	linkml:required true .
+<https://w3id.org/lmodel/fix-protocol/components> dcterms:title "Components" ;
+	linkml:description "The file that defines the shared components." .
+<https://w3id.org/lmodel/fix-protocol/constant> dcterms:title "Constant" ;
+	linkml:description "The member always takes one fixed value." .
+<https://w3id.org/lmodel/fix-protocol/count_field> dcterms:title "Field" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "id" ;
+	skos:exactMatch "fixr:id"^^xsd:anyURI ;
+	linkml:description "The field that holds the count." ;
+	linkml:pattern "^fix_field:[1-9][0-9]*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixField> ;
+	linkml:required true .
+<https://w3id.org/lmodel/fix-protocol/curie> dcterms:conformsTo "https://www.w3.org/TR/curie/" ;
+	a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"curie\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	skos:note "in RDF serializations this MUST be expanded to a URI" , "in non-RDF serializations MAY be serialized as the compact representation" ;
+	linkml:base "Curie" ;
+	linkml:definition_uri "https://w3id.org/linkml/Curie"^^xsd:anyURI ;
+	linkml:description "a compact URI" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/date> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"date\"." , "URI is dateTime because OWL reasoners don't work with straight date or time" ;
+	skos:exactMatch "schema:Date"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "XSDDate" ;
+	linkml:definition_uri "https://w3id.org/linkml/Date"^^xsd:anyURI ;
+	linkml:description "a date (year, month and day) in an idealized calendar" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#date"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/date_or_datetime> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"date_or_datetime\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/linkml/DateOrDatetime"^^xsd:anyURI ;
+	linkml:description "Either a date or a datetime" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "https://w3id.org/linkml/DateOrDatetime"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/datetime> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"datetime\"." ;
+	skos:exactMatch "schema:DateTime"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "XSDDateTime" ;
+	linkml:definition_uri "https://w3id.org/linkml/Datetime"^^xsd:anyURI ;
+	linkml:description "The combination of a date and time" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#dateTime"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/decimal> a linkml:TypeDefinition ;
+	skos:broadMatch "schema:Number"^^xsd:anyURI ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"decimal\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "Decimal" ;
+	linkml:definition_uri "https://w3id.org/linkml/Decimal"^^xsd:anyURI ;
+	linkml:description "A real number with arbitrary precision that conforms to the xsd:decimal specification" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#decimal"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/deprecated_in> dcterms:title "Deprecated In" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "deprecated" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/deprecated"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core"^^xsd:anyURI ;
+	skos:mappingRelation "https://w3id.org/lmodel/fix-protocol/deprecated_in"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/deprecated_in"^^xsd:anyURI ;
+	linkml:description "The FIX version that deprecated the element." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixPedigreeMixin> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixPedigreeMixin> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/fix_version> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/deprecated_in"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/deprecated_in_ep> dcterms:title "Deprecated In Extension Pack" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "deprecatedEP" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/deprecatedEP"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core"^^xsd:anyURI ;
+	skos:mappingRelation "https://w3id.org/lmodel/fix-protocol/deprecated_in_ep"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/deprecated_in_ep"^^xsd:anyURI ;
+	linkml:description "The extension pack that deprecated the element." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixPedigreeMixin> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixPedigreeMixin> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/fix_extension_pack> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/deprecated_in_ep"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/discriminator_field> dcterms:title "Discriminator Field" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "discriminatorId" ;
+	skos:exactMatch "fixr:discriminatorId"^^xsd:anyURI ;
+	linkml:description "The field whose value says how to read this field's value." ;
+	linkml:pattern "^fix_field:[1-9][0-9]*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixField> .
+<https://w3id.org/lmodel/fix-protocol/double> a linkml:TypeDefinition ;
+	skos:closeMatch "schema:Float"^^xsd:anyURI ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"double\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "float" ;
+	linkml:definition_uri "https://w3id.org/linkml/Double"^^xsd:anyURI ;
+	linkml:description "A real number that conforms to the xsd:double specification" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#double"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/field_code_set> dcterms:title "Code Set" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "type" ;
+	skos:exactMatch "fixr:type"^^xsd:anyURI ;
+	linkml:description "The code set that lists the field's values." ;
+	linkml:pattern "^fix_code_set:[1-9][0-9]*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixCodeSet> ;
+	linkml:required true ;
+	linkml:value_presence "ABSENT" .
+<https://w3id.org/lmodel/fix-protocol/field_datatype> dcterms:title "Datatype" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "type" ;
+	skos:exactMatch "fixr:type"^^xsd:anyURI ;
+	linkml:description "The datatype of the field's values, when no code set lists them." ;
+	linkml:pattern "^fix_datatype:[A-Za-z][A-Za-z0-9_]*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixDatatype> ;
+	linkml:required true ;
+	linkml:value_presence "ABSENT" .
+<https://w3id.org/lmodel/fix-protocol/fields> dcterms:title "Fields" ;
+	linkml:description "The file that defines the fields." .
+<https://w3id.org/lmodel/fix-protocol/fixCategory__category_kind> dcterms:title "Category Kind" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "componentType" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/componentType"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core"^^xsd:anyURI ;
+	skos:prefLabel "category_kind" ;
+	linkml:description "Whether the category groups messages or fields." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixCategory> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixCategory> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixCategoryKind> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/category_kind"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixCategory__include_file> dcterms:title "Included FIXML File" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "includeFile" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/includeFile"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core"^^xsd:anyURI ;
+	skos:prefLabel "include_file" ;
+	linkml:description "The shared FIXML schema file that the category's own FIXML schema file brings in." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixCategory> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixCategory> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixIncludeFile> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/include_file"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixCodeSet__code_set_datatype> dcterms:title "Datatype" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "type" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/type"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary"^^xsd:anyURI ;
+	skos:prefLabel "code_set_datatype" ;
+	linkml:description "The datatype of the codes' values." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixCodeSet> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixCodeSet> ;
+	linkml:pattern "^fix_datatype:[A-Za-z][A-Za-z0-9_]*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixDatatype> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/code_set_datatype"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixCodeSet__fix_codes> dcterms:title "Codes" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "code" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/code"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary"^^xsd:anyURI ;
+	skos:prefLabel "fix_codes" ;
+	linkml:description "The codes of the set, in FIX's order." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixCodeSet> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixCodeSet> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixCode> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/fix_codes"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixCode__code_group> dcterms:title "Code Group" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "group" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/group"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary"^^xsd:anyURI ;
+	skos:prefLabel "code_group" ;
+	linkml:description "A label that groups some codes of a large set, such as one asset class." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixCode> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixCode> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/code_group"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixCode__code_value> dcterms:title "Value" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "value" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/value"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary"^^xsd:anyURI ;
+	skos:prefLabel "code_value" ;
+	linkml:description "The value as it travels on the wire." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixCode> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixCode> ;
+	linkml:pattern "^\\S+$" ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/string> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/code_value"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixCode__sort_order> dcterms:title "Sort Order" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "sort" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/sort"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary"^^xsd:anyURI ;
+	skos:prefLabel "sort_order" ;
+	linkml:description "Where the code comes when FIX lists the set." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixCode> ;
+	linkml:minimum_value "0"^^linkml:\@id ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixCode> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/integer> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/sort_order"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixDatatype__base_type> dcterms:title "Base Type" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "baseType" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/baseType"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary"^^xsd:anyURI ;
+	skos:prefLabel "base_type" ;
+	linkml:description "The datatype this one narrows." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixDatatype> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixDatatype> ;
+	linkml:pattern "^fix_datatype:[A-Za-z][A-Za-z0-9_]*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixDatatype> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/base_type"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixDatatype__mapped_datatypes> dcterms:title "Mapped Datatypes" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "mappedDatatype" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/mappedDatatype"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary"^^xsd:anyURI ;
+	skos:prefLabel "mapped_datatypes" ;
+	linkml:description "The types of other standards that FIX gives as this datatype's form." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixDatatype> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixDatatype> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixMappedDatatype> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/mapped_datatypes"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixField__base_category> dcterms:title "Base Category" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "baseCategory" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/baseCategory"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary"^^xsd:anyURI ;
+	skos:prefLabel "base_category" ;
+	linkml:description "The category whose FIXML element carries the field, under the short name in base_category_abbr_name." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixField> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixField> ;
+	linkml:pattern "^fix_category:[A-Za-z][A-Za-z0-9_]*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixCategory> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/base_category"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixField__base_category_abbr_name> dcterms:title "Base Category Abbreviated Name" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "baseCategoryAbbrName" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/baseCategoryAbbrName"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary"^^xsd:anyURI ;
+	skos:prefLabel "base_category_abbr_name" ;
+	linkml:description "The field's short name within its base category's FIXML element." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixField> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixField> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/fix_name> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/base_category_abbr_name"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixField__discriminator_field> dcterms:title "Discriminator Field" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "discriminatorId" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/discriminatorId"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary"^^xsd:anyURI ;
+	skos:prefLabel "discriminator_field" ;
+	linkml:description "The field whose value says how to read this field's value." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixField> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixField> ;
+	linkml:pattern "^fix_field:[1-9][0-9]*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixField> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/discriminator_field"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixField__field_code_set> dcterms:title "Code Set" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "type" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/type"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary"^^xsd:anyURI ;
+	skos:prefLabel "field_code_set" ;
+	linkml:description "The code set that lists the field's values." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixField> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixField> ;
+	linkml:pattern "^fix_code_set:[1-9][0-9]*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixCodeSet> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/field_code_set"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixField__field_datatype> dcterms:title "Datatype" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "type" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/type"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary"^^xsd:anyURI ;
+	skos:prefLabel "field_datatype" ;
+	linkml:description "The datatype of the field's values, when no code set lists them." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixField> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixField> ;
+	linkml:pattern "^fix_datatype:[A-Za-z][A-Za-z0-9_]*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixDatatype> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/field_datatype"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixField__length_field> dcterms:title "Length Field" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "lengthId" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/lengthId"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary"^^xsd:anyURI ;
+	skos:prefLabel "length_field" ;
+	linkml:description "The field that gives this field's length in bytes." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixField> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixField> ;
+	linkml:pattern "^fix_field:[1-9][0-9]*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixField> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/length_field"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixField__union_datatype> dcterms:title "Union Datatype" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "unionDataType" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/unionDataType"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary"^^xsd:anyURI ;
+	skos:prefLabel "union_datatype" ;
+	linkml:description "A datatype whose values the field also takes, beside those of its code set, such as a range of numbers kept for private use." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixField> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixField> ;
+	linkml:pattern "^fix_datatype:[A-Za-z][A-Za-z0-9_]*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixDatatype> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/union_datatype"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixGroup__num_in_group> dcterms:title "Count Field" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "numInGroup" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/numInGroup"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_structure"^^xsd:anyURI ;
+	skos:prefLabel "num_in_group" ;
+	linkml:description "The field that states how many times the group repeats." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixGroup> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixGroup> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixNumInGroup> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/num_in_group"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixMappedDatatype__mapped_base> dcterms:title "Base" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "base" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/base"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary"^^xsd:anyURI ;
+	skos:prefLabel "mapped_base" ;
+	linkml:description "The standard's type, such as xs:decimal." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixMappedDatatype> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixMappedDatatype> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/mapped_base"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixMappedDatatype__mapped_builtin> dcterms:title "Built In" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "builtin" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/builtin"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary"^^xsd:anyURI ;
+	skos:prefLabel "mapped_builtin" ;
+	linkml:description "True when the type is one the standard defines itself." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixMappedDatatype> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixMappedDatatype> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/boolean> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/mapped_builtin"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixMappedDatatype__mapped_min_inclusive> dcterms:title "Least Value" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "minInclusive" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/minInclusive"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary"^^xsd:anyURI ;
+	skos:prefLabel "mapped_min_inclusive" ;
+	linkml:description "The smallest value the type allows, as FIX writes it." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixMappedDatatype> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixMappedDatatype> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/mapped_min_inclusive"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixMappedDatatype__mapped_pattern> dcterms:title "Pattern" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "pattern" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/pattern"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary"^^xsd:anyURI ;
+	skos:prefLabel "mapped_pattern" ;
+	linkml:description "A regular expression in XML Schema's syntax that a value must match." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixMappedDatatype> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixMappedDatatype> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/mapped_pattern"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixMappedDatatype__mapped_standard> dcterms:title "Standard" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "standard" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/standard"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_dictionary"^^xsd:anyURI ;
+	skos:prefLabel "mapped_standard" ;
+	linkml:description "The standard the type belongs to, such as XML." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixMappedDatatype> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixMappedDatatype> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/string> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/mapped_standard"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixMember__fixml_inlined> dcterms:title "Inlined in FIXML" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "inlined" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_structure"^^xsd:anyURI ;
+	skos:prefLabel "fixml_inlined" ;
+	linkml:description "True when FIXML writes the component's fields directly in the enclosing element rather than in an element of its own." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixMember> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixMember> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/boolean> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/fixml_inlined"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixMember__member_component> dcterms:title "Component" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "componentRef" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/componentRef"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_structure"^^xsd:anyURI ;
+	skos:prefLabel "member_component" ;
+	linkml:description "The component this member is." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixMember> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixMember> ;
+	linkml:pattern "^fix_component:[1-9][0-9]*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixComponent> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/member_component"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixMember__member_field> dcterms:title "Field" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "fieldRef" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/fieldRef"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_structure"^^xsd:anyURI ;
+	skos:prefLabel "member_field" ;
+	linkml:description "The field this member is." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixMember> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixMember> ;
+	linkml:pattern "^fix_field:[1-9][0-9]*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixField> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/member_field"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixMember__member_group> dcterms:title "Group" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "groupRef" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/groupRef"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_structure"^^xsd:anyURI ;
+	skos:prefLabel "member_group" ;
+	linkml:description "The repeating group this member is." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixMember> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixMember> ;
+	linkml:pattern "^fix_group:[1-9][0-9]*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixGroup> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/member_group"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixMember__presence> dcterms:title "Presence" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "presence" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/presence"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_structure"^^xsd:anyURI ;
+	skos:prefLabel "presence" ;
+	linkml:description "Whether the member must be there. A member that states none is optional." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixMember> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixMember> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixPresence> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/presence"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixMessage__msg_type> dcterms:title "MsgType" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "msgType" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/msgType"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_structure"^^xsd:anyURI ;
+	skos:prefLabel "msg_type" ;
+	linkml:description "The value of field 35 that marks a message of this kind." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixMessage> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixMessage> ;
+	linkml:pattern "^[0-9A-Za-z]{1,2}$" ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/string> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/msg_type"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixNumInGroup__count_field> dcterms:title "Field" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "id" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/id"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_structure"^^xsd:anyURI ;
+	skos:prefLabel "count_field" ;
+	linkml:description "The field that holds the count." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixNumInGroup> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixNumInGroup> ;
+	linkml:pattern "^fix_field:[1-9][0-9]*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixField> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/count_field"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixRepository__fix_categories> dcterms:title "Categories" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "categories" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol"^^xsd:anyURI ;
+	skos:prefLabel "fix_categories" ;
+	linkml:description "The categories, in FIX's order." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixRepository> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixRepository> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixCategory> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/fix_categories"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixRepository__fix_code_sets> dcterms:title "Code Sets" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "codeSets" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol"^^xsd:anyURI ;
+	skos:prefLabel "fix_code_sets" ;
+	linkml:description "The code sets, in FIX's order." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixRepository> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixRepository> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixCodeSet> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/fix_code_sets"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixRepository__fix_components> dcterms:title "Components" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "components" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol"^^xsd:anyURI ;
+	skos:prefLabel "fix_components" ;
+	linkml:description "The components, in FIX's order." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixRepository> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixRepository> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixComponent> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/fix_components"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixRepository__fix_datatypes> dcterms:title "Datatypes" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "datatypes" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol"^^xsd:anyURI ;
+	skos:prefLabel "fix_datatypes" ;
+	linkml:description "The datatypes, in FIX's order." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixRepository> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixRepository> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixDatatype> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/fix_datatypes"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixRepository__fix_fields> dcterms:title "Fields" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "fields" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol"^^xsd:anyURI ;
+	skos:prefLabel "fix_fields" ;
+	linkml:description "The fields, in FIX's order." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixRepository> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixRepository> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixField> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/fix_fields"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixRepository__fix_groups> dcterms:title "Repeating Groups" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "groups" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol"^^xsd:anyURI ;
+	skos:prefLabel "fix_groups" ;
+	linkml:description "The repeating groups, in FIX's order." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixRepository> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixRepository> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixGroup> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/fix_groups"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixRepository__fix_messages> dcterms:title "Messages" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "messages" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol"^^xsd:anyURI ;
+	skos:prefLabel "fix_messages" ;
+	linkml:description "The messages, in FIX's order." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixRepository> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixRepository> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixMessage> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/fix_messages"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixRepository__fix_sections> dcterms:title "Sections" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "sections" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol"^^xsd:anyURI ;
+	skos:prefLabel "fix_sections" ;
+	linkml:description "The sections, in FIX's order." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixRepository> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixRepository> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixSection> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/fix_sections"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixRepository__metadata_conforms_to> dcterms:title "Conforms To" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "conformsTo" ;
+	skos:exactMatch "http://purl.org/dc/terms/conformsTo"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol"^^xsd:anyURI ;
+	skos:prefLabel "metadata_conforms_to" ;
+	linkml:description "The Orchestra version the repository file follows." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixRepository> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixRepository> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/metadata_conforms_to"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixRepository__metadata_created> dcterms:title "Created" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "created" ;
+	skos:exactMatch "http://purl.org/dc/terms/created"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol"^^xsd:anyURI ;
+	skos:prefLabel "metadata_created" ;
+	linkml:description "The date the repository file was made." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixRepository> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixRepository> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/fix_date> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/metadata_created"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixRepository__metadata_creator> dcterms:title "Creator" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "creator" ;
+	skos:exactMatch "http://purl.org/dc/terms/creator"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol"^^xsd:anyURI ;
+	skos:prefLabel "metadata_creator" ;
+	linkml:description "Who made the repository, as its metadata states." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixRepository> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixRepository> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/metadata_creator"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixRepository__metadata_description> dcterms:title "Edition Statement" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "description" ;
+	skos:exactMatch "http://purl.org/dc/terms/description"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol"^^xsd:anyURI ;
+	skos:prefLabel "metadata_description" ;
+	linkml:description "The metadata's one-line statement of which extension pack the file holds." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixRepository> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixRepository> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/metadata_description"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixRepository__metadata_format> dcterms:title "Format" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "format" ;
+	skos:exactMatch "http://purl.org/dc/terms/format"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol"^^xsd:anyURI ;
+	skos:prefLabel "metadata_format" ;
+	linkml:description "The media type of the repository file." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixRepository> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixRepository> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/metadata_format"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixRepository__metadata_publisher> dcterms:title "Publisher" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "publisher" ;
+	skos:exactMatch "http://purl.org/dc/terms/publisher"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol"^^xsd:anyURI ;
+	skos:prefLabel "metadata_publisher" ;
+	linkml:description "Who published the repository, as its metadata states." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixRepository> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixRepository> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/metadata_publisher"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixRepository__metadata_rights> dcterms:title "Rights Statement" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "rights" ;
+	skos:exactMatch "http://purl.org/dc/terms/rights"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol"^^xsd:anyURI ;
+	skos:prefLabel "metadata_rights" ;
+	linkml:description "The rights line in the repository's metadata, word for word." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixRepository> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixRepository> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/metadata_rights"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixRepository__metadata_source> dcterms:title "Source" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "source" ;
+	skos:exactMatch "http://purl.org/dc/terms/source"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol"^^xsd:anyURI ;
+	skos:prefLabel "metadata_source" ;
+	linkml:description "The tool or source the metadata names for the file." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixRepository> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixRepository> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/metadata_source"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixRepository__metadata_title> dcterms:title "Title" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "title" ;
+	skos:exactMatch "http://purl.org/dc/terms/title"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol"^^xsd:anyURI ;
+	skos:prefLabel "metadata_title" ;
+	linkml:description "The title the repository's metadata gives." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixRepository> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixRepository> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/metadata_title"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixRepository__repository_name> dcterms:title "Repository Name" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "name" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/name"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol"^^xsd:anyURI ;
+	skos:prefLabel "repository_name" ;
+	linkml:description "The name FIX gives the repository, FIX.Latest." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixRepository> ;
+	linkml:equals_string "FIX.Latest" ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixRepository> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/string> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/repository_name"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixRepository__repository_version> dcterms:title "Edition" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "version" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/version"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol"^^xsd:anyURI ;
+	skos:prefLabel "repository_version" ;
+	linkml:description "The extension pack the repository stands at, such as FIX.Latest_EP312." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixRepository> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixRepository> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/fix_version> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/repository_version"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixSection__section_order> dcterms:title "Display Order" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "displayOrder" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/displayOrder"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core"^^xsd:anyURI ;
+	skos:prefLabel "section_order" ;
+	linkml:description "Where the section comes in FIX's own order of sections, counting from 0." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixSection> ;
+	linkml:minimum_value "0"^^linkml:\@id ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixSection> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/integer> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/section_order"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fix_categories> dcterms:title "Categories" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "categories" ;
+	linkml:description "The categories, in FIX's order." ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixCategory> .
+<https://w3id.org/lmodel/fix-protocol/fix_code_sets> dcterms:title "Code Sets" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "codeSets" ;
+	linkml:description "The code sets, in FIX's order." ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixCodeSet> .
+<https://w3id.org/lmodel/fix-protocol/fix_codes> dcterms:title "Codes" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "code" ;
+	skos:exactMatch "fixr:code"^^xsd:anyURI ;
+	linkml:description "The codes of the set, in FIX's order." ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixCode> .
+<https://w3id.org/lmodel/fix-protocol/fix_components> dcterms:title "Components" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "components" ;
+	linkml:description "The components, in FIX's order." ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixComponent> .
+<https://w3id.org/lmodel/fix-protocol/fix_datatypes> dcterms:title "Datatypes" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "datatypes" ;
+	linkml:description "The datatypes, in FIX's order." ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixDatatype> .
+<https://w3id.org/lmodel/fix-protocol/fix_date> dcterms:title "Date" ;
+	a linkml:TypeDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core"^^xsd:anyURI ;
+	skos:note "LinkML's date type relies on a JSON Schema format checker, which many validators do not enable." ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/FixDate"^^xsd:anyURI ;
+	linkml:description "A date as the repository's metadata writes it, year first." ;
+	linkml:pattern "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" ;
+	linkml:typeof <https://w3id.org/lmodel/fix-protocol/string> ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#date"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fix_extension_pack> dcterms:title "Extension Pack Number" ;
+	a linkml:TypeDefinition ;
+	skos:exactMatch "fixr:EP_t"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core"^^xsd:anyURI ;
+	skos:note "FIX Latest writes -1 on some elements that FIX 4.4 and FIX 5.0 added, and states nothing about what the value means." ;
+	linkml:base "int" ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/FixExtensionPack"^^xsd:anyURI ;
+	linkml:description "The number of a FIX extension pack. FIX Latest changes one extension pack at a time." ;
+	linkml:minimum_value "-1"^^linkml:\@id ;
+	linkml:typeof <https://w3id.org/lmodel/fix-protocol/integer> ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#integer"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fix_fields> dcterms:title "Fields" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "fields" ;
+	linkml:description "The fields, in FIX's order." ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixField> .
+<https://w3id.org/lmodel/fix-protocol/fix_groups> dcterms:title "Repeating Groups" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "groups" ;
+	linkml:description "The repeating groups, in FIX's order." ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixGroup> .
+<https://w3id.org/lmodel/fix-protocol/fix_members> dcterms:title "Members" ;
+	a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_structure"^^xsd:anyURI ;
+	skos:mappingRelation "https://w3id.org/lmodel/fix-protocol/fix_members"^^xsd:anyURI ;
+	skos:note "A message lists its members in a structure element and a component or a group lists them directly. The record lists them here in each case." ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/fix_members"^^xsd:anyURI ;
+	linkml:description "The fields, components and groups the element holds, in the order FIX lists them." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixComponent> , <https://w3id.org/lmodel/fix-protocol/FixGroup> , <https://w3id.org/lmodel/fix-protocol/FixMessage> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixMessage> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixMember> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/fix_members"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fix_messages> dcterms:title "Messages" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "messages" ;
+	linkml:description "The messages, in FIX's order." ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixMessage> .
+<https://w3id.org/lmodel/fix-protocol/fix_name> dcterms:title "FIX Name" ;
+	a linkml:TypeDefinition ;
+	skos:exactMatch "fixr:Name_t"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core"^^xsd:anyURI ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/FixName"^^xsd:anyURI ;
+	linkml:description "A name as FIX writes one: a letter, then letters, digits and underscores." ;
+	linkml:pattern "^[A-Za-z][A-Za-z0-9_]{0,254}$" ;
+	linkml:typeof <https://w3id.org/lmodel/fix-protocol/string> ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fix_protocol> dcterms:license "Apache-2.0" ;
+	dcterms:source "https://github.com/FIXTradingCommunity/orchestrations/blob/cd24169a2abd8daba7c360987c7a46ca11873a12/FIX%20Standard/OrchestraFIXLatest.xml"^^xsd:anyURI ;
+	dcterms:title "FIX Latest" ;
+	pav:version "FIX.Latest_EP312" ;
+	schema1:keywords "FIX Latest" , "FIX" , "Orchestra" , "financial messaging" , "trading" ;
+	a linkml:SchemaDefinition ;
+	rdfs:seeAlso "https://github.com/FIXTradingCommunity/orchestrations"^^xsd:anyURI , "https://lmodel.github.io/fix-protocol"^^xsd:anyURI ;
+	skos:note "The version is the extension pack the catalogue renders. upstream/ holds FIX Latest's Orchestra file unchanged, scripts/fix_latest_to_records.py writes the catalogue from it, and scripts/check_upstream_release.py reports when FIX publishes another." ;
+	sh:declare _:c14n12 , _:c14n13 , _:c14n14 , _:c14n17 , _:c14n18 , _:c14n19 , _:c14n20 , _:c14n21 , _:c14n23 , _:c14n25 , _:c14n26 , _:c14n3 , _:c14n5 , _:c14n6 , _:c14n9 ;
+	linkml:annotations _:c14n1 , _:c14n27 , _:c14n32 , _:c14n8 ;
+	linkml:classes <https://w3id.org/lmodel/fix-protocol/FixCategory> , <https://w3id.org/lmodel/fix-protocol/FixCode> , <https://w3id.org/lmodel/fix-protocol/FixCodeSet> , <https://w3id.org/lmodel/fix-protocol/FixComponent> , <https://w3id.org/lmodel/fix-protocol/FixDatatype> , <https://w3id.org/lmodel/fix-protocol/FixElement> , <https://w3id.org/lmodel/fix-protocol/FixField> , <https://w3id.org/lmodel/fix-protocol/FixGroup> , <https://w3id.org/lmodel/fix-protocol/FixMappedDatatype> , <https://w3id.org/lmodel/fix-protocol/FixMember> , <https://w3id.org/lmodel/fix-protocol/FixMessage> , <https://w3id.org/lmodel/fix-protocol/FixNumInGroup> , <https://w3id.org/lmodel/fix-protocol/FixPedigreeMixin> , <https://w3id.org/lmodel/fix-protocol/FixRepository> , <https://w3id.org/lmodel/fix-protocol/FixSection> ;
+	linkml:default_prefix "fix_protocol" ;
+	linkml:default_range <https://w3id.org/lmodel/fix-protocol/string> ;
+	linkml:description "A LinkML model of FIX Latest, the application layer of the Financial Information eXchange (FIX) protocol that the FIX Trading Community maintains. It holds every section, category, datatype, code set, field, component, repeating group and message of FIX Latest as a record, with the version and extension pack that added and last changed each one. The records keep FIX's names, numbers and codes and none of its descriptive text." ;
+	linkml:enums <https://w3id.org/lmodel/fix-protocol/FixCategoryKind> , <https://w3id.org/lmodel/fix-protocol/FixIncludeFile> , <https://w3id.org/lmodel/fix-protocol/FixPresence> ;
+	linkml:id "https://w3id.org/lmodel/fix-protocol"^^xsd:anyURI ;
+	linkml:imports "./fix_protocol_core"^^xsd:anyURI , "./fix_protocol_dictionary"^^xsd:anyURI , "./fix_protocol_structure"^^xsd:anyURI , "linkml:types"^^xsd:anyURI ;
+	linkml:metamodel_version "1.12.0" ;
+	linkml:slots <https://w3id.org/lmodel/fix-protocol/FixCategory_id> , <https://w3id.org/lmodel/fix-protocol/FixCodeSet_id> , <https://w3id.org/lmodel/fix-protocol/FixCode_id> , <https://w3id.org/lmodel/fix-protocol/FixComponent_id> , <https://w3id.org/lmodel/fix-protocol/FixDatatype_id> , <https://w3id.org/lmodel/fix-protocol/FixField_id> , <https://w3id.org/lmodel/fix-protocol/FixGroup_fix_members> , <https://w3id.org/lmodel/fix-protocol/FixGroup_id> , <https://w3id.org/lmodel/fix-protocol/FixMessage_fix_members> , <https://w3id.org/lmodel/fix-protocol/FixMessage_id> , <https://w3id.org/lmodel/fix-protocol/FixSection_id> , <https://w3id.org/lmodel/fix-protocol/abbr_name> , <https://w3id.org/lmodel/fix-protocol/added_in> , <https://w3id.org/lmodel/fix-protocol/added_in_ep> , <https://w3id.org/lmodel/fix-protocol/deprecated_in> , <https://w3id.org/lmodel/fix-protocol/deprecated_in_ep> , <https://w3id.org/lmodel/fix-protocol/fixCategory__category_kind> , <https://w3id.org/lmodel/fix-protocol/fixCategory__include_file> , <https://w3id.org/lmodel/fix-protocol/fixCodeSet__code_set_datatype> , <https://w3id.org/lmodel/fix-protocol/fixCodeSet__fix_codes> , <https://w3id.org/lmodel/fix-protocol/fixCode__code_group> , <https://w3id.org/lmodel/fix-protocol/fixCode__code_value> , <https://w3id.org/lmodel/fix-protocol/fixCode__sort_order> , <https://w3id.org/lmodel/fix-protocol/fixDatatype__base_type> , <https://w3id.org/lmodel/fix-protocol/fixDatatype__mapped_datatypes> , <https://w3id.org/lmodel/fix-protocol/fixField__base_category> , <https://w3id.org/lmodel/fix-protocol/fixField__base_category_abbr_name> , <https://w3id.org/lmodel/fix-protocol/fixField__discriminator_field> , <https://w3id.org/lmodel/fix-protocol/fixField__field_code_set> , <https://w3id.org/lmodel/fix-protocol/fixField__field_datatype> , <https://w3id.org/lmodel/fix-protocol/fixField__length_field> , <https://w3id.org/lmodel/fix-protocol/fixField__union_datatype> , <https://w3id.org/lmodel/fix-protocol/fixGroup__num_in_group> , <https://w3id.org/lmodel/fix-protocol/fixMappedDatatype__mapped_base> , <https://w3id.org/lmodel/fix-protocol/fixMappedDatatype__mapped_builtin> , <https://w3id.org/lmodel/fix-protocol/fixMappedDatatype__mapped_min_inclusive> , <https://w3id.org/lmodel/fix-protocol/fixMappedDatatype__mapped_pattern> , <https://w3id.org/lmodel/fix-protocol/fixMappedDatatype__mapped_standard> , <https://w3id.org/lmodel/fix-protocol/fixMember__fixml_inlined> , <https://w3id.org/lmodel/fix-protocol/fixMember__member_component> , <https://w3id.org/lmodel/fix-protocol/fixMember__member_field> , <https://w3id.org/lmodel/fix-protocol/fixMember__member_group> , <https://w3id.org/lmodel/fix-protocol/fixMember__presence> , <https://w3id.org/lmodel/fix-protocol/fixMessage__msg_type> , <https://w3id.org/lmodel/fix-protocol/fixNumInGroup__count_field> , <https://w3id.org/lmodel/fix-protocol/fixRepository__fix_categories> , <https://w3id.org/lmodel/fix-protocol/fixRepository__fix_code_sets> , <https://w3id.org/lmodel/fix-protocol/fixRepository__fix_components> , <https://w3id.org/lmodel/fix-protocol/fixRepository__fix_datatypes> , <https://w3id.org/lmodel/fix-protocol/fixRepository__fix_fields> , <https://w3id.org/lmodel/fix-protocol/fixRepository__fix_groups> , <https://w3id.org/lmodel/fix-protocol/fixRepository__fix_messages> , <https://w3id.org/lmodel/fix-protocol/fixRepository__fix_sections> , <https://w3id.org/lmodel/fix-protocol/fixRepository__metadata_conforms_to> , <https://w3id.org/lmodel/fix-protocol/fixRepository__metadata_created> , <https://w3id.org/lmodel/fix-protocol/fixRepository__metadata_creator> , <https://w3id.org/lmodel/fix-protocol/fixRepository__metadata_description> , <https://w3id.org/lmodel/fix-protocol/fixRepository__metadata_format> , <https://w3id.org/lmodel/fix-protocol/fixRepository__metadata_publisher> , <https://w3id.org/lmodel/fix-protocol/fixRepository__metadata_rights> , <https://w3id.org/lmodel/fix-protocol/fixRepository__metadata_source> , <https://w3id.org/lmodel/fix-protocol/fixRepository__metadata_title> , <https://w3id.org/lmodel/fix-protocol/fixRepository__repository_name> , <https://w3id.org/lmodel/fix-protocol/fixRepository__repository_version> , <https://w3id.org/lmodel/fix-protocol/fixSection__section_order> , <https://w3id.org/lmodel/fix-protocol/fix_members> , <https://w3id.org/lmodel/fix-protocol/fixml_file_name> , <https://w3id.org/lmodel/fix-protocol/fixml_not_required> , <https://w3id.org/lmodel/fix-protocol/id> , <https://w3id.org/lmodel/fix-protocol/in_category> , <https://w3id.org/lmodel/fix-protocol/in_section> , <https://w3id.org/lmodel/fix-protocol/name> , <https://w3id.org/lmodel/fix-protocol/updated_in> , <https://w3id.org/lmodel/fix-protocol/updated_in_ep> ;
+	linkml:source_file "fix_protocol.yaml" ;
+	linkml:source_file_date "2026-11-06T07:41:51"^^xsd:dateTime ;
+	linkml:source_file_size 7099 ;
+	linkml:types <https://w3id.org/lmodel/fix-protocol/boolean> , <https://w3id.org/lmodel/fix-protocol/curie> , <https://w3id.org/lmodel/fix-protocol/date> , <https://w3id.org/lmodel/fix-protocol/date_or_datetime> , <https://w3id.org/lmodel/fix-protocol/datetime> , <https://w3id.org/lmodel/fix-protocol/decimal> , <https://w3id.org/lmodel/fix-protocol/double> , <https://w3id.org/lmodel/fix-protocol/fix_date> , <https://w3id.org/lmodel/fix-protocol/fix_extension_pack> , <https://w3id.org/lmodel/fix-protocol/fix_name> , <https://w3id.org/lmodel/fix-protocol/fix_version> , <https://w3id.org/lmodel/fix-protocol/float> , <https://w3id.org/lmodel/fix-protocol/integer> , <https://w3id.org/lmodel/fix-protocol/jsonpath> , <https://w3id.org/lmodel/fix-protocol/jsonpointer> , <https://w3id.org/lmodel/fix-protocol/ncname> , <https://w3id.org/lmodel/fix-protocol/nodeidentifier> , <https://w3id.org/lmodel/fix-protocol/objectidentifier> , <https://w3id.org/lmodel/fix-protocol/sparqlpath> , <https://w3id.org/lmodel/fix-protocol/string> , <https://w3id.org/lmodel/fix-protocol/time> , <https://w3id.org/lmodel/fix-protocol/uri> , <https://w3id.org/lmodel/fix-protocol/uriorcurie> .
+<https://w3id.org/lmodel/fix-protocol/fix_sections> dcterms:title "Sections" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "sections" ;
+	linkml:description "The sections, in FIX's order." ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixSection> .
+<https://w3id.org/lmodel/fix-protocol/fix_version> dcterms:title "FIX Version" ;
+	a linkml:TypeDefinition ;
+	skos:exactMatch "fixr:Version_t"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core"^^xsd:anyURI ;
+	skos:note "The pattern is Orchestra 1.0's for a version, anchored at both ends." ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/FixVersion"^^xsd:anyURI ;
+	linkml:description "A FIX version, such as FIX.4.4, FIX.5.0SP2 or FIX.Latest." ;
+	linkml:pattern "^(FIX\\.2\\.7|FIX\\.3\\.0|FIX\\.4\\.[0-4]|(FIX\\.Latest|FIX\\.5\\.0(SP[0-9]{1,2})?)(_EP(9[89]|[1-9][0-9]{2}))?|FIXT\\.1\\.1|[0-9]+\\.[0-9]+|[0-9]{8})$" ;
+	linkml:typeof <https://w3id.org/lmodel/fix-protocol/string> ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixml_file_name> dcterms:title "FIXML File Name" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "FIXMLFileName" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/FIXMLFileName"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core"^^xsd:anyURI ;
+	skos:mappingRelation "https://w3id.org/lmodel/fix-protocol/fixml_file_name"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/fixml_file_name"^^xsd:anyURI ;
+	linkml:description "The FIXML schema file that holds the section's or category's elements, by its file name." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixCategory> , <https://w3id.org/lmodel/fix-protocol/FixSection> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixCategory> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/fix_name> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/fixml_file_name"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/fixml_inlined> dcterms:title "Inlined in FIXML" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "inlined" ;
+	linkml:description "True when FIXML writes the component's fields directly in the enclosing element rather than in an element of its own." ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/boolean> .
+<https://w3id.org/lmodel/fix-protocol/fixml_not_required> dcterms:title "Not Required in FIXML" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "notReqXML" ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core"^^xsd:anyURI ;
+	skos:mappingRelation "https://w3id.org/lmodel/fix-protocol/fixml_not_required"^^xsd:anyURI ;
+	skos:note "FIX Latest writes it in a FIXML annotation, the only kind of application information the file carries." ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/fixml_not_required"^^xsd:anyURI ;
+	linkml:description "True when the element is left out of FIXML, FIX's XML encoding." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixCategory> , <https://w3id.org/lmodel/fix-protocol/FixComponent> , <https://w3id.org/lmodel/fix-protocol/FixField> , <https://w3id.org/lmodel/fix-protocol/FixMessage> , <https://w3id.org/lmodel/fix-protocol/FixSection> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixMessage> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/boolean> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/fixml_not_required"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/float> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"float\"." ;
+	skos:exactMatch "schema:Float"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "float" ;
+	linkml:definition_uri "https://w3id.org/linkml/Float"^^xsd:anyURI ;
+	linkml:description "A real number that conforms to the xsd:float specification" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#float"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/forbidden> dcterms:title "Forbidden" ;
+	linkml:description "The member must be left out." .
+<https://w3id.org/lmodel/fix-protocol/id> dcterms:title "Identifier" ;
+	a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/id"^^xsd:anyURI ;
+	linkml:description "The element's identifier: a prefix for its kind, then the number or name FIX gives it, such as fix_field:55 or fix_category:Allocation." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixElement> ;
+	linkml:identifier true ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixElement> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/uriorcurie> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/id"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/ignored> dcterms:title "Ignored" ;
+	linkml:description "A receiver disregards the member if it is there." .
+<https://w3id.org/lmodel/fix-protocol/in_category> dcterms:title "Category" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "category" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/category"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core"^^xsd:anyURI ;
+	skos:mappingRelation "https://w3id.org/lmodel/fix-protocol/in_category"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/in_category"^^xsd:anyURI ;
+	linkml:description "The category a message, component or group belongs to." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixComponent> , <https://w3id.org/lmodel/fix-protocol/FixGroup> , <https://w3id.org/lmodel/fix-protocol/FixMessage> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixMessage> ;
+	linkml:pattern "^fix_category:[A-Za-z][A-Za-z0-9_]*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixCategory> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/in_category"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/in_section> dcterms:title "Section" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "section" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/section"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core"^^xsd:anyURI ;
+	skos:mappingRelation "https://w3id.org/lmodel/fix-protocol/in_section"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/in_section"^^xsd:anyURI ;
+	linkml:description "The section a category belongs to." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixCategory> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixCategory> ;
+	linkml:pattern "^fix_section:[A-Za-z][A-Za-z0-9_]*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixSection> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/in_section"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/include_file> dcterms:title "Included FIXML File" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "includeFile" ;
+	skos:exactMatch "fixr:includeFile"^^xsd:anyURI ;
+	linkml:description "The shared FIXML schema file that the category's own FIXML schema file brings in." ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixIncludeFile> .
+<https://w3id.org/lmodel/fix-protocol/integer> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"integer\"." ;
+	skos:exactMatch "schema:Integer"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "int" ;
+	linkml:definition_uri "https://w3id.org/linkml/Integer"^^xsd:anyURI ;
+	linkml:description "An integer" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#integer"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/jsonpath> dcterms:conformsTo "https://www.ietf.org/archive/id/draft-goessner-dispatch-jsonpath-00.html" ;
+	a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"jsonpath\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/linkml/Jsonpath"^^xsd:anyURI ;
+	linkml:description "A string encoding a JSON Path. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded in tree form." ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/jsonpointer> dcterms:conformsTo "https://datatracker.ietf.org/doc/html/rfc6901" ;
+	a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"jsonpointer\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/linkml/Jsonpointer"^^xsd:anyURI ;
+	linkml:description "A string encoding a JSON Pointer. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to a valid object within the current instance document when encoded in tree form." ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/length_field> dcterms:title "Length Field" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "lengthId" ;
+	skos:exactMatch "fixr:lengthId"^^xsd:anyURI ;
+	linkml:description "The field that gives this field's length in bytes." ;
+	linkml:pattern "^fix_field:[1-9][0-9]*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixField> .
+<https://w3id.org/lmodel/fix-protocol/mapped_base> dcterms:title "Base" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "base" ;
+	skos:exactMatch "fixr:base"^^xsd:anyURI ;
+	linkml:description "The standard's type, such as xs:decimal." .
+<https://w3id.org/lmodel/fix-protocol/mapped_builtin> dcterms:title "Built In" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "builtin" ;
+	skos:exactMatch "fixr:builtin"^^xsd:anyURI ;
+	linkml:description "True when the type is one the standard defines itself." ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/boolean> .
+<https://w3id.org/lmodel/fix-protocol/mapped_datatypes> dcterms:title "Mapped Datatypes" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "mappedDatatype" ;
+	skos:exactMatch "fixr:mappedDatatype"^^xsd:anyURI ;
+	linkml:description "The types of other standards that FIX gives as this datatype's form." ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixMappedDatatype> .
+<https://w3id.org/lmodel/fix-protocol/mapped_min_inclusive> dcterms:title "Least Value" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "minInclusive" ;
+	skos:exactMatch "fixr:minInclusive"^^xsd:anyURI ;
+	linkml:description "The smallest value the type allows, as FIX writes it." .
+<https://w3id.org/lmodel/fix-protocol/mapped_pattern> dcterms:title "Pattern" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "pattern" ;
+	skos:exactMatch "fixr:pattern"^^xsd:anyURI ;
+	linkml:description "A regular expression in XML Schema's syntax that a value must match." .
+<https://w3id.org/lmodel/fix-protocol/mapped_standard> dcterms:title "Standard" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "standard" ;
+	skos:exactMatch "fixr:standard"^^xsd:anyURI ;
+	linkml:description "The standard the type belongs to, such as XML." ;
+	linkml:required true .
+<https://w3id.org/lmodel/fix-protocol/member_component> dcterms:title "Component" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "componentRef" ;
+	skos:exactMatch "fixr:componentRef"^^xsd:anyURI ;
+	linkml:description "The component this member is." ;
+	linkml:pattern "^fix_component:[1-9][0-9]*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixComponent> ;
+	linkml:required true ;
+	linkml:value_presence "ABSENT" .
+<https://w3id.org/lmodel/fix-protocol/member_field> dcterms:title "Field" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "fieldRef" ;
+	skos:exactMatch "fixr:fieldRef"^^xsd:anyURI ;
+	linkml:description "The field this member is." ;
+	linkml:pattern "^fix_field:[1-9][0-9]*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixField> ;
+	linkml:required true ;
+	linkml:value_presence "ABSENT" .
+<https://w3id.org/lmodel/fix-protocol/member_group> dcterms:title "Group" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "groupRef" ;
+	skos:exactMatch "fixr:groupRef"^^xsd:anyURI ;
+	linkml:description "The repeating group this member is." ;
+	linkml:pattern "^fix_group:[1-9][0-9]*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixGroup> ;
+	linkml:required true ;
+	linkml:value_presence "ABSENT" .
+<https://w3id.org/lmodel/fix-protocol/metadata_conforms_to> dcterms:title "Conforms To" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "conformsTo" ;
+	skos:exactMatch "dcterms:conformsTo"^^xsd:anyURI ;
+	linkml:description "The Orchestra version the repository file follows." .
+<https://w3id.org/lmodel/fix-protocol/metadata_created> dcterms:title "Created" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "created" ;
+	skos:exactMatch "dcterms:created"^^xsd:anyURI ;
+	linkml:description "The date the repository file was made." ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/fix_date> .
+<https://w3id.org/lmodel/fix-protocol/metadata_creator> dcterms:title "Creator" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "creator" ;
+	skos:exactMatch "dcterms:creator"^^xsd:anyURI ;
+	linkml:description "Who made the repository, as its metadata states." .
+<https://w3id.org/lmodel/fix-protocol/metadata_description> dcterms:title "Edition Statement" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "description" ;
+	skos:exactMatch "dcterms:description"^^xsd:anyURI ;
+	linkml:description "The metadata's one-line statement of which extension pack the file holds." .
+<https://w3id.org/lmodel/fix-protocol/metadata_format> dcterms:title "Format" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "format" ;
+	skos:exactMatch "dcterms:format"^^xsd:anyURI ;
+	linkml:description "The media type of the repository file." .
+<https://w3id.org/lmodel/fix-protocol/metadata_publisher> dcterms:title "Publisher" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "publisher" ;
+	skos:exactMatch "dcterms:publisher"^^xsd:anyURI ;
+	linkml:description "Who published the repository, as its metadata states." .
+<https://w3id.org/lmodel/fix-protocol/metadata_rights> dcterms:title "Rights Statement" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "rights" ;
+	skos:exactMatch "dcterms:rights"^^xsd:anyURI ;
+	linkml:description "The rights line in the repository's metadata, word for word." .
+<https://w3id.org/lmodel/fix-protocol/metadata_source> dcterms:title "Source" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "source" ;
+	skos:exactMatch "dcterms:source"^^xsd:anyURI ;
+	linkml:description "The tool or source the metadata names for the file." .
+<https://w3id.org/lmodel/fix-protocol/metadata_title> dcterms:title "Title" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "title" ;
+	skos:exactMatch "dcterms:title"^^xsd:anyURI ;
+	linkml:description "The title the repository's metadata gives." .
+<https://w3id.org/lmodel/fix-protocol/msg_type> dcterms:title "MsgType" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "msgType" ;
+	skos:exactMatch "fixr:msgType"^^xsd:anyURI ;
+	linkml:description "The value of field 35 that marks a message of this kind." ;
+	linkml:pattern "^[0-9A-Za-z]{1,2}$" ;
+	linkml:required true .
+<https://w3id.org/lmodel/fix-protocol/name> dcterms:title "Name" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "name" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/name"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core"^^xsd:anyURI ;
+	skos:mappingRelation "https://w3id.org/lmodel/fix-protocol/name"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/name"^^xsd:anyURI ;
+	linkml:description "The element's name in FIX, such as NewOrderSingle or Symbol." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixElement> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixElement> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/fix_name> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/name"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/ncname> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"ncname\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "NCName" ;
+	linkml:definition_uri "https://w3id.org/linkml/Ncname"^^xsd:anyURI ;
+	linkml:description "Prefix part of CURIE" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/nodeidentifier> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"nodeidentifier\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "NodeIdentifier" ;
+	linkml:definition_uri "https://w3id.org/linkml/Nodeidentifier"^^xsd:anyURI ;
+	linkml:description "A URI, CURIE or BNODE that represents a node in a model." ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/ns/shex#nonLiteral"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/num_in_group> dcterms:title "Count Field" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "numInGroup" ;
+	skos:exactMatch "fixr:numInGroup"^^xsd:anyURI ;
+	linkml:description "The field that states how many times the group repeats." ;
+	linkml:inlined true ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixNumInGroup> ;
+	linkml:required true .
+<https://w3id.org/lmodel/fix-protocol/objectidentifier> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"objectidentifier\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	skos:note "Used for inheritance and type checking" ;
+	linkml:base "ElementIdentifier" ;
+	linkml:definition_uri "https://w3id.org/linkml/Objectidentifier"^^xsd:anyURI ;
+	linkml:description "A URI or CURIE that represents an object in the model." ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/ns/shex#iri"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/optional> dcterms:title "Optional" ;
+	linkml:description "The member may be left out." .
+<https://w3id.org/lmodel/fix-protocol/presence> dcterms:title "Presence" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "presence" ;
+	skos:exactMatch "fixr:presence"^^xsd:anyURI ;
+	linkml:description "Whether the member must be there. A member that states none is optional." ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixPresence> .
+<https://w3id.org/lmodel/fix-protocol/repository_name> dcterms:title "Repository Name" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "name" ;
+	skos:exactMatch "fixr:name"^^xsd:anyURI ;
+	linkml:description "The name FIX gives the repository, FIX.Latest." ;
+	linkml:equals_string "FIX.Latest" ;
+	linkml:required true .
+<https://w3id.org/lmodel/fix-protocol/repository_version> dcterms:title "Edition" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "version" ;
+	skos:exactMatch "fixr:version"^^xsd:anyURI ;
+	linkml:description "The extension pack the repository stands at, such as FIX.Latest_EP312." ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/fix_version> ;
+	linkml:required true .
+<https://w3id.org/lmodel/fix-protocol/required> dcterms:title "Required" ;
+	linkml:description "The member must be there." .
+<https://w3id.org/lmodel/fix-protocol/section_order> dcterms:title "Display Order" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "displayOrder" ;
+	skos:exactMatch "fixr:displayOrder"^^xsd:anyURI ;
+	linkml:description "Where the section comes in FIX's own order of sections, counting from 0." ;
+	linkml:minimum_value "0"^^linkml:\@id ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/integer> .
+<https://w3id.org/lmodel/fix-protocol/sort_order> dcterms:title "Sort Order" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "sort" ;
+	skos:exactMatch "fixr:sort"^^xsd:anyURI ;
+	linkml:description "Where the code comes when FIX lists the set." ;
+	linkml:minimum_value "0"^^linkml:\@id ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/integer> .
+<https://w3id.org/lmodel/fix-protocol/sparqlpath> dcterms:conformsTo "https://www.w3.org/TR/sparql11-query/#propertypaths" ;
+	a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"sparqlpath\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/linkml/Sparqlpath"^^xsd:anyURI ;
+	linkml:description "A string encoding a SPARQL Property Path. The value of the string MUST conform to SPARQL syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded as RDF." ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/string> a linkml:TypeDefinition ;
+	skos:editorialNote "In RDF serializations, a slot with range of string is treated as a literal or type xsd:string. If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"string\"." ;
+	skos:exactMatch "schema:Text"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/linkml/String"^^xsd:anyURI ;
+	linkml:description "A character string" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/time> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"time\"." , "URI is dateTime because OWL reasoners do not work with straight date or time" ;
+	skos:exactMatch "schema:Time"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "XSDTime" ;
+	linkml:definition_uri "https://w3id.org/linkml/Time"^^xsd:anyURI ;
+	linkml:description "A time object represents a (local) time of day, independent of any particular day" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#time"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/union_datatype> dcterms:title "Union Datatype" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "unionDataType" ;
+	skos:exactMatch "fixr:unionDataType"^^xsd:anyURI ;
+	linkml:description "A datatype whose values the field also takes, beside those of its code set, such as a range of numbers kept for private use." ;
+	linkml:pattern "^fix_datatype:[A-Za-z][A-Za-z0-9_]*$" ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/FixDatatype> .
+<https://w3id.org/lmodel/fix-protocol/updated_in> dcterms:title "Last Updated In" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "updated" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/updated"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core"^^xsd:anyURI ;
+	skos:mappingRelation "https://w3id.org/lmodel/fix-protocol/updated_in"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/updated_in"^^xsd:anyURI ;
+	linkml:description "The FIX version that last changed the element." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixPedigreeMixin> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixPedigreeMixin> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/fix_version> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/updated_in"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/updated_in_ep> dcterms:title "Last Updated In Extension Pack" ;
+	a linkml:SlotDefinition ;
+	skos:altLabel "updatedEP" ;
+	skos:exactMatch "http://fixprotocol.io/2020/orchestra/repository/updatedEP"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/fix-protocol/schema/fix_protocol_core"^^xsd:anyURI ;
+	skos:mappingRelation "https://w3id.org/lmodel/fix-protocol/updated_in_ep"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/fix-protocol/updated_in_ep"^^xsd:anyURI ;
+	linkml:description "The extension pack that last changed the element." ;
+	linkml:domain_of <https://w3id.org/lmodel/fix-protocol/FixPedigreeMixin> ;
+	linkml:owner <https://w3id.org/lmodel/fix-protocol/FixPedigreeMixin> ;
+	linkml:range <https://w3id.org/lmodel/fix-protocol/fix_extension_pack> ;
+	linkml:slot_uri "https://w3id.org/lmodel/fix-protocol/updated_in_ep"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/uri> dcterms:conformsTo "https://www.ietf.org/rfc/rfc3987.txt" ;
+	a linkml:TypeDefinition ;
+	skos:closeMatch "schema:URL"^^xsd:anyURI ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"uri\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	skos:note "in RDF serializations a slot with range of uri is treated as a literal or type xsd:anyURI unless it is an identifier or a reference to an identifier, in which case it is translated directly to a node" ;
+	linkml:base "URI" ;
+	linkml:definition_uri "https://w3id.org/linkml/Uri"^^xsd:anyURI ;
+	linkml:description "a complete URI" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#anyURI"^^xsd:anyURI .
+<https://w3id.org/lmodel/fix-protocol/uriorcurie> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"uriorcurie\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "URIorCURIE" ;
+	linkml:definition_uri "https://w3id.org/linkml/Uriorcurie"^^xsd:anyURI ;
+	linkml:description "a URI or a CURIE" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#anyURI"^^xsd:anyURI .
+_:c14n1 skos:example "https://github.com/FIXTradingCommunity/orchestrations" ;
+	linkml:tag "upstream_repository"^^xsd:anyURI .
+_:c14n12 sh:namespace "https://w3id.org/lmodel/fix-protocol/code_set/"^^xsd:anyURI ;
+	sh:prefix "fix_code_set" .
+_:c14n13 sh:namespace "https://w3id.org/linkml/"^^xsd:anyURI ;
+	sh:prefix "linkml" .
+_:c14n14 sh:namespace "https://w3id.org/lmodel/fix-protocol/group/"^^xsd:anyURI ;
+	sh:prefix "fix_group" .
+_:c14n17 sh:namespace "https://w3id.org/lmodel/fix-protocol/section/"^^xsd:anyURI ;
+	sh:prefix "fix_section" .
+_:c14n18 sh:namespace "http://www.w3.org/2001/XMLSchema#"^^xsd:anyURI ;
+	sh:prefix "xsd" .
+_:c14n19 sh:namespace "https://w3id.org/lmodel/fix-protocol/code/"^^xsd:anyURI ;
+	sh:prefix "fix_code" .
+_:c14n20 sh:namespace "https://w3id.org/lmodel/fix-protocol/category/"^^xsd:anyURI ;
+	sh:prefix "fix_category" .
+_:c14n21 sh:namespace "https://w3id.org/lmodel/fix-protocol/"^^xsd:anyURI ;
+	sh:prefix "fix_protocol" .
+_:c14n23 sh:namespace "http://fixprotocol.io/2020/orchestra/repository/"^^xsd:anyURI ;
+	sh:prefix "fixr" .
+_:c14n25 sh:namespace "https://w3id.org/lmodel/fix-orchestra/"^^xsd:anyURI ;
+	sh:prefix "fix_orchestra" .
+_:c14n26 sh:namespace "https://w3id.org/lmodel/fix-protocol/field/"^^xsd:anyURI ;
+	sh:prefix "fix_field" .
+_:c14n27 skos:example "Apache-2.0" ;
+	linkml:tag "upstream_license"^^xsd:anyURI .
+_:c14n3 sh:namespace "https://w3id.org/lmodel/fix-protocol/message/"^^xsd:anyURI ;
+	sh:prefix "fix_message" .
+_:c14n32 skos:example "2026-09-08" ;
+	linkml:tag "upstream_created"^^xsd:anyURI .
+_:c14n34 a linkml:AnonymousClassExpression ;
+	linkml:slot_conditions <https://w3id.org/lmodel/fix-protocol/member_component> , <https://w3id.org/lmodel/fix-protocol/member_field> , <https://w3id.org/lmodel/fix-protocol/member_group> .
+_:c14n35 a linkml:AnonymousClassExpression ;
+	linkml:slot_conditions <https://w3id.org/lmodel/fix-protocol/member_component> , <https://w3id.org/lmodel/fix-protocol/member_field> , <https://w3id.org/lmodel/fix-protocol/member_group> .
+_:c14n36 a linkml:AnonymousClassExpression ;
+	linkml:slot_conditions <https://w3id.org/lmodel/fix-protocol/member_component> , <https://w3id.org/lmodel/fix-protocol/member_field> , <https://w3id.org/lmodel/fix-protocol/member_group> .
+_:c14n37 a linkml:AnonymousClassExpression ;
+	linkml:slot_conditions <https://w3id.org/lmodel/fix-protocol/field_code_set> , <https://w3id.org/lmodel/fix-protocol/field_datatype> .
+_:c14n38 a linkml:AnonymousClassExpression ;
+	linkml:slot_conditions <https://w3id.org/lmodel/fix-protocol/field_code_set> , <https://w3id.org/lmodel/fix-protocol/field_datatype> .
+_:c14n5 sh:namespace "https://w3id.org/lmodel/fix-protocol/datatype/"^^xsd:anyURI ;
+	sh:prefix "fix_datatype" .
+_:c14n6 sh:namespace "http://purl.org/dc/terms/"^^xsd:anyURI ;
+	sh:prefix "dcterms" .
+_:c14n8 skos:example "cd24169a2abd8daba7c360987c7a46ca11873a12" ;
+	linkml:tag "upstream_commit"^^xsd:anyURI .
+_:c14n9 sh:namespace "https://w3id.org/lmodel/fix-protocol/component/"^^xsd:anyURI ;
+	sh:prefix "fix_component" .
+
