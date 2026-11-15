@@ -2,6 +2,11 @@
 
 # fix-protocol
 
+[![Build and test](https://github.com/lmodel/fix-protocol/actions/workflows/main.yaml/badge.svg)](https://github.com/lmodel/fix-protocol/actions/workflows/main.yaml)
+[![Licence](https://img.shields.io/github/license/lmodel/fix-protocol?label=licence)](LICENSE)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/lmodel/fix-protocol/badge)](https://scorecard.dev/viewer/?uri=github.com/lmodel/fix-protocol)
+[![KTL scorecard](https://img.shields.io/endpoint?url=https://lmodel.github.io/fix-protocol/badge.json)](https://lmodel.github.io/fix-protocol/health/)
+
 FIX Latest, the FIX application layer standard (LinkML)
 
 > **Only want to ask?** Install `ktl-docent` into any agent you use, by a route from [the install page](https://w3id.org/ktl/docs/install/), and ask it about this project. It answers from the bundle and says how far each answer has been checked.
@@ -35,7 +40,7 @@ The six SSSOM sets are gone: a matching tool wrote their rows, and most named cl
 * [src/fix_protocol/datamodel/](src/fix_protocol/datamodel): the generated Python datamodel
 * [tests/](tests/): Python tests, with example data in [data/](tests/data) and the neighbours' adapt copies in [neighbours/](tests/neighbours)
 * [upstream/](upstream/): FIX Latest's Orchestra file and its repository's licence, unchanged
-* [website/](website/): the Astro Starlight site built from the README, `docs/`, the schema's pages and the knowledge bundle
+* [website/](website/): the Hugo site built from the README, `docs/`, the schema's pages and the knowledge bundle
 
 ## Developer Tools
 
