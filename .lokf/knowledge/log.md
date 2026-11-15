@@ -2,6 +2,7 @@
 
 ## 2026-11-15
 
+* **Changed**: The documentation site names the one old mkdocs address `website/site.toml` redirects, and says where the Hugo site keeps the schema's `elements/` addresses.
 * **Changed**: The concepts that cite the knowledge website describe the Hugo site that replaced the Astro one, set by `website/site.toml`.
 
 ## 2026-11-06

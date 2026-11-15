@@ -10,14 +10,14 @@ references:
 sources:
   - id: website-readme.md
     resource: website/README.md
-    title: the overview
+    title: the overview and What the site shows
   - id: website-site.toml
     resource: website/site.toml
     title: the site's address, title and redirects
   - resource: docs/index.md
 generated:
   by: process:ktl-librarian
-  at: "2026-11-15T02:57:18Z"
+  at: "2026-11-15T03:04:04Z"
 status: draft
 ---
 
@@ -25,7 +25,7 @@ status: draft
 
 Every page comes from a file the repository already holds, so a change to the site is a change to that file.[^website-readme.md]
 
-`site.toml` sends the old mkdocs addresses `/about` and `/elements` to their new pages.[^website-site.toml]
+`site.toml` sends the old mkdocs address `/about` to `docs/about.md`.[^website-site.toml] Each page of the schema is also at `elements/<Name>/`, where the schema's w3id rules point.[^website-readme.md]
 
-[^website-readme.md]: website/README.md, the overview
+[^website-readme.md]: website/README.md, the overview and What the site shows
 [^website-site.toml]: website/site.toml, the site's address, title and redirects
