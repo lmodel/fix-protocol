@@ -35,7 +35,7 @@ The six SSSOM sets are gone: a matching tool wrote their rows, and most named cl
 * [src/fix_protocol/datamodel/](src/fix_protocol/datamodel): the generated Python datamodel
 * [tests/](tests/): Python tests, with example data in [data/](tests/data) and the neighbours' adapt copies in [neighbours/](tests/neighbours)
 * [upstream/](upstream/): FIX Latest's Orchestra file and its repository's licence, unchanged
-* [website/](website/): the Astro Starlight site built from the README, `docs/`, the schema's pages and the knowledge bundle
+* [website/](website/): the Hugo site built from the README, `docs/`, the schema's pages and the knowledge bundle
 
 ## Developer Tools
 
