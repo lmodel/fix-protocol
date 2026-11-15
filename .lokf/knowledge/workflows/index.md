@@ -1,6 +1,6 @@
 # Workflows
 
-* [Build and test (main.yaml)](main.md) - The workflow that installs the locked environment and runs `just test` on Python 3.10 to 3.14, with `just lint` and `just lokf-adapt-check` on 3.13, on every pull request and push to `main`.
+* [Build and test (main.yaml)](main.md) - The workflow that installs the locked environment and runs `just test` on Python 3.11 to 3.14, with `just lint` and `just lokf-adapt-check` on 3.13, on every pull request and push to `main`.
 * [Lint and docs (lint-and-docs.yaml)](lint-and-docs.md) - The workflow that runs ShellCheck, actionlint, markdownlint, lychee and codespell, and holds CONTRIBUTING.md and SECURITY.md to their word budgets.
 * [Upstream watch (upstream-watch.yaml)](upstream-watch.md) - The weekly check that `scripts/check_upstream_release.py` runs: a new FIX Latest extension pack, a rewritten pinned commit or a changed licence opens or updates an issue.
 * [Semantic release (semantic-release.yml)](semantic-release.md) - The workflow that, on a push to `main` behind the `release` Environment, promotes the changelog, tags the release and dispatches the knowledge release.
