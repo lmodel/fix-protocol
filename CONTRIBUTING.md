@@ -19,7 +19,7 @@ A LinkML schema of FIX Latest, the application layer of the FIX protocol, at the
 
 ## Development setup
 
-You need Python 3.10+, [uv](https://docs.astral.sh/uv/) and [just](https://github.com/casey/just).
+You need Python 3.11+, [uv](https://docs.astral.sh/uv/) and [just](https://github.com/casey/just).
 
 ```bash
 git clone https://github.com/lmodel/fix-protocol.git
