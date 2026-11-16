@@ -15,10 +15,10 @@ sources:
   - resource: .releaserc.json
   - resource: CHANGELOG.md
   - resource: .github/scripts/changelog-release.mjs
-  - resource: .github/release
+  - resource: .release
 generated:
   by: process:ktl-librarian
-  at: "2026-11-05T19:39:39Z"
+  at: "2026-11-15T20:57:17Z"
 status: draft
 ---
 
